@@ -13,9 +13,9 @@ const Trolibocs = [
 ];
 
 const summariseTroliboxes = (containers: Container[]) => {
-  const splitTroliboxes = groupBy(containers, (container) => {
-    Trolibocs.includes(container.name) ? 'trolibox' : 'other';
-  });
+  const splitTroliboxes = groupBy(containers, (container) =>
+    Trolibocs.includes(container.name) ? 'trolibox' : 'other',
+  );
 
   const troliboxColors = Object.fromEntries(
     (splitTroliboxes.trolibox ?? []).map((container) => [

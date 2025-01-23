@@ -48,8 +48,12 @@ export type ContainerName =
   | 'Reusable Sack'
   | 'Non-Reusable Sack'
   | 'Householder Provided Carrier Bag'
+  | 'Wheeled Bin'
   | 'Trolibocs'
-  | 'Wheeled Bin';
+  | 'Trolibox - Top box'
+  | 'Trolibox - Middle box'
+  | 'Trolibox - Bottom box'
+  | 'Trolibox – 3 containers';
 
 export interface Container {
   name: ContainerName;

@@ -1,0 +1,41 @@
+.container-svg {
+  --background-colour: #d7e7f5;
+
+  .lid {
+    fill: var(--lid-colour);
+
+    &.top {
+      fill: var(--lid-top-colour, var(--background-colour));
+    }
+
+    &.middle {
+      fill: var(--lid-middle-colour, var(--background-colour));
+    }
+
+    &.bottom {
+      fill: var(--lid-bottom-colour, var(--background-colour));
+    }
+  }
+
+  .body {
+    fill: var(--body-colour);
+
+    &.top {
+      fill: var(--body-top-colour, var(--background-colour));
+    }
+
+    &.middle {
+      fill: var(--body-middle-colour, var(--background-colour));
+    }
+
+    &.bottom {
+      fill: var(--body-bottom-colour, var(--background-colour));
+    }
+  }
+
+  &[lid-colour='#ffffff00'],
+  &[body-colour='#ffffff00'] {
+    stroke: var(--color-grey-dark);
+    stroke-width: 1px;
+  }
+}

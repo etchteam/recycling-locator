@@ -57,7 +57,7 @@ test('Returns formatted cssVariables for tiered trolibocs', () => {
   });
 });
 
-test('Returns formatted cssVariables for multicolored trolibocs', () => {
+test('Returns formatted cssVariables for multicoloured trolibocs', () => {
   expect(
     getContainerColours(
       'Trolibocs – 3 containers',

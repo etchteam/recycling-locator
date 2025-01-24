@@ -13,7 +13,7 @@ export function getTrolibocsColours(containers: Container[]) {
     TrolibocsMap.has(container.name) ? 'trolibocs' : 'otherContainers',
   );
 
-  const trolibocsColors = Object.fromEntries(
+  const trolibocsColours = Object.fromEntries(
     (splitTrolibocs.trolibocs ?? []).map((container) => [
       container.name,
       {
@@ -23,7 +23,7 @@ export function getTrolibocsColours(containers: Container[]) {
     ]),
   );
   return {
-    trolibocsColors,
+    trolibocsColours,
     otherContainers: splitTrolibocs.otherContainers ?? [],
   };
 }

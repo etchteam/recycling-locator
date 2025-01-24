@@ -79,7 +79,7 @@ export const Trolibocs: StoryObj = {
           </locator-container-icon>
           <locator-container-content>
             <locator-container-name>
-              <h4>Single Color Trolibocs</h4>
+              <h4>Single Colour Trolibocs</h4>
             </locator-container-name>
           </locator-container-content>
         </locator-container>
@@ -137,7 +137,7 @@ export const Trolibocs: StoryObj = {
           <locator-container-icon>
             <ContainerSVG
               name="Trolibocs – 3 containers"
-              colors={{
+              colours={{
                 'Trolibocs - Top box': {
                   bodyColour: 'pink',
                   lidColour: 'yellow',
@@ -155,7 +155,7 @@ export const Trolibocs: StoryObj = {
           </locator-container-icon>
           <locator-container-content>
             <locator-container-name>
-              <h4>Muilticolor Trolibocs</h4>
+              <h4>Muilticolour Trolibocs</h4>
             </locator-container-name>
           </locator-container-content>
         </locator-container>

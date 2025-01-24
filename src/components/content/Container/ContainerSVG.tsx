@@ -11,7 +11,7 @@ export interface ContainerSvgAttributes {
   readonly bodyColour?: string;
   readonly lidColour?: string;
   readonly label?: string;
-  readonly colors?: { [key: string]: { [key: string]: string } };
+  readonly colours?: { [key: string]: { [key: string]: string } };
 }
 
 const containerNameToSvgName: { [key in ContainerName]: string } = {
@@ -36,7 +36,7 @@ export default function ContainerSvg({
   lidColour,
   bodyColour,
   label,
-  colors,
+  colours,
 }: ContainerSvgAttributes) {
   if (!name || (name as string) === 'undefined') {
     return null;
@@ -53,7 +53,12 @@ export default function ContainerSvg({
     );
   });
 
-  const cssVariables = getContainerColours(name, bodyColour, lidColour, colors);
+  const cssVariables = getContainerColours(
+    name,
+    bodyColour,
+    lidColour,
+    colours,
+  );
 
   return (
     <Suspense fallback={BlankSvg}>

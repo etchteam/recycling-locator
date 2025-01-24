@@ -4,32 +4,32 @@ import { TrolibocsMap } from './getTrolibocsColours';
 
 const getPositionColours = (
   position: string,
-  lidColor: string,
-  bodyColor: string,
+  lidColour: string,
+  bodyColour: string,
 ) => ({
-  [`--lid-${position}-colour`]: lidColor,
-  [`--body-${position}-colour`]: bodyColor,
+  [`--lid-${position}-colour`]: lidColour,
+  [`--body-${position}-colour`]: bodyColour,
 });
 
 export default function getContainerColours(
   name: ContainerName,
   bodyColour?: string,
   lidColour?: string,
-  colors?: { [key: string]: { [key: string]: string } },
+  colours?: { [key: string]: { [key: string]: string } },
 ) {
   if (name === 'Trolibocs – 3 containers') {
-    const cssColors = {};
+    const cssColours = {};
     TrolibocsMap.forEach((position, key) => {
       Object.assign(
-        cssColors,
+        cssColours,
         getPositionColours(
           position,
-          colors[key]['lidColour'] ?? 'transparent',
-          colors[key]['bodyColour'],
+          colours[key]['lidColour'] ?? 'transparent',
+          colours[key]['bodyColour'],
         ),
       );
     });
-    return cssColors;
+    return cssColours;
   }
   if (TrolibocsMap.has(name)) {
     return getPositionColours(

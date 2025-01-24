@@ -16,8 +16,8 @@ export default function SchemeContainerSummary({
 }) {
   const { t } = useTranslation();
 
-  const { trolibocsColors, otherContainers } = getTrolibocsColours(containers);
-  const completeTrolibocs = Object.keys(trolibocsColors).length === 3;
+  const { trolibocsColours, otherContainers } = getTrolibocsColours(containers);
+  const completeTrolibocs = Object.keys(trolibocsColours).length === 3;
   const limitWithoutTrolibocs = completeTrolibocs ? limit - 1 : limit;
 
   const firstContainers = otherContainers.slice(0, limitWithoutTrolibocs);
@@ -31,7 +31,7 @@ export default function SchemeContainerSummary({
             <locator-container-icon>
               <ContainerSvg
                 name={t('components.schemeContainerSummary.combinedTrolibocs')}
-                colors={trolibocsColors}
+                colours={trolibocsColours}
               />
             </locator-container-icon>
             <locator-container-content>

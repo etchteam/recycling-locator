@@ -20,28 +20,28 @@ const formattedTrolibocs = {
 
 test('Returns empty values for an empty container array', () => {
   expect(getTrolibocsColours([])).toEqual({
-    trolibocsColors: {},
+    trolibocsColours: {},
     otherContainers: [],
   });
 });
 
 test('Returns empty trolibocs object when none exist', () => {
   expect(getTrolibocsColours(mockContainers)).toEqual({
-    trolibocsColors: {},
+    trolibocsColours: {},
     otherContainers: mockContainers,
   });
 });
 
 test('Returns formatted trolibocs seperated from the rest of the array', () => {
   expect(getTrolibocsColours([...mockContainers, ...mockTrolibocs])).toEqual({
-    trolibocsColors: formattedTrolibocs,
+    trolibocsColours: formattedTrolibocs,
     otherContainers: mockContainers,
   });
 });
 
 test('Returns empty other containers array when none exist', () => {
   expect(getTrolibocsColours(mockTrolibocs)).toEqual({
-    trolibocsColors: formattedTrolibocs,
+    trolibocsColours: formattedTrolibocs,
     otherContainers: [],
   });
 });

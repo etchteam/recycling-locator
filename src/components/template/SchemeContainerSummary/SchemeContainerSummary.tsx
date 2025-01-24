@@ -16,12 +16,12 @@ export default function SchemeContainerSummary({
 }) {
   const { t } = useTranslation();
 
-  const { troliboxColors, other } = getTrolibocsColours(containers);
+  const { troliboxColors, otherContainers } = getTrolibocsColours(containers);
   const completeTrolibox = Object.keys(troliboxColors).length === 3;
   const limitWithoutTrolibox = completeTrolibox ? limit - 1 : limit;
 
-  const firstContainers = other.slice(0, limitWithoutTrolibox);
-  const remainingContainers = other.slice(limitWithoutTrolibox);
+  const firstContainers = otherContainers.slice(0, limitWithoutTrolibox);
+  const remainingContainers = otherContainers.slice(limitWithoutTrolibox);
 
   return (
     <ul role="list" className="list-style-none diamond-spacing-bottom-md">

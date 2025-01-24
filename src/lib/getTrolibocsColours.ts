@@ -10,7 +10,7 @@ const TroliboxMap = new Map<string, string>([
 
 export function getTrolibocsColours(containers: Container[]) {
   const splitTroliboxes = groupBy(containers, (container) =>
-    TroliboxMap.has(container.name) ? 'trolibox' : 'other',
+    TroliboxMap.has(container.name) ? 'trolibox' : 'otherContainers',
   );
 
   const troliboxColors = Object.fromEntries(
@@ -24,6 +24,6 @@ export function getTrolibocsColours(containers: Container[]) {
   );
   return {
     troliboxColors,
-    other: splitTroliboxes.other ?? [],
+    otherContainers: splitTroliboxes.otherContainers ?? [],
   };
 }

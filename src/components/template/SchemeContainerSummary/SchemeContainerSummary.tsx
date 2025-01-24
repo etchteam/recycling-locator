@@ -1,4 +1,4 @@
-import { uniqueId } from 'lodash';
+import uniqueId from 'lodash/uniqueId';
 import { useTranslation } from 'react-i18next';
 
 import '@/components/content/Container/Container';

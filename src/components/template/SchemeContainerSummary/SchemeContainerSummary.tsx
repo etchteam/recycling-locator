@@ -15,14 +15,13 @@ export default function SchemeContainerSummary({
   readonly limit?: number;
 }) {
   const { t } = useTranslation();
+
   const { troliboxColors, other } = getTrolibocsColours(containers);
   const completeTrolibox = Object.keys(troliboxColors).length === 3;
-  if (completeTrolibox) {
-    limit = limit - 1;
-  }
+  const limitWithoutTrolibox = completeTrolibox ? limit - 1 : limit;
 
-  const firstContainers = other.slice(0, limit);
-  const remainingContainers = other.slice(limit);
+  const firstContainers = other.slice(0, limitWithoutTrolibox);
+  const remainingContainers = other.slice(limitWithoutTrolibox);
 
   return (
     <ul role="list" className="list-style-none diamond-spacing-bottom-md">

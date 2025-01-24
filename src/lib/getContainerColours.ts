@@ -1,6 +1,6 @@
 import { ContainerName } from '@/types/locatorApi';
 
-import { TroliboxMap } from './getTrolibocsColours';
+import { TrolibocsMap } from './getTrolibocsColours';
 
 const getPositionColours = (
   position: string,
@@ -17,9 +17,9 @@ export default function getContainerColours(
   lidColour?: string,
   colors?: { [key: string]: { [key: string]: string } },
 ) {
-  if (name === 'Trolibox – 3 containers') {
+  if (name === 'Trolibocs – 3 containers') {
     const cssColors = {};
-    TroliboxMap.forEach((position, key) => {
+    TrolibocsMap.forEach((position, key) => {
       Object.assign(
         cssColors,
         getPositionColours(
@@ -31,9 +31,9 @@ export default function getContainerColours(
     });
     return cssColors;
   }
-  if (TroliboxMap.has(name)) {
+  if (TrolibocsMap.has(name)) {
     return getPositionColours(
-      TroliboxMap.get(name),
+      TrolibocsMap.get(name),
       lidColour ?? 'transparent',
       bodyColour,
     );

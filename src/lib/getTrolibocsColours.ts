@@ -2,19 +2,19 @@ import groupBy from 'lodash/groupBy';
 
 import { Container } from '@/types/locatorApi';
 
-export const TroliboxMap = new Map<string, string>([
-  ['Trolibox - Top box', 'top'],
-  ['Trolibox - Middle box', 'middle'],
-  ['Trolibox - Bottom box', 'bottom'],
+export const TrolibocsMap = new Map<string, string>([
+  ['Trolibocs - Top box', 'top'],
+  ['Trolibocs - Middle box', 'middle'],
+  ['Trolibocs - Bottom box', 'bottom'],
 ]);
 
 export function getTrolibocsColours(containers: Container[]) {
-  const splitTroliboxes = groupBy(containers, (container) =>
-    TroliboxMap.has(container.name) ? 'trolibox' : 'otherContainers',
+  const splitTrolibocs = groupBy(containers, (container) =>
+    TrolibocsMap.has(container.name) ? 'trolibocs' : 'otherContainers',
   );
 
-  const troliboxColors = Object.fromEntries(
-    (splitTroliboxes.trolibox ?? []).map((container) => [
+  const trolibocsColors = Object.fromEntries(
+    (splitTrolibocs.trolibocs ?? []).map((container) => [
       container.name,
       {
         bodyColour: container.bodyColour,
@@ -23,7 +23,7 @@ export function getTrolibocsColours(containers: Container[]) {
     ]),
   );
   return {
-    troliboxColors,
-    otherContainers: splitTroliboxes.otherContainers ?? [],
+    trolibocsColors,
+    otherContainers: splitTrolibocs.otherContainers ?? [],
   };
 }

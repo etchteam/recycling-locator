@@ -24,11 +24,11 @@ const containerNameToSvgName: { [key in ContainerName]: string } = {
   'Reusable Sack': 'sack',
   'Non-Reusable Sack': 'sack',
   'Wheeled Bin': 'wheeled-bin',
-  Trolibocs: 'trolibox',
-  'Trolibox - Top box': 'trolibox-multi',
-  'Trolibox - Middle box': 'trolibox-multi',
-  'Trolibox - Bottom box': 'trolibox-multi',
-  'Trolibox – 3 containers': 'trolibox-multi',
+  Trolibocs: 'trolibocs',
+  'Trolibocs - Top box': 'trolibocs-multi',
+  'Trolibocs - Middle box': 'trolibocs-multi',
+  'Trolibocs - Bottom box': 'trolibocs-multi',
+  'Trolibocs – 3 containers': 'trolibocs-multi',
 };
 
 export default function ContainerSvg({

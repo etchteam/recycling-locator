@@ -50,10 +50,10 @@ export type ContainerName =
   | 'Householder Provided Carrier Bag'
   | 'Wheeled Bin'
   | 'Trolibocs'
-  | 'Trolibox - Top box'
-  | 'Trolibox - Middle box'
-  | 'Trolibox - Bottom box'
-  | 'Trolibox – 3 containers';
+  | 'Trolibocs - Top box'
+  | 'Trolibocs - Middle box'
+  | 'Trolibocs - Bottom box'
+  | 'Trolibocs – 3 containers';
 
 export interface Container {
   name: ContainerName;

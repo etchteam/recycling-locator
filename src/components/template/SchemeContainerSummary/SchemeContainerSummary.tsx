@@ -16,22 +16,22 @@ export default function SchemeContainerSummary({
 }) {
   const { t } = useTranslation();
 
-  const { troliboxColors, otherContainers } = getTrolibocsColours(containers);
-  const completeTrolibox = Object.keys(troliboxColors).length === 3;
-  const limitWithoutTrolibox = completeTrolibox ? limit - 1 : limit;
+  const { trolibocsColors, otherContainers } = getTrolibocsColours(containers);
+  const completeTrolibocs = Object.keys(trolibocsColors).length === 3;
+  const limitWithoutTrolibocs = completeTrolibocs ? limit - 1 : limit;
 
-  const firstContainers = otherContainers.slice(0, limitWithoutTrolibox);
-  const remainingContainers = otherContainers.slice(limitWithoutTrolibox);
+  const firstContainers = otherContainers.slice(0, limitWithoutTrolibocs);
+  const remainingContainers = otherContainers.slice(limitWithoutTrolibocs);
 
   return (
     <ul role="list" className="list-style-none diamond-spacing-bottom-md">
-      {completeTrolibox ? (
-        <li key={'Trolibox'} className="diamond-spacing-bottom-sm">
+      {completeTrolibocs ? (
+        <li key={'Trolibocs'} className="diamond-spacing-bottom-sm">
           <locator-container>
             <locator-container-icon>
               <ContainerSvg
                 name={t('components.schemeContainerSummary.combinedTrolibocs')}
-                colors={troliboxColors}
+                colors={trolibocsColors}
               />
             </locator-container-icon>
             <locator-container-content>

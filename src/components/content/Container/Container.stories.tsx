@@ -69,7 +69,7 @@ export const Container: StoryObj = {
   ),
 };
 
-export const Troliboxes: StoryObj = {
+export const Trolibocs: StoryObj = {
   render: () => (
     <diamond-grid wrap="wrap">
       <diamond-grid-item small-mobile="12">
@@ -79,7 +79,7 @@ export const Troliboxes: StoryObj = {
           </locator-container-icon>
           <locator-container-content>
             <locator-container-name>
-              <h4>Single Color Trolibox</h4>
+              <h4>Single Color Trolibocs</h4>
             </locator-container-name>
           </locator-container-content>
         </locator-container>
@@ -88,14 +88,14 @@ export const Troliboxes: StoryObj = {
         <locator-container>
           <locator-container-icon>
             <ContainerSVG
-              name="Trolibox - Top box"
+              name="Trolibocs - Top box"
               bodyColour="pink"
               lidColour="yellow"
             />
           </locator-container-icon>
           <locator-container-content>
             <locator-container-name>
-              <h4>Top Trolibox</h4>
+              <h4>Top Trolibocs</h4>
             </locator-container-name>
           </locator-container-content>
         </locator-container>
@@ -104,14 +104,14 @@ export const Troliboxes: StoryObj = {
         <locator-container>
           <locator-container-icon>
             <ContainerSVG
-              name="Trolibox - Middle box"
+              name="Trolibocs - Middle box"
               bodyColour="pink"
               lidColour="yellow"
             />
           </locator-container-icon>
           <locator-container-content>
             <locator-container-name>
-              <h4>Middle Trolibox</h4>
+              <h4>Middle Trolibocs</h4>
             </locator-container-name>
           </locator-container-content>
         </locator-container>
@@ -120,14 +120,14 @@ export const Troliboxes: StoryObj = {
         <locator-container>
           <locator-container-icon>
             <ContainerSVG
-              name="Trolibox - Bottom box"
+              name="Trolibocs - Bottom box"
               bodyColour="pink"
               lidColour="yellow"
             />
           </locator-container-icon>
           <locator-container-content>
             <locator-container-name>
-              <h4>Bottom Trolibox</h4>
+              <h4>Bottom Trolibocs</h4>
             </locator-container-name>
           </locator-container-content>
         </locator-container>
@@ -136,17 +136,17 @@ export const Troliboxes: StoryObj = {
         <locator-container>
           <locator-container-icon>
             <ContainerSVG
-              name="Trolibox – 3 containers"
+              name="Trolibocs – 3 containers"
               colors={{
-                'Trolibox - Top box': {
+                'Trolibocs - Top box': {
                   bodyColour: 'pink',
                   lidColour: 'yellow',
                 },
-                'Trolibox - Middle box': {
+                'Trolibocs - Middle box': {
                   bodyColour: 'blue',
                   lidColour: 'green',
                 },
-                'Trolibox - Bottom box': {
+                'Trolibocs - Bottom box': {
                   bodyColour: 'purple',
                   lidColour: 'orange',
                 },
@@ -155,7 +155,7 @@ export const Troliboxes: StoryObj = {
           </locator-container-icon>
           <locator-container-content>
             <locator-container-name>
-              <h4>Muilticolor Trolibox</h4>
+              <h4>Muilticolor Trolibocs</h4>
             </locator-container-name>
           </locator-container-content>
         </locator-container>

@@ -67,10 +67,10 @@ export const mockContainers: Container[] = [
   },
 ];
 
-export const mockTroliboxes: Container[] = [
+export const mockTrolibocs: Container[] = [
   {
-    name: 'Trolibox - Top box',
-    displayName: 'Trolibox - Top box',
+    name: 'Trolibocs - Top box',
+    displayName: 'Trolibocs - Top box',
     bodyColour: '#4f4f4f',
     lidColour: '#56ccf2',
     notes: [],
@@ -89,8 +89,8 @@ export const mockTroliboxes: Container[] = [
     ],
   },
   {
-    name: 'Trolibox - Middle box',
-    displayName: 'Trolibox - Middle box',
+    name: 'Trolibocs - Middle box',
+    displayName: 'Trolibocs - Middle box',
     bodyColour: '#4f4f4f',
     lidColour: '#2262b9',
     notes: [],
@@ -131,8 +131,8 @@ export const mockTroliboxes: Container[] = [
     ],
   },
   {
-    name: 'Trolibox - Bottom box',
-    displayName: 'Trolibox - Bottom box',
+    name: 'Trolibocs - Bottom box',
+    displayName: 'Trolibocs - Bottom box',
     bodyColour: '#ffffff00',
     lidColour: null,
     notes: [],

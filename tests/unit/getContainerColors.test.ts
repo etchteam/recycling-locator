@@ -2,16 +2,16 @@ import { expect, test } from 'vitest';
 
 import getContainerColours from '@/lib/getContainerColours';
 
-const formattedTroliboxes = {
-  'Trolibox - Top box': {
+const formattedTrolibocs = {
+  'Trolibocs - Top box': {
     bodyColour: '#4f4f4f',
     lidColour: '#56ccf2',
   },
-  'Trolibox - Middle box': {
+  'Trolibocs - Middle box': {
     bodyColour: '#4f4f4f',
     lidColour: '#2262b9',
   },
-  'Trolibox - Bottom box': {
+  'Trolibocs - Bottom box': {
     bodyColour: '#ffffff00',
     lidColour: null,
   },
@@ -29,41 +29,41 @@ test('Returns formatted cssVariables for simple container', () => {
   });
 });
 
-test('Returns simple formatted cssVariables for plain trolibox', () => {
+test('Returns simple formatted cssVariables for plain trolibocs', () => {
   expect(getContainerColours('Trolibocs', 'blue')).toEqual({
     '--lid-colour': 'transparent',
     '--body-colour': 'blue',
   });
 });
 
-test('Returns formatted cssVariables for tiered troliboxes', () => {
-  expect(getContainerColours('Trolibox - Top box', 'blue', 'green')).toEqual({
+test('Returns formatted cssVariables for tiered trolibocs', () => {
+  expect(getContainerColours('Trolibocs - Top box', 'blue', 'green')).toEqual({
     '--body-top-colour': 'blue',
     '--lid-top-colour': 'green',
   });
 
-  expect(getContainerColours('Trolibox - Middle box', 'blue', 'green')).toEqual(
-    {
-      '--body-middle-colour': 'blue',
-      '--lid-middle-colour': 'green',
-    },
-  );
+  expect(
+    getContainerColours('Trolibocs - Middle box', 'blue', 'green'),
+  ).toEqual({
+    '--body-middle-colour': 'blue',
+    '--lid-middle-colour': 'green',
+  });
 
-  expect(getContainerColours('Trolibox - Bottom box', 'blue', 'green')).toEqual(
-    {
-      '--body-bottom-colour': 'blue',
-      '--lid-bottom-colour': 'green',
-    },
-  );
+  expect(
+    getContainerColours('Trolibocs - Bottom box', 'blue', 'green'),
+  ).toEqual({
+    '--body-bottom-colour': 'blue',
+    '--lid-bottom-colour': 'green',
+  });
 });
 
-test('Returns formatted cssVariables for multicolored trolibox', () => {
+test('Returns formatted cssVariables for multicolored trolibocs', () => {
   expect(
     getContainerColours(
-      'Trolibox – 3 containers',
+      'Trolibocs – 3 containers',
       null,
       null,
-      formattedTroliboxes,
+      formattedTrolibocs,
     ),
   ).toEqual({
     '--lid-top-colour': '#56ccf2',

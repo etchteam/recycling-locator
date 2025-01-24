@@ -2,15 +2,15 @@ import { groupBy } from 'lodash';
 
 import { Container } from '@/types/locatorApi';
 
-export const TroliboxMap = {
-  'Trolibox - Top box': 'top',
-  'Trolibox - Middle box': 'middle',
-  'Trolibox - Bottom box': 'bottom',
-};
+const TroliboxMap = new Map<string, string>([
+  ['Trolibox - Top box', 'top'],
+  ['Trolibox - Middle box', 'middle'],
+  ['Trolibox - Bottom box', 'bottom'],
+]);
 
-export function summariseTroliboxes(containers: Container[]) {
+export function getTrolibocsColours(containers: Container[]) {
   const splitTroliboxes = groupBy(containers, (container) =>
-    Object.keys(TroliboxMap).includes(container.name) ? 'trolibox' : 'other',
+    TroliboxMap.has(container.name) ? 'trolibox' : 'other',
   );
 
   const troliboxColors = Object.fromEntries(
@@ -22,5 +22,8 @@ export function summariseTroliboxes(containers: Container[]) {
       },
     ]),
   );
-  return { troliboxColors, other: splitTroliboxes.other ?? [] };
+  return {
+    troliboxColors,
+    other: splitTroliboxes.other ?? [],
+  };
 }

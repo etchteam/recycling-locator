@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import '@/components/content/Container/Container';
 import ContainerSvg from '@/components/content/Container/ContainerSVG';
 import containerName from '@/lib/containerName';
-import { summariseTroliboxes } from '@/lib/summariseTroliboxes';
+import { getTrolibocsColours } from '@/lib/getTrolibocsColours';
 import { Container } from '@/types/locatorApi';
 
 export default function SchemeContainerSummary({
@@ -15,7 +15,7 @@ export default function SchemeContainerSummary({
   readonly limit?: number;
 }) {
   const { t } = useTranslation();
-  const { troliboxColors, other } = summariseTroliboxes(containers);
+  const { troliboxColors, other } = getTrolibocsColours(containers);
   const completeTrolibox = Object.keys(troliboxColors).length === 3;
   if (completeTrolibox) {
     limit = limit - 1;

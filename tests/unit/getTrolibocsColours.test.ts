@@ -1,7 +1,7 @@
 import { expect, test } from 'vitest';
 
 import { mockContainers, mockTroliboxes } from '../mocks/containers';
-import { summariseTroliboxes } from '@/lib/summariseTroliboxes';
+import { getTrolibocsColours } from '@/lib/getTrolibocsColours';
 
 const formattedTroliboxes = {
   'Trolibox - Bottom box': {
@@ -19,25 +19,25 @@ const formattedTroliboxes = {
 };
 
 test('Returns empty values for an empty container array', () => {
-  expect(summariseTroliboxes([])).toEqual({ troliboxColors: {}, other: [] });
+  expect(getTrolibocsColours([])).toEqual({ troliboxColors: {}, other: [] });
 });
 
 test('Returns empty trolibox object when none exist', () => {
-  expect(summariseTroliboxes(mockContainers)).toEqual({
+  expect(getTrolibocsColours(mockContainers)).toEqual({
     troliboxColors: {},
     other: mockContainers,
   });
 });
 
 test('Returns formatted troliboxes seperated from the rest of the array', () => {
-  expect(summariseTroliboxes([...mockContainers, ...mockTroliboxes])).toEqual({
+  expect(getTrolibocsColours([...mockContainers, ...mockTroliboxes])).toEqual({
     troliboxColors: formattedTroliboxes,
     other: mockContainers,
   });
 });
 
 test('Returns empty other containers array when none exist', () => {
-  expect(summariseTroliboxes(mockTroliboxes)).toEqual({
+  expect(getTrolibocsColours(mockTroliboxes)).toEqual({
     troliboxColors: formattedTroliboxes,
     other: [],
   });

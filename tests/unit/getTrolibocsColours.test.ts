@@ -19,26 +19,29 @@ const formattedTroliboxes = {
 };
 
 test('Returns empty values for an empty container array', () => {
-  expect(getTrolibocsColours([])).toEqual({ troliboxColors: {}, other: [] });
+  expect(getTrolibocsColours([])).toEqual({
+    troliboxColors: {},
+    otherContainers: [],
+  });
 });
 
 test('Returns empty trolibox object when none exist', () => {
   expect(getTrolibocsColours(mockContainers)).toEqual({
     troliboxColors: {},
-    other: mockContainers,
+    otherContainers: mockContainers,
   });
 });
 
 test('Returns formatted troliboxes seperated from the rest of the array', () => {
   expect(getTrolibocsColours([...mockContainers, ...mockTroliboxes])).toEqual({
     troliboxColors: formattedTroliboxes,
-    other: mockContainers,
+    otherContainers: mockContainers,
   });
 });
 
 test('Returns empty other containers array when none exist', () => {
   expect(getTrolibocsColours(mockTroliboxes)).toEqual({
     troliboxColors: formattedTroliboxes,
-    other: [],
+    otherContainers: [],
   });
 });

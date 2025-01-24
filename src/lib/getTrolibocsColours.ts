@@ -2,7 +2,7 @@ import groupBy from 'lodash/groupBy';
 
 import { Container } from '@/types/locatorApi';
 
-const TroliboxMap = new Map<string, string>([
+export const TroliboxMap = new Map<string, string>([
   ['Trolibox - Top box', 'top'],
   ['Trolibox - Middle box', 'middle'],
   ['Trolibox - Bottom box', 'bottom'],

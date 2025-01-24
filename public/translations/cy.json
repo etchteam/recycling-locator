@@ -68,7 +68,8 @@
     },
     "schemeContainerSummary": {
       "otherContainers": "+{{count}} bin arall",
-      "otherContainers_one": "+1 bin arall"
+      "otherContainers_one": "+1 bin arall",
+      "combinedTrolibocs": "Trolibocs - 3 cynhwysydd"
     },
     "footer": {
       "poweredBy": "Pwerwyd gan",

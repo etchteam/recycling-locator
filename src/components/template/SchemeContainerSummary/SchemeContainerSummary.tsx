@@ -30,13 +30,13 @@ export default function SchemeContainerSummary({
           <locator-container>
             <locator-container-icon>
               <ContainerSvg
-                name={'Trolibox – 3 containers'}
+                name={t('components.schemeContainerSummary.combinedTrolibocs')}
                 colors={troliboxColors}
               />
             </locator-container-icon>
             <locator-container-content>
               <locator-container-name>
-                Trolibox – 3 containers
+                {t('components.schemeContainerSummary.combinedTrolibocs')}
               </locator-container-name>
             </locator-container-content>
           </locator-container>

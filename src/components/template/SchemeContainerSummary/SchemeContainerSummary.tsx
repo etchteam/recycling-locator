@@ -1,33 +1,11 @@
-import { uniqueId, groupBy } from 'lodash';
+import { uniqueId } from 'lodash';
 import { useTranslation } from 'react-i18next';
 
 import '@/components/content/Container/Container';
 import ContainerSvg from '@/components/content/Container/ContainerSVG';
 import containerName from '@/lib/containerName';
+import { summariseTroliboxes } from '@/lib/summariseTroliboxes';
 import { Container } from '@/types/locatorApi';
-
-const Trolibocs = [
-  'Trolibox - Top box',
-  'Trolibox - Middle box',
-  'Trolibox - Bottom box',
-];
-
-const summariseTroliboxes = (containers: Container[]) => {
-  const splitTroliboxes = groupBy(containers, (container) =>
-    Trolibocs.includes(container.name) ? 'trolibox' : 'other',
-  );
-
-  const troliboxColors = Object.fromEntries(
-    (splitTroliboxes.trolibox ?? []).map((container) => [
-      container.name,
-      {
-        bodyColour: container.bodyColour,
-        lidColour: container.lidColour,
-      },
-    ]),
-  );
-  return { troliboxColors, other: splitTroliboxes.other ?? [] };
-};
 
 export default function SchemeContainerSummary({
   containers,
@@ -37,7 +15,6 @@ export default function SchemeContainerSummary({
   readonly limit?: number;
 }) {
   const { t } = useTranslation();
-
   const { troliboxColors, other } = summariseTroliboxes(containers);
   const completeTrolibox = Object.keys(troliboxColors).length === 3;
   if (completeTrolibox) {
@@ -75,8 +52,8 @@ export default function SchemeContainerSummary({
             <locator-container-icon>
               <ContainerSvg
                 name={container.name}
-                body-colour={container.bodyColour}
-                lid-colour={container.lidColour}
+                bodyColour={container.bodyColour}
+                lidColour={container.lidColour}
               />
             </locator-container-icon>
             <locator-container-content>

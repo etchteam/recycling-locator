@@ -49,10 +49,12 @@ locator-places-map {
     border: 0 none;
     cursor: pointer;
     display: block;
+    height: 43px; /* crop button to pin height */
     left: -23px; /* align map pin-point on co-ords: half of svg width */
     opacity: 0;
+    overflow: hidden;
     padding: 0;
-    top: -55px; /* align map pin-point: svg height */
+    top: -43px; /* align map pin-point: svg height */
 
     .locator-places-map--static & {
       /* Markers aren't clickable in static mode */

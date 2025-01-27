@@ -1,3 +1,10 @@
+## [1.52.4](https://github.com/etchteam/recycling-locator/compare/v1.52.3...v1.52.4) (2025-01-27)
+
+
+### Bug Fixes
+
+* extend map pin height to center on map locations ([a4c5d4f](https://github.com/etchteam/recycling-locator/commit/a4c5d4ff62351e5f913af3d364c9a72b3178da3f))
+
 ## [1.52.3](https://github.com/etchteam/recycling-locator/compare/v1.52.2...v1.52.3) (2025-01-15)
 
 

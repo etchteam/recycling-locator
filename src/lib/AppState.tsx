@@ -1,4 +1,4 @@
-import uniqueId from 'lodash';
+import uniqueId from 'lodash/uniqueId';
 import { createContext } from 'preact';
 import { useContext } from 'preact/hooks';
 

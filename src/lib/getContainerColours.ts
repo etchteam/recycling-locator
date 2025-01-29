@@ -31,6 +31,7 @@ export default function getContainerColours(
     });
     return cssColours;
   }
+
   if (TrolibocsMap.has(name)) {
     return getPositionColours(
       TrolibocsMap.get(name),

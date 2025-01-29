@@ -1,3 +1,16 @@
+## [1.53.0](https://github.com/etchteam/recycling-locator/compare/v1.52.4...v1.53.0) (2025-01-29)
+
+
+### Features
+
+* allow overriding the session id by the embedding site ([cd22c4e](https://github.com/etchteam/recycling-locator/commit/cd22c4e3d087931e08666a598a25c73c6a26ae5e))
+* capture path on host ([8864f69](https://github.com/etchteam/recycling-locator/commit/8864f6996d346b801ea66452d3beb7a2f97537a7))
+
+
+### Bug Fixes
+
+* only import the bit of lodash we need ([c542050](https://github.com/etchteam/recycling-locator/commit/c54205087e97e37543d7712474dc2e7679025bb6))
+
 ## [1.52.4](https://github.com/etchteam/recycling-locator/compare/v1.52.3...v1.52.4) (2025-01-27)
 
 

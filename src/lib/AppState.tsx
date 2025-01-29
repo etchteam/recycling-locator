@@ -16,7 +16,8 @@ export const AppState = createContext<AppStateContext>(null);
 export function createAppState(
   attributes: RecyclingLocatorAttributes,
 ): AppStateContext {
-  const sessionId = (window?.crypto?.randomUUID?.() ??
+  const sessionId = (window?.wrapAnalyticsId ??
+    window?.crypto?.randomUUID?.() ??
     uniqueId('session')) as unknown as string;
 
   return {

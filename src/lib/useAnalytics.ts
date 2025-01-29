@@ -54,13 +54,15 @@ export default function useAnalytics() {
   const { locale, sessionId } = useAppState();
   const location = useLocation();
 
+  const path = typeof window !== 'undefined' ? window?.location?.pathname : '/';
+
   function createEvent(event: Partial<AnalyticsEvent>): AnalyticsEvent {
     return {
       ...event,
       dp: `${location.pathname}${location.search}${location.hash}`,
       cid: sessionId,
       ul: locale === 'cy' ? 'cy-GB' : 'en-GB',
-      dh: config.hostname,
+      dh: `${config.hostname}${path}`,
       vp: `${window.innerWidth}x${window.innerHeight}`,
     } as AnalyticsEvent;
   }

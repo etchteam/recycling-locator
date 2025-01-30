@@ -9,6 +9,7 @@ import '@/components/composition/IconText/IconText';
 import '@/components/content/Container/Container';
 import '@/components/content/Icon/Icon';
 import '@/components/control/Details/Details';
+import ContainerSVG from '@/components/content/Container/ContainerSVG';
 import containerName from '@/lib/containerName';
 import {
   ContainerList as ContainerListType,
@@ -63,11 +64,13 @@ function DryContainer({ container }: { readonly container: Container }) {
   return (
     <>
       <locator-container className="diamond-spacing-bottom-sm">
-        <locator-container-svg
-          name={container.name}
-          body-colour={container.bodyColour}
-          lid-colour={container.lidColour}
-        />
+        <locator-container-icon>
+          <ContainerSVG
+            name={container.name}
+            bodyColour={container.bodyColour}
+            lidColour={container.lidColour}
+          />
+        </locator-container-icon>
         <locator-container-content>
           <locator-container-name className="diamond-text-weight-bold">
             {containerName(container)}
@@ -144,11 +147,13 @@ function FoodAndGardenContainers({
               {containerList[streamType].map((container) => (
                 <li key={container.name} className="diamond-spacing-bottom-md">
                   <locator-container>
-                    <locator-container-svg
-                      name={container.name}
-                      body-colour={container.bodyColour}
-                      lid-colour={container.lidColour}
-                    />
+                    <locator-container-icon>
+                      <ContainerSVG
+                        name={container.name}
+                        bodyColour={container.bodyColour}
+                        lidColour={container.lidColour}
+                      />
+                    </locator-container-icon>
                     <locator-container-content>
                       <locator-container-name className="diamond-text-weight-bold">
                         {containerName({

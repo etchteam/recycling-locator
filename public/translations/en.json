@@ -68,7 +68,8 @@
     },
     "schemeContainerSummary": {
       "otherContainers": "+{{count}} other bins",
-      "otherContainers_one": "+1 other bin"
+      "otherContainers_one": "+1 other bin",
+      "combinedTrolibocs": "Trolibocs - 3 containers"
     },
     "footer": {
       "poweredBy": "Powered by",

@@ -1,3 +1,16 @@
+## [1.54.0](https://github.com/etchteam/recycling-locator/compare/v1.53.0...v1.54.0) (2025-01-30)
+
+
+### Features
+
+* add multicolored trolibox options ([8188749](https://github.com/etchteam/recycling-locator/commit/8188749aaeae1d6a078c85e15a0a3b25819c700c))
+
+
+### Bug Fixes
+
+* update combined trolibox to handle cymru translation ([f4298ff](https://github.com/etchteam/recycling-locator/commit/f4298ff6b9c3701a8965c9a02f390c533ae2d6c3))
+* update use of TroliboxMap and getTrolibocsColours to work with type updates ([71cdd33](https://github.com/etchteam/recycling-locator/commit/71cdd338bd186fbd5e31592d865ad46a38d00191))
+
 ## [1.53.0](https://github.com/etchteam/recycling-locator/compare/v1.52.4...v1.53.0) (2025-01-29)
 
 

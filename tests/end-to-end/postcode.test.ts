@@ -102,6 +102,7 @@ describeEndToEndTest('Postcode page', () => {
     const input = page.locator('input').first();
     const materialText = page.getByText(material).first();
     const recyclableText = page.getByText(t('material.hero.yes')).first();
+    const materialSearchPageTitle = page.getByText(t('postcode.title')).first();
     const materialPageTitle = page.getByText(t('material.title')).first();
 
     await widget.evaluate((node) => node.setAttribute('path', '/EX32 7RB'));
@@ -109,7 +110,7 @@ describeEndToEndTest('Postcode page', () => {
     await expect(input).toBeVisible();
     await expect(materialText).not.toBeVisible();
     await expect(recyclableText).not.toBeVisible();
-    await expect(materialPageTitle).not.toBeVisible();
+    await expect(materialSearchPageTitle).toBeVisible();
     await input.fill(material);
     await input.press('Enter');
     await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);

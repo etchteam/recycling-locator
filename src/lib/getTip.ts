@@ -1,6 +1,7 @@
 import * as Sentry from '@sentry/browser';
 import random from 'lodash/random';
 
+import i18n from '@/lib/i18n';
 import { RecyclingMeta } from '@/types/locatorApi';
 
 import LocatorApi from './LocatorApi';
@@ -13,6 +14,7 @@ export default function getTip(
   options: {
     path?: string;
     materialId?: string | number;
+    country?: string;
   } = {},
 ): RecyclingMeta {
   const tips = [];
@@ -43,10 +45,19 @@ function handleTipError(error: Error) {
   });
 }
 
+function getTipCountry() {
+  return i18n.language === 'cy' || i18n.language === 'cy-GB'
+    ? 'WALES'
+    : 'ENGLAND';
+}
+
 export async function getTipByPath(path: string) {
   try {
-    const meta = await LocatorApi.get<RecyclingMeta[]>('recycling-meta');
-    return getTip(meta, { path });
+    const tips = await LocatorApi.get<RecyclingMeta[]>(
+      `recycling-meta?categories=HINT&path=${path}&country=${getTipCountry()}`,
+    );
+
+    return tips?.[0] ?? null;
   } catch (error) {
     handleTipError(error);
     return Promise.resolve(null);
@@ -56,7 +67,7 @@ export async function getTipByPath(path: string) {
 export async function getTipByMaterial(materialId: string) {
   try {
     const meta = await LocatorApi.get<RecyclingMeta[]>(
-      'recycling-meta?categories=HINT',
+      `recycling-meta?categories=HINT&country=${getTipCountry()}`,
     );
     return getTip(meta, { materialId });
   } catch (error) {

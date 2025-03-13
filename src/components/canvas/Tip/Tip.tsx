@@ -1,7 +1,7 @@
 import { CustomElement } from '@/types/customElement';
 
 export interface TipAttributes {
-  type?: 'image';
+  type?: 'image' | 'promo';
   wrap?: 'wrap';
   'text-align'?: 'center';
 }

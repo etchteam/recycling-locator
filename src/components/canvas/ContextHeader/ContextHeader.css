@@ -10,7 +10,7 @@ locator-context-header {
   position: sticky;
   top: var(--header-height);
   transition: color var(--diamond-transition);
-  z-index: var(--layer-two);
+  z-index: var(--layer-three);
 
   @container (width > 768px) {
     top: 0;

@@ -2,6 +2,7 @@ import * as Sentry from '@sentry/browser';
 import { useEffect, useState } from 'preact/hooks';
 import { Trans, useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
+
 import '@etchteam/diamond-ui/composition/FormGroup/FormGroup';
 import '@etchteam/diamond-ui/control/Button/Button';
 import '@etchteam/diamond-ui/canvas/Section/Section';
@@ -10,11 +11,11 @@ import '@/components/composition/Wrap/Wrap';
 import '@/components/control/LocationInput/LocationInput';
 
 import LocatorApi from '@/lib/LocatorApi';
+import tArray from '@/lib/tArray';
 import StartLayout from '@/pages/start.layout';
 import { MaterialWithCategory } from '@/types/locatorApi';
 
 import LocationForm from './LocationForm';
-import tArray from '@/lib/tArray';
 
 async function getMaterialsOrCategoryNameById(
   materials: string,

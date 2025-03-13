@@ -29,9 +29,12 @@
       "error": "Please enter a location"
     },
     "materialSearchInput": {
-      "placeholder": "Enter the name of an item…",
+      "label": "Enter the name of an item",
+      "placeholder": "e.g. aerosols or batteries",
       "error": "Please enter the name of an item",
-      "notFound": "We couldn’t find a match for this item. Please try using an alternative name for it."
+      "notFound": "We couldn’t find a match for this item. Please try using an alternative name for it.",
+      "searchList": "or <a>Choose from a list of items</a>"
+
     },
     "menu": {
       "whatDoYouWantToDo": "What do you want to do?",
@@ -178,11 +181,18 @@
     }
   },
   "postcode": {
-    "title": "What do you need to recycle?",
+    "title": "Check how to recycle a specific item",
+    "exploreNearby": "Explore nearby recycling options",
     "exploreTheMap": "Explore the map",
     "options": {
-      "home": "Home recycling collection",
-      "nearest": "Nearest places to recycle"
+      "home": {
+        "title": "Home Recycling Collections",
+        "description": "Check what you can put in your bins"
+      },
+      "nearest": {
+        "title": "Recycle at nearby places",
+        "description": "{{count}} places within 25 miles"
+      }
     }
   },
   "material": {

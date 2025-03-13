@@ -1,13 +1,14 @@
 import * as Sentry from '@sentry/browser';
 import { Suspense } from 'preact/compat';
 import { useEffect } from 'preact/hooks';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { Link, Form, Await, useSearchParams } from 'react-router-dom';
 import '@etchteam/diamond-ui/canvas/Section/Section';
 import '@etchteam/diamond-ui/composition/Grid/Grid';
 import '@etchteam/diamond-ui/composition/Grid/GridItem';
 import '@etchteam/diamond-ui/composition/Enter/Enter';
 import '@etchteam/diamond-ui/control/Button/Button';
+import '@etchteam/diamond-ui/control/Link/Link';
 
 import '@/components/canvas/ContextHeader/ContextHeader';
 import MapSvg from '@/components/canvas/MapSvg/MapSvg';
@@ -18,6 +19,8 @@ import '@/components/composition/Wrap/Wrap';
 import '@/components/composition/BorderedList/BorderedList';
 import '@/components/content/Icon/Icon';
 import '@/components/control/IconLink/IconLink';
+import '@/components/canvas/LoadingCard/LoadingCard';
+
 import MaterialSearchInput from '@/components/control/MaterialSearchInput/MaterialSearchInput';
 import PlacesMap from '@/components/control/PlacesMap/PlacesMap';
 import formatPostcode from '@/lib/formatPostcode';
@@ -26,6 +29,14 @@ import useFormValidation from '@/lib/useFormValidation';
 import StartLayout from '@/pages/start.layout';
 
 import { usePostcodeLoaderData } from './postcode.loader';
+
+function Loading() {
+  return (
+    <diamond-enter type="fade-in-up">
+      <locator-loading-card className="diamond-spacing-top-md" />
+    </diamond-enter>
+  );
+}
 
 function MapLoadingFallback() {
   return (
@@ -105,7 +116,7 @@ function Aside({ postcode }: { readonly postcode: string }) {
 export default function PostcodePage() {
   const { t } = useTranslation();
   const { recordEvent } = useAnalytics();
-  const { postcode, city } = usePostcodeLoaderData();
+  const { postcode, city, locationsPromise } = usePostcodeLoaderData();
   const [searchParams] = useSearchParams();
   const autofocus = searchParams.get('autofocus') === 'true';
   const form = useFormValidation('search');
@@ -128,7 +139,7 @@ export default function PostcodePage() {
         </div>
         <diamond-button variant="text" size="sm">
           <Link to="/">
-            <locator-icon icon="close" color="primary"></locator-icon>
+            Change
           </Link>
         </diamond-button>
       </locator-context-header>
@@ -137,57 +148,96 @@ export default function PostcodePage() {
           <diamond-enter type="fade" className="layer-one">
             <h2
               id="material-search-title"
-              className="diamond-text-size-h3 diamond-spacing-bottom-md"
+              className="diamond-text-size-h3 diamond-spacing-bottom-sm"
             >
               {t('postcode.title')}
             </h2>
 
             <Form method="post" onSubmit={form.handleSubmit}>
-              <MaterialSearchInput
-                inputLabelledBy="material-search-title"
-                autofocus={autofocus}
-                handleBlur={form.handleBlur}
-                handleInput={form.handleInput}
-                submitting={form.submitting.value}
-                valid={form.valid.value}
-                includeFeedbackForm
-              ></MaterialSearchInput>
+              <diamond-form-group>
+                <label htmlFor="locator-material-input">
+                  {t('components.materialSearchInput.label')}
+                </label>
+                <MaterialSearchInput
+                  inputLabelledBy="material-search-title"
+                  autofocus={autofocus}
+                  handleBlur={form.handleBlur}
+                  handleInput={form.handleInput}
+                  submitting={form.submitting.value}
+                  valid={form.valid.value}
+                  includeFeedbackForm
+                ></MaterialSearchInput>
+              </diamond-form-group>
             </Form>
+            <p className="diamond-spacing-top-sm">
+              <diamond-link>
+                <Trans
+                  i18nKey={'components.materialSearchInput.searchList'}
+                  components={{
+                    a: (
+                      <Link
+                        to={`/${postcode}/places/search/a-z`}
+                        className="locator-report-missing-material__toggle"
+                      />
+                    ),
+                  }}
+                />
+              </diamond-link>
+            </p>
           </diamond-enter>
 
           <diamond-enter type="fade-in-up" delay={0.25}>
-            <locator-bordered-list className="diamond-spacing-top-lg">
-              <nav>
-                <ul>
-                  <li>
-                    <locator-icon-link>
-                      <Link to={`/${postcode}/home`} unstable_viewTransition>
-                        <locator-icon-circle>
-                          <locator-icon
-                            icon="home"
-                            color="primary"
-                          ></locator-icon>
-                        </locator-icon-circle>
-                        {t('postcode.options.home')}
-                      </Link>
-                    </locator-icon-link>
-                  </li>
-                  <li>
-                    <locator-icon-link>
-                      <Link to={`/${postcode}/places`} unstable_viewTransition>
-                        <locator-icon-circle>
-                          <locator-icon
-                            icon="distance"
-                            color="primary"
-                          ></locator-icon>
-                        </locator-icon-circle>
-                        {t('postcode.options.nearest')}
-                      </Link>
-                    </locator-icon-link>
-                  </li>
-                </ul>
-              </nav>
-            </locator-bordered-list>
+            <hr className="diamond-spacing-top-md" />
+            <h3 className="diamond-text-size-base diamond-text-weight-bold diamond-spacing-top-md">
+              {t('postcode.exploreNearby')}
+            </h3>
+            <nav>
+              <dl>
+                <locator-icon-link border className="diamond-spacing-top-md">
+                  <Link to={`/${postcode}/home`} unstable_viewTransition>
+                    <locator-icon-circle>
+                      <locator-icon icon="home" color="primary"></locator-icon>
+                    </locator-icon-circle>
+                    <div>
+                      <dt>{t('postcode.options.home.title')}</dt>
+                      <dd className="diamond-text-size-sm">
+                        {t('postcode.options.home.description')}
+                      </dd>
+                    </div>
+                  </Link>
+                </locator-icon-link>
+                <Suspense fallback={<Loading />}>
+                  <Await resolve={locationsPromise.data.locations}>
+                    {(locations) => (
+                      <locator-icon-link
+                        border
+                        className="diamond-spacing-top-md"
+                      >
+                        <Link
+                          to={`/${postcode}/places`}
+                          unstable_viewTransition
+                        >
+                          <locator-icon-circle>
+                            <locator-icon
+                              icon="distance"
+                              color="primary"
+                            ></locator-icon>
+                          </locator-icon-circle>
+                          <div>
+                            <dt>{t('postcode.options.nearest.title')}</dt>
+                            <dd className="diamond-text-size-sm">
+                              {t('postcode.options.nearest.description', {
+                                count: locations.items?.length ?? 0,
+                              })}
+                            </dd>
+                          </div>
+                        </Link>
+                      </locator-icon-link>
+                    )}
+                  </Await>
+                </Suspense>
+              </dl>
+            </nav>
           </diamond-enter>
         </diamond-section>
       </locator-wrap>

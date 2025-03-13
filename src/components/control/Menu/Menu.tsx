@@ -10,6 +10,7 @@ import { IconAttributes } from '@/components/content/Icon/Icon';
 import '@/components/control/IconLink/IconLink';
 import formatPostcode from '@/lib/formatPostcode';
 import { usePostcodeLoaderData } from '@/pages/[postcode]/postcode.loader';
+import { CustomElement } from '@/types/customElement';
 
 export default function Menu({
   handleClose,
@@ -56,7 +57,7 @@ export default function Menu({
   };
 
   return (
-    <>
+    <locator-menu>
       <diamond-enter type="fade">
         <locator-context-header>
           <div>
@@ -74,13 +75,12 @@ export default function Menu({
               {t('components.menu.whatDoYouWantToDo')}
             </p>
           </diamond-enter>
-          <locator-bordered-list>
             <nav>
-              <ul>
+              <ul className="locator-menu__menu-list">
                 {items.map((item, i) => (
-                  <li key={item.icon}>
+                  <li key={item.icon} className="diamond-spacing-bottom-md">
                     <diamond-enter type="fade" delay={i * 0.1}>
-                      <locator-icon-link key={item.icon}>
+                      <locator-icon-link key={item.icon} border>
                         <Link
                           to={item.to}
                           onClick={(event) => handleClick(event, item.to)}
@@ -96,13 +96,20 @@ export default function Menu({
                 ))}
               </ul>
             </nav>
-          </locator-bordered-list>
           <diamond-enter type="fade" delay={items.length * 0.1}>
             <hr className="diamond-spacing-bottom-md" />
             <Footer />
           </diamond-enter>
         </locator-wrap>
       </diamond-section>
-    </>
+    </locator-menu>
   );
+}
+
+declare module 'react' {
+  namespace JSX {
+    interface IntrinsicElements {
+      'locator-menu': CustomElement;
+    }
+  }
 }

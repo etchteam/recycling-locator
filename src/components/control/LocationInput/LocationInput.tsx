@@ -80,8 +80,7 @@ export default class LocationInput extends Component<LocationInputProps> {
     const locations = this.locationSuggestions.value;
     const inputId = this.props['input-id'] ?? 'locator-location-input';
     const listId = `locator-${inputId}-locations`;
-    const placeholder =
-      this.props.placeholder ?? i18n.t('components.locationInput.placeholder');
+    const placeholder = this.props.placeholder ?? '';
     const valid = this.props.valid ?? true;
 
     return (

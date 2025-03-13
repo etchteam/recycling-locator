@@ -221,6 +221,10 @@
         "contentThirtyPlus": "This item can be recycled at 30+ places in the area."
       }
     },
+    "notRecyclable": {
+      "title": "This material cannot be recycled under any circumstances.",
+      "content": "Contact your local authority for advice or find your nearest hazardous waste disposal service below."
+    },
     "search": {
       "notFound": "We couldn’t find a match for",
       "help": "Try using an alternative name for it, or search for a similar item or material."

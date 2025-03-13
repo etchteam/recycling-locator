@@ -7,9 +7,19 @@ locator-hero {
   background: var(--_background);
   color: var(--_color);
   display: block;
-  margin-bottom: calc(var(--diamond-spacing) * -1);
-  padding-block: var(--diamond-spacing-lg);
-  text-align: center;
+  padding-block: var(--diamond-spacing);
+
+  &[size='full'] {
+    margin-bottom: calc(var(--diamond-spacing) * -1);
+    padding-block: var(--diamond-spacing-lg);
+    text-align: center;
+
+    locator-icon {
+      /* Giant icon just for the hero */
+      font-size: 3em;
+      margin-block-end: var(--diamond-spacing);
+    }
+  }
 
   /* small tablet */
   @container (width >= 600px) {
@@ -25,26 +35,37 @@ locator-hero {
 
   locator-icon {
     color: var(--_icon-color);
-    /* Giant icon just for the hero */
-    font-size: 3em;
-    margin-block-end: var(--diamond-spacing);
   }
 
   &[variant='positive'] {
     --_icon-color: var(--color-white);
     --_color: var(--theme-color-positive);
     --_background: var(--theme-background-positive);
+
+    &[size='reduced'] {
+      --_color: var(--color-white);
+      --_background: var(--theme-background-positive-dark);
+    }
   }
 
   &[variant='negative'] {
     --_icon-color: var(--color-white);
     --_color: var(--theme-color-negative);
     --_background: var(--theme-background-negative);
+
+    &[size='reduced'] {
+      --_color: var(--color-white);
+      --_background: var(--theme-background-negative-dark);
+    }
   }
 
   &[variant='hazardous'] {
     --_icon-color: var(--color-black);
     --_color: var(--color-black);
     --_background: var(--color-yellow);
+
+    &[size='reduced'] {
+      --_background: var(--color-yellow-dark);
+    }
   }
 }

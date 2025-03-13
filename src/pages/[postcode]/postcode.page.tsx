@@ -30,7 +30,7 @@ import { usePostcodeLoaderData } from './postcode.loader';
 function MapLoadingFallback() {
   return (
     <locator-loading>
-      <locator-hero>
+      <locator-hero size="full">
         <locator-icon icon="distance" color="muted"></locator-icon>
       </locator-hero>
     </locator-loading>

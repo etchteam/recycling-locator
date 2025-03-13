@@ -21,18 +21,18 @@ import getPropertiesByMaterial from '@/lib/getPropertiesByMaterial';
 import useAnalytics from '@/lib/useAnalytics';
 
 import NearbyPlaces from './NearbyPlaces';
+import NotRecyclable from './NotRecyclable';
 import RecycleAtHome from './RecycleAtHome';
 import {
   DeferredMaterialLoaderResponse,
   AwaitedMaterialLoaderResponse,
 } from './material.loader';
-
 export function Loading() {
   const { t } = useTranslation();
 
   return (
     <locator-loading>
-      <locator-hero>
+      <locator-hero size="full">
         <locator-icon icon="distance" color="muted" />
         <h3 className="diamond-spacing-bottom-lg">{t('material.loading')}</h3>
         <diamond-enter type="fade-in-up" className="diamond-spacing-bottom-md">
@@ -65,32 +65,61 @@ function MaterialPageContent({
 
   return (
     <diamond-enter type="fade">
-      <locator-hero variant={recyclable ? 'positive' : 'negative'}>
-        <locator-wrap>
-          <diamond-enter type="fade" delay={0.4}>
-            <locator-icon icon={recyclable ? 'tick-circle' : 'cross-circle'} />
-            <h3>{t(`material.hero.${recyclable ? 'yes' : 'no'}`)}</h3>
+      {recyclable ? (
+        <>
+          <locator-hero variant="positive" size="full">
+            <locator-wrap>
+              <diamond-enter type="fade" delay={0.4}>
+                <locator-icon icon="tick-circle" />
+                <h3>{t('material.hero.yes')}</h3>
+              </diamond-enter>
+            </locator-wrap>
+          </locator-hero>
+          <diamond-enter type="fade-in-up" delay={0.25}>
+            <locator-wrap>
+              <section className="diamond-spacing-bottom-lg">
+                <RecycleAtHome
+                  allProperties={localAuthority.properties}
+                  propertiesCollectingThisMaterial={
+                    propertiesCollectingThisMaterial
+                  }
+                />
+              </section>
+              <section className="diamond-spacing-bottom-lg">
+                <NearbyPlaces locations={locations} />
+              </section>
+              <section className="diamond-spacing-bottom-lg">
+                <RateThisInfo />
+              </section>
+            </locator-wrap>
           </diamond-enter>
-        </locator-wrap>
-      </locator-hero>
-      <diamond-enter type="fade-in-up" delay={0.25}>
-        <locator-wrap>
-          <section className="diamond-spacing-bottom-lg">
-            <RecycleAtHome
-              allProperties={localAuthority.properties}
-              propertiesCollectingThisMaterial={
-                propertiesCollectingThisMaterial
-              }
-            />
-          </section>
-          <section className="diamond-spacing-bottom-lg">
-            <NearbyPlaces locations={locations} />
-          </section>
-          <section className="diamond-spacing-bottom-lg">
-            <RateThisInfo />
-          </section>
-        </locator-wrap>
-      </diamond-enter>
+        </>
+      ) : (
+        <>
+          <locator-hero variant="negative" size="reduced">
+            <locator-wrap>
+              <diamond-enter type="fade" delay={0.4}>
+                <locator-icon-text>
+                  <locator-icon icon="cross-circle"></locator-icon>
+                  <h3 className="diamond-text-size-md">
+                    {t('material.hero.no')}
+                  </h3>
+                </locator-icon-text>
+              </diamond-enter>
+            </locator-wrap>
+          </locator-hero>
+          <diamond-enter type="fade-in-up" delay={0.25}>
+            <locator-wrap className="diamond-spacing-top-md">
+              <section className="diamond-spacing-bottom-lg">
+                <NotRecyclable localAuthority={localAuthority} />
+              </section>
+              <section className="diamond-spacing-bottom-lg">
+                <RateThisInfo />
+              </section>
+            </locator-wrap>
+          </diamond-enter>
+        </>
+      )}
     </diamond-enter>
   );
 }

@@ -19,21 +19,22 @@
     "dist"
   ],
   "scripts": {
-    "start": "run-p start:css start:vite",
+    "build:css": "postcss src/styles/base.css -o public/styles.css",
+    "build": "npm run build:css && vite build",
+    "lint": "eslint 'src/**/*.{ts,tsx,js,jsx,yml,yaml,json}' && stylelint 'src/**/*.{css,scss}'",
+    "prepare": "node .husky/install.mjs",
+    "release": "semantic-release",
     "start:css": "npm run build:css -- --watch",
     "start:vite": "vite --host",
-    "build": "npm run build:css && vite build",
-    "build:css": "postcss src/styles/base.css -o public/styles.css",
-    "release": "semantic-release",
-    "lint": "eslint 'src/**/*.{ts,tsx,js,jsx,yml,yaml,json}' && stylelint 'src/**/*.{css,scss}'",
-    "storybook": "run-p start:css storybook:start",
-    "storybook:start": "storybook dev -p 6006",
+    "start": "run-p start:css start:vite",
     "storybook:build": "storybook build",
-    "test": "vitest --ui",
+    "storybook:start": "storybook dev -p 6006",
+    "storybook": "run-p start:css storybook:start",
     "test:ci": "vitest",
-    "test:unit": "vitest --ui unit",
+    "test:end-to-end-debug": "DEBUG=pw:api PWDEBUG=console vitest --ui",
     "test:end-to-end": "VITE_TEST=true npm run build && vitest --ui end-to-end",
-    "test:end-to-end-debug": "DEBUG=pw:api PWDEBUG=console vitest --ui"
+    "test:unit": "vitest --ui unit",
+    "test": "vitest --ui"
   },
   "dependencies": {
     "@etchteam/diamond-ui": "^1.35.1",

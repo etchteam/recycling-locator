@@ -35,7 +35,6 @@
       "error": "Nodwch enw eitem i chwilio amdani",
       "notFound": "Ni allem ddod o hyd i cyfatebiaeth ar gyfer yr eitem hon. Ceisiwch ddefnyddio enw arall ar ei gyfer.",
       "searchList": "neu <a>Dewiswch o restr o eitemau</a>"
-
     },
     "menu": {
       "whatDoYouWantToDo": "Beth hoffech chi ei wneud?",
@@ -154,7 +153,7 @@
       "url": "https://wrapcymru.org.uk/contact-wrap-cymru"
     }
   },
- "start": {
+  "start": {
     "title": "Dod o hyd i leoedd ailgylchu.",
     "label": "Ble’r ydych chi?",
     "cta": "Dechrau arni",
@@ -330,7 +329,36 @@
         "aToZofItems": "A-Y o eitemau"
       },
       "aToZ": {
-        "alphabet": ["A", "B", "C", "Ch", "D", "Dd", "E", "F", "Ff", "G", "Ng", "H", "I", "J", "Ll", "M", "N", "O", "P", "Ph", "R", "Rh", "S", "T", "Th", "U", "W", "Y"],
+        "alphabet": [
+          "A",
+          "B",
+          "C",
+          "Ch",
+          "D",
+          "Dd",
+          "E",
+          "F",
+          "Ff",
+          "G",
+          "Ng",
+          "H",
+          "I",
+          "J",
+          "Ll",
+          "M",
+          "N",
+          "O",
+          "P",
+          "Ph",
+          "R",
+          "Rh",
+          "S",
+          "T",
+          "Th",
+          "U",
+          "W",
+          "Y"
+        ],
         "backToTop": "Yn ôl i'r brig"
       }
     },

@@ -75,27 +75,27 @@ export default function Menu({
               {t('components.menu.whatDoYouWantToDo')}
             </p>
           </diamond-enter>
-            <nav>
-              <ul className="locator-menu__menu-list">
-                {items.map((item, i) => (
-                  <li key={item.icon} className="diamond-spacing-bottom-md">
-                    <diamond-enter type="fade" delay={i * 0.1}>
-                      <locator-icon-link key={item.icon} border>
-                        <Link
-                          to={item.to}
-                          onClick={(event) => handleClick(event, item.to)}
-                        >
-                          <locator-icon-circle>
-                            <locator-icon icon={item.icon} color="primary" />
-                          </locator-icon-circle>
-                          {item.text}
-                        </Link>
-                      </locator-icon-link>
-                    </diamond-enter>
-                  </li>
-                ))}
-              </ul>
-            </nav>
+          <nav>
+            <ul className="locator-menu__menu-list">
+              {items.map((item, i) => (
+                <li key={item.icon} className="diamond-spacing-bottom-md">
+                  <diamond-enter type="fade" delay={i * 0.1}>
+                    <locator-icon-link key={item.icon} border>
+                      <Link
+                        to={item.to}
+                        onClick={(event) => handleClick(event, item.to)}
+                      >
+                        <locator-icon-circle>
+                          <locator-icon icon={item.icon} color="primary" />
+                        </locator-icon-circle>
+                        {item.text}
+                      </Link>
+                    </locator-icon-link>
+                  </diamond-enter>
+                </li>
+              ))}
+            </ul>
+          </nav>
           <diamond-enter type="fade" delay={items.length * 0.1}>
             <hr className="diamond-spacing-bottom-md" />
             <Footer />

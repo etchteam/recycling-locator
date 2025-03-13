@@ -21,7 +21,8 @@
     "viewDetails": "View details",
     "directions": "Directions",
     "menu": "Menu",
-    "resetSearch": "Reset search"
+    "resetSearch": "Reset search",
+    "change": "Change"
   },
   "components": {
     "locationInput": {

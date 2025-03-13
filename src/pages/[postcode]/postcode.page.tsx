@@ -3,13 +3,13 @@ import { Suspense } from 'preact/compat';
 import { useEffect } from 'preact/hooks';
 import { Trans, useTranslation } from 'react-i18next';
 import { Link, Form, Await, useSearchParams } from 'react-router-dom';
+
 import '@etchteam/diamond-ui/canvas/Section/Section';
 import '@etchteam/diamond-ui/composition/Grid/Grid';
 import '@etchteam/diamond-ui/composition/Grid/GridItem';
 import '@etchteam/diamond-ui/composition/Enter/Enter';
 import '@etchteam/diamond-ui/control/Button/Button';
 import '@etchteam/diamond-ui/control/Link/Link';
-
 import '@/components/canvas/ContextHeader/ContextHeader';
 import MapSvg from '@/components/canvas/MapSvg/MapSvg';
 import '@/components/canvas/IconCircle/IconCircle';
@@ -20,7 +20,6 @@ import '@/components/composition/BorderedList/BorderedList';
 import '@/components/content/Icon/Icon';
 import '@/components/control/IconLink/IconLink';
 import '@/components/canvas/LoadingCard/LoadingCard';
-
 import MaterialSearchInput from '@/components/control/MaterialSearchInput/MaterialSearchInput';
 import PlacesMap from '@/components/control/PlacesMap/PlacesMap';
 import formatPostcode from '@/lib/formatPostcode';
@@ -126,7 +125,7 @@ export default function PostcodePage() {
       category: 'LocationSearch',
       action: `${city}, ${postcode}`,
     });
-  }, [city, postcode]);
+  }, [city, postcode, recordEvent]);
 
   return (
     <StartLayout aside={<Aside postcode={postcode} />}>
@@ -138,9 +137,7 @@ export default function PostcodePage() {
           {city && <>&nbsp;&ndash; {city}</>}
         </div>
         <diamond-button variant="text" size="sm">
-          <Link to="/">
-            Change
-          </Link>
+          <Link to="/">{t('actions.change')}</Link>
         </diamond-button>
       </locator-context-header>
       <locator-wrap>

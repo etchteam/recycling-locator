@@ -21,7 +21,8 @@
     "viewDetails": "Gweld manylion",
     "directions": "Cyfarwyddiadau",
     "menu": "Dewislen",
-    "resetSearch": "Ailosod chwiliad"
+    "resetSearch": "Ailosod chwiliad",
+    "change": "Newid"
   },
   "components": {
     "locationInput": {

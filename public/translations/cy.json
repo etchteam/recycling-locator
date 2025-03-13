@@ -162,6 +162,7 @@
       "bestExperience": "Profiad gorau"
     },
     "aside": {
+      "paragraph": "Defnyddiwch y gwasanaeth hwn i:",
       "list": [
         "dod o hyd i'ch lleoedd agosaf i ailgylchu",
         "gweld beth allwch chi ei ailgylchu gartref",
@@ -172,7 +173,7 @@
       "title": "Darganfyddwch beth allwch ei ailgylchu o gartref."
     },
     "material": {
-      "title": "Dod o hyd i leoedd i ailgylchu {{material}}"
+      "title": "Dod o hyd i leoedd i ailgylchu <bold>{{material}}</bold>"
     }
   },
   "postcode": {

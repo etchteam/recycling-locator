@@ -162,6 +162,7 @@
       "bestExperience": "Best experience"
     },
     "aside": {
+      "paragraph": "You can also use this service to:",
       "list": [
         "find your nearest places to recycle",
         "see what you can recycle at home",
@@ -172,7 +173,7 @@
       "title": "Find out what you can recycle from home."
     },
     "material": {
-      "title": "Find places to recycle {{material}}"
+      "title": "Find places to recycle <bold>{{material}}</bold>"
     }
   },
   "postcode": {

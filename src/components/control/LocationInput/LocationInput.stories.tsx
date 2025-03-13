@@ -13,9 +13,7 @@ export const LocationInput: StoryObj = {
   render: () => (
     <>
       <label htmlFor="custom-location-input">Enter a town or postcode</label>
-      <LocationInputComponent
-        input-id="custom-location-input"
-      ></LocationInputComponent>
+      <LocationInputComponent input-id="custom-location-input"></LocationInputComponent>
     </>
   ),
 };

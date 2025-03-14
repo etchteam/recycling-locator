@@ -84,7 +84,7 @@ describeEndToEndTest('Start page', () => {
     await input.press('Enter');
     await page.waitForRequest(GEOCODE_ENDPOINT);
     await page.waitForRequest(POSTCODE_ENDPOINT);
-    await expect(postcode).toBeVisible();
+    await expect(page.getByText('EX32 7RB').first()).toBeVisible();
     await expect(city).toBeVisible();
     await expect(postcodePageSearch).toBeVisible();
   });

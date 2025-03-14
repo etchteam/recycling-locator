@@ -174,9 +174,7 @@ describeEndToEndTest('Start page', () => {
 
     const input = page.locator('input[type="text"]').first();
     const materialStartPageTitle = page
-      .getByText(
-        t('start.material.title', { material: 'Plastic drinks bottles' }),
-      )
+      .getByText('Plastic drinks bottles')
       .first();
     const recyclableText = page.getByText(t('material.hero.yes')).first();
 

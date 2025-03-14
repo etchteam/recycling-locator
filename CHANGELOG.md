@@ -1,3 +1,11 @@
+## [1.56.0](https://github.com/etchteam/recycling-locator/compare/v1.55.0...v1.56.0) (2025-03-14)
+
+
+### Features
+
+* update copy and layout on landing page ([f767d9d](https://github.com/etchteam/recycling-locator/commit/f767d9ddf3cfc315485f82371bca3f2bddb376a3))
+* update copy for material specific landing page ([7d4155d](https://github.com/etchteam/recycling-locator/commit/7d4155dce919d1fc1e77f303580e30cf2e696b3d))
+
 ## [1.55.0](https://github.com/etchteam/recycling-locator/compare/v1.54.0...v1.55.0) (2025-03-14)
 
 

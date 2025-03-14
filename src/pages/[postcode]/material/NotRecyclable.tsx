@@ -28,7 +28,7 @@ export default function NotRecyclable({
       <p className="diamond-text-size-sm">{t(`${tContext}.content`)}</p>
       <diamond-button width="full-width">
         <a
-          href={localAuthority.recyclingUri}
+          href={`${localAuthority.recyclingUri}?referrer=wrap-recycling-locator`}
           target="_blank"
           rel="noopener noreferrer"
         >

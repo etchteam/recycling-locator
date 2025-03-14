@@ -107,7 +107,7 @@ For more granular control over the theme, add CSS variables to your stylesheet.
   --recycling-locator-theme-color-hover: var(--recycling-locator-color-primary-dark);
   --recycling-locator-theme-border-color-light: #cfd1d3;
   --recycling-locator-theme-border-color-hover-light: var(--recycling-locator-color-primary-dark);
-  --recycling-locator-theme-link-color: #0077ab;
+  --recycling-locator-theme-link-color: var(--recycling-locator-color-primary-dark);
 }
 ```
 

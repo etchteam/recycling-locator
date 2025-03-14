@@ -33,7 +33,7 @@
   );
   --diamond-theme-link-color: var(
     --recycling-locator-theme-link-color,
-    var(--color-blue-dark)
+    var(--color-primary-dark)
   );
 
   --theme-background-info-muted: var(--color-blue-lightest);

@@ -4,6 +4,7 @@ locator-icon-link {
   a {
     align-items: center;
     color: var(--color-body);
+    color: inherit;
     display: flex;
     gap: var(--diamond-spacing-sm);
     text-decoration: none;
@@ -15,12 +16,23 @@ locator-icon-link {
   }
 
   locator-icon-circle {
-    align-self: flex-start;
     flex-shrink: 0;
     transition: background var(--diamond-transition);
 
-    a:hover & {
+    locator-icon-link:hover & {
       background: var(--color-primary-lightest);
+    }
+  }
+
+  &[border] {
+    a {
+      border: solid 1px var(--color-border);
+      border-radius: var(--diamond-border-radius);
+      padding: var(--diamond-spacing-sm);
+
+      &:hover {
+        border-color: var(--diamond-theme-color-hover);
+      }
     }
   }
 }

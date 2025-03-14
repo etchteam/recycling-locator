@@ -1,0 +1,6 @@
+locator-menu {
+  .locator-menu__menu-list {
+    list-style: none;
+    padding: 0;
+  }
+}

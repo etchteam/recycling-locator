@@ -44,12 +44,14 @@
 
   --theme-background-positive-muted: var(--color-green-light);
   --theme-background-positive: var(--color-green);
+  --theme-background-positive-dark: var(--color-green-dark);
   --theme-heading-color-positive: var(--color-grey-dark);
   --theme-color-positive: var(--color-grey-dark);
   --theme-link-color-positive: var(--color-grey-dark);
 
   --theme-background-negative-muted: var(--color-red-light);
-  --theme-background-negative: var(--color-red);
+  --theme-background-negative: var(--color-red-dark);
+  --theme-background-negative-dark: var(--color-red-dark);
   --theme-heading-color-negative: var(--color-grey-dark);
   --theme-color-negative: var(--color-grey-dark);
   --theme-link-color-negative: var(--color-grey-dark);

@@ -221,6 +221,10 @@
         "contentThirtyPlus": "Gellir ailgylchu’r eitem hon mewn 30+ lle yn yr ardal."
       }
     },
+    "notRecyclable": {
+      "title": "Ni allwch ailgylchu’r eitem hon ar gyfer unrhyw amgylchiad.",
+      "content": "Cysylltwch â'ch awdurdod lleol am gyngor neu dewch o hyd i'ch gwasanaeth gwaredu gwastraff peryglus agosaf isod."
+    },
     "search": {
       "notFound": "Doedden ni ddim yn gallu dod o hyd i ateb i gyd-fynd â",
       "help": "Ceisiwch ddefnyddio enw arall arno, neu chwiliwch am eitem neu ddeunydd tebyg."

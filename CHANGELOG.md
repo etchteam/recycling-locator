@@ -1,3 +1,11 @@
+## [1.55.0](https://github.com/etchteam/recycling-locator/compare/v1.54.0...v1.55.0) (2025-03-14)
+
+
+### Features
+
+* add referrer to locator for council links ([3876df3](https://github.com/etchteam/recycling-locator/commit/3876df3a1e63d1a30283eb413a723833ba1c7a94))
+* reduce heading design for non-recycables ([16cf9ff](https://github.com/etchteam/recycling-locator/commit/16cf9ff25e1e6f2a8696d6b3549de9c93396cf42))
+
 ## [1.54.0](https://github.com/etchteam/recycling-locator/compare/v1.53.0...v1.54.0) (2025-01-30)
 
 

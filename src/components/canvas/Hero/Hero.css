@@ -16,7 +16,7 @@ locator-hero {
 
     locator-icon {
       /* Giant icon just for the hero */
-      font-size: 3em;
+      font-size: var(--diamond-font-size-xxxl);
       margin-block-end: var(--diamond-spacing);
     }
   }

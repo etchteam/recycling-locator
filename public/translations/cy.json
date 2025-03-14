@@ -25,7 +25,6 @@
   },
   "components": {
     "locationInput": {
-      "placeholder": "Nodwch dref neu god post…",
       "error": "Nodwch leoliad"
     },
     "materialSearchInput": {
@@ -151,8 +150,8 @@
     }
   },
   "start": {
-    "title": "Dod o hyd i leoedd ailgylchu.",
-    "label": "Ble’r ydych chi?",
+    "title": "Darganfyddwch opsiynau ailgylchu yn eich ardal",
+    "label": "Rhowch dref neu god post",
     "cta": "Dechrau arni",
     "geolocation": {
       "label": "Defnyddiwch fy lleoliad",
@@ -165,16 +164,16 @@
     "aside": {
       "paragraph": "Defnyddiwch y gwasanaeth hwn i:",
       "list": [
-        "weld eich lleoedd ailgylchu agosaf",
-        "darganfod sut i ailgylchu eitem benodol",
-        "gwirio beth allwch ei ailgylchu gartref"
+        "dod o hyd i'ch lleoedd agosaf i ailgylchu",
+        "gweld beth allwch chi ei ailgylchu gartref",
+        "gwirio sut i ailgylchu eitem benodol"
       ]
     },
     "homeRecycling": {
       "title": "Darganfyddwch beth allwch ei ailgylchu o gartref."
     },
     "material": {
-      "title": "Dod o hyd i leoedd i ailgylchu {{material}}"
+      "title": "Dod o hyd i leoedd i ailgylchu <bold>{{material}}</bold>"
     }
   },
   "postcode": {

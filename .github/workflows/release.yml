@@ -27,6 +27,7 @@ jobs:
           node-version-file: .nvmrc
           cache: npm
       - run: npm ci
+      - run: npm audit signatures
       - name: Get the package version for this release (previous version + 1)
         id: package-version
         run: |

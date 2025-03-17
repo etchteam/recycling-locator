@@ -1,3 +1,10 @@
+## [1.57.0](https://github.com/etchteam/recycling-locator/compare/v1.56.0...v1.57.0) (2025-03-17)
+
+
+### Features
+
+* enable provenance publishing ([8a5ae05](https://github.com/etchteam/recycling-locator/commit/8a5ae055f6abe6f7ec1d273c93f3f9f1d27f6408))
+
 ## [1.56.0](https://github.com/etchteam/recycling-locator/compare/v1.55.0...v1.56.0) (2025-03-14)
 
 

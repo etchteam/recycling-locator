@@ -30,9 +30,7 @@ jobs:
       - run: npm audit signatures
       - name: Get the package version for this release (previous version + 1)
         id: package-version
-        run: |
-          npm run release -- --ci false --dryRun | tee /dev/tty | grep -i "Published release" > .semver-output
-          echo "current-version=$([[ $(cat .semver-output) =~ .*([[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+) ]] && echo "${BASH_REMATCH[1]}")" >> "$GITHUB_OUTPUT"
+        run: ./scripts/get-next-version.sh
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

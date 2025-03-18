@@ -20,7 +20,6 @@ import {
   ValidMaterialsResponse,
 } from '../mocks/materials';
 import describeEndToEndTest from '../utils/describeEndToEndTest';
-import snapshot from '../utils/snapshot';
 
 describeEndToEndTest('Postcode page', () => {
   test('Load route with invalid postcode', async ({ page, widget }) => {
@@ -34,7 +33,6 @@ describeEndToEndTest('Postcode page', () => {
     await widget.evaluate((node) => node.setAttribute('path', '/EX32 7RB'));
     await page.waitForRequest(GEOCODE_ENDPOINT);
     await expect(notInUk).toBeVisible();
-    await snapshot(page, 'Postcode not in UK');
   });
 
   test('Start route with invalid postcode', async ({ page, widget }) => {
@@ -75,7 +73,6 @@ describeEndToEndTest('Postcode page', () => {
     await page.waitForRequest(GEOCODE_ENDPOINT);
     await expect(input).toBeVisible();
     await expect(notFound).not.toBeVisible();
-    await snapshot(page, 'Postcode found');
     await input.fill(material);
     await input.press('Enter');
     await expect(notFound).toBeVisible();

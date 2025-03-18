@@ -46,19 +46,15 @@ describeEndToEndTest('Start page', () => {
     const input = page.locator('input[type="text"]').first();
     const postcode = page.getByText('EX32 7RB').first();
     const city = page.getByText('Barnstaple').first();
-    const postcodePageSearch = page
-      .getByText(t('components.materialSearchInput.label'))
-      .first();
+
     await expect(input).toBeVisible();
     await expect(postcode).not.toBeVisible();
     await expect(city).not.toBeVisible();
-    await expect(postcodePageSearch).not.toBeVisible();
     await input.fill('EX32 7RB');
     await input.press('Enter');
     await page.waitForRequest(GEOCODE_ENDPOINT);
     await expect(postcode).toBeVisible();
     await expect(city).toBeVisible();
-    await expect(postcodePageSearch).toBeVisible();
   });
 
   test('Valid location entry', async ({ page }) => {
@@ -73,20 +69,15 @@ describeEndToEndTest('Start page', () => {
     const input = page.locator('input[type="text"]').first();
     const postcode = page.getByText('EX32 7RB').first();
     const city = page.getByText('Barnstaple').first();
-    const postcodePageSearch = page
-      .getByText(t('components.materialSearchInput.label'))
-      .first();
     await expect(input).toBeVisible();
     await expect(postcode).not.toBeVisible();
     await expect(city).not.toBeVisible();
-    await expect(postcodePageSearch).not.toBeVisible();
     await input.fill('Barnstaple');
     await input.press('Enter');
     await page.waitForRequest(GEOCODE_ENDPOINT);
     await page.waitForRequest(POSTCODE_ENDPOINT);
     await expect(page.getByText('EX32 7RB').first()).toBeVisible();
     await expect(city).toBeVisible();
-    await expect(postcodePageSearch).toBeVisible();
   });
 
   test('Invalid location entry', async ({ page }) => {

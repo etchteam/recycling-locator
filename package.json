@@ -56,8 +56,6 @@
     "@commitlint/config-conventional": "^19.2.2",
     "@etchteam/eslint-config": "^2.2.16",
     "@etchteam/stylelint-config": "^1.6.0",
-    "@percy/cli": "^1.28.2",
-    "@percy/playwright": "^1.0.7",
     "@playwright/test": "^1.49.1",
     "@preact/preset-vite": "^2.8.1",
     "@rollup/plugin-typescript": "^11.1.6",

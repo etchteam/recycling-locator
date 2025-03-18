@@ -9,7 +9,6 @@ import {
 import { LOCATIONS_ENDPOINT, LocationsResponse } from '../mocks/locations';
 import { MATERIALS_ENDPOINT, ValidMaterialsResponse } from '../mocks/materials';
 import describeEndToEndTest from '../utils/describeEndToEndTest';
-import snapshot from '../utils/snapshot';
 import { PROPERTY_TYPE_EN } from '@/types/locatorApi';
 
 describeEndToEndTest('Home recycling', () => {
@@ -65,7 +64,6 @@ describeEndToEndTest('Home recycling', () => {
     await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
     await expect(narrowAccessSchemeText).toBeVisible();
     await expect(kerbsideSchemeText).toBeVisible();
-    await snapshot(page, 'Home recycling collection');
   });
 
   test('Recycling centre locations list', async ({ page, widget }) => {
@@ -104,7 +102,6 @@ describeEndToEndTest('Home recycling', () => {
     await page.waitForRequest(LOCATIONS_ENDPOINT);
     await expect(recyclingCentresCount).toBeVisible();
     await expect(locationsCount).toBeVisible();
-    await snapshot(page, 'Home recycling hwrcs');
   });
 
   test('Contact details', async ({ page, widget }) => {
@@ -125,7 +122,6 @@ describeEndToEndTest('Home recycling', () => {
     await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
     contactTab.click();
     await expect(phoneNumber).toBeVisible();
-    await snapshot(page, 'Home recycling contact');
   });
 
   test('Collection details', async ({ page, widget }) => {
@@ -174,6 +170,5 @@ describeEndToEndTest('Home recycling', () => {
     await input.press('Enter');
     await expect(negativeSearchText).not.toBeVisible();
     await expect(positiveSearchText).toBeVisible();
-    await snapshot(page, 'Home recycling collection details');
   });
 });

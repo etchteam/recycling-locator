@@ -3,7 +3,6 @@ import { t } from 'i18next';
 import { test } from 'vitest';
 
 import describeEndToEndTest from '../utils/describeEndToEndTest';
-import snapshot from '../utils/snapshot';
 
 describeEndToEndTest('About page', () => {
   test('About page displays when info button is clicked', async ({ page }) => {
@@ -13,7 +12,6 @@ describeEndToEndTest('About page', () => {
     await expect(aboutTitle).not.toBeVisible();
     await button.click();
     await expect(aboutTitle).toBeVisible();
-    await snapshot(page, 'About page');
     await button.click();
     await expect(aboutTitle).not.toBeVisible();
   });

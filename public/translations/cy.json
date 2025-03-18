@@ -21,16 +21,19 @@
     "viewDetails": "Gweld manylion",
     "directions": "Cyfarwyddiadau",
     "menu": "Dewislen",
-    "resetSearch": "Ailosod chwiliad"
+    "resetSearch": "Ailosod chwiliad",
+    "change": "Newid"
   },
   "components": {
     "locationInput": {
       "error": "Nodwch leoliad"
     },
     "materialSearchInput": {
-      "placeholder": "Nodwch enw eitem…",
+      "label": "Rhowch enw eitem",
+      "placeholder": "e.e. aerosolau neu fatris",
       "error": "Nodwch enw eitem i chwilio amdani",
-      "notFound": "Ni allem ddod o hyd i gyfatebiaeth ar gyfer yr eitem hon. Ceisiwch ddefnyddio enw arall ar ei gyfer."
+      "notFound": "Ni allem ddod o hyd i cyfatebiaeth ar gyfer yr eitem hon. Ceisiwch ddefnyddio enw arall ar ei gyfer.",
+      "searchList": "neu <a>Dewiswch o restr o eitemau</a>"
     },
     "menu": {
       "whatDoYouWantToDo": "Beth hoffech chi ei wneud?",
@@ -177,11 +180,18 @@
     }
   },
   "postcode": {
-    "title": "Beth hoffech chi ei ailgylchu?",
+    "title": "Gwirio sut i ailgylchu eitem benodol",
+    "exploreNearby": "Archwiliwch opsiynau ailgylchu cyfagos",
     "exploreTheMap": "Pori’r map",
     "options": {
-      "home": "Casgliad ailgylchu o gartref",
-      "nearest": "Lleoedd agosaf i ailgylchu"
+      "home": {
+        "title": "Casgliadau Ailgylchu Cartref",
+        "description": "Gwiriwch beth allwch chi ei roi yn eich biniau"
+      },
+      "nearest": {
+        "title": "Ailgylchu mewn mannau cyfagos",
+        "description": "{{count}} lle o fewn 25 milltir"
+      }
     }
   },
   "material": {
@@ -318,7 +328,36 @@
         "aToZofItems": "A-Y o eitemau"
       },
       "aToZ": {
-        "alphabet": ["A", "B", "C", "Ch", "D", "Dd", "E", "F", "Ff", "G", "Ng", "H", "I", "J", "Ll", "M", "N", "O", "P", "Ph", "R", "Rh", "S", "T", "Th", "U", "W", "Y"],
+        "alphabet": [
+          "A",
+          "B",
+          "C",
+          "Ch",
+          "D",
+          "Dd",
+          "E",
+          "F",
+          "Ff",
+          "G",
+          "Ng",
+          "H",
+          "I",
+          "J",
+          "Ll",
+          "M",
+          "N",
+          "O",
+          "P",
+          "Ph",
+          "R",
+          "Rh",
+          "S",
+          "T",
+          "Th",
+          "U",
+          "W",
+          "Y"
+        ],
         "backToTop": "Yn ôl i'r brig"
       }
     },

@@ -1,3 +1,16 @@
+## [1.58.0](https://github.com/etchteam/recycling-locator/compare/v1.57.0...v1.58.0) (2025-03-18)
+
+
+### Features
+
+* update copy and buttons on material search page ([c43fb6c](https://github.com/etchteam/recycling-locator/commit/c43fb6cf284119a983f94bf0b3075757d7767d56))
+
+
+### Bug Fixes
+
+* test ([8aa6651](https://github.com/etchteam/recycling-locator/commit/8aa665133074b9410210df1d343cf1681abf42aa))
+* test ([5a4ae21](https://github.com/etchteam/recycling-locator/commit/5a4ae2100132c3f02d837b96b84899f2b6e0b02d))
+
 ## [1.57.0](https://github.com/etchteam/recycling-locator/compare/v1.56.0...v1.57.0) (2025-03-17)
 
 

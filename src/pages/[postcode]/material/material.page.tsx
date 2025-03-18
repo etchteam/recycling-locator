@@ -27,6 +27,7 @@ import {
   DeferredMaterialLoaderResponse,
   AwaitedMaterialLoaderResponse,
 } from './material.loader';
+
 export function Loading() {
   const { t } = useTranslation();
 
@@ -46,9 +47,45 @@ export function Loading() {
   );
 }
 
+export function HeroFormatted({
+  variant,
+  title,
+}: {
+  readonly variant: 'negative' | 'positive' | 'hazardous';
+  readonly title: string;
+}) {
+  if (variant === 'negative') {
+    return (
+      <locator-hero variant="negative" size="reduced">
+        <locator-wrap>
+          <diamond-enter type="fade" delay={0.4}>
+            <locator-icon-text>
+              <locator-icon icon="cross-circle" />
+              <h3 className="diamond-text-size-md">{title}</h3>
+            </locator-icon-text>
+          </diamond-enter>
+        </locator-wrap>
+      </locator-hero>
+    );
+  }
+  return (
+    <locator-hero variant={variant} size="full">
+      <locator-wrap>
+        <diamond-enter type="fade" delay={0.4}>
+          <locator-icon
+            icon={variant === 'positive' ? 'tick-circle' : 'info'}
+          />
+          <h3>{title}</h3>
+        </diamond-enter>
+      </locator-wrap>
+    </locator-hero>
+  );
+}
+
 function MaterialPageContent({
   localAuthority,
   locations,
+  material,
 }: Readonly<Partial<AwaitedMaterialLoaderResponse>>) {
   const { t } = useTranslation();
   const [searchParams] = useSearchParams();
@@ -61,65 +98,79 @@ function MaterialPageContent({
   );
   const recyclableAtHome = propertiesCollectingThisMaterial !== undefined;
   const recyclableNearby = locations.items.length > 0;
-  const recyclable = recyclableAtHome || recyclableNearby;
+  const recyclableOptions = recyclableAtHome || recyclableNearby;
+  const nonRecyclable = material.nonRecyclable;
+  const hazardous = material.hazardous;
 
-  return (
-    <diamond-enter type="fade">
-      {recyclable ? (
-        <>
-          <locator-hero variant="positive" size="full">
-            <locator-wrap>
-              <diamond-enter type="fade" delay={0.4}>
-                <locator-icon icon="tick-circle" />
-                <h3>{t('material.hero.yes')}</h3>
-              </diamond-enter>
-            </locator-wrap>
-          </locator-hero>
-          <diamond-enter type="fade-in-up" delay={0.25}>
-            <locator-wrap>
+  if (hazardous || nonRecyclable) {
+    return (
+      <diamond-enter type="fade">
+        <HeroFormatted
+          variant={hazardous ? 'hazardous' : 'negative'}
+          title={
+            hazardous ? t('material.hero.hazardous') : t('material.hero.no')
+          }
+        />
+        <diamond-enter type="fade-in-up" delay={0.25}>
+          <locator-wrap className={!hazardous && 'diamond-spacing-top-lg'}>
+            <section className="diamond-spacing-bottom-lg">
+              <NotRecyclable localAuthority={localAuthority} />
+            </section>
+            {propertiesCollectingThisMaterial && (
               <section className="diamond-spacing-bottom-lg">
                 <RecycleAtHome
                   allProperties={localAuthority.properties}
                   propertiesCollectingThisMaterial={
                     propertiesCollectingThisMaterial
                   }
+                  recyclable={false}
                 />
               </section>
+            )}
+            {locations.items.length > 0 && (
               <section className="diamond-spacing-bottom-lg">
-                <NearbyPlaces locations={locations} />
+                <NearbyPlaces locations={locations} recyclable={false} />
               </section>
-              <section className="diamond-spacing-bottom-lg">
-                <RateThisInfo />
-              </section>
-            </locator-wrap>
-          </diamond-enter>
-        </>
-      ) : (
-        <>
-          <locator-hero variant="negative" size="reduced">
-            <locator-wrap>
-              <diamond-enter type="fade" delay={0.4}>
-                <locator-icon-text>
-                  <locator-icon icon="cross-circle"></locator-icon>
-                  <h3 className="diamond-text-size-md">
-                    {t('material.hero.no')}
-                  </h3>
-                </locator-icon-text>
-              </diamond-enter>
-            </locator-wrap>
-          </locator-hero>
-          <diamond-enter type="fade-in-up" delay={0.25}>
-            <locator-wrap className="diamond-spacing-top-md">
-              <section className="diamond-spacing-bottom-lg">
-                <NotRecyclable localAuthority={localAuthority} />
-              </section>
-              <section className="diamond-spacing-bottom-lg">
-                <RateThisInfo />
-              </section>
-            </locator-wrap>
-          </diamond-enter>
-        </>
-      )}
+            )}
+            <section className="diamond-spacing-bottom-lg">
+              <RateThisInfo />
+            </section>
+          </locator-wrap>
+        </diamond-enter>
+      </diamond-enter>
+    );
+  }
+
+  return (
+    <diamond-enter type="fade">
+      <HeroFormatted
+        variant={recyclableOptions ? 'positive' : 'negative'}
+        title={
+          recyclableOptions
+            ? t('material.hero.yes')
+            : t('material.hero.noOptions')
+        }
+      />
+      <diamond-enter type="fade-in-up" delay={0.25}>
+        <locator-wrap
+          className={!recyclableOptions && 'diamond-spacing-top-lg'}
+        >
+          <section className="diamond-spacing-bottom-lg">
+            <RecycleAtHome
+              allProperties={localAuthority.properties}
+              propertiesCollectingThisMaterial={
+                propertiesCollectingThisMaterial
+              }
+            />
+          </section>
+          <section className="diamond-spacing-bottom-lg">
+            <NearbyPlaces locations={locations} />
+          </section>
+          <section className="diamond-spacing-bottom-lg">
+            <RateThisInfo />
+          </section>
+        </locator-wrap>
+      </diamond-enter>
     </diamond-enter>
   );
 }
@@ -131,6 +182,7 @@ export default function MaterialPage() {
     tip: tipPromise,
     localAuthority: localAuthorityPromise,
     locations: locationsPromise,
+    material: materialPromise,
   } = useLoaderData() as DeferredMaterialLoaderResponse;
   const [searchParams] = useSearchParams();
   const search = searchParams.get('search');
@@ -160,13 +212,18 @@ export default function MaterialPage() {
         )}
         <Suspense fallback={<Loading />}>
           <Await
-            resolve={Promise.all([localAuthorityPromise, locationsPromise])}
+            resolve={Promise.all([
+              localAuthorityPromise,
+              locationsPromise,
+              materialPromise,
+            ])}
           >
-            {([localAuthority, locations]) => {
+            {([localAuthority, locations, material]) => {
               return (
                 <MaterialPageContent
                   localAuthority={localAuthority}
                   locations={locations}
+                  material={material}
                 />
               );
             }}

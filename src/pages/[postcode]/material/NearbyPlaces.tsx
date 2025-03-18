@@ -37,11 +37,19 @@ function NoPlaces() {
   );
 }
 
-function Places({ locations }: { readonly locations: LocationsResponse }) {
+function Places({
+  locations,
+  recyclable,
+}: {
+  readonly locations: LocationsResponse;
+  readonly recyclable: boolean;
+}) {
   const { t } = useTranslation();
   const { postcode } = useParams();
   const [searchParams] = useSearchParams();
-  const tContext = 'material.nearbyPlaces.places';
+  const tContext = recyclable
+    ? 'material.nearbyPlaces.places'
+    : 'material.nearbyPlaces.disposal';
   const count = locations.items.length;
 
   const placesSearchParams = mapSearchParams(
@@ -107,13 +115,15 @@ function Places({ locations }: { readonly locations: LocationsResponse }) {
 
 export default function NearbyPlaces({
   locations,
+  recyclable = true,
 }: {
   readonly locations: LocationsResponse;
+  readonly recyclable?: boolean;
 }) {
   const hasLocations = locations.items.length > 0;
 
   if (hasLocations) {
-    return <Places locations={locations} />;
+    return <Places locations={locations} recyclable={recyclable} />;
   }
 
   return <NoPlaces />;

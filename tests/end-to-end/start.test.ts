@@ -43,6 +43,10 @@ describeEndToEndTest('Start page', () => {
       route.fulfill({ json: PostcodeGeocodeResponse });
     });
 
+    await page.route(LOCATIONS_ENDPOINT, (route) => {
+      route.fulfill({ json: LocationsResponse });
+    });
+
     const input = page.locator('input[type="text"]').first();
     const postcode = page.getByText('EX32 7RB').first();
     const city = page.getByText('Barnstaple').first();
@@ -53,6 +57,7 @@ describeEndToEndTest('Start page', () => {
     await input.fill('EX32 7RB');
     await input.press('Enter');
     await page.waitForRequest(GEOCODE_ENDPOINT);
+    await page.waitForRequest(LOCATIONS_ENDPOINT);
     await expect(postcode).toBeVisible();
     await expect(city).toBeVisible();
   });

@@ -13,6 +13,8 @@ export interface Material {
   id: string;
   name: string;
   recycleType?: 'Recycle' | 'Re-use';
+  hazardous?: boolean;
+  nonRecyclable?: boolean;
   nameCy?: string;
   popular?: boolean;
   valpakMaterials?: ValpakMaterial[];

@@ -8,6 +8,6 @@ export interface StartLoaderResponse {
 }
 
 export default function startLoader() {
-  const tip = getTipByPath('/');
+  const tip = getTipByPath('/', { fallback: false });
   return defer({ tip });
 }

@@ -51,13 +51,29 @@ function getTipCountry() {
     : 'ENGLAND';
 }
 
-export async function getTipByPath(path: string) {
+/**
+ * Get a tip for a given path name
+ *
+ * @param path - The path to get the tip for (a path can be set in the admin)
+ * @param fallback – whether to fallback to a random tip if no tip is found for the path
+ */
+export async function getTipByPath(
+  path: string,
+  { fallback }: { fallback?: boolean } = { fallback: true },
+) {
   try {
-    const tips = await LocatorApi.get<RecyclingMeta[]>(
-      `recycling-meta?categories=HINT&path=${path}&country=${getTipCountry()}`,
-    );
+    if (fallback) {
+      const meta = await LocatorApi.get<RecyclingMeta[]>(
+        `recycling-meta?categories=HINT&country=${getTipCountry()}`,
+      );
+      return getTip(meta, { path });
+    } else {
+      const tips = await LocatorApi.get<RecyclingMeta[]>(
+        `recycling-meta?categories=HINT&path=${path}&country=${getTipCountry()}`,
+      );
 
-    return tips?.[0] ?? null;
+      return tips?.[0] ?? null;
+    }
   } catch (error) {
     handleTipError(error);
     return Promise.resolve(null);

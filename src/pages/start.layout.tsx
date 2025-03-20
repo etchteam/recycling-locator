@@ -78,12 +78,20 @@ export function DefaultTip() {
   );
 }
 
+export function LoadingTip() {
+  return (
+    <locator-tip>
+      <locator-wrap></locator-wrap>
+    </locator-tip>
+  );
+}
+
 export function DefaultAside() {
   const { tip: tipPromise } = useLoaderData() as StartLoaderResponse;
 
   return (
     <div slot="layout-aside" className="display-contents">
-      <Suspense fallback={<DefaultTip />}>
+      <Suspense fallback={<LoadingTip />}>
         <Await resolve={tipPromise}>
           {(tip) =>
             tip ? (

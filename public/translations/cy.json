@@ -21,17 +21,19 @@
     "viewDetails": "Gweld manylion",
     "directions": "Cyfarwyddiadau",
     "menu": "Dewislen",
-    "resetSearch": "Ailosod chwiliad"
+    "resetSearch": "Ailosod chwiliad",
+    "change": "Newid"
   },
   "components": {
     "locationInput": {
-      "placeholder": "Nodwch dref neu god post…",
       "error": "Nodwch leoliad"
     },
     "materialSearchInput": {
-      "placeholder": "Nodwch enw eitem…",
+      "label": "Rhowch enw eitem",
+      "placeholder": "e.e. aerosolau neu fatris",
       "error": "Nodwch enw eitem i chwilio amdani",
-      "notFound": "Ni allem ddod o hyd i gyfatebiaeth ar gyfer yr eitem hon. Ceisiwch ddefnyddio enw arall ar ei gyfer."
+      "notFound": "Ni allem ddod o hyd i cyfatebiaeth ar gyfer yr eitem hon. Ceisiwch ddefnyddio enw arall ar ei gyfer.",
+      "searchList": "neu <a>Dewiswch o restr o eitemau</a>"
     },
     "menu": {
       "whatDoYouWantToDo": "Beth hoffech chi ei wneud?",
@@ -151,8 +153,8 @@
     }
   },
   "start": {
-    "title": "Dod o hyd i leoedd ailgylchu.",
-    "label": "Ble’r ydych chi?",
+    "title": "Darganfyddwch opsiynau ailgylchu yn eich ardal",
+    "label": "Rhowch dref neu god post",
     "cta": "Dechrau arni",
     "geolocation": {
       "label": "Defnyddiwch fy lleoliad",
@@ -165,24 +167,31 @@
     "aside": {
       "paragraph": "Defnyddiwch y gwasanaeth hwn i:",
       "list": [
-        "weld eich lleoedd ailgylchu agosaf",
-        "darganfod sut i ailgylchu eitem benodol",
-        "gwirio beth allwch ei ailgylchu gartref"
+        "dod o hyd i'ch lleoedd agosaf i ailgylchu",
+        "gweld beth allwch chi ei ailgylchu gartref",
+        "gwirio sut i ailgylchu eitem benodol"
       ]
     },
     "homeRecycling": {
       "title": "Darganfyddwch beth allwch ei ailgylchu o gartref."
     },
     "material": {
-      "title": "Dod o hyd i leoedd i ailgylchu {{material}}"
+      "title": "Dod o hyd i leoedd i ailgylchu <bold>{{material}}</bold>"
     }
   },
   "postcode": {
-    "title": "Beth hoffech chi ei ailgylchu?",
+    "title": "Gwirio sut i ailgylchu eitem benodol",
+    "exploreNearby": "Archwiliwch opsiynau ailgylchu cyfagos",
     "exploreTheMap": "Pori’r map",
     "options": {
-      "home": "Casgliad ailgylchu o gartref",
-      "nearest": "Lleoedd agosaf i ailgylchu"
+      "home": {
+        "title": "Casgliadau Ailgylchu Cartref",
+        "description": "Gwiriwch beth allwch chi ei roi yn eich biniau"
+      },
+      "nearest": {
+        "title": "Ailgylchu mewn mannau cyfagos",
+        "description": "{{count}} lle o fewn 25 milltir"
+      }
     }
   },
   "material": {
@@ -220,6 +229,10 @@
         "content_one": "Gellir ailgylchu’r eitem hon mewn <bold>1 lle </bold> yn yr ardal.",
         "contentThirtyPlus": "Gellir ailgylchu’r eitem hon mewn 30+ lle yn yr ardal."
       }
+    },
+    "notRecyclable": {
+      "title": "Ni allwch ailgylchu’r eitem hon ar gyfer unrhyw amgylchiad.",
+      "content": "Cysylltwch â'ch awdurdod lleol am gyngor neu dewch o hyd i'ch gwasanaeth gwaredu gwastraff peryglus agosaf isod."
     },
     "search": {
       "notFound": "Doedden ni ddim yn gallu dod o hyd i ateb i gyd-fynd â",
@@ -315,7 +328,36 @@
         "aToZofItems": "A-Y o eitemau"
       },
       "aToZ": {
-        "alphabet": ["A", "B", "C", "Ch", "D", "Dd", "E", "F", "Ff", "G", "Ng", "H", "I", "J", "Ll", "M", "N", "O", "P", "Ph", "R", "Rh", "S", "T", "Th", "U", "W", "Y"],
+        "alphabet": [
+          "A",
+          "B",
+          "C",
+          "Ch",
+          "D",
+          "Dd",
+          "E",
+          "F",
+          "Ff",
+          "G",
+          "Ng",
+          "H",
+          "I",
+          "J",
+          "Ll",
+          "M",
+          "N",
+          "O",
+          "P",
+          "Ph",
+          "R",
+          "Rh",
+          "S",
+          "T",
+          "Th",
+          "U",
+          "W",
+          "Y"
+        ],
         "backToTop": "Yn ôl i'r brig"
       }
     },

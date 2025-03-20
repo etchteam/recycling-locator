@@ -19,7 +19,6 @@ import {
   ValidPostcodeResponse,
 } from '../mocks/postcode';
 import describeEndToEndTest from '../utils/describeEndToEndTest';
-import snapshot from '../utils/snapshot';
 
 describeEndToEndTest('Start page', () => {
   test('Address outside mainland England', async ({ page }) => {
@@ -31,7 +30,6 @@ describeEndToEndTest('Start page', () => {
     const notInUk = page.getByText(t('notFound.title.notInTheUK')).first();
     await expect(input).toBeVisible();
     await expect(notInUk).not.toBeVisible();
-    await snapshot(page, 'Start');
     await input.fill('Guernsey');
     await input.press('Enter');
     await page.waitForRequest(GEOCODE_ENDPOINT);
@@ -43,20 +41,23 @@ describeEndToEndTest('Start page', () => {
       route.fulfill({ json: PostcodeGeocodeResponse });
     });
 
+    await page.route(LOCATIONS_ENDPOINT, (route) => {
+      route.fulfill({ json: LocationsResponse });
+    });
+
     const input = page.locator('input[type="text"]').first();
     const postcode = page.getByText('EX32 7RB').first();
     const city = page.getByText('Barnstaple').first();
-    const postcodePageTitle = page.getByText(t('postcode.title')).first();
+
     await expect(input).toBeVisible();
     await expect(postcode).not.toBeVisible();
     await expect(city).not.toBeVisible();
-    await expect(postcodePageTitle).not.toBeVisible();
     await input.fill('EX32 7RB');
     await input.press('Enter');
     await page.waitForRequest(GEOCODE_ENDPOINT);
+    await page.waitForRequest(LOCATIONS_ENDPOINT);
     await expect(postcode).toBeVisible();
     await expect(city).toBeVisible();
-    await expect(postcodePageTitle).toBeVisible();
   });
 
   test('Valid location entry', async ({ page }) => {
@@ -68,21 +69,23 @@ describeEndToEndTest('Start page', () => {
       route.fulfill({ json: ValidPostcodeResponse });
     });
 
+    await page.route(LOCATIONS_ENDPOINT, (route) => {
+      route.fulfill({ json: LocationsResponse });
+    });
+
     const input = page.locator('input[type="text"]').first();
     const postcode = page.getByText('EX32 7RB').first();
     const city = page.getByText('Barnstaple').first();
-    const postcodePageTitle = page.getByText(t('postcode.title')).first();
     await expect(input).toBeVisible();
     await expect(postcode).not.toBeVisible();
     await expect(city).not.toBeVisible();
-    await expect(postcodePageTitle).not.toBeVisible();
     await input.fill('Barnstaple');
     await input.press('Enter');
     await page.waitForRequest(GEOCODE_ENDPOINT);
     await page.waitForRequest(POSTCODE_ENDPOINT);
+    await page.waitForRequest(LOCATIONS_ENDPOINT);
     await expect(postcode).toBeVisible();
     await expect(city).toBeVisible();
-    await expect(postcodePageTitle).toBeVisible();
   });
 
   test('Invalid location entry', async ({ page }) => {
@@ -136,7 +139,6 @@ describeEndToEndTest('Start page', () => {
     await expect(homeStartPageTitle).toBeVisible();
     await expect(input).toBeVisible();
     await expect(localAuthority).not.toBeVisible();
-    await snapshot(page, 'Home recycling start');
     await input.fill('Barnstaple');
     await input.press('Enter');
     await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
@@ -170,9 +172,7 @@ describeEndToEndTest('Start page', () => {
 
     const input = page.locator('input[type="text"]').first();
     const materialStartPageTitle = page
-      .getByText(
-        t('start.material.title', { material: 'Plastic drinks bottles' }),
-      )
+      .getByText('Plastic drinks bottles')
       .first();
     const recyclableText = page.getByText(t('material.hero.yes')).first();
 
@@ -185,7 +185,6 @@ describeEndToEndTest('Start page', () => {
     await expect(materialStartPageTitle).toBeVisible();
     await expect(input).toBeVisible();
     await expect(recyclableText).not.toBeVisible();
-    await snapshot(page, 'Material start');
     await input.fill('Barnstaple');
     await input.press('Enter');
     await page.waitForRequest(LOCATIONS_ENDPOINT);

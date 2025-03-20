@@ -1,3 +1,39 @@
+## [1.58.0](https://github.com/etchteam/recycling-locator/compare/v1.57.0...v1.58.0) (2025-03-18)
+
+
+### Features
+
+* update copy and buttons on material search page ([c43fb6c](https://github.com/etchteam/recycling-locator/commit/c43fb6cf284119a983f94bf0b3075757d7767d56))
+
+
+### Bug Fixes
+
+* test ([8aa6651](https://github.com/etchteam/recycling-locator/commit/8aa665133074b9410210df1d343cf1681abf42aa))
+* test ([5a4ae21](https://github.com/etchteam/recycling-locator/commit/5a4ae2100132c3f02d837b96b84899f2b6e0b02d))
+
+## [1.57.0](https://github.com/etchteam/recycling-locator/compare/v1.56.0...v1.57.0) (2025-03-17)
+
+
+### Features
+
+* enable provenance publishing ([8a5ae05](https://github.com/etchteam/recycling-locator/commit/8a5ae055f6abe6f7ec1d273c93f3f9f1d27f6408))
+
+## [1.56.0](https://github.com/etchteam/recycling-locator/compare/v1.55.0...v1.56.0) (2025-03-14)
+
+
+### Features
+
+* update copy and layout on landing page ([f767d9d](https://github.com/etchteam/recycling-locator/commit/f767d9ddf3cfc315485f82371bca3f2bddb376a3))
+* update copy for material specific landing page ([7d4155d](https://github.com/etchteam/recycling-locator/commit/7d4155dce919d1fc1e77f303580e30cf2e696b3d))
+
+## [1.55.0](https://github.com/etchteam/recycling-locator/compare/v1.54.0...v1.55.0) (2025-03-14)
+
+
+### Features
+
+* add referrer to locator for council links ([3876df3](https://github.com/etchteam/recycling-locator/commit/3876df3a1e63d1a30283eb413a723833ba1c7a94))
+* reduce heading design for non-recycables ([16cf9ff](https://github.com/etchteam/recycling-locator/commit/16cf9ff25e1e6f2a8696d6b3549de9c93396cf42))
+
 ## [1.54.0](https://github.com/etchteam/recycling-locator/compare/v1.53.0...v1.54.0) (2025-01-30)
 
 

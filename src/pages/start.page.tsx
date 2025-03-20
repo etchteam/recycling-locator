@@ -19,16 +19,14 @@ export default function StartPage() {
       <locator-wrap>
         <diamond-section padding="lg">
           <h2>{t('start.title')}</h2>
-          <div className="diamond-spacing-bottom-md">
-            <LocationForm />
-          </div>
-          <hr className="diamond-spacing-bottom-md" />
-          <p>{t('start.aside.paragraph')}</p>
           <ul>
             {tArray('start.aside.list').map((item) => (
               <li key={item}>{item}</li>
             ))}
           </ul>
+          <div className="diamond-spacing-bottom-md">
+            <LocationForm />
+          </div>
         </diamond-section>
       </locator-wrap>
     </StartLayout>

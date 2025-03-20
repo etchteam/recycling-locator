@@ -8,7 +8,6 @@ import {
 } from '../mocks/localAuthority';
 import { LOCATIONS_ENDPOINT, LocationsResponse } from '../mocks/locations';
 import describeEndToEndTest from '../utils/describeEndToEndTest';
-import snapshot from '../utils/snapshot';
 import { PROPERTY_TYPE_EN } from '@/types/locatorApi';
 
 describeEndToEndTest('Material page', () => {
@@ -42,7 +41,6 @@ describeEndToEndTest('Material page', () => {
     await expect(recyclableText).toBeVisible();
     await expect(homeText).toBeVisible();
     await expect(locationsText).toBeVisible();
-    await snapshot(page, 'Material result single');
   });
 
   test('Some home recycling options', async ({ page, widget }) => {
@@ -110,7 +108,6 @@ describeEndToEndTest('Material page', () => {
     await expect(somePropertiesText).toBeVisible();
     await expect(schemeOneText).toBeVisible();
     await expect(locationsText).toBeVisible();
-    await snapshot(page, 'Material result multiple');
   });
 
   test('All home recycling options', async ({ page, widget }) => {
@@ -221,11 +218,11 @@ describeEndToEndTest('Material page', () => {
     });
 
     const recyclableText = page.getByText(t('material.hero.no')).first();
-    const homeText = page
-      .getByText(t('material.recycleAtHome.noProperties.content'))
+    const notRecyclableTitle = page
+      .getByText(t('material.notRecyclable.title'))
       .first();
-    const locationsText = page
-      .getByText(t('material.nearbyPlaces.noPlaces.title'))
+    const notRecyclableContent = page
+      .getByText(t('material.notRecyclable.content'))
       .first();
 
     await expect(recyclableText).not.toBeVisible();
@@ -238,8 +235,7 @@ describeEndToEndTest('Material page', () => {
     await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
     await page.waitForRequest(LOCATIONS_ENDPOINT);
     await expect(recyclableText).toBeVisible();
-    await expect(homeText).toBeVisible();
-    await expect(locationsText).toBeVisible();
-    await snapshot(page, 'Material result negative');
+    await expect(notRecyclableTitle).toBeVisible();
+    await expect(notRecyclableContent).toBeVisible();
   });
 });

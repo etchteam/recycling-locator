@@ -32,7 +32,7 @@ function Loading() {
 
   return (
     <locator-loading>
-      <locator-hero>
+      <locator-hero size="full">
         <locator-icon icon="distance" color="muted" />
         <h3>{t('places.loading')}</h3>
       </locator-hero>

@@ -81,12 +81,9 @@ jobs:
         env:
           VITE_TEST: 'true'
           VITE_HERE_MAPS_PLACES_KEY: ${{ vars.VITE_HERE_MAPS_PLACES_KEY }}
-          VITE_PUBLIC_PATH: https://cdn.jsdelivr.net/npm/@etchteam/recycling-locator@${{ steps.package-version.outputs.current-version}}/dist/
-          VITE_PACKAGE_VERSION: ${{ steps.package-version.outputs.current-version}}
       - name: Install Playwright
         run: npx playwright install --with-deps chromium
       - name: Run tests
         run: npm run test:ci
         env:
-          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
           VITE_TEST: 'true'

@@ -2,7 +2,6 @@
 import { Signal, signal } from '@preact/signals';
 import * as Sentry from '@sentry/browser';
 import debounce from 'lodash/debounce';
-import uniq from 'lodash/uniq';
 import { Component, createRef } from 'preact';
 import '@etchteam/diamond-ui/control/Input/Input';
 
@@ -80,8 +79,7 @@ export default class LocationInput extends Component<LocationInputProps> {
     const locations = this.locationSuggestions.value;
     const inputId = this.props['input-id'] ?? 'locator-location-input';
     const listId = `locator-${inputId}-locations`;
-    const placeholder =
-      this.props.placeholder ?? i18n.t('components.locationInput.placeholder');
+    const placeholder = this.props.placeholder ?? '';
     const valid = this.props.valid ?? true;
 
     return (
@@ -114,7 +112,7 @@ export default class LocationInput extends Component<LocationInputProps> {
           </p>
         )}
         <datalist id={listId}>
-          {uniq(locations).map((location) => {
+          {[...new Set(locations)].map((location) => {
             if (location === this.inputRef?.current?.value) {
               return null;
             }

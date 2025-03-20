@@ -21,17 +21,20 @@
     "viewDetails": "View details",
     "directions": "Directions",
     "menu": "Menu",
-    "resetSearch": "Reset search"
+    "resetSearch": "Reset search",
+    "change": "Change"
   },
   "components": {
     "locationInput": {
-      "placeholder": "Enter a town or postcode…",
       "error": "Please enter a location"
     },
     "materialSearchInput": {
-      "placeholder": "Enter the name of an item…",
+      "label": "Enter the name of an item",
+      "placeholder": "e.g. aerosols or batteries",
       "error": "Please enter the name of an item",
-      "notFound": "We couldn’t find a match for this item. Please try using an alternative name for it."
+      "notFound": "We couldn’t find a match for this item. Please try using an alternative name for it.",
+      "searchList": "or <a>Choose from a list of items</a>"
+
     },
     "menu": {
       "whatDoYouWantToDo": "What do you want to do?",
@@ -151,8 +154,8 @@
     }
   },
   "start": {
-    "title": "Find places to recycle.",
-    "label": "Where are you?",
+    "title": "Discover recycling options in your area",
+    "label": "Enter a town or postcode",
     "cta": "Get started",
     "geolocation": {
       "label": "Use my location",
@@ -163,26 +166,33 @@
       "bestExperience": "Best experience"
     },
     "aside": {
-      "paragraph": "Use this service to:",
+      "paragraph": "You can also use this service to:",
       "list": [
-        "see your nearest places to recycle",
-        "find out how to recycle a specific item",
-        "check what you can recycle at home"
+        "find your nearest places to recycle",
+        "see what you can recycle at home",
+        "check how to recycle a specific item"
       ]
     },
     "homeRecycling": {
       "title": "Find out what you can recycle from home."
     },
     "material": {
-      "title": "Find places to recycle {{material}}"
+      "title": "Find places to recycle <bold>{{material}}</bold>"
     }
   },
   "postcode": {
-    "title": "What do you need to recycle?",
+    "title": "Check how to recycle a specific item",
+    "exploreNearby": "Explore nearby recycling options",
     "exploreTheMap": "Explore the map",
     "options": {
-      "home": "Home recycling collection",
-      "nearest": "Nearest places to recycle"
+      "home": {
+        "title": "Home Recycling Collections",
+        "description": "Check what you can put in your bins"
+      },
+      "nearest": {
+        "title": "Recycle at nearby places",
+        "description": "{{count}} places within 25 miles"
+      }
     }
   },
   "material": {
@@ -220,6 +230,10 @@
         "content_one": "This item can be recycled at <bold>1 place</bold> in the area.",
         "contentThirtyPlus": "This item can be recycled at 30+ places in the area."
       }
+    },
+    "notRecyclable": {
+      "title": "This material cannot be recycled under any circumstances.",
+      "content": "Contact your local authority for advice or find your nearest hazardous waste disposal service below."
     },
     "search": {
       "notFound": "We couldn’t find a match for",

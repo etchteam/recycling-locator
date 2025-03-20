@@ -17,6 +17,7 @@ import '@/components/content/HeaderTitle/HeaderTitle';
 import '@/components/content/Icon/Icon';
 import '@/components/control/NavBar/NavBar';
 import Menu from '@/components/control/Menu/Menu';
+import TipContent from '@/components/template/TipContent/TipContent';
 import { useAppState } from '@/lib/AppState';
 import i18n from '@/lib/i18n';
 import useScrollRestoration from '@/lib/useScrollRestoration';
@@ -37,6 +38,7 @@ export default function HomeRecyclingLayout({
   const open = useSignal(false);
   useScrollRestoration(layoutRef);
   const localAuthority = data?.localAuthority;
+  const tipPromise = data?.tip;
   const homeTipImgSrc = `${publicPath}images/home-tip.svg`;
 
   return (
@@ -150,29 +152,41 @@ export default function HomeRecyclingLayout({
       </div>
       <locator-tip slot="layout-aside" text-align="center">
         <locator-wrap>
-          <img
-            src={homeTipImgSrc}
-            alt=""
-            className="diamond-spacing-bottom-sm"
-          />
-          <h2>{t('homeRecycling.aside.title')}</h2>
-          <p>{t('homeRecycling.aside.content')}</p>
           <Suspense fallback={null}>
-            <Await resolve={localAuthority}>
-              {(la) => (
-                <diamond-enter type="fade">
-                  <diamond-button width="full-width">
-                    <a
-                      href={la.recyclingUri}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {la.name}
-                      <locator-icon icon="external"></locator-icon>
-                    </a>
-                  </diamond-button>
-                </diamond-enter>
-              )}
+            <Await resolve={tipPromise}>
+              {(tip) =>
+                tip ? (
+                  <TipContent tip={tip} />
+                ) : (
+                  <>
+                    <img
+                      src={homeTipImgSrc}
+                      alt=""
+                      className="diamond-spacing-bottom-sm"
+                    />
+                    <h2>{t('homeRecycling.aside.title')}</h2>
+                    <p>{t('homeRecycling.aside.content')}</p>
+                    <Suspense fallback={null}>
+                      <Await resolve={localAuthority}>
+                        {(la) => (
+                          <diamond-enter type="fade">
+                            <diamond-button width="full-width">
+                              <a
+                                href={la.recyclingUri}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                {la.name}
+                                <locator-icon icon="external"></locator-icon>
+                              </a>
+                            </diamond-button>
+                          </diamond-enter>
+                        )}
+                      </Await>
+                    </Suspense>
+                  </>
+                )
+              }
             </Await>
           </Suspense>
         </locator-wrap>

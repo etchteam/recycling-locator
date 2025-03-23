@@ -29,9 +29,11 @@ export default function TipContent({
       {showImage && (
         <img className="diamond-spacing-bottom-sm" src={tipImgSrc} alt="" />
       )}
-      <p className="diamond-text-weight-bold">{tip.subtitle}</p>
+      {tip.subtitle && (
+        <p className="diamond-text-weight-bold">{tip.subtitle}</p>
+      )}
       <h2>{tip.title}</h2>
-      <p>{tip.content}</p>
+      {tip.content && <p>{tip.content}</p>}
       {tip.cta && tip.ctaLink && (
         <diamond-button width={ctaWidth} className="diamond-spacing-top-md">
           <a href={tip.ctaLink} target="_blank" rel="noopener noreferrer">

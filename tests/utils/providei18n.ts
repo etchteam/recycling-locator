@@ -7,6 +7,7 @@ export default function provideI18n() {
     i18n.init(
       {
         lng: 'en',
+        fallbackLng: 'en',
         debug: false,
         ns: ['translations'],
         defaultNS: 'translations',

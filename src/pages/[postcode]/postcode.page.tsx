@@ -3,13 +3,13 @@ import { Suspense } from 'preact/compat';
 import { useEffect } from 'preact/hooks';
 import { Trans, useTranslation } from 'react-i18next';
 import { Link, Form, Await, useSearchParams } from 'react-router-dom';
-
 import '@etchteam/diamond-ui/canvas/Section/Section';
 import '@etchteam/diamond-ui/composition/Grid/Grid';
 import '@etchteam/diamond-ui/composition/Grid/GridItem';
 import '@etchteam/diamond-ui/composition/Enter/Enter';
 import '@etchteam/diamond-ui/control/Button/Button';
 import '@etchteam/diamond-ui/control/Link/Link';
+
 import '@/components/canvas/ContextHeader/ContextHeader';
 import MapSvg from '@/components/canvas/MapSvg/MapSvg';
 import '@/components/canvas/IconCircle/IconCircle';
@@ -18,11 +18,14 @@ import '@/components/canvas/Hero/Hero';
 import '@/components/composition/Wrap/Wrap';
 import '@/components/composition/BorderedList/BorderedList';
 import '@/components/content/Icon/Icon';
+import '@/components/content/RescueMeRecyclePromo/RescueMeRecyclePromo';
 import '@/components/control/IconLink/IconLink';
 import '@/components/canvas/LoadingCard/LoadingCard';
 import MaterialSearchInput from '@/components/control/MaterialSearchInput/MaterialSearchInput';
 import PlacesMap from '@/components/control/PlacesMap/PlacesMap';
+import { useAppState } from '@/lib/AppState';
 import formatPostcode from '@/lib/formatPostcode';
+import i18n from '@/lib/i18n';
 import useAnalytics from '@/lib/useAnalytics';
 import useFormValidation from '@/lib/useFormValidation';
 import StartLayout from '@/pages/start.layout';
@@ -62,7 +65,7 @@ function MapErrorFallback({ postcode }: { readonly postcode: string }) {
   );
 }
 
-function Aside({ postcode }: { readonly postcode: string }) {
+export function PostcodeAside({ postcode }: { readonly postcode: string }) {
   const { t } = useTranslation();
   const { locationsPromise } = usePostcodeLoaderData();
 
@@ -114,11 +117,13 @@ function Aside({ postcode }: { readonly postcode: string }) {
 
 export default function PostcodePage() {
   const { t } = useTranslation();
+  const { publicPath } = useAppState();
   const { recordEvent } = useAnalytics();
   const { postcode, city, locationsPromise } = usePostcodeLoaderData();
   const [searchParams] = useSearchParams();
   const autofocus = searchParams.get('autofocus') === 'true';
   const form = useFormValidation('search');
+  const locale = i18n.language;
 
   useEffect(() => {
     recordEvent({
@@ -128,7 +133,7 @@ export default function PostcodePage() {
   }, [city, postcode, recordEvent]);
 
   return (
-    <StartLayout aside={<Aside postcode={postcode} />}>
+    <StartLayout aside={<PostcodeAside postcode={postcode} />}>
       <locator-context-header>
         <div>
           <span className="diamond-text-weight-bold">
@@ -188,7 +193,7 @@ export default function PostcodePage() {
             <h3 className="diamond-text-size-base diamond-text-weight-bold diamond-spacing-top-md">
               {t('postcode.exploreNearby')}
             </h3>
-            <nav>
+            <nav className={locale === 'en' ? 'diamond-spacing-bottom-lg' : ''}>
               <dl>
                 <locator-icon-link border className="diamond-spacing-top-md">
                   <Link to={`/${postcode}/home`} unstable_viewTransition>
@@ -235,6 +240,21 @@ export default function PostcodePage() {
                 </Suspense>
               </dl>
             </nav>
+            {locale === 'en' && (
+              <locator-rescue-me-recycle-promo>
+                <Link
+                  to={`/${postcode}/rescue-me-recycle`}
+                  unstable_viewTransition
+                >
+                  <img
+                    src={`${publicPath}images/rescue-me-recycle.webp`}
+                    alt={t('rescueMeRecycle.imgAlt')}
+                    width="254"
+                    height="120"
+                  />
+                </Link>
+              </locator-rescue-me-recycle-promo>
+            )}
           </diamond-enter>
         </diamond-section>
       </locator-wrap>

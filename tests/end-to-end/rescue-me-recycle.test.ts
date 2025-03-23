@@ -4,6 +4,7 @@ import { test } from 'vitest';
 import { GEOCODE_ENDPOINT, PostcodeGeocodeResponse } from '../mocks/geocode';
 import { LOCATIONS_ENDPOINT, LocationsResponse } from '../mocks/locations';
 import describeEndToEndTest from '../utils/describeEndToEndTest';
+import i18n from '@/lib/i18n';
 
 describeEndToEndTest('Rescue me recycle promo', () => {
   test('Promo displays on English postcode page', async ({ page, widget }) => {
@@ -48,6 +49,8 @@ describeEndToEndTest('Rescue me recycle promo', () => {
       node.setAttribute('path', '/EX32 7RB');
       node.setAttribute('lang', 'cy');
     });
+
+    i18n.changeLanguage('cy');
 
     await page.waitForRequest(GEOCODE_ENDPOINT);
     await page.waitForRequest(LOCATIONS_ENDPOINT);

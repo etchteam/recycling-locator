@@ -1,3 +1,18 @@
+## [1.59.0](https://github.com/etchteam/recycling-locator/compare/v1.58.0...v1.59.0) (2025-03-23)
+
+
+### Features
+
+* add homepage promo tip ([c0574a1](https://github.com/etchteam/recycling-locator/commit/c0574a1df3eedde50b09192d03b15193460f1a27))
+* add optional home collection tip ([019d535](https://github.com/etchteam/recycling-locator/commit/019d535d7acb1a39c2e01ff01db41ae6f8219c60))
+* campaign promo page ([f0d7fe0](https://github.com/etchteam/recycling-locator/commit/f0d7fe0c5cdb2e61ecf9aabc94283fbbe8ebadcd))
+
+
+### Bug Fixes
+
+* flash of default tip on start page ([dfc866a](https://github.com/etchteam/recycling-locator/commit/dfc866ac46df89174c09133b607e77fca8cb2325))
+* no fallback for get tip by path ([b87baf9](https://github.com/etchteam/recycling-locator/commit/b87baf9d7a7da60f3aa6bea8ecbcc2673c9d8560))
+
 ## [1.58.0](https://github.com/etchteam/recycling-locator/compare/v1.57.0...v1.58.0) (2025-03-18)
 
 

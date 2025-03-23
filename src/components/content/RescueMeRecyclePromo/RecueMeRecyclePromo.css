@@ -1,0 +1,21 @@
+locator-rescue-me-recycle-promo {
+  --diamond-theme-background: var(--color-green-lightest);
+
+  a {
+    background: var(--diamond-theme-background);
+    border: var(--diamond-border-width) var(--diamond-border-style) transparent;
+    display: block;
+    transition: border-color var(--diamond-transition);
+
+    &:hover {
+      border-color: var(--color-green-dark);
+    }
+  }
+
+  img {
+    display: block;
+    height: auto;
+    margin: 0 auto;
+    width: min(100%, 15em);
+  }
+}

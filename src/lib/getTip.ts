@@ -45,7 +45,14 @@ function handleTipError(error: Error) {
   });
 }
 
-function getTipCountry() {
+async function getTipCountry(): Promise<'ENGLAND' | 'WALES'> {
+  const isOnWalesRecycles = window.location.host.includes('walesrecycles');
+
+  if (i18n.language === 'en' && isOnWalesRecycles) {
+    // Use English Welsh for Wales Recycles
+    await i18n.changeLanguage('cy-GB');
+  }
+
   return i18n.language === 'cy' || i18n.language === 'cy-GB'
     ? 'WALES'
     : 'ENGLAND';
@@ -62,15 +69,15 @@ export async function getTipByPath(
   { fallback }: { fallback?: boolean } = { fallback: true },
 ) {
   try {
+    const country = await getTipCountry();
+    const url = `recycling-meta?categories=HINT&country=${country}`;
+
     if (fallback) {
-      const meta = await LocatorApi.get<RecyclingMeta[]>(
-        `recycling-meta?categories=HINT&country=${getTipCountry()}`,
-      );
+      const meta = await LocatorApi.get<RecyclingMeta[]>(url);
+
       return getTip(meta, { path });
     } else {
-      const tips = await LocatorApi.get<RecyclingMeta[]>(
-        `recycling-meta?categories=HINT&path=${path}&country=${getTipCountry()}`,
-      );
+      const tips = await LocatorApi.get<RecyclingMeta[]>(`${url}&path=${path}`);
 
       return tips?.[0] ?? null;
     }

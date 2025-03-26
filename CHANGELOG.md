@@ -1,3 +1,10 @@
+## [1.59.1](https://github.com/etchteam/recycling-locator/compare/v1.59.0...v1.59.1) (2025-03-26)
+
+
+### Bug Fixes
+
+* force to cy-GB if on wales recycles ([d35295d](https://github.com/etchteam/recycling-locator/commit/d35295d7b8f88e79aa9b691e1932770bef207ea6))
+
 ## [1.59.0](https://github.com/etchteam/recycling-locator/compare/v1.58.0...v1.59.0) (2025-03-23)
 
 

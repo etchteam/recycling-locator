@@ -190,9 +190,11 @@ export default function PostcodePage() {
 
           <diamond-enter type="fade-in-up" delay={0.25}>
             <hr className="diamond-spacing-top-md" />
-            <h3 className="diamond-text-size-base diamond-text-weight-bold diamond-spacing-top-md">
-              {t('postcode.exploreNearby')}
-            </h3>
+            {city && (
+              <h3 className="diamond-text-size-base diamond-text-weight-bold diamond-spacing-top-md">
+                {t('postcode.exploreNearby', { city })}
+              </h3>
+            )}
             <nav className={locale === 'en' ? 'diamond-spacing-bottom-lg' : ''}>
               <dl>
                 <locator-icon-link border className="diamond-spacing-top-md">

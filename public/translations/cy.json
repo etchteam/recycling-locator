@@ -29,8 +29,8 @@
       "error": "Nodwch leoliad"
     },
     "materialSearchInput": {
-      "label": "Rhowch enw eitem",
-      "placeholder": "e.e. aerosolau neu fatris",
+      "label": "Nodwch enw eitem",
+      "placeholder": "e.e. erosolau neu fatris",
       "error": "Nodwch enw eitem i chwilio amdani",
       "notFound": "Ni allem ddod o hyd i cyfatebiaeth ar gyfer yr eitem hon. Ceisiwch ddefnyddio enw arall ar ei gyfer.",
       "searchList": "neu <a>Dewiswch o restr o eitemau</a>"
@@ -153,22 +153,22 @@
     }
   },
   "start": {
-    "title": "Darganfyddwch opsiynau ailgylchu yn eich ardal",
-    "label": "Rhowch dref neu god post",
+    "title": "Darganfod opsiynau ailgylchu yn eich ardal chi",
+    "label": "Nodwch dref neu god post",
     "cta": "Dechrau arni",
     "geolocation": {
       "label": "Defnyddiwch fy lleoliad",
       "permission": "Angen caniatâd"
     },
     "newTab": {
-      "label": "Parhewch mewn tab newydd",
-      "bestExperience": "Profiad gorau"
+      "label": "Defnyddio lleoliad eich dyfais",
+      "bestExperience": "Mae angen caniatâd"
     },
     "aside": {
       "paragraph": "Defnyddiwch y gwasanaeth hwn i:",
       "list": [
-        "dod o hyd i'ch lleoedd agosaf i ailgylchu",
-        "gweld beth allwch chi ei ailgylchu gartref",
+        "dod o hyd i'r lleoedd agosaf i ailgylchu",
+        "gweld beth y gallwch chi ei ailgylchu gartref",
         "gwirio sut i ailgylchu eitem benodol"
       ]
     },
@@ -181,12 +181,12 @@
   },
   "postcode": {
     "title": "Gwirio sut i ailgylchu eitem benodol",
-    "exploreNearby": "Archwiliwch opsiynau ailgylchu cyfagos",
+    "exploreNearby": "Archwilio opsiynau yn: {{city}}",
     "exploreTheMap": "Pori’r map",
     "options": {
       "home": {
-        "title": "Casgliadau Ailgylchu Cartref",
-        "description": "Gwiriwch beth allwch chi ei roi yn eich biniau"
+        "title": "Casgliadau Ailgylchu o’r Cartref",
+        "description": "Gwiriwch beth y gallwch eu rhoi yn eich biniau"
       },
       "nearest": {
         "title": "Ailgylchu mewn mannau cyfagos",

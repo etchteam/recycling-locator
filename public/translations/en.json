@@ -182,7 +182,7 @@
   },
   "postcode": {
     "title": "Check how to recycle a specific item",
-    "exploreNearby": "Explore nearby recycling options",
+    "exploreNearby": "Explore options in {{city}}",
     "exploreTheMap": "Explore the map",
     "options": {
       "home": {

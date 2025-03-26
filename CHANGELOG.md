@@ -1,3 +1,16 @@
+## [1.60.0](https://github.com/etchteam/recycling-locator/compare/v1.59.1...v1.60.0) (2025-03-26)
+
+
+### Features
+
+* update explore nearby copy ([766e4d1](https://github.com/etchteam/recycling-locator/commit/766e4d19ccd0fa0cea5f57195c097252fb60727f))
+* update welsh translations ([ccc975b](https://github.com/etchteam/recycling-locator/commit/ccc975b64417a3bc31f7ea6a2e760813820731e0))
+
+
+### Bug Fixes
+
+* only render title if content exists ([a0368e9](https://github.com/etchteam/recycling-locator/commit/a0368e900c2cf87b2857cd8318486bf7554d1c77))
+
 ## [1.59.1](https://github.com/etchteam/recycling-locator/compare/v1.59.0...v1.59.1) (2025-03-26)
 
 

@@ -242,21 +242,22 @@ export default function PostcodePage() {
                 </Suspense>
               </dl>
             </nav>
-            {locale === 'en' && (
-              <locator-rescue-me-recycle-promo>
-                <Link
-                  to={`/${postcode}/rescue-me-recycle`}
-                  unstable_viewTransition
-                >
-                  <img
-                    src={`${publicPath}images/rescue-me-recycle.webp`}
-                    alt={t('rescueMeRecycle.imgAlt')}
-                    width="254"
-                    height="120"
-                  />
-                </Link>
-              </locator-rescue-me-recycle-promo>
-            )}
+            {locale === 'en' &&
+              !window.location.host.includes('walesrecycles') && (
+                <locator-rescue-me-recycle-promo>
+                  <Link
+                    to={`/${postcode}/rescue-me-recycle`}
+                    unstable_viewTransition
+                  >
+                    <img
+                      src={`${publicPath}images/rescue-me-recycle.webp`}
+                      alt={t('rescueMeRecycle.imgAlt')}
+                      width="254"
+                      height="120"
+                    />
+                  </Link>
+                </locator-rescue-me-recycle-promo>
+              )}
           </diamond-enter>
         </diamond-section>
       </locator-wrap>

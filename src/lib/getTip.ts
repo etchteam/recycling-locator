@@ -46,9 +46,13 @@ function handleTipError(error: Error) {
 }
 
 async function getTipCountry(): Promise<'ENGLAND' | 'WALES'> {
-  return i18n.language === 'cy' || i18n.language === 'cy-GB'
-    ? 'WALES'
-    : 'ENGLAND';
+  return new Promise((resolve) => {
+    i18n.on('initialized', () => {
+      const isWelshLocale = i18n.language === 'cy' || i18n.language === 'cy-GB';
+      const isWalesRecycles = window.location.host.includes('walesrecycles');
+      resolve(isWelshLocale || isWalesRecycles ? 'WALES' : 'ENGLAND');
+    });
+  });
 }
 
 /**

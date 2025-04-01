@@ -46,13 +46,6 @@ function handleTipError(error: Error) {
 }
 
 async function getTipCountry(): Promise<'ENGLAND' | 'WALES'> {
-  const isOnWalesRecycles = window.location.host.includes('walesrecycles');
-
-  if (i18n.language === 'en' && isOnWalesRecycles) {
-    // Use English Welsh for Wales Recycles
-    await i18n.changeLanguage('cy-GB');
-  }
-
   return i18n.language === 'cy' || i18n.language === 'cy-GB'
     ? 'WALES'
     : 'ENGLAND';

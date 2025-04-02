@@ -1,3 +1,16 @@
+## [1.60.1](https://github.com/etchteam/recycling-locator/compare/v1.60.0...v1.60.1) (2025-04-02)
+
+
+### Bug Fixes
+
+* check for wales recycles before displaying the static promo ([035b9d5](https://github.com/etchteam/recycling-locator/commit/035b9d56e6ca16a35ad9ec64b2f78b96b96e5340))
+* wait for i18n to initialise before detecting the country ([199bded](https://github.com/etchteam/recycling-locator/commit/199bdedefcfe5cfca67a67724ec1426d649ed2fd))
+
+
+### Reverts
+
+* remove wales recycles condition ([220f2db](https://github.com/etchteam/recycling-locator/commit/220f2dbd98cedeb2e223d422fd443c26d1b69b9c))
+
 ## [1.60.0](https://github.com/etchteam/recycling-locator/compare/v1.59.1...v1.60.0) (2025-03-26)
 
 

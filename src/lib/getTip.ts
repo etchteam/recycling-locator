@@ -46,13 +46,21 @@ function handleTipError(error: Error) {
 }
 
 async function getTipCountry(): Promise<'ENGLAND' | 'WALES'> {
-  return new Promise((resolve) => {
-    i18n.on('initialized', () => {
-      const isWelshLocale = i18n.language === 'cy' || i18n.language === 'cy-GB';
-      const isWalesRecycles = window.location.host.includes('walesrecycles');
-      resolve(isWelshLocale || isWalesRecycles ? 'WALES' : 'ENGLAND');
+  const determineCountry = (): 'ENGLAND' | 'WALES' => {
+    const isWelshLocale = i18n.language === 'cy' || i18n.language === 'cy-GB';
+    const isWalesRecycles = window.location.host.includes('walesrecycles');
+    return isWelshLocale || isWalesRecycles ? 'WALES' : 'ENGLAND';
+  };
+
+  if (!i18n.isInitialized) {
+    return new Promise((resolve) => {
+      i18n.on('initialized', () => {
+        resolve(determineCountry());
+      });
     });
-  });
+  }
+
+  return determineCountry();
 }
 
 /**

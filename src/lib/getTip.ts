@@ -6,6 +6,9 @@ import { RecyclingMeta } from '@/types/locatorApi';
 
 import LocatorApi from './LocatorApi';
 
+type Country = 'ENGLAND' | 'WALES';
+let tipCountryPromise: Promise<Country>;
+
 /**
  * Get a tip for a material or path, falling back to a random generic tip
  */
@@ -45,22 +48,22 @@ function handleTipError(error: Error) {
   });
 }
 
-async function getTipCountry(): Promise<'ENGLAND' | 'WALES'> {
-  const determineCountry = (): 'ENGLAND' | 'WALES' => {
-    const isWelshLocale = i18n.language === 'cy' || i18n.language === 'cy-GB';
-    const isWalesRecycles = window.location.host.includes('walesrecycles');
-    return isWelshLocale || isWalesRecycles ? 'WALES' : 'ENGLAND';
-  };
-
-  if (!i18n.isInitialized) {
-    return new Promise((resolve) => {
+/**
+ * Get the country for the tip
+ * Saves the promise to avoid repeated checks
+ */
+async function getTipCountry(): Promise<Country> {
+  if (tipCountryPromise === undefined) {
+    tipCountryPromise = new Promise((resolve) => {
       i18n.on('initialized', () => {
-        resolve(determineCountry());
+        const isWelshLocale =
+          i18n.language === 'cy' || i18n.language === 'cy-GB';
+        const isWalesRecycles = window.location.host.includes('walesrecycles');
+        resolve(isWelshLocale || isWalesRecycles ? 'WALES' : 'ENGLAND');
       });
     });
   }
-
-  return determineCountry();
+  return tipCountryPromise;
 }
 
 /**

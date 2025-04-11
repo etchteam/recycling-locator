@@ -94,8 +94,9 @@ export async function getTipByPath(
 
 export async function getTipByMaterial(materialId: string) {
   try {
+    const country = await getTipCountry();
     const meta = await LocatorApi.get<RecyclingMeta[]>(
-      `recycling-meta?categories=HINT&country=${getTipCountry()}`,
+      `recycling-meta?categories=HINT&country=${country}`,
     );
     return getTip(meta, { materialId });
   } catch (error) {

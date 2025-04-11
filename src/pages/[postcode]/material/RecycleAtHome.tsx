@@ -103,9 +103,11 @@ function OneProperty({
 export default function RecycleAtHome({
   allProperties,
   propertiesCollectingThisMaterial,
+  recyclable = true,
 }: {
   readonly allProperties: LocalAuthority['properties'];
   readonly propertiesCollectingThisMaterial: LocalAuthority['properties'];
+  readonly recyclable?: boolean;
 }) {
   const PROPERTY_TYPE = getPropertyTypeEnum();
   const { postcode } = useParams();
@@ -146,7 +148,11 @@ export default function RecycleAtHome({
         >
           <locator-icon icon="home"></locator-icon>
         </locator-icon-circle>
-        <h3>{t(`material.recycleAtHome.${type}.title`)}</h3>
+        <h3>
+          {t(
+            `material.recycleAtHome.${type}.${recyclable ? 'title' : 'titleDisposal'}`,
+          )}
+        </h3>
       </locator-icon-text>
 
       {type === 'noProperties' && (

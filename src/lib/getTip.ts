@@ -6,6 +6,9 @@ import { RecyclingMeta } from '@/types/locatorApi';
 
 import LocatorApi from './LocatorApi';
 
+type Country = 'ENGLAND' | 'WALES';
+let tipCountryPromise: Promise<Country>;
+
 /**
  * Get a tip for a material or path, falling back to a random generic tip
  */
@@ -45,14 +48,22 @@ function handleTipError(error: Error) {
   });
 }
 
-async function getTipCountry(): Promise<'ENGLAND' | 'WALES'> {
-  return new Promise((resolve) => {
-    i18n.on('initialized', () => {
-      const isWelshLocale = i18n.language === 'cy' || i18n.language === 'cy-GB';
-      const isWalesRecycles = window.location.host.includes('walesrecycles');
-      resolve(isWelshLocale || isWalesRecycles ? 'WALES' : 'ENGLAND');
+/**
+ * Get the country for the tip
+ * Saves the promise to avoid repeated checks
+ */
+async function getTipCountry(): Promise<Country> {
+  if (tipCountryPromise === undefined) {
+    tipCountryPromise = new Promise((resolve) => {
+      i18n.on('initialized', () => {
+        const isWelshLocale =
+          i18n.language === 'cy' || i18n.language === 'cy-GB';
+        const isWalesRecycles = window.location.host.includes('walesrecycles');
+        resolve(isWelshLocale || isWalesRecycles ? 'WALES' : 'ENGLAND');
+      });
     });
-  });
+  }
+  return tipCountryPromise;
 }
 
 /**
@@ -86,8 +97,9 @@ export async function getTipByPath(
 
 export async function getTipByMaterial(materialId: string) {
   try {
+    const country = await getTipCountry();
     const meta = await LocatorApi.get<RecyclingMeta[]>(
-      `recycling-meta?categories=HINT&country=${getTipCountry()}`,
+      `recycling-meta?categories=HINT&country=${country}`,
     );
     return getTip(meta, { materialId });
   } catch (error) {

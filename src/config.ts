@@ -1,19 +1,27 @@
-const PUBLIC_PATH = import.meta.env.VITE_PUBLIC_PATH ?? '/';
-const LOCATOR_API =
-  import.meta.env.VITE_RECYCLING_LOCATOR_API ??
-  'https://rl.recyclenow.com/widget/';
+/*
+ * import.meta.env can be unreliable in some environments, such as tests.
+ * This function falls back to process.env for those cases.
+ */
+function envVar(varName: string, defaultValue?: string) {
+  return import.meta?.env?.[varName] ?? process?.env?.[varName] ?? defaultValue;
+}
+
+const LOCATOR_API = envVar(
+  'VITE_RECYCLING_LOCATOR_API',
+  'https://rl.recyclenow.com/widget/',
+);
 const hostname =
   typeof window !== 'undefined' ? window?.location?.hostname : 'localhost'; // Can be undefined in tests
 
 const config = {
   hostname,
-  packageVersion: import.meta.env.VITE_PACKAGE_VERSION ?? '1.0.0',
-  publicPath: PUBLIC_PATH,
-  mapsPlacesKey: import.meta.env.VITE_HERE_MAPS_PLACES_KEY,
-  enableAnalytics: import.meta.env.VITE_ENABLE_ANALYTICS === 'true',
+  packageVersion: envVar('VITE_PACKAGE_VERSION', '1.0.0'),
+  publicPath: envVar('VITE_PUBLIC_PATH', '/'),
+  mapsPlacesKey: envVar('VITE_HERE_MAPS_PLACES_KEY'),
+  enableAnalytics: envVar('VITE_ENABLE_ANALYTICS') === 'true',
   locatorApiPath: `${LOCATOR_API}${encodeURIComponent(hostname)}/`,
   locatorAnalyticsPath: `${LOCATOR_API}analytics/record`,
-  testMode: import.meta.env.VITE_TEST === 'true',
+  testMode: envVar('VITE_TEST') === 'true',
 };
 
 export default config;

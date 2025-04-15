@@ -87,7 +87,8 @@ export function LoadingTip() {
 }
 
 export function DefaultAside() {
-  const { tip: tipPromise } = useLoaderData() as StartLoaderResponse;
+  const loaderData = useLoaderData() as StartLoaderResponse;
+  const tipPromise = loaderData?.tip;
 
   return (
     <div slot="layout-aside" className="display-contents">

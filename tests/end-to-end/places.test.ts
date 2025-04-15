@@ -1,7 +1,3 @@
-import { expect } from '@playwright/test';
-import { t } from 'i18next';
-import { test } from 'vitest';
-
 import { GEOCODE_ENDPOINT, PostcodeGeocodeResponse } from '../mocks/geocode';
 import { LOCATIONS_ENDPOINT, LocationsResponse } from '../mocks/locations';
 import {
@@ -10,17 +6,20 @@ import {
   PopularMaterialsResponse,
   ValidMaterialsResponse,
 } from '../mocks/materials';
-import describeEndToEndTest from '../utils/describeEndToEndTest';
 import config from '@/config';
 
-describeEndToEndTest('Places', () => {
-  test('Places get listed', async ({ page, widget }) => {
+import { test, expect } from './fixtures';
+
+test.describe('Places', () => {
+  test('Places get listed', async ({ page, widget, i18n }) => {
     await page.route(LOCATIONS_ENDPOINT, (route) => {
       route.fulfill({ json: LocationsResponse });
     });
 
-    const placesCount = page.getByText(t('places.count', { count: 1 })).first();
-    const placeName = page.getByText(LocationsResponse.items[0].name).first();
+    const placesCount = widget
+      .getByText(i18n.t('places.count', { count: 1 }))
+      .first();
+    const placeName = widget.getByText(LocationsResponse.items[0].name).first();
 
     await widget.evaluate((node) =>
       node.setAttribute('path', '/EX32 7RB/places'),
@@ -31,7 +30,7 @@ describeEndToEndTest('Places', () => {
     await expect(placeName).toBeVisible();
   });
 
-  test('Load more', async ({ page, widget }) => {
+  test('Load more', async ({ page, widget, i18n }) => {
     const mockLocation = LocationsResponse.items[0];
 
     await page.route(
@@ -68,14 +67,14 @@ describeEndToEndTest('Places', () => {
       },
     );
 
-    const placesCount30 = page
-      .getByText(t('places.count', { count: 30 }))
+    const placesCount30 = widget
+      .getByText(i18n.t('places.count', { count: 30 }))
       .first();
-    const placesCount50 = page
-      .getByText(t('places.count', { count: 50 }))
+    const placesCount50 = widget
+      .getByText(i18n.t('places.count', { count: 50 }))
       .first();
-    const loadMoreButton = page.getByRole('button', {
-      name: t('actions.loadMore'),
+    const loadMoreButton = widget.getByRole('button', {
+      name: i18n.t('actions.loadMore'),
     });
 
     await widget.evaluate((node) =>
@@ -89,7 +88,7 @@ describeEndToEndTest('Places', () => {
     await expect(loadMoreButton).not.toBeVisible();
   });
 
-  test('Search', async ({ page, widget }) => {
+  test('Search', async ({ page, widget, i18n }) => {
     await page.route(GEOCODE_ENDPOINT, (route) => {
       route.fulfill({ json: PostcodeGeocodeResponse });
     });
@@ -130,17 +129,19 @@ describeEndToEndTest('Places', () => {
       },
     );
 
-    const placesCount = page.getByText(t('places.count', { count: 1 })).first();
-    const placeName = page.getByText(LocationsResponse.items[0].name).first();
-    const searchLink = page
-      .getByRole('link', { name: t('places.searchPlaceholder') })
+    const placesCount = widget
+      .getByText(i18n.t('places.count', { count: 1 }))
       .first();
-    const materialInput = page
-      .getByPlaceholder(t('components.materialSearchInput.placeholder'))
+    const placeName = widget.getByText(LocationsResponse.items[0].name).first();
+    const searchLink = widget
+      .getByRole('link', { name: i18n.t('places.searchPlaceholder') })
+      .first();
+    const materialInput = widget
+      .getByPlaceholder(i18n.t('components.materialSearchInput.placeholder'))
       .first();
     const realMaterial = ValidMaterialsResponse[0].name;
-    const realMaterialTag = page
-      .locator('button', { has: page.getByText(realMaterial).first() })
+    const realMaterialTag = widget
+      .getByRole('button', { name: realMaterial })
       .first();
 
     await widget.evaluate((node) =>
@@ -159,7 +160,7 @@ describeEndToEndTest('Places', () => {
     await expect(placeName).toBeVisible();
   });
 
-  test('Map', async ({ page, widget }) => {
+  test('Map', async ({ page, widget, i18n }) => {
     await page.route(GEOCODE_ENDPOINT, (route) => {
       route.fulfill({ json: PostcodeGeocodeResponse });
     });
@@ -168,14 +169,19 @@ describeEndToEndTest('Places', () => {
       route.fulfill({ json: LocationsResponse });
     });
 
-    const placesCount = page.getByText(t('places.count', { count: 1 })).first();
-    const placeName = page.getByText(LocationsResponse.items[0].name).first();
-    const mapButton = page
-      .getByRole('link', { name: t('actions.showMap') })
+    const placesCount = widget
+      .getByText(i18n.t('places.count', { count: 1 }))
       .first();
-    const map = page.locator('locator-places-map').first();
-    const pin = page
-      .getByRole('button', { name: LocationsResponse.items[0].name })
+    const placeName = widget.getByText(LocationsResponse.items[0].name).first();
+    const mapButton = widget
+      .getByRole('link', { name: i18n.t('actions.showMap') })
+      .first();
+    const map = widget.locator('locator-places-map').first();
+    const pin = widget
+      .getByRole('button', {
+        name: LocationsResponse.items[0].name,
+        includeHidden: true,
+      })
       .first();
 
     await widget.evaluate((node) =>

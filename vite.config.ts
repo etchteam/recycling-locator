@@ -27,12 +27,19 @@ export default defineConfig(({ mode }) => {
       },
     },
 
-    plugins: [svgr(), preact()],
+    plugins: [
+      svgr(),
+      preact({
+        babel: {
+          plugins: ['@babel/plugin-syntax-import-attributes'],
+        },
+      }),
+    ],
 
     test: {
-      testTimeout: env.PWDEBUG ? 0 : 10000,
-      fileParallelism: false,
-      environmentMatchGlobs: [['tests/unit/**', 'happy-dom']],
+      include: ['tests/unit/**/*.test.ts'],
+      environment: 'happy-dom',
+      globals: true,
     },
   };
 

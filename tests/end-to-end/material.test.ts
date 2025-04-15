@@ -1,17 +1,14 @@
-import { expect } from '@playwright/test';
-import { t } from 'i18next';
-import { test } from 'vitest';
-
 import {
   LOCAL_AUTHORITY_ENDPOINT,
   LocalAuthorityResponse,
 } from '../mocks/localAuthority';
 import { LOCATIONS_ENDPOINT, LocationsResponse } from '../mocks/locations';
-import describeEndToEndTest from '../utils/describeEndToEndTest';
 import { PROPERTY_TYPE_EN } from '@/types/locatorApi';
 
-describeEndToEndTest('Material page', () => {
-  test('Single scheme + location options', async ({ page, widget }) => {
+import { test, expect } from './fixtures';
+
+test.describe('Material page', () => {
+  test('Single scheme + location options', async ({ page, widget, i18n }) => {
     await page.route(LOCAL_AUTHORITY_ENDPOINT, (route) => {
       route.fulfill({ json: LocalAuthorityResponse });
     });
@@ -20,14 +17,16 @@ describeEndToEndTest('Material page', () => {
       route.fulfill({ json: LocationsResponse });
     });
 
-    const recyclableText = page.getByText(t('material.hero.yes')).first();
-    const homeText = page
+    const recyclableText = widget
+      .getByText(i18n.t('material.hero.yes'))
+      .first();
+    const homeText = widget
       .getByText(
-        t('material.recycleAtHome.oneProperty.collection', { count: 1 }),
+        i18n.t('material.recycleAtHome.oneProperty.collection', { count: 1 }),
       )
       .first();
-    const locationsText = page
-      .getByText(t('material.nearbyPlaces.places.title'))
+    const locationsText = widget
+      .getByText(i18n.t('material.nearbyPlaces.places.title'))
       .first();
 
     await widget.evaluate((node) =>
@@ -43,7 +42,7 @@ describeEndToEndTest('Material page', () => {
     await expect(locationsText).toBeVisible();
   });
 
-  test('Some home recycling options', async ({ page, widget }) => {
+  test('Some home recycling options', async ({ page, widget, i18n }) => {
     const mockedLaResponse = {
       ...LocalAuthorityResponse,
       properties: {
@@ -86,13 +85,15 @@ describeEndToEndTest('Material page', () => {
       route.fulfill({ json: LocationsResponse });
     });
 
-    const recyclableText = page.getByText(t('material.hero.yes')).first();
-    const schemeOneText = page
+    const recyclableText = widget
+      .getByText(i18n.t('material.hero.yes'))
+      .first();
+    const schemeOneText = widget
       .getByText(PROPERTY_TYPE_EN.NARROW_ACCESS)
       .first();
-    const somePropertiesText = page.getByText('some properties').first();
-    const locationsText = page
-      .getByText(t('material.nearbyPlaces.places.title'))
+    const somePropertiesText = widget.getByText('some properties').first();
+    const locationsText = widget
+      .getByText(i18n.t('material.nearbyPlaces.places.title'))
       .first();
 
     await expect(recyclableText).not.toBeVisible();
@@ -110,7 +111,7 @@ describeEndToEndTest('Material page', () => {
     await expect(locationsText).toBeVisible();
   });
 
-  test('All home recycling options', async ({ page, widget }) => {
+  test('All home recycling options', async ({ page, widget, i18n }) => {
     const mockedLaResponse = {
       ...LocalAuthorityResponse,
       properties: {
@@ -153,13 +154,17 @@ describeEndToEndTest('Material page', () => {
       route.fulfill({ json: LocationsResponse });
     });
 
-    const recyclableText = page.getByText(t('material.hero.yes')).first();
-    const schemeOneText = page
+    const recyclableText = widget
+      .getByText(i18n.t('material.hero.yes'))
+      .first();
+    const schemeOneText = widget
       .getByText(PROPERTY_TYPE_EN.NARROW_ACCESS)
       .first();
-    const somePropertiesText = page.getByText('all properties').first();
-    const locationsText = page
-      .getByText(t('material.nearbyPlaces.places.title'))
+    const somePropertiesText = widget
+      .getByText(PROPERTY_TYPE_EN.ALL.toLowerCase())
+      .first();
+    const locationsText = widget
+      .getByText(i18n.t('material.nearbyPlaces.places.title'))
       .first();
 
     await expect(recyclableText).not.toBeVisible();
@@ -177,7 +182,7 @@ describeEndToEndTest('Material page', () => {
     await expect(locationsText).toBeVisible();
   });
 
-  test('No home recycling', async ({ page, widget }) => {
+  test('No home recycling', async ({ page, widget, i18n }) => {
     await page.route(LOCAL_AUTHORITY_ENDPOINT, (route) => {
       route.fulfill({ json: LocalAuthorityResponse });
     });
@@ -186,12 +191,14 @@ describeEndToEndTest('Material page', () => {
       route.fulfill({ json: LocationsResponse });
     });
 
-    const recyclableText = page.getByText(t('material.hero.yes')).first();
-    const homeText = page
-      .getByText(t('material.recycleAtHome.noProperties.content'))
+    const recyclableText = widget
+      .getByText(i18n.t('material.hero.yes'))
       .first();
-    const locationsText = page
-      .getByText(t('material.nearbyPlaces.places.title'))
+    const homeText = widget
+      .getByText(i18n.t('material.recycleAtHome.noProperties.content'))
+      .first();
+    const locationsText = widget
+      .getByText(i18n.t('material.nearbyPlaces.places.title'))
       .first();
 
     await expect(recyclableText).not.toBeVisible();
@@ -208,7 +215,7 @@ describeEndToEndTest('Material page', () => {
     await expect(locationsText).toBeVisible();
   });
 
-  test('Not recyclable', async ({ page, widget }) => {
+  test('Not recyclable', async ({ page, widget, i18n }) => {
     await page.route(LOCAL_AUTHORITY_ENDPOINT, (route) => {
       route.fulfill({ json: LocalAuthorityResponse });
     });
@@ -217,12 +224,12 @@ describeEndToEndTest('Material page', () => {
       route.fulfill({ json: { items: [] } });
     });
 
-    const recyclableText = page.getByText(t('material.hero.no')).first();
-    const notRecyclableTitle = page
-      .getByText(t('material.notRecyclable.title'))
+    const recyclableText = widget.getByText(i18n.t('material.hero.no')).first();
+    const notRecyclableTitle = widget
+      .getByText(i18n.t('material.notRecyclable.title'))
       .first();
-    const notRecyclableContent = page
-      .getByText(t('material.notRecyclable.content'))
+    const notRecyclableContent = widget
+      .getByText(i18n.t('material.notRecyclable.content'))
       .first();
 
     await expect(recyclableText).not.toBeVisible();

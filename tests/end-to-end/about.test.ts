@@ -1,17 +1,19 @@
-import { expect } from '@playwright/test';
-import { t } from 'i18next';
-import { test } from 'vitest';
+import { test, expect } from './fixtures';
 
-import describeEndToEndTest from '../utils/describeEndToEndTest';
+test.describe('About page', () => {
+  test('About page displays when info button is clicked', async ({
+    widget,
+    i18n,
+  }) => {
+    const button = widget.getByTestId('about-button').first();
+    const aboutTitle = widget.getByText(i18n.t('about.title')).first();
 
-describeEndToEndTest('About page', () => {
-  test('About page displays when info button is clicked', async ({ page }) => {
-    const button = page.getByTestId('about-button').first();
-    const aboutTitle = page.getByText(t('about.title')).first();
     await expect(button).toBeVisible();
     await expect(aboutTitle).not.toBeVisible();
+
     await button.click();
     await expect(aboutTitle).toBeVisible();
+
     await button.click();
     await expect(aboutTitle).not.toBeVisible();
   });

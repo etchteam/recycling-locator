@@ -30,11 +30,12 @@
     "storybook:build": "storybook build",
     "storybook:start": "storybook dev -p 6006",
     "storybook": "run-p start:css storybook:start",
-    "test:ci": "vitest",
-    "test:end-to-end-debug": "DEBUG=pw:api PWDEBUG=console vitest --ui",
-    "test:end-to-end": "VITE_TEST=true npm run build && vitest --ui end-to-end",
-    "test:unit": "vitest --ui unit",
-    "test": "vitest --ui"
+    "test:unit": "vitest run",
+    "test:unit:ui": "vitest --ui",
+    "test:end-to-end": "playwright test",
+    "test:end-to-end:debug": "playwright test --debug",
+    "test:end-to-end:ui": "playwright test --ui",
+    "test": "npm run test:unit && npm run test:end-to-end"
   },
   "dependencies": {
     "@etchteam/diamond-ui": "^1.35.1",
@@ -52,11 +53,12 @@
     "react-router-dom": "^6.22.3"
   },
   "devDependencies": {
+    "@babel/plugin-syntax-import-attributes": "^7.26.0",
     "@commitlint/cli": "^19.3.0",
     "@commitlint/config-conventional": "^19.2.2",
     "@etchteam/eslint-config": "^2.2.16",
     "@etchteam/stylelint-config": "^1.6.0",
-    "@playwright/test": "^1.49.1",
+    "@playwright/test": "^1.51.1",
     "@preact/preset-vite": "^2.8.1",
     "@rollup/plugin-typescript": "^11.1.6",
     "@semantic-release/changelog": "^6.0.3",
@@ -70,8 +72,9 @@
     "@storybook/blocks": "^8.6.4",
     "@storybook/preact": "^7.6.11",
     "@storybook/preact-vite": "^8.6.4",
-    "@vitest/ui": "^3.0.8",
+    "@vitest/ui": "^3.1.1",
     "autoprefixer": "^10.4.17",
+    "dotenv": "^16.5.0",
     "eslint": "^8.57.0",
     "happy-dom": "^15.10.1",
     "husky": "^9.0.11",
@@ -96,7 +99,7 @@
     "typescript": "^5.3.3",
     "vite": "^6.2.1",
     "vite-plugin-svgr": "^4.2.0",
-    "vitest": "^3.0.8"
+    "vitest": "^3.1.1"
   },
   "engines": {
     "npm": "^9 || ^10",

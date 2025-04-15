@@ -1,7 +1,3 @@
-import { expect } from '@playwright/test';
-import { t } from 'i18next';
-import { test } from 'vitest';
-
 import {
   GEOCODE_ENDPOINT,
   GuernseyGeocodeResponse,
@@ -19,15 +15,18 @@ import {
   PopularMaterialsResponse,
   ValidMaterialsResponse,
 } from '../mocks/materials';
-import describeEndToEndTest from '../utils/describeEndToEndTest';
 
-describeEndToEndTest('Postcode page', () => {
-  test('Load route with invalid postcode', async ({ page, widget }) => {
+import { test, expect } from './fixtures';
+
+test.describe('Postcode page', () => {
+  test('Load route with invalid postcode', async ({ page, widget, i18n }) => {
     await page.route(GEOCODE_ENDPOINT, (route) => {
       route.fulfill({ json: GuernseyGeocodeResponse });
     });
 
-    const notInUk = page.getByText(t('notFound.title.notInTheUK')).first();
+    const notInUk = widget
+      .getByText(i18n.t('notFound.title.notInTheUK'))
+      .first();
 
     await expect(notInUk).not.toBeVisible();
     await widget.evaluate((node) => node.setAttribute('path', '/EX32 7RB'));
@@ -35,12 +34,14 @@ describeEndToEndTest('Postcode page', () => {
     await expect(notInUk).toBeVisible();
   });
 
-  test('Start route with invalid postcode', async ({ page, widget }) => {
+  test('Start route with invalid postcode', async ({ page, widget, i18n }) => {
     await page.route(GEOCODE_ENDPOINT, (route) => {
       route.fulfill({ json: GuernseyGeocodeResponse });
     });
 
-    const notInUk = page.getByText(t('notFound.title.notInTheUK')).first();
+    const notInUk = widget
+      .getByText(i18n.t('notFound.title.notInTheUK'))
+      .first();
 
     await expect(notInUk).not.toBeVisible();
     await widget.evaluate((node) => node.setAttribute('path', '/GU375EY'));
@@ -48,7 +49,7 @@ describeEndToEndTest('Postcode page', () => {
     await expect(notInUk).toBeVisible();
   });
 
-  test('Invalid material search', async ({ page, widget }) => {
+  test('Invalid material search', async ({ page, widget, i18n }) => {
     await page.route(GEOCODE_ENDPOINT, (route) => {
       route.fulfill({ json: PostcodeGeocodeResponse });
     });
@@ -66,8 +67,10 @@ describeEndToEndTest('Postcode page', () => {
     });
 
     const material = 'Not a material';
-    const input = page.locator('input').first();
-    const notFound = page.getByText(t('material.search.notFound')).first();
+    const input = widget.locator('input').first();
+    const notFound = widget
+      .getByText(i18n.t('material.search.notFound'))
+      .first();
 
     await widget.evaluate((node) => node.setAttribute('path', '/EX32 7RB'));
     await page.waitForRequest(GEOCODE_ENDPOINT);
@@ -78,7 +81,7 @@ describeEndToEndTest('Postcode page', () => {
     await expect(notFound).toBeVisible();
   });
 
-  test('Valid material search', async ({ page, widget }) => {
+  test('Valid material search', async ({ page, widget, i18n }) => {
     await page.route(GEOCODE_ENDPOINT, (route) => {
       route.fulfill({ json: PostcodeGeocodeResponse });
     });
@@ -96,11 +99,17 @@ describeEndToEndTest('Postcode page', () => {
     });
 
     const material = 'Plastic milk bottles';
-    const input = page.locator('input').first();
-    const materialText = page.getByText(material).first();
-    const recyclableText = page.getByText(t('material.hero.yes')).first();
-    const materialSearchPageTitle = page.getByText(t('postcode.title')).first();
-    const materialPageTitle = page.getByText(t('material.title')).first();
+    const input = widget.locator('input').first();
+    const materialText = widget.getByText(material).first();
+    const recyclableText = widget
+      .getByText(i18n.t('material.hero.yes'))
+      .first();
+    const materialSearchPageTitle = widget
+      .getByText(i18n.t('postcode.title'))
+      .first();
+    const materialPageTitle = widget
+      .getByText(i18n.t('material.title'))
+      .first();
 
     await widget.evaluate((node) => node.setAttribute('path', '/EX32 7RB'));
     await page.waitForRequest(GEOCODE_ENDPOINT);

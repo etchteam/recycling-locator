@@ -1,3 +1,10 @@
+## [1.60.3](https://github.com/etchteam/recycling-locator/compare/v1.60.2...v1.60.3) (2025-04-15)
+
+
+### Bug Fixes
+
+* force left align by default ([013ca03](https://github.com/etchteam/recycling-locator/commit/013ca033ca4c06f8080565418c23381de802027d))
+
 ## [1.60.2](https://github.com/etchteam/recycling-locator/compare/v1.60.1...v1.60.2) (2025-04-11)
 
 

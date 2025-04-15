@@ -18,6 +18,7 @@ article {
   border-radius: var(--container-border-radius);
   box-sizing: content-box;
   height: var(--container-height);
+  text-align: left;
 }
 
 .recycling-locator-variant-standalone {

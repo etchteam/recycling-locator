@@ -38,6 +38,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
+        # node version support based on the engines property of package.json
         version: [18, 20, 22]
     steps:
       - name: Checkout Code
@@ -60,6 +61,7 @@ jobs:
     runs-on: ubuntu-22.04
     strategy:
       matrix:
+        # node version support based on the engines property of package.json
         version: [18, 20, 22]
     steps:
       - name: Checkout Code

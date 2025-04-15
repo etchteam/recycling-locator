@@ -71,19 +71,19 @@ jobs:
         with:
           node-version: ${{ matrix.version }}
           cache: 'npm'
-      - name: get-npm-version
-        id: package-version
-        uses: martinbeentjes/npm-get-version-action@v1.3.1
       - name: Install dependencies
         run: npm ci
-      - name: Build
-        run: npm run build
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+      - name: Run tests
+        run: npm run test
         env:
           VITE_TEST: 'true'
           VITE_HERE_MAPS_PLACES_KEY: ${{ vars.VITE_HERE_MAPS_PLACES_KEY }}
-      - name: Install Playwright
-        run: npx playwright install --with-deps chromium
-      - name: Run tests
-        run: npm run test:ci
-        env:
-          VITE_TEST: 'true'
+      - name: Upload Playwright report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30

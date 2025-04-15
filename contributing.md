@@ -76,6 +76,11 @@ Navigate to [rl.localhost](rl.localhost) in the browser
     - /\[route\] - dynamic route segment
   - config.ts - global app config variables
   - index.tsx - registers the recycling-locator web app and renders /pages/entrypoint.tsx
+- /tests
+  - /unit - unit tests using Vitest
+  - /end-to-end - end-to-end tests using Playwright
+  - /mocks - shared mock data for tests
+  - /utils – shared utilities for tests
 
 ## Public asset URLs
 
@@ -94,41 +99,66 @@ The translation files can be found under /public/translations.
 
 ## Tests
 
-### Running tests
+The project uses two separate testing frameworks:
+- **Vitest** for unit tests
+- **Playwright** for end-to-end tests
 
-Tests will run through `vitest`, for the end-to-end tests Playwright launches a chromium instance against the **built** dist folder.
+### Running tests
 
 #### Unit tests
 
-Run only unit tests
+Run unit tests with Vitest:
 
 ```bash
+# Run all unit tests once
 npm run test:unit
+
+# Run unit tests in watch mode with UI
+npm run test:unit:ui
 ```
 
-#### End to end tests
+#### End-to-end tests
 
-Run only the E2E tests
+Run end-to-end tests with Playwright:
 
 ```bash
-npm run test:end-to-end
+# Run all Playwright tests
+npm run test:playwright
+
+# Run Playwright tests with UI
+npm run test:playwright:ui
+
+# Run Playwright tests in debug mode
+npm run test:playwright:debug
 ```
 
-Or enable E2E test debugging
+Run all tests:
 
 ```bash
-npm run test:end-to-end-debug
+npm test
 ```
 
-This will launch Playwright in `PWDEBUG=console` mode with an infinite timeout.
+### Test Structure
 
-### Structure
+#### Unit Tests
 
-Unit tests exist for lib functions in /tests/unit using Vitest.
+Unit tests exist for lib functions in `/tests/unit` using Vitest. These focus on testing individual functions and components in isolation.
 
-End-to-end tests exist for route coverage in /tests/end-to-end using Playwright.
+#### End-to-End Tests
 
-All end-to-end tests must be wrapped in the `describeEndToEndTest` function which handles setting up the Playwright browser `page` context.
+End-to-end tests exist in `/tests/end-to-end` using Playwright's test runner. These focus on testing full user flows and integration between components.
+
+End-to-end tests use global fixtures (`tests/end-to-end/fixtures.ts`) to initialize the widget and translations.
+
+When writing a new Playwright test:
+1. Import test and expect from the fixtures: `import { test, expect } from './fixtures`
+2. Use the global i18next instance for translations: `test({ i18n })`
+3. Use the global widget instance to locate elements: `test({ widget })`
+
+#### End-to-End testing quirks
+
+- In UI mode `npm run test:playwright:ui` you need to drill down to click play on individual tests to see a preview of the UI
+- Env variables aren't passed into vite’s import.meta.env, so process.env has to be used instead
 
 ## wrap-rlw.js
 

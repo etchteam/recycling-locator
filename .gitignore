@@ -36,6 +36,10 @@ node_modules
 dist
 public/styles.css
 
+# Test output
+playwright-report
+test-results
+
 # Misc
 .DS_Store
 

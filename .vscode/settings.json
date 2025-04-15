@@ -8,5 +8,9 @@
     "connectionId": "Etch",
     "projectKey": "etchteam_recycling-locator-widget"
   },
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "i18n-ally.localesPaths": [
+    "public/translations"
+  ],
+  "i18n-ally.keystyle": "nested"
 }

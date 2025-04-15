@@ -1,6 +1,8 @@
 import { useSignal } from '@preact/signals';
 import { ComponentChildren } from 'preact';
+import { Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Await, useLoaderData } from 'react-router-dom';
 import '@etchteam/diamond-ui/control/Button/Button';
 import '@etchteam/diamond-ui/canvas/Section/Section';
 import '@etchteam/diamond-ui/composition/Enter/Enter';
@@ -11,10 +13,14 @@ import '@/components/content/Logo/Logo';
 import '@/components/content/Icon/Icon';
 import '@/components/canvas/Tip/Tip';
 import '@/components/composition/Wrap/Wrap';
+
 import Footer from '@/components/content/Footer/Footer';
+import TipContent from '@/components/template/TipContent/TipContent';
 import { useAppState } from '@/lib/AppState';
 import i18n from '@/lib/i18n';
 import useAnalytics from '@/lib/useAnalytics';
+
+import { StartLoaderResponse } from './start.loader';
 
 function About() {
   const { t } = useTranslation();
@@ -59,16 +65,49 @@ function About() {
   );
 }
 
-export function DefaultAside() {
+export function DefaultTip() {
   const { publicPath } = useAppState();
   const generalTipImgSrc = `${publicPath}images/general-tip.svg`;
 
   return (
-    <locator-tip slot="layout-aside" type="image">
+    <locator-tip type="image">
       <locator-wrap>
         <img src={generalTipImgSrc} alt="" />
       </locator-wrap>
     </locator-tip>
+  );
+}
+
+export function LoadingTip() {
+  return (
+    <locator-tip>
+      <locator-wrap></locator-wrap>
+    </locator-tip>
+  );
+}
+
+export function DefaultAside() {
+  const loaderData = useLoaderData() as StartLoaderResponse;
+  const tipPromise = loaderData?.tip;
+
+  return (
+    <div slot="layout-aside" className="display-contents">
+      <Suspense fallback={<LoadingTip />}>
+        <Await resolve={tipPromise}>
+          {(tip) =>
+            tip ? (
+              <locator-tip slot="layout-aside" type="promo" text-align="center">
+                <locator-wrap>
+                  <TipContent tip={tip} />
+                </locator-wrap>
+              </locator-tip>
+            ) : (
+              <DefaultTip />
+            )
+          }
+        </Await>
+      </Suspense>
+    </div>
   );
 }
 

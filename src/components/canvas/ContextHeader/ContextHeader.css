@@ -10,7 +10,7 @@ locator-context-header {
   position: sticky;
   top: var(--header-height);
   transition: color var(--diamond-transition);
-  z-index: var(--layer-two);
+  z-index: var(--layer-four);
 
   @container (width > 768px) {
     top: 0;
@@ -31,6 +31,7 @@ locator-context-header {
 
     a,
     button {
+      color: var(--color-primary-dark);
       margin: calc(var(--diamond-spacing-xs) * -1);
       min-height: 0;
       min-width: 0;

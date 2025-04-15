@@ -21,16 +21,19 @@
     "viewDetails": "Gweld manylion",
     "directions": "Cyfarwyddiadau",
     "menu": "Dewislen",
-    "resetSearch": "Ailosod chwiliad"
+    "resetSearch": "Ailosod chwiliad",
+    "change": "Newid"
   },
   "components": {
     "locationInput": {
       "error": "Nodwch leoliad"
     },
     "materialSearchInput": {
-      "placeholder": "Nodwch enw eitem…",
+      "label": "Nodwch enw eitem",
+      "placeholder": "e.e. erosolau neu fatris",
       "error": "Nodwch enw eitem i chwilio amdani",
-      "notFound": "Ni allem ddod o hyd i gyfatebiaeth ar gyfer yr eitem hon. Ceisiwch ddefnyddio enw arall ar ei gyfer."
+      "notFound": "Ni allem ddod o hyd i cyfatebiaeth ar gyfer yr eitem hon. Ceisiwch ddefnyddio enw arall ar ei gyfer.",
+      "searchList": "neu <a>Dewiswch o restr o eitemau</a>"
     },
     "menu": {
       "whatDoYouWantToDo": "Beth hoffech chi ei wneud?",
@@ -150,22 +153,22 @@
     }
   },
   "start": {
-    "title": "Darganfyddwch opsiynau ailgylchu yn eich ardal",
-    "label": "Rhowch dref neu god post",
+    "title": "Darganfod opsiynau ailgylchu yn eich ardal chi",
+    "label": "Nodwch dref neu god post",
     "cta": "Dechrau arni",
     "geolocation": {
       "label": "Defnyddiwch fy lleoliad",
       "permission": "Angen caniatâd"
     },
     "newTab": {
-      "label": "Parhewch mewn tab newydd",
-      "bestExperience": "Profiad gorau"
+      "label": "Defnyddio lleoliad eich dyfais",
+      "bestExperience": "Mae angen caniatâd"
     },
     "aside": {
       "paragraph": "Defnyddiwch y gwasanaeth hwn i:",
       "list": [
-        "dod o hyd i'ch lleoedd agosaf i ailgylchu",
-        "gweld beth allwch chi ei ailgylchu gartref",
+        "dod o hyd i'r lleoedd agosaf i ailgylchu",
+        "gweld beth y gallwch chi ei ailgylchu gartref",
         "gwirio sut i ailgylchu eitem benodol"
       ]
     },
@@ -177,11 +180,18 @@
     }
   },
   "postcode": {
-    "title": "Beth hoffech chi ei ailgylchu?",
+    "title": "Gwirio sut i ailgylchu eitem benodol",
+    "exploreNearby": "Archwilio opsiynau yn: {{city}}",
     "exploreTheMap": "Pori’r map",
     "options": {
-      "home": "Casgliad ailgylchu o gartref",
-      "nearest": "Lleoedd agosaf i ailgylchu"
+      "home": {
+        "title": "Casgliadau Ailgylchu o’r Cartref",
+        "description": "Gwiriwch beth y gallwch eu rhoi yn eich biniau"
+      },
+      "nearest": {
+        "title": "Ailgylchu mewn mannau cyfagos",
+        "description": "{{count}} lle o fewn 25 milltir"
+      }
     }
   },
   "material": {
@@ -329,7 +339,36 @@
         "aToZofItems": "A-Y o eitemau"
       },
       "aToZ": {
-        "alphabet": ["A", "B", "C", "Ch", "D", "Dd", "E", "F", "Ff", "G", "Ng", "H", "I", "J", "Ll", "M", "N", "O", "P", "Ph", "R", "Rh", "S", "T", "Th", "U", "W", "Y"],
+        "alphabet": [
+          "A",
+          "B",
+          "C",
+          "Ch",
+          "D",
+          "Dd",
+          "E",
+          "F",
+          "Ff",
+          "G",
+          "Ng",
+          "H",
+          "I",
+          "J",
+          "Ll",
+          "M",
+          "N",
+          "O",
+          "P",
+          "Ph",
+          "R",
+          "Rh",
+          "S",
+          "T",
+          "Th",
+          "U",
+          "W",
+          "Y"
+        ],
         "backToTop": "Yn ôl i'r brig"
       }
     },

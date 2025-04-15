@@ -1,3 +1,72 @@
+## [1.60.2](https://github.com/etchteam/recycling-locator/compare/v1.60.1...v1.60.2) (2025-04-11)
+
+
+### Bug Fixes
+
+* only call i18n.on on first load ([bf5df4c](https://github.com/etchteam/recycling-locator/commit/bf5df4c37ece4b2ee0fe190e98320d32a7075a48))
+* update getTipByMaterial to await promise return ([3ba5f71](https://github.com/etchteam/recycling-locator/commit/3ba5f7137295047e9c8d05835ff2db69963a8f7d))
+
+## [1.60.1](https://github.com/etchteam/recycling-locator/compare/v1.60.0...v1.60.1) (2025-04-02)
+
+
+### Bug Fixes
+
+* check for wales recycles before displaying the static promo ([035b9d5](https://github.com/etchteam/recycling-locator/commit/035b9d56e6ca16a35ad9ec64b2f78b96b96e5340))
+* wait for i18n to initialise before detecting the country ([199bded](https://github.com/etchteam/recycling-locator/commit/199bdedefcfe5cfca67a67724ec1426d649ed2fd))
+
+
+### Reverts
+
+* remove wales recycles condition ([220f2db](https://github.com/etchteam/recycling-locator/commit/220f2dbd98cedeb2e223d422fd443c26d1b69b9c))
+
+## [1.60.0](https://github.com/etchteam/recycling-locator/compare/v1.59.1...v1.60.0) (2025-03-26)
+
+
+### Features
+
+* update explore nearby copy ([766e4d1](https://github.com/etchteam/recycling-locator/commit/766e4d19ccd0fa0cea5f57195c097252fb60727f))
+* update welsh translations ([ccc975b](https://github.com/etchteam/recycling-locator/commit/ccc975b64417a3bc31f7ea6a2e760813820731e0))
+
+
+### Bug Fixes
+
+* only render title if content exists ([a0368e9](https://github.com/etchteam/recycling-locator/commit/a0368e900c2cf87b2857cd8318486bf7554d1c77))
+
+## [1.59.1](https://github.com/etchteam/recycling-locator/compare/v1.59.0...v1.59.1) (2025-03-26)
+
+
+### Bug Fixes
+
+* force to cy-GB if on wales recycles ([d35295d](https://github.com/etchteam/recycling-locator/commit/d35295d7b8f88e79aa9b691e1932770bef207ea6))
+
+## [1.59.0](https://github.com/etchteam/recycling-locator/compare/v1.58.0...v1.59.0) (2025-03-23)
+
+
+### Features
+
+* add homepage promo tip ([c0574a1](https://github.com/etchteam/recycling-locator/commit/c0574a1df3eedde50b09192d03b15193460f1a27))
+* add optional home collection tip ([019d535](https://github.com/etchteam/recycling-locator/commit/019d535d7acb1a39c2e01ff01db41ae6f8219c60))
+* campaign promo page ([f0d7fe0](https://github.com/etchteam/recycling-locator/commit/f0d7fe0c5cdb2e61ecf9aabc94283fbbe8ebadcd))
+
+
+### Bug Fixes
+
+* flash of default tip on start page ([dfc866a](https://github.com/etchteam/recycling-locator/commit/dfc866ac46df89174c09133b607e77fca8cb2325))
+* no fallback for get tip by path ([b87baf9](https://github.com/etchteam/recycling-locator/commit/b87baf9d7a7da60f3aa6bea8ecbcc2673c9d8560))
+
+## [1.58.0](https://github.com/etchteam/recycling-locator/compare/v1.57.0...v1.58.0) (2025-03-18)
+
+
+### Features
+
+* update copy and buttons on material search page ([c43fb6c](https://github.com/etchteam/recycling-locator/commit/c43fb6cf284119a983f94bf0b3075757d7767d56))
+
+
+### Bug Fixes
+
+* test ([8aa6651](https://github.com/etchteam/recycling-locator/commit/8aa665133074b9410210df1d343cf1681abf42aa))
+* test ([5a4ae21](https://github.com/etchteam/recycling-locator/commit/5a4ae2100132c3f02d837b96b84899f2b6e0b02d))
+
 ## [1.57.0](https://github.com/etchteam/recycling-locator/compare/v1.56.0...v1.57.0) (2025-03-17)
 
 

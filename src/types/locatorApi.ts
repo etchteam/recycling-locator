@@ -140,8 +140,8 @@ export interface RecyclingMeta {
   id: number;
   category: 'HINT' | 'QUESTION';
   title: string;
-  subtitle: string;
-  content: string;
+  subtitle?: string;
+  content?: string;
   materials?: number[];
   path?: string;
   image?: string;

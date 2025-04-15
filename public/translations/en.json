@@ -21,16 +21,20 @@
     "viewDetails": "View details",
     "directions": "Directions",
     "menu": "Menu",
-    "resetSearch": "Reset search"
+    "resetSearch": "Reset search",
+    "change": "Change"
   },
   "components": {
     "locationInput": {
       "error": "Please enter a location"
     },
     "materialSearchInput": {
-      "placeholder": "Enter the name of an item…",
+      "label": "Enter the name of an item",
+      "placeholder": "e.g. aerosols or batteries",
       "error": "Please enter the name of an item",
-      "notFound": "We couldn’t find a match for this item. Please try using an alternative name for it."
+      "notFound": "We couldn’t find a match for this item. Please try using an alternative name for it.",
+      "searchList": "or <a>Choose from a list of items</a>"
+
     },
     "menu": {
       "whatDoYouWantToDo": "What do you want to do?",
@@ -177,15 +181,38 @@
     }
   },
   "postcode": {
-    "title": "What do you need to recycle?",
+    "title": "Check how to recycle a specific item",
+    "exploreNearby": "Explore options in {{city}}",
     "exploreTheMap": "Explore the map",
     "options": {
-      "home": "Home recycling collection",
-      "nearest": "Nearest places to recycle"
+      "home": {
+        "title": "Home Recycling Collections",
+        "description": "Check what you can put in your bins"
+      },
+      "nearest": {
+        "title": "Recycle at nearby places",
+        "description": "{{count}} places within 25 miles"
+      }
     }
+  },
+  "rescueMeRecycle": {
+    "imgAlt": "Rescue Me! Recycle",
+    "title": "Join the mission to rescue recyclable items from the bin",
+    "intro": "UK households are wasting one billion items every year that could be recycled.",
+    "statsTitle": "Britain’s most binned items include:",
+    "stats": [
+      "7.4 million yoghurt pots",
+      "845 million cleaning product bottles",
+      "6 million aftershave and perfume bottles",
+      "526 million aerosols",
+      "Toilet roll tubes"
+    ],
+    "ctaTitle": "Become a recycling hero!",
+    "ctaText": "Recycle every yoghurt pot, spray bottle, fragrance bottle, deodorant and toilet roll tube at home."
   },
   "material": {
     "title": "Recycle a specific item",
+    "description": "Search for recycling options",
     "loading": "Searching this area…",
     "hero": {
       "yes": "Yes, it can be recycled!",

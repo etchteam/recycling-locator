@@ -13,9 +13,9 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "vite": "^6.2.1"
+    "vite": "^6.2.6"
   },
   "dependencies": {
-    "@etchteam/recycling-locator": "^1.57.0"
+    "@etchteam/recycling-locator": "^1.60.2"
   }
 }

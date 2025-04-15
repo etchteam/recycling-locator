@@ -33,6 +33,16 @@ locator-tip {
     }
   }
 
+  &[type='promo'] {
+    --diamond-theme-background: var(--color-green);
+    --diamond-theme-color: var(--color-body);
+    --diamond-theme-heading-color: var(--color-body);
+
+    img {
+      width: 100%;
+    }
+  }
+
   &[text-align='center'] {
     text-align: center;
   }

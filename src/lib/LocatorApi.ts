@@ -13,7 +13,8 @@ export default class LocatorApi {
     url: string,
     options: LocatorApiRequestOptions,
   ): Promise<T> {
-    const locale = i18n.language === 'en' ? 'en-GB' : i18n.language;
+    const locale =
+      !i18n.language || i18n.language === 'en' ? 'en-GB' : i18n.language;
     const fullUrl = new URL(`${config.locatorApiPath}${url}`);
     fullUrl.searchParams.set('lang', locale);
 

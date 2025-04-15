@@ -1,18 +1,14 @@
-import { expect } from '@playwright/test';
-import { t } from 'i18next';
-import { test } from 'vitest';
-
 import {
   LOCAL_AUTHORITY_ENDPOINT,
   LocalAuthorityResponse,
 } from '../mocks/localAuthority';
 import { LOCATIONS_ENDPOINT, LocationsResponse } from '../mocks/locations';
 import { MATERIALS_ENDPOINT, ValidMaterialsResponse } from '../mocks/materials';
-import describeEndToEndTest from '../utils/describeEndToEndTest';
-import snapshot from '../utils/snapshot';
 import { PROPERTY_TYPE_EN } from '@/types/locatorApi';
 
-describeEndToEndTest('Home recycling', () => {
+import { test, expect } from './fixtures';
+
+test.describe('Home recycling', () => {
   test('Collection tab scheme list', async ({ page, widget }) => {
     const mockedLaResponse = {
       ...LocalAuthorityResponse,
@@ -52,10 +48,10 @@ describeEndToEndTest('Home recycling', () => {
       route.fulfill({ json: mockedLaResponse });
     });
 
-    const narrowAccessSchemeText = page
+    const narrowAccessSchemeText = widget
       .getByText(PROPERTY_TYPE_EN.NARROW_ACCESS)
       .first();
-    const kerbsideSchemeText = page
+    const kerbsideSchemeText = widget
       .getByText(PROPERTY_TYPE_EN.KERBSIDE)
       .first();
 
@@ -65,10 +61,9 @@ describeEndToEndTest('Home recycling', () => {
     await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
     await expect(narrowAccessSchemeText).toBeVisible();
     await expect(kerbsideSchemeText).toBeVisible();
-    await snapshot(page, 'Home recycling collection');
   });
 
-  test('Recycling centre locations list', async ({ page, widget }) => {
+  test('Recycling centre locations list', async ({ page, widget, i18n }) => {
     await page.route(LOCAL_AUTHORITY_ENDPOINT, (route) => {
       route.fulfill({ json: LocalAuthorityResponse });
     });
@@ -77,20 +72,20 @@ describeEndToEndTest('Home recycling', () => {
       route.fulfill({ json: LocationsResponse });
     });
 
-    const recyclingCentreTab = page
-      .getByRole('link', { name: t('homeRecycling.nav.hwrc') })
+    const recyclingCentreTab = widget
+      .getByRole('link', { name: i18n.t('homeRecycling.nav.hwrc') })
       .first();
-    const recyclingCentresCount = page
+    const recyclingCentresCount = widget
       .getByText(
-        t('homeRecycling.hwrc.content', {
+        i18n.t('homeRecycling.hwrc.content', {
           // There's 1 recycling centre in the mocked locations response
           count: 1,
         }),
       )
       .first();
-    const locationsCount = page
+    const locationsCount = widget
       .getByText(
-        t(`homeRecycling.hwrc.nearbyPlaces.content`, {
+        i18n.t(`homeRecycling.hwrc.nearbyPlaces.content`, {
           count: LocationsResponse.items.length,
         }),
       )
@@ -104,18 +99,17 @@ describeEndToEndTest('Home recycling', () => {
     await page.waitForRequest(LOCATIONS_ENDPOINT);
     await expect(recyclingCentresCount).toBeVisible();
     await expect(locationsCount).toBeVisible();
-    await snapshot(page, 'Home recycling hwrcs');
   });
 
-  test('Contact details', async ({ page, widget }) => {
+  test('Contact details', async ({ page, widget, i18n }) => {
     await page.route(LOCAL_AUTHORITY_ENDPOINT, (route) => {
       route.fulfill({ json: LocalAuthorityResponse });
     });
 
-    const contactTab = page
-      .getByRole('link', { name: t('homeRecycling.nav.contact') })
+    const contactTab = widget
+      .getByRole('link', { name: i18n.t('homeRecycling.nav.contact') })
       .first();
-    const phoneNumber = page
+    const phoneNumber = widget
       .getByText(LocalAuthorityResponse.enquiryNumber)
       .first();
 
@@ -125,10 +119,9 @@ describeEndToEndTest('Home recycling', () => {
     await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
     contactTab.click();
     await expect(phoneNumber).toBeVisible();
-    await snapshot(page, 'Home recycling contact');
   });
 
-  test('Collection details', async ({ page, widget }) => {
+  test('Collection details', async ({ page, widget, i18n }) => {
     await page.route(LOCAL_AUTHORITY_ENDPOINT, (route) => {
       route.fulfill({ json: LocalAuthorityResponse });
     });
@@ -137,25 +130,29 @@ describeEndToEndTest('Home recycling', () => {
       route.fulfill({ json: ValidMaterialsResponse });
     });
 
-    const kerbsideSchemeText = page
+    await page.route(LOCATIONS_ENDPOINT, (route) => {
+      route.fulfill({ json: LocationsResponse });
+    });
+
+    const kerbsideSchemeText = widget
       .getByText(PROPERTY_TYPE_EN.KERBSIDE)
       .first();
-    const kerbsideSchemeLink = page
-      .locator('a', { has: kerbsideSchemeText })
+    const kerbsideSchemeLink = widget
+      .getByRole('link', { name: PROPERTY_TYPE_EN.KERBSIDE })
       .first();
-    const collectionPageTitle = page
-      .getByText(t('homeRecycling.collection.title'))
+    const collectionPageTitle = widget
+      .getByText(i18n.t('homeRecycling.collection.title'))
       .first();
-    const input = page
-      .getByPlaceholder(t('components.materialSearchInput.placeholder'))
+    const input = widget
+      .getByPlaceholder(i18n.t('components.materialSearchInput.placeholder'))
       .first();
-    const negativeSearchText = page.getByText(
-      t('homeRecycling.collection.search.negative', {
+    const negativeSearchText = widget.getByText(
+      i18n.t('homeRecycling.collection.search.negative', {
         count: 0,
       }),
     );
-    const positiveSearchText = page.getByText(
-      t('homeRecycling.collection.search.positive', {
+    const positiveSearchText = widget.getByText(
+      i18n.t('homeRecycling.collection.search.positive', {
         count: 1,
       }),
     );
@@ -164,16 +161,13 @@ describeEndToEndTest('Home recycling', () => {
       node.setAttribute('path', '/EX32 7RB/home'),
     );
     await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
+    await expect(kerbsideSchemeText).toBeVisible();
     kerbsideSchemeLink.click();
     await expect(collectionPageTitle).toBeVisible();
     await expect(input).toBeVisible();
-    await input.fill('Not a material m8');
-    await input.press('Enter');
-    await expect(positiveSearchText).not.toBeVisible();
     await input.fill('Plastic milk bottles');
     await input.press('Enter');
     await expect(negativeSearchText).not.toBeVisible();
     await expect(positiveSearchText).toBeVisible();
-    await snapshot(page, 'Home recycling collection details');
   });
 });

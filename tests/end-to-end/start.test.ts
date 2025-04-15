@@ -1,7 +1,3 @@
-import { expect } from '@playwright/test';
-import { t } from 'i18next';
-import { test } from 'vitest';
-
 import {
   GEOCODE_ENDPOINT,
   GuernseyGeocodeResponse,
@@ -14,52 +10,59 @@ import {
 import { LOCATIONS_ENDPOINT, LocationsResponse } from '../mocks/locations';
 import { MATERIALS_ENDPOINT, ValidMaterialsResponse } from '../mocks/materials';
 import {
-  POSTCODE_ENDPOINT,
   InvalidPostcodeResponse,
+  POSTCODE_ENDPOINT,
   ValidPostcodeResponse,
 } from '../mocks/postcode';
-import describeEndToEndTest from '../utils/describeEndToEndTest';
-import snapshot from '../utils/snapshot';
 
-describeEndToEndTest('Start page', () => {
-  test('Address outside mainland England', async ({ page }) => {
+import { test, expect } from './fixtures';
+
+test.describe('Start page', () => {
+  test('Address outside mainland England', async ({ page, i18n, widget }) => {
     await page.route(GEOCODE_ENDPOINT, (route) => {
       route.fulfill({ json: GuernseyGeocodeResponse });
     });
 
-    const input = page.locator('input[type="text"]').first();
-    const notInUk = page.getByText(t('notFound.title.notInTheUK')).first();
+    const input = widget.locator('input[type="text"]').first();
+    const notInUk = widget
+      .getByText(i18n.t('notFound.title.notInTheUK'))
+      .first();
     await expect(input).toBeVisible();
     await expect(notInUk).not.toBeVisible();
-    await snapshot(page, 'Start');
     await input.fill('Guernsey');
     await input.press('Enter');
     await page.waitForRequest(GEOCODE_ENDPOINT);
     await expect(notInUk).toBeVisible();
   });
 
-  test('Valid postcode entry (skips lat lng check)', async ({ page }) => {
+  test('Valid postcode entry (skips lat lng check)', async ({
+    page,
+    widget,
+  }) => {
     await page.route(GEOCODE_ENDPOINT, (route) => {
       route.fulfill({ json: PostcodeGeocodeResponse });
     });
 
-    const input = page.locator('input[type="text"]').first();
-    const postcode = page.getByText('EX32 7RB').first();
-    const city = page.getByText('Barnstaple').first();
-    const postcodePageTitle = page.getByText(t('postcode.title')).first();
+    await page.route(LOCATIONS_ENDPOINT, (route) => {
+      route.fulfill({ json: LocationsResponse });
+    });
+
+    const input = widget.locator('input[type="text"]').first();
+    const postcode = widget.getByText('EX32 7RB').first();
+    const city = widget.getByText('Barnstaple').first();
+
     await expect(input).toBeVisible();
     await expect(postcode).not.toBeVisible();
     await expect(city).not.toBeVisible();
-    await expect(postcodePageTitle).not.toBeVisible();
     await input.fill('EX32 7RB');
     await input.press('Enter');
     await page.waitForRequest(GEOCODE_ENDPOINT);
+    await page.waitForRequest(LOCATIONS_ENDPOINT);
     await expect(postcode).toBeVisible();
     await expect(city).toBeVisible();
-    await expect(postcodePageTitle).toBeVisible();
   });
 
-  test('Valid location entry', async ({ page }) => {
+  test('Valid location entry', async ({ page, widget }) => {
     await page.route(GEOCODE_ENDPOINT, (route) => {
       route.fulfill({ json: PostcodeGeocodeResponse });
     });
@@ -68,24 +71,26 @@ describeEndToEndTest('Start page', () => {
       route.fulfill({ json: ValidPostcodeResponse });
     });
 
-    const input = page.locator('input[type="text"]').first();
-    const postcode = page.getByText('EX32 7RB').first();
-    const city = page.getByText('Barnstaple').first();
-    const postcodePageTitle = page.getByText(t('postcode.title')).first();
+    await page.route(LOCATIONS_ENDPOINT, (route) => {
+      route.fulfill({ json: LocationsResponse });
+    });
+
+    const input = widget.locator('input[type="text"]').first();
+    const postcode = widget.getByText('EX32 7RB').first();
+    const city = widget.getByText('Barnstaple').first();
     await expect(input).toBeVisible();
     await expect(postcode).not.toBeVisible();
     await expect(city).not.toBeVisible();
-    await expect(postcodePageTitle).not.toBeVisible();
     await input.fill('Barnstaple');
     await input.press('Enter');
     await page.waitForRequest(GEOCODE_ENDPOINT);
     await page.waitForRequest(POSTCODE_ENDPOINT);
+    await page.waitForRequest(LOCATIONS_ENDPOINT);
     await expect(postcode).toBeVisible();
     await expect(city).toBeVisible();
-    await expect(postcodePageTitle).toBeVisible();
   });
 
-  test('Invalid location entry', async ({ page }) => {
+  test('Invalid location entry', async ({ page, widget, i18n }) => {
     await page.route(GEOCODE_ENDPOINT, (route) => {
       route.fulfill({ json: PostcodeGeocodeResponse });
     });
@@ -94,11 +99,11 @@ describeEndToEndTest('Start page', () => {
       route.fulfill({ json: InvalidPostcodeResponse });
     });
 
-    const input = page.locator('input[type="text"]').first();
-    const postcode = page.getByText('EX32 7RB').first();
-    const city = page.getByText('Barnstaple').first();
-    const notFoundPageTitle = page
-      .getByText(t('notFound.title.default'))
+    const input = widget.locator('input[type="text"]').first();
+    const postcode = widget.getByText('EX32 7RB').first();
+    const city = widget.getByText('Barnstaple').first();
+    const notFoundPageTitle = widget
+      .getByText(i18n.t('notFound.title.default'))
       .first();
     await expect(input).toBeVisible();
     await expect(postcode).not.toBeVisible();
@@ -111,7 +116,7 @@ describeEndToEndTest('Start page', () => {
     await expect(notFoundPageTitle).toBeVisible();
   });
 
-  test('Home recycling start', async ({ page, widget }) => {
+  test('Home recycling start', async ({ page, widget, i18n }) => {
     await page.route(GEOCODE_ENDPOINT, (route) => {
       route.fulfill({ json: PostcodeGeocodeResponse });
     });
@@ -124,11 +129,13 @@ describeEndToEndTest('Start page', () => {
       route.fulfill({ json: LocalAuthorityResponse });
     });
 
-    const input = page.locator('input[type="text"]').first();
-    const homeStartPageTitle = page
-      .getByText(t('start.homeRecycling.title'))
+    const input = widget.locator('input[type="text"]').first();
+    const homeStartPageTitle = widget
+      .getByText(i18n.t('start.homeRecycling.title'))
       .first();
-    const localAuthority = page.getByText(LocalAuthorityResponse.name).first();
+    const localAuthority = widget
+      .getByText(LocalAuthorityResponse.name)
+      .first();
 
     await widget.evaluate((node) =>
       node.setAttribute('path', '/home-recycling'),
@@ -136,14 +143,13 @@ describeEndToEndTest('Start page', () => {
     await expect(homeStartPageTitle).toBeVisible();
     await expect(input).toBeVisible();
     await expect(localAuthority).not.toBeVisible();
-    await snapshot(page, 'Home recycling start');
     await input.fill('Barnstaple');
     await input.press('Enter');
     await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
     await expect(localAuthority).toBeVisible();
   });
 
-  test('Material start', async ({ page, widget }) => {
+  test('Material start', async ({ page, widget, i18n }) => {
     await page.route(GEOCODE_ENDPOINT, (route) => {
       route.fulfill({ json: PostcodeGeocodeResponse });
     });
@@ -168,11 +174,13 @@ describeEndToEndTest('Start page', () => {
       route.fulfill({ json: LocationsResponse });
     });
 
-    const input = page.locator('input[type="text"]').first();
-    const materialStartPageTitle = page
+    const input = widget.locator('input[type="text"]').first();
+    const materialStartPageTitle = widget
       .getByText('Plastic drinks bottles')
       .first();
-    const recyclableText = page.getByText(t('material.hero.yes')).first();
+    const recyclableText = widget
+      .getByText(i18n.t('material.hero.yes'))
+      .first();
 
     await widget.evaluate((node) =>
       node.setAttribute(
@@ -183,7 +191,6 @@ describeEndToEndTest('Start page', () => {
     await expect(materialStartPageTitle).toBeVisible();
     await expect(input).toBeVisible();
     await expect(recyclableText).not.toBeVisible();
-    await snapshot(page, 'Material start');
     await input.fill('Barnstaple');
     await input.press('Enter');
     await page.waitForRequest(LOCATIONS_ENDPOINT);

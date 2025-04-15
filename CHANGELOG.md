@@ -1,3 +1,11 @@
+## [1.60.2](https://github.com/etchteam/recycling-locator/compare/v1.60.1...v1.60.2) (2025-04-11)
+
+
+### Bug Fixes
+
+* only call i18n.on on first load ([bf5df4c](https://github.com/etchteam/recycling-locator/commit/bf5df4c37ece4b2ee0fe190e98320d32a7075a48))
+* update getTipByMaterial to await promise return ([3ba5f71](https://github.com/etchteam/recycling-locator/commit/3ba5f7137295047e9c8d05835ff2db69963a8f7d))
+
 ## [1.60.1](https://github.com/etchteam/recycling-locator/compare/v1.60.0...v1.60.1) (2025-04-02)
 
 

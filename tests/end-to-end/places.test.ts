@@ -178,7 +178,10 @@ test.describe('Places', () => {
       .first();
     const map = widget.locator('locator-places-map').first();
     const pin = widget
-      .getByRole('button', { name: LocationsResponse.items[0].name })
+      .getByRole('button', {
+        name: LocationsResponse.items[0].name,
+        includeHidden: true,
+      })
       .first();
 
     await widget.evaluate((node) =>

@@ -3,7 +3,7 @@
  * This function falls back to process.env for those cases.
  */
 function envVar(varName: string, defaultValue?: string) {
-  return import.meta.env[varName] ?? process.env[varName] ?? defaultValue;
+  return import.meta?.env?.[varName] ?? process?.env?.[varName] ?? defaultValue;
 }
 
 const LOCATOR_API = envVar(
@@ -23,7 +23,5 @@ const config = {
   locatorAnalyticsPath: `${LOCATOR_API}analytics/record`,
   testMode: envVar('VITE_TEST') === 'true',
 };
-
-console.log(config);
 
 export default config;

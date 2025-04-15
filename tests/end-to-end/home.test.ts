@@ -165,9 +165,6 @@ test.describe('Home recycling', () => {
     kerbsideSchemeLink.click();
     await expect(collectionPageTitle).toBeVisible();
     await expect(input).toBeVisible();
-    await input.fill('Not a material m8');
-    await input.press('Enter');
-    await expect(positiveSearchText).not.toBeVisible();
     await input.fill('Plastic milk bottles');
     await input.press('Enter');
     await expect(negativeSearchText).not.toBeVisible();

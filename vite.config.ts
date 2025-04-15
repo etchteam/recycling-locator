@@ -27,7 +27,14 @@ export default defineConfig(({ mode }) => {
       },
     },
 
-    plugins: [svgr(), preact()],
+    plugins: [
+      svgr(),
+      preact({
+        babel: {
+          plugins: ['@babel/plugin-syntax-import-attributes'],
+        },
+      }),
+    ],
 
     test: {
       include: ['tests/unit/**/*.test.ts'],

@@ -155,11 +155,6 @@ When writing a new Playwright test:
 2. Use the global i18next instance for translations: `test({ i18n })`
 3. Use the global widget instance to locate elements: `test({ widget })`
 
-#### End-to-End testing quirks
-
-- In UI mode `npm run test:playwright:ui` you need to drill down to click play on individual tests to see a preview of the UI
-- Env variables aren't passed into vite’s import.meta.env, so process.env has to be used instead
-
 ## wrap-rlw.js
 
 This file exists on the [recycle locator proxy](https://github.com/etchteam/recycle-locator) under `resources/assets/js/widget/index.js`.

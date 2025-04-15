@@ -30,8 +30,8 @@
     "storybook:build": "storybook build",
     "storybook:start": "storybook dev -p 6006",
     "storybook": "run-p start:css storybook:start",
-    "test:unit": "vitest",
-    "test:unit:ui": "vitest --ui unit",
+    "test:unit": "vitest run",
+    "test:unit:ui": "vitest --ui",
     "test:end-to-end": "playwright test",
     "test:end-to-end:debug": "playwright test --debug",
     "test:end-to-end:ui": "playwright test --ui",
@@ -53,6 +53,7 @@
     "react-router-dom": "^6.22.3"
   },
   "devDependencies": {
+    "@babel/plugin-syntax-import-attributes": "^7.26.0",
     "@commitlint/cli": "^19.3.0",
     "@commitlint/config-conventional": "^19.2.2",
     "@etchteam/eslint-config": "^2.2.16",

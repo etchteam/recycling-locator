@@ -216,21 +216,26 @@
     "loading": "Searching this area…",
     "hero": {
       "yes": "Yes, it can be recycled!",
-      "no": "No, it can’t be recycled!"
+      "no": "No, it can’t be recycled!",
+      "noOptions": "This item can’t be recycled in your area",
+      "hazardous": "This is hazardous waste!"
     },
     "recycleAtHome": {
       "cta": "Check your home collection",
       "noProperties": {
         "title": "This item cannot be recycled at home",
+        "titleDisposal": "This item cannot be disposed at home",
         "content": "Check what you can put in your home recycling bins and if you have a food and garden waste collection."
       },
       "manyProperties": {
         "title": "Recycle at home",
+        "titleDisposal": "At home disposal options",
         "collectionSome": "This item is collected from <bold>some properties</bold> in the area.",
         "collectionAll": "This item is collected from <bold>all properties</bold> in the area."
       },
       "oneProperty": {
         "title": "Recycle at home",
+        "titleDisposal": "At home disposal options",
         "collection": "This item is collected in these bins:",
         "collection_one": "This item is collected in this bin:"
       }
@@ -245,10 +250,16 @@
         "content": "This item can be recycled at <bold>{{count}} places</bold> in the area.",
         "content_one": "This item can be recycled at <bold>1 place</bold> in the area.",
         "contentThirtyPlus": "This item can be recycled at 30+ places in the area."
+      },
+      "disposal": {
+        "title": "Dispose at a nearby place",
+        "content": "This item can be disposed of at <bold>{{count}} places</bold> in the area.",
+        "content_one": "This item can be disposed of at <bold>1 place</bold> in the area.",
+        "contentThirtyPlus": "This item can be disposed of at 30+ places in the area."
       }
     },
-    "notRecyclable": {
-      "title": "This material cannot be recycled under any circumstances.",
+    "hazardousWarning": {
+      "title": "This material must be disposed of safely.",
       "content": "Contact your local authority for advice or find your nearest hazardous waste disposal service below."
     },
     "search": {

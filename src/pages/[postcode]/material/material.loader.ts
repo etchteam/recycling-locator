@@ -7,18 +7,21 @@ import {
   LocalAuthority,
   LocationsResponse,
   RecyclingMeta,
+  Material,
 } from '@/types/locatorApi';
 
 export interface DeferredMaterialLoaderResponse {
   localAuthority: Promise<LocalAuthority>;
   locations: Promise<LocationsResponse>;
   tip: Promise<RecyclingMeta>;
+  material: Promise<Material>;
 }
 
 export interface AwaitedMaterialLoaderResponse {
   localAuthority: LocalAuthority;
   locations: LocationsResponse;
   tip?: RecyclingMeta;
+  material: Material;
 }
 
 export default async function materialLoader({
@@ -38,11 +41,17 @@ export default async function materialLoader({
   const locations = LocatorApi.get<LocationsResponse>(
     `locations/${postcode}?${searchParams.toString()}`,
   );
+
+  const material = LocatorApi.get<Material>(
+    `materials/${url.searchParams.get('materials')}`,
+  );
+
   const tip = getTipByMaterial(url.searchParams.get('materials'));
 
   return defer({
     localAuthority,
     locations,
     tip,
+    material,
   });
 }

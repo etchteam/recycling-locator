@@ -11,9 +11,10 @@ import { LOCATIONS_ENDPOINT, LocationsResponse } from '../mocks/locations';
 import {
   EmptyMaterialsResponse,
   MATERIALS_ENDPOINT,
+  MATERIAL_ENDPOINT,
   POPULAR_MATERIALS_ENDPOINT,
   PopularMaterialsResponse,
-  ValidMaterialsResponse,
+  ValidMaterialResponse,
 } from '../mocks/materials';
 
 import { test, expect } from './fixtures';
@@ -87,7 +88,11 @@ test.describe('Postcode page', () => {
     });
 
     await page.route(MATERIALS_ENDPOINT, (route) => {
-      route.fulfill({ json: ValidMaterialsResponse });
+      route.fulfill({ json: [ValidMaterialResponse] });
+    });
+
+    await page.route(MATERIAL_ENDPOINT, (route) => {
+      route.fulfill({ json: ValidMaterialResponse });
     });
 
     await page.route(LOCAL_AUTHORITY_ENDPOINT, (route) => {
@@ -121,6 +126,7 @@ test.describe('Postcode page', () => {
     await input.press('Enter');
     await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
     await page.waitForRequest(LOCATIONS_ENDPOINT);
+    await page.waitForRequest(MATERIAL_ENDPOINT);
     await expect(materialText).toBeVisible();
     await expect(recyclableText).toBeVisible();
     await expect(materialPageTitle).toBeVisible();

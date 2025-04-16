@@ -3,6 +3,7 @@ import {
   LocalAuthorityResponse,
 } from '../mocks/localAuthority';
 import { LOCATIONS_ENDPOINT, LocationsResponse } from '../mocks/locations';
+import { MATERIAL_ENDPOINT, ValidMaterialResponse } from '../mocks/materials';
 import { PROPERTY_TYPE_EN } from '@/types/locatorApi';
 
 import { test, expect } from './fixtures';
@@ -15,6 +16,10 @@ test.describe('Material page', () => {
 
     await page.route(LOCATIONS_ENDPOINT, (route) => {
       route.fulfill({ json: LocationsResponse });
+    });
+
+    await page.route(MATERIAL_ENDPOINT, (route) => {
+      route.fulfill({ json: ValidMaterialResponse });
     });
 
     const recyclableText = widget
@@ -37,6 +42,7 @@ test.describe('Material page', () => {
     );
     await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
     await page.waitForRequest(LOCATIONS_ENDPOINT);
+    await page.waitForRequest(MATERIAL_ENDPOINT);
     await expect(recyclableText).toBeVisible();
     await expect(homeText).toBeVisible();
     await expect(locationsText).toBeVisible();
@@ -85,6 +91,10 @@ test.describe('Material page', () => {
       route.fulfill({ json: LocationsResponse });
     });
 
+    await page.route(MATERIAL_ENDPOINT, (route) => {
+      route.fulfill({ json: ValidMaterialResponse });
+    });
+
     const recyclableText = widget
       .getByText(i18n.t('material.hero.yes'))
       .first();
@@ -105,6 +115,7 @@ test.describe('Material page', () => {
     );
     await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
     await page.waitForRequest(LOCATIONS_ENDPOINT);
+    await page.waitForRequest(MATERIAL_ENDPOINT);
     await expect(recyclableText).toBeVisible();
     await expect(somePropertiesText).toBeVisible();
     await expect(schemeOneText).toBeVisible();
@@ -154,6 +165,10 @@ test.describe('Material page', () => {
       route.fulfill({ json: LocationsResponse });
     });
 
+    await page.route(MATERIAL_ENDPOINT, (route) => {
+      route.fulfill({ json: ValidMaterialResponse });
+    });
+
     const recyclableText = widget
       .getByText(i18n.t('material.hero.yes'))
       .first();
@@ -176,6 +191,7 @@ test.describe('Material page', () => {
     );
     await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
     await page.waitForRequest(LOCATIONS_ENDPOINT);
+    await page.waitForRequest(MATERIAL_ENDPOINT);
     await expect(recyclableText).toBeVisible();
     await expect(somePropertiesText).toBeVisible();
     await expect(schemeOneText).toBeVisible();
@@ -189,6 +205,10 @@ test.describe('Material page', () => {
 
     await page.route(LOCATIONS_ENDPOINT, (route) => {
       route.fulfill({ json: LocationsResponse });
+    });
+
+    await page.route(MATERIAL_ENDPOINT, (route) => {
+      route.fulfill({ json: ValidMaterialResponse });
     });
 
     const recyclableText = widget
@@ -210,12 +230,13 @@ test.describe('Material page', () => {
     );
     await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
     await page.waitForRequest(LOCATIONS_ENDPOINT);
+    await page.waitForRequest(MATERIAL_ENDPOINT);
     await expect(recyclableText).toBeVisible();
     await expect(homeText).toBeVisible();
     await expect(locationsText).toBeVisible();
   });
 
-  test('Not recyclable', async ({ page, widget, i18n }) => {
+  test('No Recycling Options', async ({ page, widget, i18n }) => {
     await page.route(LOCAL_AUTHORITY_ENDPOINT, (route) => {
       route.fulfill({ json: LocalAuthorityResponse });
     });
@@ -224,12 +245,12 @@ test.describe('Material page', () => {
       route.fulfill({ json: { items: [] } });
     });
 
-    const recyclableText = widget.getByText(i18n.t('material.hero.no')).first();
-    const notRecyclableTitle = widget
-      .getByText(i18n.t('material.notRecyclable.title'))
-      .first();
-    const notRecyclableContent = widget
-      .getByText(i18n.t('material.notRecyclable.content'))
+    await page.route(MATERIAL_ENDPOINT, (route) => {
+      route.fulfill({ json: ValidMaterialResponse });
+    });
+
+    const recyclableText = widget
+      .getByText(i18n.t('material.hero.noOptions'))
       .first();
 
     await expect(recyclableText).not.toBeVisible();
@@ -241,8 +262,89 @@ test.describe('Material page', () => {
     );
     await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
     await page.waitForRequest(LOCATIONS_ENDPOINT);
+    await page.waitForRequest(MATERIAL_ENDPOINT);
     await expect(recyclableText).toBeVisible();
-    await expect(notRecyclableTitle).toBeVisible();
-    await expect(notRecyclableContent).toBeVisible();
+  });
+
+  test('Not Recyclable', async ({ page, widget, i18n }) => {
+    await page.route(LOCAL_AUTHORITY_ENDPOINT, (route) => {
+      route.fulfill({ json: LocalAuthorityResponse });
+    });
+
+    await page.route(LOCATIONS_ENDPOINT, (route) => {
+      route.fulfill({ json: LocationsResponse });
+    });
+
+    await page.route(MATERIAL_ENDPOINT, (route) => {
+      route.fulfill({
+        json: {
+          id: 123,
+          name: 'Example material',
+          popular: false,
+          nonRecyclable: true,
+          hazardous: false,
+        },
+      });
+    });
+
+    const recyclableText = widget.getByText(i18n.t('material.hero.no')).first();
+
+    await expect(recyclableText).not.toBeVisible();
+    await widget.evaluate((node) =>
+      node.setAttribute(
+        'path',
+        '/EX32 7RB/material?materials=123&search=Example material',
+      ),
+    );
+    await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
+    await page.waitForRequest(LOCATIONS_ENDPOINT);
+    await page.waitForRequest(MATERIAL_ENDPOINT);
+    await expect(recyclableText).toBeVisible();
+  });
+
+  test('Hazardous', async ({ page, widget, i18n }) => {
+    await page.route(LOCAL_AUTHORITY_ENDPOINT, (route) => {
+      route.fulfill({ json: LocalAuthorityResponse });
+    });
+
+    await page.route(LOCATIONS_ENDPOINT, (route) => {
+      route.fulfill({ json: { items: [] } });
+    });
+
+    await page.route(MATERIAL_ENDPOINT, (route) => {
+      route.fulfill({
+        json: {
+          id: 146,
+          name: 'Asbestos',
+          popular: false,
+          nonRecyclable: true,
+          hazardous: true,
+        },
+      });
+    });
+
+    const recyclableText = widget
+      .getByText(i18n.t('material.hero.hazardous'))
+      .first();
+    const hazardousWarningTitle = widget
+      .getByText(i18n.t('material.hazardousWarning.title'))
+      .first();
+    const hazardousWarningContent = widget
+      .getByText(i18n.t('material.hazardousWarning.content'))
+      .first();
+
+    await expect(recyclableText).not.toBeVisible();
+    await widget.evaluate((node) =>
+      node.setAttribute(
+        'path',
+        '/EX32 7RB/material?materials=146&search=Asbestos',
+      ),
+    );
+    await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
+    await page.waitForRequest(LOCATIONS_ENDPOINT);
+    await page.waitForRequest(MATERIAL_ENDPOINT);
+    await expect(recyclableText).toBeVisible();
+    await expect(hazardousWarningTitle).toBeVisible();
+    await expect(hazardousWarningContent).toBeVisible();
   });
 });

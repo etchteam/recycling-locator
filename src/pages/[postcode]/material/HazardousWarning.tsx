@@ -9,13 +9,13 @@ import '@/components/composition/IconText/IconText';
 import '@/components/content/Icon/Icon';
 import { LocalAuthority } from '@/types/locatorApi';
 
-export default function NotRecyclable({
+export default function HazardousWarning({
   localAuthority,
 }: {
   readonly localAuthority: LocalAuthority;
 }) {
   const { t } = useTranslation();
-  const tContext = 'material.notRecyclable';
+  const tContext = 'material.hazardousWarning';
 
   return (
     <diamond-card border radius>

@@ -241,7 +241,7 @@
         "contentThirtyPlus": "Gellir cael gwared ar yr eitem hon mewn 30+ o leoedd yn yr ardal."
       }
     },
-    "notRecyclable": {
+    "hazardousWarning": {
       "title": "Ni allwch ailgylchu’r eitem hon ar gyfer unrhyw amgylchiad.",
       "content": "Cysylltwch â'ch awdurdod lleol am gyngor neu dewch o hyd i'ch gwasanaeth gwaredu gwastraff peryglus agosaf isod."
     },

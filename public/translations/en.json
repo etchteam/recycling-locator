@@ -217,7 +217,7 @@
     "hero": {
       "yes": "Yes, it can be recycled!",
       "no": "No, it can’t be recycled!",
-      "noOptions": "There are no options for recycling this item in your area.",
+      "noOptions": "This item can’t be recycled in your area",
       "hazardous": "This is hazardous waste!"
     },
     "recycleAtHome": {
@@ -258,8 +258,8 @@
         "contentThirtyPlus": "This item can be disposed of at 30+ places in the area."
       }
     },
-    "notRecyclable": {
-      "title": "This material cannot be recycled under any circumstances.",
+    "hazardousWarning": {
+      "title": "This material must be disposed of safely.",
       "content": "Contact your local authority for advice or find your nearest hazardous waste disposal service below."
     },
     "search": {

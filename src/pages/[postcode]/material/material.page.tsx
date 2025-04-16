@@ -20,8 +20,8 @@ import TipContent from '@/components/template/TipContent/TipContent';
 import getPropertiesByMaterial from '@/lib/getPropertiesByMaterial';
 import useAnalytics from '@/lib/useAnalytics';
 
+import HazardousWarning from './HazardousWarning';
 import NearbyPlaces from './NearbyPlaces';
-import NotRecyclable from './NotRecyclable';
 import RecycleAtHome from './RecycleAtHome';
 import {
   DeferredMaterialLoaderResponse,
@@ -102,7 +102,7 @@ function MaterialPageContent({
   const nonRecyclable = material.nonRecyclable;
   const hazardous = material.hazardous;
 
-  if (hazardous || nonRecyclable) {
+  if (nonRecyclable) {
     return (
       <diamond-enter type="fade">
         <HeroFormatted
@@ -113,9 +113,11 @@ function MaterialPageContent({
         />
         <diamond-enter type="fade-in-up" delay={0.25}>
           <locator-wrap className={!hazardous && 'diamond-spacing-top-lg'}>
-            <section className="diamond-spacing-bottom-lg">
-              <NotRecyclable localAuthority={localAuthority} />
-            </section>
+            {hazardous && (
+              <section className="diamond-spacing-bottom-lg">
+                <HazardousWarning localAuthority={localAuthority} />
+              </section>
+            )}
             {propertiesCollectingThisMaterial && (
               <section className="diamond-spacing-bottom-lg">
                 <RecycleAtHome

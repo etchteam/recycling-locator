@@ -225,11 +225,11 @@ test.describe('Material page', () => {
     });
 
     const recyclableText = widget.getByText(i18n.t('material.hero.no')).first();
-    const notRecyclableTitle = widget
-      .getByText(i18n.t('material.notRecyclable.title'))
+    const hazardousWarningTitle = widget
+      .getByText(i18n.t('material.hazardousWarning.title'))
       .first();
-    const notRecyclableContent = widget
-      .getByText(i18n.t('material.notRecyclable.content'))
+    const hazardousWarningContent = widget
+      .getByText(i18n.t('material.hazardousWarning.content'))
       .first();
 
     await expect(recyclableText).not.toBeVisible();
@@ -242,7 +242,7 @@ test.describe('Material page', () => {
     await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
     await page.waitForRequest(LOCATIONS_ENDPOINT);
     await expect(recyclableText).toBeVisible();
-    await expect(notRecyclableTitle).toBeVisible();
-    await expect(notRecyclableContent).toBeVisible();
+    await expect(hazardousWarningTitle).toBeVisible();
+    await expect(hazardousWarningContent).toBeVisible();
   });
 });

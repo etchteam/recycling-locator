@@ -1,3 +1,14 @@
+## [1.61.0](https://github.com/etchteam/recycling-locator/compare/v1.60.4...v1.61.0) (2025-04-16)
+
+
+### Features
+
+* add welsh translations ([31c7ea6](https://github.com/etchteam/recycling-locator/commit/31c7ea640639ebb0a8aca1bd34d5310a4642d1ce))
+* get hazards and nonrecycables from api ([c969dcb](https://github.com/etchteam/recycling-locator/commit/c969dcbcf0f2bb0001a0492be00a5c4f1b2d2358))
+* handle non-recyclable and hazardous material results ([639e7e6](https://github.com/etchteam/recycling-locator/commit/639e7e6c85a1ba3712a77fc1381351d7eb9e6002))
+* undo copy change typo ([8300500](https://github.com/etchteam/recycling-locator/commit/83005006130a309e8ddab33bb9c3c38500b744d4))
+* update nonRecycable and hazardous waste handelling ([23f6e39](https://github.com/etchteam/recycling-locator/commit/23f6e39477653f6a50ea5dc6b49b137a2bd06160))
+
 ## [1.60.4](https://github.com/etchteam/recycling-locator/compare/v1.60.3...v1.60.4) (2025-04-16)
 
 

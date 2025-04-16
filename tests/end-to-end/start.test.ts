@@ -8,7 +8,11 @@ import {
   LocalAuthorityResponse,
 } from '../mocks/localAuthority';
 import { LOCATIONS_ENDPOINT, LocationsResponse } from '../mocks/locations';
-import { MATERIALS_ENDPOINT, ValidMaterialsResponse } from '../mocks/materials';
+import {
+  MATERIALS_ENDPOINT,
+  MATERIAL_ENDPOINT,
+  ValidMaterialResponse,
+} from '../mocks/materials';
 import {
   InvalidPostcodeResponse,
   POSTCODE_ENDPOINT,
@@ -163,7 +167,11 @@ test.describe('Start page', () => {
     });
 
     await page.route(MATERIALS_ENDPOINT, (route) => {
-      route.fulfill({ json: ValidMaterialsResponse });
+      route.fulfill({ json: [ValidMaterialResponse] });
+    });
+
+    await page.route(MATERIAL_ENDPOINT, (route) => {
+      route.fulfill({ json: ValidMaterialResponse });
     });
 
     await page.route(LOCAL_AUTHORITY_ENDPOINT, (route) => {
@@ -194,6 +202,7 @@ test.describe('Start page', () => {
     await input.fill('Barnstaple');
     await input.press('Enter');
     await page.waitForRequest(LOCATIONS_ENDPOINT);
+    await page.waitForRequest(MATERIAL_ENDPOINT);
     await expect(recyclableText).toBeVisible();
   });
 });

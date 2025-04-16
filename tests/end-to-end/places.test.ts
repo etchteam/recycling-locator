@@ -4,7 +4,7 @@ import {
   MATERIALS_ENDPOINT,
   POPULAR_MATERIALS_ENDPOINT,
   PopularMaterialsResponse,
-  ValidMaterialsResponse,
+  ValidMaterialResponse,
 } from '../mocks/materials';
 import config from '@/config';
 
@@ -99,7 +99,7 @@ test.describe('Places', () => {
 
     await page.route(MATERIALS_ENDPOINT, (route) => {
       route.fulfill({
-        json: ValidMaterialsResponse,
+        json: [ValidMaterialResponse],
       });
     });
 
@@ -123,7 +123,7 @@ test.describe('Places', () => {
     );
 
     await page.route(
-      `${config.locatorApiPath}locations/EX32 7RB?limit=30&radius=25&materials=${ValidMaterialsResponse[0].id}&lang=en-GB`,
+      `${config.locatorApiPath}locations/EX32 7RB?limit=30&radius=25&materials=${ValidMaterialResponse.id}&lang=en-GB`,
       (route) => {
         route.fulfill({ json: LocationsResponse });
       },
@@ -139,7 +139,7 @@ test.describe('Places', () => {
     const materialInput = widget
       .getByPlaceholder(i18n.t('components.materialSearchInput.placeholder'))
       .first();
-    const realMaterial = ValidMaterialsResponse[0].name;
+    const realMaterial = ValidMaterialResponse.name;
     const realMaterialTag = widget
       .getByRole('button', { name: realMaterial })
       .first();

@@ -3,7 +3,7 @@ import {
   LocalAuthorityResponse,
 } from '../mocks/localAuthority';
 import { LOCATIONS_ENDPOINT, LocationsResponse } from '../mocks/locations';
-import { MATERIALS_ENDPOINT, ValidMaterialsResponse } from '../mocks/materials';
+import { MATERIALS_ENDPOINT, ValidMaterialResponse } from '../mocks/materials';
 import { PROPERTY_TYPE_EN } from '@/types/locatorApi';
 
 import { test, expect } from './fixtures';
@@ -127,7 +127,7 @@ test.describe('Home recycling', () => {
     });
 
     await page.route(MATERIALS_ENDPOINT, (route) => {
-      route.fulfill({ json: ValidMaterialsResponse });
+      route.fulfill({ json: [ValidMaterialResponse] });
     });
 
     await page.route(LOCATIONS_ENDPOINT, (route) => {

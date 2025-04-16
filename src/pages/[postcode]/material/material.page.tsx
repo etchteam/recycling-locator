@@ -112,12 +112,12 @@ function MaterialPageContent({
           }
         />
         <diamond-enter type="fade-in-up" delay={0.25}>
-          <locator-wrap className={!hazardous && 'diamond-spacing-top-lg'}>
-            {hazardous && (
+          <locator-wrap className={!hazardous ? 'diamond-spacing-top-lg' : ''}>
+            {hazardous ? (
               <section className="diamond-spacing-bottom-lg">
                 <HazardousWarning localAuthority={localAuthority} />
               </section>
-            )}
+            ) : null}
             {propertiesCollectingThisMaterial && (
               <section className="diamond-spacing-bottom-lg">
                 <RecycleAtHome

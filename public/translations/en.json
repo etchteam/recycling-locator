@@ -291,7 +291,7 @@
       "search": {
         "label": "Check what goes in each bin",
         "positive": "Yes, it can be recycled in the following bins…",
-        "positive_one": "Yes it can be recycled in the following bin…",
+        "positive_one": "Yes, it can be recycled in the following bin…",
         "negative": "No, it can’t be recycled in the following bins…"
       },
       "multipleCollectionsOperate": "Multiple collections operate in your area",

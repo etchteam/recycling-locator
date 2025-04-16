@@ -1,3 +1,10 @@
+## [1.60.4](https://github.com/etchteam/recycling-locator/compare/v1.60.3...v1.60.4) (2025-04-16)
+
+
+### Bug Fixes
+
+* remove helper function so that the build correctly substitutes variables ([fecd464](https://github.com/etchteam/recycling-locator/commit/fecd464ee44c9fcdeda44aefe533a58c6ee34c7f))
+
 ## [1.60.3](https://github.com/etchteam/recycling-locator/compare/v1.60.2...v1.60.3) (2025-04-15)
 
 

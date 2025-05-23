@@ -1,7 +1,7 @@
 import nl2br from 'nl2br';
 import { Suspense } from 'preact/compat';
 import { useTranslation } from 'react-i18next';
-import { Await } from 'react-router-dom';
+import { Await } from 'react-router';
 
 import '@/components/composition/BorderedList/BorderedList';
 import RateThisInfo from '@/components/control/RateThisInfo/RateThisInfo';

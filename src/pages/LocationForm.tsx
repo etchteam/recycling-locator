@@ -2,12 +2,7 @@ import { useSignal } from '@preact/signals';
 import { ComponentChildren } from 'preact';
 import { useEffect } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
-import {
-  Form,
-  useLocation,
-  useSearchParams,
-  useSubmit,
-} from 'react-router-dom';
+import { Form, useLocation, useSearchParams, useSubmit } from 'react-router';
 import '@etchteam/diamond-ui/composition/FormGroup/FormGroup';
 import '@etchteam/diamond-ui/composition/Grid/Grid';
 import '@etchteam/diamond-ui/composition/Grid/GridItem';

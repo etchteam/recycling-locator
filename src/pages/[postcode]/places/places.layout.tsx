@@ -2,13 +2,7 @@ import { useSignal } from '@preact/signals';
 import { ComponentChildren } from 'preact';
 import { Suspense } from 'preact/compat';
 import { useTranslation } from 'react-i18next';
-import {
-  Await,
-  Link,
-  Outlet,
-  useParams,
-  useSearchParams,
-} from 'react-router-dom';
+import { Await, Link, Outlet, useParams, useSearchParams } from 'react-router';
 import '@etchteam/diamond-ui/control/Button/Button';
 
 import '@/components/composition/Layout/Layout';

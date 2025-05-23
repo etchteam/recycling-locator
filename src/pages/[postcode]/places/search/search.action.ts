@@ -1,4 +1,4 @@
-import { ActionFunctionArgs, redirect } from 'react-router-dom';
+import { ActionFunctionArgs, redirect } from 'react-router';
 
 import LocatorApi from '@/lib/LocatorApi';
 import { MaterialSearch } from '@/types/locatorApi';

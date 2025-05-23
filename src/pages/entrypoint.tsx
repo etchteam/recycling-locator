@@ -3,8 +3,8 @@ import {
   createMemoryRouter,
   RouteObject,
   createBrowserRouter,
-  RouterProvider,
-} from 'react-router-dom';
+} from 'react-router';
+import { RouterProvider } from 'react-router/dom';
 
 import '@/components/content/Icon/Icon';
 import '@/components/canvas/Loading/Loading';

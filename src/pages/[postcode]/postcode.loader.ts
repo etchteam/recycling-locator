@@ -1,8 +1,4 @@
-import {
-  LoaderFunctionArgs,
-  defer,
-  useRouteLoaderData,
-} from 'react-router-dom';
+import { LoaderFunctionArgs, useRouteLoaderData } from 'react-router';
 
 import LocatorApi from '@/lib/LocatorApi';
 import PostCodeResolver from '@/lib/PostcodeResolver';
@@ -37,7 +33,7 @@ export default async function postcodeLoader({
     return {
       postcode,
       city: geocode.items[0].address.city,
-      locationsPromise: defer({ locations }),
+      locationsPromise: { data: { locations } },
     };
   } catch (error) {
     if (error instanceof Error) {

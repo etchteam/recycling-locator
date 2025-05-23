@@ -1,5 +1,5 @@
 import { useSignal } from '@preact/signals';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 
 import '@/components/content/Icon/Icon';
 import '@/components/composition/BorderedList/BorderedList';

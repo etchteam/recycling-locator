@@ -1,4 +1,4 @@
-import { RouteObject } from 'react-router-dom';
+import { RouteObject } from 'react-router';
 
 import homeCollectionLoader from './collection.loader';
 import CollectionPage from './collection.page';

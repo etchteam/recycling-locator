@@ -8,7 +8,6 @@ import {
 import { Signal, signal } from '@preact/signals';
 import debounce from 'lodash/debounce';
 import escapeRegExp from 'lodash/escapeRegExp';
-import uniq from 'lodash/uniq';
 import { Component, createRef } from 'preact';
 import '@etchteam/diamond-ui/control/Input/Input';
 import '@etchteam/diamond-ui/control/Button/Button';
@@ -135,7 +134,7 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
     const placeholder =
       this.props.placeholder ??
       i18n.t('components.materialSearchInput.placeholder');
-    const materials = uniq(this.materialSuggestions.value);
+    const materials = [...new Set(this.materialSuggestions.value)];
     let showMaterials = this.inputValue.value && materials.length > 0;
 
     if (

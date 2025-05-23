@@ -1,3 +1,15 @@
+## [1.62.0](https://github.com/etchteam/recycling-locator/compare/v1.61.0...v1.62.0) (2025-05-23)
+
+
+### Features
+
+* remove lodash/uniq usage ([b2b3a30](https://github.com/etchteam/recycling-locator/commit/b2b3a301aeb77641fcc853e9c10f06d63a676d37))
+
+
+### Bug Fixes
+
+* migrate to an isolated sentry to avoid polluting the global sentry state ([459f5d6](https://github.com/etchteam/recycling-locator/commit/459f5d6251491d1f79f38e6df798b975f0b3fd2c))
+
 ## [1.61.0](https://github.com/etchteam/recycling-locator/compare/v1.60.4...v1.61.0) (2025-04-16)
 
 

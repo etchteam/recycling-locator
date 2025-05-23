@@ -1,4 +1,4 @@
-import { RouteObject } from 'react-router-dom';
+import { RouteObject } from 'react-router';
 
 import PlacesErrorPage from './error.page';
 import PlacesMapPage from './map.page';

@@ -1,5 +1,5 @@
 import { Suspense } from 'preact/compat';
-import { Await, useLoaderData, useParams } from 'react-router-dom';
+import { Await, useLoaderData, useParams } from 'react-router';
 import '@etchteam/diamond-ui/composition/Enter/Enter';
 
 import '@/components/composition/Wrap/Wrap';

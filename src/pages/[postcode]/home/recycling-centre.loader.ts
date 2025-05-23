@@ -1,4 +1,4 @@
-import { LoaderFunctionArgs } from 'react-router-dom';
+import { LoaderFunctionArgs } from 'react-router';
 
 import LocatorApi from '@/lib/LocatorApi';
 import { LocationsResponse } from '@/types/locatorApi';

@@ -1,5 +1,3 @@
-import { defer } from 'react-router-dom';
-
 import LocatorApi from '@/lib/LocatorApi';
 import { getTipByPath } from '@/lib/getTip';
 import { captureException } from '@/lib/sentry';
@@ -20,5 +18,5 @@ export default async function materialSearchLoader() {
 
   const tip = getTipByPath('/:postcode/material/search');
 
-  return defer({ popularMaterials, tip });
+  return { popularMaterials, tip };
 }

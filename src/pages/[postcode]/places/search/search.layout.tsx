@@ -6,7 +6,7 @@ import {
   Outlet,
   useParams,
   useSearchParams,
-} from 'react-router-dom';
+} from 'react-router';
 import '@etchteam/diamond-ui/control/Button/Button';
 
 import '@/components/composition/Layout/Layout';

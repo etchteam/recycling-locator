@@ -1,5 +1,3 @@
-import { defer } from 'react-router-dom';
-
 import LocatorApi from '@/lib/LocatorApi';
 import { Material } from '@/types/locatorApi';
 
@@ -10,5 +8,5 @@ export interface PlacesSearchAtoZLoaderResponse {
 export default async function placesSearchAtoZLoader() {
   const materials = LocatorApi.get<Material[]>('materials');
 
-  return defer({ materials });
+  return { materials };
 }

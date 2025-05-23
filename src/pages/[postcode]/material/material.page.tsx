@@ -7,7 +7,7 @@ import {
   useLoaderData,
   useParams,
   useSearchParams,
-} from 'react-router-dom';
+} from 'react-router';
 import '@etchteam/diamond-ui/composition/Enter/Enter';
 
 import '@/components/canvas/Loading/Loading';

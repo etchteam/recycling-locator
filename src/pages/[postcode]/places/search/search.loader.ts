@@ -1,5 +1,3 @@
-import { defer } from 'react-router-dom';
-
 import LocatorApi from '@/lib/LocatorApi';
 import { captureException } from '@/lib/sentry';
 import { Material } from '@/types/locatorApi';
@@ -16,5 +14,5 @@ export default async function placesSearchLoader() {
     return Promise.resolve([]);
   });
 
-  return defer({ popularMaterials });
+  return { popularMaterials };
 }

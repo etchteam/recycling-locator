@@ -1,12 +1,12 @@
 /* eslint-disable jsx-a11y/no-autofocus */
 import { Signal, signal } from '@preact/signals';
-import * as Sentry from '@sentry/browser';
 import debounce from 'lodash/debounce';
 import { Component, createRef } from 'preact';
 import '@etchteam/diamond-ui/control/Input/Input';
 
 import config from '@/config';
 import i18n from '@/lib/i18n';
+import { captureException } from '@/lib/sentry';
 import '@/components/content/Icon/Icon';
 
 interface HereMapsAutosuggestResult {
@@ -53,9 +53,7 @@ export default class LocationInput extends Component<LocationInputProps> {
       );
       return response.json();
     } catch (error) {
-      Sentry.captureException(error, {
-        tags: { component: 'LocationInput' },
-      });
+      captureException(error, { component: 'LocationInput' });
       return Promise.resolve({ items: [] });
     }
   };

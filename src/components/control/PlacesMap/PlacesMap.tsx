@@ -1,10 +1,10 @@
-import * as Sentry from '@sentry/browser';
 import { Component, ComponentChildren, ErrorInfo, createRef } from 'preact';
 import '@etchteam/diamond-ui/control/Input/Input';
 
 import '@/components/content/Icon/Icon';
 import config from '@/config';
 import i18n from '@/lib/i18n';
+import { captureException } from '@/lib/sentry';
 import { CustomElement } from '@/types/customElement';
 import { Location } from '@/types/locatorApi';
 
@@ -123,9 +123,7 @@ export default class PlacesMap extends Component<PlacesMapProps> {
       });
     } catch (error) {
       // Controls are an enhancement, log the error instead of reacting to it
-      Sentry.captureException(error, {
-        tags: { component: 'PlacesMap control creation' },
-      });
+      captureException(error, { component: 'PlacesMap control creation' });
     }
   }
 
@@ -234,10 +232,7 @@ export default class PlacesMap extends Component<PlacesMapProps> {
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
-    Sentry.captureException(error, {
-      tags: { component: 'PlacesMap' },
-      extra: { errorInfo },
-    });
+    captureException(error, { component: 'PlacesMap' }, { errorInfo });
   }
 
   render() {

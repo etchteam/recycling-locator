@@ -1,7 +1,7 @@
-import * as Sentry from '@sentry/browser';
 import { useLocation } from 'react-router-dom';
 
 import config from '@/config';
+import { captureException } from '@/lib/sentry';
 
 import { useAppState } from './AppState';
 
@@ -43,10 +43,7 @@ async function sendAnalyticsRequest(event: AnalyticsEvent) {
       },
     );
   } catch (error) {
-    Sentry.captureException(error, {
-      tags: { analytics: 'sendHit' },
-      extra: { event },
-    });
+    captureException(error, { analytics: 'sendHit' }, { event });
   }
 }
 

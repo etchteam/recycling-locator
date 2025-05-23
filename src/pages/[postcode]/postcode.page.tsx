@@ -1,4 +1,3 @@
-import * as Sentry from '@sentry/browser';
 import { Suspense } from 'preact/compat';
 import { useEffect } from 'preact/hooks';
 import { Trans, useTranslation } from 'react-i18next';
@@ -26,6 +25,7 @@ import PlacesMap from '@/components/control/PlacesMap/PlacesMap';
 import { useAppState } from '@/lib/AppState';
 import formatPostcode from '@/lib/formatPostcode';
 import i18n from '@/lib/i18n';
+import sentry from '@/lib/sentry';
 import useAnalytics from '@/lib/useAnalytics';
 import useFormValidation from '@/lib/useFormValidation';
 import StartLayout from '@/pages/start.layout';
@@ -79,9 +79,9 @@ export function PostcodeAside({ postcode }: { readonly postcode: string }) {
           if (locations.error) {
             // This can happen when the postcode is not found by the API but is found by HERE maps
             // The postcode checks on the API are stricter
-            Sentry.captureMessage(locations.error, {
-              tags: { route: 'PostcodeAside' },
-            });
+            sentry.setTag('route', 'PostcodeAside');
+            sentry.captureMessage(locations.error);
+            sentry.clear();
 
             return <MapErrorFallback postcode={postcode} />;
           }

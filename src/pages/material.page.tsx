@@ -1,4 +1,3 @@
-import * as Sentry from '@sentry/browser';
 import { useEffect, useState } from 'preact/hooks';
 import { Trans, useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
@@ -11,6 +10,7 @@ import '@/components/composition/Wrap/Wrap';
 import '@/components/control/LocationInput/LocationInput';
 
 import LocatorApi from '@/lib/LocatorApi';
+import { captureException } from '@/lib/sentry';
 import tArray from '@/lib/tArray';
 import StartLayout from '@/pages/start.layout';
 import { MaterialWithCategory } from '@/types/locatorApi';
@@ -39,9 +39,7 @@ async function getMaterialsOrCategoryNameById(
     const foundMaterial = materialData.find((m) => String(m.id) === materialId);
     return foundMaterial?.name ?? '';
   } catch (error) {
-    Sentry.captureException(error, {
-      tags: { component: 'MaterialStartPage' },
-    });
+    captureException(error, { component: 'MaterialStartPage' });
   }
 }
 

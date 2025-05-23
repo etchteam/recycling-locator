@@ -1,5 +1,4 @@
 import { useSignal } from '@preact/signals';
-import * as Sentry from '@sentry/browser';
 import { useCallback, useEffect } from 'preact/hooks';
 import { Trans, useTranslation } from 'react-i18next';
 import '@etchteam/diamond-ui/composition/Collapse/Collapse';
@@ -12,6 +11,7 @@ import '@/components/composition/IconText/IconText';
 import '@/components/content/Icon/Icon';
 
 import LocatorApi from '@/lib/LocatorApi';
+import { captureException } from '@/lib/sentry';
 import useAnalytics from '@/lib/useAnalytics';
 import { CustomElement } from '@/types/customElement';
 import { MaterialCategory } from '@/types/locatorApi';
@@ -53,9 +53,7 @@ export default function ReportMissingMaterial({
         (category) => category.name,
       );
     } catch (error) {
-      Sentry.captureException(error, {
-        tags: { component: 'ReportMissingMaterial' },
-      });
+      captureException(error, { component: 'ReportMissingMaterial' });
     }
   }, []);
 

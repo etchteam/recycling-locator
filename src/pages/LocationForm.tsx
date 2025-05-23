@@ -1,5 +1,4 @@
 import { useSignal } from '@preact/signals';
-import * as Sentry from '@sentry/browser';
 import { ComponentChildren } from 'preact';
 import { useEffect } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
@@ -19,6 +18,7 @@ import '@/components/canvas/Highlight/Highlight';
 import LocationInput from '@/components/control/LocationInput/LocationInput';
 import { useAppState } from '@/lib/AppState';
 import i18n from '@/lib/i18n';
+import { captureException } from '@/lib/sentry';
 import useFormValidation from '@/lib/useFormValidation';
 
 export default function LocationForm({
@@ -84,9 +84,7 @@ export default function LocationForm({
       checkbox.checked = false;
       geolocationError.value = true;
 
-      Sentry.captureException(error, {
-        tags: { component: 'LocationForm geolocation' },
-      });
+      captureException(error, { component: 'LocationForm geolocation' });
     }
   }
 

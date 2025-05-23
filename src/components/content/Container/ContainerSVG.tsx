@@ -1,7 +1,7 @@
-import * as Sentry from '@sentry/browser';
 import { Suspense, lazy } from 'preact/compat';
 
 import getContainerColours from '@/lib/getContainerColours';
+import { captureException } from '@/lib/sentry';
 import { ContainerName } from '@/types/locatorApi';
 
 // The blank svg takes up the same space as a wheeled bin would whilst the icon is loading
@@ -45,8 +45,9 @@ export default function ContainerSvg({
   const ContainerIconSvg = lazy(() => {
     return import(`./svg/${containerNameToSvgName[name]}.svg?react`).catch(
       (error) => {
-        Sentry.captureException(error, {
-          tags: { component: 'ContainerSvg', containerName: name },
+        captureException(error, {
+          component: 'ContainerSvg',
+          containerName: name,
         });
         return Promise.resolve({ default: BlankSvg });
       },

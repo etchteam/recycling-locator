@@ -1,7 +1,7 @@
-import * as Sentry from '@sentry/browser';
 import { Suspense, lazy } from 'preact/compat';
 import register from 'preact-custom-element';
 
+import { captureException } from '@/lib/sentry';
 import { CustomElement } from '@/types/customElement';
 
 // The blank svg takes up the same space as an icon would whilst the icon is loading
@@ -48,8 +48,9 @@ export default function Icon({ icon, label }: IconAttributes) {
 
   const IconSvg = lazy(() => {
     return import(`./svg/${icon}.svg?react`).catch((error) => {
-      Sentry.captureException(error, {
-        tags: { component: 'IconSvg', iconName: icon },
+      captureException(error, {
+        component: 'IconSvg',
+        iconName: icon,
       });
       return Promise.resolve({ default: BlankSvg });
     });

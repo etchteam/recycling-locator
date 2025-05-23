@@ -42,7 +42,7 @@
     "@headlessui/react": "^2.0.3",
     "@here/maps-api-for-javascript": "^1.50.0",
     "@preact/signals": "^1.2.2",
-    "@sentry/browser": "^8.4.0",
+    "@sentry/browser": "^9.22.0",
     "i18next": "^23.7.18",
     "i18next-http-backend": "^2.4.2",
     "lodash": "^4.17.21",

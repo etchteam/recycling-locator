@@ -1,6 +1,5 @@
-import * as Sentry from '@sentry/browser';
-
 import i18n from '@/lib/i18n';
+import sentry from '@/lib/sentry';
 
 /**
  * Convenience method to iterate an array of translations for a given key
@@ -9,7 +8,7 @@ import i18n from '@/lib/i18n';
  */
 export default function tArray(tKey: string) {
   if (!i18n.exists(tKey)) {
-    Sentry.captureMessage(`Missing translation key: ${tKey}`);
+    sentry.captureMessage(`Missing translation key: ${tKey}`);
     return [];
   }
 

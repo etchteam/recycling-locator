@@ -6,7 +6,6 @@ import {
   ComboboxOptions,
 } from '@headlessui/react';
 import { Signal, signal } from '@preact/signals';
-import * as Sentry from '@sentry/browser';
 import debounce from 'lodash/debounce';
 import escapeRegExp from 'lodash/escapeRegExp';
 import uniq from 'lodash/uniq';
@@ -18,6 +17,7 @@ import '@/components/content/Icon/Icon';
 import ReportMissingMaterial from '../ReportMissingMaterial/ReportMissingMaterial';
 import LocatorApi from '@/lib/LocatorApi';
 import i18n from '@/lib/i18n';
+import { captureException } from '@/lib/sentry';
 import { CustomElement } from '@/types/customElement';
 import { Material } from '@/types/locatorApi';
 
@@ -59,9 +59,7 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
       body.append('search', query);
       return LocatorApi.post('materials', body);
     } catch (error) {
-      Sentry.captureException(error, {
-        tags: { component: 'MaterialSearchInput' },
-      });
+      captureException(error, { component: 'MaterialSearchInput' });
       return Promise.resolve([]);
     }
   };

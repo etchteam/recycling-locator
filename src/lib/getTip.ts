@@ -1,10 +1,10 @@
-import * as Sentry from '@sentry/browser';
 import random from 'lodash/random';
 
 import i18n from '@/lib/i18n';
 import { RecyclingMeta } from '@/types/locatorApi';
 
 import LocatorApi from './LocatorApi';
+import { captureException } from './sentry';
 
 type Country = 'ENGLAND' | 'WALES';
 let tipCountryPromise: Promise<Country>;
@@ -43,9 +43,7 @@ export default function getTip(
  * Log and ignore all tip errors because not having the content isn't a blocker
  */
 function handleTipError(error: Error) {
-  Sentry.captureException(error, {
-    tags: { route: 'Get tip' },
-  });
+  captureException(error, { route: 'Get tip' });
 }
 
 /**

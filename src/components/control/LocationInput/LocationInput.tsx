@@ -67,7 +67,7 @@ export default class LocationInput extends Component<LocationInputProps> {
     const locations = result.items.map((item) => item.title);
     this.locationSuggestions.value = locations;
     this.props.handleInput?.(query);
-  }, 500);
+  }, 750);
 
   handleBlur = (event: preact.JSX.TargetedEvent<HTMLInputElement>) => {
     this.props.handleBlur?.(event.currentTarget.value);

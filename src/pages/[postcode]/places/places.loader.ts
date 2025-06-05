@@ -40,7 +40,7 @@ export default async function placesLoader({
     },
   );
 
-  const locations = LocatorApi.get<LocationsResponse>(
+  const locations = LocatorApi.getInstance().get<LocationsResponse>(
     `locations/${postcode}?${searchParams.toString()}`,
   );
 

@@ -45,7 +45,7 @@ export default function ReportMissingMaterial({
     }
 
     try {
-      const materialCategoriesResponse = await LocatorApi.get<
+      const materialCategoriesResponse = await LocatorApi.getInstance().get<
         MaterialCategory[]
       >('material-categories');
 

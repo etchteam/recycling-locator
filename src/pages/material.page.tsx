@@ -23,7 +23,7 @@ async function getMaterialsOrCategoryNameById(
 ): Promise<string> {
   try {
     const materialData =
-      await LocatorApi.get<MaterialWithCategory[]>('materials');
+      await LocatorApi.getInstance().get<MaterialWithCategory[]>('materials');
 
     if (category) {
       const foundMaterialWithCategory = materialData.find(

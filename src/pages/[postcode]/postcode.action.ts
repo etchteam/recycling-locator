@@ -10,7 +10,7 @@ export default async function postcodeAction({
   const postcode = params.postcode;
   const formData = await request.formData();
   const search = formData.get('search') as string;
-  const materials = await LocatorApi.post<MaterialSearch[]>(
+  const materials = await LocatorApi.getInstance().post<MaterialSearch[]>(
     'materials',
     formData,
   );

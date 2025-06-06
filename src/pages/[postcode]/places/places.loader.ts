@@ -7,8 +7,8 @@ import mapSearchParams from '@/lib/mapSearchParams';
 import { LocationsResponse, RecyclingMeta } from '@/types/locatorApi';
 
 export interface PlacesLoaderResponse {
-  locations: Promise<LocationsResponse>;
-  tip: Promise<RecyclingMeta>;
+  locations: LocationsResponse;
+  tip: RecyclingMeta;
 }
 
 export default async function placesLoader({
@@ -36,13 +36,13 @@ export default async function placesLoader({
     },
   );
 
-  const locations = LocatorApi.get<LocationsResponse>(
+  const locations = await LocatorApi.get<LocationsResponse>(
     `locations/${postcode}?${searchParams.toString()}`,
   );
 
   const tip = materials
-    ? getTipByMaterial(materials.split(',')[0])
-    : getTipByPath('/:postcode/places');
+    ? await getTipByMaterial(materials.split(',')[0])
+    : await getTipByPath('/:postcode/places');
 
   return {
     page,

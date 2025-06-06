@@ -123,13 +123,13 @@ Run end-to-end tests with Playwright:
 
 ```bash
 # Run all Playwright tests
-npm run test:playwright
+npm run test:end-to-end
 
 # Run Playwright tests with UI
-npm run test:playwright:ui
+npm run test:test:end-to-end:ui
 
 # Run Playwright tests in debug mode
-npm run test:playwright:debug
+npm run test:end-to-end:debug
 ```
 
 Run all tests:

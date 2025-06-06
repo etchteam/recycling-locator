@@ -1,4 +1,4 @@
-import { useRouteError } from 'react-router-dom';
+import { useRouteError } from 'react-router';
 import '@etchteam/diamond-ui/canvas/Section/Section';
 
 import '@/components/composition/Wrap/Wrap';

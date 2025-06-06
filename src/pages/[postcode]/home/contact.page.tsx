@@ -1,6 +1,6 @@
 import { Suspense } from 'preact/compat';
 import { useTranslation } from 'react-i18next';
-import { Await } from 'react-router-dom';
+import { Await } from 'react-router';
 import '@etchteam/diamond-ui/composition/Enter/Enter';
 
 import '@/components/composition/BorderedList/BorderedList';

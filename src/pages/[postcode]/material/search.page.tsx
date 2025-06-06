@@ -8,7 +8,7 @@ import {
   useLocation,
   useParams,
   useSearchParams,
-} from 'react-router-dom';
+} from 'react-router';
 import '@etchteam/diamond-ui/canvas/Section/Section';
 import '@etchteam/diamond-ui/composition/FormGroup/FormGroup';
 import '@etchteam/diamond-ui/composition/Enter/Enter';

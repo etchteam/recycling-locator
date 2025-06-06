@@ -1,6 +1,6 @@
 import { Suspense } from 'preact/compat';
 import { useTranslation } from 'react-i18next';
-import { Await, Link, useParams } from 'react-router-dom';
+import { Await, Link, useParams } from 'react-router';
 import '@etchteam/diamond-ui/composition/Enter/Enter';
 import '@etchteam/diamond-ui/canvas/Card/Card';
 

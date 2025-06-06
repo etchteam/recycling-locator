@@ -1,5 +1,3 @@
-import { defer } from 'react-router-dom';
-
 import LocatorApi from '@/lib/LocatorApi';
 import { MaterialCategory } from '@/types/locatorApi';
 
@@ -12,5 +10,5 @@ export default async function placesSearchCategoriesLoader() {
     'material-categories',
   );
 
-  return defer({ materialCategories });
+  return { materialCategories };
 }

@@ -1,5 +1,3 @@
-import { defer } from 'react-router-dom';
-
 import { getTipByPath } from '@/lib/getTip';
 import { RecyclingMeta } from '@/types/locatorApi';
 
@@ -9,5 +7,5 @@ export interface HomeCollectionLoaderResponse {
 
 export default function homeCollectionLoader() {
   const tip = getTipByPath('/:postcode/home/collection');
-  return defer({ tip });
+  return { tip };
 }

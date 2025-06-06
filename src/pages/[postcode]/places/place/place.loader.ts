@@ -1,4 +1,4 @@
-import { LoaderFunctionArgs, useRouteLoaderData } from 'react-router-dom';
+import { LoaderFunctionArgs, useRouteLoaderData } from 'react-router';
 
 import LocatorApi from '@/lib/LocatorApi';
 import { Location } from '@/types/locatorApi';

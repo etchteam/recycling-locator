@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { useParams, useRouteError } from 'react-router-dom';
+import { useParams, useRouteError } from 'react-router';
 import '@etchteam/diamond-ui/canvas/Section/Section';
 
 import '@/components/composition/Wrap/Wrap';

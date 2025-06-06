@@ -3,7 +3,7 @@ import { ComponentChildren } from 'preact';
 import { Suspense } from 'preact/compat';
 import { useRef } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
-import { Await, Link, NavLink, Outlet, useParams } from 'react-router-dom';
+import { Await, Link, NavLink, Outlet, useParams } from 'react-router';
 import '@etchteam/diamond-ui/control/Button/Button';
 import '@etchteam/diamond-ui/canvas/Section/Section';
 import '@etchteam/diamond-ui/composition/Grid/Grid';

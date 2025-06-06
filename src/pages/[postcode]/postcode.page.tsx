@@ -1,7 +1,7 @@
 import { Suspense } from 'preact/compat';
 import { useEffect } from 'preact/hooks';
 import { Trans, useTranslation } from 'react-i18next';
-import { Link, Form, Await, useSearchParams } from 'react-router-dom';
+import { Link, Form, Await, useSearchParams } from 'react-router';
 import '@etchteam/diamond-ui/canvas/Section/Section';
 import '@etchteam/diamond-ui/composition/Grid/Grid';
 import '@etchteam/diamond-ui/composition/Grid/GridItem';

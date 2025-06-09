@@ -1,3 +1,15 @@
+## [1.63.0](https://github.com/etchteam/recycling-locator/compare/v1.62.0...v1.63.0) (2025-06-09)
+
+
+### Features
+
+* add client-side caching ([ba5b923](https://github.com/etchteam/recycling-locator/commit/ba5b9239a263437ba0e300a171fc6fa5dcbb93f9))
+
+
+### Bug Fixes
+
+* **a11y:** make home recycling link look like a link ([6dcfbcb](https://github.com/etchteam/recycling-locator/commit/6dcfbcbf975364694f2ca2e39a6c1e23fa8ee31c))
+
 ## [1.62.0](https://github.com/etchteam/recycling-locator/compare/v1.61.0...v1.62.0) (2025-05-23)
 
 

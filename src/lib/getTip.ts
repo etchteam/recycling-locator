@@ -79,11 +79,13 @@ export async function getTipByPath(
     const url = `recycling-meta?categories=HINT&country=${country}`;
 
     if (fallback) {
-      const meta = await LocatorApi.get<RecyclingMeta[]>(url);
+      const meta = await LocatorApi.getInstance().get<RecyclingMeta[]>(url);
 
       return getTip(meta, { path });
     } else {
-      const tips = await LocatorApi.get<RecyclingMeta[]>(`${url}&path=${path}`);
+      const tips = await LocatorApi.getInstance().get<RecyclingMeta[]>(
+        `${url}&path=${path}`,
+      );
 
       return tips?.[0] ?? null;
     }
@@ -96,7 +98,7 @@ export async function getTipByPath(
 export async function getTipByMaterial(materialId: string) {
   try {
     const country = await getTipCountry();
-    const meta = await LocatorApi.get<RecyclingMeta[]>(
+    const meta = await LocatorApi.getInstance().get<RecyclingMeta[]>(
       `recycling-meta?categories=HINT&country=${country}`,
     );
     return getTip(meta, { materialId });

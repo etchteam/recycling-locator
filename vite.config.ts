@@ -10,11 +10,12 @@ import svgr from 'vite-plugin-svgr';
 // CSS is built separately by PostCSS
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
-  const env = loadEnv(mode, process.cwd(), '');
+  const privateEnv = loadEnv(mode, process.cwd());
+  const publicEnv = loadEnv(mode, process.cwd(), ['VITE_']);
 
   const config: UserConfig = {
     define: {
-      'process.env': env,
+      'process.env': publicEnv,
     },
 
     server: {
@@ -43,7 +44,7 @@ export default defineConfig(({ mode }) => {
     },
   };
 
-  if (!env.VITE_TEST) {
+  if (!publicEnv.VITE_TEST) {
     config.build = {
       sourcemap: true,
       manifest: true,
@@ -71,12 +72,12 @@ export default defineConfig(({ mode }) => {
     };
   }
 
-  if (mode === 'production' && env.VITE_SENTRY_DSN) {
+  if (mode === 'production' && publicEnv.VITE_SENTRY_DSN) {
     config.plugins.push(
       sentryVitePlugin({
-        authToken: env.SENTRY_AUTH_TOKEN,
-        org: env.SENTRY_ORG,
-        project: env.SENTRY_PROJECT,
+        authToken: privateEnv.SENTRY_AUTH_TOKEN,
+        org: privateEnv.SENTRY_ORG,
+        project: privateEnv.SENTRY_PROJECT,
       }),
     );
   }

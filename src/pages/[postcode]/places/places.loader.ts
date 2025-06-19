@@ -36,7 +36,7 @@ export default async function placesLoader({
     },
   );
 
-  const locations = await LocatorApi.get<LocationsResponse>(
+  const locations = LocatorApi.getInstance().get<LocationsResponse>(
     `locations/${postcode}?${searchParams.toString()}`,
   );
 

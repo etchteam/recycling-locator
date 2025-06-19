@@ -9,7 +9,7 @@ export interface PlaceLoaderResponse {
 
 export default async function placeLoader({ params }: LoaderFunctionArgs) {
   // TODO(WRAP-207): Use params.id instead
-  const location = LocatorApi.get<Location>(
+  const location = LocatorApi.getInstance().get<Location>(
     `location/${params.placeName}/${params.placePostcode}`,
   );
 

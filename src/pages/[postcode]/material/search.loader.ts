@@ -9,12 +9,12 @@ export interface MaterialSearchLoaderResponse {
 }
 
 export default async function materialSearchLoader() {
-  const popularMaterials = LocatorApi.get<Material[]>(
-    'materials?popular=true',
-  ).catch((error) => {
-    captureException(error, { route: 'Material search loader' });
-    return Promise.resolve([]);
-  });
+  const popularMaterials = LocatorApi.getInstance()
+    .get<Material[]>('materials?popular=true')
+    .catch((error) => {
+      captureException(error, { route: 'Material search loader' });
+      return Promise.resolve([]);
+    });
 
   const tip = getTipByPath('/:postcode/material/search');
 

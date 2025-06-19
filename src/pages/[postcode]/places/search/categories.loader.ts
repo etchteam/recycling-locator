@@ -6,7 +6,7 @@ export interface PlacesSearchCategoriesLoaderResponse {
 }
 
 export default async function placesSearchCategoriesLoader() {
-  const materialCategories = LocatorApi.get<MaterialCategory[]>(
+  const materialCategories = LocatorApi.getInstance().get<MaterialCategory[]>(
     'material-categories',
   );
 

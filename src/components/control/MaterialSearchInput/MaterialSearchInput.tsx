@@ -56,7 +56,7 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
     try {
       const body = new FormData();
       body.append('search', query);
-      return LocatorApi.post('materials', body);
+      return LocatorApi.getInstance().post('materials', body);
     } catch (error) {
       captureException(error, { component: 'MaterialSearchInput' });
       return Promise.resolve([]);

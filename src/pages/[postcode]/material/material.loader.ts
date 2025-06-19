@@ -29,7 +29,7 @@ export default async function materialLoader({
   params,
 }: LoaderFunctionArgs) {
   const postcode = params.postcode;
-  const localAuthority = LocatorApi.get<LocalAuthority>(
+  const localAuthority = LocatorApi.getInstance().get<LocalAuthority>(
     `local-authority/${postcode}`,
   );
 
@@ -38,11 +38,11 @@ export default async function materialLoader({
     ['materials', 'category'],
     url.searchParams,
   );
-  const locations = LocatorApi.get<LocationsResponse>(
+  const locations = LocatorApi.getInstance().get<LocationsResponse>(
     `locations/${postcode}?${searchParams.toString()}`,
   );
 
-  const material = LocatorApi.get<Material>(
+  const material = LocatorApi.getInstance().get<Material>(
     `materials/${url.searchParams.get('materials')}`,
   );
 

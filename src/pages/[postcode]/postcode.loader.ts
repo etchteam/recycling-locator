@@ -17,7 +17,7 @@ export default async function postcodeLoader({
   try {
     const postcode = params.postcode;
     const geocode = await PostCodeResolver.getValidGeocodeData(postcode);
-    const locations = LocatorApi.get<LocationsResponse>(
+    const locations = LocatorApi.getInstance().get<LocationsResponse>(
       `locations/${postcode}?limit=30&radius=25`,
     );
     const isInWales = geocode.items[0].address.state === 'Wales';

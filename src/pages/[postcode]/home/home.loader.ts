@@ -11,7 +11,7 @@ export interface HomeRecyclingLoaderResponse {
 
 export default function homeRecyclingLoader({ params }: LoaderFunctionArgs) {
   const postcode = params.postcode;
-  const localAuthority = LocatorApi.get<LocalAuthority>(
+  const localAuthority = LocatorApi.getInstance().get<LocalAuthority>(
     `local-authority/${postcode}`,
   );
   const tip = getTipByPath('/:postcode/home', { fallback: false });

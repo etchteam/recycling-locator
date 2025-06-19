@@ -84,7 +84,7 @@ export default class PostCodeResolver {
   static async fromLatLng(lat: number, lng: number): Promise<string> {
     const safeLat = encodeURIComponent(lat);
     const safeLng = encodeURIComponent(lng);
-    const response = await LocatorApi.get<PostcodeResponse>(
+    const response = await LocatorApi.getInstance().get<PostcodeResponse>(
       `postcode/${safeLat},${safeLng}`,
     );
 

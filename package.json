@@ -1,6 +1,6 @@
 {
   "name": "@etchteam/recycling-locator",
-  "version": "1.61.0",
+  "version": "1.63.0",
   "description": "Find places to recycle, refill or reuse items.",
   "type": "module",
   "author": "Etch <hey@etch.co>",
@@ -43,6 +43,8 @@
     "@here/maps-api-for-javascript": "^1.64.3",
     "@preact/signals": "^2.0.4",
     "@sentry/browser": "^9.22.0",
+    "axios": "^1.9.0",
+    "axios-cache-interceptor": "^1.8.0",
     "i18next": "^25.2.0",
     "i18next-http-backend": "^3.0.2",
     "lodash": "^4.17.21",

@@ -6,7 +6,7 @@ export interface PlacesSearchAtoZLoaderResponse {
 }
 
 export default async function placesSearchAtoZLoader() {
-  const materials = LocatorApi.get<Material[]>('materials');
+  const materials = LocatorApi.getInstance().get<Material[]>('materials');
 
   return { materials };
 }

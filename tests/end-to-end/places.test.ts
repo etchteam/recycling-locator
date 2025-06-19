@@ -80,7 +80,6 @@ test.describe('Places', () => {
     await widget.evaluate((node) =>
       node.setAttribute('path', '/EX32 7RB/places'),
     );
-    await page.waitForRequest(LOCATIONS_ENDPOINT);
     await expect(placesCount30).toBeVisible();
     await loadMoreButton.click();
     await expect(placesCount50).toBeVisible();

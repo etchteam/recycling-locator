@@ -1,3 +1,18 @@
+## [1.64.0](https://github.com/etchteam/recycling-locator/compare/v1.63.0...v1.64.0) (2025-06-24)
+
+
+### Features
+
+* upgrade production dependencies ([e06dbe3](https://github.com/etchteam/recycling-locator/commit/e06dbe37f635aa1deb264297f772544904e3db36))
+
+
+### Bug Fixes
+
+* await locations promise ([db66c66](https://github.com/etchteam/recycling-locator/commit/db66c665ec97d3d80029f377ddd303c0d7ab86b5))
+* increase debounce times to reduce API calls ([eddeec1](https://github.com/etchteam/recycling-locator/commit/eddeec1943cb3d472c1bc774b18c27c1356f2676))
+* load more button ([70022f2](https://github.com/etchteam/recycling-locator/commit/70022f24117348eb720f1af92d9685adb333e515))
+* only expose env vars prefixed with VITE_ ([28143dc](https://github.com/etchteam/recycling-locator/commit/28143dc7dff6577cc1986a502c978a30a57ad7d7))
+
 ## [1.63.0](https://github.com/etchteam/recycling-locator/compare/v1.62.0...v1.63.0) (2025-06-09)
 
 

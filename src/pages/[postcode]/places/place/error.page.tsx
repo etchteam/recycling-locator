@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { useParams, useRouteError } from 'react-router-dom';
+import { useParams, useRouteError } from 'react-router';
 
 import ErrorPage from '@/components/template/ErrorPage/ErrorPage';
 import { captureException } from '@/lib/sentry';

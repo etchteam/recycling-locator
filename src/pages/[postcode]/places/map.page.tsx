@@ -9,7 +9,7 @@ import {
   useLocation,
   useParams,
   useSearchParams,
-} from 'react-router-dom';
+} from 'react-router';
 import '@etchteam/diamond-ui/canvas/Card/Card';
 import '@etchteam/diamond-ui/control/Button/Button';
 import '@etchteam/diamond-ui/composition/Grid/Grid';

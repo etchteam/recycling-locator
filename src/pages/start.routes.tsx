@@ -1,4 +1,4 @@
-import { RouteObject } from 'react-router-dom';
+import { RouteObject } from 'react-router';
 
 import HomeRecyclingStartPage from './home-recycling.page';
 import MaterialStartPage from './material.page';

@@ -75,7 +75,7 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
       this.materialSuggestions.value = materials;
       this.props.handleInput?.(query);
     },
-    250,
+    500,
     { leading: true },
   );
 

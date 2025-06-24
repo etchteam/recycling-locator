@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { useRouteError, ErrorResponse } from 'react-router-dom';
+import { useRouteError, ErrorResponse } from 'react-router';
 import '@etchteam/diamond-ui/composition/FormGroup/FormGroup';
 import '@etchteam/diamond-ui/control/Button/Button';
 import '@etchteam/diamond-ui/canvas/Section/Section';

@@ -1,4 +1,4 @@
-import { defer, LoaderFunctionArgs } from 'react-router-dom';
+import { LoaderFunctionArgs } from 'react-router';
 
 import LocatorApi from '@/lib/LocatorApi';
 import { getTipByMaterial } from '@/lib/getTip';
@@ -48,10 +48,10 @@ export default async function materialLoader({
 
   const tip = getTipByMaterial(url.searchParams.get('materials'));
 
-  return defer({
+  return {
     localAuthority,
     locations,
     tip,
     material,
-  });
+  };
 }

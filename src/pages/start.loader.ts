@@ -1,5 +1,3 @@
-import { defer } from 'react-router-dom';
-
 import { getTipByPath } from '@/lib/getTip';
 import { RecyclingMeta } from '@/types/locatorApi';
 
@@ -9,5 +7,5 @@ export interface StartLoaderResponse {
 
 export default function startLoader() {
   const tip = getTipByPath('/', { fallback: false });
-  return defer({ tip });
+  return { tip };
 }

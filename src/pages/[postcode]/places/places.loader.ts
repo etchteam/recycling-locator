@@ -1,8 +1,4 @@
-import {
-  LoaderFunctionArgs,
-  defer,
-  useRouteLoaderData,
-} from 'react-router-dom';
+import { LoaderFunctionArgs, useRouteLoaderData } from 'react-router';
 
 import LocatorApi from '@/lib/LocatorApi';
 import PostCodeResolver from '@/lib/PostcodeResolver';
@@ -11,8 +7,8 @@ import mapSearchParams from '@/lib/mapSearchParams';
 import { LocationsResponse, RecyclingMeta } from '@/types/locatorApi';
 
 export interface PlacesLoaderResponse {
-  locations: Promise<LocationsResponse>;
-  tip: Promise<RecyclingMeta>;
+  locations: LocationsResponse;
+  tip: RecyclingMeta;
 }
 
 export default async function placesLoader({
@@ -40,19 +36,19 @@ export default async function placesLoader({
     },
   );
 
-  const locations = LocatorApi.getInstance().get<LocationsResponse>(
+  const locations = await LocatorApi.getInstance().get<LocationsResponse>(
     `locations/${postcode}?${searchParams.toString()}`,
   );
 
   const tip = materials
-    ? getTipByMaterial(materials.split(',')[0])
-    : getTipByPath('/:postcode/places');
+    ? await getTipByMaterial(materials.split(',')[0])
+    : await getTipByPath('/:postcode/places');
 
-  return defer({
+  return {
     page,
-    locations: locations,
+    locations,
     tip,
-  });
+  };
 }
 
 export function usePlacesLoaderData() {

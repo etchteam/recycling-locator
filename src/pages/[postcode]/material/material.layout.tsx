@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { Link, Outlet, useParams } from 'react-router-dom';
+import { Link, Outlet, useParams } from 'react-router';
 import '@etchteam/diamond-ui/control/Button/Button';
 import '@etchteam/diamond-ui/canvas/Section/Section';
 import '@etchteam/diamond-ui/composition/Grid/Grid';

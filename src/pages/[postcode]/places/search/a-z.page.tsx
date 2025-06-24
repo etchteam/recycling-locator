@@ -1,7 +1,7 @@
 import groupBy from 'lodash/groupBy';
 import { Suspense } from 'preact/compat';
 import { useTranslation } from 'react-i18next';
-import { Await, Link, useLoaderData, useParams } from 'react-router-dom';
+import { Await, Link, useLoaderData, useParams } from 'react-router';
 import '@etchteam/diamond-ui/canvas/Section/Section';
 import '@etchteam/diamond-ui/composition/Grid/Grid';
 import '@etchteam/diamond-ui/composition/Grid/GridItem';

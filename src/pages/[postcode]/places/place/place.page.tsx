@@ -4,7 +4,7 @@ import uniqBy from 'lodash/uniqBy';
 import upperFirst from 'lodash/upperFirst';
 import { Suspense } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
-import { Await, Form } from 'react-router-dom';
+import { Await, Form } from 'react-router';
 import '@etchteam/diamond-ui/canvas/Card/Card';
 import '@etchteam/diamond-ui/composition/Enter/Enter';
 

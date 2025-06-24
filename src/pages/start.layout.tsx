@@ -2,7 +2,7 @@ import { useSignal } from '@preact/signals';
 import { ComponentChildren } from 'preact';
 import { Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Await, useLoaderData } from 'react-router-dom';
+import { Await, useLoaderData } from 'react-router';
 import '@etchteam/diamond-ui/control/Button/Button';
 import '@etchteam/diamond-ui/canvas/Section/Section';
 import '@etchteam/diamond-ui/composition/Enter/Enter';

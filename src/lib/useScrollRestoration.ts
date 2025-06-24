@@ -1,5 +1,5 @@
 import { useEffect } from 'preact/hooks';
-import { useLocation, useNavigation } from 'react-router-dom';
+import { useLocation, useNavigation } from 'react-router';
 
 /**
  * Restores the scroll position of the main content area when navigating between

@@ -11,7 +11,7 @@ import {
   Await,
   useNavigation,
   useLocation,
-} from 'react-router-dom';
+} from 'react-router';
 import '@etchteam/diamond-ui/canvas/Section/Section';
 import '@etchteam/diamond-ui/composition/Grid/Grid';
 import '@etchteam/diamond-ui/composition/Grid/GridItem';

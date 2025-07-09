@@ -1,6 +1,11 @@
 locator-icon {
   --_size: var(--diamond-icon-size);
 
+  dt & {
+    --_size: var(--diamond-font-size-sm);
+    vertical-align: middle;
+  }
+
   display: inline-flex;
 
   svg {

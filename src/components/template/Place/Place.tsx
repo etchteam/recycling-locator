@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 
 import '@/components/content/PlaceSummary/PlaceSummary';
+import cleanupAddress from '@/lib/cleanupAddress';
 import { Location } from '@/types/locatorApi';
 
 export default function Place({
@@ -16,7 +17,7 @@ export default function Place({
   return (
     <locator-place-summary>
       <h4>{location.name}</h4>
-      {withAddress && <p>{location.address}</p>}
+      {withAddress && <p>{cleanupAddress(location.address)}</p>}
       <dl>
         <dd>{location.distance.toFixed(2)}</dd>
         <dt>

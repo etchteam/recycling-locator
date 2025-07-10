@@ -41,10 +41,9 @@ locator-bordered-list {
   > nav > ul > li a,
   > ul > li a,
   > dl > div > dd a {
-    display: flex;
+    display: inline-flex;
     margin-block: calc(var(--_item-padding) * -1);
     padding-block: var(--_item-padding);
-    width: 100%;
   }
 
   a {

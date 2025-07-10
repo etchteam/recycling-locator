@@ -13,6 +13,11 @@ article {
   transform: scale(1);
 }
 
+mark {
+  background-color: var(--diamond-theme-background);
+  color: inherit;
+}
+
 .recycling-locator-variant-widget {
   border: var(--container-border);
   border-radius: var(--container-border-radius);

@@ -1,3 +1,11 @@
+## [1.64.1](https://github.com/etchteam/recycling-locator/compare/v1.64.0...v1.64.1) (2025-07-10)
+
+
+### Bug Fixes
+
+* allow for links inside text ([8958b56](https://github.com/etchteam/recycling-locator/commit/8958b56ba0275f540b88cacbcaba758860800035))
+* place details view ([3427a66](https://github.com/etchteam/recycling-locator/commit/3427a66dac78d7b015a1bd16ca0b2c4f250d0e2d))
+
 ## [1.64.0](https://github.com/etchteam/recycling-locator/compare/v1.63.0...v1.64.0) (2025-06-24)
 
 

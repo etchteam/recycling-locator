@@ -1,6 +1,6 @@
 {
   "name": "@etchteam/recycling-locator",
-  "version": "1.64.0",
+  "version": "1.64.1",
   "description": "Find places to recycle, refill or reuse items.",
   "type": "module",
   "author": "Etch <hey@etch.co>",

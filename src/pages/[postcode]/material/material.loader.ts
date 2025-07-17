@@ -43,10 +43,10 @@ export default async function materialLoader({
   );
 
   const material = LocatorApi.getInstance().get<Material>(
-    `materials/${url.searchParams.get('materials')}`,
+    `materials/${url.searchParams.get('materials') ?? ''}`,
   );
 
-  const tip = getTipByMaterial(url.searchParams.get('materials'));
+  const tip = getTipByMaterial(url.searchParams.get('materials') ?? '');
 
   return {
     localAuthority,

@@ -1,3 +1,10 @@
+## [1.64.2](https://github.com/etchteam/recycling-locator/compare/v1.64.1...v1.64.2) (2025-07-17)
+
+
+### Bug Fixes
+
+* handle missing materials ([6070372](https://github.com/etchteam/recycling-locator/commit/607037240b0e60d73e07896675f6fdfe1dc20d1d))
+
 ## [1.64.1](https://github.com/etchteam/recycling-locator/compare/v1.64.0...v1.64.1) (2025-07-10)
 
 

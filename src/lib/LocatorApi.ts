@@ -14,7 +14,9 @@ export default class LocatorApi {
   private readonly axios: AxiosCacheInstance;
 
   private constructor() {
-    const instance = Axios.create();
+    const instance = Axios.create({
+      baseURL: config.locatorApiPath,
+    });
     this.axios = setupCache(instance);
   }
 
@@ -25,11 +27,19 @@ export default class LocatorApi {
     return LocatorApi.instance;
   }
 
-  async request<T>(url: string, body?: FormData): Promise<T> {
+  /**
+   * Removes leading and trailing slashes from a path.
+   * Trailing slashes cause issues with the API in production.
+   * @param path
+   * @returns
+   */
+  private cleanPath(path: string): string {
+    return path.replace(/^\/+|\/+$/g, '');
+  }
+
+  async request<T>(path: string, body?: FormData): Promise<T> {
     const locale =
       !i18n.language || i18n.language === 'en' ? 'en-GB' : i18n.language;
-    const fullUrl = new URL(`${config.locatorApiPath}${url}`);
-    fullUrl.searchParams.set('lang', locale);
 
     const fullOptions = {
       headers: {
@@ -38,6 +48,7 @@ export default class LocatorApi {
         'X-Requested-With': config.packageVersion,
         'Accept-Language': locale,
       },
+      params: new URLSearchParams([['lang', locale]]),
       cache: {
         interpretHeader: false,
       },
@@ -46,9 +57,9 @@ export default class LocatorApi {
     let response: CacheAxiosResponse<T, unknown>;
 
     if (body) {
-      response = await this.axios.post(fullUrl.toString(), body, fullOptions);
+      response = await this.axios.post(this.cleanPath(path), body, fullOptions);
     } else {
-      response = await this.axios.get(fullUrl.toString(), fullOptions);
+      response = await this.axios.get(this.cleanPath(path), fullOptions);
     }
 
     if (response.status < 200 || response.status >= 300) {

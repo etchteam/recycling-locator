@@ -6,17 +6,7 @@ Guidelines for contributions to the Recycling Locator codebase.
 
 Before starting, you will need access to [recycle locator proxy](https://github.com/etchteam/recycle-locator) and have it running locally. Alternatively, you can use the UAT proxy.
 
-Make sure you're using the right node version
-
-```bash
-nvm use
-```
-
-Install the dependencies
-
-```bash
-npm install
-```
+You will also need to install [nix.dev](https://nix.dev/).
 
 Setup your .env
 
@@ -24,7 +14,7 @@ Setup your .env
 cp .env.example .env
 ```
 
-Start the local development server on [http://localhost:3020](http://localhost:3020)
+Start the local development server on [https://rl.localhost](https://rl.localhost)
 
 ```bash
 npm start
@@ -36,29 +26,10 @@ For component documentation, start storybook on on [http://localhost:6006/](http
 npm run storybook
 ```
 
-If using the UAT recycle locator proxy, you will need to set up a local reverse proxy to a domain that has been whitelisted for CORS.
-
-Download [Caddy](https://caddyserver.com/), then execute the downloaded file and start up the reverse proxy (change the folder and caddy file name in the instructions below if needed)
-
-```bash
-cd ~/Downloads
-chmod +x caddy_darwin_arm64
-./caddy_darwin_arm64
-./caddy_darwin_arm64 reverse-proxy --to :3020 --from rl.localhost
-```
-
-If Caddy is installed as a service, you can run the following command from the root of the project
-
-```bash
-caddy run
-```
-
-Navigate to [rl.localhost](rl.localhost) in the browser
-
 ## Folder structure
 
 - index.html - default embedded widget
-- standalone.html - standalone variant testing available at [http://localhost:3020/standalone](http://localhost:3020/standalone)
+- standalone.html - standalone variant testing available at [https://rl.localhost/standalone](https://rl.localhost/standalone)
 - /public - static assets
 - /demo – documentation website for demonstrations of the widget
 - /src

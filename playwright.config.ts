@@ -48,7 +48,7 @@ export default defineConfig({
 
   // Run local dev server before starting the tests
   webServer: {
-    command: 'npm start',
+    command: 'npx run-p start:css start:vite',
     port: 3020,
     reuseExistingServer: !process.env.CI,
   },

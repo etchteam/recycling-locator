@@ -1,3 +1,10 @@
+## [1.64.3](https://github.com/etchteam/recycling-locator/compare/v1.64.2...v1.64.3) (2025-07-24)
+
+
+### Bug Fixes
+
+* remove trailing slashes and prevent double slashes ([4b7a10d](https://github.com/etchteam/recycling-locator/commit/4b7a10d0eb5adae464933c04d1f5ac630467d87f))
+
 ## [1.64.2](https://github.com/etchteam/recycling-locator/compare/v1.64.1...v1.64.2) (2025-07-17)
 
 

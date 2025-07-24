@@ -27,6 +27,16 @@ export default class LocatorApi {
     return LocatorApi.instance;
   }
 
+  /**
+   * Removes leading and trailing slashes from a path.
+   * Trailing slashes cause issues with the API in production.
+   * @param path
+   * @returns
+   */
+  private cleanPath(path: string): string {
+    return path.replace(/^\/+|\/+$/g, '');
+  }
+
   async request<T>(path: string, body?: FormData): Promise<T> {
     const locale =
       !i18n.language || i18n.language === 'en' ? 'en-GB' : i18n.language;
@@ -47,9 +57,9 @@ export default class LocatorApi {
     let response: CacheAxiosResponse<T, unknown>;
 
     if (body) {
-      response = await this.axios.post(path, body, fullOptions);
+      response = await this.axios.post(this.cleanPath(path), body, fullOptions);
     } else {
-      response = await this.axios.get(path, fullOptions);
+      response = await this.axios.get(this.cleanPath(path), fullOptions);
     }
 
     if (response.status < 200 || response.status >= 300) {

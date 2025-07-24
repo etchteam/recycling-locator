@@ -42,8 +42,10 @@ export default async function materialLoader({
     `locations/${postcode}?${searchParams.toString()}`,
   );
 
+  const materialIds = url.searchParams.get('materials');
+
   const material = LocatorApi.getInstance().get<Material>(
-    `materials/${url.searchParams.get('materials') ?? ''}`,
+    `materials${materialIds ? `/${materialIds}` : ''}`,
   );
 
   const tip = getTipByMaterial(url.searchParams.get('materials') ?? '');

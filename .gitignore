@@ -45,3 +45,6 @@ test-results
 
 # Sentry Config File
 .env.sentry-build-plugin
+
+# Nix temporary files
+.dev

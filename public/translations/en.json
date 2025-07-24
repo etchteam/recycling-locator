@@ -394,5 +394,36 @@
     "error": {
       "message": "An unexpected error occurred while loading this place."
     }
+  },
+  "refill": {
+    "header": {
+      "logo": "Refill logo",
+      "title": "Refill Locator",
+      "comingSoon": "Coming Soon!"
+    },
+    "start": {
+      "title": "Discover Refill",
+      "comingSoon": "Refill locations are coming soon"
+    },
+    "nav": {
+      "intro": {
+        "title": "Intro"
+      },
+      "guide": {
+        "title": "Guide"
+      },
+      "options": {
+        "title": "Options"
+      },
+      "benefits": {
+        "title": "Benefits"
+      },
+      "alerts": {
+        "title": "Alerts"
+      }
+    },
+    "error": {
+      "message": "An unexpected error occurred while loading Refill information."
+    }
   }
 }

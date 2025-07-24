@@ -43,7 +43,7 @@
     "@here/maps-api-for-javascript": "^1.64.3",
     "@preact/signals": "^2.0.4",
     "@sentry/browser": "^9.22.0",
-    "axios": "^1.9.0",
+    "axios": "^1.11.0",
     "axios-cache-interceptor": "^1.8.0",
     "date-fns": "^4.1.0",
     "date-fns-tz": "^3.2.0",

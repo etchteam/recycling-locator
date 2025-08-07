@@ -18,7 +18,7 @@ export default function RefillErrorPage() {
       <locator-wrap>
         <diamond-section padding="lg">
           <ErrorPage
-            link={`/refill`}
+            link="/refill"
             message={t('refill.error.message')}
             cta={t('actions.tryAgain')}
           />

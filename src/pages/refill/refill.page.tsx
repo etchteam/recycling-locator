@@ -7,7 +7,7 @@ export default function RefillPage() {
   const { t } = useTranslation();
 
   return (
-    <RefillLayout isHome={true}>
+    <RefillLayout>
       <diamond-section padding="lg">
         <h2>{t('refill.start.title')}</h2>
         <p className="text-color-positive text-italic">

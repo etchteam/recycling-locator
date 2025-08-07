@@ -10,6 +10,7 @@ import '@/components/composition/PlacesHeader/PlacesHeader';
 import '@/components/content/HeaderTitle/HeaderTitle';
 import '@/components/content/Icon/Icon';
 import '@/components/control/TagButton/TagButton';
+import { usePostcodeLoaderData } from '../postcode.loader';
 import Menu from '@/components/control/Menu/Menu';
 import formatPostcode from '@/lib/formatPostcode';
 import i18n from '@/lib/i18n';
@@ -26,6 +27,7 @@ export default function PlacesLayout({
   const locale = i18n.language;
   const { postcode } = useParams();
   const loaderData = usePlacesLoaderData();
+  const { city } = usePostcodeLoaderData();
   const locationsPromise = loaderData?.locations;
   const open = useSignal(false);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -138,7 +140,11 @@ export default function PlacesLayout({
       </locator-header>
       <div slot="layout-main" id="locator-layout-main">
         {open.value ? (
-          <Menu handleClose={() => (open.value = false)} />
+          <Menu
+            handleClose={() => (open.value = false)}
+            postcode={postcode}
+            city={city}
+          />
         ) : (
           <>
             <Outlet />

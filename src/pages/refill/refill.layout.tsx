@@ -20,6 +20,7 @@ import useScrollRestoration from '@/lib/useScrollRestoration';
 const pages = ['intro', 'guide', 'options', 'benefits', 'sign-up'];
 
 export function RefillAside() {
+  const { t } = useTranslation();
   const { publicPath } = useAppState();
   const generalTipImgSrc = `${publicPath}images/material-tip.svg`;
 
@@ -27,17 +28,13 @@ export function RefillAside() {
     <locator-tip slot="layout-aside" text-align="center">
       <locator-wrap>
         <img src={generalTipImgSrc} alt="" />
-        <p className="diamond-text-weight-bold">Reduce, Reuse, Recycle</p>
-        <h2>Give plastic a new life</h2>
-        <p>
-          When reuse and refill is not an option, recycling is the best way to
-          dispose of our plastics, giving the material the best chance of a new
-          life rather than going to landfill or being burned for energy.
-        </p>
+        <p className="diamond-text-weight-bold">{t('refill.aside.subtitle')}</p>
+        <h2>{t('refill.aside.title')}</h2>
+        <p>{t('refill.aside.content')}</p>
         <diamond-enter type="fade">
           <diamond-button width="full-width">
             <Link to={'/'} unstable_viewTransition>
-              Recycling options in your area
+              {t('refill.aside.cta')}
             </Link>
           </diamond-button>
         </diamond-enter>

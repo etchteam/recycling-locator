@@ -401,6 +401,12 @@
       "title": "Refill Locator",
       "comingSoon": "Coming Soon!"
     },
+    "aside": {
+      "title": "Give plastic a new life",
+      "subtitle": "Reduce, Reuse, Recycle",
+      "content": "When reuse and refill is not an option, recycling is the best way to dispose of our plastics, giving the material the best chance of a new life rather than going to landfill or being burned for energy.",
+      "cta": "Recycling options in your area"
+    },
     "start": {
       "title": "Discover Refill",
       "comingSoon": "Refill locations are coming soon"

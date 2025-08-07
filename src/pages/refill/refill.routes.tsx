@@ -30,8 +30,8 @@ const routes: RouteObject[] = [
             element: <ExamplePage title="Benefits" />,
           },
           {
-            path: 'alerts',
-            element: <ExamplePage title="Alerts" />,
+            path: 'sign-up',
+            element: <ExamplePage title="Sign Up" />,
           },
         ],
       },

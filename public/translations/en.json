@@ -418,8 +418,8 @@
       "benefits": {
         "title": "Benefits"
       },
-      "alerts": {
-        "title": "Alerts"
+      "sign-up": {
+        "title": "Sign Up"
       }
     },
     "error": {

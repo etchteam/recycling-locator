@@ -10,21 +10,37 @@ import '@/components/canvas/Tip/Tip';
 import '@/components/composition/Wrap/Wrap';
 
 import { ComponentChildren } from 'preact';
+import { useRef } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
 import { Link, NavLink, Outlet } from 'react-router';
 
 import { useAppState } from '@/lib/AppState';
+import useScrollRestoration from '@/lib/useScrollRestoration';
 
-const pages = ['intro', 'guide', 'options', 'benefits', 'alerts'];
+const pages = ['intro', 'guide', 'options', 'benefits', 'sign-up'];
 
-export function ReviewsAside() {
+export function RefillAside() {
   const { publicPath } = useAppState();
-  const generalTipImgSrc = `${publicPath}images/refill-tip.svg`;
+  const generalTipImgSrc = `${publicPath}images/material-tip.svg`;
 
   return (
-    <locator-tip type="image">
+    <locator-tip slot="layout-aside" text-align="center">
       <locator-wrap>
-        <img src={generalTipImgSrc} alt="Illustration of person refilling" />
+        <img src={generalTipImgSrc} alt="" />
+        <p className="diamond-text-weight-bold">Reduce, Reuse, Recycle</p>
+        <h2>Give plastic a new life</h2>
+        <p>
+          When reuse and refill is not an option, recycling is the best way to
+          dispose of our plastics, giving the material the best chance of a new
+          life rather than going to landfill or being burned for energy.
+        </p>
+        <diamond-enter type="fade">
+          <diamond-button width="full-width">
+            <Link to={'/'} unstable_viewTransition>
+              Recycling options in your area
+            </Link>
+          </diamond-button>
+        </diamond-enter>
       </locator-wrap>
     </locator-tip>
   );
@@ -38,6 +54,8 @@ export default function StartLayout({
   readonly children?: ComponentChildren;
 }) {
   const { t } = useTranslation();
+  const layoutRef = useRef();
+  useScrollRestoration(layoutRef);
 
   return (
     <locator-layout>
@@ -62,7 +80,7 @@ export default function StartLayout({
           </locator-header-title>
         </locator-header-content>
       </locator-header>
-      <div slot="layout-main" id="locator-layout-main">
+      <div slot="layout-main" id="locator-layout-main" ref={layoutRef}>
         <locator-nav-bar>
           <nav>
             <ul>
@@ -85,12 +103,7 @@ export default function StartLayout({
           {children}
         </locator-wrap>
       </div>
-      <div
-        slot="layout-aside"
-        className="display-contents hidden visible-tablet"
-      >
-        <ReviewsAside />
-      </div>
+      <RefillAside />
     </locator-layout>
   );
 }

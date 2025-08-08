@@ -1,0 +1,118 @@
+/* stylelint-disable selector-pseudo-element-no-unknown */
+locator-overflow {
+  --anchor-name: --carousel; /* localizes anchor name for scroll buttons */
+  display: block;
+  margin-inline: calc(
+    var(--diamond-spacing) * -1
+  ); /* overlap wrapper to create gutterless effect */
+
+  ul {
+    align-items: center;
+    anchor-name: var(--anchor-name);
+    display: flex;
+    flex-direction: row;
+    gap: var(--diamond-spacing);
+    margin: 0;
+    overflow-x: auto;
+    overflow-y: clip;
+    overscroll-behavior-x: contain;
+    padding-left: 0;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    /* stylelint-disable-next-line order/properties-alphabetical-order */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    /* stylelint-disable-next-line property-no-unknown */
+    scrollbar-height: none;
+    /* Firefox */
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    &::scroll-button(*) {
+      align-items: center;
+      background: none;
+      border: 1px solid var(--color-green);
+      border-radius: 50%;
+      color: var(--color-green);
+      cursor: pointer;
+      display: flex;
+      font-size: var(--diamond-font-size-base);
+      font-weight: var(--diamond-font-weight-bold);
+      height: var(--diamond-spacing-lg);
+      justify-content: center;
+      line-height: 0.8;
+      margin-top: var(--diamond-spacing-sm);
+      position: absolute;
+      /* stylelint-disable-next-line property-no-unknown */
+      position-anchor: var(--anchor-name);
+      width: var(--diamond-spacing-lg);
+
+      &:hover:enabled {
+        background: var(--color-green-lightest);
+      }
+
+      &:disabled {
+        background: none;
+        cursor: inherit;
+        opacity: 0.5;
+      }
+    }
+
+    &::scroll-button(left) {
+      content: url('/public/images/back-arrow.svg') / 'Scroll Left';
+      right: calc(
+        anchor(right) + var(--diamond-spacing) + var(--diamond-spacing-lg) +
+          var(--diamond-spacing-xs)
+      ); /* position right - gutter - right button width - spacing */
+    }
+
+    &::scroll-button(right) {
+      content: url('/public/images/forward-arrow.svg') / 'Scroll Right';
+      right: calc(anchor(right) + var(--diamond-spacing));
+    } /* position right - gutter */
+
+    li {
+      align-self: stretch;
+      list-style-type: none;
+      scroll-snap-align: center;
+
+      &:first-child {
+        margin-left: var(--diamond-spacing);
+      }
+
+      &:last-child {
+        margin-right: var(--diamond-spacing);
+      }
+    }
+  }
+}
+
+@container (width >=768px) {
+  locator-overflow {
+    &:not([largeScreen]) {
+      margin: 0;
+
+      ul {
+        flex-direction: column;
+        overflow-x: visible;
+
+        &::scroll-button(*) {
+          display: none;
+        }
+
+        li {
+          margin: 0;
+        }
+      }
+    }
+  }
+}
+
+@supports selector(::scroll-button(*)) {
+  locator-overflow {
+    margin-bottom: calc(
+      var(--diamond-spacing-lg) + var(--diamond-spacing)
+    ); /* add space for scroll buttons below the overflow container */
+  }
+}

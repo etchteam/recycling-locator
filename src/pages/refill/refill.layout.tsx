@@ -170,7 +170,7 @@ export default function StartLayout({
                 </ul>
               </nav>
             </locator-nav-bar>
-            <locator-wrap>
+            <locator-wrap max-width="none">
               <Outlet />
               {children}
             </locator-wrap>

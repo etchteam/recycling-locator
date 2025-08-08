@@ -60,7 +60,7 @@ export default function RefillPage() {
           {t('refill.start.comingSoon')}
         </h3>
 
-        <locator-overflow style={{ '--anchor-name': '--funky' }}>
+        <locator-overflow>
           <ul>
             {pages.map((page) => (
               <li key={page}>
@@ -86,46 +86,60 @@ export default function RefillPage() {
               </li>
             ))}
           </ul>
-
-          <h3 className="diamond-text-size-base diamond-text-weight-bold diamond-spacing-top-lg">
-            {t('refill.start.reviews.title')}
-          </h3>
-          <locator-overflow largeScreen>
-            <ul>
-              {tempReviews.map((review) => (
-                <li key={review.name}>
-                  <diamond-card
-                    className="theme-info"
-                    style="min-width: 340px;"
-                  >
-                    <diamond-grid align-items="center" gap="sm">
-                      <diamond-grid-item>
-                        <h4 className="diamond-spacing-bottom-none">
-                          {review.name}
-                        </h4>
-                      </diamond-grid-item>
-                      <diamond-grid-item>
-                        <span
-                          aria-label={
-                            t('refill.start.reviews.rating', {
-                              rating: review.rating,
-                            }) as string
-                          }
-                        >
-                          <locator-star-rating
-                            rating={review.rating}
-                            aria-hidden
-                          />
-                        </span>
-                      </diamond-grid-item>
-                    </diamond-grid>
-                    <p>{review.review}</p>
-                  </diamond-card>
-                </li>
-              ))}
-            </ul>
-          </locator-overflow>
         </locator-overflow>
+
+        <h3 className="diamond-text-size-base diamond-text-weight-bold diamond-spacing-top-lg">
+          {t('refill.start.reviews.title')}
+        </h3>
+        <locator-overflow largeScreen>
+          <ul>
+            {tempReviews.map((review) => (
+              <li key={review.name}>
+                <diamond-card className="theme-info" style="min-width: 340px;">
+                  <diamond-grid align-items="center" gap="sm">
+                    <diamond-grid-item>
+                      <h4 className="diamond-spacing-bottom-none">
+                        {review.name}
+                      </h4>
+                    </diamond-grid-item>
+                    <diamond-grid-item>
+                      <span
+                        aria-label={
+                          t('refill.start.reviews.rating', {
+                            rating: review.rating,
+                          }) as string
+                        }
+                      >
+                        <locator-star-rating
+                          rating={review.rating}
+                          aria-hidden
+                        />
+                      </span>
+                    </diamond-grid-item>
+                  </diamond-grid>
+                  <p>{review.review}</p>
+                </diamond-card>
+              </li>
+            ))}
+          </ul>
+        </locator-overflow>
+
+        <locator-icon-link border className="diamond-spacing-top-xl">
+          {/* xl spacing due to margin collapse with the section above */}
+          <Link to={'/refill/sign-up' + postcodeQuery} unstable_viewTransition>
+            <locator-icon-circle>
+              <locator-icon icon="home-pin" color="primary"></locator-icon>
+            </locator-icon-circle>
+            <div>
+              <p className="diamond-text-size-base diamond-spacing-bottom-none">
+                {t('refill.start.alerts.title')}
+              </p>
+              <p className="diamond-text-size-sm">
+                {t('refill.start.alerts.description')}
+              </p>
+            </div>
+          </Link>
+        </locator-icon-link>
       </diamond-section>
     </RefillLayout>
   );

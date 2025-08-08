@@ -428,6 +428,10 @@
           "description": "Learn how refill could fit into your existing routines and cupboards"
         }
       },
+      "alerts": {
+        "title": "Sign up for alerts",
+        "description": "Find out when refill locations launch in your local area"
+      }
     },
     "nav": {
       "intro": {

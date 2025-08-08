@@ -3,9 +3,46 @@ import { Link, useSearchParams } from 'react-router';
 
 import { useAppState } from '@/lib/AppState';
 
+import '@etchteam/diamond-ui/canvas/Card/Card';
+import '@etchteam/diamond-ui/composition/Grid/Grid';
+import '@etchteam/diamond-ui/composition/Grid/GridItem';
 import '@etchteam/diamond-ui/canvas/Section/Section';
 
 import RefillLayout from './refill.layout';
+const pages = ['guide', 'options', 'benefits'];
+
+const tempReviews = [
+  {
+    name: 'John Doe',
+    rating: 5,
+    review:
+      'I was amazed by how much money I saved – and the olive oil tastes incredible!',
+  },
+  {
+    name: 'Jane Smith',
+    rating: 4,
+    review:
+      'I was amazed by how much money I saved – and the olive oil tastes incredible!',
+  },
+  {
+    name: 'Joe Bloggs',
+    rating: 5,
+    review:
+      'I was amazed by how much money I saved – and the olive oil tastes incredible!',
+  },
+  {
+    name: 'John Smith',
+    rating: 4,
+    review:
+      'I was amazed by how much money I saved – and the olive oil tastes incredible!',
+  },
+  {
+    name: 'Jo Brown',
+    rating: 5,
+    review:
+      'I was amazed by how much money I saved – and the olive oil tastes incredible!',
+  },
+];
 
 export default function RefillPage() {
   const { t } = useTranslation();
@@ -49,6 +86,45 @@ export default function RefillPage() {
               </li>
             ))}
           </ul>
+
+          <h3 className="diamond-text-size-base diamond-text-weight-bold diamond-spacing-top-lg">
+            {t('refill.start.reviews.title')}
+          </h3>
+          <locator-overflow largeScreen>
+            <ul>
+              {tempReviews.map((review) => (
+                <li key={review.name}>
+                  <diamond-card
+                    className="theme-info"
+                    style="min-width: 340px;"
+                  >
+                    <diamond-grid align-items="center" gap="sm">
+                      <diamond-grid-item>
+                        <h4 className="diamond-spacing-bottom-none">
+                          {review.name}
+                        </h4>
+                      </diamond-grid-item>
+                      <diamond-grid-item>
+                        <span
+                          aria-label={
+                            t('refill.start.reviews.rating', {
+                              rating: review.rating,
+                            }) as string
+                          }
+                        >
+                          <locator-star-rating
+                            rating={review.rating}
+                            aria-hidden
+                          />
+                        </span>
+                      </diamond-grid-item>
+                    </diamond-grid>
+                    <p>{review.review}</p>
+                  </diamond-card>
+                </li>
+              ))}
+            </ul>
+          </locator-overflow>
         </locator-overflow>
       </diamond-section>
     </RefillLayout>

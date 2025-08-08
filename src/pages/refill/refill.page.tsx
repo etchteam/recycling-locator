@@ -124,8 +124,7 @@ export default function RefillPage() {
           </ul>
         </locator-overflow>
 
-        <locator-icon-link border className="diamond-spacing-top-xl">
-          {/* xl spacing due to margin collapse with the section above */}
+        <locator-icon-link border className="diamond-spacing-top-md">
           <Link to={'/refill/sign-up' + postcodeQuery} unstable_viewTransition>
             <locator-icon-circle>
               <locator-icon icon="home-pin" color="primary"></locator-icon>

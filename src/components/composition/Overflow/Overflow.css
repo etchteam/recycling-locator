@@ -92,6 +92,7 @@ locator-overflow {
   locator-overflow {
     &:not([largeScreen]) {
       margin: 0;
+      padding-bottom: 0;
 
       ul {
         flex-direction: column;
@@ -111,7 +112,7 @@ locator-overflow {
 
 @supports selector(::scroll-button(*)) {
   locator-overflow {
-    margin-bottom: calc(
+    padding-bottom: calc(
       var(--diamond-spacing-lg) + var(--diamond-spacing)
     ); /* add space for scroll buttons below the overflow container */
   }

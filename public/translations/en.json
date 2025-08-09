@@ -411,6 +411,55 @@
       "title": "Discover Refill",
       "comingSoon": "Refill locations are coming soon"
     },
+    "guide": {
+      "title": "Getting started with Refill",
+      "steps": {
+        "title": "Refill in 3 steps",
+        "items": [
+          "Use the locator to find a refill store near you",
+          "Take along empty containers to fill up",
+          "Pick and choose what you want to refill"
+        ]
+      },
+      "simple": {
+        "title": "It's surprisingly simple",
+        "content": {
+          "browseFillPay": "Browse the incredible range, fill your container, weigh and pay.",
+          "friendlyStaff": "The friendly staff are always happy to help, but there's no pressure – you can explore at your own pace and discover amazing products you never knew existed."
+        }
+      },
+      "shopping": {
+        "title": "Shopping, that makes sense",
+        "content": "Bring your own containers or grab one there – then choose exactly what you need, exactly when you need it. No more half-empty bottles cluttering your cupboards."
+      },
+      "faq": {
+        "whatCanRefill": {
+          "question": "What can I refill?",
+          "answerBold": "You’ll be surprised by the variety!",
+          "answer": "Most refill shops stock household essentials like washing-up liquid, laundry detergent, and surface cleaners alongside personal care products including shampoo, body wash, and hand soap. You'll also find an amazing selection of food items - from everyday pasta, rice, and cereals to premium oils, artisan chocolates, and specialty spices. Many shops also offer coffee beans, nuts, dried fruits, and even pet food. Think of it as your local supermarket reimagined - same products, just dispensed fresh without the packaging waste."
+        },
+        "doesRefillCostMore": {
+          "question": "Does refill cost more?",
+          "answerBold": "Most customers are pleasantly surprised by the savings.",
+          "answer": "While premium products might seem expensive per gram, you're not paying for fancy packaging, marketing, or brand overhead. Plus, you buy exactly what you need - no more throwing away half-used bottles or buying jumbo sizes you'll never finish. Many regular customers find they spend 10-20% less on household essentials, and you can try expensive products in small quantities before committing to larger amounts. It's like having a personal shopper who only charges you for what you actually use."
+        },
+        "specialContainers": {
+          "question": "Do I need special containers to refill?",
+          "answerBold": "Absolutely not - any clean container works perfectly.",
+          "answer": "Old jam jars, pasta sauce bottles, or containers you already have at home are ideal. Most shops also sell beautiful glass bottles and jars if you want to upgrade your storage game. Many places provide containers if you forget to bring your own, and some even offer a \"container library\" where you can borrow and return. The key is bringing containers that are clean and dry - the friendly staff will show you exactly what works best for different products."
+        },
+        "makeDifference": {
+          "question": "Does refill really make a difference?",
+          "answerBold": "Every small action adds up to something bigger.",
+          "answer": "When you refill a 500ml bottle instead of buying a new one, you're preventing that plastic from being manufactured, transported, and eventually disposed of. Multiply that by your weekly shopping and the growing number of people choosing refill, and the impact becomes significant. But beyond the environmental benefits, you're supporting local businesses, reducing clutter in your home, and often saving money too. It's one of those rare choices where doing the right thing actually makes your life easier and more enjoyable."
+        }
+      },
+      "nextSection": {
+        "title": "Refill options",
+        "description": "From sweets to luxury soaps, here's what you might find in Refill stores"
+      },
+      "ctaButton": "Find out when Refill locations launch"
+    },
     "nav": {
       "intro": {
         "title": "Intro"

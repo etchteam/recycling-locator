@@ -1,0 +1,42 @@
+locator-steps {
+  --diamond-theme-background: var(--color-primary-lightest);
+  --diamond-theme-color: var(--color-body);
+  --diamond-theme-heading-color: var(--color-primary-dark);
+
+  ol {
+    counter-reset: step-counter;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      background-color: var(--diamond-theme-background);
+      border-radius: var(--diamond-border-radius);
+      counter-increment: step-counter;
+      margin-bottom: var(--diamond-spacing-sm);
+      padding: var(--diamond-font-size-md) var(--diamond-spacing-md)
+        var(--diamond-font-size-md) calc(3 * var(--diamond-font-size-lg)); /* font-size used to account for font size of step number */
+      position: relative;
+
+      &::before {
+        align-items: center;
+        background-color: var(--diamond-theme-heading-color);
+        border-radius: 50%;
+        color: var(--color-white);
+        content: counter(step-counter);
+        display: flex;
+        font-size: var(--diamond-font-size-lg);
+        font-weight: bold;
+        height: var(
+          --diamond-font-size-xxl
+        ); /* circle size depends on font size */
+        justify-content: center;
+        left: var(--diamond-spacing-sm);
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: var(--diamond-font-size-xxl);
+      }
+    }
+  }
+}

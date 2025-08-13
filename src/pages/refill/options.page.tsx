@@ -20,71 +20,32 @@ export default function OptionsPage() {
       <diamond-img radius>
         <img src={`${publicPath}images/refill/options.webp`} alt="" />
       </diamond-img>
-      <locator-details className="diamond-spacing-top-sm diamond-spacing-bottom-sm">
-        <details>
-          <summary className="diamond-text-weight-bold">
-            {t('refill.options.categories.foodDryGoods.title')}
-            <locator-icon icon="expand" />
-          </summary>
-          <ul>
-            {(
-              t('refill.options.categories.foodDryGoods.content') as string[]
-            ).map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-          <locator-highlight className="theme-info">
-            <locator-icon-text>
-              <locator-icon icon="info" />
-              {t('refill.options.categories.foodDryGoods.highlight')}
-            </locator-icon-text>
-          </locator-highlight>
-        </details>
-      </locator-details>
-      <locator-details className="diamond-spacing-top-sm diamond-spacing-bottom-sm">
-        <details>
-          <summary className="diamond-text-weight-bold">
-            {t('refill.options.categories.householdCleaning.title')}
-            <locator-icon icon="expand" />
-          </summary>
-          <ul>
-            {(
-              t(
-                'refill.options.categories.householdCleaning.content',
-              ) as string[]
-            ).map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-          <locator-highlight className="theme-info">
-            <locator-icon-text>
-              <locator-icon icon="info" />
-              {t('refill.options.categories.householdCleaning.highlight')}
-            </locator-icon-text>
-          </locator-highlight>
-        </details>
-      </locator-details>
-      <locator-details className="diamond-spacing-top-sm diamond-spacing-bottom-sm">
-        <details>
-          <summary className="diamond-text-weight-bold">
-            {t('refill.options.categories.personalCare.title')}
-            <locator-icon icon="expand" />
-          </summary>
-          <ul>
-            {(
-              t('refill.options.categories.personalCare.content') as string[]
-            ).map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-          <locator-highlight className="theme-info">
-            <locator-icon-text>
-              <locator-icon icon="info" />
-              {t('refill.options.categories.personalCare.highlight')}
-            </locator-icon-text>
-          </locator-highlight>
-        </details>
-      </locator-details>
+      {['foodDryGoods', 'householdCleaning', 'personalCare'].map((category) => (
+        <locator-details
+          key={category}
+          className="diamond-spacing-top-sm diamond-spacing-bottom-sm"
+        >
+          <details>
+            <summary className="diamond-text-weight-bold">
+              {t(`refill.options.categories.${category}.title`)}
+              <locator-icon icon="expand" />
+            </summary>
+            <ul>
+              {(
+                t(`refill.options.categories.${category}.content`) as string[]
+              ).map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+            <locator-highlight className="theme-info">
+              <locator-icon-text>
+                <locator-icon icon="info" />
+                {t(`refill.options.categories.${category}.highlight`)}
+              </locator-icon-text>
+            </locator-highlight>
+          </details>
+        </locator-details>
+      ))}
 
       <h3 className="diamond-text-size-base diamond-text-weight-bold diamond-spacing-top-md">
         {t('refill.options.localStore.title')}

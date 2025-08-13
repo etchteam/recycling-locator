@@ -75,6 +75,10 @@ locator-overflow {
     li {
       align-self: stretch;
       list-style-type: none;
+      min-width: min(
+        85cqw,
+        300px
+      ); /* prevent cards from being too big on 'medium' screens */
       scroll-snap-align: center;
 
       &:first-child {
@@ -104,6 +108,7 @@ locator-overflow {
 
         li {
           margin: 0;
+          min-width: 100%;
         }
       }
     }

@@ -95,7 +95,7 @@ export default function RefillPage() {
           <ul>
             {tempReviews.map((review) => (
               <li key={review.name}>
-                <diamond-card className="theme-info" style="min-width: 340px;">
+                <diamond-card className="theme-info">
                   <diamond-grid align-items="center" gap="sm">
                     <diamond-grid-item>
                       <h4 className="diamond-spacing-bottom-none">

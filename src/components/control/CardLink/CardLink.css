@@ -1,7 +1,6 @@
 locator-card-link {
   display: block;
   height: 100%;
-  min-width: 275px;
 
   a {
     align-items: stretch;
@@ -31,7 +30,6 @@ locator-card-link {
 
       img {
         height: 100%;
-        min-height: 160px; /* Ensure images are large enough */
         object-fit: cover;
         transition: var(--diamond-transition);
         width: 100%;

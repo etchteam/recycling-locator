@@ -5,6 +5,13 @@ import { useAppState } from '@/lib/AppState';
 
 import '@etchteam/diamond-ui/canvas/Section/Section';
 
+const questions = [
+  'whatCanRefill',
+  'doesRefillCostMore',
+  'specialContainers',
+  'makeDifference',
+];
+
 export default function GuidePage() {
   const { publicPath } = useAppState();
   const { t } = useTranslation();
@@ -41,62 +48,25 @@ export default function GuidePage() {
       <diamond-img radius>
         <img src={`${publicPath}images/refill/guide-secondary.webp`} alt="" />
       </diamond-img>
-      <locator-details className="diamond-spacing-top-sm diamond-spacing-bottom-sm">
-        <details>
-          <summary>
-            {t('refill.guide.faq.whatCanRefill.question')}
-            <locator-icon icon="expand" />
-          </summary>
-          <p>
-            <span className="diamond-text-weight-bold">
-              {t('refill.guide.faq.whatCanRefill.answerBold')}
-            </span>{' '}
-            {t('refill.guide.faq.whatCanRefill.answer')}
-          </p>
-        </details>
-      </locator-details>
-      <locator-details className="diamond-spacing-top-sm diamond-spacing-bottom-sm">
-        <details>
-          <summary>
-            {t('refill.guide.faq.doesRefillCostMore.question')}
-            <locator-icon icon="expand" />
-          </summary>
-          <p>
-            <span className="diamond-text-weight-bold">
-              {t('refill.guide.faq.doesRefillCostMore.answerBold')}
-            </span>{' '}
-            {t('refill.guide.faq.doesRefillCostMore.answer')}
-          </p>
-        </details>
-      </locator-details>
-      <locator-details className="diamond-spacing-top-sm diamond-spacing-bottom-sm">
-        <details>
-          <summary>
-            {t('refill.guide.faq.specialContainers.question')}
-            <locator-icon icon="expand" />
-          </summary>
-          <p>
-            <span className="diamond-text-weight-bold">
-              {t('refill.guide.faq.specialContainers.answerBold')}
-            </span>{' '}
-            {t('refill.guide.faq.specialContainers.answer')}
-          </p>
-        </details>
-      </locator-details>
-      <locator-details className="diamond-spacing-top-sm diamond-spacing-bottom-sm">
-        <details>
-          <summary>
-            {t('refill.guide.faq.makeDifference.question')}
-            <locator-icon icon="expand" />
-          </summary>
-          <p>
-            <span className="diamond-text-weight-bold">
-              {t('refill.guide.faq.makeDifference.answerBold')}
-            </span>{' '}
-            {t('refill.guide.faq.makeDifference.answer')}
-          </p>
-        </details>
-      </locator-details>
+      {questions.map((question) => (
+        <locator-details
+          key={question}
+          className="diamond-spacing-top-sm diamond-spacing-bottom-sm"
+        >
+          <details>
+            <summary>
+              {t(`refill.guide.faq.${question}.question`)}
+              <locator-icon icon="expand" />
+            </summary>
+            <p>
+              <span className="diamond-text-weight-bold">
+                {t(`refill.guide.faq.${question}.answerBold`)}
+              </span>{' '}
+              {t(`refill.guide.faq.${question}.answer`)}
+            </p>
+          </details>
+        </locator-details>
+      ))}
 
       <hr className="diamond-spacing-top-md diamond-spacing-bottom-md" />
 

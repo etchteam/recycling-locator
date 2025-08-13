@@ -27,7 +27,7 @@ import '@/components/composition/Wrap/Wrap';
 
 const pages = ['intro', 'guide', 'options', 'benefits', 'sign-up'];
 
-export function RefillAside() {
+export function RefillAside({ postcode }: { readonly postcode: string }) {
   const { t } = useTranslation();
   const { publicPath } = useAppState();
   const generalTipImgSrc = `${publicPath}images/material-tip.svg`;
@@ -41,7 +41,7 @@ export function RefillAside() {
         <p>{t('refill.aside.content')}</p>
         <diamond-enter type="fade">
           <diamond-button width="full-width">
-            <Link to={'/'} unstable_viewTransition>
+            <Link to={'/' + postcode} unstable_viewTransition>
               {t('refill.aside.cta')}
             </Link>
           </diamond-button>
@@ -170,14 +170,14 @@ export default function StartLayout({
                 </ul>
               </nav>
             </locator-nav-bar>
-            <locator-wrap>
+            <locator-wrap max-width="none">
               <Outlet />
               {children}
             </locator-wrap>
           </>
         )}
       </div>
-      <RefillAside />
+      <RefillAside postcode={postcode || ''} />
     </locator-layout>
   );
 }

@@ -3,6 +3,7 @@ import { RouteObject } from 'react-router';
 import BenefitsPage from './benefits.page';
 import RefillErrorPage from './error.page';
 import ExamplePage from './example.page';
+import GuidePage from './guide.page';
 import OptionsPage from './options.page';
 import RefillLayout from './refill.layout';
 import RefillPage from './refill.page';
@@ -21,7 +22,7 @@ const routes: RouteObject[] = [
         children: [
           {
             path: 'guide',
-            element: <ExamplePage title="Guide" />,
+            element: <GuidePage />,
           },
           {
             path: 'options',

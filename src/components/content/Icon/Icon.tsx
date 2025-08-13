@@ -37,6 +37,7 @@ export interface IconAttributes {
     | 'place'
     | 'schedule'
     | 'search'
+    | 'shopping-cart-add'
     | 'sync'
     | 'thumb-down'
     | 'thumb-up'

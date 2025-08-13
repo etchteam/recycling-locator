@@ -6,7 +6,8 @@
     "materialsAccepted": "materials accepted",
     "materialsAccepted_one": "material accepted",
     "popularSearches": "Popular searches",
-    "updated": "Updated"
+    "updated": "Updated",
+    "or": "OR"
   },
   "actions": {
     "back": "Back",
@@ -41,7 +42,8 @@
       "changeLocation": "Change your location",
       "recycleSpecificItem": "Recycle a specific item",
       "homeRecycling": "Check your home recycling",
-      "findNearbyPlaces": "Find nearby places to recycle"
+      "findNearbyPlaces": "Find nearby places to recycle",
+      "refill": "Discover refill options"
     },
     "container": {
       "notes": "Notes about this bin",
@@ -192,6 +194,10 @@
       "nearest": {
         "title": "Recycle at nearby places",
         "description": "{{count}} places within 25 miles"
+      },
+      "refill": {
+        "title": "Have you tried refill?",
+        "description": "Discover refill options near you"
       }
     }
   },

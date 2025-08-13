@@ -240,6 +240,38 @@ export default function PostcodePage() {
                     )}
                   </Await>
                 </Suspense>
+                <diamond-grid
+                  className="diamond-spacing-top-sm"
+                  align-items="center"
+                >
+                  <diamond-grid-item grow>
+                    <hr aria-hidden="true" />
+                  </diamond-grid-item>
+                  <diamond-grid-item>
+                    <span className="diamond-text-size-sm">
+                      {t('common.or')}
+                    </span>
+                  </diamond-grid-item>
+                  <diamond-grid-item grow>
+                    <hr aria-hidden="true" />
+                  </diamond-grid-item>
+                </diamond-grid>
+                <locator-icon-link border className="diamond-spacing-top-md">
+                  <Link to={`/refill?${postcode}`} unstable_viewTransition>
+                    <locator-icon-circle>
+                      <locator-icon
+                        icon="refill"
+                        color="primary"
+                      ></locator-icon>
+                    </locator-icon-circle>
+                    <div>
+                      <dt>{t('postcode.options.refill.title')}</dt>
+                      <dd className="diamond-text-size-sm">
+                        {t('postcode.options.refill.description')}
+                      </dd>
+                    </div>
+                  </Link>
+                </locator-icon-link>
               </dl>
             </nav>
             {locale === 'en' &&

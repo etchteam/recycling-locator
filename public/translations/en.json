@@ -409,7 +409,29 @@
     },
     "start": {
       "title": "Discover Refill",
-      "comingSoon": "Refill locations are coming soon"
+      "comingSoon": "Refill locations are coming soon",
+      "reviews": {
+        "title": "Real people, real benefits",
+        "rating": "Rating of {{rating}} out of 5 stars"
+      },
+      "nav": {
+        "guide": {
+          "title": "Getting Started with Refill",
+          "description": "New to refill? It's surprisingly simple! Learn how to get started"
+        },
+        "options": {
+          "title": "More choice, not less",
+          "description": "From luxury oils to sweet treats, discover what your local shop might stock"
+        },
+        "benefits": {
+          "title": "Refill good about yourself",
+          "description": "Learn how refill could fit into your existing routines and cupboards"
+        }
+      },
+      "alerts": {
+        "title": "Sign up for alerts",
+        "description": "Find out when refill locations launch in your local area"
+      }
     },
     "nav": {
       "intro": {

@@ -34,6 +34,7 @@ export interface IconAttributes {
     | 'pin'
     | 'place-hwrc'
     | 'place'
+    | 'refill'
     | 'schedule'
     | 'search'
     | 'star'

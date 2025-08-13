@@ -48,6 +48,11 @@ export default function Menu({
       text: t('components.menu.findNearbyPlaces'),
       to: `/${encodeURIComponent(postcode)}/places`,
     },
+    {
+      icon: 'refill',
+      text: t('components.menu.refill'),
+      to: `/refill?${encodeURIComponent(postcode)}`,
+    },
   ];
 
   const handleClick = (event: Event, to: string) => {

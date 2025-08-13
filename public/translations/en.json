@@ -505,12 +505,25 @@
       "categories": {
         "foodDryGoods": {
           "title": "Food & Dry Goods",
-          "content": ["Rice", "Pasta", "Cereal", "Nuts", "Dried Fruit", "Coffee Beans", "Spices"],
+          "content": [
+            "Rice",
+            "Pasta",
+            "Cereal",
+            "Nuts",
+            "Dried Fruit",
+            "Coffee Beans",
+            "Spices"
+          ],
           "highlight": "Bring your own clean containers or purchase reusable jars in-store"
         },
         "householdCleaning": {
           "title": "Household Cleaning",
-          "content": ["Washing-up Liquid", "Laundry Detergent", "Fabric Softener", "All-Purpose Cleaner"],
+          "content": [
+            "Washing-up Liquid",
+            "Laundry Detergent",
+            "Fabric Softener",
+            "All-Purpose Cleaner"
+          ],
           "highlight": "Ecover products are often available. Some stores may require you to use child safe containers to refill cleaning products."
         },
         "personalCare": {
@@ -526,6 +539,48 @@
       "iconLink": {
         "title": "Benefits of Refill",
         "content": "Tackle plastic pollution, save money and support the local area!"
+      },
+      "cta": "Find out when Refill locations launch"
+    },
+    "benefits": {
+      "title": "Refill good about yourself",
+      "intro": "Most customers become regulars within their first few visits. It's not about being perfectly green or knowing all the right things to say – it's simply a smarter, more enjoyable way to shop.",
+      "card": {
+        "holiday": {
+          "question": "Going on holiday?",
+          "answer": "Buy travel-sized portions."
+        },
+        "hosting": {
+          "question": "Hosting dinner?",
+          "answer": "Get exactly what you need."
+        },
+        "recipe": {
+          "question": "Trying a new recipe?",
+          "answer": "Test small amounts first."
+        }
+      },
+      "communitySupport": {
+        "title": "Support your local community",
+        "content": {
+          "chains": "These aren't corporate chains – they're passionate local business owners who genuinely care about their products and their customers.",
+          "community": "Every purchase supports your local high street and keeps money in your community."
+        }
+      },
+      "withoutRefillStore": {
+        "title": "You can even refill without a refill store",
+        "intro": "What? Yes, there are ways to refill in your everyday supermarket!",
+        "buyLoose": {
+          "title": "Buy loose",
+          "description": "Try buying more loose fruit and veg"
+        },
+        "shopConcentrate": {
+          "title": "Shop Concentrate",
+          "description": "Lots of brands now offer concentrated versions of common bathroom and cleaning products - just add water!"
+        }
+      },
+      "iconLink": {
+        "title": "Getting started with Refill",
+        "content": "New to refill? Here's what to expect from your local store"
       },
       "cta": "Find out when Refill locations launch"
     },

@@ -1,5 +1,6 @@
 import { RouteObject } from 'react-router';
 
+import BenefitsPage from './benefits.page';
 import RefillErrorPage from './error.page';
 import ExamplePage from './example.page';
 import GuidePage from './guide.page';
@@ -29,7 +30,7 @@ const routes: RouteObject[] = [
           },
           {
             path: 'benefits',
-            element: <ExamplePage title="Benefits" />,
+            element: <BenefitsPage />,
           },
           {
             path: 'sign-up',

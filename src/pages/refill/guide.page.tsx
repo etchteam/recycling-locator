@@ -89,7 +89,7 @@ export default function GuidePage() {
         </Link>
       </locator-icon-link>
       <diamond-button width="full-width" className="diamond-spacing-top-md">
-        <Link to={'/'} unstable_viewTransition>
+        <Link to={'/refill/sign-up' + postcodeQuery} unstable_viewTransition>
           {t('refill.guide.ctaButton')}
         </Link>
       </diamond-button>

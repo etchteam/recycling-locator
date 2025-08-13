@@ -36,6 +36,7 @@ export interface IconAttributes {
     | 'place'
     | 'schedule'
     | 'search'
+    | 'star'
     | 'sync'
     | 'thumb-down'
     | 'thumb-up'

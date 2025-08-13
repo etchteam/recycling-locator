@@ -428,6 +428,36 @@
         "title": "Sign Up"
       }
     },
+    "options": {
+      "title": "More choice, not less",
+      "intro": "From luxury olive oils that would cost a fortune in traditional packaging to kids' favourite sweets sold by the scoop, refill shops stock an incredible variety.",
+      "categories": {
+        "foodDryGoods": {
+          "title": "Food & Dry Goods",
+          "content": ["Rice", "Pasta", "Cereal", "Nuts", "Dried Fruit", "Coffee Beans", "Spices"],
+          "highlight": "Bring your own clean containers or purchase reusable jars in-store"
+        },
+        "householdCleaning": {
+          "title": "Household Cleaning",
+          "content": ["Washing-up Liquid", "Laundry Detergent", "Fabric Softener", "All-Purpose Cleaner"],
+          "highlight": "Ecover products are often available. Some stores may require you to use child safe containers to refill cleaning products."
+        },
+        "personalCare": {
+          "title": "Personal Care",
+          "content": ["Shampoo", "Conditioner", "Body Wash", "Hand Soap"],
+          "highlight": "Faith in Nature products are often available. Containers must be completely empty and dry."
+        }
+      },
+      "localStore": {
+        "title": "Find out what your local store stocks",
+        "content": "Every shop is different - some focus on cleaning products, others specialise in bulk foods, and many offer their own unique mix, so the best way to discover what's available is to visit your local refill store."
+      },
+      "iconLink": {
+        "title": "Benefits of Refill",
+        "content": "Tackle plastic pollution, save money and support the local area!"
+      },
+      "cta": "Find out when Refill locations launch"
+    },
     "error": {
       "message": "An unexpected error occurred while loading Refill information."
     }

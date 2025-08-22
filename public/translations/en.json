@@ -35,7 +35,6 @@
       "error": "Please enter the name of an item",
       "notFound": "We couldn’t find a match for this item. Please try using an alternative name for it.",
       "searchList": "or <a>Choose from a list of items</a>"
-
     },
     "menu": {
       "whatDoYouWantToDo": "What do you want to do?",
@@ -362,7 +361,34 @@
         "aToZofItems": "A-Z of items"
       },
       "aToZ": {
-        "alphabet": ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
+        "alphabet": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G",
+          "H",
+          "I",
+          "J",
+          "K",
+          "L",
+          "M",
+          "N",
+          "O",
+          "P",
+          "Q",
+          "R",
+          "S",
+          "T",
+          "U",
+          "V",
+          "W",
+          "X",
+          "Y",
+          "Z"
+        ],
         "backToTop": "Back to top"
       }
     },
@@ -416,10 +442,6 @@
     "start": {
       "title": "Discover Refill",
       "comingSoon": "Refill locations are coming soon",
-      "reviews": {
-        "title": "Real people, real benefits",
-        "rating": "Rating of {{rating}} out of 5 stars"
-      },
       "nav": {
         "guide": {
           "title": "Getting Started with Refill",
@@ -432,6 +454,18 @@
         "benefits": {
           "title": "Refill good about yourself",
           "description": "Learn how refill could fit into your existing routines and cupboards"
+        }
+      },
+      "reviews": {
+        "title": "Real people, real benefits",
+        "rating": "Rating of {{rating}} out of 5 stars",
+        "testimonials": {
+          "Fiona C": "I love my local refill shop because I can buy as much or as little as I want. And I’ve really noticed a lot less packaging ending up in the recycle bin",
+          "Aidan W": "I love the variety of items... some that I can’t find anywhere else!",
+          "Hamish F": "It’s easy, I only buy as much as I need, I’m often saving money compared to the supermarkets. Not to mention the lovely community of people who run it and shop in there!",
+          "Jen M": "In addition to cutting out packaging, my refill shop stores products that I know are better for the planet and people! Win-win!",
+          "Alex K": " I like to buy from refill shops because it allows me to buy what I need and stops my cupboards getting clogged up with bits in packets that eventually get put in the bin.",
+          "Helen P": "It has saved me a small fortune! They are also great for trying a number of new products, and a perfect place to stock up on things for the house too, such as cleaning products, washing up liquid and laundry soap. Fab!!"
         }
       },
       "alerts": {

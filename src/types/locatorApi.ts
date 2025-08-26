@@ -148,3 +148,10 @@ export interface RecyclingMeta {
   cta?: string;
   ctaLink?: string;
 }
+
+export interface DoorstepCollection {
+  id: string;
+  provider: string;
+  bookingUrl: string;
+  nextCollectionDate?: string;
+}

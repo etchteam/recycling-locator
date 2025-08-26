@@ -8,6 +8,7 @@ import {
   LocationsResponse,
   RecyclingMeta,
   Material,
+  DoorstepCollection,
 } from '@/types/locatorApi';
 
 export interface DeferredMaterialLoaderResponse {
@@ -15,6 +16,7 @@ export interface DeferredMaterialLoaderResponse {
   locations: Promise<LocationsResponse>;
   tip: Promise<RecyclingMeta>;
   material: Promise<Material>;
+  doorstepCollections: Promise<DoorstepCollection[]>;
 }
 
 export interface AwaitedMaterialLoaderResponse {
@@ -22,12 +24,13 @@ export interface AwaitedMaterialLoaderResponse {
   locations: LocationsResponse;
   tip?: RecyclingMeta;
   material: Material;
+  doorstepCollections: DoorstepCollection[];
 }
 
 export default async function materialLoader({
   request,
   params,
-}: LoaderFunctionArgs) {
+}: LoaderFunctionArgs): Promise<DeferredMaterialLoaderResponse> {
   const postcode = params.postcode;
   const localAuthority = LocatorApi.getInstance().get<LocalAuthority>(
     `local-authority/${postcode}`,
@@ -48,6 +51,20 @@ export default async function materialLoader({
     `materials${materialIds ? `/${materialIds}` : ''}`,
   );
 
+  let doorstepCollections: Promise<DoorstepCollection[]>;
+
+  // We only support looking up a single material for doorstep collections, so
+  // if there are multiple materials, we return an empty array. We also do not
+  // bother looking up doorstep collections if we do not have a material to
+  // look for.
+  if (!materialIds || materialIds.includes(',')) {
+    doorstepCollections = Promise.resolve([]);
+  } else {
+    doorstepCollections = LocatorApi.getInstance().get<DoorstepCollection[]>(
+      `doorstep-collections/${postcode}/${materialIds}`,
+    );
+  }
+
   const tip = getTipByMaterial(url.searchParams.get('materials') ?? '');
 
   return {
@@ -55,5 +72,6 @@ export default async function materialLoader({
     locations,
     tip,
     material,
+    doorstepCollections,
   };
 }

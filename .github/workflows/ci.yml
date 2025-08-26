@@ -79,8 +79,9 @@ jobs:
       - name: Run tests
         run: npm run test
         env:
-          VITE_TEST: 'true'
+          NODE_OPTIONS: '--no-experimental-strip-types'
           VITE_HERE_MAPS_PLACES_KEY: ${{ vars.VITE_HERE_MAPS_PLACES_KEY }}
+          VITE_TEST: 'true'
       - name: Upload Playwright report
         if: always()
         uses: actions/upload-artifact@v4

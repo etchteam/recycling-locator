@@ -40,7 +40,7 @@
   "dependencies": {
     "@etchteam/diamond-ui": "^1.37.2",
     "@headlessui/react": "^2.2.4",
-    "@here/maps-api-for-javascript": "^1.64.3",
+    "@here/maps-api-for-javascript": "^1.68.0",
     "@preact/signals": "^2.0.4",
     "@sentry/browser": "^9.22.0",
     "axios": "^1.11.0",

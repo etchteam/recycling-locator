@@ -10,38 +10,13 @@ import '@etchteam/diamond-ui/canvas/Section/Section';
 
 import RefillLayout from './refill.layout';
 const pages = ['guide', 'options', 'benefits'];
-
-const tempReviews = [
-  {
-    name: 'John Doe',
-    rating: 5,
-    review:
-      'I was amazed by how much money I saved – and the olive oil tastes incredible!',
-  },
-  {
-    name: 'Jane Smith',
-    rating: 4,
-    review:
-      'I was amazed by how much money I saved – and the olive oil tastes incredible!',
-  },
-  {
-    name: 'Joe Bloggs',
-    rating: 5,
-    review:
-      'I was amazed by how much money I saved – and the olive oil tastes incredible!',
-  },
-  {
-    name: 'John Smith',
-    rating: 4,
-    review:
-      'I was amazed by how much money I saved – and the olive oil tastes incredible!',
-  },
-  {
-    name: 'Jo Brown',
-    rating: 5,
-    review:
-      'I was amazed by how much money I saved – and the olive oil tastes incredible!',
-  },
+const reviewers = [
+  'Fiona C',
+  'Aidan W',
+  'Hamish F',
+  'Jen M',
+  'Alex K',
+  'Helen P',
 ];
 
 export default function RefillPage() {
@@ -93,31 +68,28 @@ export default function RefillPage() {
         </h3>
         <locator-overflow largeScreen>
           <ul>
-            {tempReviews.map((review) => (
-              <li key={review.name}>
+            {reviewers.map((reviewer) => (
+              <li key={reviewer}>
                 <diamond-card className="theme-info">
                   <diamond-grid align-items="center" gap="sm">
                     <diamond-grid-item>
                       <h4 className="diamond-spacing-bottom-none">
-                        {review.name}
+                        {reviewer}
                       </h4>
                     </diamond-grid-item>
                     <diamond-grid-item>
                       <span
                         aria-label={
                           t('refill.start.reviews.rating', {
-                            rating: review.rating,
+                            rating: 5,
                           }) as string
                         }
                       >
-                        <locator-star-rating
-                          rating={review.rating}
-                          aria-hidden
-                        />
+                        <locator-star-rating rating={5} aria-hidden />
                       </span>
                     </diamond-grid-item>
                   </diamond-grid>
-                  <p>{review.review}</p>
+                  <p>{t(`refill.start.reviews.testimonials.${reviewer}`)}</p>
                 </diamond-card>
               </li>
             ))}

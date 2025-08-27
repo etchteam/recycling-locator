@@ -17,6 +17,7 @@ import { i18nInit } from '@/lib/i18n';
 import postcodeRoutes from './[postcode]/postcode.routes';
 import ErrorPage from './error.page';
 import NotFoundPage from './not-found.page';
+import refillRoutes from './refill/refill.routes';
 import RootLayout from './root.layout';
 import startAction from './start.action';
 import startRoutes from './start.routes';
@@ -28,6 +29,7 @@ const routes: RouteObject[] = [
     children: [
       ...startRoutes,
       ...postcodeRoutes,
+      ...refillRoutes,
       {
         path: '/*',
         element: <NotFoundPage />,

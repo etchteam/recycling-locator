@@ -134,7 +134,10 @@ function MaterialPageContent({
               </section>
             )}
             {doorstepCollection && (
-              <DoorstepCollection collection={doorstepCollection} />
+              <DoorstepCollection
+                collection={doorstepCollection}
+                material={material}
+              />
             )}
             {locations.items.length > 0 && (
               <section className="diamond-spacing-bottom-lg">
@@ -173,7 +176,10 @@ function MaterialPageContent({
             />
           </section>
           {doorstepCollection && (
-            <DoorstepCollection collection={doorstepCollection} />
+            <DoorstepCollection
+              collection={doorstepCollection}
+              material={material}
+            />
           )}
           <section className="diamond-spacing-bottom-lg">
             <NearbyPlaces locations={locations} />

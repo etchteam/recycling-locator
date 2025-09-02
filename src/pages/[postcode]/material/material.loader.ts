@@ -3,6 +3,7 @@ import { LoaderFunctionArgs } from 'react-router';
 import LocatorApi from '@/lib/LocatorApi';
 import { getTipByMaterial } from '@/lib/getTip';
 import mapSearchParams from '@/lib/mapSearchParams';
+import { captureException } from '@/lib/sentry';
 import {
   LocalAuthority,
   LocationsResponse,
@@ -60,9 +61,20 @@ export default async function materialLoader({
   if (!materialIds || materialIds.includes(',')) {
     doorstepCollections = Promise.resolve([]);
   } else {
-    doorstepCollections = LocatorApi.getInstance().get<DoorstepCollection[]>(
-      `doorstep-collections/${postcode}/${materialIds}`,
-    );
+    doorstepCollections = LocatorApi.getInstance()
+      .get<DoorstepCollection[]>(
+        `doorstep-collections/${postcode}/${materialIds}`,
+      )
+      .catch((error) => {
+        captureException(error, {
+          loader: 'materialLoader',
+          action: 'doorstepCollections',
+          postcode,
+          materialId: materialIds,
+        });
+
+        return [];
+      });
   }
 
   const tip = getTipByMaterial(url.searchParams.get('materials') ?? '');

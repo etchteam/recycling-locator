@@ -12,14 +12,22 @@ import '@/components/control/IconLink/IconLink';
 import '@/components/content/Icon/Icon';
 import '@/components/content/Container/Container';
 
-import { DoorstepCollection as DoorstepCollectionType } from '@/types/locatorApi';
+import {
+  DoorstepCollection as DoorstepCollectionType,
+  Material,
+} from '@/types/locatorApi';
 
 export default function DoorstepCollection({
   collection,
+  material,
 }: {
   readonly collection: DoorstepCollectionType;
+  readonly material: Material;
 }) {
   const { t } = useTranslation();
+
+  const bookingUrl = new URL(collection.bookingUrl);
+  bookingUrl.searchParams.set('material', material.name);
 
   return (
     <diamond-card border radius>
@@ -33,7 +41,11 @@ export default function DoorstepCollection({
         {t('material.doorstepCollection.intro')}
       </p>
       <diamond-button width="full-width">
-        <Link to={collection.bookingUrl}>
+        <Link
+          to={bookingUrl.toString()}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           {t(`material.doorstepCollection.cta`)}{' '}
           <locator-icon icon="external"></locator-icon>
         </Link>

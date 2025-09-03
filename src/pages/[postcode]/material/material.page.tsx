@@ -20,6 +20,7 @@ import TipContent from '@/components/template/TipContent/TipContent';
 import getPropertiesByMaterial from '@/lib/getPropertiesByMaterial';
 import useAnalytics from '@/lib/useAnalytics';
 
+import DoorstepCollection from './DoorstepCollection';
 import HazardousWarning from './HazardousWarning';
 import NearbyPlaces from './NearbyPlaces';
 import RecycleAtHome from './RecycleAtHome';
@@ -86,6 +87,7 @@ function MaterialPageContent({
   localAuthority,
   locations,
   material,
+  doorstepCollections,
 }: Readonly<Partial<AwaitedMaterialLoaderResponse>>) {
   const { t } = useTranslation();
   const [searchParams] = useSearchParams();
@@ -96,6 +98,8 @@ function MaterialPageContent({
       category: searchParams.get('category'),
     },
   );
+  const doorstepCollection =
+    doorstepCollections[Math.floor(Math.random() * doorstepCollections.length)];
   const recyclableAtHome = propertiesCollectingThisMaterial !== undefined;
   const recyclableNearby = locations.items.length > 0;
   const recyclableOptions = recyclableAtHome || recyclableNearby;
@@ -128,6 +132,12 @@ function MaterialPageContent({
                   recyclable={false}
                 />
               </section>
+            )}
+            {doorstepCollection && (
+              <DoorstepCollection
+                collection={doorstepCollection}
+                material={material}
+              />
             )}
             {locations.items.length > 0 && (
               <section className="diamond-spacing-bottom-lg">
@@ -165,6 +175,12 @@ function MaterialPageContent({
               }
             />
           </section>
+          {doorstepCollection && (
+            <DoorstepCollection
+              collection={doorstepCollection}
+              material={material}
+            />
+          )}
           <section className="diamond-spacing-bottom-lg">
             <NearbyPlaces locations={locations} />
           </section>
@@ -185,6 +201,7 @@ export default function MaterialPage() {
     localAuthority: localAuthorityPromise,
     locations: locationsPromise,
     material: materialPromise,
+    doorstepCollections: doorstepCollectionsPromise,
   } = useLoaderData() as DeferredMaterialLoaderResponse;
   const [searchParams] = useSearchParams();
   const search = searchParams.get('search');
@@ -218,13 +235,15 @@ export default function MaterialPage() {
               localAuthorityPromise,
               locationsPromise,
               materialPromise,
+              doorstepCollectionsPromise,
             ])}
           >
-            {([localAuthority, locations, material]) => {
+            {([localAuthority, locations, material, doorstepCollections]) => {
               return (
                 <MaterialPageContent
                   localAuthority={localAuthority}
                   locations={locations}
+                  doorstepCollections={doorstepCollections}
                   material={material}
                 />
               );

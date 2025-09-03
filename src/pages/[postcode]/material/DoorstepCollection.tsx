@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router';
 import '@etchteam/diamond-ui/canvas/Card/Card';
@@ -12,6 +13,7 @@ import '@/components/control/IconLink/IconLink';
 import '@/components/content/Icon/Icon';
 import '@/components/content/Container/Container';
 
+import useAnalytics from '@/lib/useAnalytics';
 import {
   DoorstepCollection as DoorstepCollectionType,
   Material,
@@ -20,14 +22,31 @@ import {
 export default function DoorstepCollection({
   collection,
   material,
+  postcode,
 }: {
   readonly collection: DoorstepCollectionType;
   readonly material: Material;
+  readonly postcode: string;
 }) {
   const { t } = useTranslation();
+  const { recordEvent } = useAnalytics();
+
+  const handleClick = () => {
+    recordEvent({
+      category: 'DoorstepCollections::Click',
+      action: collection.provider,
+    });
+  };
 
   const bookingUrl = new URL(collection.bookingUrl);
   bookingUrl.searchParams.set('material', material.name);
+
+  useEffect(() => {
+    recordEvent({
+      category: 'DoorstepCollections::Impression',
+      action: `${collection.provider}, ${postcode}, ${material.name}`,
+    });
+  }, [collection, material, postcode, recordEvent]);
 
   return (
     <diamond-card border radius>
@@ -45,6 +64,7 @@ export default function DoorstepCollection({
           to={bookingUrl.toString()}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={handleClick}
         >
           {t(`material.doorstepCollection.cta`)}{' '}
           <locator-icon icon="external"></locator-icon>

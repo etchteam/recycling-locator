@@ -630,6 +630,11 @@
       "button": "Sign up",
       "error": "An error has occured, please try submitting again.",
       "business": "or <a>Get in touch about your refill business</a>",
+      "success": {
+        "title": "Thank you for signing up!",
+        "description": "We'll let you know when refill locations are available in your area.",
+        "confirmation": "Please check your email and click the link to confirm your subscription."
+      },
       "form": {
         "name": {
           "label": "Name",

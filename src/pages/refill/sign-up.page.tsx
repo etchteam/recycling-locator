@@ -149,6 +149,7 @@ export default function SignUpPage() {
                   id="email-input"
                   name="EMAIL"
                   type="email"
+                  autoComplete="email"
                   placeholder={
                     t('refill.sign-up.form.email.placeholder') as string
                   }

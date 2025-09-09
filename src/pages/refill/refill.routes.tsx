@@ -2,11 +2,11 @@ import { RouteObject } from 'react-router';
 
 import BenefitsPage from './benefits.page';
 import RefillErrorPage from './error.page';
-import ExamplePage from './example.page';
 import GuidePage from './guide.page';
 import OptionsPage from './options.page';
 import RefillLayout from './refill.layout';
 import RefillPage from './refill.page';
+import SignUpPage from './sign-up.page';
 
 const routes: RouteObject[] = [
   {
@@ -34,7 +34,7 @@ const routes: RouteObject[] = [
           },
           {
             path: 'sign-up',
-            element: <ExamplePage title="Sign Up" />,
+            element: <SignUpPage />,
           },
         ],
       },

@@ -464,7 +464,7 @@
           "Aidan W": "I love the variety of items… some that I can’t find anywhere else!",
           "Hamish F": "It’s easy, I only buy as much as I need, I’m often saving money compared to the supermarkets. Not to mention the lovely community of people who run it and shop in there!",
           "Jen M": "In addition to cutting out packaging, my refill shop stores products that I know are better for the planet and people! Win-win!",
-          "Alex K": " I like to buy from refill shops because it allows me to buy what I need and stops my cupboards getting clogged up with bits in packets that eventually get put in the bin.",
+          "Alex K": "I like to buy from refill shops because it allows me to buy what I need and stops my cupboards getting clogged up with bits in packets that eventually get put in the bin.",
           "Helen P": "It has saved me a small fortune! They are also great for trying a number of new products, and a perfect place to stock up on things for the house too, such as cleaning products, washing up liquid and laundry soap. Fab!!"
         }
       },
@@ -623,6 +623,33 @@
         "content": "New to refill? Here's what to expect from your local store"
       },
       "cta": "Find out when Refill locations launch"
+    },
+    "sign-up": {
+      "title": "Be the first to know when refill locations arrive",
+      "description": "You'll soon be able to use the Locator to find refill stores in your area.",
+      "button": "Sign up",
+      "error": "An error has occured, please try submitting again.",
+      "business": "or <a>Get in touch about your refill business</a>",
+      "form": {
+        "name": {
+          "label": "Name",
+          "error": "Please enter your name"
+        },
+        "email": {
+          "label": "Email",
+          "placeholder": "e.g. example@gmail.com",
+          "error": "Please enter a valid email address"
+        },
+        "postcode": {
+          "label": "Postcode",
+          "placeholder": "e.g. SW1A 1AA",
+          "error": "Please enter your postcode"
+        },
+        "gdpr": {
+          "label": "I agree to the <a>Terms and conditions</a>",
+          "error": "To sign up, you must agree to the terms and conditions"
+        }
+      }
     },
     "error": {
       "message": "An unexpected error occurred while loading Refill information."

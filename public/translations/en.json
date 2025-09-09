@@ -628,6 +628,7 @@
       "title": "Be the first to know when refill locations arrive",
       "description": "You'll soon be able to use the Locator to find refill stores in your area.",
       "button": "Sign up",
+      "error": "An error has occured, please try submitting again.",
       "business": "or <a>Get in touch about your refill business</a>",
       "form": {
         "name": {
@@ -644,7 +645,7 @@
           "placeholder": "e.g. SW1A 1AA",
           "error": "Please enter your postcode"
         },
-        "terms": {
+        "gdpr": {
           "label": "I agree to the <a>Terms and conditions</a>",
           "error": "To sign up, you must agree to the terms and conditions"
         }

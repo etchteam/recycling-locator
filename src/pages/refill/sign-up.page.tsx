@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
-import { Link, useSearchParams } from 'react-router';
+import { Form, Link, useSearchParams } from 'react-router';
 
 export default function SignUpPage() {
   const { t } = useTranslation();
@@ -8,12 +8,14 @@ export default function SignUpPage() {
   const [searchParams] = useSearchParams();
   const postcode = searchParams.get('postcode');
 
-  const [errors, setErrors] = useState<Record<string, boolean>>({
+  const [errors, setErrors] = useState({
     name: false,
     email: false,
     postcode: false,
-    terms: false,
+    gdpr: false,
   });
+
+  const [error, setError] = useState(false);
 
   const action =
     'https://wrap.us1.list-manage.com/subscribe/post?u=65343110dd35be920e719fccd&amp;id=3d85122919&amp;f_id=00ffd3e0f0';
@@ -26,6 +28,7 @@ export default function SignUpPage() {
     Object.keys(errors).forEach((key) => {
       newErrors[key] = false;
     });
+    setError(false);
 
     Object.keys(errors).forEach((key) => {
       const input = signupForm.querySelector(
@@ -43,21 +46,24 @@ export default function SignUpPage() {
       return;
     }
 
-    const termsInput = signupForm.querySelector('input[name="terms-input"]');
-    if (termsInput) {
-      termsInput.remove();
-    }
+    Object.assign(signupForm, { action, method: 'post', onsubmit: null });
 
-    signupForm.submit();
+    try {
+      signupForm.submit();
+    } catch (error) {
+      setError(true);
+    }
   }
 
   return (
     <diamond-section padding="lg">
       <h2>{t('refill.sign-up.title')}</h2>
       <p>{t('refill.sign-up.description')}</p>
-      <form action={action} method="post" onSubmit={handleSubmit} noValidate>
+      <Form onSubmit={handleSubmit} noValidate>
         <input
           type="hidden"
+          tabIndex={-1}
+          aria-hidden="true"
           name="b_65343110dd35be920e719fccd_3d85122919"
           value=""
         />
@@ -144,31 +150,36 @@ export default function SignUpPage() {
             <label>
               <input
                 type="checkbox"
-                id="terms-input"
-                name="terms-input"
+                id="gdpr-input"
+                name="gdpr-input"
                 required
-                onChange={() =>
-                  setErrors((prev) => ({ ...prev, terms: false }))
-                }
+                onChange={() => setErrors((prev) => ({ ...prev, gdpr: false }))}
               />
               <Trans
-                i18nKey={'refill.sign-up.form.terms.label'}
+                i18nKey={'refill.sign-up.form.gdpr.label'}
                 components={{
                   a: <Link to="https://www.recyclenow.com/privacy-policy" />,
                 }}
               />
             </label>
           </diamond-radio-checkbox>
-          {errors.terms && (
+          {errors.gdpr && (
             <p
-              id="terms-error"
+              id="gdpr-error"
               className="text-color-negative diamond-text-size-sm"
               aria-live="polite"
             >
-              To sign up, you must agree to the terms and conditions
+              {t('refill.sign-up.form.gdpr.error')}
             </p>
           )}
         </diamond-form-group>
+
+        <p
+          className="text-color-negative diamond-text-size-sm"
+          aria-live="polite"
+        >
+          {error && t('refill.sign-up.form.error')}
+        </p>
 
         <diamond-button
           variant="primary"
@@ -177,7 +188,7 @@ export default function SignUpPage() {
         >
           <button type="submit">Sign up</button>
         </diamond-button>
-      </form>
+      </Form>
       <p>
         <Trans
           i18nKey={'refill.sign-up.business'}

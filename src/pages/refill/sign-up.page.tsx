@@ -94,15 +94,19 @@ export default function SignUpPage() {
 
   return (
     <diamond-section padding="lg">
-      {isSubmitted ? (
-        <>
-          <h2>{t('refill.sign-up.success.title')}</h2>
-          <p className="text-color-positive diamond-text-size-sm">
-            {isSubmitted}
-          </p>
-          <p>{t('refill.sign-up.success.description')}</p>
-        </>
-      ) : (
+      <div aria-live="polite" role="status" aria-atomic="true">
+        {isSubmitted && (
+          <>
+            <h2>{t('refill.sign-up.success.title')}</h2>
+            <p className="text-color-positive diamond-text-size-sm">
+              {isSubmitted}
+            </p>
+            <p>{t('refill.sign-up.success.description')}</p>
+          </>
+        )}
+      </div>
+
+      {!isSubmitted && (
         <>
           <h2>{t('refill.sign-up.title')}</h2>
           <p>{t('refill.sign-up.description')}</p>

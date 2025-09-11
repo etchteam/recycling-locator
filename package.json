@@ -19,6 +19,7 @@
     "dist"
   ],
   "scripts": {
+    "build:uat": "./scripts/build-uat.sh",
     "build:css": "postcss src/styles/base.css -o public/styles.css",
     "build": "npm run build:css && vite build",
     "lint": "eslint 'src/**/*.{ts,tsx,js,jsx,yml,yaml,json}' && stylelint 'src/**/*.{css,scss}'",

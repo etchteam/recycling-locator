@@ -9,15 +9,17 @@ import Footer from '@/components/content/Footer/Footer';
 import { IconAttributes } from '@/components/content/Icon/Icon';
 import '@/components/control/IconLink/IconLink';
 import formatPostcode from '@/lib/formatPostcode';
-import { usePostcodeLoaderData } from '@/pages/[postcode]/postcode.loader';
 import { CustomElement } from '@/types/customElement';
 
 export default function Menu({
   handleClose,
+  postcode,
+  city,
 }: {
   readonly handleClose: () => void;
+  readonly postcode: string;
+  readonly city?: string;
 }) {
-  const { postcode, city } = usePostcodeLoaderData();
   const { t } = useTranslation();
   const location = useLocation();
 
@@ -46,6 +48,11 @@ export default function Menu({
       text: t('components.menu.findNearbyPlaces'),
       to: `/${encodeURIComponent(postcode)}/places`,
     },
+    {
+      icon: 'refill',
+      text: t('components.menu.refill'),
+      to: `/refill?${encodeURIComponent(postcode)}`,
+    },
   ];
 
   const handleClick = (event: Event, to: string) => {
@@ -64,7 +71,7 @@ export default function Menu({
             <span className="diamond-text-weight-bold">
               {formatPostcode(postcode)}
             </span>{' '}
-            &ndash; {city}
+            {city ? `&ndash; ${city}` : null}
           </div>
         </locator-context-header>
       </diamond-enter>

@@ -1,0 +1,31 @@
+locator-star-rating {
+  display: inline-block;
+  font-size: var(--diamond-font-size-sm);
+  font-weight: var(--diamond-font-weight-bold);
+
+  &::before {
+    color: var(--diamond-theme-color);
+    content: '★★★★★';
+    letter-spacing: var(--diamond-spacing-xs);
+  }
+
+  &[rating='0']::before {
+    content: '☆☆☆☆☆';
+  }
+
+  &[rating='1']::before {
+    content: '★☆☆☆☆';
+  }
+
+  &[rating='2']::before {
+    content: '★★☆☆☆';
+  }
+
+  &[rating='3']::before {
+    content: '★★★☆☆';
+  }
+
+  &[rating='4']::before {
+    content: '★★★★☆';
+  }
+}

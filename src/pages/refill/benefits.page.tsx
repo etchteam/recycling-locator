@@ -73,6 +73,15 @@ export default function BenfitsPage() {
             )}
           </span>
         </li>
+        <li>
+          <span className="diamond-text-weight-bold">
+            {t('refill.benefits.withoutRefillStore.shopOnline.title')}
+          </span>
+          <br aria-hidden="true" />
+          <span className="diamond-text-size-sm">
+            {t('refill.benefits.withoutRefillStore.shopOnline.description')}
+          </span>
+        </li>
       </ul>
       <diamond-img radius>
         <img

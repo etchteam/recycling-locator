@@ -20,6 +20,10 @@ export default function OptionsPage() {
       <diamond-img radius>
         <img src={`${publicPath}images/refill/options.webp`} alt="" />
       </diamond-img>
+      <h3 className="diamond-text-size-base diamond-text-weight-bold diamond-spacing-top-md">
+        {t('refill.options.commonItems.title')}
+      </h3>
+      <p>{t('refill.options.commonItems.description')}</p>
       {['foodDryGoods', 'householdCleaning', 'personalCare'].map((category) => (
         <locator-details
           key={category}
@@ -46,6 +50,8 @@ export default function OptionsPage() {
           </details>
         </locator-details>
       ))}
+
+      <hr className="diamond-spacing-top-md diamond-spacing-bottom-md" />
 
       <h3 className="diamond-text-size-base diamond-text-weight-bold diamond-spacing-top-md">
         {t('refill.options.localStore.title')}

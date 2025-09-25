@@ -58,9 +58,11 @@ locator-card-link {
         }
       }
 
-      div {
+      locator-card-link-content {
+        display: flex;
         flex: 1;
-        height: auto;
+        flex-direction: column;
+        justify-content: center;
       }
     }
   }

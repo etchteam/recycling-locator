@@ -441,7 +441,8 @@
     },
     "start": {
       "title": "Discover Refill",
-      "comingSoon": "Refill locations are coming soon",
+      "comingSoon": "Refill search is launching soon!",
+      "subtitle": "Find refill stores near you. Bring your empty containers and fill up your favourites without the packaging waste.",
       "nav": {
         "guide": {
           "title": "Getting Started with Refill",
@@ -452,7 +453,7 @@
           "description": "From luxury oils to sweet treats, discover what your local shop might stock"
         },
         "benefits": {
-          "title": "Refill good about yourself",
+          "title": "How refill could work for you",
           "description": "Learn how refill could fit into your existing routines and cupboards"
         }
       },
@@ -478,8 +479,8 @@
       "steps": {
         "title": "Refill in 3 steps",
         "items": [
-          "Use the locator to find a refill store near you",
-          "Take along empty containers to fill up",
+          "Find a refill store near you",
+          "Take along your clean, empty containers to fill up",
           "Pick and choose what you want to refill"
         ]
       },
@@ -492,13 +493,13 @@
       },
       "shopping": {
         "title": "Shopping, that makes sense",
-        "content": "Bring your own containers or grab one there – then choose exactly what you need, exactly when you need it. No more half-empty bottles cluttering your cupboards."
+        "content": "Bring your own clean, empty containers or buy a reusable food-safe container there – then choose exactly what you need, exactly when you need it. No more half-empty bottles cluttering your cupboards."
       },
       "faq": {
         "whatCanRefill": {
           "question": "What can I refill?",
           "answerBold": "You’ll be surprised by the variety!",
-          "answer": "Most refill shops stock household essentials like washing-up liquid, laundry detergent, and surface cleaners alongside personal care products including shampoo, body wash, and hand soap. You'll also find an amazing selection of food items - from everyday pasta, rice, and cereals to premium oils, artisan chocolates, and specialty spices. Many shops also offer coffee beans, nuts, dried fruits, and even pet food. Think of it as your local supermarket reimagined - same products, just dispensed fresh without the packaging waste."
+          "answer": "Most refill shops stock household essentials like washing-up liquid, laundry detergent, and surface cleaners alongside personal care products including shampoo, body wash, and hand soap. You'll also find an amazing selection of food items - from everyday pasta, rice, and cereals to premium oils, artisan chocolates, and specialty spices. Many shops also offer coffee beans, nuts, dried fruits, and even pet food. Think of it as your local supermarket reimagined!"
         },
         "doesRefillCostMore": {
           "question": "Does refill cost more?",
@@ -507,13 +508,13 @@
         },
         "specialContainers": {
           "question": "Do I need special containers to refill?",
-          "answerBold": "Absolutely not - any clean container works perfectly.",
-          "answer": "Old jam jars, pasta sauce bottles, or containers you already have at home are ideal. Most shops also sell beautiful glass bottles and jars if you want to upgrade your storage game. Many places provide containers if you forget to bring your own, and some even offer a \"container library\" where you can borrow and return. The key is bringing containers that are clean and dry - the friendly staff will show you exactly what works best for different products."
+          "answerBold": "Absolutely not - any clean, dry container works perfectly.",
+          "answer": "Old jam jars, pasta sauce bottles, or containers you already have at home are ideal. Most shops also sell reusable food safe containers if you want to upgrade your storage game. Many places provide containers if you forget to bring your own, and some even offer a \"container library\" where you can borrow and return. The key is bringing containers that are clean and dry - the friendly staff will show you exactly what works best for different products."
         },
         "makeDifference": {
           "question": "Does refill really make a difference?",
           "answerBold": "Every small action adds up to something bigger.",
-          "answer": "When you refill a 500ml bottle instead of buying a new one, you're preventing that plastic from being manufactured, transported, and eventually disposed of. Multiply that by your weekly shopping and the growing number of people choosing refill, and the impact becomes significant. But beyond the environmental benefits, you're supporting local businesses, reducing clutter in your home, and often saving money too. It's one of those rare choices where doing the right thing actually makes your life easier and more enjoyable."
+          "answer": "When you refill a 500ml bottle instead of buying a new one, you're preventing that plastic from being manufactured, transported, and eventually disposed of. Multiply that by your weekly shopping and the growing number of people choosing refill, and the impact becomes significant. But beyond the environmental benefits, you're supporting local businesses, reducing clutter in your home, and often saving money too."
         }
       },
       "nextSection": {
@@ -542,6 +543,10 @@
     "options": {
       "title": "More choice, not less",
       "intro": "From luxury olive oils that would cost a fortune in traditional packaging to kids' favourite sweets sold by the scoop, refill shops stock an incredible variety.",
+      "commonItems": {
+        "title": "Common refill products",
+        "description": "Just like your supermarket, every refill store stocks different products. Here are some essentials you might find at your local refill store."
+      },
       "categories": {
         "foodDryGoods": {
           "title": "Food & Dry Goods",
@@ -564,12 +569,12 @@
             "Fabric Softener",
             "All-Purpose Cleaner"
           ],
-          "highlight": "Ecover products are often available. Some stores may require you to use child safe containers to refill cleaning products."
+          "highlight": "Some stores may require you to use child safe containers to refill cleaning products."
         },
         "personalCare": {
           "title": "Personal Care",
           "content": ["Shampoo", "Conditioner", "Body Wash", "Hand Soap"],
-          "highlight": "Faith in Nature products are often available. Containers must be completely empty and dry."
+          "highlight": "Containers must be completely empty and dry."
         }
       },
       "localStore": {
@@ -583,7 +588,7 @@
       "cta": "Find out when Refill locations launch"
     },
     "benefits": {
-      "title": "Refill good about yourself",
+      "title": "How refill could work for you",
       "intro": "Most customers become regulars within their first few visits. It's not about being perfectly green or knowing all the right things to say – it's simply a smarter, more enjoyable way to shop.",
       "card": {
         "holiday": {
@@ -616,6 +621,10 @@
         "shopConcentrate": {
           "title": "Shop Concentrate",
           "description": "Lots of brands now offer concentrated versions of common bathroom and cleaning products - just add water!"
+        },
+        "shopOnline": {
+          "title": "Return Online",
+          "description": "Refill and Return is growing in popularity. Check if your favourite brand lets you to return your packaging for reuse."
         }
       },
       "iconLink": {

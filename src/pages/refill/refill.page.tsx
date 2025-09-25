@@ -31,9 +31,10 @@ export default function RefillPage() {
     <RefillLayout>
       <diamond-section padding="lg">
         <h2>{t('refill.start.title')}</h2>
-        <h3 className="diamond-text-size-base diamond-text-weight-bold">
+        <h3 className="diamond-text-size-base diamond-text-weight-bold diamond-spacing-bottom-none">
           {t('refill.start.comingSoon')}
         </h3>
+        <p>{t('refill.start.subtitle')}</p>
 
         <locator-overflow>
           <ul>

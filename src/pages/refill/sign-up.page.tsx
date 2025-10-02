@@ -18,7 +18,7 @@ export default function SignUpPage() {
 
   const [error, setError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState('');
+  const [isSuccessful, setIsSuccessful] = useState(false);
 
   const action =
     'https://wrap.us1.list-manage.com/subscribe/post-json?u=65343110dd35be920e719fccd&amp;id=3d85122919&amp;f_id=00ffd3e0f0';
@@ -67,8 +67,8 @@ export default function SignUpPage() {
       const result = await response.json();
 
       if (result.result === 'success') {
-        // Display already subscribed message from MailChimp if user tries to sign up again
-        setIsSubmitted(result.msg || t('refill.sign-up.success.confirmation'));
+        console.log('Success:', result.msg);
+        setIsSuccessful(true);
         window.scrollTo({ top: 0, behavior: 'smooth' });
       } else {
         throw new Error(result.msg || t('refill.sign-up.error'));
@@ -95,18 +95,18 @@ export default function SignUpPage() {
   return (
     <diamond-section padding="lg">
       <div aria-live="polite" role="status" aria-atomic="true">
-        {isSubmitted && (
-          <>
+        {isSuccessful && (
+          <div className="diamond-spacing-bottom-md">
             <h2>{t('refill.sign-up.success.title')}</h2>
-            <p className="text-color-positive diamond-text-size-sm">
-              {isSubmitted}
+            <p className="text-color-positive">
+              {t('refill.sign-up.success.description')}
             </p>
-            <p>{t('refill.sign-up.success.description')}</p>
-          </>
+            <p>{t('refill.sign-up.success.confirmation')}</p>
+          </div>
         )}
       </div>
 
-      {!isSubmitted && (
+      {!isSuccessful && (
         <>
           <h2>{t('refill.sign-up.title')}</h2>
           <p>{t('refill.sign-up.description')}</p>
@@ -128,7 +128,7 @@ export default function SignUpPage() {
                   name="MMERGE6"
                   type="text"
                   required
-                  disabled={isSubmitting || !!isSubmitted}
+                  disabled={isSubmitting || isSuccessful}
                   onChange={() =>
                     setErrors((prev) => ({ ...prev, name: false }))
                   }
@@ -158,7 +158,7 @@ export default function SignUpPage() {
                     t('refill.sign-up.form.email.placeholder') as string
                   }
                   required
-                  disabled={isSubmitting || !!isSubmitted}
+                  disabled={isSubmitting || isSuccessful}
                   onChange={() =>
                     setErrors((prev) => ({ ...prev, email: false }))
                   }
@@ -189,7 +189,7 @@ export default function SignUpPage() {
                     t('refill.sign-up.form.postcode.placeholder') as string
                   }
                   required
-                  disabled={isSubmitting || !!isSubmitted}
+                  disabled={isSubmitting || isSuccessful}
                   onChange={() =>
                     setErrors((prev) => ({ ...prev, postcode: false }))
                   }
@@ -214,7 +214,7 @@ export default function SignUpPage() {
                     id="gdpr-input"
                     name="gdpr-input"
                     required
-                    disabled={isSubmitting || !!isSubmitted}
+                    disabled={isSubmitting || isSuccessful}
                     onChange={() =>
                       setErrors((prev) => ({ ...prev, gdpr: false }))
                     }
@@ -256,7 +256,7 @@ export default function SignUpPage() {
               width="full-width"
               className="diamond-spacing-bottom-md"
             >
-              <button type="submit" disabled={isSubmitting || !!isSubmitted}>
+              <button type="submit" disabled={isSubmitting || isSuccessful}>
                 {isSubmitting
                   ? t('refill.sign-up.loading')
                   : t('refill.sign-up.button')}

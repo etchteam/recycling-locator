@@ -255,7 +255,9 @@ export default function SignUpPage() {
               className="diamond-spacing-bottom-md"
             >
               <button type="submit" disabled={isSubmitting || !!isSubmitted}>
-                {isSubmitting ? 'Signing up...' : 'Sign up'}
+                {isSubmitting
+                  ? t('refill.sign-up.loading')
+                  : t('refill.sign-up-button')}
               </button>
             </diamond-button>
           </Form>

@@ -639,6 +639,7 @@
       "button": "Sign up",
       "error": "An error has occured, please try submitting again.",
       "business": "or <a>Get in touch about your refill business</a>",
+      "businessLink": "https://www.wrap.ngo/take-action/recycle-now/recycling-locator-tool",
       "success": {
         "title": "Thank you for signing up!",
         "description": "We'll let you know when refill locations are available in your area.",
@@ -661,6 +662,7 @@
         },
         "gdpr": {
           "label": "I agree to the <a>Terms and conditions</a>",
+          "link": "https://www.recyclenow.com/privacy-policy",
           "error": "To sign up, you must agree to the terms and conditions"
         }
       }

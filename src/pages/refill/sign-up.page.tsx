@@ -259,7 +259,7 @@ export default function SignUpPage() {
               <button type="submit" disabled={isSubmitting || !!isSubmitted}>
                 {isSubmitting
                   ? t('refill.sign-up.loading')
-                  : t('refill.sign-up-button')}
+                  : t('refill.sign-up.button')}
               </button>
             </diamond-button>
           </Form>

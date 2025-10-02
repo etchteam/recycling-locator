@@ -219,16 +219,18 @@ export default function SignUpPage() {
                       setErrors((prev) => ({ ...prev, gdpr: false }))
                     }
                   />
-                  <Trans
-                    i18nKey={'refill.sign-up.form.gdpr.label'}
-                    components={{
-                      a: (
-                        <Link
-                          to={t('refill.sign-up.form.gdpr.link') as string}
-                        />
-                      ),
-                    }}
-                  />
+                  <span>
+                    <Trans
+                      i18nKey={'refill.sign-up.form.gdpr.label'}
+                      components={{
+                        a: (
+                          <Link
+                            to={t('refill.sign-up.form.gdpr.link') as string}
+                          />
+                        ),
+                      }}
+                    />
+                  </span>
                 </label>
               </diamond-radio-checkbox>
               {errors.gdpr && (

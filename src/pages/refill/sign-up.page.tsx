@@ -223,7 +223,9 @@ export default function SignUpPage() {
                     i18nKey={'refill.sign-up.form.gdpr.label'}
                     components={{
                       a: (
-                        <Link to="https://www.recyclenow.com/privacy-policy" />
+                        <Link
+                          to={t('refill.sign-up.form.gdpr.link') as string}
+                        />
                       ),
                     }}
                   />
@@ -264,9 +266,7 @@ export default function SignUpPage() {
         <Trans
           i18nKey={'refill.sign-up.business'}
           components={{
-            a: (
-              <Link to="https://www.wrap.ngo/take-action/recycle-now/recycling-locator-tool" />
-            ),
+            a: <Link to={t('refill.sign-up.businessLink') as string} />,
           }}
         />
       </p>

@@ -637,12 +637,14 @@
       "title": "Be the first to know when refill locations arrive",
       "description": "You'll soon be able to use the Locator to find refill stores in your area.",
       "button": "Sign up",
+      "loading": "Signing up...",
       "error": "An error has occured, please try submitting again.",
       "business": "or <a>Get in touch about your refill business</a>",
       "businessLink": "https://www.wrap.ngo/take-action/recycle-now/recycling-locator-tool",
       "success": {
         "title": "Thank you for signing up!",
         "description": "We'll let you know when refill locations are available in your area.",
+        "already": "You're already subscribed, your profile has been updated. Thank you!",
         "confirmation": "Please check your email and click the link to confirm your subscription."
       },
       "form": {

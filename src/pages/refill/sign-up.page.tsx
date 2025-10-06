@@ -1,10 +1,13 @@
 import fetchJsonp from 'fetch-jsonp';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { Form, Link, useSearchParams } from 'react-router';
 
+import i18n from '@/lib/i18n';
+
 export default function SignUpPage() {
   const { t } = useTranslation();
+  const locale = i18n.language;
 
   const [searchParams] = useSearchParams();
   const postcode = searchParams.get('postcode');
@@ -19,6 +22,17 @@ export default function SignUpPage() {
   const [error, setError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccessful, setIsSuccessful] = useState(false);
+  const [alreadySubmitted, setAlreadySubmitted] = useState(false);
+
+  useEffect(() => {
+    if (window.localStorage) {
+      const previouslySubmitted = window.localStorage.getItem('refill-sign-up');
+      if (previouslySubmitted !== null && previouslySubmitted !== undefined) {
+        const loadedValue = JSON.parse(previouslySubmitted);
+        setIsSuccessful(loadedValue);
+      }
+    }
+  }, []);
 
   const action =
     'https://wrap.us1.list-manage.com/subscribe/post-json?u=65343110dd35be920e719fccd&amp;id=3d85122919&amp;f_id=00ffd3e0f0';
@@ -67,8 +81,12 @@ export default function SignUpPage() {
       const result = await response.json();
 
       if (result.result === 'success') {
-        console.log('Success:', result.msg);
         setIsSuccessful(true);
+        window.localStorage.setItem('refill-sign-up', JSON.stringify(true));
+        setAlreadySubmitted(
+          result.msg &&
+            result.msg.toLowerCase().includes("you're already subscribed"),
+        );
         window.scrollTo({ top: 0, behavior: 'smooth' });
       } else {
         throw new Error(result.msg || t('refill.sign-up.error'));
@@ -78,6 +96,8 @@ export default function SignUpPage() {
     } catch (error) {
       console.error(error);
       let errorMessage = error.message || t('refill.sign-up.error');
+
+      if (locale === 'cy') errorMessage = t('refill.sign-up.error');
 
       // Remove error number prefix from MailChimp errors (e.g., "0 - This email address...")
       if (
@@ -101,7 +121,11 @@ export default function SignUpPage() {
             <p className="text-color-positive">
               {t('refill.sign-up.success.description')}
             </p>
-            <p>{t('refill.sign-up.success.confirmation')}</p>
+            <p>
+              {t(
+                `refill.sign-up.success.${alreadySubmitted ? 'already' : 'confirmation'}`,
+              )}
+            </p>
           </div>
         )}
       </div>

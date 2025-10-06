@@ -630,6 +630,7 @@
       "success": {
         "title": "Diolch am gofrestru!",
         "description": "Byddwn yn rhoi gwybod i chi pan fydd lleoliadau ail-lenwi ar gael yn eich ardal.",
+        "already": "Rydych chi eisoes wedi tanysgrifio, mae eich proffil wedi'i ddiweddaru. Diolch!",
         "confirmation": "Gwiriwch eich e-bost a chliciwch ar y ddolen i gadarnhau eich tanysgrifiad."
       },
       "form": {

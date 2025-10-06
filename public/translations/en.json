@@ -644,6 +644,7 @@
       "success": {
         "title": "Thank you for signing up!",
         "description": "We'll let you know when refill locations are available in your area.",
+        "already": "You're already subscribed, your profile has been updated. Thank you!",
         "confirmation": "Please check your email and click the link to confirm your subscription."
       },
       "form": {

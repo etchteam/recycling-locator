@@ -448,7 +448,7 @@
         "rating": "Sgôr o {{rating}} allan o 5 seren",
         "testimonials": {
           "Fiona C": "Rwy'n caru fy siop ail-lenwi leol oherwydd gallaf brynu cymaint neu cyn lleied ag rwyf ei eisiau. Ac rwyf wir wedi sylwi ar lawer llai o ddeunydd pacio yn y bin ailgylchu",
-          "Aidan W": "Rwy'n caru'r amrywiaeth o eitemau... rhai na allaf eu canfod yn unrhyw le arall!",
+          "Aidan W": "Rwy'n caru'r amrywiaeth o eitemau… rhai na allaf eu canfod yn unrhyw le arall!",
           "Hamish F": "Mae'n hawdd, dim ond prynu cymaint ag sydd ei angen arnaf, rwyf yn aml yn arbed arian o gymharu â'r archfarchnadoedd. Heb sôn am y gymuned hyfryd o bobl sy'n ei redeg ac yn siopa yno!",
           "Jen M": "Yn ogystal â thorri allan ddeunydd pacio, mae fy siop ail-lenwi yn storio cynhyrchion yr wyf yn gwybod sy'n well i'r blaned a phobl! Win-win!",
           "Alex K": "Rwy'n hoffi prynu o siopau ail-lenwi oherwydd mae'n caniatáu i mi brynu'r hyn sydd ei angen arnaf ac yn atal fy nghypyrddau rhag cael eu llenwi gyda darnau mewn pecynnau sy'n mynd i'r bin yn y pen draw.",
@@ -623,7 +623,7 @@
       "title": "Byddwch y cyntaf i wybod pan fydd lleoliadau ail-lenwi yn cyrraedd",
       "description": "Cyn bo hir byddwch yn gallu defnyddio'r Lleolydd i ddod o hyd i siopau ail-lenwi yn eich ardal.",
       "button": "Cofrestru",
-      "loading": "Wrthi'n cofrestru...",
+      "loading": "Wrthi'n cofrestru…",
       "error": "Mae gwall wedi digwydd, rhowch gynnig ar gyflwyno eto.",
       "business": "neu <a>Cysylltwch â ni ynghylch eich busnes ail-lenwi</a>",
       "businessLink": "https://www.wrap.ngo/take-action/recycle-now/recycling-locator-tool",

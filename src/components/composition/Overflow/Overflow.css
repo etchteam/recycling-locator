@@ -60,7 +60,7 @@ locator-overflow {
     }
 
     &::scroll-button(left) {
-      content: url('/public/images/back-arrow.svg') / 'Scroll Left';
+      content: url('/images/back-arrow.svg') / 'Scroll Left';
       right: calc(
         anchor(right) + var(--diamond-spacing) + var(--diamond-spacing-lg) +
           var(--diamond-spacing-xs)
@@ -68,7 +68,7 @@ locator-overflow {
     }
 
     &::scroll-button(right) {
-      content: url('/public/images/forward-arrow.svg') / 'Scroll Right';
+      content: url('/images/forward-arrow.svg') / 'Scroll Right';
       right: calc(anchor(right) + var(--diamond-spacing));
     } /* position right - gutter */
 

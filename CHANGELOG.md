@@ -1,3 +1,10 @@
+## [1.65.1](https://github.com/etchteam/recycling-locator/compare/v1.65.0...v1.65.1) (2025-10-13)
+
+
+### Bug Fixes
+
+* remove onBlur validation handelling ([4592bb0](https://github.com/etchteam/recycling-locator/commit/4592bb0baa534a1245b4c9e815dcbf574cd6696b))
+
 ## [1.65.0](https://github.com/etchteam/recycling-locator/compare/v1.64.3...v1.65.0) (2025-09-03)
 
 

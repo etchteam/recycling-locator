@@ -10,8 +10,18 @@ function handleError(error: Error) {
         PostCodeResolver.ERROR_NOT_IN_UK,
         PostCodeResolver.ERROR_POSTCODE_NOT_FOUND,
         PostCodeResolver.ERROR_SEARCH_FAILED,
+        PostCodeResolver.ERROR_POSTCODE_TYPO,
       ].includes(error.message)
     ) {
+      if (
+        error.message === PostCodeResolver.ERROR_POSTCODE_TYPO &&
+        error.cause
+      ) {
+        throw new Response(error.message, {
+          status: 404,
+          statusText: String(error.cause),
+        });
+      }
       throw new Response(error.message, { status: 404 });
     }
   }

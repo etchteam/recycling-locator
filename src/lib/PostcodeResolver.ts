@@ -14,6 +14,7 @@ interface HereMapsGeocodeResponse {
       city: string;
       countryName: string;
       state: string;
+      postalCode?: string;
     };
     position: {
       lat: number;
@@ -26,6 +27,7 @@ export default class PostCodeResolver {
   static readonly ERROR_POSTCODE_NOT_FOUND = 'Postcode not found';
   static readonly ERROR_SEARCH_FAILED = 'Search failed';
   static readonly ERROR_NOT_IN_UK = 'Not in the UK';
+  static readonly ERROR_POSTCODE_TYPO = 'Postcode incorrect';
   static readonly POSTCODE_REGEX =
     /(GIR ?0AA|[A-PR-UWYZ](\d{1,2}|([A-HK-Y]\d([\dABEHMNPRV-Y])?)|\d[A-HJKPS-UW]) ?\d[ABD-HJLNP-UW-Z]{2})/i;
 
@@ -102,17 +104,26 @@ export default class PostCodeResolver {
   /**
    * Take a location string then:
    * 1. Test it’s a valid UK address
-   * 2. If the location contains a postcode return it
-   * 3. If the location does not contain a postcode use the lat/lng to get the postcode
+   * 2. If the location geocode returns is different return a typo error
+   * 3. If the location contains a valid postcode return it
+   * 4. If the location does not contain a postcode use the lat/lng to get the postcode
    */
   static async fromString(location: string): Promise<string> {
     const geocode = await PostCodeResolver.getValidGeocodeData(location);
 
+    const geocodePostalCode = geocode.items[0].address.postalCode ?? null;
+
     const extractedPostcode =
       PostCodeResolver.extractPostcodeFromString(location);
+    const formattedPostcode = formatPostcode(extractedPostcode);
 
     if (extractedPostcode) {
-      return formatPostcode(extractedPostcode);
+      if (geocodePostalCode === formattedPostcode) {
+        return formattedPostcode;
+      }
+      throw new Error(PostCodeResolver.ERROR_POSTCODE_TYPO, {
+        cause: geocodePostalCode,
+      });
     }
 
     const { lat, lng } = geocode.items[0].position;

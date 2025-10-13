@@ -45,7 +45,6 @@ export default function PlacesSearchPage() {
               <MaterialSearchInput
                 inputLabelledBy="places-search-label"
                 autofocus={autofocus}
-                handleBlur={form.handleBlur}
                 handleInput={form.handleInput}
                 submitting={form.submitting.value}
                 valid={form.valid.value}

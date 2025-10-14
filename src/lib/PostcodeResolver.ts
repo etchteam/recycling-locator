@@ -115,9 +115,9 @@ export default class PostCodeResolver {
 
     const extractedPostcode =
       PostCodeResolver.extractPostcodeFromString(location);
-    const formattedPostcode = formatPostcode(extractedPostcode);
 
     if (extractedPostcode) {
+      const formattedPostcode = formatPostcode(extractedPostcode);
       if (geocodePostalCode === formattedPostcode) {
         return formattedPostcode;
       }

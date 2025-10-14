@@ -1,3 +1,11 @@
+## [1.65.2](https://github.com/etchteam/recycling-locator/compare/v1.65.1...v1.65.2) (2025-10-14)
+
+
+### Bug Fixes
+
+* detect geocode vs user input postcode mismatch ([e2772f8](https://github.com/etchteam/recycling-locator/commit/e2772f8185c575ceef3e0391bde520d902538953))
+* only format postcodes not all locations ([06baa58](https://github.com/etchteam/recycling-locator/commit/06baa58b03603b7d61f4d4ddc93f81d674844b34))
+
 ## [1.65.1](https://github.com/etchteam/recycling-locator/compare/v1.65.0...v1.65.1) (2025-10-13)
 
 

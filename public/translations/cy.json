@@ -124,7 +124,8 @@
     },
     "ukOnly": "Mae’r data yn yr offeryn hwn ar gyfer rhanbarthau tir mawr y DU yn unig.",
     "label": "Rhoi cynnig ar leoliad arall?",
-    "button": "Chwilio eto",
+    "cta": "Chwilio eto",
+    "didYouMean": "A oeddech chi'n golygu: ",
     "aside": {
       "content": "Mae gwybodaeth ailgylchu ar gael mewn lleoedd eraill ar gyfer y rhanbarthau hyn o’r DU:",
       "isleOfMan": "Ynys Manaw",

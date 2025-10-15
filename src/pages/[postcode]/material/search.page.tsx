@@ -68,7 +68,7 @@ export default function MaterialSearchPage() {
                     submitting={form.submitting.value}
                     valid={form.valid.value}
                     defaultValue={search ?? ''}
-                    defaultInvalid
+                    defaultInvalid={!!search}
                     checkMaterial
                     includeFeedbackForm
                   ></MaterialSearchInput>

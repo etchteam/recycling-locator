@@ -126,7 +126,8 @@
     },
     "ukOnly": "Mae’r data yn yr offeryn hwn ar gyfer rhanbarthau tir mawr y DU yn unig.",
     "label": "Rhoi cynnig ar leoliad arall?",
-    "button": "Chwilio eto",
+    "cta": "Chwilio eto",
+    "didYouMean": "A oeddech chi'n golygu: ",
     "aside": {
       "content": "Mae gwybodaeth ailgylchu ar gael mewn lleoedd eraill ar gyfer y rhanbarthau hyn o’r DU:",
       "isleOfMan": "Ynys Manaw",
@@ -257,6 +258,11 @@
     },
     "error": {
       "message": "Bu gwall annisgwyl wrth chwilio am leoedd i ailgylchu’r eitem hon."
+    },
+    "doorstepCollection": {
+      "title": "Trefnu casgliad am ddim",
+      "intro": "Mae gwasanaeth casglu o garreg y drws yn cael ei weithredu yn yr ardal hon ac efallai y bydd ar gael i chi.",
+      "cta": "Archebu ar-lein"
     }
   },
   "homeRecycling": {

@@ -18,6 +18,7 @@ export interface IconAttributes {
     | 'cross-circle'
     | 'distance'
     | 'docs'
+    | 'doorstep-collection'
     | 'dry'
     | 'expand'
     | 'external'

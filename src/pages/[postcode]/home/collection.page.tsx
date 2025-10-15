@@ -132,7 +132,6 @@ function CollectionPageContent({
                 <MaterialSearchInput
                   inputLabelledBy="bin-search-title"
                   defaultValue={search}
-                  handleBlur={form.handleBlur}
                   handleInput={form.handleInput}
                   handleReset={() =>
                     setSearchParams({ propertyType, search: '' })

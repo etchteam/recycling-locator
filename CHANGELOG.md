@@ -1,3 +1,27 @@
+## [1.65.2](https://github.com/etchteam/recycling-locator/compare/v1.65.1...v1.65.2) (2025-10-14)
+
+
+### Bug Fixes
+
+* detect geocode vs user input postcode mismatch ([e2772f8](https://github.com/etchteam/recycling-locator/commit/e2772f8185c575ceef3e0391bde520d902538953))
+* only format postcodes not all locations ([06baa58](https://github.com/etchteam/recycling-locator/commit/06baa58b03603b7d61f4d4ddc93f81d674844b34))
+
+## [1.65.1](https://github.com/etchteam/recycling-locator/compare/v1.65.0...v1.65.1) (2025-10-13)
+
+
+### Bug Fixes
+
+* remove onBlur validation handelling ([4592bb0](https://github.com/etchteam/recycling-locator/commit/4592bb0baa534a1245b4c9e815dcbf574cd6696b))
+
+## [1.65.0](https://github.com/etchteam/recycling-locator/compare/v1.64.3...v1.65.0) (2025-09-03)
+
+
+### Features
+
+* add doorstep collections cta ([93d8b3b](https://github.com/etchteam/recycling-locator/commit/93d8b3b49c3242ac4376bd3bfe0290c2e55a4d78))
+* analytics ([6df7f9d](https://github.com/etchteam/recycling-locator/commit/6df7f9d349ce1feab246aee875a4b817fbb8c5af))
+* doorstep collections translations and links ([29ecde0](https://github.com/etchteam/recycling-locator/commit/29ecde0402ae5b971daae46ddc228d4db8447361))
+
 ## [1.64.3](https://github.com/etchteam/recycling-locator/compare/v1.64.2...v1.64.3) (2025-07-24)
 
 

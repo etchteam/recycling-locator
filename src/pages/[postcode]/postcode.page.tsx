@@ -163,7 +163,6 @@ export default function PostcodePage() {
                 <MaterialSearchInput
                   inputLabelledBy="material-search-title"
                   autofocus={autofocus}
-                  handleBlur={form.handleBlur}
                   handleInput={form.handleInput}
                   submitting={form.submitting.value}
                   valid={form.valid.value}

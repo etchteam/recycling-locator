@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { useRouteError, ErrorResponse } from 'react-router';
+import { useRouteError, ErrorResponse, Link } from 'react-router';
 import '@etchteam/diamond-ui/composition/FormGroup/FormGroup';
 import '@etchteam/diamond-ui/control/Button/Button';
 import '@etchteam/diamond-ui/canvas/Section/Section';
@@ -63,6 +63,8 @@ export default function NotFoundPage() {
   }
 
   const notInUk = error?.data === PostCodeResolver.ERROR_NOT_IN_UK;
+  const postcodeTypo = error?.data === PostCodeResolver.ERROR_POSTCODE_TYPO;
+  const suggestedPostcode = postcodeTypo ? error?.statusText : null;
 
   return (
     <StartLayout aside={<Aside />}>
@@ -70,6 +72,12 @@ export default function NotFoundPage() {
         <diamond-section padding="lg">
           <h2>{t(`notFound.title.${notInUk ? 'notInTheUK' : 'default'}`)}</h2>
           {notInUk && <p>{t('notFound.ukOnly')}</p>}
+          {postcodeTypo && suggestedPostcode && (
+            <p>
+              {t('notFound.didYouMean')}
+              <Link to={`/${suggestedPostcode}`}>{suggestedPostcode}</Link>
+            </p>
+          )}
           <LocationForm label={t('notFound.label')} cta={t('notFound.cta')} />
         </diamond-section>
       </locator-wrap>

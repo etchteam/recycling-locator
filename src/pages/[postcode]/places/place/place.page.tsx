@@ -129,7 +129,6 @@ function PlacePageContent({ location }: { readonly location: Location }) {
         <Form method="get" onSubmit={handleSearch}>
           <MaterialSearchInput
             inputLabelledBy="material-search-title"
-            handleBlur={form.handleBlur}
             handleInput={form.handleInput}
             handleReset={() => (search.value = '')}
             valid={form.valid.value}

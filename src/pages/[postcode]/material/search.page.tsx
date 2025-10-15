@@ -64,7 +64,6 @@ export default function MaterialSearchPage() {
                     {t('actions.searchAgain')}
                   </label>
                   <MaterialSearchInput
-                    handleBlur={form.handleBlur}
                     handleInput={form.handleInput}
                     submitting={form.submitting.value}
                     valid={form.valid.value}

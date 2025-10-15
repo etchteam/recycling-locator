@@ -127,6 +127,7 @@
     "ukOnly": "The data in this tool only covers mainland regions of the UK.",
     "label": "Try another location?",
     "cta": "Search again",
+    "didYouMean": "Did you mean: ",
     "aside": {
       "content": "Recycling information is available elsewhere for these UK regions:",
       "isleOfMan": "Isle of Man",
@@ -273,6 +274,11 @@
     },
     "error": {
       "message": "An unexpected error occurred whilst searching for places to recycle this item."
+    },
+    "doorstepCollection": {
+      "title": "Arrange a free collection",
+      "intro": "A doorstep collection service is being operated in your area and may be available to you.",
+      "cta": "Book online"
     }
   },
   "homeRecycling": {

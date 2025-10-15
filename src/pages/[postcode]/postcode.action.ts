@@ -14,9 +14,12 @@ export default async function postcodeAction({
     'materials',
     formData,
   );
-  const material = materials.find((m) => m.name === search);
+  const material =
+    materials.find(
+      (m) => m.name.toLocaleLowerCase() === search.toLocaleLowerCase().trim(),
+    ) ?? materials[0];
   const searchParams = new URLSearchParams();
-  searchParams.set('search', search);
+  searchParams.set('search', material?.name ?? search);
 
   if (!material) {
     return redirect(`/${postcode}/material/search?${searchParams.toString()}`);

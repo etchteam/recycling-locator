@@ -35,7 +35,7 @@ function PlacePageContent({ location }: { readonly location: Location }) {
   const materials = location.locations?.flatMap((l) => l.materials);
   const materialCategories = groupBy(materials, 'category.name');
   const materialCategoryNames = Object.keys(materialCategories);
-  const hasSearchedForMaterial =
+  const materialRecyclableHere =
     search.value && materialNameSearch(search.value, materials);
 
   if (location.error) {
@@ -132,6 +132,7 @@ function PlacePageContent({ location }: { readonly location: Location }) {
             handleInput={form.handleInput}
             handleReset={() => (search.value = '')}
             valid={form.valid.value}
+            checkMaterial
           ></MaterialSearchInput>
         </Form>
       </diamond-enter>
@@ -140,17 +141,17 @@ function PlacePageContent({ location }: { readonly location: Location }) {
         {search.value && (
           <diamond-enter type="fade">
             <diamond-card
-              className={`theme-${hasSearchedForMaterial ? 'positive' : 'negative'}`}
+              className={`theme-${materialRecyclableHere ? 'positive' : 'negative'}`}
               padding="sm"
               radius
             >
               <locator-icon-text>
                 <locator-icon
-                  icon={`${hasSearchedForMaterial ? 'tick' : 'cross'}-circle`}
+                  icon={`${materialRecyclableHere ? 'tick' : 'cross'}-circle`}
                 ></locator-icon>
                 <p className="diamond-text-size-sm">
                   {t(
-                    `place.recycle.search.${hasSearchedForMaterial ? 'positive' : 'negative'}`,
+                    `place.recycle.search.${materialRecyclableHere ? 'positive' : 'negative'}`,
                   )}
                 </p>
               </locator-icon-text>

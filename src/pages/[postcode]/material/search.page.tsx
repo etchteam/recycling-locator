@@ -63,7 +63,6 @@ export default function MaterialSearchPage() {
                   <label htmlFor="locator-material-input">
                     {t('actions.searchAgain')}
                   </label>
-                  {/* TODO: Handle search error */}
                   <MaterialSearchInput
                     handleInput={form.handleInput}
                     submitting={form.submitting.value}

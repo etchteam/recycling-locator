@@ -138,7 +138,7 @@ function CollectionPageContent({
                   }
                   submitting={form.submitting.value}
                   valid={form.valid.value}
-                  checkMaterial={true}
+                  checkMaterial
                 ></MaterialSearchInput>
               </Form>
 

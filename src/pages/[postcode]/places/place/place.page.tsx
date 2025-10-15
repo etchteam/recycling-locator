@@ -12,6 +12,7 @@ import '@/components/content/Icon/Icon';
 import MaterialSearchInput from '@/components/control/MaterialSearchInput/MaterialSearchInput';
 import '@/components/control/Details/Details';
 import RateThisInfo from '@/components/control/RateThisInfo/RateThisInfo';
+import MaterialSearchBanner from '@/components/template/MaterialSearchBanner/MaterialSearchBanner';
 import materialNameSearch from '@/lib/materialNameSearch';
 import useAnalytics from '@/lib/useAnalytics';
 import useFormValidation from '@/lib/useFormValidation';
@@ -138,26 +139,15 @@ function PlacePageContent({ location }: { readonly location: Location }) {
       </diamond-enter>
 
       <div className="diamond-spacing-top-sm diamond-spacing-bottom-md">
-        {search.value && (
-          <diamond-enter type="fade">
-            <diamond-card
-              className={`theme-${materialRecyclableHere ? 'positive' : 'negative'}`}
-              padding="sm"
-              radius
-            >
-              <locator-icon-text>
-                <locator-icon
-                  icon={`${materialRecyclableHere ? 'tick' : 'cross'}-circle`}
-                ></locator-icon>
-                <p className="diamond-text-size-sm">
-                  {t(
-                    `place.recycle.search.${materialRecyclableHere ? 'positive' : 'negative'}`,
-                  )}
-                </p>
-              </locator-icon-text>
-            </diamond-card>
-          </diamond-enter>
-        )}
+        <MaterialSearchBanner
+          search={search.value}
+          searchResult={materialRecyclableHere}
+          message={String(
+            t(
+              `place.recycle.search.${materialRecyclableHere ? 'positive' : 'negative'}`,
+            ),
+          )}
+        ></MaterialSearchBanner>
       </div>
 
       <diamond-enter type="fade-in-up" delay={0.25}>

@@ -10,6 +10,7 @@ import '@/components/content/Container/Container';
 import '@/components/content/Icon/Icon';
 import '@/components/control/Details/Details';
 import ContainerSVG from '@/components/content/Container/ContainerSVG';
+import MaterialSearchBanner from '@/components/template/MaterialSearchBanner/MaterialSearchBanner';
 import containerName from '@/lib/containerName';
 import {
   ContainerList as ContainerListType,
@@ -218,22 +219,15 @@ export default function ContainerList({
       <div className="diamond-spacing-bottom-lg">
         {searchResult ? (
           <diamond-enter type="fade">
-            <diamond-card
-              className={`theme-${searchResult}`}
-              padding="sm"
-              radius
-            >
-              <locator-icon-text>
-                <locator-icon
-                  icon={`${searchResult === 'positive' ? 'tick' : 'cross'}-circle`}
-                ></locator-icon>
-                <p className="diamond-text-size-sm">
-                  {t(`homeRecycling.collection.search.${searchResult}`, {
-                    count: containerCount,
-                  })}
-                </p>
-              </locator-icon-text>
-            </diamond-card>
+            <MaterialSearchBanner
+              search={search}
+              searchResult={searchResult === 'positive'}
+              message={String(
+                t(`homeRecycling.collection.search.${searchResult}`, {
+                  count: containerCount,
+                }),
+              )}
+            ></MaterialSearchBanner>
           </diamond-enter>
         ) : (
           <>

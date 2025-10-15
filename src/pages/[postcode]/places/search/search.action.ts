@@ -28,5 +28,5 @@ export default async function placesSearchAction({
     return redirect(`/${postcode}/places?${searchParams.toString()}`);
   }
 
-  return redirect(`/${postcode}/material/search?${searchParams.toString()}`);
+  return redirect(`/${postcode}/places/search?${searchParams.toString()}`);
 }

@@ -1,9 +1,11 @@
 import { Suspense } from 'preact/compat';
+import { useEffect } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
 import {
   Await,
   Form,
   useLoaderData,
+  useLocation,
   useParams,
   useSearchParams,
 } from 'react-router';
@@ -22,11 +24,17 @@ import { PlacesSearchLoaderResponse } from './search.loader';
 export default function PlacesSearchPage() {
   const { t } = useTranslation();
   const { postcode } = useParams();
+  const location = useLocation();
   const { popularMaterials: popularMaterialsPromise } =
     useLoaderData() as PlacesSearchLoaderResponse;
   const [searchParams] = useSearchParams();
+  const search = searchParams.get('search');
   const autofocus = searchParams.get('autofocus') === 'true';
   const form = useFormValidation('search');
+
+  useEffect(() => {
+    form.submitting.value = false;
+  }, [search, location]);
 
   function generatePopularMaterialPath(material: Material) {
     const placesSearchParams = new URLSearchParams();
@@ -48,6 +56,7 @@ export default function PlacesSearchPage() {
                 handleInput={form.handleInput}
                 submitting={form.submitting.value}
                 valid={form.valid.value}
+                checkMaterial
                 includeFeedbackForm
               ></MaterialSearchInput>
             </diamond-form-group>

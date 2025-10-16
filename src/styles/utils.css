@@ -20,6 +20,10 @@
   color: var(--color-green-dark);
 }
 
+.text-color-white {
+  color: var(--color-white);
+}
+
 .layer-one {
   position: relative;
   z-index: var(--layer-one);

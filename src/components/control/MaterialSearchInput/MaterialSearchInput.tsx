@@ -29,6 +29,8 @@ interface MaterialSearchInputProps {
   readonly valid?: boolean;
   readonly autofocus?: boolean;
   readonly includeFeedbackForm?: boolean;
+  readonly checkMaterial?: boolean;
+  readonly defaultInvalid?: boolean;
   readonly handleBlur?: (value: string) => void;
   readonly handleInput?: (value: string) => void;
   readonly handleReset?: () => void;
@@ -48,7 +50,9 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
   constructor(props: MaterialSearchInputProps) {
     super(props);
     this.materialSuggestions = signal([]);
-    this.materialNotFound = signal(null);
+    this.materialNotFound = signal(
+      this.props.defaultInvalid ? this.props.defaultValue : null,
+    );
     this.inputValue = signal(this.props.defaultValue ?? '');
   }
 
@@ -63,11 +67,9 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
     }
   };
 
-  handleInput = debounce(
-    async (query: string) => {
-      this.inputValue.value = query ?? '';
-
-      if ((query ?? '').length < 3) {
+  updateSuggestions = debounce(
+    async (query: string = '') => {
+      if (query.length < 3) {
         return;
       }
 
@@ -79,15 +81,23 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
     { leading: true },
   );
 
+  handleInput = (query: string = '') => {
+    this.inputRef.current.value = query;
+    this.inputValue.value = query;
+
+    this.updateSuggestions(query);
+  };
+
   handleBlur = () => {
     this.props.handleBlur?.(this.inputValue.value);
   };
 
-  handleOptionSelected = async (query: string) => {
+  handleOptionSelected = async (query: string = '') => {
     this.materialNotFound.value = null;
+    this.inputValue.value = query;
     // Manually set the value of the input field to the selected option
     // using a ref because combobox doesn't render the value update fast enough
-    this.inputRef.current.value = query ?? '';
+    this.inputRef.current.value = query;
     // Optimistically submit the form
     this.buttonRef.current?.click();
     // Send the usual input event in case submission fails
@@ -102,26 +112,19 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
     }
   };
 
-  handleButtonClick = (event: Event) => {
+  handleButtonClick = async () => {
     const query = this.inputRef.current.value;
+    if (query.length > 0) {
+      const materials = await this.autosuggest(query);
+      const material = materials.find(
+        (m) => m.name.toLocaleLowerCase() === query.toLocaleLowerCase().trim(),
+      );
 
-    const matchingMaterialNames =
-      this.materialSuggestions.value
-        ?.filter?.(
-          (material) =>
-            material.name.toLocaleLowerCase() === query.toLocaleLowerCase(),
-        )
-        .map((material) => material.name) ?? [];
+      if (material) {
+        this.inputRef.current.value = material.name;
+        return;
+      }
 
-    const isRealMaterial = matchingMaterialNames?.length > 0;
-
-    // Update the query value when it matches a real material but the capitalisation is different
-    if (isRealMaterial && !matchingMaterialNames.includes(query)) {
-      this.inputRef.current.value = matchingMaterialNames[0];
-    }
-
-    if (!isRealMaterial && query) {
-      event.preventDefault();
       this.materialNotFound.value = query;
     }
   };
@@ -173,6 +176,7 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
                     aria-errormessage={
                       !valid ? `${this.props.inputId}-error` : undefined
                     }
+                    disabled={submitting && submitting !== 'false'}
                   />
                   {this.inputValue.value && (
                     <button
@@ -219,7 +223,9 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
               type="submit"
               ref={this.buttonRef}
               disabled={submitting && submitting !== 'false'}
-              onClick={this.handleButtonClick}
+              onClick={
+                this.props.checkMaterial ? this.handleButtonClick : undefined
+              }
             >
               <locator-icon
                 icon="search"

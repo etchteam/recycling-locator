@@ -67,6 +67,9 @@ export default function MaterialSearchPage() {
                     handleInput={form.handleInput}
                     submitting={form.submitting.value}
                     valid={form.valid.value}
+                    defaultValue={search ?? ''}
+                    defaultInvalid={!!search}
+                    checkMaterial
                     includeFeedbackForm
                   ></MaterialSearchInput>
                 </diamond-form-group>

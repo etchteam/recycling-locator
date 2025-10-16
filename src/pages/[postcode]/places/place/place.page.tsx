@@ -12,6 +12,7 @@ import '@/components/content/Icon/Icon';
 import MaterialSearchInput from '@/components/control/MaterialSearchInput/MaterialSearchInput';
 import '@/components/control/Details/Details';
 import RateThisInfo from '@/components/control/RateThisInfo/RateThisInfo';
+import MaterialSearchBanner from '@/components/template/MaterialSearchBanner/MaterialSearchBanner';
 import materialNameSearch from '@/lib/materialNameSearch';
 import useAnalytics from '@/lib/useAnalytics';
 import useFormValidation from '@/lib/useFormValidation';
@@ -35,7 +36,7 @@ function PlacePageContent({ location }: { readonly location: Location }) {
   const materials = location.locations?.flatMap((l) => l.materials);
   const materialCategories = groupBy(materials, 'category.name');
   const materialCategoryNames = Object.keys(materialCategories);
-  const hasSearchedForMaterial =
+  const materialRecyclableHere =
     search.value && materialNameSearch(search.value, materials);
 
   if (location.error) {
@@ -132,31 +133,21 @@ function PlacePageContent({ location }: { readonly location: Location }) {
             handleInput={form.handleInput}
             handleReset={() => (search.value = '')}
             valid={form.valid.value}
+            checkMaterial
           ></MaterialSearchInput>
         </Form>
       </diamond-enter>
 
       <div className="diamond-spacing-top-sm diamond-spacing-bottom-md">
-        {search.value && (
-          <diamond-enter type="fade">
-            <diamond-card
-              className={`theme-${hasSearchedForMaterial ? 'positive' : 'negative'}`}
-              padding="sm"
-              radius
-            >
-              <locator-icon-text>
-                <locator-icon
-                  icon={`${hasSearchedForMaterial ? 'tick' : 'cross'}-circle`}
-                ></locator-icon>
-                <p className="diamond-text-size-sm">
-                  {t(
-                    `place.recycle.search.${hasSearchedForMaterial ? 'positive' : 'negative'}`,
-                  )}
-                </p>
-              </locator-icon-text>
-            </diamond-card>
-          </diamond-enter>
-        )}
+        <MaterialSearchBanner
+          search={search.value}
+          searchResult={materialRecyclableHere}
+          message={String(
+            t(
+              `place.recycle.search.${materialRecyclableHere ? 'positive' : 'negative'}`,
+            ),
+          )}
+        ></MaterialSearchBanner>
       </div>
 
       <diamond-enter type="fade-in-up" delay={0.25}>

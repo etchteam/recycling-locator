@@ -9,7 +9,7 @@ async function getMaterialsList(query: string): Promise<Material[]> {
     return LocatorApi.getInstance().post('materials', body);
   } catch (error) {
     captureException(error, { component: 'MaterialSearchInput' });
-    return Promise.resolve([]);
+    return [];
   }
 }
 

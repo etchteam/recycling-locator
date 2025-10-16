@@ -132,3 +132,10 @@ This file exists on the [recycle locator proxy](https://github.com/etchteam/recy
 
 Be aware that any changes to routes, may result in knock on changes being needed in this script.
 
+## UAT instance
+
+https://rl-uat.recyclenow.com/
+
+Updates will be automatically deployed when merged to the "uat" branch.
+
+This builds using `npm run build:uat` to create a reviewable version of the build without requiring an NPM release.

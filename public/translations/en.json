@@ -6,7 +6,8 @@
     "materialsAccepted": "materials accepted",
     "materialsAccepted_one": "material accepted",
     "popularSearches": "Popular searches",
-    "updated": "Updated"
+    "updated": "Updated",
+    "or": "OR"
   },
   "actions": {
     "back": "Back",
@@ -34,14 +35,14 @@
       "error": "Please enter the name of an item",
       "notFound": "We couldn’t find a match for this item. Please try using an alternative name for it.",
       "searchList": "or <a>Choose from a list of items</a>"
-
     },
     "menu": {
       "whatDoYouWantToDo": "What do you want to do?",
       "changeLocation": "Change your location",
       "recycleSpecificItem": "Recycle a specific item",
       "homeRecycling": "Check your home recycling",
-      "findNearbyPlaces": "Find nearby places to recycle"
+      "findNearbyPlaces": "Find nearby places to recycle",
+      "refill": "Discover refill options"
     },
     "container": {
       "notes": "Notes about this bin",
@@ -193,6 +194,10 @@
       "nearest": {
         "title": "Recycle at nearby places",
         "description": "{{count}} places within 25 miles"
+      },
+      "refill": {
+        "title": "Have you tried refill?",
+        "description": "Discover refill options near you"
       }
     }
   },
@@ -362,7 +367,34 @@
         "aToZofItems": "A-Z of items"
       },
       "aToZ": {
-        "alphabet": ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
+        "alphabet": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G",
+          "H",
+          "I",
+          "J",
+          "K",
+          "L",
+          "M",
+          "N",
+          "O",
+          "P",
+          "Q",
+          "R",
+          "S",
+          "T",
+          "U",
+          "V",
+          "W",
+          "X",
+          "Y",
+          "Z"
+        ],
         "backToTop": "Back to top"
       }
     },
@@ -399,6 +431,252 @@
     },
     "error": {
       "message": "An unexpected error occurred while loading this place."
+    }
+  },
+  "refill": {
+    "header": {
+      "logo": "Refill logo",
+      "title": "Refill Locator",
+      "comingSoon": "Coming Soon!"
+    },
+    "aside": {
+      "title": "Give plastic a new life",
+      "subtitle": "Reduce, Reuse, Recycle",
+      "content": "When reuse and refill is not an option, recycling is the best way to dispose of our plastics, giving the material the best chance of a new life rather than going to landfill or being burned for energy.",
+      "cta": "Recycling options in your area"
+    },
+    "start": {
+      "title": "Discover Refill",
+      "comingSoon": "Refill search is launching soon!",
+      "subtitle": "Find refill stores near you. Bring your empty containers and fill up your favourites without the packaging waste.",
+      "nav": {
+        "guide": {
+          "title": "Getting Started with Refill",
+          "description": "New to refill? It's surprisingly simple! Learn how to get started"
+        },
+        "options": {
+          "title": "More choice, not less",
+          "description": "From luxury oils to sweet treats, discover what your local shop might stock"
+        },
+        "benefits": {
+          "title": "How refill could work for you",
+          "description": "Learn how refill could fit into your existing routines and cupboards"
+        }
+      },
+      "reviews": {
+        "title": "Real people, real benefits",
+        "rating": "Rating of {{rating}} out of 5 stars",
+        "testimonials": {
+          "Fiona C": "I love my local refill shop because I can buy as much or as little as I want. And I’ve really noticed a lot less packaging ending up in the recycle bin",
+          "Aidan W": "I love the variety of items… some that I can’t find anywhere else!",
+          "Hamish F": "It’s easy, I only buy as much as I need, I’m often saving money compared to the supermarkets. Not to mention the lovely community of people who run it and shop in there!",
+          "Jen M": "In addition to cutting out packaging, my refill shop stores products that I know are better for the planet and people! Win-win!",
+          "Alex K": "I like to buy from refill shops because it allows me to buy what I need and stops my cupboards getting clogged up with bits in packets that eventually get put in the bin.",
+          "Helen P": "It has saved me a small fortune! They are also great for trying a number of new products, and a perfect place to stock up on things for the house too, such as cleaning products, washing up liquid and laundry soap. Fab!!"
+        }
+      },
+      "alerts": {
+        "title": "Sign up for alerts",
+        "description": "Find out when refill locations launch in your local area"
+      }
+    },
+    "guide": {
+      "title": "Getting started with Refill",
+      "steps": {
+        "title": "Refill in 3 steps",
+        "items": [
+          "Find a refill store near you",
+          "Take along your clean, empty containers to fill up",
+          "Pick and choose what you want to refill"
+        ]
+      },
+      "simple": {
+        "title": "It's surprisingly simple",
+        "content": {
+          "browseFillPay": "Browse the incredible range, fill your container, weigh and pay.",
+          "friendlyStaff": "The friendly staff are always happy to help, but there's no pressure – you can explore at your own pace and discover amazing products you never knew existed."
+        }
+      },
+      "shopping": {
+        "title": "Shopping, that makes sense",
+        "content": "Bring your own clean, empty containers or buy a reusable food-safe container there – then choose exactly what you need, exactly when you need it. No more half-empty bottles cluttering your cupboards."
+      },
+      "faq": {
+        "whatCanRefill": {
+          "question": "What can I refill?",
+          "answerBold": "You’ll be surprised by the variety!",
+          "answer": "Most refill shops stock household essentials like washing-up liquid, laundry detergent, and surface cleaners alongside personal care products including shampoo, body wash, and hand soap. You'll also find an amazing selection of food items - from everyday pasta, rice, and cereals to premium oils, artisan chocolates, and specialty spices. Many shops also offer coffee beans, nuts, dried fruits, and even pet food. Think of it as your local supermarket reimagined!"
+        },
+        "doesRefillCostMore": {
+          "question": "Does refill cost more?",
+          "answerBold": "Most customers are pleasantly surprised by the savings.",
+          "answer": "While premium products might seem expensive per gram, you're not paying for fancy packaging, marketing, or brand overhead. Plus, you buy exactly what you need - no more throwing away half-used bottles or buying jumbo sizes you'll never finish. Many regular customers find they spend 10-20% less on household essentials, and you can try expensive products in small quantities before committing to larger amounts. It's like having a personal shopper who only charges you for what you actually use."
+        },
+        "specialContainers": {
+          "question": "Do I need special containers to refill?",
+          "answerBold": "Absolutely not - any clean, dry container works perfectly.",
+          "answer": "Old jam jars, pasta sauce bottles, or containers you already have at home are ideal. Most shops also sell reusable food safe containers if you want to upgrade your storage game. Many places provide containers if you forget to bring your own, and some even offer a \"container library\" where you can borrow and return. The key is bringing containers that are clean and dry - the friendly staff will show you exactly what works best for different products."
+        },
+        "makeDifference": {
+          "question": "Does refill really make a difference?",
+          "answerBold": "Every small action adds up to something bigger.",
+          "answer": "When you refill a 500ml bottle instead of buying a new one, you're preventing that plastic from being manufactured, transported, and eventually disposed of. Multiply that by your weekly shopping and the growing number of people choosing refill, and the impact becomes significant. But beyond the environmental benefits, you're supporting local businesses, reducing clutter in your home, and often saving money too."
+        }
+      },
+      "nextSection": {
+        "title": "Refill options",
+        "description": "From sweets to luxury soaps, here's what you might find in Refill stores"
+      },
+      "ctaButton": "Find out when Refill locations launch"
+    },
+    "nav": {
+      "intro": {
+        "title": "Intro"
+      },
+      "guide": {
+        "title": "Guide"
+      },
+      "options": {
+        "title": "Options"
+      },
+      "benefits": {
+        "title": "Benefits"
+      },
+      "sign-up": {
+        "title": "Sign Up"
+      }
+    },
+    "options": {
+      "title": "More choice, not less",
+      "intro": "From luxury olive oils that would cost a fortune in traditional packaging to kids' favourite sweets sold by the scoop, refill shops stock an incredible variety.",
+      "commonItems": {
+        "title": "Common refill products",
+        "description": "Just like your supermarket, every refill store stocks different products. Here are some essentials you might find at your local refill store."
+      },
+      "categories": {
+        "foodDryGoods": {
+          "title": "Food & Dry Goods",
+          "content": [
+            "Rice",
+            "Pasta",
+            "Cereal",
+            "Nuts",
+            "Dried Fruit",
+            "Coffee Beans",
+            "Spices"
+          ],
+          "highlight": "Bring your own clean containers or purchase reusable jars in-store"
+        },
+        "householdCleaning": {
+          "title": "Household Cleaning",
+          "content": [
+            "Washing-up Liquid",
+            "Laundry Detergent",
+            "Fabric Softener",
+            "All-Purpose Cleaner"
+          ],
+          "highlight": "Some stores may require you to use child safe containers to refill cleaning products."
+        },
+        "personalCare": {
+          "title": "Personal Care",
+          "content": ["Shampoo", "Conditioner", "Body Wash", "Hand Soap"],
+          "highlight": "Containers must be completely empty and dry."
+        }
+      },
+      "localStore": {
+        "title": "Find out what your local store stocks",
+        "content": "Every shop is different - some focus on cleaning products, others specialise in bulk foods, and many offer their own unique mix, so the best way to discover what's available is to visit your local refill store."
+      },
+      "iconLink": {
+        "title": "Benefits of Refill",
+        "content": "Tackle plastic pollution, save money and support the local area!"
+      },
+      "cta": "Find out when Refill locations launch"
+    },
+    "benefits": {
+      "title": "How refill could work for you",
+      "intro": "Most customers become regulars within their first few visits. It's not about being perfectly green or knowing all the right things to say – it's simply a smarter, more enjoyable way to shop.",
+      "card": {
+        "holiday": {
+          "question": "Going on holiday?",
+          "answer": "Buy travel-sized portions."
+        },
+        "hosting": {
+          "question": "Hosting dinner?",
+          "answer": "Get exactly what you need."
+        },
+        "recipe": {
+          "question": "Trying a new recipe?",
+          "answer": "Test small amounts first."
+        }
+      },
+      "communitySupport": {
+        "title": "Support your local community",
+        "content": {
+          "chains": "Support local business owners who genuinely care about their products, their customers and their community.",
+          "community": "Every purchase supports your local high street and keeps money in your community."
+        }
+      },
+      "withoutRefillStore": {
+        "title": "You can even refill without a refill store",
+        "intro": "What? Yes, there are ways to refill in your everyday supermarket!",
+        "buyLoose": {
+          "title": "Buy loose",
+          "description": "Try buying more loose fruit and veg"
+        },
+        "shopConcentrate": {
+          "title": "Shop Concentrate",
+          "description": "Lots of brands now offer concentrated versions of common bathroom and cleaning products - just add water!"
+        },
+        "shopOnline": {
+          "title": "Return Online",
+          "description": "Refill and Return is growing in popularity. Check if your favourite brand allows you to return your packaging for reuse."
+        }
+      },
+      "iconLink": {
+        "title": "Getting started with Refill",
+        "content": "New to refill? Here's what to expect from your local store"
+      },
+      "cta": "Find out when Refill locations launch"
+    },
+    "sign-up": {
+      "title": "Be the first to know when refill locations arrive",
+      "description": "You'll soon be able to use the Locator to find refill stores in your area.",
+      "button": "Sign up",
+      "loading": "Signing up…",
+      "error": "An error has occured, please try submitting again.",
+      "business": "or <a>Get in touch about your refill business</a>",
+      "businessLink": "https://www.wrap.ngo/take-action/recycle-now/recycling-locator-tool",
+      "success": {
+        "title": "Thank you for signing up!",
+        "description": "We'll let you know when refill locations are available in your area.",
+        "already": "You're already subscribed, your profile has been updated. Thank you!",
+        "confirmation": "Please check your email and click the link to confirm your subscription."
+      },
+      "form": {
+        "name": {
+          "label": "Name",
+          "error": "Please enter your name"
+        },
+        "email": {
+          "label": "Email",
+          "placeholder": "e.g. example@gmail.com",
+          "error": "Please enter a valid email address"
+        },
+        "postcode": {
+          "label": "Postcode",
+          "placeholder": "e.g. SW1A 1AA",
+          "error": "Please enter your postcode"
+        },
+        "gdpr": {
+          "label": "I agree to the <a>Terms and conditions</a>",
+          "link": "https://www.recyclenow.com/privacy-policy",
+          "error": "To sign up, you must agree to the terms and conditions"
+        }
+      }
+    },
+    "error": {
+      "message": "An unexpected error occurred while loading Refill information."
     }
   }
 }

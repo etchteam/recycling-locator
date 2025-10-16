@@ -16,6 +16,7 @@ import '@/components/composition/Wrap/Wrap';
 import '@/components/content/HeaderTitle/HeaderTitle';
 import '@/components/content/Icon/Icon';
 import '@/components/control/NavBar/NavBar';
+import { usePostcodeLoaderData } from '../postcode.loader';
 import Menu from '@/components/control/Menu/Menu';
 import TipContent from '@/components/template/TipContent/TipContent';
 import { useAppState } from '@/lib/AppState';
@@ -35,6 +36,7 @@ export default function HomeRecyclingLayout({
   const { postcode } = useParams();
   const layoutRef = useRef();
   const data = useHomeRecyclingLoaderData();
+  const { city } = usePostcodeLoaderData();
   const open = useSignal(false);
   useScrollRestoration(layoutRef);
   const localAuthority = data?.localAuthority;
@@ -105,7 +107,11 @@ export default function HomeRecyclingLayout({
       </locator-header>
       <div slot="layout-main" id="locator-layout-main" ref={layoutRef}>
         {open.value ? (
-          <Menu handleClose={() => (open.value = false)} />
+          <Menu
+            handleClose={() => (open.value = false)}
+            postcode={postcode}
+            city={city}
+          />
         ) : (
           <>
             {localAuthority && (

@@ -1,3 +1,54 @@
+## [1.66.0](https://github.com/etchteam/recycling-locator/compare/v1.65.2...v1.66.0) (2025-10-16)
+
+
+### Features
+
+* add autocomplete to email input ([547b5f5](https://github.com/etchteam/recycling-locator/commit/547b5f5d73c91757c04cdf21771361d65a569f03))
+* add basic refill CTAs ([4ffb9f7](https://github.com/etchteam/recycling-locator/commit/4ffb9f74cc37880741f08429bb3807b230ce03e2))
+* add benefits page to refill ([4ed3cfe](https://github.com/etchteam/recycling-locator/commit/4ed3cfefa84a4dff58ca6279bdbf4319d66feaa0))
+* add cart icon ([5afcf60](https://github.com/etchteam/recycling-locator/commit/5afcf6094541694b760d2809a73828d03a07f0ae))
+* add guide page to refill ([c820322](https://github.com/etchteam/recycling-locator/commit/c8203223691c7fbdbae8a3fc8944013ef2f1294d))
+* add guide to refill routes ([5221848](https://github.com/etchteam/recycling-locator/commit/52218489a6d2d86d7b5f78664f8ce018f0e69621))
+* add images ([bb5fa0b](https://github.com/etchteam/recycling-locator/commit/bb5fa0bddf2c89d92178fbd422775b6d332f905b))
+* add navigation to refill intro ([dea5c1e](https://github.com/etchteam/recycling-locator/commit/dea5c1ecd33893d6f8880f22404d4bc8f45d8617))
+* add options page to refill ([7983b83](https://github.com/etchteam/recycling-locator/commit/7983b83bec48b587ec98e957c0d33e4cb33f1c3f))
+* add postcode handelling to refill ([53b6de2](https://github.com/etchteam/recycling-locator/commit/53b6de2c2993f28a6c17f6346a1cbcb6d610073b))
+* add refill images ([ceccbd8](https://github.com/etchteam/recycling-locator/commit/ceccbd8d04f3f42ab23c70ab955995eaf3a9ce42))
+* add refill routing and layout ([7c65fb9](https://github.com/etchteam/recycling-locator/commit/7c65fb9a4c9563d348c75a258f99dc292961f9b3))
+* add refill welsh translations ([ee1d1f3](https://github.com/etchteam/recycling-locator/commit/ee1d1f320adb32c7035496db22d76553729d8dcb))
+* add reviews to homepage ([8b8bfd4](https://github.com/etchteam/recycling-locator/commit/8b8bfd4f819799284cf7d25578c72b9ef40071af))
+* add sign-up link to refill homepage ([09a40ef](https://github.com/etchteam/recycling-locator/commit/09a40efb215c26feaf0cef289fbbe2591fff4ffa))
+* add signup page ([aa50415](https://github.com/etchteam/recycling-locator/commit/aa504157ceb9c65170a2199af572357088e4a684))
+* add step component ([3206b37](https://github.com/etchteam/recycling-locator/commit/3206b37e9522316640a6a0bdc342c1ea44d935da))
+* improve card links centring styles ([2d66265](https://github.com/etchteam/recycling-locator/commit/2d66265f0a4accf8ee9d7d8d71b5e86f649952ff))
+* improve form error handelling ([3b5d371](https://github.com/etchteam/recycling-locator/commit/3b5d3717d31c4b76091a9313d5f8b8f8f89feb7d))
+* improve overflow cards width calculations ([dfb4b4c](https://github.com/etchteam/recycling-locator/commit/dfb4b4cf093060562f0526c3b4067b64d08b3644))
+* improve refill form states ([c2b0bca](https://github.com/etchteam/recycling-locator/commit/c2b0bcac48de1fdb94d7203c40be576e7ea97ae2))
+* refill aside link include postcode ([cf2d7ce](https://github.com/etchteam/recycling-locator/commit/cf2d7cedd2e0780aa549e36739b2f579413de7ca))
+* remove unused css util ([2235d20](https://github.com/etchteam/recycling-locator/commit/2235d207e29ee53c7955fcb938fa021524dcd9e0))
+* update copy for refill mvp ([f2a2eab](https://github.com/etchteam/recycling-locator/commit/f2a2eab17b9280f1edcf2e358157381352e4526c))
+* update ellipse style ([92d6f2a](https://github.com/etchteam/recycling-locator/commit/92d6f2a8ac7ddddf5b903d274e09c59f452d9f61))
+* update refill aside ([8022767](https://github.com/etchteam/recycling-locator/commit/8022767b7d57704da88d6c7c7c054bee9ea229db))
+* update refill logo ([afe2e96](https://github.com/etchteam/recycling-locator/commit/afe2e96b75361fef78c4ef000d77f21620b87ebd))
+* update refill signup name ([feb7521](https://github.com/etchteam/recycling-locator/commit/feb7521ea7c98a8e91ee003be7054921eec024a1))
+* update refill step copy ([4585675](https://github.com/etchteam/recycling-locator/commit/45856757448ca0ccb4d962c720be9ca3dcaa42aa))
+* update signup to use jsonp ([ef004f9](https://github.com/etchteam/recycling-locator/commit/ef004f9706550b151d9d0b6b65b0330fba8f5432))
+* update stock image to watermark free ([d067945](https://github.com/etchteam/recycling-locator/commit/d067945c630cdf0c627161a7d2e2381960d5f017))
+* update to real reviews ([0dcb3b4](https://github.com/etchteam/recycling-locator/commit/0dcb3b4498ea918998e3c8337c9042eacb234c0e))
+* wrap the success message in aria-live ([253cbc7](https://github.com/etchteam/recycling-locator/commit/253cbc7ff8bd8e1ba967dd940d16a251ee11011b))
+
+
+### Bug Fixes
+
+* ensure scroll btns correctly linked ([c3ab47e](https://github.com/etchteam/recycling-locator/commit/c3ab47e89586c5b6110b5c250e880e0e156257ce))
+* force spacing on refill gdpr form label link ([bbcf8c6](https://github.com/etchteam/recycling-locator/commit/bbcf8c6772e969ef67e7acb9fedd3d58fcc87ef5))
+* make sure refill signup button is translated ([84ede4b](https://github.com/etchteam/recycling-locator/commit/84ede4b007e22a043ae3bd7c4e0802a140ee7190))
+* refill sign-up link href ([68a4cc9](https://github.com/etchteam/recycling-locator/commit/68a4cc98f3c69332fcd5347e47c9eb8a1a354374))
+* remove english lanaguage mailchimp success message for welsh experience ([1404b77](https://github.com/etchteam/recycling-locator/commit/1404b77b8b74097ee8c67864b9f0d97566c48141))
+* submit button label ([7ce30f1](https://github.com/etchteam/recycling-locator/commit/7ce30f1392d35b6056e765d6f129f282dd2b6183))
+* update refill copy ([2453b1b](https://github.com/etchteam/recycling-locator/commit/2453b1b593b7f8ca3a8fc5c142874429213a6251))
+* use ellipse marker rather then three dots ([5cf0c6d](https://github.com/etchteam/recycling-locator/commit/5cf0c6d8df25f407a35419aeff93cd5d2f3f2240))
+
 ## [1.65.2](https://github.com/etchteam/recycling-locator/compare/v1.65.1...v1.65.2) (2025-10-14)
 
 

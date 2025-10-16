@@ -17,7 +17,7 @@ export default async function materialExistsSearch(
   search: string,
 ): Promise<boolean> {
   const materials = await getMaterialsList(search);
-  return !!materials.find(
+  return materials.some(
     (m) => m.name.toLocaleLowerCase() === search.toLocaleLowerCase().trim(),
   );
 }

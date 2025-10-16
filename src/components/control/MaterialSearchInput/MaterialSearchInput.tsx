@@ -68,8 +68,8 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
   };
 
   updateSuggestions = debounce(
-    async (query: string) => {
-      if ((query ?? '').length < 3) {
+    async (query: string = '') => {
+      if (query.length < 3) {
         return;
       }
 
@@ -81,25 +81,23 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
     { leading: true },
   );
 
-  handleInput = (query: string) => {
-    const sanitizedQuery = query ?? '';
-    this.inputRef.current.value = sanitizedQuery;
-    this.inputValue.value = sanitizedQuery;
+  handleInput = (query: string = '') => {
+    this.inputRef.current.value = query;
+    this.inputValue.value = query;
 
-    this.updateSuggestions(sanitizedQuery);
+    this.updateSuggestions(query);
   };
 
   handleBlur = () => {
     this.props.handleBlur?.(this.inputValue.value);
   };
 
-  handleOptionSelected = async (query: string) => {
-    const sanitizedQuery = query ?? '';
+  handleOptionSelected = async (query: string = '') => {
     this.materialNotFound.value = null;
-    this.inputValue.value = sanitizedQuery;
+    this.inputValue.value = query;
     // Manually set the value of the input field to the selected option
     // using a ref because combobox doesn't render the value update fast enough
-    this.inputRef.current.value = sanitizedQuery;
+    this.inputRef.current.value = query;
     // Optimistically submit the form
     this.buttonRef.current?.click();
     // Send the usual input event in case submission fails

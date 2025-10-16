@@ -43,7 +43,7 @@ export interface IconAttributes {
     | 'tick-circle'
     | 'tick'
     | 'warning';
-  readonly color?: 'primary' | 'muted' | 'positive' | 'negative';
+  readonly color?: 'primary' | 'muted' | 'positive' | 'negative' | 'white';
   readonly label?: string;
 }
 

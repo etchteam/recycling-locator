@@ -33,8 +33,13 @@ export default function ContainerList({
             <locator-icon-text>
               <locator-icon
                 icon={`${searchResult ? 'tick' : 'cross'}-circle`}
+                color={!searchResult ? 'white' : undefined}
               ></locator-icon>
-              <p className="diamond-text-size-sm">{message}</p>
+              <p
+                className={`diamond-text-size-sm${!searchResult ? ' text-color-white' : ''}`}
+              >
+                {message}
+              </p>
             </locator-icon-text>
           </diamond-card>
         </diamond-enter>

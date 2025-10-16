@@ -33,4 +33,8 @@ locator-icon {
   &[color='negative'] {
     color: var(--theme-background-negative);
   }
+
+  &[color='white'] {
+    color: var(--color-white);
+  }
 }

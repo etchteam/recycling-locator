@@ -1,3 +1,15 @@
+## [1.66.1](https://github.com/etchteam/recycling-locator/compare/v1.66.0...v1.66.1) (2025-10-16)
+
+
+### Bug Fixes
+
+* don't display container not found banner if material doesnt exist ([1169137](https://github.com/etchteam/recycling-locator/commit/1169137326fe28ad5fe7e3d4333e43c96c3d0560))
+* don't redirect invalid places material searches ([3329fb4](https://github.com/etchteam/recycling-locator/commit/3329fb41ea12751750e247f348e425a8ab562f75))
+* ensure the real materials aren't detected as not recycable ([9476a0d](https://github.com/etchteam/recycling-locator/commit/9476a0d83143b36df475ff6873c77b75361bdf4e))
+* no error state on load if there is no vlaue on load ([7ad8dbe](https://github.com/etchteam/recycling-locator/commit/7ad8dbe855a63977418f866871f99dcdbfdb8874))
+* retain material search input value on submit ([081236d](https://github.com/etchteam/recycling-locator/commit/081236de50dc45db1ce99905104a43424406b1eb))
+* update color contrast to meet a11y ([6c9f251](https://github.com/etchteam/recycling-locator/commit/6c9f25137dfe2883ca603741d0bb9bd5e445e167))
+
 ## [1.66.0](https://github.com/etchteam/recycling-locator/compare/v1.65.2...v1.66.0) (2025-10-16)
 
 

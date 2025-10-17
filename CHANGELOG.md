@@ -1,3 +1,15 @@
+## [1.68.0](https://github.com/etchteam/recycling-locator/compare/v1.67.0...v1.68.0) (2025-10-17)
+
+
+### Features
+
+* move arrow svg into css to guareentee availability ([9cdc638](https://github.com/etchteam/recycling-locator/commit/9cdc638a6199d832f740c3ea6559184b13e8ea81))
+
+
+### Bug Fixes
+
+* remove scrollbar on firefox ([40c0d9e](https://github.com/etchteam/recycling-locator/commit/40c0d9ead9d2757c27f028854e581ef81a4a1788))
+
 ## [1.67.0](https://github.com/etchteam/recycling-locator/compare/v1.66.1...v1.67.0) (2025-10-17)
 
 

@@ -16,4 +16,11 @@ locator-wrap {
       var(--diamond-spacing-xl)
     );
   }
+
+  &[large-screen-only] {
+    @container (width < 768px) {
+      /* not mobile first to stay DRY */
+      max-width: none;
+    }
+  }
 }

@@ -1,9 +1,10 @@
 /* stylelint-disable selector-pseudo-element-no-unknown */
 locator-overflow {
   --anchor-name: --carousel; /* localizes anchor name for scroll buttons */
+  --margin-inline-padding: var(--diamond-spacing);
   display: block;
   margin-inline: calc(
-    var(--diamond-spacing) * -1
+    -1 * var(--margin-inline-padding)
   ); /* overlap wrapper to create gutterless effect */
 
   ul {
@@ -62,14 +63,14 @@ locator-overflow {
     &::scroll-button(left) {
       content: url('/images/back-arrow.svg') / 'Scroll Left';
       right: calc(
-        anchor(right) + var(--diamond-spacing) + var(--diamond-spacing-lg) +
+        anchor(right) + var(--margin-inline-padding) + var(--diamond-spacing-lg) +
           var(--diamond-spacing-xs)
       ); /* position right - gutter - right button width - spacing */
     }
 
     &::scroll-button(right) {
       content: url('/images/forward-arrow.svg') / 'Scroll Right';
-      right: calc(anchor(right) + var(--diamond-spacing));
+      right: calc(anchor(right) + var(--margin-inline-padding));
     } /* position right - gutter */
 
     li {
@@ -82,17 +83,17 @@ locator-overflow {
       scroll-snap-align: center;
 
       &:first-child {
-        margin-left: var(--diamond-spacing);
+        margin-left: var(--margin-inline-padding);
       }
 
       &:last-child {
-        margin-right: var(--diamond-spacing);
+        margin-right: var(--margin-inline-padding);
       }
     }
   }
 }
 
-@container (width >=768px) {
+@container (width >= 768px) {
   locator-overflow {
     &:not([largeScreen]) {
       margin: 0;
@@ -112,6 +113,14 @@ locator-overflow {
         }
       }
     }
+  }
+}
+
+@container (width >= 1280px) {
+  /* In the standalone app compensate for extra wide gutters */
+  locator-overflow {
+    --margin-inline-padding: calc((25cqw - (var(--wrap-max-width) / 2)));
+    margin-inline: calc(-1 * var(--margin-inline-padding));
   }
 }
 

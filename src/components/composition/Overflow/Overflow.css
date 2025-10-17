@@ -2,6 +2,7 @@
 locator-overflow {
   --anchor-name: --carousel; /* localizes anchor name for scroll buttons */
   --margin-inline-padding: var(--diamond-spacing);
+  /* svgs in css directly to prevent public path issues */
   --back-arrow-url: url('data:image/svg+xml,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13 18L7 12L13 6L14.4 7.4L9.8 12L14.4 16.6L13 18Z" fill="%238dc63f"/></svg>');
   --forward-arrow-url: url('data:image/svg+xml,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.6 12L9 7.4L10.4 6L16.4 12L10.4 18L9 16.6L13.6 12Z" fill="%238dc63f"/></svg>');
   display: block;

@@ -1,11 +1,12 @@
 /* stylelint-disable selector-pseudo-element-no-unknown */
 locator-overflow {
   --anchor-name: --carousel; /* localizes anchor name for scroll buttons */
+  --margin-inline-padding: var(--diamond-spacing);
   --back-arrow-url: url('data:image/svg+xml,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13 18L7 12L13 6L14.4 7.4L9.8 12L14.4 16.6L13 18Z" fill="%238dc63f"/></svg>');
   --forward-arrow-url: url('data:image/svg+xml,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.6 12L9 7.4L10.4 6L16.4 12L10.4 18L9 16.6L13.6 12Z" fill="%238dc63f"/></svg>');
   display: block;
   margin-inline: calc(
-    var(--diamond-spacing) * -1
+    -1 * var(--margin-inline-padding)
   ); /* overlap wrapper to create gutterless effect */
 
   ul {
@@ -65,14 +66,14 @@ locator-overflow {
     &::scroll-button(left) {
       content: var(--back-arrow-url) / 'Scroll Left';
       right: calc(
-        anchor(right) + var(--diamond-spacing) + var(--diamond-spacing-lg) +
+        anchor(right) + var(--margin-inline-padding) + var(--diamond-spacing-lg) +
           var(--diamond-spacing-xs)
       ); /* position right - gutter - right button width - spacing */
     }
 
     &::scroll-button(right) {
       content: var(--forward-arrow-url) / 'Scroll Right';
-      right: calc(anchor(right) + var(--diamond-spacing));
+      right: calc(anchor(right) + var(--margin-inline-padding));
     } /* position right - gutter */
 
     li {
@@ -85,17 +86,17 @@ locator-overflow {
       scroll-snap-align: center;
 
       &:first-child {
-        margin-left: var(--diamond-spacing);
+        margin-left: var(--margin-inline-padding);
       }
 
       &:last-child {
-        margin-right: var(--diamond-spacing);
+        margin-right: var(--margin-inline-padding);
       }
     }
   }
 }
 
-@container (width >=768px) {
+@container (width >= 768px) {
   locator-overflow {
     &:not([largeScreen]) {
       margin: 0;
@@ -115,6 +116,14 @@ locator-overflow {
         }
       }
     }
+  }
+}
+
+@container (width >= 1280px) {
+  /* In the standalone app compensate for extra wide gutters */
+  locator-overflow {
+    --margin-inline-padding: calc((25cqw - (var(--wrap-max-width) / 2)));
+    margin-inline: calc(-1 * var(--margin-inline-padding));
   }
 }
 

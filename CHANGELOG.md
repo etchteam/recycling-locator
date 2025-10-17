@@ -1,3 +1,11 @@
+## [1.67.0](https://github.com/etchteam/recycling-locator/compare/v1.66.1...v1.67.0) (2025-10-17)
+
+
+### Features
+
+* add refill styles handelling for extra large screen ([9defc0d](https://github.com/etchteam/recycling-locator/commit/9defc0d0d94dc2d21b55cb29c7f568822c70c3b2))
+* apply gutters to small screen refill content pages ([8e8f2ea](https://github.com/etchteam/recycling-locator/commit/8e8f2eacbb8897985840865f51bb574cdf528d40))
+
 ## [1.66.1](https://github.com/etchteam/recycling-locator/compare/v1.66.0...v1.66.1) (2025-10-16)
 
 

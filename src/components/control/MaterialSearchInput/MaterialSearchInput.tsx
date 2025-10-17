@@ -69,7 +69,7 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
 
   updateSuggestions = debounce(
     async (query: string = '') => {
-      if (query.length < 3) {
+      if (!query || query.length < 3) {
         return;
       }
 

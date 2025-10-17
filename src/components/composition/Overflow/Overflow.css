@@ -26,6 +26,7 @@ locator-overflow {
     /* IE and Edge */
     /* stylelint-disable-next-line property-no-unknown */
     scrollbar-height: none;
+    scrollbar-width: none;
     /* Firefox */
     &::-webkit-scrollbar {
       display: none;

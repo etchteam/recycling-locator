@@ -17,7 +17,7 @@ cp .env.example .env
 Start the local development server on [https://rl.localhost](https://rl.localhost)
 
 ```bash
-npm start
+nix develop --extra-experimental-features nix-command --extra-experimental-features flakes"
 ```
 
 For component documentation, start storybook on on [http://localhost:6006/](http://localhost:6006/)

@@ -31,6 +31,8 @@ node_modules
 .env
 .env.*
 !.env.example
+!.env.project
+!.env.vault
 
 # Build output
 dist

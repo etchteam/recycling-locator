@@ -27,7 +27,7 @@
     "release": "semantic-release",
     "start:css": "npm run build:css -- --watch",
     "start:vite": "vite --host",
-    "start": "nix develop --extra-experimental-features nix-command --extra-experimental-features flakes",
+    "start": "run-p start:css start:vite",
     "storybook:build": "storybook build",
     "storybook:start": "storybook dev -p 6006",
     "storybook": "run-p start:css storybook:start",

@@ -1,0 +1,17 @@
+*
+
+!.env
+!.husky
+!.storybook
+!demo
+!package-lock.json
+!package.json
+!public
+!src
+!standalone.html
+!tsconfig.json
+
+.env*
+.flaskenv*
+!.env.project
+!.env.vault

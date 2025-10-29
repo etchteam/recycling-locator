@@ -1,3 +1,10 @@
+## [1.68.1](https://github.com/etchteam/recycling-locator/compare/v1.68.0...v1.68.1) (2025-10-29)
+
+
+### Bug Fixes
+
+* handle query being falsey ([585166d](https://github.com/etchteam/recycling-locator/commit/585166d6772e6dca87ee2c32ba4506d087b956e4))
+
 ## [1.68.0](https://github.com/etchteam/recycling-locator/compare/v1.67.0...v1.68.0) (2025-10-17)
 
 

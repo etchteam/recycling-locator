@@ -24,6 +24,7 @@
     "build": "npm run build:css && vite build",
     "lint": "eslint 'src/**/*.{ts,tsx,js,jsx,yml,yaml,json}' && stylelint 'src/**/*.{css,scss}'",
     "prepare": "node .husky/install.mjs",
+    "prestart": "npm run build",
     "release": "semantic-release",
     "start:css": "npm run build:css -- --watch",
     "start:vite": "vite --host",

@@ -71,7 +71,7 @@ export default function Menu({
             <span className="diamond-text-weight-bold">
               {formatPostcode(postcode)}
             </span>{' '}
-            {city ? `&ndash; ${city}` : null}
+            {city ? <>&ndash; {city}</> : null}
           </div>
         </locator-context-header>
       </diamond-enter>

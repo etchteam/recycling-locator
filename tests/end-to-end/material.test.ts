@@ -293,7 +293,7 @@ test.describe('Material page', () => {
     await widget.evaluate((node) =>
       node.setAttribute(
         'path',
-        '/EX32 7RB/material?materials=123&search=Example material',
+        '/EX32%207RB/material?materials=123&search=Example material',
       ),
     );
     await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);

@@ -1,3 +1,11 @@
+## [1.68.2](https://github.com/etchteam/recycling-locator/compare/v1.68.1...v1.68.2) (2025-11-04)
+
+
+### Bug Fixes
+
+* handle i18n being initialised before the promise is called ([3776cb4](https://github.com/etchteam/recycling-locator/commit/3776cb400248774fea4c2f2035c43ee41d3b1c33))
+* use a fragment to correctly render html ([c8fbc8b](https://github.com/etchteam/recycling-locator/commit/c8fbc8b16a258f7729320f42d7e89a84ba924642))
+
 ## [1.68.1](https://github.com/etchteam/recycling-locator/compare/v1.68.0...v1.68.1) (2025-10-29)
 
 

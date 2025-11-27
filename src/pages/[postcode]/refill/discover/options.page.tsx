@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { Link, useSearchParams } from 'react-router';
+import { Link, useParams } from 'react-router';
 
 import { useAppState } from '@/lib/AppState';
 
@@ -8,22 +8,19 @@ import '@etchteam/diamond-ui/canvas/Section/Section';
 export default function OptionsPage() {
   const { publicPath } = useAppState();
   const { t } = useTranslation();
-
-  const [searchParams] = useSearchParams();
-  const postcode = searchParams.get('postcode');
-  const postcodeQuery = postcode ? `?postcode=${postcode}` : '';
+  const { postcode } = useParams();
 
   return (
     <diamond-section padding="lg">
-      <h2>{t('refill.options.title')}</h2>
-      <p>{t('refill.options.intro')}</p>
+      <h2>{t('refill.discover.options.title')}</h2>
+      <p>{t('refill.discover.options.intro')}</p>
       <diamond-img radius>
         <img src={`${publicPath}images/refill/options.webp`} alt="" />
       </diamond-img>
       <h3 className="diamond-text-size-base diamond-text-weight-bold diamond-spacing-top-md">
-        {t('refill.options.commonItems.title')}
+        {t('refill.discover.options.commonItems.title')}
       </h3>
-      <p>{t('refill.options.commonItems.description')}</p>
+      <p>{t('refill.discover.options.commonItems.description')}</p>
       {['foodDryGoods', 'householdCleaning', 'personalCare'].map((category) => (
         <locator-details
           key={category}
@@ -31,12 +28,14 @@ export default function OptionsPage() {
         >
           <details>
             <summary className="diamond-text-weight-bold">
-              {t(`refill.options.categories.${category}.title`)}
+              {t(`refill.discover.options.categories.${category}.title`)}
               <locator-icon icon="expand" />
             </summary>
             <ul>
               {(
-                t(`refill.options.categories.${category}.content`) as string[]
+                t(
+                  `refill.discover.options.categories.${category}.content`,
+                ) as string[]
               ).map((item) => (
                 <li key={item}>{item}</li>
               ))}
@@ -44,7 +43,7 @@ export default function OptionsPage() {
             <locator-highlight className="theme-info">
               <locator-icon-text>
                 <locator-icon icon="info" />
-                {t(`refill.options.categories.${category}.highlight`)}
+                {t(`refill.discover.options.categories.${category}.highlight`)}
               </locator-icon-text>
             </locator-highlight>
           </details>
@@ -54,9 +53,9 @@ export default function OptionsPage() {
       <hr className="diamond-spacing-top-md diamond-spacing-bottom-md" />
 
       <h3 className="diamond-text-size-base diamond-text-weight-bold diamond-spacing-top-md">
-        {t('refill.options.localStore.title')}
+        {t('refill.discover.options.localStore.title')}
       </h3>
-      <p>{t('refill.options.localStore.content')}</p>
+      <p>{t('refill.discover.options.localStore.content')}</p>
       <diamond-img radius>
         <img src={`${publicPath}images/refill/options-secondary.webp`} alt="" />
       </diamond-img>
@@ -64,23 +63,23 @@ export default function OptionsPage() {
       <hr className="diamond-spacing-top-md diamond-spacing-bottom-md" />
 
       <locator-icon-link border>
-        <Link to={'/refill/benefits' + postcodeQuery}>
+        <Link to={`/${postcode}/refill/discover/benefits`}>
           <locator-icon-circle>
             <locator-icon icon="star" color="primary"></locator-icon>
           </locator-icon-circle>
           <div>
             <p className="diamond-text-size-base diamond-spacing-bottom-none">
-              {t('refill.options.iconLink.title')}
+              {t('refill.discover.options.iconLink.title')}
             </p>
             <p className="diamond-text-size-sm">
-              {t('refill.options.iconLink.content')}
+              {t('refill.discover.options.iconLink.content')}
             </p>
           </div>
         </Link>
       </locator-icon-link>
       <diamond-button width="full-width" className="diamond-spacing-top-md">
-        <Link to={'/refill/sign-up' + postcodeQuery}>
-          {t('refill.options.cta')}
+        <Link to={`/${postcode}/refill/discover/sign-up`}>
+          {t('refill.discover.options.cta')}
         </Link>
       </diamond-button>
     </diamond-section>

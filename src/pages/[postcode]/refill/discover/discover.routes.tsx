@@ -1,39 +1,39 @@
 import { RouteObject } from 'react-router';
 
 import BenefitsPage from './benefits.page';
-import RefillErrorPage from './error.page';
+import DiscoverRefillLayout from './discover.layout';
+import DiscoverRefillPage from './discover.page';
+import DiscoverRefillErrorPage from './error.page';
 import GuidePage from './guide.page';
 import OptionsPage from './options.page';
-import RefillLayout from './refill.layout';
-import RefillPage from './refill.page';
 import SignUpPage from './sign-up.page';
 
 const routes: RouteObject[] = [
   {
-    path: '/refill',
-    errorElement: <RefillErrorPage />,
+    path: '/:postcode/refill/discover',
+    errorElement: <DiscoverRefillErrorPage />,
     children: [
       {
         index: true,
-        element: <RefillPage />,
+        element: <DiscoverRefillPage />,
       },
       {
-        element: <RefillLayout />,
+        element: <DiscoverRefillLayout />,
         children: [
           {
-            path: 'guide',
+            path: '/:postcode/refill/discover/guide',
             element: <GuidePage />,
           },
           {
-            path: 'options',
+            path: '/:postcode/refill/discover/options',
             element: <OptionsPage />,
           },
           {
-            path: 'benefits',
+            path: '/:postcode/refill/discover/benefits',
             element: <BenefitsPage />,
           },
           {
-            path: 'sign-up',
+            path: '/:postcode/refill/discover/sign-up',
             element: <SignUpPage />,
           },
         ],

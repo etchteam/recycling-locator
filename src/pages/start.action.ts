@@ -63,6 +63,16 @@ async function handleRedirect(formData: FormData, path = '') {
   return redirect(route);
 }
 
+export async function refillStartAction({ request }: ActionFunctionArgs) {
+  try {
+    const formData = await request.formData();
+    const response = await handleRedirect(formData, '/refill');
+    return response;
+  } catch (error) {
+    handleError(error);
+  }
+}
+
 export async function homeRecyclingStartAction({
   request,
 }: ActionFunctionArgs) {

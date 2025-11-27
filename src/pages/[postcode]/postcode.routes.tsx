@@ -8,6 +8,7 @@ import placesRoutes from './places/places.routes';
 import postcodeAction from './postcode.action';
 import postcodeLoader from './postcode.loader';
 import PostcodePage from './postcode.page';
+import refillRoutes from './refill/refill.routes';
 import RescueMeRecyclePage from './rescue-me-recycle';
 
 const routes: RouteObject[] = [
@@ -30,6 +31,7 @@ const routes: RouteObject[] = [
       ...materialRoutes,
       ...homeRecyclingRoutes,
       ...placesRoutes,
+      ...refillRoutes,
     ],
   },
 ];

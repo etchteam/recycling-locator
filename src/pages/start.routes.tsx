@@ -3,9 +3,11 @@ import { RouteObject } from 'react-router';
 import HomeRecyclingStartPage from './home-recycling.page';
 import MaterialStartPage from './material.page';
 import NotFoundPage from './not-found.page';
+import RefillStartPage from './refill.page';
 import startAction, {
   homeRecyclingStartAction,
   materialStartAction,
+  refillStartAction,
 } from './start.action';
 import startLoader from './start.loader';
 import StartPage from './start.page';
@@ -29,6 +31,13 @@ const routes: RouteObject[] = [
     path: '/material',
     element: <MaterialStartPage />,
     action: materialStartAction,
+    loader: startLoader,
+    errorElement: <NotFoundPage />,
+  },
+  {
+    path: '/refill',
+    element: <RefillStartPage />,
+    action: refillStartAction,
     loader: startLoader,
     errorElement: <NotFoundPage />,
   },

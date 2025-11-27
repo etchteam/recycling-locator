@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { Link, useSearchParams } from 'react-router';
+import { Link, useParams } from 'react-router';
 
 import { useAppState } from '@/lib/AppState';
 
@@ -15,36 +15,33 @@ const questions = [
 export default function GuidePage() {
   const { publicPath } = useAppState();
   const { t } = useTranslation();
-
-  const [searchParams] = useSearchParams();
-  const postcode = searchParams.get('postcode');
-  const postcodeQuery = postcode ? `?postcode=${postcode}` : '';
+  const { postcode } = useParams();
 
   return (
     <diamond-section padding="lg">
-      <h2>{t('refill.guide.title')}</h2>
+      <h2>{t('refill.discover.guide.title')}</h2>
       <h3 className="diamond-text-size-base diamond-text-weight-bold diamond-spacing-top-md">
-        {t('refill.guide.steps.title')}
+        {t('refill.discover.guide.steps.title')}
       </h3>
       <locator-steps>
         <ol>
-          <li>{t('refill.guide.steps.items.0')}</li>
-          <li>{t('refill.guide.steps.items.1')}</li>
-          <li>{t('refill.guide.steps.items.2')}</li>
+          <li>{t('refill.discover.guide.steps.items.0')}</li>
+          <li>{t('refill.discover.guide.steps.items.1')}</li>
+          <li>{t('refill.discover.guide.steps.items.2')}</li>
         </ol>
       </locator-steps>
       <diamond-img radius className="diamond-spacing-top-md">
         <img src={`${publicPath}images/refill/guide.webp`} alt="" />
       </diamond-img>
       <h3 className="diamond-text-size-base diamond-text-weight-bold diamond-spacing-top-md">
-        {t('refill.guide.simple.title')}
+        {t('refill.discover.guide.simple.title')}
       </h3>
-      <p>{t('refill.guide.simple.content.browseFillPay')}</p>
-      <p>{t('refill.guide.simple.content.friendlyStaff')}</p>
+      <p>{t('refill.discover.guide.simple.content.browseFillPay')}</p>
+      <p>{t('refill.discover.guide.simple.content.friendlyStaff')}</p>
       <h3 className="diamond-text-size-base diamond-text-weight-bold diamond-spacing-top-md">
-        {t('refill.guide.shopping.title')}
+        {t('refill.discover.guide.shopping.title')}
       </h3>
-      <p>{t('refill.guide.shopping.content')}</p>
+      <p>{t('refill.discover.guide.shopping.content')}</p>
       <diamond-img radius>
         <img src={`${publicPath}images/refill/guide-secondary.webp`} alt="" />
       </diamond-img>
@@ -71,7 +68,10 @@ export default function GuidePage() {
       <hr className="diamond-spacing-top-md diamond-spacing-bottom-md" />
 
       <locator-icon-link border>
-        <Link to={'/refill/options' + postcodeQuery} unstable_viewTransition>
+        <Link
+          to={`/${postcode}/refill/discover/options`}
+          unstable_viewTransition
+        >
           <locator-icon-circle>
             <locator-icon
               icon="shopping-cart-add"
@@ -80,17 +80,20 @@ export default function GuidePage() {
           </locator-icon-circle>
           <div>
             <p className="diamond-text-size-base diamond-spacing-bottom-none">
-              {t('refill.guide.nextSection.title')}
+              {t('refill.discover.guide.nextSection.title')}
             </p>
             <p className="diamond-text-size-sm">
-              {t('refill.guide.nextSection.description')}
+              {t('refill.discover.guide.nextSection.description')}
             </p>
           </div>
         </Link>
       </locator-icon-link>
       <diamond-button width="full-width" className="diamond-spacing-top-md">
-        <Link to={'/refill/sign-up' + postcodeQuery} unstable_viewTransition>
-          {t('refill.guide.ctaButton')}
+        <Link
+          to={`/${postcode}/refill/discover/sign-up`}
+          unstable_viewTransition
+        >
+          {t('refill.discover.guide.ctaButton')}
         </Link>
       </diamond-button>
     </diamond-section>

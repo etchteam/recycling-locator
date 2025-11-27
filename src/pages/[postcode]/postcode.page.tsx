@@ -256,7 +256,7 @@ export default function PostcodePage() {
                   </diamond-grid-item>
                 </diamond-grid>
                 <locator-icon-link border className="diamond-spacing-top-md">
-                  <Link to={`/refill?${postcode}`} unstable_viewTransition>
+                  <Link to={`/${postcode}/refill`} unstable_viewTransition>
                     <locator-icon-circle>
                       <locator-icon
                         icon="refill"

@@ -2,13 +2,7 @@ import { useSignal } from '@preact/signals';
 import { ComponentChildren } from 'preact';
 import { useRef } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
-import {
-  Link,
-  NavLink,
-  Outlet,
-  useLocation,
-  useSearchParams,
-} from 'react-router';
+import { Link, NavLink, Outlet, useLocation, useParams } from 'react-router';
 
 import Menu from '@/components/control/Menu/Menu';
 import { useAppState } from '@/lib/AppState';
@@ -27,22 +21,25 @@ import '@/components/composition/Wrap/Wrap';
 
 const pages = ['intro', 'guide', 'options', 'benefits', 'sign-up'];
 
-export function RefillAside({ postcode }: { readonly postcode: string }) {
+export function DiscoverRefillAside() {
   const { t } = useTranslation();
   const { publicPath } = useAppState();
+  const { postcode } = useParams();
   const generalTipImgSrc = `${publicPath}images/material-tip.svg`;
 
   return (
     <locator-tip slot="layout-aside" text-align="center">
       <locator-wrap>
         <img src={generalTipImgSrc} alt="" />
-        <p className="diamond-text-weight-bold">{t('refill.aside.subtitle')}</p>
-        <h2>{t('refill.aside.title')}</h2>
-        <p>{t('refill.aside.content')}</p>
+        <p className="diamond-text-weight-bold">
+          {t('refill.discover.aside.subtitle')}
+        </p>
+        <h2>{t('refill.discover.aside.title')}</h2>
+        <p>{t('refill.discover.aside.content')}</p>
         <diamond-enter type="fade">
           <diamond-button width="full-width">
-            <Link to={'/' + postcode} unstable_viewTransition>
-              {t('refill.aside.cta')}
+            <Link to={`/${postcode}`} unstable_viewTransition>
+              {t('refill.discover.aside.cta')}
             </Link>
           </diamond-button>
         </diamond-enter>
@@ -70,7 +67,7 @@ export function FullMenu({
   );
 }
 
-export default function StartLayout({
+export default function DiscoverRefillLayout({
   children,
 }: {
   readonly children?: ComponentChildren;
@@ -78,11 +75,8 @@ export default function StartLayout({
   const { t } = useTranslation();
   const open = useSignal(false);
   const location = useLocation();
+  const { postcode } = useParams();
   const isHome = location.pathname === '/refill';
-
-  const [searchParams] = useSearchParams();
-  const postcode = searchParams.get('postcode');
-  const postcodeQuery = postcode ? `?postcode=${postcode}` : '';
 
   const layoutRef = useRef();
   useScrollRestoration(layoutRef);
@@ -124,7 +118,7 @@ export default function StartLayout({
                     <FullMenu handleClick={() => (open.value = !open.value)} />
                   ) : (
                     <Link
-                      to={isHome ? '/' : `/refill${postcodeQuery}`}
+                      to={isHome ? '/' : `/${postcode}/refill`}
                       unstable_viewTransition
                     >
                       <locator-icon
@@ -135,9 +129,9 @@ export default function StartLayout({
                   )}
                 </diamond-button>
                 <div>
-                  <h2>{t('refill.header.title')}</h2>
+                  <h2>{t('refill.discover.header.title')}</h2>
                   <p className="text-color-positive text-italic diamond-text-weight-bold">
-                    {t('refill.header.comingSoon')}
+                    {t('refill.discover.header.comingSoon')}
                   </p>
                 </div>
               </locator-header-title>
@@ -157,8 +151,9 @@ export default function StartLayout({
                     <li key={page}>
                       <NavLink
                         to={
-                          (page === 'intro' ? '/refill' : `/refill/${page}`) +
-                          postcodeQuery
+                          page === 'intro'
+                            ? `/${postcode}/refill/discover`
+                            : `/${postcode}/refill/discover/${page}`
                         }
                         unstable_viewTransition
                         end
@@ -177,7 +172,7 @@ export default function StartLayout({
           </>
         )}
       </div>
-      <RefillAside postcode={postcode || ''} />
+      <DiscoverRefillAside />
     </locator-layout>
   );
 }

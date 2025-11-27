@@ -1,16 +1,14 @@
 import fetchJsonp from 'fetch-jsonp';
 import { useEffect, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
-import { Form, Link, useSearchParams } from 'react-router';
+import { Form, Link, useParams } from 'react-router';
 
 import i18n from '@/lib/i18n';
 
 export default function SignUpPage() {
   const { t } = useTranslation();
   const locale = i18n.language;
-
-  const [searchParams] = useSearchParams();
-  const postcode = searchParams.get('postcode');
+  const { postcode } = useParams();
 
   const [errors, setErrors] = useState({
     name: false,
@@ -89,15 +87,15 @@ export default function SignUpPage() {
         );
         window.scrollTo({ top: 0, behavior: 'smooth' });
       } else {
-        throw new Error(result.msg || t('refill.sign-up.error'));
+        throw new Error(result.msg || t('refill.discover.sign-up.error'));
       }
 
       setIsSubmitting(false);
     } catch (error) {
       console.error(error);
-      let errorMessage = error.message || t('refill.sign-up.error');
+      let errorMessage = error.message || t('refill.discover.sign-up.error');
 
-      if (locale === 'cy') errorMessage = t('refill.sign-up.error');
+      if (locale === 'cy') errorMessage = t('refill.discover.sign-up.error');
 
       // Remove error number prefix from MailChimp errors (e.g., "0 - This email address...")
       if (
@@ -117,9 +115,9 @@ export default function SignUpPage() {
       <div aria-live="polite" role="status" aria-atomic="true">
         {isSuccessful && (
           <div className="diamond-spacing-bottom-md">
-            <h2>{t('refill.sign-up.success.title')}</h2>
+            <h2>{t('refill.discover.sign-up.success.title')}</h2>
             <p className="text-color-positive">
-              {t('refill.sign-up.success.description')}
+              {t('refill.discover.sign-up.success.description')}
             </p>
             <p>
               {t(
@@ -132,8 +130,8 @@ export default function SignUpPage() {
 
       {!isSuccessful && (
         <>
-          <h2>{t('refill.sign-up.title')}</h2>
-          <p>{t('refill.sign-up.description')}</p>
+          <h2>{t('refill.discover.sign-up.title')}</h2>
+          <p>{t('refill.discover.sign-up.description')}</p>
           <Form onSubmit={handleSubmit} noValidate>
             <input
               type="hidden"
@@ -144,7 +142,7 @@ export default function SignUpPage() {
             />
             <diamond-form-group className="diamond-spacing-bottom-md">
               <label htmlFor="name-input">
-                {t('refill.sign-up.form.name.label')}
+                {t('refill.discover.sign-up.form.name.label')}
               </label>
               <diamond-input>
                 <input
@@ -164,13 +162,13 @@ export default function SignUpPage() {
                   className="text-color-negative diamond-text-size-sm"
                   aria-live="polite"
                 >
-                  {t('refill.sign-up.form.name.error')}
+                  {t('refill.discover.sign-up.form.name.error')}
                 </p>
               )}
             </diamond-form-group>
             <diamond-form-group className="diamond-spacing-bottom-md">
               <label htmlFor="email-input">
-                {t('refill.sign-up.form.email.label')}
+                {t('refill.discover.sign-up.form.email.label')}
               </label>
               <diamond-input>
                 <input
@@ -179,7 +177,9 @@ export default function SignUpPage() {
                   type="email"
                   autoComplete="email"
                   placeholder={
-                    t('refill.sign-up.form.email.placeholder') as string
+                    t(
+                      'refill.discover.sign-up.form.email.placeholder',
+                    ) as string
                   }
                   required
                   disabled={isSubmitting || isSuccessful}
@@ -194,13 +194,13 @@ export default function SignUpPage() {
                   className="text-color-negative diamond-text-size-sm"
                   aria-live="polite"
                 >
-                  {t('refill.sign-up.form.email.error')}
+                  {t('refill.discover.sign-up.form.email.error')}
                 </p>
               )}
             </diamond-form-group>
             <diamond-form-group className="diamond-spacing-bottom-md">
               <label htmlFor="postcode-input">
-                {t('refill.sign-up.form.postcode.label')}
+                {t('refill.discover.sign-up.form.postcode.label')}
               </label>
               <diamond-input>
                 <locator-icon icon="pin" color="primary" />
@@ -210,7 +210,9 @@ export default function SignUpPage() {
                   type="text"
                   defaultValue={postcode}
                   placeholder={
-                    t('refill.sign-up.form.postcode.placeholder') as string
+                    t(
+                      'refill.discover.sign-up.form.postcode.placeholder',
+                    ) as string
                   }
                   required
                   disabled={isSubmitting || isSuccessful}
@@ -225,7 +227,7 @@ export default function SignUpPage() {
                   className="text-color-negative diamond-text-size-sm"
                   aria-live="polite"
                 >
-                  {t('refill.sign-up.form.postcode.error')}
+                  {t('refill.discover.sign-up.form.postcode.error')}
                 </p>
               )}
             </diamond-form-group>
@@ -245,11 +247,15 @@ export default function SignUpPage() {
                   />
                   <span>
                     <Trans
-                      i18nKey={'refill.sign-up.form.gdpr.label'}
+                      i18nKey={'refill.discover.sign-up.form.gdpr.label'}
                       components={{
                         a: (
                           <Link
-                            to={t('refill.sign-up.form.gdpr.link') as string}
+                            to={
+                              t(
+                                'refill.discover.sign-up.form.gdpr.link',
+                              ) as string
+                            }
                           />
                         ),
                       }}
@@ -263,7 +269,7 @@ export default function SignUpPage() {
                   className="text-color-negative diamond-text-size-sm"
                   aria-live="polite"
                 >
-                  {t('refill.sign-up.form.gdpr.error')}
+                  {t('refill.discover.sign-up.form.gdpr.error')}
                 </p>
               )}
             </diamond-form-group>
@@ -282,8 +288,8 @@ export default function SignUpPage() {
             >
               <button type="submit" disabled={isSubmitting || isSuccessful}>
                 {isSubmitting
-                  ? t('refill.sign-up.loading')
-                  : t('refill.sign-up.button')}
+                  ? t('refill.discover.sign-up.loading')
+                  : t('refill.discover.sign-up.button')}
               </button>
             </diamond-button>
           </Form>
@@ -292,9 +298,11 @@ export default function SignUpPage() {
 
       <p>
         <Trans
-          i18nKey={'refill.sign-up.business'}
+          i18nKey={'refill.discover.sign-up.business'}
           components={{
-            a: <Link to={t('refill.sign-up.businessLink') as string} />,
+            a: (
+              <Link to={t('refill.discover.sign-up.businessLink') as string} />
+            ),
           }}
         />
       </p>

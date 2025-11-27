@@ -51,7 +51,7 @@ export default function Menu({
     {
       icon: 'refill',
       text: t('components.menu.refill'),
-      to: `/refill?${encodeURIComponent(postcode)}`,
+      to: `/${encodeURIComponent(postcode)}/refill`,
     },
   ];
 

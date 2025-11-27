@@ -27,11 +27,11 @@ export default function DiscoverRefillPage() {
   return (
     <RefillLayout>
       <diamond-section padding="lg">
-        <h2>{t('refill.discover.start.title')}</h2>
+        <h2>{t('refill.discover.title')}</h2>
         <h3 className="diamond-text-size-base diamond-text-weight-bold diamond-spacing-bottom-none">
-          {t('refill.discover.start.comingSoon')}
+          {t('refill.discover.comingSoon')}
         </h3>
-        <p>{t('refill.discover.start.subtitle')}</p>
+        <p>{t('refill.discover.subtitle')}</p>
 
         <locator-overflow>
           <ul>
@@ -50,9 +50,9 @@ export default function DiscoverRefillPage() {
                     </locator-card-link-img>
                     <locator-card-link-content>
                       <p className="diamond-text-weight-bold diamond-spacing-bottom-none">
-                        {t(`refill.start.nav.${page}.title`)}
+                        {t(`refill.discover.nav.${page}.title`)}
                       </p>
-                      <p>{t(`refill.start.nav.${page}.description`)}</p>
+                      <p>{t(`refill.discover.nav.${page}.description`)}</p>
                     </locator-card-link-content>
                   </Link>
                 </locator-card-link>
@@ -62,7 +62,7 @@ export default function DiscoverRefillPage() {
         </locator-overflow>
 
         <h3 className="diamond-text-size-base diamond-text-weight-bold diamond-spacing-top-lg">
-          {t('refill.discover.start.reviews.title')}
+          {t('refill.discover.reviews.title')}
         </h3>
         <locator-overflow largeScreen>
           <ul>
@@ -78,7 +78,7 @@ export default function DiscoverRefillPage() {
                     <diamond-grid-item>
                       <span
                         aria-label={
-                          t('refill.discover.start.reviews.rating', {
+                          t('refill.discover.reviews.rating', {
                             rating: 5,
                           }) as string
                         }
@@ -87,7 +87,7 @@ export default function DiscoverRefillPage() {
                       </span>
                     </diamond-grid-item>
                   </diamond-grid>
-                  <p>{t(`refill.start.reviews.testimonials.${reviewer}`)}</p>
+                  <p>{t(`refill.discover.reviews.testimonials.${reviewer}`)}</p>
                 </diamond-card>
               </li>
             ))}
@@ -104,10 +104,10 @@ export default function DiscoverRefillPage() {
             </locator-icon-circle>
             <div>
               <p className="diamond-text-size-base diamond-spacing-bottom-none">
-                {t('refill.discover.start.alerts.title')}
+                {t('refill.discover.alerts.title')}
               </p>
               <p className="diamond-text-size-sm">
-                {t('refill.discover.start.alerts.description')}
+                {t('refill.discover.alerts.description')}
               </p>
             </div>
           </Link>

@@ -52,14 +52,14 @@ export default function GuidePage() {
         >
           <details>
             <summary>
-              {t(`refill.guide.faq.${question}.question`)}
+              {t(`refill.discover.guide.faq.${question}.question`)}
               <locator-icon icon="expand" />
             </summary>
             <p>
               <span className="diamond-text-weight-bold">
-                {t(`refill.guide.faq.${question}.answerBold`)}
+                {t(`refill.discover.guide.faq.${question}.answerBold`)}
               </span>{' '}
-              {t(`refill.guide.faq.${question}.answer`)}
+              {t(`refill.discover.guide.faq.${question}.answer`)}
             </p>
           </details>
         </locator-details>

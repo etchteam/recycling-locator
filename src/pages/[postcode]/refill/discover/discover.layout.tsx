@@ -129,9 +129,9 @@ export default function DiscoverRefillLayout({
                   )}
                 </diamond-button>
                 <div>
-                  <h2>{t('refill.discover.header.title')}</h2>
+                  <h2>{t('refill.header.title')}</h2>
                   <p className="text-color-positive text-italic diamond-text-weight-bold">
-                    {t('refill.discover.header.comingSoon')}
+                    {t('refill.header.comingSoon')}
                   </p>
                 </div>
               </locator-header-title>
@@ -158,7 +158,7 @@ export default function DiscoverRefillLayout({
                         unstable_viewTransition
                         end
                       >
-                        {t(`refill.nav.${page}.title`)}
+                        {t(`refill.discover.nav.${page}.title`)}
                       </NavLink>
                     </li>
                   ))}

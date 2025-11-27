@@ -28,12 +28,14 @@ export default function OptionsPage() {
         >
           <details>
             <summary className="diamond-text-weight-bold">
-              {t(`refill.options.categories.${category}.title`)}
+              {t(`refill.discover.options.categories.${category}.title`)}
               <locator-icon icon="expand" />
             </summary>
             <ul>
               {(
-                t(`refill.options.categories.${category}.content`) as string[]
+                t(
+                  `refill.discover.options.categories.${category}.content`,
+                ) as string[]
               ).map((item) => (
                 <li key={item}>{item}</li>
               ))}
@@ -41,7 +43,7 @@ export default function OptionsPage() {
             <locator-highlight className="theme-info">
               <locator-icon-text>
                 <locator-icon icon="info" />
-                {t(`refill.options.categories.${category}.highlight`)}
+                {t(`refill.discover.options.categories.${category}.highlight`)}
               </locator-icon-text>
             </locator-highlight>
           </details>

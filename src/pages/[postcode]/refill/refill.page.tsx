@@ -10,7 +10,7 @@ export default function RefillPlacesPage() {
       <diamond-section padding="md">
         <h1>Refill locations</h1>
         <p>
-          <Link to={`/refill/${postcode}/discover`}>Discover refill</Link>
+          <Link to={`/${postcode}/refill/discover`}>Discover refill</Link>
         </p>
       </diamond-section>
     </locator-wrap>

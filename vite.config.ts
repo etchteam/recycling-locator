@@ -3,7 +3,6 @@ import path from 'node:path';
 import { preact } from '@preact/preset-vite';
 import typescript from '@rollup/plugin-typescript';
 import { sentryVitePlugin } from '@sentry/vite-plugin';
-import { reactRouterDevTools } from 'react-router-devtools';
 import { defineConfig, loadEnv, UserConfig } from 'vite';
 import svgr from 'vite-plugin-svgr';
 
@@ -30,7 +29,6 @@ export default defineConfig(({ mode }) => {
     },
 
     plugins: [
-      reactRouterDevTools(),
       svgr(),
       preact({
         babel: {

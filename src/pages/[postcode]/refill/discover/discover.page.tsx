@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { Link, useSearchParams } from 'react-router';
+import { Link, useParams } from 'react-router';
 
 import { useAppState } from '@/lib/AppState';
 
@@ -8,7 +8,7 @@ import '@etchteam/diamond-ui/composition/Grid/Grid';
 import '@etchteam/diamond-ui/composition/Grid/GridItem';
 import '@etchteam/diamond-ui/canvas/Section/Section';
 
-import RefillLayout from './refill.layout';
+import RefillLayout from './discover.layout';
 const pages = ['guide', 'options', 'benefits'];
 const reviewers = [
   'Fiona C',
@@ -19,22 +19,19 @@ const reviewers = [
   'Helen P',
 ];
 
-export default function RefillPage() {
+export default function DiscoverRefillPage() {
   const { t } = useTranslation();
   const { publicPath } = useAppState();
-
-  const [searchParams] = useSearchParams();
-  const postcode = searchParams.get('postcode');
-  const postcodeQuery = postcode ? `?postcode=${postcode}` : '';
+  const { postcode } = useParams();
 
   return (
     <RefillLayout>
       <diamond-section padding="lg">
-        <h2>{t('refill.start.title')}</h2>
+        <h2>{t('refill.discover.title')}</h2>
         <h3 className="diamond-text-size-base diamond-text-weight-bold diamond-spacing-bottom-none">
-          {t('refill.start.comingSoon')}
+          {t('refill.discover.comingSoon')}
         </h3>
-        <p>{t('refill.start.subtitle')}</p>
+        <p>{t('refill.discover.subtitle')}</p>
 
         <locator-overflow>
           <ul>
@@ -42,7 +39,7 @@ export default function RefillPage() {
               <li key={page}>
                 <locator-card-link>
                   <Link
-                    to={'/refill/' + page + postcodeQuery}
+                    to={`/${postcode}/refill/discover/${page}`}
                     unstable_viewTransition
                   >
                     <locator-card-link-img>
@@ -53,9 +50,9 @@ export default function RefillPage() {
                     </locator-card-link-img>
                     <locator-card-link-content>
                       <p className="diamond-text-weight-bold diamond-spacing-bottom-none">
-                        {t(`refill.start.nav.${page}.title`)}
+                        {t(`refill.discover.nav.${page}.title`)}
                       </p>
-                      <p>{t(`refill.start.nav.${page}.description`)}</p>
+                      <p>{t(`refill.discover.nav.${page}.description`)}</p>
                     </locator-card-link-content>
                   </Link>
                 </locator-card-link>
@@ -65,7 +62,7 @@ export default function RefillPage() {
         </locator-overflow>
 
         <h3 className="diamond-text-size-base diamond-text-weight-bold diamond-spacing-top-lg">
-          {t('refill.start.reviews.title')}
+          {t('refill.discover.reviews.title')}
         </h3>
         <locator-overflow largeScreen>
           <ul>
@@ -81,7 +78,7 @@ export default function RefillPage() {
                     <diamond-grid-item>
                       <span
                         aria-label={
-                          t('refill.start.reviews.rating', {
+                          t('refill.discover.reviews.rating', {
                             rating: 5,
                           }) as string
                         }
@@ -90,7 +87,7 @@ export default function RefillPage() {
                       </span>
                     </diamond-grid-item>
                   </diamond-grid>
-                  <p>{t(`refill.start.reviews.testimonials.${reviewer}`)}</p>
+                  <p>{t(`refill.discover.reviews.testimonials.${reviewer}`)}</p>
                 </diamond-card>
               </li>
             ))}
@@ -98,16 +95,19 @@ export default function RefillPage() {
         </locator-overflow>
 
         <locator-icon-link border className="diamond-spacing-top-md">
-          <Link to={'/refill/sign-up' + postcodeQuery} unstable_viewTransition>
+          <Link
+            to={`/${postcode}/refill/discover/sign-up`}
+            unstable_viewTransition
+          >
             <locator-icon-circle>
               <locator-icon icon="home-pin" color="primary"></locator-icon>
             </locator-icon-circle>
             <div>
               <p className="diamond-text-size-base diamond-spacing-bottom-none">
-                {t('refill.start.alerts.title')}
+                {t('refill.discover.alerts.title')}
               </p>
               <p className="diamond-text-size-sm">
-                {t('refill.start.alerts.description')}
+                {t('refill.discover.alerts.description')}
               </p>
             </div>
           </Link>

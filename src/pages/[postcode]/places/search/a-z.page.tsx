@@ -1,7 +1,6 @@
 import groupBy from 'lodash/groupBy';
-import { Suspense } from 'preact/compat';
 import { useTranslation } from 'react-i18next';
-import { Await, Link, useLoaderData, useParams } from 'react-router';
+import { Link } from 'wouter-preact';
 import '@etchteam/diamond-ui/canvas/Section/Section';
 import '@etchteam/diamond-ui/composition/Grid/Grid';
 import '@etchteam/diamond-ui/composition/Grid/GridItem';
@@ -12,10 +11,10 @@ import '@/components/composition/Wrap/Wrap';
 import '@/components/control/AlphabetNav/AlphabetNav';
 import '@/components/composition/BorderedList/BorderedList';
 import '@/components/content/Icon/Icon';
+import { useMaterials } from '@/hooks/useMaterials';
+import { usePostcode } from '@/lib/PostcodeContext';
 import tArray from '@/lib/tArray';
 import { Material } from '@/types/locatorApi';
-
-import { PlacesSearchAtoZLoaderResponse } from './a-z.loader';
 
 function AtoZPageContent({
   materials,
@@ -23,7 +22,7 @@ function AtoZPageContent({
   readonly materials: readonly Material[];
 }) {
   const { t } = useTranslation();
-  const { postcode } = useParams();
+  const { postcode } = usePostcode();
   const alphabet = tArray('places.search.aToZ.alphabet');
   const multiLetterChars = alphabet.filter((letter) => letter.length > 1);
   const groupedMaterials = groupBy(materials, (material) => {
@@ -70,7 +69,7 @@ function AtoZPageContent({
               <li key={letter}>
                 <diamond-button width="square">
                   <Link
-                    to={`#letter-${letter}`}
+                    href={`#letter-${letter}`}
                     disabled={!availableLetters.includes(letter)}
                     aria-hidden={!availableLetters.includes(letter)}
                     onClick={(event) => scrollToLetter(event, letter)}
@@ -120,7 +119,7 @@ function AtoZPageContent({
                   return (
                     <li key={material.id}>
                       <Link
-                        to={`/${postcode}/places?${placesSearchParams.toString()}`}
+                        href={`/${postcode}/places?${placesSearchParams.toString()}`}
                       >
                         {material.name}
                       </Link>
@@ -137,17 +136,16 @@ function AtoZPageContent({
 }
 
 export default function AtoZPage() {
-  const { materials: materialsPromise } =
-    useLoaderData() as PlacesSearchAtoZLoaderResponse;
+  const { data: materials, loading } = useMaterials();
+
+  if (loading || !materials) {
+    return null;
+  }
 
   return (
     <diamond-section padding="lg">
       <locator-wrap>
-        <Suspense fallback={null}>
-          <Await resolve={materialsPromise}>
-            {(materials) => <AtoZPageContent materials={materials} />}
-          </Await>
-        </Suspense>
+        <AtoZPageContent materials={materials} />
       </locator-wrap>
     </diamond-section>
   );

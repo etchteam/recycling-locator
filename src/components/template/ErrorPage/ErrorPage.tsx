@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router';
+import { Link } from 'wouter-preact';
 import '@etchteam/diamond-ui/control/Button/Button';
 
 export default function ErrorPage({
@@ -22,7 +22,7 @@ export default function ErrorPage({
         {t('error.label')}
       </p>
       <diamond-button width="full-width" variant="primary">
-        <Link to={link}>{cta ?? t('error.cta')}</Link>
+        <Link href={link}>{cta ?? t('error.cta')}</Link>
       </diamond-button>
     </>
   );

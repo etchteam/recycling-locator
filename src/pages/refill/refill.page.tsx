@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
-import { Link, useSearchParams } from 'react-router';
+import { Link } from 'wouter-preact';
 
+import { useSearchParams } from '@/hooks/useSearchParams';
 import { useAppState } from '@/lib/AppState';
 
 import '@etchteam/diamond-ui/canvas/Card/Card';
@@ -41,10 +42,7 @@ export default function RefillPage() {
             {pages.map((page) => (
               <li key={page}>
                 <locator-card-link>
-                  <Link
-                    to={'/refill/' + page + postcodeQuery}
-                    unstable_viewTransition
-                  >
+                  <Link href={'/refill/' + page + postcodeQuery}>
                     <locator-card-link-img>
                       <img
                         src={`${publicPath}images/refill/${page}.webp`}
@@ -98,7 +96,7 @@ export default function RefillPage() {
         </locator-overflow>
 
         <locator-icon-link border className="diamond-spacing-top-md">
-          <Link to={'/refill/sign-up' + postcodeQuery} unstable_viewTransition>
+          <Link href={'/refill/sign-up' + postcodeQuery}>
             <locator-icon-circle>
               <locator-icon icon="home-pin" color="primary"></locator-icon>
             </locator-icon-circle>

@@ -1,8 +1,7 @@
 import { useSignal } from '@preact/signals';
 import { ComponentChildren } from 'preact';
-import { Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Await, useLoaderData } from 'react-router';
+import { useLocation } from 'wouter-preact';
 import '@etchteam/diamond-ui/control/Button/Button';
 import '@etchteam/diamond-ui/canvas/Section/Section';
 import '@etchteam/diamond-ui/composition/Enter/Enter';
@@ -16,11 +15,10 @@ import '@/components/composition/Wrap/Wrap';
 
 import Footer from '@/components/content/Footer/Footer';
 import TipContent from '@/components/template/TipContent/TipContent';
+import { useTip } from '@/hooks/useTip';
 import { useAppState } from '@/lib/AppState';
 import i18n from '@/lib/i18n';
 import useAnalytics from '@/lib/useAnalytics';
-
-import { StartLoaderResponse } from './start.loader';
 
 function About() {
   const { t } = useTranslation();
@@ -87,26 +85,28 @@ export function LoadingTip() {
 }
 
 export function DefaultAside() {
-  const loaderData = useLoaderData() as StartLoaderResponse;
-  const tipPromise = loaderData?.tip;
+  const [location] = useLocation();
+  const { data: tip, loading } = useTip({ path: location });
+
+  if (loading) {
+    return (
+      <div slot="layout-aside" className="display-contents">
+        <LoadingTip />
+      </div>
+    );
+  }
 
   return (
     <div slot="layout-aside" className="display-contents">
-      <Suspense fallback={<LoadingTip />}>
-        <Await resolve={tipPromise}>
-          {(tip) =>
-            tip ? (
-              <locator-tip slot="layout-aside" type="promo" text-align="center">
-                <locator-wrap>
-                  <TipContent tip={tip} />
-                </locator-wrap>
-              </locator-tip>
-            ) : (
-              <DefaultTip />
-            )
-          }
-        </Await>
-      </Suspense>
+      {tip ? (
+        <locator-tip slot="layout-aside" type="promo" text-align="center">
+          <locator-wrap>
+            <TipContent tip={tip} />
+          </locator-wrap>
+        </locator-tip>
+      ) : (
+        <DefaultTip />
+      )}
     </div>
   );
 }

@@ -1,6 +1,5 @@
-import { Suspense } from 'preact/compat';
 import { useTranslation } from 'react-i18next';
-import { Await, Link, useParams } from 'react-router';
+import { Link } from 'wouter-preact';
 import '@etchteam/diamond-ui/composition/Enter/Enter';
 import '@etchteam/diamond-ui/canvas/Card/Card';
 
@@ -8,10 +7,10 @@ import '@/components/canvas/LoadingCard/LoadingCard';
 import '@/components/content/Container/Container';
 import RateThisInfo from '@/components/control/RateThisInfo/RateThisInfo';
 import SchemeContainerSummary from '@/components/template/SchemeContainerSummary/SchemeContainerSummary';
+import { useLocalAuthority } from '@/hooks/useLocalAuthority';
+import { usePostcode } from '@/lib/PostcodeContext';
 import sortPropertyTypes from '@/lib/sortPropertyTypes';
 import { LocalAuthority } from '@/types/locatorApi';
-
-import { useHomeRecyclingLoaderData } from './home.loader';
 
 function Loading() {
   return (
@@ -26,7 +25,7 @@ function PropertyList({
 }: {
   readonly localAuthority: LocalAuthority;
 }) {
-  const { postcode } = useParams();
+  const { postcode } = usePostcode();
   const properties = sortPropertyTypes(localAuthority.properties);
   const propertyTypes = Object.keys(properties);
 
@@ -39,7 +38,7 @@ function PropertyList({
 
         return (
           <Link
-            to={`/${postcode}/home/collection?propertyType=${safePropertyType}`}
+            href={`/${postcode}/home/collection?propertyType=${safePropertyType}`}
             key={safePropertyType}
           >
             <diamond-card className="diamond-spacing-bottom-md" border radius>
@@ -57,18 +56,16 @@ function PropertyList({
 
 export default function HomeRecyclingPage() {
   const { t } = useTranslation();
-  const { localAuthority } = useHomeRecyclingLoaderData();
+  const { data: localAuthority, loading } = useLocalAuthority();
+  const hasLoaded = !loading && localAuthority;
 
   return (
     <section className="diamond-spacing-bottom-lg">
       <h3>{t('homeRecycling.collections.title')}</h3>
       <p>{t('homeRecycling.collections.help')}</p>
 
-      <Suspense fallback={<Loading />}>
-        <Await resolve={localAuthority}>
-          {(la) => <PropertyList localAuthority={la} />}
-        </Await>
-      </Suspense>
+      {!hasLoaded && <Loading />}
+      {hasLoaded && <PropertyList localAuthority={localAuthority} />}
     </section>
   );
 }

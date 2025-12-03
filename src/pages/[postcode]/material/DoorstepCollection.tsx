@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
+import { useEffect } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router';
+import { Link } from 'wouter-preact';
 import '@etchteam/diamond-ui/canvas/Card/Card';
 import '@etchteam/diamond-ui/composition/Grid/Grid';
 import '@etchteam/diamond-ui/composition/Grid/GridItem';
@@ -61,7 +61,7 @@ export default function DoorstepCollection({
       </p>
       <diamond-button width="full-width">
         <Link
-          to={bookingUrl.toString()}
+          href={bookingUrl.toString()}
           target="_blank"
           rel="noopener noreferrer"
           onClick={handleClick}

@@ -1,16 +1,16 @@
 import { useTranslation } from 'react-i18next';
-import { useParams, useRouteError } from 'react-router';
 import '@etchteam/diamond-ui/canvas/Section/Section';
 
 import '@/components/composition/Wrap/Wrap';
 import ErrorPage from '@/components/template/ErrorPage/ErrorPage';
-import { captureException } from '@/lib/sentry';
+import { usePostcode } from '@/lib/PostcodeContext';
 
+/**
+ * Material search error boundary
+ */
 export default function MaterialErrorPage() {
   const { t } = useTranslation();
-  const { postcode } = useParams();
-  const error = useRouteError();
-  captureException(error, { route: 'Material result error boundary' });
+  const { postcode } = usePostcode();
 
   return (
     <locator-wrap>

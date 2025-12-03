@@ -1,6 +1,6 @@
 import { useEffect } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router';
+import { Link } from 'wouter-preact';
 import '@etchteam/diamond-ui/canvas/Section/Section';
 import '@etchteam/diamond-ui/composition/Grid/Grid';
 import '@etchteam/diamond-ui/composition/Grid/GridItem';
@@ -18,17 +18,19 @@ import '@/components/content/Icon/Icon';
 import '@/components/content/RescueMeRecyclePromo/RescueMeRecyclePromo';
 import '@/components/control/IconLink/IconLink';
 import '@/components/canvas/LoadingCard/LoadingCard';
+import { usePostcode } from '@/lib/PostcodeContext';
 import i18n from '@/lib/i18n';
 import tArray from '@/lib/tArray';
 import useAnalytics from '@/lib/useAnalytics';
 
-import { usePostcodeLoaderData } from './postcode.loader';
 import { PostcodeAside } from './postcode.page';
 
 export default function RescueMeRecyclePage() {
   const { t } = useTranslation();
   const { recordEvent } = useAnalytics();
-  const { postcode, city } = usePostcodeLoaderData();
+  const { data: postcodeData } = usePostcode();
+  const postcode = postcodeData?.postcode || '';
+  const city = postcodeData?.city || '';
   const locale = i18n.language;
 
   useEffect(() => {
@@ -44,7 +46,7 @@ export default function RescueMeRecyclePage() {
         <locator-header-content>
           <locator-logo locale={locale}></locator-logo>
           <diamond-button variant="text" width="square">
-            <Link to={`/${postcode}`}>
+            <Link href={`/${postcode}`}>
               <locator-icon
                 icon="close"
                 label="Back"
@@ -71,7 +73,7 @@ export default function RescueMeRecyclePage() {
               <nav className="diamond-spacing-bottom-lg">
                 <dl>
                   <locator-icon-link border className="diamond-spacing-top-md">
-                    <Link to={`/${postcode}`} unstable_viewTransition>
+                    <Link href={`/${postcode}`}>
                       <locator-icon-circle>
                         <locator-icon
                           icon="search"
@@ -87,7 +89,7 @@ export default function RescueMeRecyclePage() {
                     </Link>
                   </locator-icon-link>
                   <locator-icon-link border className="diamond-spacing-top-md">
-                    <Link to={`/${postcode}/home`} unstable_viewTransition>
+                    <Link href={`/${postcode}/home`}>
                       <locator-icon-circle>
                         <locator-icon
                           icon="home"

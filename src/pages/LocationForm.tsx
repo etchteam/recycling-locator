@@ -2,7 +2,7 @@ import { useSignal } from '@preact/signals';
 import { ComponentChildren } from 'preact';
 import { useEffect } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
-import { Form, useLocation, useSearchParams, useSubmit } from 'react-router';
+import { useLocation } from 'wouter-preact';
 import '@etchteam/diamond-ui/composition/FormGroup/FormGroup';
 import '@etchteam/diamond-ui/composition/Grid/Grid';
 import '@etchteam/diamond-ui/composition/Grid/GridItem';
@@ -11,7 +11,9 @@ import '@etchteam/diamond-ui/control/RadioCheckbox/RadioCheckbox';
 
 import '@/components/canvas/Highlight/Highlight';
 import LocationInput from '@/components/control/LocationInput/LocationInput';
+import { useSearchParams } from '@/hooks/useSearchParams';
 import { useAppState } from '@/lib/AppState';
+import PostCodeResolver from '@/lib/PostcodeResolver';
 import i18n from '@/lib/i18n';
 import { captureException } from '@/lib/sentry';
 import useFormValidation from '@/lib/useFormValidation';
@@ -28,33 +30,85 @@ export default function LocationForm({
   readonly children?: ComponentChildren;
 }) {
   const { t } = useTranslation();
-  const location = useLocation();
+  const [location, setLocation] = useLocation();
   const form = useFormValidation('location');
   const [searchParams] = useSearchParams();
   const autofocus = searchParams.get('autofocus') === 'true';
   const geolocation = useSignal(false);
   const geolocationError = useSignal(false);
-  const submit = useSubmit();
   const app = useAppState();
   const locale = i18n.language;
   const isStandalone = app.variant === 'standalone';
 
   useEffect(() => {
     form.submitting.value = false;
-  }, [location]);
+  }, [location, form.submitting]);
 
-  async function handleSubmit(event) {
-    geolocationError.value = false;
+  async function resolveAndNavigate(formData: FormData, path = '') {
+    const locationValue = formData.get('location') as string;
+    const lat = Number(formData.get('lat'));
+    const lng = Number(formData.get('lng'));
 
-    if (!geolocation.value) {
-      return form.handleSubmit(event);
+    // Resolve postcode from location string or lat/lng
+    const postcode =
+      lat && lng
+        ? await PostCodeResolver.fromLatLng(lat, lng)
+        : await PostCodeResolver.fromString(locationValue);
+
+    const openInNewTab = formData.get('new-tab') === 'yes';
+    const route = `/${postcode}${path}`;
+
+    if (openInNewTab) {
+      const locale = formData.get('locale') as string;
+      const domain =
+        locale === 'cy' || window.location.host.includes('walesrecycles.org.uk')
+          ? 'locator.walesrecycles.org.uk'
+          : 'locator.recyclenow.com';
+      const url = new URL(`https://${domain}${route}`);
+      url.searchParams.set('locale', locale);
+      // Open the standalone app in a new tab
+      window.open(url, '_blank')?.focus();
+      // Don't navigate in widget mode
+      return;
     }
 
+    setLocation(route);
+  }
+
+  async function handleSubmit(event: Event) {
     event.preventDefault();
+    geolocationError.value = false;
+
+    const formElement = event.target as HTMLFormElement;
+    const formData = new FormData(formElement);
+
+    if (!geolocation.value) {
+      // Manual location entry
+      const locationValue = formData.get('location') as string;
+
+      if (!locationValue || !form.valid.value) {
+        form.valid.value = false;
+        return;
+      }
+
+      form.submitting.value = true;
+
+      try {
+        await resolveAndNavigate(formData, action === '/' ? '' : action);
+      } catch (error) {
+        form.submitting.value = false;
+        captureException(error, {
+          component: 'LocationForm postcode resolution',
+        });
+      }
+      return;
+    }
+
+    // Geolocation
     form.submitting.value = true;
-    const locationForm = event?.submitter?.form ?? undefined;
-    const checkbox = locationForm?.querySelector('input[name="geolocation"]');
-    const formData = new FormData(locationForm);
+    const checkbox = formElement.querySelector(
+      'input[name="geolocation"]',
+    ) as HTMLInputElement;
 
     try {
       const response = await new Promise<GeolocationCoordinates>(
@@ -72,11 +126,14 @@ export default function LocationForm({
 
       formData.set('lat', response.latitude.toString());
       formData.set('lng', response.longitude.toString());
-      submit(formData, { method: 'post', action });
+
+      await resolveAndNavigate(formData, action === '/' ? '' : action);
     } catch (error) {
       geolocation.value = false;
       form.submitting.value = false;
-      checkbox.checked = false;
+      if (checkbox) {
+        checkbox.checked = false;
+      }
       geolocationError.value = true;
 
       captureException(error, { component: 'LocationForm geolocation' });
@@ -84,7 +141,7 @@ export default function LocationForm({
   }
 
   return (
-    <Form action={action} method="post" onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <input type="hidden" name="locale" value={locale} />
       <diamond-form-group className="diamond-spacing-bottom-md">
         <label htmlFor="location-input">{label ?? t('start.label')}</label>
@@ -160,6 +217,6 @@ export default function LocationForm({
           {cta ?? t('start.cta')}
         </button>
       </diamond-button>
-    </Form>
+    </form>
   );
 }

@@ -1,11 +1,11 @@
 import Linkify from 'linkify-react';
 import nl2br from 'nl2br';
-import { Suspense } from 'preact/compat';
 import { useTranslation } from 'react-i18next';
-import { Await } from 'react-router';
+import { useParams } from 'wouter-preact';
 
 import '@/components/composition/BorderedList/BorderedList';
 import RateThisInfo from '@/components/control/RateThisInfo/RateThisInfo';
+import { usePlace } from '@/hooks/usePlace';
 import cleanupAddress from '@/lib/cleanupAddress';
 import getCollectionDetails from '@/lib/details/getCollectionDetails';
 import getNotes from '@/lib/details/getNotes';
@@ -13,8 +13,6 @@ import getOpeningHours from '@/lib/details/getOpeningHours';
 import getPhoneNumbers from '@/lib/details/getPhoneNumbers';
 import getWebsites from '@/lib/details/getWebsites';
 import { Location } from '@/types/locatorApi';
-
-import { usePlaceLoaderData } from './place.loader';
 
 function getOpeningHoursClass(idx: number, hours: string): string {
   if (idx !== 0) {
@@ -148,17 +146,20 @@ function PlaceDetailsPageContent({
 
 export default function PlaceDetailsPage() {
   const { t } = useTranslation();
-  const { location: locationPromise } = usePlaceLoaderData();
+  const params = useParams<{ placeName: string; placePostcode: string }>();
+  const { data: location, loading } = usePlace(
+    params.placeName,
+    params.placePostcode,
+  );
+
+  if (loading || !location) {
+    return null;
+  }
 
   return (
     <>
       <h3 className="diamond-spacing-bottom-md">{t('place.details.title')}</h3>
-
-      <Suspense fallback={null}>
-        <Await resolve={locationPromise}>
-          {(location) => <PlaceDetailsPageContent location={location} />}
-        </Await>
-      </Suspense>
+      <PlaceDetailsPageContent location={location} />
     </>
   );
 }

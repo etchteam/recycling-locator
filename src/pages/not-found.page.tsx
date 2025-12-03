@@ -1,5 +1,4 @@
 import { useTranslation } from 'react-i18next';
-import { useRouteError, ErrorResponse, Link } from 'react-router';
 import '@etchteam/diamond-ui/composition/FormGroup/FormGroup';
 import '@etchteam/diamond-ui/control/Button/Button';
 import '@etchteam/diamond-ui/canvas/Section/Section';
@@ -7,7 +6,6 @@ import '@etchteam/diamond-ui/canvas/Section/Section';
 import '@/components/composition/Wrap/Wrap';
 import '@/components/canvas/Tip/Tip';
 import '@/components/control/LocationInput/LocationInput';
-import PostCodeResolver from '@/lib/PostcodeResolver';
 import StartLayout from '@/pages/start.layout';
 
 import LocationForm from './LocationForm';
@@ -49,35 +47,17 @@ function Aside() {
 }
 
 /**
- * This is both an error boundary and a 404 page, so the user could end up here if:
- * - They visit a route that doesn't exist
- * - An exception is thrown in a child route
+ * 404 Not Found page
+ * Displayed when the user visits a route that doesn't exist
  */
 export default function NotFoundPage() {
   const { t } = useTranslation();
-  const error = useRouteError() as ErrorResponse | undefined;
-
-  if (error && error.status !== 404) {
-    // If this isn't a 404, bubble the exception up to the generic error boundary
-    throw error;
-  }
-
-  const notInUk = error?.data === PostCodeResolver.ERROR_NOT_IN_UK;
-  const postcodeTypo = error?.data === PostCodeResolver.ERROR_POSTCODE_TYPO;
-  const suggestedPostcode = postcodeTypo ? error?.statusText : null;
 
   return (
     <StartLayout aside={<Aside />}>
       <locator-wrap>
         <diamond-section padding="lg">
-          <h2>{t(`notFound.title.${notInUk ? 'notInTheUK' : 'default'}`)}</h2>
-          {notInUk && <p>{t('notFound.ukOnly')}</p>}
-          {postcodeTypo && suggestedPostcode && (
-            <p>
-              {t('notFound.didYouMean')}
-              <Link to={`/${suggestedPostcode}`}>{suggestedPostcode}</Link>
-            </p>
-          )}
+          <h2>{t('notFound.title.default')}</h2>
           <LocationForm label={t('notFound.label')} cta={t('notFound.cta')} />
         </diamond-section>
       </locator-wrap>

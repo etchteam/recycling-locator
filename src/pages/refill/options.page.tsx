@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
-import { Link, useSearchParams } from 'react-router';
+import { Link } from 'wouter-preact';
 
+import { useSearchParams } from '@/hooks/useSearchParams';
 import { useAppState } from '@/lib/AppState';
 
 import '@etchteam/diamond-ui/canvas/Section/Section';
@@ -64,7 +65,7 @@ export default function OptionsPage() {
       <hr className="diamond-spacing-top-md diamond-spacing-bottom-md" />
 
       <locator-icon-link border>
-        <Link to={'/refill/benefits' + postcodeQuery}>
+        <Link href={'/refill/benefits' + postcodeQuery}>
           <locator-icon-circle>
             <locator-icon icon="star" color="primary"></locator-icon>
           </locator-icon-circle>
@@ -79,7 +80,7 @@ export default function OptionsPage() {
         </Link>
       </locator-icon-link>
       <diamond-button width="full-width" className="diamond-spacing-top-md">
-        <Link to={'/refill/sign-up' + postcodeQuery}>
+        <Link href={'/refill/sign-up' + postcodeQuery}>
           {t('refill.options.cta')}
         </Link>
       </diamond-button>

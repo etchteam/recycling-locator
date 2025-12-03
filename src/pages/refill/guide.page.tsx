@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
-import { Link, useSearchParams } from 'react-router';
+import { Link } from 'wouter-preact';
 
+import { useSearchParams } from '@/hooks/useSearchParams';
 import { useAppState } from '@/lib/AppState';
 
 import '@etchteam/diamond-ui/canvas/Section/Section';
@@ -71,7 +72,7 @@ export default function GuidePage() {
       <hr className="diamond-spacing-top-md diamond-spacing-bottom-md" />
 
       <locator-icon-link border>
-        <Link to={'/refill/options' + postcodeQuery} unstable_viewTransition>
+        <Link href={'/refill/options' + postcodeQuery}>
           <locator-icon-circle>
             <locator-icon
               icon="shopping-cart-add"
@@ -89,7 +90,7 @@ export default function GuidePage() {
         </Link>
       </locator-icon-link>
       <diamond-button width="full-width" className="diamond-spacing-top-md">
-        <Link to={'/refill/sign-up' + postcodeQuery} unstable_viewTransition>
+        <Link href={'/refill/sign-up' + postcodeQuery}>
           {t('refill.guide.ctaButton')}
         </Link>
       </diamond-button>

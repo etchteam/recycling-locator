@@ -1,16 +1,8 @@
 import { useSignal } from '@preact/signals';
-import { Suspense, useEffect } from 'preact/compat';
+import { useEffect } from 'preact/compat';
 import { useRef } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
-import {
-  Await,
-  FetcherWithComponents,
-  Link,
-  useFetcher,
-  useNavigation,
-  useParams,
-  useSearchParams,
-} from 'react-router';
+import { Link } from 'wouter-preact';
 import '@etchteam/diamond-ui/canvas/Card/Card';
 import '@etchteam/diamond-ui/composition/Wrap/Wrap';
 import '@etchteam/diamond-ui/composition/Grid/Grid';
@@ -25,13 +17,14 @@ import '@/components/content/Icon/Icon';
 import '@/components/control/Fab/Fab';
 import Place from '@/components/template/Place/Place';
 import TipContent from '@/components/template/TipContent/TipContent';
+import { useLocations } from '@/hooks/useLocations';
+import { useSearchParams } from '@/hooks/useSearchParams';
+import { useTip } from '@/hooks/useTip';
 import { useAppState } from '@/lib/AppState';
+import { usePostcode } from '@/lib/PostcodeContext';
 import PostCodeResolver from '@/lib/PostcodeResolver';
 import formatPostcode from '@/lib/formatPostcode';
 import useAnalytics from '@/lib/useAnalytics';
-import { LocationsResponse } from '@/types/locatorApi';
-
-import { PlacesLoaderResponse, usePlacesLoaderData } from './places.loader';
 
 function Loading() {
   const { t } = useTranslation();
@@ -64,45 +57,24 @@ function Loading() {
   );
 }
 
-function Places({
-  locations: loadedLocations,
-}: {
-  readonly locations: LocationsResponse;
-}) {
-  const { postcode } = useParams();
+function Places() {
+  const { postcode } = usePostcode();
   const { t } = useTranslation();
   const { recordEvent } = useAnalytics();
-  const fetcher = useFetcher() as FetcherWithComponents<PlacesLoaderResponse>;
   const loadMoreButton = useRef<HTMLButtonElement>(null);
   const lastLoadMoreOffset = useSignal<number>(0);
   const [searchParams, setSearchParams] = useSearchParams();
   const search = searchParams.get('search');
   const materials = searchParams.get('materials');
-  const category = searchParams.get('category');
-
-  // The loader is used initially then the fetcher is used to load more
-  const fetchedLocations = fetcher.data?.locations;
-  const locations = (fetchedLocations ?? loadedLocations) as LocationsResponse;
-
-  if (locations.error) {
-    throw new Error(locations.error);
-  }
-
-  const count = locations.items?.length ?? 0;
+  const { data: locations, loading } = useLocations();
+  const count = locations?.items?.length ?? 0;
   const showLocations = count > 0 && materials !== 'undefined';
-  const limit = locations.pagination?.total ?? 30;
+  const limit = locations?.pagination?.total ?? 30;
   const currentPage = limit / 30;
   const maxLimit = 120;
   const showLoadMore = showLocations && count >= limit && limit !== maxLimit;
   const locationSearchParams = new URLSearchParams(searchParams);
   locationSearchParams.set('page', String(currentPage));
-
-  const handleResetSearch = () => {
-    searchParams.delete('materials');
-    searchParams.delete('category');
-    searchParams.delete('search');
-    setSearchParams(searchParams);
-  };
 
   useEffect(() => {
     if (search) {
@@ -129,6 +101,21 @@ function Places({
     }
   }, [count]);
 
+  if (loading || !locations) {
+    return <Loading />;
+  }
+
+  if (locations.error) {
+    throw new Error(locations.error);
+  }
+
+  const handleResetSearch = () => {
+    searchParams.delete('materials');
+    searchParams.delete('category');
+    searchParams.delete('search');
+    setSearchParams(searchParams);
+  };
+
   return (
     <diamond-enter type="fade">
       {showLocations ? (
@@ -152,7 +139,7 @@ function Places({
                   return (
                     <li key={`${location.id}`}>
                       <Link
-                        to={`/${postcode}/places/${locationName}/${locationPostcode}?${locationSearchParams.toString()}`}
+                        href={`/${postcode}/places/${locationName}/${locationPostcode}?${locationSearchParams.toString()}`}
                       >
                         <diamond-enter type="fade">
                           <diamond-card border radius>
@@ -185,7 +172,7 @@ function Places({
               width="full-width"
               className="diamond-spacing-bottom-sm"
             >
-              <Link to={`/${postcode}/places/search`}>
+              <Link href={`/${postcode}/places/search`}>
                 {t('actions.searchAgain')}
               </Link>
             </diamond-button>
@@ -204,28 +191,20 @@ function Places({
             small-tablet="6"
             large-tablet="4"
           >
-            <fetcher.Form method="GET" action={`/${postcode}/places`}>
-              <input
-                type="hidden"
-                name="page"
-                value={Number(currentPage) + 1}
-              />
-              {materials && (
-                <input type="hidden" name="materials" value={materials} />
-              )}
-              {category && (
-                <input type="hidden" name="category" value={category} />
-              )}
-              <diamond-button width="full-width">
-                <button
-                  type="submit"
-                  disabled={fetcher.state !== 'idle'}
-                  ref={loadMoreButton}
-                >
-                  {t('actions.loadMore')}
-                </button>
-              </diamond-button>
-            </fetcher.Form>
+            <diamond-button width="full-width">
+              <button
+                type="button"
+                ref={loadMoreButton}
+                onClick={() => {
+                  const newParams = new URLSearchParams(searchParams);
+                  const newLimit = Math.min(limit + 30, maxLimit);
+                  newParams.set('limit', String(newLimit));
+                  setSearchParams(newParams);
+                }}
+              >
+                {t('actions.loadMore')}
+              </button>
+            </diamond-button>
           </diamond-grid-item>
         </diamond-grid>
       )}
@@ -236,57 +215,40 @@ function Places({
 export default function PlacesPage() {
   const { publicPath } = useAppState();
   const { t } = useTranslation();
-  const navigation = useNavigation();
-  const { postcode } = useParams();
-  const { locations: locationsPromise, tip: tipPromise } =
-    usePlacesLoaderData();
+  const { postcode } = usePostcode();
   const [searchParams] = useSearchParams();
-  const isLoadingCurrentPath =
-    navigation.state === 'loading' &&
-    navigation.location.pathname === `/${postcode}/places`;
+  const { data: tip, loading: tipLoading } = useTip({ path: 'places' });
   const materialTipImgSrc = `${publicPath}images/material-tip.svg`;
 
   return (
     <locator-wrap max-width="none" gutter="fluid">
       <diamond-section padding="md">
         <section className="diamond-spacing-bottom-lg">
-          {isLoadingCurrentPath ? (
-            <Loading />
-          ) : (
-            <Suspense fallback={<Loading />}>
-              <Await resolve={locationsPromise}>
-                {(locations) => <Places locations={locations} />}
-              </Await>
-            </Suspense>
-          )}
+          <Places />
         </section>
       </diamond-section>
       <section>
-        <Suspense fallback={null}>
-          <Await resolve={tipPromise}>
-            {(tip) => (
-              <diamond-enter type="fade-in-up">
-                <locator-tip text-align="center" wrap="wrap">
-                  <img src={tip?.image ?? materialTipImgSrc} alt="" />
-                  <locator-tip-content>
-                    <TipContent
-                      tip={tip}
-                      ctaWidth="full-width-mobile"
-                      showImage={false}
-                    />
-                    {/** Space for the fab */}
-                    <div className="diamond-spacing-bottom-xl"></div>
-                  </locator-tip-content>
-                </locator-tip>
-              </diamond-enter>
-            )}
-          </Await>
-        </Suspense>
+        {!tipLoading && (
+          <diamond-enter type="fade-in-up">
+            <locator-tip text-align="center" wrap="wrap">
+              <img src={tip?.image ?? materialTipImgSrc} alt="" />
+              <locator-tip-content>
+                <TipContent
+                  tip={tip}
+                  ctaWidth="full-width-mobile"
+                  showImage={false}
+                />
+                {/** Space for the fab */}
+                <div className="diamond-spacing-bottom-xl"></div>
+              </locator-tip-content>
+            </locator-tip>
+          </diamond-enter>
+        )}
       </section>
       <diamond-enter type="fade" delay={0.25}>
         <locator-fab sticky>
           <diamond-button size="sm" variant="primary">
-            <Link to={`/${postcode}/places/map?${searchParams.toString()}`}>
+            <Link href={`/${postcode}/places/map?${searchParams.toString()}`}>
               <locator-icon icon="map"></locator-icon>
               {t('actions.showMap')}
             </Link>

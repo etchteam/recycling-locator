@@ -1,37 +1,41 @@
 import { useSignal } from '@preact/signals';
+import { ComponentChildren } from 'preact';
 import { useEffect } from 'preact/hooks';
-import { Outlet, useLocation, useNavigate } from 'react-router';
+import { useLocation } from 'wouter-preact';
 
 import { useAppState } from '@/lib/AppState';
 import useAnalytics from '@/lib/useAnalytics';
+
+interface RootLayoutProps {
+  readonly children: ComponentChildren;
+}
 
 /**
  * The root layout wraps every route in the app.
  * It's responsible for navigating to the correct start path.
  */
-export default function RootLayout() {
+export default function RootLayout({ children }: RootLayoutProps) {
   const { startPath } = useAppState();
-  const navigateTo = useNavigate();
-  const location = useLocation();
+  const [location, setLocation] = useLocation();
   const { recordView } = useAnalytics();
   const loadedStartPath = useSignal<string>('');
-  const currentHref = `${location.pathname}${location.search}${location.hash}`;
+  const currentHref = location;
 
   useEffect(() => {
     if (loadedStartPath.value !== startPath && startPath !== currentHref) {
-      navigateTo(startPath);
+      setLocation(startPath);
     }
 
     if (currentHref === startPath) {
       loadedStartPath.value = startPath;
     }
-  }, [startPath, currentHref]);
+  }, [startPath, currentHref, setLocation]);
 
   useEffect(() => {
     if (loadedStartPath.value) {
       recordView();
     }
-  }, [location]);
+  }, [location, recordView]);
 
   if (!loadedStartPath.value) {
     return null;
@@ -44,5 +48,5 @@ export default function RootLayout() {
     host?.dispatchEvent(new CustomEvent('ready'));
   }, 50);
 
-  return <Outlet />;
+  return <>{children}</>;
 }

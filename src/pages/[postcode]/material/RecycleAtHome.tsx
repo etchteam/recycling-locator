@@ -1,5 +1,5 @@
 import { useTranslation, Trans } from 'react-i18next';
-import { Link, useParams, useSearchParams } from 'react-router';
+import { Link } from 'wouter-preact';
 import '@etchteam/diamond-ui/canvas/Card/Card';
 import '@etchteam/diamond-ui/composition/Grid/Grid';
 import '@etchteam/diamond-ui/composition/Grid/GridItem';
@@ -13,6 +13,8 @@ import '@/components/content/Icon/Icon';
 import '@/components/content/Container/Container';
 
 import SchemeContainerSummary from '@/components/template/SchemeContainerSummary/SchemeContainerSummary';
+import { useSearchParams } from '@/hooks/useSearchParams';
+import { usePostcode } from '@/lib/PostcodeContext';
 import containerHasMaterial from '@/lib/containerHasMaterial';
 import getPropertyTypeEnum from '@/lib/getPropertyTypeEnum';
 import { LocalAuthority, LocalAuthorityProperty } from '@/types/locatorApi';
@@ -25,7 +27,7 @@ function ManyProperties({
   readonly propertyTypesCollectingThisMaterial: string[];
 }) {
   const PROPERTY_TYPE = getPropertyTypeEnum();
-  const { postcode } = useParams();
+  const { postcode } = usePostcode();
   const tContext = 'material.recycleAtHome.manyProperties';
   const allPropertiesRecycle =
     propertyTypesCollectingThisMaterial.length === allPropertyTypes.length;
@@ -53,7 +55,7 @@ function ManyProperties({
             <li key={propertyType} className="diamond-spacing-bottom-sm">
               <locator-icon-link>
                 <Link
-                  to={`/${postcode}/home/collection?propertyType=${safePropertyType}`}
+                  href={`/${postcode}/home/collection?propertyType=${safePropertyType}`}
                 >
                   <locator-icon-circle>
                     <locator-icon
@@ -110,7 +112,7 @@ export default function RecycleAtHome({
   readonly recyclable?: boolean;
 }) {
   const PROPERTY_TYPE = getPropertyTypeEnum();
-  const { postcode } = useParams();
+  const { postcode } = usePostcode();
   const { t } = useTranslation();
   const allPropertyTypes = Object.keys(allProperties ?? {});
   const propertyTypesCollectingThisMaterial = Object.keys(
@@ -182,7 +184,7 @@ export default function RecycleAtHome({
       )}
 
       <diamond-button width="full-width">
-        <Link to={`/${postcode}/home`} unstable_viewTransition>
+        <Link href={`/${postcode}/home`}>
           {t(`material.recycleAtHome.cta`)}
         </Link>
       </diamond-button>

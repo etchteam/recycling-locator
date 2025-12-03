@@ -1,15 +1,7 @@
 import { ComponentChildren } from 'preact';
-import { Suspense } from 'preact/compat';
 import { useRef } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
-import {
-  Await,
-  Link,
-  NavLink,
-  Outlet,
-  useParams,
-  useSearchParams,
-} from 'react-router';
+import { Link, useParams } from 'wouter-preact';
 import '@etchteam/diamond-ui/canvas/Section/Section';
 import '@etchteam/diamond-ui/composition/Grid/Grid';
 import '@etchteam/diamond-ui/composition/Grid/GridItem';
@@ -23,17 +15,18 @@ import '@/components/content/Icon/Icon';
 import '@/components/control/NavBar/NavBar';
 import MapSvg from '@/components/canvas/MapSvg/MapSvg';
 import PlacesMap from '@/components/control/PlacesMap/PlacesMap';
+import { usePlace } from '@/hooks/usePlace';
+import { useSearchParams } from '@/hooks/useSearchParams';
+import { usePostcode } from '@/lib/PostcodeContext';
 import directions from '@/lib/directions';
 import useAnalytics from '@/lib/useAnalytics';
 import useScrollRestoration from '@/lib/useScrollRestoration';
 import { Location } from '@/types/locatorApi';
 
-import { usePlaceLoaderData } from './place.loader';
-
 function PlaceMap({ location }: { readonly location: Location }) {
   const { t } = useTranslation();
   const [searchParams] = useSearchParams();
-  const { postcode } = useParams();
+  const { postcode } = usePostcode();
   const { recordEvent } = useAnalytics();
 
   const mapSearchParams = new URLSearchParams(searchParams);
@@ -50,14 +43,14 @@ function PlaceMap({ location }: { readonly location: Location }) {
       activeLocationId={location.id}
       static
     >
-      <Link to={mapUrl} aria-label={t('actions.showMap')}>
+      <Link href={mapUrl} aria-label={t('actions.showMap')}>
         <locator-places-map-scrim />
       </Link>
       <locator-places-map-card>
         <diamond-grid>
           <diamond-grid-item small-mobile="6">
             <diamond-button width="full-width" size="sm">
-              <Link to={mapUrl}>
+              <Link href={mapUrl}>
                 <locator-icon icon="map" />
                 {t('actions.showMap')}
               </Link>
@@ -94,8 +87,14 @@ export default function PlaceLayout({
 }) {
   const { t } = useTranslation();
   const [searchParams] = useSearchParams();
-  const { postcode, placeName, placePostcode } = useParams();
-  const { location: locationPromise } = usePlaceLoaderData();
+  const { postcode } = usePostcode();
+  const params = useParams<{ placeName: string; placePostcode: string }>();
+  const placeName = params.placeName;
+  const placePostcode = params.placePostcode;
+  const { data: location, loading: locationLoading } = usePlace(
+    placeName,
+    placePostcode,
+  );
   const layoutRef = useRef();
   useScrollRestoration(layoutRef);
   const safePlaceName = encodeURIComponent(placeName);
@@ -104,17 +103,14 @@ export default function PlaceLayout({
     <locator-layout>
       <locator-header slot="layout-header">
         <locator-header-logo>
-          <Link to={`/${postcode}`}>
+          <Link href={`/${postcode}`}>
             <locator-logo type="logo-only"></locator-logo>
           </Link>
         </locator-header-logo>
         <locator-header-content>
           <locator-header-title>
             <diamond-button>
-              <Link
-                to={`/${postcode}/places?${searchParams.toString()}`}
-                unstable_viewTransition
-              >
+              <Link href={`/${postcode}/places?${searchParams.toString()}`}>
                 <locator-icon icon="arrow-left" label="Back"></locator-icon>
               </Link>
             </diamond-button>
@@ -130,40 +126,29 @@ export default function PlaceLayout({
           <nav>
             <ul>
               <li>
-                <NavLink
-                  to={`/${postcode}/places/${safePlaceName}/${placePostcode}?${searchParams.toString()}`}
-                  unstable_viewTransition
-                  end
+                <Link
+                  href={`/${postcode}/places/${safePlaceName}/${placePostcode}?${searchParams.toString()}`}
                 >
                   {t('place.nav.recycle')}
-                </NavLink>
+                </Link>
               </li>
               <li>
-                <NavLink
-                  to={`/${postcode}/places/${safePlaceName}/${placePostcode}/details?${searchParams.toString()}`}
-                  unstable_viewTransition
+                <Link
+                  href={`/${postcode}/places/${safePlaceName}/${placePostcode}/details?${searchParams.toString()}`}
                 >
                   {t('place.nav.details')}
-                </NavLink>
+                </Link>
               </li>
             </ul>
           </nav>
         </locator-nav-bar>
         <diamond-section padding="lg">
-          <locator-wrap>
-            <Outlet />
-            {children}
-          </locator-wrap>
+          <locator-wrap>{children}</locator-wrap>
         </diamond-section>
       </div>
       <div slot="layout-aside" className="display-contents">
-        <Suspense fallback={null}>
-          <Await resolve={locationPromise}>
-            {(location) =>
-              location?.latitude ? <PlaceMap location={location} /> : <MapSvg />
-            }
-          </Await>
-        </Suspense>
+        {!locationLoading &&
+          (location?.latitude ? <PlaceMap location={location} /> : <MapSvg />)}
       </div>
     </locator-layout>
   );

@@ -1,13 +1,6 @@
-import { Suspense } from 'preact/compat';
 import { useEffect } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
-import {
-  Await,
-  Link,
-  useLoaderData,
-  useParams,
-  useSearchParams,
-} from 'react-router';
+import { Link } from 'wouter-preact';
 import '@etchteam/diamond-ui/composition/Enter/Enter';
 
 import '@/components/canvas/Loading/Loading';
@@ -17,6 +10,13 @@ import '@/components/canvas/Hero/Hero';
 import '@/components/composition/Wrap/Wrap';
 import RateThisInfo from '@/components/control/RateThisInfo/RateThisInfo';
 import TipContent from '@/components/template/TipContent/TipContent';
+import { useDoorstepCollections } from '@/hooks/useDoorstepCollections';
+import { useLocalAuthority } from '@/hooks/useLocalAuthority';
+import { useLocations } from '@/hooks/useLocations';
+import { useMaterial } from '@/hooks/useMaterial';
+import { useSearchParams } from '@/hooks/useSearchParams';
+import { useTip } from '@/hooks/useTip';
+import { usePostcode } from '@/lib/PostcodeContext';
 import getPropertiesByMaterial from '@/lib/getPropertiesByMaterial';
 import useAnalytics from '@/lib/useAnalytics';
 
@@ -24,10 +24,6 @@ import DoorstepCollection from './DoorstepCollection';
 import HazardousWarning from './HazardousWarning';
 import NearbyPlaces from './NearbyPlaces';
 import RecycleAtHome from './RecycleAtHome';
-import {
-  DeferredMaterialLoaderResponse,
-  AwaitedMaterialLoaderResponse,
-} from './material.loader';
 
 export function Loading() {
   const { t } = useTranslation();
@@ -88,7 +84,12 @@ function MaterialPageContent({
   locations,
   material,
   doorstepCollections,
-}: Readonly<Partial<AwaitedMaterialLoaderResponse>>) {
+}: {
+  readonly localAuthority: any;
+  readonly locations: any;
+  readonly material: any;
+  readonly doorstepCollections: any[];
+}) {
   const { t } = useTranslation();
   const [searchParams] = useSearchParams();
   const propertiesCollectingThisMaterial = getPropertiesByMaterial(
@@ -194,17 +195,18 @@ function MaterialPageContent({
 }
 
 export default function MaterialPage() {
-  const { postcode } = useParams();
+  const { postcode } = usePostcode();
   const { recordEvent } = useAnalytics();
-  const {
-    tip: tipPromise,
-    localAuthority: localAuthorityPromise,
-    locations: locationsPromise,
-    material: materialPromise,
-    doorstepCollections: doorstepCollectionsPromise,
-  } = useLoaderData() as DeferredMaterialLoaderResponse;
   const [searchParams] = useSearchParams();
   const search = searchParams.get('search');
+  const materialId = searchParams.get('materials');
+
+  // Fetch data using hooks
+  const localAuthorityResult = useLocalAuthority();
+  const locationsResult = useLocations();
+  const materialResult = useMaterial(materialId);
+  const doorstepCollectionsResult = useDoorstepCollections(materialId);
+  const tipResult = useTip({ materialId: materialId || undefined });
 
   useEffect(() => {
     if (search) {
@@ -215,12 +217,26 @@ export default function MaterialPage() {
     }
   }, [search]);
 
+  // Combine loading states
+  const loading =
+    localAuthorityResult.loading ||
+    locationsResult.loading ||
+    materialResult.loading ||
+    doorstepCollectionsResult.loading;
+
+  // Check for errors
+  const error =
+    localAuthorityResult.error ||
+    locationsResult.error ||
+    materialResult.error ||
+    doorstepCollectionsResult.error;
+
   return (
     <>
       <div slot="layout-main">
         {search && (
           <Link
-            to={`/${postcode}/material/search`}
+            href={`/${postcode}/material/search`}
             className="diamond-text-decoration-none"
           >
             <locator-context-header>
@@ -229,35 +245,22 @@ export default function MaterialPage() {
             </locator-context-header>
           </Link>
         )}
-        <Suspense fallback={<Loading />}>
-          <Await
-            resolve={Promise.all([
-              localAuthorityPromise,
-              locationsPromise,
-              materialPromise,
-              doorstepCollectionsPromise,
-            ])}
-          >
-            {([localAuthority, locations, material, doorstepCollections]) => {
-              return (
-                <MaterialPageContent
-                  localAuthority={localAuthority}
-                  locations={locations}
-                  doorstepCollections={doorstepCollections}
-                  material={material}
-                />
-              );
-            }}
-          </Await>
-        </Suspense>
+        {loading ? (
+          <Loading />
+        ) : error ? (
+          <div>Error loading material data</div>
+        ) : (
+          <MaterialPageContent
+            localAuthority={localAuthorityResult.data}
+            locations={locationsResult.data}
+            doorstepCollections={doorstepCollectionsResult.data || []}
+            material={materialResult.data}
+          />
+        )}
       </div>
       <locator-tip slot="layout-aside" text-align="center">
         <locator-wrap>
-          <Suspense fallback={null}>
-            <Await resolve={tipPromise}>
-              {(tip) => <TipContent tip={tip} />}
-            </Await>
-          </Suspense>
+          {tipResult.data && <TipContent tip={tipResult.data} />}
         </locator-wrap>
       </locator-tip>
     </>

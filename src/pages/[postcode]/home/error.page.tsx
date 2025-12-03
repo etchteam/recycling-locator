@@ -1,16 +1,16 @@
 import { useTranslation } from 'react-i18next';
-import { useParams, useRouteError } from 'react-router';
 
 import ErrorPage from '@/components/template/ErrorPage/ErrorPage';
-import { captureException } from '@/lib/sentry';
+import { usePostcode } from '@/lib/PostcodeContext';
 
 import HomeRecyclingLayout from './home.layout';
 
+/**
+ * Home recycling error boundary
+ */
 export default function HomeRecyclingErrorPage() {
   const { t } = useTranslation();
-  const { postcode } = useParams();
-  const error = useRouteError();
-  captureException(error, { route: 'Home recycling error boundary' });
+  const { postcode } = usePostcode();
 
   return (
     <HomeRecyclingLayout>

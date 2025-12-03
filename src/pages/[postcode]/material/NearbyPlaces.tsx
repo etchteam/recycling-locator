@@ -1,5 +1,5 @@
 import { useTranslation, Trans } from 'react-i18next';
-import { Link, useParams, useSearchParams } from 'react-router';
+import { Link } from 'wouter-preact';
 import '@etchteam/diamond-ui/control/Button/Button';
 import '@etchteam/diamond-ui/composition/Grid/Grid';
 import '@etchteam/diamond-ui/composition/Grid/GridItem';
@@ -9,12 +9,14 @@ import '@/components/canvas/IconCircle/IconCircle';
 import '@/components/composition/IconText/IconText';
 import '@/components/content/Icon/Icon';
 import PlacesMap from '@/components/control/PlacesMap/PlacesMap';
+import { useSearchParams } from '@/hooks/useSearchParams';
+import { usePostcode } from '@/lib/PostcodeContext';
 import mapSearchParams from '@/lib/mapSearchParams';
 import { LocationsResponse } from '@/types/locatorApi';
 
 function NoPlaces() {
   const { t } = useTranslation();
-  const { postcode } = useParams();
+  const { postcode } = usePostcode();
   const tContext = 'material.nearbyPlaces.noPlaces';
 
   return (
@@ -29,7 +31,7 @@ function NoPlaces() {
         {t(`${tContext}.content`, { postcode })}
       </p>
       <diamond-button width="full-width">
-        <Link to={`/${postcode}/material/search`}>
+        <Link href={`/${postcode}/material/search`}>
           {t('actions.searchAgain')}
         </Link>
       </diamond-button>
@@ -45,7 +47,7 @@ function Places({
   readonly recyclable: boolean;
 }) {
   const { t } = useTranslation();
-  const { postcode } = useParams();
+  const { postcode } = usePostcode();
   const [searchParams] = useSearchParams();
   const tContext = recyclable
     ? 'material.nearbyPlaces.places'
@@ -82,7 +84,7 @@ function Places({
           static
         >
           <Link
-            to={`/${postcode}/places?${placesSearchParams.toString()}`}
+            href={`/${postcode}/places?${placesSearchParams.toString()}`}
             aria-label={t('actions.showMap')}
           >
             <locator-places-map-scrim />
@@ -93,7 +95,9 @@ function Places({
         <diamond-grid>
           <diamond-grid-item small-mobile="6">
             <diamond-button width="full-width">
-              <Link to={`/${postcode}/places?${placesSearchParams.toString()}`}>
+              <Link
+                href={`/${postcode}/places?${placesSearchParams.toString()}`}
+              >
                 {t('actions.listPlaces')}
               </Link>
             </diamond-button>
@@ -101,7 +105,7 @@ function Places({
           <diamond-grid-item small-mobile="6">
             <diamond-button width="full-width">
               <Link
-                to={`/${postcode}/places/map?${placesSearchParams.toString()}`}
+                href={`/${postcode}/places/map?${placesSearchParams.toString()}`}
               >
                 {t('actions.showMap')}
               </Link>

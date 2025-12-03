@@ -1,8 +1,9 @@
 import fetchJsonp from 'fetch-jsonp';
 import { useEffect, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
-import { Form, Link, useSearchParams } from 'react-router';
+import { Link } from 'wouter-preact';
 
+import { useSearchParams } from '@/hooks/useSearchParams';
 import i18n from '@/lib/i18n';
 
 export default function SignUpPage() {
@@ -134,7 +135,7 @@ export default function SignUpPage() {
         <>
           <h2>{t('refill.sign-up.title')}</h2>
           <p>{t('refill.sign-up.description')}</p>
-          <Form onSubmit={handleSubmit} noValidate>
+          <form onSubmit={handleSubmit} noValidate>
             <input
               type="hidden"
               tabIndex={-1}
@@ -249,7 +250,7 @@ export default function SignUpPage() {
                       components={{
                         a: (
                           <Link
-                            to={t('refill.sign-up.form.gdpr.link') as string}
+                            href={t('refill.sign-up.form.gdpr.link') as string}
                           />
                         ),
                       }}
@@ -286,7 +287,7 @@ export default function SignUpPage() {
                   : t('refill.sign-up.button')}
               </button>
             </diamond-button>
-          </Form>
+          </form>
         </>
       )}
 
@@ -294,7 +295,7 @@ export default function SignUpPage() {
         <Trans
           i18nKey={'refill.sign-up.business'}
           components={{
-            a: <Link to={t('refill.sign-up.businessLink') as string} />,
+            a: <Link href={t('refill.sign-up.businessLink') as string} />,
           }}
         />
       </p>

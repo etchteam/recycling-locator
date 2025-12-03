@@ -1,5 +1,3 @@
-import { redirect } from 'react-router';
-
 import LocatorApi from '@/lib/LocatorApi';
 import { MaterialSearch } from '@/types/locatorApi';
 
@@ -7,7 +5,7 @@ export default async function materialSearchRedirect(
   formData: FormData,
   postcode: string,
   path: string,
-) {
+): Promise<string> {
   const search = formData.get('search') as string;
   const materials = await LocatorApi.getInstance().post<MaterialSearch[]>(
     'materials',
@@ -21,11 +19,11 @@ export default async function materialSearchRedirect(
   searchParams.set('search', material?.name ?? search);
 
   if (!material) {
-    return redirect(`/${postcode}/${path}/search?${searchParams.toString()}`);
+    return `/${postcode}/${path}/search?${searchParams.toString()}`;
   }
 
   const searchType =
     material.type === 'LocatorMaterialCategory' ? 'category' : 'materials';
   searchParams.set(searchType, material.id);
-  return redirect(`/${postcode}/${path}?${searchParams.toString()}`);
+  return `/${postcode}/${path}?${searchParams.toString()}`;
 }

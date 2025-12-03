@@ -1,14 +1,6 @@
-import { Suspense } from 'preact/compat';
-import { useEffect } from 'preact/hooks';
+import { useEffect } from 'preact/compat';
 import { useTranslation } from 'react-i18next';
-import {
-  Await,
-  Form,
-  useLoaderData,
-  useLocation,
-  useParams,
-  useSearchParams,
-} from 'react-router';
+import { useLocation } from 'wouter-preact';
 import '@etchteam/diamond-ui/composition/FormGroup/FormGroup';
 import '@etchteam/diamond-ui/composition/Enter/Enter';
 import '@etchteam/diamond-ui/canvas/Section/Section';
@@ -16,21 +8,21 @@ import '@etchteam/diamond-ui/canvas/Section/Section';
 import '@/components/composition/Wrap/Wrap';
 import MaterialSearchInput from '@/components/control/MaterialSearchInput/MaterialSearchInput';
 import PopularMaterials from '@/components/template/PopularMaterials/PopularMaterials';
+import { usePopularMaterials } from '@/hooks/usePopularMaterials';
+import { useSearchParams } from '@/hooks/useSearchParams';
+import { usePostcode } from '@/lib/PostcodeContext';
 import useFormValidation from '@/lib/useFormValidation';
 import { Material } from '@/types/locatorApi';
 
-import { PlacesSearchLoaderResponse } from './search.loader';
-
 export default function PlacesSearchPage() {
   const { t } = useTranslation();
-  const { postcode } = useParams();
-  const location = useLocation();
-  const { popularMaterials: popularMaterialsPromise } =
-    useLoaderData() as PlacesSearchLoaderResponse;
+  const { postcode } = usePostcode();
+  const [location] = useLocation();
   const [searchParams] = useSearchParams();
   const search = searchParams.get('search');
   const autofocus = searchParams.get('autofocus') === 'true';
   const form = useFormValidation('search');
+  const { data: popularMaterials, loading } = usePopularMaterials();
 
   useEffect(() => {
     form.submitting.value = false;
@@ -48,7 +40,7 @@ export default function PlacesSearchPage() {
       <locator-wrap>
         <h3 id="places-search-label">{t('places.search.label')}</h3>
         <diamond-enter type="fade" className="layer-one">
-          <Form method="post" onSubmit={form.handleSubmit}>
+          <form onSubmit={form.handleSubmit}>
             <diamond-form-group>
               <MaterialSearchInput
                 inputLabelledBy="places-search-label"
@@ -60,18 +52,14 @@ export default function PlacesSearchPage() {
                 includeFeedbackForm
               ></MaterialSearchInput>
             </diamond-form-group>
-          </Form>
+          </form>
         </diamond-enter>
-        <Suspense fallback={null}>
-          <Await resolve={popularMaterialsPromise}>
-            {(popularMaterials) => (
-              <PopularMaterials
-                materials={popularMaterials}
-                generatePath={generatePopularMaterialPath}
-              />
-            )}
-          </Await>
-        </Suspense>
+        {!loading && popularMaterials && (
+          <PopularMaterials
+            materials={popularMaterials}
+            generatePath={generatePopularMaterialPath}
+          />
+        )}
       </locator-wrap>
     </diamond-section>
   );

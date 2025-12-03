@@ -1,7 +1,6 @@
-import { Suspense } from 'preact/compat';
 import { useEffect } from 'preact/hooks';
 import { Trans, useTranslation } from 'react-i18next';
-import { Link, Form, Await, useSearchParams } from 'react-router';
+import { Link } from 'wouter-preact';
 import '@etchteam/diamond-ui/canvas/Section/Section';
 import '@etchteam/diamond-ui/composition/Grid/Grid';
 import '@etchteam/diamond-ui/composition/Grid/GridItem';
@@ -22,15 +21,16 @@ import '@/components/control/IconLink/IconLink';
 import '@/components/canvas/LoadingCard/LoadingCard';
 import MaterialSearchInput from '@/components/control/MaterialSearchInput/MaterialSearchInput';
 import PlacesMap from '@/components/control/PlacesMap/PlacesMap';
+import { useLocations } from '@/hooks/useLocations';
+import { useSearchParams } from '@/hooks/useSearchParams';
 import { useAppState } from '@/lib/AppState';
+import { usePostcode } from '@/lib/PostcodeContext';
 import formatPostcode from '@/lib/formatPostcode';
 import i18n from '@/lib/i18n';
 import sentry from '@/lib/sentry';
 import useAnalytics from '@/lib/useAnalytics';
 import useFormValidation from '@/lib/useFormValidation';
 import StartLayout from '@/pages/start.layout';
-
-import { usePostcodeLoaderData } from './postcode.loader';
 
 function Loading() {
   return (
@@ -56,7 +56,7 @@ function MapErrorFallback({ postcode }: { readonly postcode: string }) {
   return (
     <MapSvg>
       <diamond-button width="full-width">
-        <Link to={`/${postcode}/places/map`}>
+        <Link href={`/${postcode}/places/map`}>
           {t('postcode.exploreTheMap')}
           <locator-icon icon="map" color="primary"></locator-icon>
         </Link>
@@ -67,51 +67,47 @@ function MapErrorFallback({ postcode }: { readonly postcode: string }) {
 
 export function PostcodeAside({ postcode }: { readonly postcode: string }) {
   const { t } = useTranslation();
-  const { locationsPromise } = usePostcodeLoaderData();
+  const { data: locations, loading, error } = useLocations();
+
+  if (loading) {
+    return <MapLoadingFallback />;
+  }
+
+  if (error || locations?.error) {
+    // This can happen when the postcode is not found by the API but is found by HERE maps
+    // The postcode checks on the API are stricter
+    if (locations?.error) {
+      sentry.setTag('route', 'PostcodeAside');
+      sentry.captureMessage(locations.error);
+      sentry.clear();
+    }
+
+    return <MapErrorFallback postcode={postcode} />;
+  }
+
+  if (!locations) {
+    return <MapErrorFallback postcode={postcode} />;
+  }
 
   return (
-    <Suspense fallback={<MapLoadingFallback />}>
-      <Await
-        resolve={locationsPromise.data.locations}
-        errorElement={<MapErrorFallback postcode={postcode} />}
-      >
-        {(locations) => {
-          if (locations.error) {
-            // This can happen when the postcode is not found by the API but is found by HERE maps
-            // The postcode checks on the API are stricter
-            sentry.setTag('route', 'PostcodeAside');
-            sentry.captureMessage(locations.error);
-            sentry.clear();
-
-            return <MapErrorFallback postcode={postcode} />;
-          }
-
-          return (
-            <PlacesMap
-              latitude={locations.meta.latitude}
-              longitude={locations.meta.longitude}
-              locations={locations.items}
-              static
-            >
-              <Link
-                to={`/${postcode}/places/map`}
-                aria-label={t('actions.showMap')}
-              >
-                <locator-places-map-scrim />
-              </Link>
-              <locator-places-map-card padding="none">
-                <diamond-button width="full-width">
-                  <Link to={`/${postcode}/places/map`}>
-                    {t('postcode.exploreTheMap')}
-                    <locator-icon icon="map" color="primary"></locator-icon>
-                  </Link>
-                </diamond-button>
-              </locator-places-map-card>
-            </PlacesMap>
-          );
-        }}
-      </Await>
-    </Suspense>
+    <PlacesMap
+      latitude={locations.meta.latitude}
+      longitude={locations.meta.longitude}
+      locations={locations.items}
+      static
+    >
+      <Link href={`/${postcode}/places/map`} aria-label={t('actions.showMap')}>
+        <locator-places-map-scrim />
+      </Link>
+      <locator-places-map-card padding="none">
+        <diamond-button width="full-width">
+          <Link href={`/${postcode}/places/map`}>
+            {t('postcode.exploreTheMap')}
+            <locator-icon icon="map" color="primary"></locator-icon>
+          </Link>
+        </diamond-button>
+      </locator-places-map-card>
+    </PlacesMap>
   );
 }
 
@@ -119,17 +115,22 @@ export default function PostcodePage() {
   const { t } = useTranslation();
   const { publicPath } = useAppState();
   const { recordEvent } = useAnalytics();
-  const { postcode, city, locationsPromise } = usePostcodeLoaderData();
+  const { data: postcodeData } = usePostcode();
+  const postcode = postcodeData?.postcode || '';
+  const city = postcodeData?.city || '';
+  const { data: locations, loading: locationsLoading } = useLocations();
   const [searchParams] = useSearchParams();
   const autofocus = searchParams.get('autofocus') === 'true';
   const form = useFormValidation('search');
   const locale = i18n.language;
 
   useEffect(() => {
-    recordEvent({
-      category: 'LocationSearch',
-      action: `${city}, ${postcode}`,
-    });
+    if (city && postcode) {
+      recordEvent({
+        category: 'LocationSearch',
+        action: `${city}, ${postcode}`,
+      });
+    }
   }, [city, postcode, recordEvent]);
 
   return (
@@ -142,7 +143,7 @@ export default function PostcodePage() {
           {city && <>&nbsp;&ndash; {city}</>}
         </div>
         <diamond-button variant="text" size="sm">
-          <Link to="/">{t('actions.change')}</Link>
+          <Link href="/">{t('actions.change')}</Link>
         </diamond-button>
       </locator-context-header>
       <locator-wrap>
@@ -155,7 +156,7 @@ export default function PostcodePage() {
               {t('postcode.title')}
             </h2>
 
-            <Form method="post" onSubmit={form.handleSubmit}>
+            <form onSubmit={form.handleSubmit}>
               <diamond-form-group>
                 <label htmlFor="locator-material-input">
                   {t('components.materialSearchInput.label')}
@@ -169,7 +170,7 @@ export default function PostcodePage() {
                   includeFeedbackForm
                 ></MaterialSearchInput>
               </diamond-form-group>
-            </Form>
+            </form>
             <p className="diamond-spacing-top-sm">
               <diamond-link>
                 <Trans
@@ -177,7 +178,7 @@ export default function PostcodePage() {
                   components={{
                     a: (
                       <Link
-                        to={`/${postcode}/places/search/a-z`}
+                        href={`/${postcode}/places/search/a-z`}
                         className="locator-report-missing-material__toggle"
                       />
                     ),
@@ -197,7 +198,7 @@ export default function PostcodePage() {
             <nav className={locale === 'en' ? 'diamond-spacing-bottom-lg' : ''}>
               <dl>
                 <locator-icon-link border className="diamond-spacing-top-md">
-                  <Link to={`/${postcode}/home`} unstable_viewTransition>
+                  <Link href={`/${postcode}/home`}>
                     <locator-icon-circle>
                       <locator-icon icon="home" color="primary"></locator-icon>
                     </locator-icon-circle>
@@ -209,36 +210,28 @@ export default function PostcodePage() {
                     </div>
                   </Link>
                 </locator-icon-link>
-                <Suspense fallback={<Loading />}>
-                  <Await resolve={locationsPromise.data.locations}>
-                    {(locations) => (
-                      <locator-icon-link
-                        border
-                        className="diamond-spacing-top-md"
-                      >
-                        <Link
-                          to={`/${postcode}/places`}
-                          unstable_viewTransition
-                        >
-                          <locator-icon-circle>
-                            <locator-icon
-                              icon="distance"
-                              color="primary"
-                            ></locator-icon>
-                          </locator-icon-circle>
-                          <div>
-                            <dt>{t('postcode.options.nearest.title')}</dt>
-                            <dd className="diamond-text-size-sm">
-                              {t('postcode.options.nearest.description', {
-                                count: locations.items?.length ?? 0,
-                              })}
-                            </dd>
-                          </div>
-                        </Link>
-                      </locator-icon-link>
-                    )}
-                  </Await>
-                </Suspense>
+                {locationsLoading ? (
+                  <Loading />
+                ) : locations ? (
+                  <locator-icon-link border className="diamond-spacing-top-md">
+                    <Link href={`/${postcode}/places`}>
+                      <locator-icon-circle>
+                        <locator-icon
+                          icon="distance"
+                          color="primary"
+                        ></locator-icon>
+                      </locator-icon-circle>
+                      <div>
+                        <dt>{t('postcode.options.nearest.title')}</dt>
+                        <dd className="diamond-text-size-sm">
+                          {t('postcode.options.nearest.description', {
+                            count: locations.items?.length ?? 0,
+                          })}
+                        </dd>
+                      </div>
+                    </Link>
+                  </locator-icon-link>
+                ) : null}
                 <diamond-grid
                   className="diamond-spacing-top-sm"
                   align-items="center"
@@ -256,7 +249,7 @@ export default function PostcodePage() {
                   </diamond-grid-item>
                 </diamond-grid>
                 <locator-icon-link border className="diamond-spacing-top-md">
-                  <Link to={`/refill?${postcode}`} unstable_viewTransition>
+                  <Link href={`/refill?${postcode}`}>
                     <locator-icon-circle>
                       <locator-icon
                         icon="refill"
@@ -276,10 +269,7 @@ export default function PostcodePage() {
             {locale === 'en' &&
               !window.location.host.includes('walesrecycles') && (
                 <locator-rescue-me-recycle-promo>
-                  <Link
-                    to={`/${postcode}/rescue-me-recycle`}
-                    unstable_viewTransition
-                  >
+                  <Link href={`/${postcode}/rescue-me-recycle`}>
                     <img
                       src={`${publicPath}images/rescue-me-recycle.webp`}
                       alt={t('rescueMeRecycle.imgAlt')}

@@ -1,6 +1,5 @@
-import { Suspense } from 'preact/compat';
 import { useTranslation } from 'react-i18next';
-import { Await, Link, useLoaderData, useParams } from 'react-router';
+import { Link } from 'wouter-preact';
 import '@etchteam/diamond-ui/canvas/Card/Card';
 import '@etchteam/diamond-ui/composition/Grid/Grid';
 import '@etchteam/diamond-ui/composition/Grid/GridItem';
@@ -9,10 +8,10 @@ import '@/components/canvas/IconCircle/IconCircle';
 import '@/components/composition/IconText/IconText';
 import '@/components/content/Icon/Icon';
 import Place from '@/components/template/Place/Place';
+import { useLocations } from '@/hooks/useLocations';
+import { usePostcode } from '@/lib/PostcodeContext';
 import PostCodeResolver from '@/lib/PostcodeResolver';
 import { Location } from '@/types/locatorApi';
-
-import { HomeRecyclingCentreLoaderResponse } from './recycling-centre.loader';
 
 function Loading() {
   const { t } = useTranslation();
@@ -43,7 +42,7 @@ function HomeRecyclingCentrePageContent({
   readonly locations: Location[];
 }) {
   const { t } = useTranslation();
-  const { postcode } = useParams();
+  const { postcode } = usePostcode();
 
   const hwrcLocations = locations.filter((location) =>
     location.locations.some((l) => l.locationType === 'HWRC'),
@@ -85,7 +84,7 @@ function HomeRecyclingCentrePageContent({
 
                 return (
                   <Link
-                    to={`/${postcode}/places/${locationName}/${locationPostcode}`}
+                    href={`/${postcode}/places/${locationName}/${locationPostcode}`}
                     key={location.id}
                   >
                     <diamond-card
@@ -140,14 +139,14 @@ function HomeRecyclingCentrePageContent({
               <diamond-grid>
                 <diamond-grid-item small-mobile="6">
                   <diamond-button width="full-width">
-                    <Link to={`/${postcode}/places`}>
+                    <Link href={`/${postcode}/places`}>
                       {t('actions.listPlaces')}
                     </Link>
                   </diamond-button>
                 </diamond-grid-item>
                 <diamond-grid-item small-mobile="6">
                   <diamond-button width="full-width">
-                    <Link to={`/${postcode}/places/map`}>
+                    <Link href={`/${postcode}/places/map`}>
                       {t('actions.showMap')}
                     </Link>
                   </diamond-button>
@@ -162,20 +161,16 @@ function HomeRecyclingCentrePageContent({
 }
 
 export default function HomeRecyclingCentrePage() {
-  const { locations: locationsPromise } =
-    useLoaderData() as HomeRecyclingCentreLoaderResponse;
+  const { data: locationsData, loading } = useLocations();
+  const hasLoaded = !loading && locationsData;
 
-  return (
-    <Suspense fallback={<Loading />}>
-      <Await resolve={locationsPromise}>
-        {(locations) => {
-          if (locations.error) {
-            throw new Error(locations.error);
-          }
+  if (!hasLoaded) {
+    return <Loading />;
+  }
 
-          return <HomeRecyclingCentrePageContent locations={locations.items} />;
-        }}
-      </Await>
-    </Suspense>
-  );
+  if (locationsData.error) {
+    throw new Error(locationsData.error);
+  }
+
+  return <HomeRecyclingCentrePageContent locations={locationsData.items} />;
 }

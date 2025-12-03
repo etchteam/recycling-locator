@@ -1,5 +1,5 @@
 import '@etchteam/diamond-ui/canvas/Section/Section';
-import { useSearchParams } from 'react-router';
+import { useSearchParams } from '@/hooks/useSearchParams';
 
 export default function ExamplePage({ title }: { readonly title: string }) {
   const [searchParams] = useSearchParams();

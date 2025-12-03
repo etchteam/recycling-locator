@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router';
+import { Link } from 'wouter-preact';
 
 import { Material } from '@/types/locatorApi';
 
@@ -32,7 +32,7 @@ export default function PopularMaterials({
           <ul>
             {materials.map((material) => (
               <li key={material.id}>
-                <Link to={generatePath(material)}>{material.name}</Link>
+                <Link href={generatePath(material)}>{material.name}</Link>
               </li>
             ))}
           </ul>

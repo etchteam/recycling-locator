@@ -1,9 +1,8 @@
 import { useSignal } from '@preact/signals';
 import { ComponentChildren } from 'preact';
-import { Suspense } from 'preact/compat';
 import { useRef } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
-import { Await, Link, NavLink, Outlet, useParams } from 'react-router';
+import { Link } from 'wouter-preact';
 import '@etchteam/diamond-ui/control/Button/Button';
 import '@etchteam/diamond-ui/canvas/Section/Section';
 import '@etchteam/diamond-ui/composition/Grid/Grid';
@@ -16,14 +15,14 @@ import '@/components/composition/Wrap/Wrap';
 import '@/components/content/HeaderTitle/HeaderTitle';
 import '@/components/content/Icon/Icon';
 import '@/components/control/NavBar/NavBar';
-import { usePostcodeLoaderData } from '../postcode.loader';
 import Menu from '@/components/control/Menu/Menu';
 import TipContent from '@/components/template/TipContent/TipContent';
+import { useLocalAuthority } from '@/hooks/useLocalAuthority';
+import { useTip } from '@/hooks/useTip';
 import { useAppState } from '@/lib/AppState';
+import { usePostcode } from '@/lib/PostcodeContext';
 import i18n from '@/lib/i18n';
 import useScrollRestoration from '@/lib/useScrollRestoration';
-
-import { useHomeRecyclingLoaderData } from './home.loader';
 
 export default function HomeRecyclingLayout({
   children,
@@ -33,22 +32,23 @@ export default function HomeRecyclingLayout({
   const { publicPath } = useAppState();
   const { t } = useTranslation();
   const locale = i18n.language;
-  const { postcode } = useParams();
+  const { postcode, data: postcodeData } = usePostcode();
   const layoutRef = useRef();
-  const data = useHomeRecyclingLoaderData();
-  const { city } = usePostcodeLoaderData();
+  const { data: localAuthority, loading: laLoading } = useLocalAuthority();
+  const { data: tip, loading: tipLoading } = useTip({
+    path: '/:postcode/home',
+  });
   const open = useSignal(false);
   useScrollRestoration(layoutRef);
-  const localAuthority = data?.localAuthority;
-  const tipPromise = data?.tip;
   const homeTipImgSrc = `${publicPath}images/home-tip.svg`;
+  const city = postcodeData?.city;
 
   return (
     <locator-layout>
       <locator-header slot="layout-header">
         {open.value ? (
           <locator-header-content>
-            <Link to={`/${postcode}`}>
+            <Link href={`/${postcode}`}>
               <locator-logo locale={locale}></locator-logo>
             </Link>
             <diamond-button width="square" size="sm">
@@ -69,7 +69,7 @@ export default function HomeRecyclingLayout({
         ) : (
           <>
             <locator-header-logo>
-              <Link to={`/${postcode}`}>
+              <Link href={`/${postcode}`}>
                 <locator-logo type="logo-only"></locator-logo>
               </Link>
             </locator-header-logo>
@@ -90,15 +90,11 @@ export default function HomeRecyclingLayout({
                 </diamond-button>
                 <div>
                   <h2>{t('homeRecycling.title')}</h2>
-                  <Suspense fallback={null}>
-                    <Await resolve={localAuthority}>
-                      {(la) => (
-                        <diamond-enter type="fade">
-                          <p>{la.name}</p>
-                        </diamond-enter>
-                      )}
-                    </Await>
-                  </Suspense>
+                  {!laLoading && localAuthority && (
+                    <diamond-enter type="fade">
+                      <p>{localAuthority.name}</p>
+                    </diamond-enter>
+                  )}
                 </div>
               </locator-header-title>
             </locator-header-content>
@@ -119,82 +115,59 @@ export default function HomeRecyclingLayout({
                 <nav>
                   <ul>
                     <li>
-                      <NavLink
-                        to={`/${postcode}/home`}
-                        unstable_viewTransition
-                        end
-                      >
+                      <Link href={`/${postcode}/home`}>
                         {t('homeRecycling.nav.collections')}
-                      </NavLink>
+                      </Link>
                     </li>
                     <li>
-                      <NavLink
-                        to={`/${postcode}/home/recycling-centre`}
-                        unstable_viewTransition
-                      >
+                      <Link href={`/${postcode}/home/recycling-centre`}>
                         {t('homeRecycling.nav.hwrc')}
-                      </NavLink>
+                      </Link>
                     </li>
                     <li>
-                      <NavLink
-                        to={`/${postcode}/home/contact`}
-                        unstable_viewTransition
-                      >
+                      <Link href={`/${postcode}/home/contact`}>
                         {t('homeRecycling.nav.contact')}
-                      </NavLink>
+                      </Link>
                     </li>
                   </ul>
                 </nav>
               </locator-nav-bar>
             )}
             <diamond-section padding="lg">
-              <locator-wrap>
-                <Outlet />
-                {children}
-              </locator-wrap>
+              <locator-wrap>{children}</locator-wrap>
             </diamond-section>
           </>
         )}
       </div>
       <locator-tip slot="layout-aside" text-align="center">
         <locator-wrap>
-          <Suspense fallback={null}>
-            <Await resolve={tipPromise}>
-              {(tip) =>
-                tip ? (
-                  <TipContent tip={tip} />
-                ) : (
-                  <>
-                    <img
-                      src={homeTipImgSrc}
-                      alt=""
-                      className="diamond-spacing-bottom-sm"
-                    />
-                    <h2>{t('homeRecycling.aside.title')}</h2>
-                    <p>{t('homeRecycling.aside.content')}</p>
-                    <Suspense fallback={null}>
-                      <Await resolve={localAuthority}>
-                        {(la) => (
-                          <diamond-enter type="fade">
-                            <diamond-button width="full-width">
-                              <a
-                                href={la.recyclingUri}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                              >
-                                {la.name}
-                                <locator-icon icon="external"></locator-icon>
-                              </a>
-                            </diamond-button>
-                          </diamond-enter>
-                        )}
-                      </Await>
-                    </Suspense>
-                  </>
-                )
-              }
-            </Await>
-          </Suspense>
+          {!tipLoading && tip ? (
+            <TipContent tip={tip} />
+          ) : (
+            <>
+              <img
+                src={homeTipImgSrc}
+                alt=""
+                className="diamond-spacing-bottom-sm"
+              />
+              <h2>{t('homeRecycling.aside.title')}</h2>
+              <p>{t('homeRecycling.aside.content')}</p>
+              {!laLoading && localAuthority && (
+                <diamond-enter type="fade">
+                  <diamond-button width="full-width">
+                    <a
+                      href={localAuthority.recyclingUri}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {localAuthority.name}
+                      <locator-icon icon="external"></locator-icon>
+                    </a>
+                  </diamond-button>
+                </diamond-enter>
+              )}
+            </>
+          )}
         </locator-wrap>
       </locator-tip>
     </locator-layout>

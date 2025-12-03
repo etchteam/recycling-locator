@@ -1,43 +1,25 @@
 import { Suspense } from 'preact/compat';
-import {
-  createMemoryRouter,
-  RouteObject,
-  createBrowserRouter,
-} from 'react-router';
-import { RouterProvider } from 'react-router/dom';
+import { Route, Switch } from 'wouter-preact';
 
-import '@/components/content/Icon/Icon';
-import '@/components/canvas/Loading/Loading';
 import '@/components/canvas/Hero/Hero';
-import '@/lib/sentry';
+import '@/components/canvas/Loading/Loading';
+import '@/components/content/Icon/Icon';
 import { RecyclingLocatorAttributes } from '@/index';
 import { AppState, createAppState } from '@/lib/AppState';
+import ErrorBoundary from '@/lib/ErrorBoundary';
+import { PostcodeProvider } from '@/lib/PostcodeContext';
+import { WouterProvider } from '@/lib/WouterProvider';
 import { i18nInit } from '@/lib/i18n';
+import '@/lib/sentry';
 
-import postcodeRoutes from './[postcode]/postcode.routes';
-import ErrorPage from './error.page';
+import PostcodeRoutes from './[postcode]/PostcodeRoutes';
+import GlobalErrorPage from './error.page';
+import HomeRecyclingStartPage from './home-recycling.page';
+import MaterialStartPage from './material.page';
 import NotFoundPage from './not-found.page';
-import refillRoutes from './refill/refill.routes';
+import RefillRoutes from './refill/RefillRoutes';
 import RootLayout from './root.layout';
-import startAction from './start.action';
-import startRoutes from './start.routes';
-
-const routes: RouteObject[] = [
-  {
-    errorElement: <ErrorPage />,
-    element: <RootLayout />,
-    children: [
-      ...startRoutes,
-      ...postcodeRoutes,
-      ...refillRoutes,
-      {
-        path: '/*',
-        element: <NotFoundPage />,
-        action: startAction,
-      },
-    ],
-  },
-];
+import StartPage from './start.page';
 
 /**
  * A flash of this loading fallback often displays before styles or any components have had a
@@ -73,20 +55,39 @@ function Loading() {
 export default function Entrypoint(
   props: Readonly<RecyclingLocatorAttributes>,
 ) {
-  const { locale, variant, basename } = props;
+  const { locale, variant, basename, path } = props;
 
   i18nInit(locale, props.publicPath);
 
-  const router =
-    variant === 'standalone'
-      ? createBrowserRouter(routes, { basename })
-      : createMemoryRouter(routes);
-
   return (
     <Suspense fallback={<Loading />}>
-      <AppState.Provider value={createAppState(props)}>
-        <RouterProvider router={router} />
-      </AppState.Provider>
+      <WouterProvider
+        variant={variant}
+        basename={basename}
+        initialPath={path || '/'}
+      >
+        <AppState.Provider value={createAppState(props)}>
+          <ErrorBoundary fallback={<GlobalErrorPage />}>
+            <RootLayout>
+              <Switch>
+                <Route path="/" component={StartPage} />
+                <Route
+                  path="/home-recycling"
+                  component={HomeRecyclingStartPage}
+                />
+                <Route path="/material" component={MaterialStartPage} />
+                <Route path="/:postcode/:rest*">
+                  <PostcodeProvider>
+                    <PostcodeRoutes />
+                  </PostcodeProvider>
+                </Route>
+                <Route path="/refill/:rest*" component={RefillRoutes} />
+                <Route component={NotFoundPage} />
+              </Switch>
+            </RootLayout>
+          </ErrorBoundary>
+        </AppState.Provider>
+      </WouterProvider>
     </Suspense>
   );
 }

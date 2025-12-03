@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router';
+import { useLocation } from 'wouter-preact';
 
 import config from '@/config';
 import { captureException } from '@/lib/sentry';
@@ -49,14 +49,19 @@ async function sendAnalyticsRequest(event: AnalyticsEvent) {
 
 export default function useAnalytics() {
   const { locale, sessionId } = useAppState();
-  const location = useLocation();
+  const [location] = useLocation();
 
   const path = typeof window !== 'undefined' ? window?.location?.pathname : '/';
 
   function createEvent(event: Partial<AnalyticsEvent>): AnalyticsEvent {
+    // Parse location string into pathname, search, hash
+    const [pathname, ...rest] = location.split('?');
+    const searchAndHash = rest.join('?');
+    const [search, hash] = searchAndHash.split('#');
+
     return {
       ...event,
-      dp: `${location.pathname}${location.search}${location.hash}`,
+      dp: `${pathname}${search ? '?' + search : ''}${hash ? '#' + hash : ''}`,
       cid: sessionId,
       ul: locale === 'cy' ? 'cy-GB' : 'en-GB',
       dh: `${config.hostname}${path}`,

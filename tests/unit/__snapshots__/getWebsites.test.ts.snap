@@ -1,0 +1,23 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`getWebsites > returns a single website, prepending https if needed 1`] = `
+Map {
+  "https://example.com" => "example.com",
+}
+`;
+
+exports[`getWebsites > returns multiple websites, cleaned and unique 1`] = `
+Map {
+  "https://example.com" => "example.com",
+  "http://another.com" => "another.com",
+  "https://www.example.com" => "example.com",
+  "http://www.another.com" => "another.com",
+}
+`;
+
+exports[`getWebsites > trims whitespace and prepends https if missing 1`] = `
+Map {
+  "https://example.com" => "example.com",
+  "https://foo.com" => "foo.com",
+}
+`;

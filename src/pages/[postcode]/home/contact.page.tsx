@@ -5,6 +5,7 @@ import '@etchteam/diamond-ui/composition/Enter/Enter';
 
 import '@/components/composition/BorderedList/BorderedList';
 import RateThisInfo from '@/components/control/RateThisInfo/RateThisInfo';
+import { getLinkText } from '@/lib/details/getWebsites';
 import { LocalAuthority } from '@/types/locatorApi';
 
 import { useHomeRecyclingLoaderData } from './home.loader';
@@ -30,7 +31,7 @@ function HomeRecyclingContactPageContent({
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                {localAuthority.recyclingUri}
+                {getLinkText(localAuthority.recyclingUri)}
               </a>
             </dd>
           </div>

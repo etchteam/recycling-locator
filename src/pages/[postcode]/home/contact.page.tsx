@@ -5,6 +5,7 @@ import '@etchteam/diamond-ui/composition/Enter/Enter';
 
 import '@/components/composition/BorderedList/BorderedList';
 import RateThisInfo from '@/components/control/RateThisInfo/RateThisInfo';
+import { getLinkText } from '@/lib/details/getWebsites';
 import { LocalAuthority } from '@/types/locatorApi';
 
 import { useHomeRecyclingLoaderData } from './home.loader';
@@ -26,11 +27,11 @@ function HomeRecyclingContactPageContent({
             <dt>{t(`${tContext}.website`)}</dt>
             <dd>
               <a
-                href={`${localAuthority.recyclingUri}?referrer=wrap-recycling-locator`}
+                href={`${localAuthority.recyclingUri}?utm_source=wrap-recycling-locator`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                {localAuthority.recyclingUri}
+                {getLinkText(localAuthority.recyclingUri)}
               </a>
             </dd>
           </div>

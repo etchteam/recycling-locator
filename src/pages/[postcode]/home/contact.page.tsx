@@ -26,7 +26,7 @@ function HomeRecyclingContactPageContent({
             <dt>{t(`${tContext}.website`)}</dt>
             <dd>
               <a
-                href={`${localAuthority.recyclingUri}?referrer=wrap-recycling-locator`}
+                href={`${localAuthority.recyclingUri}?utm_source=wrap-recycling-locator`}
                 target="_blank"
                 rel="noopener noreferrer"
               >

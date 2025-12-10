@@ -64,6 +64,9 @@ function Places() {
   const locationSearchParams = new URLSearchParams(searchParams);
   locationSearchParams.set('page', String(currentPage));
 
+  // Only show full loading state if we have no data yet
+  const isInitialLoad = loading && !locations;
+
   useEffect(() => {
     if (search) {
       recordEvent({
@@ -89,8 +92,12 @@ function Places() {
     }
   }, [count]);
 
-  if (loading || !locations) {
+  if (isInitialLoad) {
     return <Loading />;
+  }
+
+  if (!locations) {
+    return null;
   }
 
   if (locations.error) {

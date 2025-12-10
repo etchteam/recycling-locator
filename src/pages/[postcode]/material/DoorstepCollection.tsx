@@ -13,7 +13,7 @@ import '@/components/control/IconLink/IconLink';
 import '@/components/content/Icon/Icon';
 import '@/components/content/Container/Container';
 
-import useAnalytics from '@/lib/useAnalytics';
+import useAnalytics from '@/hooks/useAnalytics';
 import {
   DoorstepCollection as DoorstepCollectionType,
   Material,

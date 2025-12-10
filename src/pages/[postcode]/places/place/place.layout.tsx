@@ -15,12 +15,12 @@ import '@/components/content/Icon/Icon';
 import '@/components/control/NavBar/NavBar';
 import MapSvg from '@/components/canvas/MapSvg/MapSvg';
 import PlacesMap from '@/components/control/PlacesMap/PlacesMap';
+import { usePostcode } from '@/hooks/PostcodeProvider';
+import useAnalytics from '@/hooks/useAnalytics';
 import { usePlace } from '@/hooks/usePlace';
+import useScrollRestoration from '@/hooks/useScrollRestoration';
 import { useSearchParams } from '@/hooks/useSearchParams';
-import { usePostcode } from '@/lib/PostcodeContext';
 import directions from '@/lib/directions';
-import useAnalytics from '@/lib/useAnalytics';
-import useScrollRestoration from '@/lib/useScrollRestoration';
 import { Location } from '@/types/locatorApi';
 
 function PlaceMap({ location }: { readonly location: Location }) {

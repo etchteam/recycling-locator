@@ -7,14 +7,14 @@ import '@etchteam/diamond-ui/composition/Enter/Enter';
 
 import '@/components/composition/Wrap/Wrap';
 import '@/components/composition/BorderedList/BorderedList';
+import PopularMaterials from '@/components/content/PopularMaterials/PopularMaterials';
+import TipContent from '@/components/content/TipContent/TipContent';
 import MaterialSearchInput from '@/components/control/MaterialSearchInput/MaterialSearchInput';
-import PopularMaterials from '@/components/template/PopularMaterials/PopularMaterials';
-import TipContent from '@/components/template/TipContent/TipContent';
+import { usePostcode } from '@/hooks/PostcodeProvider';
+import useFormValidation from '@/hooks/useFormValidation';
 import { usePopularMaterials } from '@/hooks/usePopularMaterials';
 import { useSearchParams } from '@/hooks/useSearchParams';
 import { useTip } from '@/hooks/useTip';
-import { usePostcode } from '@/lib/PostcodeContext';
-import useFormValidation from '@/lib/useFormValidation';
 import { Material } from '@/types/locatorApi';
 
 export default function MaterialSearchPage() {

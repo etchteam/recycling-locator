@@ -1,8 +1,17 @@
 import compact from 'lodash/compact';
+import { Suspense } from 'preact/compat';
 import register from 'preact-custom-element';
 
+import '@/components/canvas/Hero/Hero';
+import '@/components/canvas/Loading/Loading';
+import '@/components/content/Icon/Icon';
+import { AppStateProvider } from '@/hooks/AppStateProvider';
+import { RouterProvider } from '@/hooks/RouterProvider';
+import { i18nInit } from '@/lib/i18n';
+import '@/lib/sentry';
+import StartRoutes from '@/pages/start.routes';
+
 import config from './config';
-import Entrypoint from './pages/entrypoint';
 import { CustomElement } from './types/customElement';
 import { Locale } from './types/locale';
 
@@ -50,10 +59,34 @@ export interface RecyclingLocatorAttributes {
 }
 
 /**
+ * A flash of this loading fallback often displays before styles or any components have had a
+ * chance to load. It'll be swapped out for the actual UI as soon as it's ready.
+ */
+function Loading() {
+  return (
+    <div
+      style={{
+        height: '100%',
+        width: '100%',
+        // minimum --container-height in case that hasn't loaded yet
+        minHeight: '540px',
+        // this border will blend in as a fallback in case border styles haven't loaded yet
+        border: 'var(--recycling-locator-container-border, 1px solid #cfd1d3)',
+        borderRadius: 'var(--recycling-locator-container-border-radius, 0)',
+        margin: '-1px -1px 0 -1px',
+        boxSizing: 'content-box',
+      }}
+    />
+  );
+}
+
+/**
  * The root web component
  * - Registers the recycling-locator custom element
  * - Renders the Preact app within the shadow DOM for style encapsulation
  * - Provides global styles
+ * - Init i18n (using suspense to wait for them to load in)
+ * - Sets up routing and global app state
  */
 export default function RecyclingLocator({
   locale,
@@ -69,17 +102,32 @@ export default function RecyclingLocator({
     config.testMode ? 'recycling-locator-test-mode' : undefined,
   ]).join(' ');
 
+  i18nInit(locale, publicPath);
+
   return (
     <>
       <link rel="stylesheet" href={`${publicPath}styles.css`} />
       <article className={classes}>
-        <Entrypoint
-          locale={locale}
-          variant={variant}
-          basename={basename}
-          path={path}
-          publicPath={publicPath}
-        />
+        <Suspense fallback={<Loading />}>
+          <RouterProvider
+            variant={variant}
+            basename={basename}
+            initialPath={path || '/'}
+          >
+            <AppStateProvider
+              attributes={{
+                locale,
+                variant,
+                basename,
+                path,
+                publicPath,
+                theme,
+              }}
+            >
+              <StartRoutes />
+            </AppStateProvider>
+          </RouterProvider>
+        </Suspense>
       </article>
     </>
   );

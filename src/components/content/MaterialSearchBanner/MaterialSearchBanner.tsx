@@ -3,7 +3,7 @@ import { useEffect } from 'preact/hooks';
 
 import materialExistsSearch from '@/lib/materialExistsSearch';
 
-export default function ContainerList({
+export default function MaterialSearchBanner({
   search,
   searchResult,
   message,

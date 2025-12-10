@@ -8,14 +8,14 @@ import '@etchteam/diamond-ui/canvas/Card/Card';
 import '@etchteam/diamond-ui/composition/Enter/Enter';
 
 import '@/components/content/Icon/Icon';
+import MaterialSearchBanner from '@/components/content/MaterialSearchBanner/MaterialSearchBanner';
 import MaterialSearchInput from '@/components/control/MaterialSearchInput/MaterialSearchInput';
 import '@/components/control/Details/Details';
 import RateThisInfo from '@/components/control/RateThisInfo/RateThisInfo';
-import MaterialSearchBanner from '@/components/template/MaterialSearchBanner/MaterialSearchBanner';
+import useAnalytics from '@/hooks/useAnalytics';
+import useFormValidation from '@/hooks/useFormValidation';
 import { usePlace } from '@/hooks/usePlace';
 import materialNameSearch from '@/lib/materialNameSearch';
-import useAnalytics from '@/lib/useAnalytics';
-import useFormValidation from '@/lib/useFormValidation';
 import { Location } from '@/types/locatorApi';
 
 function Loading() {

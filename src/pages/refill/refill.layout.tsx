@@ -2,12 +2,12 @@ import { useSignal } from '@preact/signals';
 import { ComponentChildren } from 'preact';
 import { useRef } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
-import { Link, useLocation } from 'wouter-preact';
+import { Link, useRoute } from 'wouter-preact';
 
 import Menu from '@/components/control/Menu/Menu';
+import { useAppState } from '@/hooks/AppStateProvider';
+import useScrollRestoration from '@/hooks/useScrollRestoration';
 import { useSearchParams } from '@/hooks/useSearchParams';
-import { useAppState } from '@/lib/AppState';
-import useScrollRestoration from '@/lib/useScrollRestoration';
 
 import '@etchteam/diamond-ui/control/Button/Button';
 import '@etchteam/diamond-ui/canvas/Section/Section';
@@ -70,8 +70,7 @@ export default function StartLayout({
 }) {
   const { t } = useTranslation();
   const open = useSignal(false);
-  const [location] = useLocation();
-  const isHome = location === '/refill';
+  const [isHome] = useRoute('/refill');
 
   const [searchParams] = useSearchParams();
   const postcode = searchParams.get('postcode');
@@ -158,7 +157,9 @@ export default function StartLayout({
                 </ul>
               </nav>
             </locator-nav-bar>
-            <locator-wrap large-screen-only={isHome}>{children}</locator-wrap>
+            <locator-wrap large-screen-only={isHome}>
+              <diamond-section padding="lg">{children}</diamond-section>
+            </locator-wrap>
           </>
         )}
       </div>

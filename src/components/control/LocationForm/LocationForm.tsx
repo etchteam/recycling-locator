@@ -11,12 +11,12 @@ import '@etchteam/diamond-ui/control/RadioCheckbox/RadioCheckbox';
 
 import '@/components/canvas/Highlight/Highlight';
 import LocationInput from '@/components/control/LocationInput/LocationInput';
+import { useAppState } from '@/hooks/AppStateProvider';
+import useFormValidation from '@/hooks/useFormValidation';
 import { useSearchParams } from '@/hooks/useSearchParams';
-import { useAppState } from '@/lib/AppState';
 import PostCodeResolver from '@/lib/PostcodeResolver';
 import i18n from '@/lib/i18n';
 import { captureException } from '@/lib/sentry';
-import useFormValidation from '@/lib/useFormValidation';
 
 export default function LocationForm({
   label,
@@ -101,6 +101,7 @@ export default function LocationForm({
           component: 'LocationForm postcode resolution',
         });
       }
+
       return;
     }
 

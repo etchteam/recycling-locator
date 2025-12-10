@@ -5,10 +5,10 @@ import '@etchteam/diamond-ui/canvas/Card/Card';
 
 import '@/components/canvas/LoadingCard/LoadingCard';
 import '@/components/content/Container/Container';
+import SchemeContainerSummary from '@/components/content/SchemeContainerSummary/SchemeContainerSummary';
 import RateThisInfo from '@/components/control/RateThisInfo/RateThisInfo';
-import SchemeContainerSummary from '@/components/template/SchemeContainerSummary/SchemeContainerSummary';
+import { usePostcode } from '@/hooks/PostcodeProvider';
 import { useLocalAuthority } from '@/hooks/useLocalAuthority';
-import { usePostcode } from '@/lib/PostcodeContext';
 import sortPropertyTypes from '@/lib/sortPropertyTypes';
 import { LocalAuthority } from '@/types/locatorApi';
 

@@ -9,9 +9,9 @@ import '@/components/composition/Header/Header';
 import '@/components/content/HeaderTitle/HeaderTitle';
 import '@/components/content/Icon/Icon';
 import '@/components/control/NavBar/NavBar';
+import { usePostcode } from '@/hooks/PostcodeProvider';
+import useScrollRestoration from '@/hooks/useScrollRestoration';
 import { useSearchParams } from '@/hooks/useSearchParams';
-import { usePostcode } from '@/lib/PostcodeContext';
-import useScrollRestoration from '@/lib/useScrollRestoration';
 
 export default function PlacesSearchLayout({
   children,

@@ -10,7 +10,7 @@ import '@/components/content/Container/Container';
 import '@/components/content/Icon/Icon';
 import '@/components/control/Details/Details';
 import ContainerSVG from '@/components/content/Container/ContainerSVG';
-import MaterialSearchBanner from '@/components/template/MaterialSearchBanner/MaterialSearchBanner';
+import MaterialSearchBanner from '@/components/content/MaterialSearchBanner/MaterialSearchBanner';
 import containerName from '@/lib/containerName';
 import {
   ContainerList as ContainerListType,

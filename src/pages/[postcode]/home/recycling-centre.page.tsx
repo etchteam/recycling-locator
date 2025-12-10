@@ -7,9 +7,9 @@ import '@etchteam/diamond-ui/composition/Grid/GridItem';
 import '@/components/canvas/IconCircle/IconCircle';
 import '@/components/composition/IconText/IconText';
 import '@/components/content/Icon/Icon';
-import Place from '@/components/template/Place/Place';
+import Place from '@/components/content/Place/Place';
+import { usePostcode } from '@/hooks/PostcodeProvider';
 import { useLocations } from '@/hooks/useLocations';
-import { usePostcode } from '@/lib/PostcodeContext';
 import PostCodeResolver from '@/lib/PostcodeResolver';
 import { Location } from '@/types/locatorApi';
 

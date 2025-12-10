@@ -1,9 +1,10 @@
 import { ComponentChildren } from 'preact';
+import { useMemo } from 'preact/hooks';
 import { Router, BaseLocationHook } from 'wouter-preact';
 import { memoryLocation } from 'wouter-preact/memory-location';
 import { useBrowserLocation } from 'wouter-preact/use-browser-location';
 
-interface WouterProviderProps {
+interface RouterProviderProps {
   readonly variant: 'widget' | 'standalone';
   readonly basename?: string;
   readonly initialPath?: string;
@@ -15,16 +16,19 @@ interface WouterProviderProps {
  * - widget: Uses memory routing (no browser URL changes)
  * - standalone: Uses browser routing (manages URL history)
  */
-export function WouterProvider({
+export function RouterProvider({
   variant,
   basename = '',
   initialPath = '/',
   children,
-}: WouterProviderProps) {
-  const hook: BaseLocationHook =
-    variant === 'standalone'
-      ? useBrowserLocation
-      : memoryLocation({ path: initialPath }).hook;
+}: RouterProviderProps) {
+  const hook: BaseLocationHook = useMemo(
+    () =>
+      variant === 'standalone'
+        ? useBrowserLocation
+        : memoryLocation({ path: initialPath }).hook,
+    [variant, initialPath],
+  );
 
   return (
     <Router hook={hook} base={basename}>

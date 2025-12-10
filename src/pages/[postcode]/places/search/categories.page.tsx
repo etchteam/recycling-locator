@@ -2,8 +2,8 @@ import '@etchteam/diamond-ui/composition/Enter/Enter';
 
 import '@/components/composition/Wrap/Wrap';
 import MaterialCategoriesNav from '@/components/control/MaterialCategoriesNav/MaterialCategoriesNav';
+import { usePostcode } from '@/hooks/PostcodeProvider';
 import { useMaterialCategories } from '@/hooks/useMaterialCategories';
-import { usePostcode } from '@/lib/PostcodeContext';
 
 export default function CategoriesPage() {
   const { postcode } = usePostcode();

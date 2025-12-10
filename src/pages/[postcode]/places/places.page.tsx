@@ -15,16 +15,16 @@ import '@/components/canvas/LoadingCard/LoadingCard';
 import '@/components/composition/IconText/IconText';
 import '@/components/content/Icon/Icon';
 import '@/components/control/Fab/Fab';
-import Place from '@/components/template/Place/Place';
-import TipContent from '@/components/template/TipContent/TipContent';
+import Place from '@/components/content/Place/Place';
+import TipContent from '@/components/content/TipContent/TipContent';
+import { useAppState } from '@/hooks/AppStateProvider';
+import { usePostcode } from '@/hooks/PostcodeProvider';
+import useAnalytics from '@/hooks/useAnalytics';
 import { useLocations } from '@/hooks/useLocations';
 import { useSearchParams } from '@/hooks/useSearchParams';
 import { useTip } from '@/hooks/useTip';
-import { useAppState } from '@/lib/AppState';
-import { usePostcode } from '@/lib/PostcodeContext';
 import PostCodeResolver from '@/lib/PostcodeResolver';
 import formatPostcode from '@/lib/formatPostcode';
-import useAnalytics from '@/lib/useAnalytics';
 
 function Loading() {
   const { t } = useTranslation();

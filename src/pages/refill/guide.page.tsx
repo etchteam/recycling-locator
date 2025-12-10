@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'wouter-preact';
 
+import { useAppState } from '@/hooks/AppStateProvider';
 import { useSearchParams } from '@/hooks/useSearchParams';
-import { useAppState } from '@/lib/AppState';
 
 import '@etchteam/diamond-ui/canvas/Section/Section';
 
@@ -22,7 +22,7 @@ export default function GuidePage() {
   const postcodeQuery = postcode ? `?postcode=${postcode}` : '';
 
   return (
-    <diamond-section padding="lg">
+    <>
       <h2>{t('refill.guide.title')}</h2>
       <h3 className="diamond-text-size-base diamond-text-weight-bold diamond-spacing-top-md">
         {t('refill.guide.steps.title')}
@@ -94,6 +94,6 @@ export default function GuidePage() {
           {t('refill.guide.ctaButton')}
         </Link>
       </diamond-button>
-    </diamond-section>
+    </>
   );
 }

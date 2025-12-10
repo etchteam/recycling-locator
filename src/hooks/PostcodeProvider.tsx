@@ -18,11 +18,11 @@ interface PostcodeState {
   postcode: string | undefined;
 }
 
-const PostcodeContext = createContext<PostcodeState | null>(null);
-
 interface PostcodeProviderProps {
   readonly children: ComponentChildren;
 }
+
+const PostcodeContext = createContext<PostcodeState | null>(null);
 
 /**
  * Context provider with integrated postcode validation and geocoding
@@ -74,7 +74,10 @@ export function PostcodeProvider({ children }: PostcodeProviderProps) {
         setState({
           loading: false,
           data: null,
-          error: error instanceof Error ? error : new Error('Unknown error'),
+          error:
+            error instanceof Error
+              ? error
+              : new Error('Postcode validation error'),
           postcode,
         });
       }
@@ -82,6 +85,10 @@ export function PostcodeProvider({ children }: PostcodeProviderProps) {
 
     validateAndFetch();
   }, [postcode]);
+
+  if (state.error) {
+    throw state.error;
+  }
 
   return (
     <PostcodeContext.Provider value={state}>

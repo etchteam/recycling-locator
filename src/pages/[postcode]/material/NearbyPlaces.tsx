@@ -9,8 +9,8 @@ import '@/components/canvas/IconCircle/IconCircle';
 import '@/components/composition/IconText/IconText';
 import '@/components/content/Icon/Icon';
 import PlacesMap from '@/components/control/PlacesMap/PlacesMap';
+import { usePostcode } from '@/hooks/PostcodeProvider';
 import { useSearchParams } from '@/hooks/useSearchParams';
-import { usePostcode } from '@/lib/PostcodeContext';
 import mapSearchParams from '@/lib/mapSearchParams';
 import { LocationsResponse } from '@/types/locatorApi';
 

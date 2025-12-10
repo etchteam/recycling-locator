@@ -1,6 +1,6 @@
+import { usePostcode } from '@/hooks/PostcodeProvider';
 import { useData } from '@/hooks/useData';
 import LocatorApi from '@/lib/LocatorApi';
-import { usePostcode } from '@/lib/PostcodeContext';
 import { captureException } from '@/lib/sentry';
 import { DoorstepCollection } from '@/types/locatorApi';
 

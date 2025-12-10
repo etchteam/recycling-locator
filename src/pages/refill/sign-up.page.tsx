@@ -114,7 +114,7 @@ export default function SignUpPage() {
   }
 
   return (
-    <diamond-section padding="lg">
+    <>
       <div aria-live="polite" role="status" aria-atomic="true">
         {isSuccessful && (
           <div className="diamond-spacing-bottom-md">
@@ -299,6 +299,6 @@ export default function SignUpPage() {
           }}
         />
       </p>
-    </diamond-section>
+    </>
   );
 }

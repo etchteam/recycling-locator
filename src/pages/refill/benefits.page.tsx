@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'wouter-preact';
 
+import { useAppState } from '@/hooks/AppStateProvider';
 import { useSearchParams } from '@/hooks/useSearchParams';
-import { useAppState } from '@/lib/AppState';
 
 import '@etchteam/diamond-ui/canvas/Section/Section';
 
@@ -15,7 +15,7 @@ export default function BenfitsPage() {
   const postcodeQuery = postcode ? `?postcode=${postcode}` : '';
 
   return (
-    <diamond-section padding="lg">
+    <>
       <h2>{t('refill.benefits.title')}</h2>
       <p>{t('refill.benefits.intro')}</p>
       <diamond-card className="theme-positive diamond-spacing-bottom-md" muted>
@@ -113,6 +113,6 @@ export default function BenfitsPage() {
           {t('refill.benefits.cta')}
         </Link>
       </diamond-button>
-    </diamond-section>
+    </>
   );
 }

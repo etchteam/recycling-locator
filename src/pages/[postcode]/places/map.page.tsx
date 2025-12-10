@@ -10,14 +10,14 @@ import '@etchteam/diamond-ui/composition/Enter/Enter';
 
 import '@/components/content/Icon/Icon';
 import '@/components/control/Fab/Fab';
+import Place from '@/components/content/Place/Place';
 import PlacesMap from '@/components/control/PlacesMap/PlacesMap';
-import Place from '@/components/template/Place/Place';
+import { usePostcode } from '@/hooks/PostcodeProvider';
+import useAnalytics from '@/hooks/useAnalytics';
 import { useLocations } from '@/hooks/useLocations';
 import { useSearchParams } from '@/hooks/useSearchParams';
-import { usePostcode } from '@/lib/PostcodeContext';
 import PostCodeResolver from '@/lib/PostcodeResolver';
 import directions from '@/lib/directions';
-import useAnalytics from '@/lib/useAnalytics';
 import { Location } from '@/types/locatorApi';
 
 function Loading() {

@@ -11,8 +11,8 @@ import '@/components/composition/Wrap/Wrap';
 import '@/components/control/AlphabetNav/AlphabetNav';
 import '@/components/composition/BorderedList/BorderedList';
 import '@/components/content/Icon/Icon';
+import { usePostcode } from '@/hooks/PostcodeProvider';
 import { useMaterials } from '@/hooks/useMaterials';
-import { usePostcode } from '@/lib/PostcodeContext';
 import tArray from '@/lib/tArray';
 import { Material } from '@/types/locatorApi';
 

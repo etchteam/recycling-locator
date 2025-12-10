@@ -6,12 +6,12 @@ import '@etchteam/diamond-ui/composition/Enter/Enter';
 import '@etchteam/diamond-ui/canvas/Section/Section';
 
 import '@/components/composition/Wrap/Wrap';
+import PopularMaterials from '@/components/content/PopularMaterials/PopularMaterials';
 import MaterialSearchInput from '@/components/control/MaterialSearchInput/MaterialSearchInput';
-import PopularMaterials from '@/components/template/PopularMaterials/PopularMaterials';
+import { usePostcode } from '@/hooks/PostcodeProvider';
+import useFormValidation from '@/hooks/useFormValidation';
 import { usePopularMaterials } from '@/hooks/usePopularMaterials';
 import { useSearchParams } from '@/hooks/useSearchParams';
-import { usePostcode } from '@/lib/PostcodeContext';
-import useFormValidation from '@/lib/useFormValidation';
 import { Material } from '@/types/locatorApi';
 
 export default function PlacesSearchPage() {

@@ -1,9 +1,9 @@
 import { useEffect } from 'preact/hooks';
 
+import { usePostcode } from '@/hooks/PostcodeProvider';
 import { useData } from '@/hooks/useData';
 import { useSearchParams } from '@/hooks/useSearchParams';
 import LocatorApi from '@/lib/LocatorApi';
-import { usePostcode } from '@/lib/PostcodeContext';
 import mapSearchParams from '@/lib/mapSearchParams';
 import { LocationsResponse } from '@/types/locatorApi';
 

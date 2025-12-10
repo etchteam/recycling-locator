@@ -12,9 +12,9 @@ import '@/components/control/IconLink/IconLink';
 import '@/components/content/Icon/Icon';
 import '@/components/content/Container/Container';
 
-import SchemeContainerSummary from '@/components/template/SchemeContainerSummary/SchemeContainerSummary';
+import SchemeContainerSummary from '@/components/content/SchemeContainerSummary/SchemeContainerSummary';
+import { usePostcode } from '@/hooks/PostcodeProvider';
 import { useSearchParams } from '@/hooks/useSearchParams';
-import { usePostcode } from '@/lib/PostcodeContext';
 import containerHasMaterial from '@/lib/containerHasMaterial';
 import getPropertyTypeEnum from '@/lib/getPropertyTypeEnum';
 import { LocalAuthority, LocalAuthorityProperty } from '@/types/locatorApi';

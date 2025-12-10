@@ -15,14 +15,14 @@ import '@/components/composition/Wrap/Wrap';
 import '@/components/content/HeaderTitle/HeaderTitle';
 import '@/components/content/Icon/Icon';
 import '@/components/control/NavBar/NavBar';
+import TipContent from '@/components/content/TipContent/TipContent';
 import Menu from '@/components/control/Menu/Menu';
-import TipContent from '@/components/template/TipContent/TipContent';
+import { useAppState } from '@/hooks/AppStateProvider';
+import { usePostcode } from '@/hooks/PostcodeProvider';
 import { useLocalAuthority } from '@/hooks/useLocalAuthority';
+import useScrollRestoration from '@/hooks/useScrollRestoration';
 import { useTip } from '@/hooks/useTip';
-import { useAppState } from '@/lib/AppState';
-import { usePostcode } from '@/lib/PostcodeContext';
 import i18n from '@/lib/i18n';
-import useScrollRestoration from '@/lib/useScrollRestoration';
 
 export default function HomeRecyclingLayout({
   children,

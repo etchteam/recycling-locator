@@ -10,9 +10,9 @@ import '@/components/canvas/IconCircle/IconCircle';
 import '@/components/composition/IconText/IconText';
 import '@/components/content/Icon/Icon';
 
+import useAnalytics from '@/hooks/useAnalytics';
 import LocatorApi from '@/lib/LocatorApi';
 import { captureException } from '@/lib/sentry';
-import useAnalytics from '@/lib/useAnalytics';
 import { CustomElement } from '@/types/customElement';
 import { MaterialCategory } from '@/types/locatorApi';
 

@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'wouter-preact';
 
+import { useAppState } from '@/hooks/AppStateProvider';
 import { useSearchParams } from '@/hooks/useSearchParams';
-import { useAppState } from '@/lib/AppState';
 
 import '@etchteam/diamond-ui/canvas/Section/Section';
 
@@ -15,7 +15,7 @@ export default function OptionsPage() {
   const postcodeQuery = postcode ? `?postcode=${postcode}` : '';
 
   return (
-    <diamond-section padding="lg">
+    <>
       <h2>{t('refill.options.title')}</h2>
       <p>{t('refill.options.intro')}</p>
       <diamond-img radius>
@@ -84,6 +84,6 @@ export default function OptionsPage() {
           {t('refill.options.cta')}
         </Link>
       </diamond-button>
-    </diamond-section>
+    </>
   );
 }

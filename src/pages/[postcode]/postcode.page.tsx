@@ -9,7 +9,6 @@ import '@etchteam/diamond-ui/control/Button/Button';
 import '@etchteam/diamond-ui/control/Link/Link';
 
 import '@/components/canvas/ContextHeader/ContextHeader';
-import MapSvg from '@/components/canvas/MapSvg/MapSvg';
 import '@/components/canvas/IconCircle/IconCircle';
 import '@/components/canvas/Loading/Loading';
 import '@/components/canvas/Hero/Hero';
@@ -20,94 +19,20 @@ import '@/components/content/RescueMeRecyclePromo/RescueMeRecyclePromo';
 import '@/components/control/IconLink/IconLink';
 import '@/components/canvas/LoadingCard/LoadingCard';
 import MaterialSearchInput from '@/components/control/MaterialSearchInput/MaterialSearchInput';
-import PlacesMap from '@/components/control/PlacesMap/PlacesMap';
+import { useAppState } from '@/hooks/AppStateProvider';
+import { usePostcode } from '@/hooks/PostcodeProvider';
+import useAnalytics from '@/hooks/useAnalytics';
+import useFormValidation from '@/hooks/useFormValidation';
 import { useLocations } from '@/hooks/useLocations';
 import { useSearchParams } from '@/hooks/useSearchParams';
-import { useAppState } from '@/lib/AppState';
-import { usePostcode } from '@/lib/PostcodeContext';
 import formatPostcode from '@/lib/formatPostcode';
 import i18n from '@/lib/i18n';
-import sentry from '@/lib/sentry';
-import useAnalytics from '@/lib/useAnalytics';
-import useFormValidation from '@/lib/useFormValidation';
-import StartLayout from '@/pages/start.layout';
 
 function Loading() {
   return (
     <diamond-enter type="fade-in-up">
       <locator-loading-card className="diamond-spacing-top-md" />
     </diamond-enter>
-  );
-}
-
-function MapLoadingFallback() {
-  return (
-    <locator-loading>
-      <locator-hero size="full">
-        <locator-icon icon="distance" color="muted"></locator-icon>
-      </locator-hero>
-    </locator-loading>
-  );
-}
-
-function MapErrorFallback({ postcode }: { readonly postcode: string }) {
-  const { t } = useTranslation();
-
-  return (
-    <MapSvg>
-      <diamond-button width="full-width">
-        <Link href={`/${postcode}/places/map`}>
-          {t('postcode.exploreTheMap')}
-          <locator-icon icon="map" color="primary"></locator-icon>
-        </Link>
-      </diamond-button>
-    </MapSvg>
-  );
-}
-
-export function PostcodeAside({ postcode }: { readonly postcode: string }) {
-  const { t } = useTranslation();
-  const { data: locations, loading, error } = useLocations();
-
-  if (loading) {
-    return <MapLoadingFallback />;
-  }
-
-  if (error || locations?.error) {
-    // This can happen when the postcode is not found by the API but is found by HERE maps
-    // The postcode checks on the API are stricter
-    if (locations?.error) {
-      sentry.setTag('route', 'PostcodeAside');
-      sentry.captureMessage(locations.error);
-      sentry.clear();
-    }
-
-    return <MapErrorFallback postcode={postcode} />;
-  }
-
-  if (!locations) {
-    return <MapErrorFallback postcode={postcode} />;
-  }
-
-  return (
-    <PlacesMap
-      latitude={locations.meta.latitude}
-      longitude={locations.meta.longitude}
-      locations={locations.items}
-      static
-    >
-      <Link href={`/${postcode}/places/map`} aria-label={t('actions.showMap')}>
-        <locator-places-map-scrim />
-      </Link>
-      <locator-places-map-card padding="none">
-        <diamond-button width="full-width">
-          <Link href={`/${postcode}/places/map`}>
-            {t('postcode.exploreTheMap')}
-            <locator-icon icon="map" color="primary"></locator-icon>
-          </Link>
-        </diamond-button>
-      </locator-places-map-card>
-    </PlacesMap>
   );
 }
 
@@ -134,7 +59,7 @@ export default function PostcodePage() {
   }, [city, postcode, recordEvent]);
 
   return (
-    <StartLayout aside={<PostcodeAside postcode={postcode} />}>
+    <>
       <locator-context-header>
         <div>
           <span className="diamond-text-weight-bold">
@@ -282,6 +207,6 @@ export default function PostcodePage() {
           </diamond-enter>
         </diamond-section>
       </locator-wrap>
-    </StartLayout>
+    </>
   );
 }

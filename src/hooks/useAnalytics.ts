@@ -3,7 +3,7 @@ import { useLocation } from 'wouter-preact';
 import config from '@/config';
 import { captureException } from '@/lib/sentry';
 
-import { useAppState } from './AppState';
+import { useAppState } from './AppStateProvider';
 
 interface AnalyticsEvent {
   /** Document Title (title for the event) */

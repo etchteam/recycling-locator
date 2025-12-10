@@ -1,6 +1,6 @@
 import { useSignal } from '@preact/signals';
 import { useEffect } from 'preact/hooks';
-import { Route, Switch, useLocation } from 'wouter-preact';
+import { Route, Switch, useLocation, useSearchParams } from 'wouter-preact';
 
 import ErrorBoundary, { ErrorPage } from '@/components/ErrorBoundary';
 import { useAppState } from '@/hooks/AppStateProvider';
@@ -21,27 +21,30 @@ import StartPage from './start.page';
 export default function StartRoutes() {
   const { startPath } = useAppState();
   const [location, setLocation] = useLocation();
+  const [searchParams] = useSearchParams();
   const { recordView } = useAnalytics();
-  const loadedStartPath = useSignal<string>('');
-  const currentHref = location;
+  const hasNavigated = useSignal<boolean>(false);
+  const queryString = searchParams.toString();
+  const currentFullPath = queryString ? `${location}?${queryString}` : location;
 
   useEffect(() => {
-    if (loadedStartPath.value !== startPath && startPath !== currentHref) {
-      setLocation(startPath);
-    }
+    if (!hasNavigated.value) {
+      if (startPath !== currentFullPath) {
+        setLocation(startPath);
+      }
 
-    if (currentHref === startPath) {
-      loadedStartPath.value = startPath;
+      hasNavigated.value = true;
     }
-  }, [startPath, currentHref, setLocation]);
+  }, [startPath, currentFullPath, setLocation, hasNavigated]);
 
   useEffect(() => {
-    if (loadedStartPath.value) {
+    if (hasNavigated.value) {
       recordView();
     }
-  }, [location, recordView]);
+  }, [location, recordView, hasNavigated]);
 
-  if (!loadedStartPath.value) {
+  // Wait until the startPath has been set before rendering routes
+  if (!hasNavigated.value) {
     return null;
   }
 

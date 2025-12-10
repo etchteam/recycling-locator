@@ -105,17 +105,26 @@ export default function HomeRecyclingLayout({
                 <nav>
                   <ul>
                     <li>
-                      <NavLink href={`/${postcode}/home`}>
+                      <NavLink
+                        href={`/${postcode}/home`}
+                        path="/:postcode/home"
+                      >
                         {t('homeRecycling.nav.collections')}
                       </NavLink>
                     </li>
                     <li>
-                      <NavLink href={`/${postcode}/home/recycling-centre`}>
+                      <NavLink
+                        href={`/${postcode}/home/recycling-centre`}
+                        path="/:postcode/home/recycling-centre"
+                      >
                         {t('homeRecycling.nav.hwrc')}
                       </NavLink>
                     </li>
                     <li>
-                      <NavLink href={`/${postcode}/home/contact`}>
+                      <NavLink
+                        href={`/${postcode}/home/contact`}
+                        path="/:postcode/home/contact"
+                      >
                         {t('homeRecycling.nav.contact')}
                       </NavLink>
                     </li>

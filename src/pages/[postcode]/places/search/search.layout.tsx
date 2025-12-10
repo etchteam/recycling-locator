@@ -3,6 +3,7 @@ import { useRef } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
 import { Link, useSearchParams } from 'wouter-preact';
 
+import NavLink from '@/components/control/NavBar/NavLink';
 import { usePostcode } from '@/hooks/PostcodeProvider';
 import useScrollRestoration from '@/hooks/useScrollRestoration';
 
@@ -45,29 +46,38 @@ export default function PlacesSearchLayout({
           <nav>
             <ul>
               <li>
-                <Link href={`/${postcode}/places/search`}>
+                <NavLink
+                  href={`/${postcode}/places/search`}
+                  path="/:postcode/places/search"
+                >
                   {t('places.search.nav.search')}
-                </Link>
+                </NavLink>
               </li>
               <li>
-                <Link href={`/${postcode}/places/search/categories`}>
+                <NavLink
+                  href={`/${postcode}/places/search/categories`}
+                  path="/:postcode/places/search/categories"
+                >
                   <span className="hidden-tablet">
                     {t('places.search.nav.categories')}
                   </span>
                   <span className="hidden visible-tablet">
                     {t('places.search.nav.recyclingCategories')}
                   </span>
-                </Link>
+                </NavLink>
               </li>
               <li>
-                <Link href={`/${postcode}/places/search/a-z`}>
+                <NavLink
+                  href={`/${postcode}/places/search/a-z`}
+                  path="/:postcode/places/search/a-z"
+                >
                   <span className="hidden-tablet">
                     {t('places.search.nav.aToZ')}
                   </span>
                   <span className="hidden visible-tablet">
                     {t('places.search.nav.aToZofItems')}
                   </span>
-                </Link>
+                </NavLink>
               </li>
             </ul>
           </nav>

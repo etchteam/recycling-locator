@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Link, useParams, useSearchParams } from 'wouter-preact';
 
 import MapSvg from '@/components/canvas/MapSvg/MapSvg';
+import NavLink from '@/components/control/NavBar/NavLink';
 import PlacesMap from '@/components/control/PlacesMap/PlacesMap';
 import { usePostcode } from '@/hooks/PostcodeProvider';
 import useAnalytics from '@/hooks/useAnalytics';
@@ -87,6 +88,7 @@ export default function PlaceLayout({
   const layoutRef = useRef();
   useScrollRestoration(layoutRef);
   const safePlaceName = encodeURIComponent(placeName);
+  const queryString = searchParams ? `?${searchParams.toString()}` : '';
 
   return (
     <locator-layout>
@@ -115,18 +117,20 @@ export default function PlaceLayout({
           <nav>
             <ul>
               <li>
-                <Link
-                  href={`/${postcode}/places/${safePlaceName}/${placePostcode}?${searchParams.toString()}`}
+                <NavLink
+                  href={`/${postcode}/places/${safePlaceName}/${placePostcode}${queryString}`}
+                  path="/:postcode/places/:placeName/:placePostcode"
                 >
                   {t('place.nav.recycle')}
-                </Link>
+                </NavLink>
               </li>
               <li>
-                <Link
-                  href={`/${postcode}/places/${safePlaceName}/${placePostcode}/details?${searchParams.toString()}`}
+                <NavLink
+                  href={`/${postcode}/places/${safePlaceName}/${placePostcode}/details${queryString}`}
+                  path="/:postcode/places/:placeName/:placePostcode/details"
                 >
                   {t('place.nav.details')}
-                </Link>
+                </NavLink>
               </li>
             </ul>
           </nav>

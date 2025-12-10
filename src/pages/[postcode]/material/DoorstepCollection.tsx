@@ -1,7 +1,7 @@
 import { useEffect } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'wouter-preact';
 
+import { usePostcode } from '@/hooks/PostcodeProvider';
 import useAnalytics from '@/hooks/useAnalytics';
 import {
   DoorstepCollection as DoorstepCollectionType,
@@ -11,14 +11,13 @@ import {
 export default function DoorstepCollection({
   collection,
   material,
-  postcode,
 }: {
   readonly collection: DoorstepCollectionType;
   readonly material: Material;
-  readonly postcode: string;
 }) {
   const { t } = useTranslation();
   const { recordEvent } = useAnalytics();
+  const { postcode } = usePostcode();
 
   const handleClick = () => {
     recordEvent({
@@ -49,7 +48,7 @@ export default function DoorstepCollection({
         {t('material.doorstepCollection.intro')}
       </p>
       <diamond-button width="full-width">
-        <Link
+        <a
           href={bookingUrl.toString()}
           target="_blank"
           rel="noopener noreferrer"
@@ -57,7 +56,7 @@ export default function DoorstepCollection({
         >
           {t(`material.doorstepCollection.cta`)}{' '}
           <locator-icon icon="external"></locator-icon>
-        </Link>
+        </a>
       </diamond-button>
     </diamond-card>
   );

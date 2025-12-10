@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 
 import RateThisInfo from '@/components/control/RateThisInfo/RateThisInfo';
 import { useLocalAuthority } from '@/hooks/useLocalAuthority';
+import tArray from '@/lib/tArray';
 import { LocalAuthority } from '@/types/locatorApi';
 
 function HomeRecyclingContactPageContent({
@@ -38,7 +39,7 @@ function HomeRecyclingContactPageContent({
             <dd>
               <p>{t(`${tContext}.notes.paragraphOne`)}</p>
               <ul>
-                {(t(`${tContext}.notes.list`) as string[]).map((item) => (
+                {tArray(`${tContext}.notes.list`).map((item) => (
                   <li key={item}>{item}</li>
                 ))}
               </ul>

@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { Link, useSearchParams } from 'wouter-preact';
 
 import { useAppState } from '@/hooks/AppStateProvider';
+import tArray from '@/lib/tArray';
 
 export default function OptionsPage() {
   const { publicPath } = useAppState();
@@ -33,11 +34,11 @@ export default function OptionsPage() {
               <locator-icon icon="expand" />
             </summary>
             <ul>
-              {(
-                t(`refill.options.categories.${category}.content`) as string[]
-              ).map((item) => (
-                <li key={item}>{item}</li>
-              ))}
+              {tArray(`refill.options.categories.${category}.content`).map(
+                (item) => (
+                  <li key={item}>{item}</li>
+                ),
+              )}
             </ul>
             <locator-highlight className="theme-info">
               <locator-icon-text>

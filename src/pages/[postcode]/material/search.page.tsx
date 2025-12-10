@@ -1,12 +1,10 @@
-import { useEffect } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useSearchParams } from 'wouter-preact';
 
 import PopularMaterials from '@/components/content/PopularMaterials/PopularMaterials';
 import TipContent from '@/components/content/TipContent/TipContent';
-import MaterialSearchInput from '@/components/control/MaterialSearchInput/MaterialSearchInput';
+import MaterialSearchForm from '@/components/control/MaterialSearchForm/MaterialSearchForm';
 import { usePostcode } from '@/hooks/PostcodeProvider';
-import useFormValidation from '@/hooks/useFormValidation';
 import { usePopularMaterials } from '@/hooks/usePopularMaterials';
 import { useTip } from '@/hooks/useTip';
 import { Material } from '@/types/locatorApi';
@@ -15,7 +13,6 @@ export default function MaterialSearchPage() {
   const { t } = useTranslation();
   const { postcode } = usePostcode();
   const [location] = useLocation();
-  const form = useFormValidation('search');
   const [searchParams] = useSearchParams();
   const search = searchParams.get('search');
 
@@ -23,20 +20,11 @@ export default function MaterialSearchPage() {
   const popularMaterialsResult = usePopularMaterials();
   const tipResult = useTip({ path: location });
 
-  useEffect(() => {
-    form.submitting.value = false;
-  }, [search, location]);
-
   function generatePopularMaterialPath(material: Material) {
     const materialSearchParams = new URLSearchParams();
     materialSearchParams.set('materials', material.id);
     materialSearchParams.set('search', material.name);
     return `/${postcode}/material?${materialSearchParams.toString()}`;
-  }
-
-  async function handleSubmit(e: Event) {
-    e.preventDefault();
-    await form.handleSubmit(e);
   }
 
   return (
@@ -53,22 +41,14 @@ export default function MaterialSearchPage() {
                   </span>
                 </h3>
               )}
-              <form method="post" onSubmit={handleSubmit}>
-                <diamond-form-group>
-                  <label htmlFor="locator-material-input">
-                    {t('actions.searchAgain')}
-                  </label>
-                  <MaterialSearchInput
-                    handleInput={form.handleInput}
-                    submitting={form.submitting.value}
-                    valid={form.valid.value}
-                    defaultValue={search ?? ''}
-                    defaultInvalid={!!search}
-                    checkMaterial
-                    includeFeedbackForm
-                  ></MaterialSearchInput>
-                </diamond-form-group>
-              </form>
+              <MaterialSearchForm
+                path="material"
+                label={t('actions.searchAgain')}
+                defaultValue={search ?? ''}
+                defaultInvalid={!!search}
+                checkMaterial
+                includeFeedbackForm
+              />
             </diamond-enter>
 
             {popularMaterialsResult.data && (

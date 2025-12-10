@@ -2,11 +2,10 @@ import { useEffect } from 'preact/hooks';
 import { Trans, useTranslation } from 'react-i18next';
 import { Link, useSearchParams } from 'wouter-preact';
 
-import MaterialSearchInput from '@/components/control/MaterialSearchInput/MaterialSearchInput';
+import MaterialSearchForm from '@/components/control/MaterialSearchForm/MaterialSearchForm';
 import { useAppState } from '@/hooks/AppStateProvider';
 import { usePostcode } from '@/hooks/PostcodeProvider';
 import useAnalytics from '@/hooks/useAnalytics';
-import useFormValidation from '@/hooks/useFormValidation';
 import { useLocations } from '@/hooks/useLocations';
 import formatPostcode from '@/lib/formatPostcode';
 import i18n from '@/lib/i18n';
@@ -29,7 +28,6 @@ export default function PostcodePage() {
   const { data: locations, loading: locationsLoading } = useLocations();
   const [searchParams] = useSearchParams();
   const autofocus = searchParams.get('autofocus') === 'true';
-  const form = useFormValidation('search');
   const locale = i18n.language;
 
   useEffect(() => {
@@ -64,21 +62,13 @@ export default function PostcodePage() {
               {t('postcode.title')}
             </h2>
 
-            <form onSubmit={form.handleSubmit}>
-              <diamond-form-group>
-                <label htmlFor="locator-material-input">
-                  {t('components.materialSearchInput.label')}
-                </label>
-                <MaterialSearchInput
-                  inputLabelledBy="material-search-title"
-                  autofocus={autofocus}
-                  handleInput={form.handleInput}
-                  submitting={form.submitting.value}
-                  valid={form.valid.value}
-                  includeFeedbackForm
-                ></MaterialSearchInput>
-              </diamond-form-group>
-            </form>
+            <MaterialSearchForm
+              path="material"
+              label={t('components.materialSearchInput.label')}
+              inputLabelledBy="material-search-title"
+              autofocus={autofocus}
+              includeFeedbackForm
+            />
             <p className="diamond-spacing-top-sm">
               <diamond-link>
                 <Trans

@@ -17,7 +17,7 @@ import { captureException } from '@/lib/sentry';
 import { CustomElement } from '@/types/customElement';
 import { Material } from '@/types/locatorApi';
 
-interface MaterialSearchInputProps {
+export interface MaterialSearchInputProps {
   readonly inputId?: string;
   readonly inputLabelledBy?: string;
   readonly placeholder?: string;

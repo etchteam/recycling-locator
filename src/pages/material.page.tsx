@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'preact/hooks';
 import { Trans, useTranslation } from 'react-i18next';
+import { useSearchParams } from 'wouter-preact';
 
 import '@etchteam/diamond-ui/composition/FormGroup/FormGroup';
 import '@etchteam/diamond-ui/control/Button/Button';
@@ -9,7 +10,6 @@ import '@/components/composition/Wrap/Wrap';
 import '@/components/control/LocationInput/LocationInput';
 
 import LocationForm from '@/components/control/LocationForm/LocationForm';
-import { useSearchParams } from '@/hooks/useSearchParams';
 import LocatorApi from '@/lib/LocatorApi';
 import { captureException } from '@/lib/sentry';
 import tArray from '@/lib/tArray';

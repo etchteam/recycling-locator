@@ -1,6 +1,6 @@
 import { useEffect } from 'preact/hooks';
 import { Trans, useTranslation } from 'react-i18next';
-import { Link } from 'wouter-preact';
+import { Link, useSearchParams } from 'wouter-preact';
 import '@etchteam/diamond-ui/canvas/Section/Section';
 import '@etchteam/diamond-ui/composition/Grid/Grid';
 import '@etchteam/diamond-ui/composition/Grid/GridItem';
@@ -24,7 +24,6 @@ import { usePostcode } from '@/hooks/PostcodeProvider';
 import useAnalytics from '@/hooks/useAnalytics';
 import useFormValidation from '@/hooks/useFormValidation';
 import { useLocations } from '@/hooks/useLocations';
-import { useSearchParams } from '@/hooks/useSearchParams';
 import formatPostcode from '@/lib/formatPostcode';
 import i18n from '@/lib/i18n';
 

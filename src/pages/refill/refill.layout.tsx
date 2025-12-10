@@ -2,12 +2,11 @@ import { useSignal } from '@preact/signals';
 import { ComponentChildren } from 'preact';
 import { useRef } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
-import { Link, useRoute } from 'wouter-preact';
+import { Link, useRoute, useSearchParams } from 'wouter-preact';
 
 import Menu from '@/components/control/Menu/Menu';
 import { useAppState } from '@/hooks/AppStateProvider';
 import useScrollRestoration from '@/hooks/useScrollRestoration';
-import { useSearchParams } from '@/hooks/useSearchParams';
 
 import '@etchteam/diamond-ui/control/Button/Button';
 import '@etchteam/diamond-ui/canvas/Section/Section';

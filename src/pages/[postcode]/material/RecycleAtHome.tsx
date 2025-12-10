@@ -1,5 +1,5 @@
 import { useTranslation, Trans } from 'react-i18next';
-import { Link } from 'wouter-preact';
+import { Link, useSearchParams } from 'wouter-preact';
 import '@etchteam/diamond-ui/canvas/Card/Card';
 import '@etchteam/diamond-ui/composition/Grid/Grid';
 import '@etchteam/diamond-ui/composition/Grid/GridItem';
@@ -14,7 +14,6 @@ import '@/components/content/Container/Container';
 
 import SchemeContainerSummary from '@/components/content/SchemeContainerSummary/SchemeContainerSummary';
 import { usePostcode } from '@/hooks/PostcodeProvider';
-import { useSearchParams } from '@/hooks/useSearchParams';
 import containerHasMaterial from '@/lib/containerHasMaterial';
 import getPropertyTypeEnum from '@/lib/getPropertyTypeEnum';
 import { LocalAuthority, LocalAuthorityProperty } from '@/types/locatorApi';

@@ -1,6 +1,6 @@
 import { useEffect } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'wouter-preact';
+import { Link, useSearchParams } from 'wouter-preact';
 import '@etchteam/diamond-ui/composition/Enter/Enter';
 
 import '@/components/canvas/Loading/Loading';
@@ -16,7 +16,6 @@ import { useDoorstepCollections } from '@/hooks/useDoorstepCollections';
 import { useLocalAuthority } from '@/hooks/useLocalAuthority';
 import { useLocations } from '@/hooks/useLocations';
 import { useMaterial } from '@/hooks/useMaterial';
-import { useSearchParams } from '@/hooks/useSearchParams';
 import { useTip } from '@/hooks/useTip';
 import getPropertiesByMaterial from '@/lib/getPropertiesByMaterial';
 

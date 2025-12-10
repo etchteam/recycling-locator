@@ -1,7 +1,7 @@
 import { useSignal } from '@preact/signals';
 import { ComponentChildren } from 'preact';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'wouter-preact';
+import { Link, useSearchParams } from 'wouter-preact';
 import '@etchteam/diamond-ui/control/Button/Button';
 
 import '@/components/composition/Layout/Layout';
@@ -12,7 +12,6 @@ import '@/components/control/TagButton/TagButton';
 import Menu from '@/components/control/Menu/Menu';
 import { usePostcode } from '@/hooks/PostcodeProvider';
 import { useLocations } from '@/hooks/useLocations';
-import { useSearchParams } from '@/hooks/useSearchParams';
 import formatPostcode from '@/lib/formatPostcode';
 import i18n from '@/lib/i18n';
 import mapSearchParams from '@/lib/mapSearchParams';

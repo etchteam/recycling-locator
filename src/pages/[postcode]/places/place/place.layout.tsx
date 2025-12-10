@@ -1,7 +1,7 @@
 import { ComponentChildren } from 'preact';
 import { useRef } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
-import { Link, useParams } from 'wouter-preact';
+import { Link, useParams, useSearchParams } from 'wouter-preact';
 import '@etchteam/diamond-ui/canvas/Section/Section';
 import '@etchteam/diamond-ui/composition/Grid/Grid';
 import '@etchteam/diamond-ui/composition/Grid/GridItem';
@@ -19,7 +19,6 @@ import { usePostcode } from '@/hooks/PostcodeProvider';
 import useAnalytics from '@/hooks/useAnalytics';
 import { usePlace } from '@/hooks/usePlace';
 import useScrollRestoration from '@/hooks/useScrollRestoration';
-import { useSearchParams } from '@/hooks/useSearchParams';
 import directions from '@/lib/directions';
 import { Location } from '@/types/locatorApi';
 

@@ -1,8 +1,7 @@
 import { useTranslation } from 'react-i18next';
-import { Link } from 'wouter-preact';
+import { Link, useSearchParams } from 'wouter-preact';
 
 import { useAppState } from '@/hooks/AppStateProvider';
-import { useSearchParams } from '@/hooks/useSearchParams';
 
 import '@etchteam/diamond-ui/canvas/Card/Card';
 import '@etchteam/diamond-ui/composition/Grid/Grid';

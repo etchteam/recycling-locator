@@ -1,7 +1,7 @@
 import { useSignal } from '@preact/signals';
 import { useEffect } from 'preact/compat';
 import { useTranslation } from 'react-i18next';
-import { Link, useLocation } from 'wouter-preact';
+import { Link, useLocation, useSearchParams } from 'wouter-preact';
 import '@etchteam/diamond-ui/canvas/Card/Card';
 import '@etchteam/diamond-ui/control/Button/Button';
 import '@etchteam/diamond-ui/composition/Grid/Grid';
@@ -15,7 +15,6 @@ import PlacesMap from '@/components/control/PlacesMap/PlacesMap';
 import { usePostcode } from '@/hooks/PostcodeProvider';
 import useAnalytics from '@/hooks/useAnalytics';
 import { useLocations } from '@/hooks/useLocations';
-import { useSearchParams } from '@/hooks/useSearchParams';
 import PostCodeResolver from '@/lib/PostcodeResolver';
 import directions from '@/lib/directions';
 import { Location } from '@/types/locatorApi';

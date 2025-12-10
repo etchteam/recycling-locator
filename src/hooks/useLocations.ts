@@ -1,8 +1,8 @@
 import { useEffect } from 'preact/hooks';
+import { useSearchParams } from 'wouter-preact';
 
 import { usePostcode } from '@/hooks/PostcodeProvider';
 import { useData } from '@/hooks/useData';
-import { useSearchParams } from '@/hooks/useSearchParams';
 import LocatorApi from '@/lib/LocatorApi';
 import mapSearchParams from '@/lib/mapSearchParams';
 import { LocationsResponse } from '@/types/locatorApi';

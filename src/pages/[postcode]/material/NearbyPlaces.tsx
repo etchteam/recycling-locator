@@ -1,5 +1,5 @@
 import { useTranslation, Trans } from 'react-i18next';
-import { Link } from 'wouter-preact';
+import { Link, useSearchParams } from 'wouter-preact';
 import '@etchteam/diamond-ui/control/Button/Button';
 import '@etchteam/diamond-ui/composition/Grid/Grid';
 import '@etchteam/diamond-ui/composition/Grid/GridItem';
@@ -10,7 +10,6 @@ import '@/components/composition/IconText/IconText';
 import '@/components/content/Icon/Icon';
 import PlacesMap from '@/components/control/PlacesMap/PlacesMap';
 import { usePostcode } from '@/hooks/PostcodeProvider';
-import { useSearchParams } from '@/hooks/useSearchParams';
 import mapSearchParams from '@/lib/mapSearchParams';
 import { LocationsResponse } from '@/types/locatorApi';
 

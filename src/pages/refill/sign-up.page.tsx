@@ -1,9 +1,8 @@
 import fetchJsonp from 'fetch-jsonp';
 import { useEffect, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
-import { Link } from 'wouter-preact';
+import { Link, useSearchParams } from 'wouter-preact';
 
-import { useSearchParams } from '@/hooks/useSearchParams';
 import i18n from '@/lib/i18n';
 
 export default function SignUpPage() {

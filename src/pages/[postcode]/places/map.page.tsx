@@ -33,8 +33,8 @@ export function PlacesMapPageContent() {
   const [searchParams, setSearchParams] = useSearchParams();
   const defaultActiveLocationId = searchParams.get('activeLocation');
   const { data: locations, loading } = useLocations();
-  const defaultLatitude = locations.meta.latitude;
-  const defaultLongitude = locations.meta.longitude;
+  const defaultLatitude = locations?.meta?.latitude;
+  const defaultLongitude = locations?.meta?.longitude;
   const activeLocation = useSignal<Location | null>(null);
   const showSearchThisArea = useSignal(false);
   const page = useSignal(1);

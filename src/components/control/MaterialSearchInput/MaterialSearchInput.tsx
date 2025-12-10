@@ -9,10 +9,7 @@ import { Signal, signal } from '@preact/signals';
 import debounce from 'lodash/debounce';
 import escapeRegExp from 'lodash/escapeRegExp';
 import { Component, createRef } from 'preact';
-import '@etchteam/diamond-ui/control/Input/Input';
-import '@etchteam/diamond-ui/control/Button/Button';
 
-import '@/components/content/Icon/Icon';
 import ReportMissingMaterial from '../ReportMissingMaterial/ReportMissingMaterial';
 import LocatorApi from '@/lib/LocatorApi';
 import i18n from '@/lib/i18n';

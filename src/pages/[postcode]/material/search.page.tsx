@@ -1,12 +1,7 @@
 import { useEffect } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useSearchParams } from 'wouter-preact';
-import '@etchteam/diamond-ui/canvas/Section/Section';
-import '@etchteam/diamond-ui/composition/FormGroup/FormGroup';
-import '@etchteam/diamond-ui/composition/Enter/Enter';
 
-import '@/components/composition/Wrap/Wrap';
-import '@/components/composition/BorderedList/BorderedList';
 import PopularMaterials from '@/components/content/PopularMaterials/PopularMaterials';
 import TipContent from '@/components/content/TipContent/TipContent';
 import MaterialSearchInput from '@/components/control/MaterialSearchInput/MaterialSearchInput';

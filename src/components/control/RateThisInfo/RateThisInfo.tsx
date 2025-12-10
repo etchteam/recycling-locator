@@ -1,11 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { useSignal } from '@preact/signals';
 import { useTranslation } from 'react-i18next';
-import '@etchteam/diamond-ui/control/Input/Input';
-import '@etchteam/diamond-ui/control/Button/Button';
-import '@etchteam/diamond-ui/composition/Collapse/Collapse';
-
-import '@/components/content/Icon/Icon';
 
 import useAnalytics from '@/hooks/useAnalytics';
 import { CustomElement } from '@/types/customElement';

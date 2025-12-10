@@ -2,14 +2,7 @@ import { useSignal } from '@preact/signals';
 import { useEffect } from 'preact/compat';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation, useSearchParams } from 'wouter-preact';
-import '@etchteam/diamond-ui/canvas/Card/Card';
-import '@etchteam/diamond-ui/control/Button/Button';
-import '@etchteam/diamond-ui/composition/Grid/Grid';
-import '@etchteam/diamond-ui/composition/Grid/GridItem';
-import '@etchteam/diamond-ui/composition/Enter/Enter';
 
-import '@/components/content/Icon/Icon';
-import '@/components/control/Fab/Fab';
 import Place from '@/components/content/Place/Place';
 import PlacesMap from '@/components/control/PlacesMap/PlacesMap';
 import { usePostcode } from '@/hooks/PostcodeProvider';

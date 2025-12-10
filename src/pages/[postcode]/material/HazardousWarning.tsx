@@ -1,12 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import '@etchteam/diamond-ui/control/Button/Button';
-import '@etchteam/diamond-ui/composition/Grid/Grid';
-import '@etchteam/diamond-ui/composition/Grid/GridItem';
-import '@etchteam/diamond-ui/content/Img/Img';
 
-import '@/components/canvas/IconCircle/IconCircle';
-import '@/components/composition/IconText/IconText';
-import '@/components/content/Icon/Icon';
 import { LocalAuthority } from '@/types/locatorApi';
 
 export default function HazardousWarning({

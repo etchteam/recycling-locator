@@ -1,8 +1,5 @@
 import { Meta, StoryObj } from '@storybook/preact';
-import '@etchteam/diamond-ui/control/Button/Button';
 
-import '@/components/content/HeaderTitle/HeaderTitle';
-import '@/components/content/Icon/Icon';
 import './PlacesHeader';
 
 const meta: Meta = {

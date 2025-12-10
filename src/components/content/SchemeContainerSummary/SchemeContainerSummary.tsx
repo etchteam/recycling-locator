@@ -1,7 +1,6 @@
 import uniqueId from 'lodash/uniqueId';
 import { useTranslation } from 'react-i18next';
 
-import '@/components/content/Container/Container';
 import ContainerSvg from '@/components/content/Container/ContainerSVG';
 import containerName from '@/lib/containerName';
 import { getTrolibocsColours } from '@/lib/getTrolibocsColours';

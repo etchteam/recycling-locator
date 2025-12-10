@@ -1,16 +1,5 @@
 import { useTranslation, Trans } from 'react-i18next';
 import { Link, useSearchParams } from 'wouter-preact';
-import '@etchteam/diamond-ui/canvas/Card/Card';
-import '@etchteam/diamond-ui/composition/Grid/Grid';
-import '@etchteam/diamond-ui/composition/Grid/GridItem';
-import '@etchteam/diamond-ui/control/Button/Button';
-
-import '@/components/canvas/IconCircle/IconCircle';
-import '@/components/composition/IconText/IconText';
-import '@/components/composition/BorderedList/BorderedList';
-import '@/components/control/IconLink/IconLink';
-import '@/components/content/Icon/Icon';
-import '@/components/content/Container/Container';
 
 import SchemeContainerSummary from '@/components/content/SchemeContainerSummary/SchemeContainerSummary';
 import { usePostcode } from '@/hooks/PostcodeProvider';

@@ -3,18 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'wouter-preact';
 
 import { usePostcode } from '@/hooks/PostcodeProvider';
-import '@etchteam/diamond-ui/control/Button/Button';
-import '@etchteam/diamond-ui/canvas/Section/Section';
-import '@etchteam/diamond-ui/composition/Grid/Grid';
-import '@etchteam/diamond-ui/composition/Grid/GridItem';
-
-import '@/components/composition/Layout/Layout';
-import '@/components/composition/Header/Header';
-import '@/components/canvas/ContextHeader/ContextHeader';
-import '@/components/canvas/Tip/Tip';
-import '@/components/composition/Wrap/Wrap';
-import '@/components/content/HeaderTitle/HeaderTitle';
-import '@/components/content/Icon/Icon';
 
 export default function MaterialLayout({
   children,

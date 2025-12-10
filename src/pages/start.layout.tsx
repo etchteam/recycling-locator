@@ -2,16 +2,6 @@ import { ComponentChildren } from 'preact';
 import { useState } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'wouter-preact';
-import '@etchteam/diamond-ui/control/Button/Button';
-import '@etchteam/diamond-ui/canvas/Section/Section';
-import '@etchteam/diamond-ui/composition/Enter/Enter';
-
-import '@/components/composition/Layout/Layout';
-import '@/components/composition/Header/Header';
-import '@/components/content/Logo/Logo';
-import '@/components/content/Icon/Icon';
-import '@/components/canvas/Tip/Tip';
-import '@/components/composition/Wrap/Wrap';
 
 import About from '@/components/content/About/About';
 import InfoHeader from '@/components/content/Header/InfoHeader';

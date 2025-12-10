@@ -3,18 +3,7 @@ import { useEffect } from 'preact/compat';
 import { useRef } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
 import { Link, useSearchParams } from 'wouter-preact';
-import '@etchteam/diamond-ui/canvas/Card/Card';
-import '@etchteam/diamond-ui/composition/Wrap/Wrap';
-import '@etchteam/diamond-ui/composition/Grid/Grid';
-import '@etchteam/diamond-ui/composition/Grid/GridItem';
-import '@etchteam/diamond-ui/composition/Enter/Enter';
-import '@etchteam/diamond-ui/control/Button/Button';
 
-import '@/components/canvas/IconCircle/IconCircle';
-import '@/components/canvas/LoadingCard/LoadingCard';
-import '@/components/composition/IconText/IconText';
-import '@/components/content/Icon/Icon';
-import '@/components/control/Fab/Fab';
 import Place from '@/components/content/Place/Place';
 import TipContent from '@/components/content/TipContent/TipContent';
 import { useAppState } from '@/hooks/AppStateProvider';

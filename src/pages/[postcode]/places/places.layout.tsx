@@ -2,13 +2,7 @@ import { useSignal } from '@preact/signals';
 import { ComponentChildren } from 'preact';
 import { useTranslation } from 'react-i18next';
 import { Link, useSearchParams } from 'wouter-preact';
-import '@etchteam/diamond-ui/control/Button/Button';
 
-import '@/components/composition/Layout/Layout';
-import '@/components/composition/PlacesHeader/PlacesHeader';
-import '@/components/content/HeaderTitle/HeaderTitle';
-import '@/components/content/Icon/Icon';
-import '@/components/control/TagButton/TagButton';
 import Menu from '@/components/control/Menu/Menu';
 import { usePostcode } from '@/hooks/PostcodeProvider';
 import { useLocations } from '@/hooks/useLocations';

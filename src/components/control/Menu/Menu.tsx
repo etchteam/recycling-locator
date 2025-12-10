@@ -1,13 +1,8 @@
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'wouter-preact';
-import '@etchteam/diamond-ui/composition/Enter/Enter';
-import '@etchteam/diamond-ui/canvas/Section/Section';
 
-import '@/components/composition/Wrap/Wrap';
-import '@/components/composition/BorderedList/BorderedList';
 import Footer from '@/components/content/Footer/Footer';
 import { IconAttributes } from '@/components/content/Icon/Icon';
-import '@/components/control/IconLink/IconLink';
 import formatPostcode from '@/lib/formatPostcode';
 import { CustomElement } from '@/types/customElement';
 

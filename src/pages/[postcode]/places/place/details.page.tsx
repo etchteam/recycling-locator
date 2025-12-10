@@ -3,7 +3,6 @@ import nl2br from 'nl2br';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'wouter-preact';
 
-import '@/components/composition/BorderedList/BorderedList';
 import RateThisInfo from '@/components/control/RateThisInfo/RateThisInfo';
 import { usePlace } from '@/hooks/usePlace';
 import cleanupAddress from '@/lib/cleanupAddress';

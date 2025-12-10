@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next';
 
-import '@/components/content/PlaceSummary/PlaceSummary';
 import cleanupAddress from '@/lib/cleanupAddress';
 import { Location } from '@/types/locatorApi';
 

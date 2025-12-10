@@ -1,11 +1,7 @@
 import { useEffect } from 'preact/compat';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useSearchParams } from 'wouter-preact';
-import '@etchteam/diamond-ui/composition/FormGroup/FormGroup';
-import '@etchteam/diamond-ui/composition/Enter/Enter';
-import '@etchteam/diamond-ui/canvas/Section/Section';
 
-import '@/components/composition/Wrap/Wrap';
 import PopularMaterials from '@/components/content/PopularMaterials/PopularMaterials';
 import MaterialSearchInput from '@/components/control/MaterialSearchInput/MaterialSearchInput';
 import { usePostcode } from '@/hooks/PostcodeProvider';

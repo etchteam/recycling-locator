@@ -1,10 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'wouter-preact';
-import '@etchteam/diamond-ui/composition/Enter/Enter';
-import '@etchteam/diamond-ui/canvas/Card/Card';
 
-import '@/components/canvas/LoadingCard/LoadingCard';
-import '@/components/content/Container/Container';
 import SchemeContainerSummary from '@/components/content/SchemeContainerSummary/SchemeContainerSummary';
 import RateThisInfo from '@/components/control/RateThisInfo/RateThisInfo';
 import { usePostcode } from '@/hooks/PostcodeProvider';

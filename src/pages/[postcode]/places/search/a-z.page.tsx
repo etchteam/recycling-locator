@@ -1,16 +1,7 @@
 import groupBy from 'lodash/groupBy';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'wouter-preact';
-import '@etchteam/diamond-ui/canvas/Section/Section';
-import '@etchteam/diamond-ui/composition/Grid/Grid';
-import '@etchteam/diamond-ui/composition/Grid/GridItem';
-import '@etchteam/diamond-ui/composition/Enter/Enter';
-import '@etchteam/diamond-ui/control/Button/Button';
 
-import '@/components/composition/Wrap/Wrap';
-import '@/components/control/AlphabetNav/AlphabetNav';
-import '@/components/composition/BorderedList/BorderedList';
-import '@/components/content/Icon/Icon';
 import { usePostcode } from '@/hooks/PostcodeProvider';
 import { useMaterials } from '@/hooks/useMaterials';
 import tArray from '@/lib/tArray';

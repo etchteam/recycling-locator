@@ -2,14 +2,12 @@ import compact from 'lodash/compact';
 import { Suspense } from 'preact/compat';
 import register from 'preact-custom-element';
 
-import '@/components/canvas/Hero/Hero';
-import '@/components/canvas/Loading/Loading';
-import '@/components/content/Icon/Icon';
 import { AppStateProvider } from '@/hooks/AppStateProvider';
 import { RouterProvider } from '@/hooks/RouterProvider';
 import { i18nInit } from '@/lib/i18n';
-import '@/lib/sentry';
 import StartRoutes from '@/pages/start.routes';
+import '@/lib/registerComponents';
+import '@/lib/sentry';
 
 import config from './config';
 import { CustomElement } from './types/customElement';

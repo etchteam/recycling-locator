@@ -1,9 +1,6 @@
 import { useSignal } from '@preact/signals';
 import { Link } from 'wouter-preact';
 
-import '@/components/content/Icon/Icon';
-import '@/components/composition/BorderedList/BorderedList';
-
 import mapSearchParams from '@/lib/mapSearchParams';
 import { CustomElement } from '@/types/customElement';
 import { MaterialCategory } from '@/types/locatorApi';

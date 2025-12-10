@@ -3,11 +3,6 @@ import { Link, useSearchParams } from 'wouter-preact';
 
 import { useAppState } from '@/hooks/AppStateProvider';
 
-import '@etchteam/diamond-ui/canvas/Card/Card';
-import '@etchteam/diamond-ui/composition/Grid/Grid';
-import '@etchteam/diamond-ui/composition/Grid/GridItem';
-import '@etchteam/diamond-ui/canvas/Section/Section';
-
 const pages = ['guide', 'options', 'benefits'];
 const reviewers = [
   'Fiona C',

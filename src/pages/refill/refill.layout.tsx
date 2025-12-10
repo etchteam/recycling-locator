@@ -8,17 +8,6 @@ import Menu from '@/components/control/Menu/Menu';
 import { useAppState } from '@/hooks/AppStateProvider';
 import useScrollRestoration from '@/hooks/useScrollRestoration';
 
-import '@etchteam/diamond-ui/control/Button/Button';
-import '@etchteam/diamond-ui/canvas/Section/Section';
-import '@etchteam/diamond-ui/composition/Enter/Enter';
-
-import '@/components/composition/Layout/Layout';
-import '@/components/composition/Header/Header';
-import '@/components/content/Logo/Logo';
-import '@/components/content/Icon/Icon';
-import '@/components/canvas/Tip/Tip';
-import '@/components/composition/Wrap/Wrap';
-
 const pages = ['intro', 'guide', 'options', 'benefits', 'sign-up'];
 
 export function RefillAside({ postcode }: { readonly postcode: string }) {

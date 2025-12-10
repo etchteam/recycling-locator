@@ -1,14 +1,7 @@
 import groupBy from 'lodash/groupBy';
 import nl2br from 'nl2br';
 import { Trans, useTranslation } from 'react-i18next';
-import '@etchteam/diamond-ui/canvas/Card/Card';
-import '@etchteam/diamond-ui/composition/Enter/Enter';
 
-import '@/components/canvas/IconCircle/IconCircle';
-import '@/components/composition/IconText/IconText';
-import '@/components/content/Container/Container';
-import '@/components/content/Icon/Icon';
-import '@/components/control/Details/Details';
 import ContainerSVG from '@/components/content/Container/ContainerSVG';
 import MaterialSearchBanner from '@/components/content/MaterialSearchBanner/MaterialSearchBanner';
 import containerName from '@/lib/containerName';

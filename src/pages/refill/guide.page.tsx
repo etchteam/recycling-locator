@@ -3,8 +3,6 @@ import { Link, useSearchParams } from 'wouter-preact';
 
 import { useAppState } from '@/hooks/AppStateProvider';
 
-import '@etchteam/diamond-ui/canvas/Section/Section';
-
 const questions = [
   'whatCanRefill',
   'doesRefillCostMore',

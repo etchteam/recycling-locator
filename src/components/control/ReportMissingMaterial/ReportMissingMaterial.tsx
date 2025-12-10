@@ -1,14 +1,6 @@
 import { useSignal } from '@preact/signals';
 import { useCallback, useEffect } from 'preact/hooks';
 import { Trans, useTranslation } from 'react-i18next';
-import '@etchteam/diamond-ui/composition/Collapse/Collapse';
-import '@etchteam/diamond-ui/composition/FormGroup/FormGroup';
-import '@etchteam/diamond-ui/control/Button/Button';
-import '@etchteam/diamond-ui/control/Input/Input';
-
-import '@/components/canvas/IconCircle/IconCircle';
-import '@/components/composition/IconText/IconText';
-import '@/components/content/Icon/Icon';
 
 import useAnalytics from '@/hooks/useAnalytics';
 import LocatorApi from '@/lib/LocatorApi';

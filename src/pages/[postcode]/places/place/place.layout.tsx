@@ -2,17 +2,7 @@ import { ComponentChildren } from 'preact';
 import { useRef } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
 import { Link, useParams, useSearchParams } from 'wouter-preact';
-import '@etchteam/diamond-ui/canvas/Section/Section';
-import '@etchteam/diamond-ui/composition/Grid/Grid';
-import '@etchteam/diamond-ui/composition/Grid/GridItem';
-import '@etchteam/diamond-ui/control/Button/Button';
 
-import '@/components/composition/Layout/Layout';
-import '@/components/composition/Header/Header';
-import '@/components/composition/Wrap/Wrap';
-import '@/components/content/HeaderTitle/HeaderTitle';
-import '@/components/content/Icon/Icon';
-import '@/components/control/NavBar/NavBar';
 import MapSvg from '@/components/canvas/MapSvg/MapSvg';
 import PlacesMap from '@/components/control/PlacesMap/PlacesMap';
 import { usePostcode } from '@/hooks/PostcodeProvider';

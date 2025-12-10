@@ -3,18 +3,7 @@ import { ComponentChildren } from 'preact';
 import { useRef } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'wouter-preact';
-import '@etchteam/diamond-ui/control/Button/Button';
-import '@etchteam/diamond-ui/canvas/Section/Section';
-import '@etchteam/diamond-ui/composition/Grid/Grid';
-import '@etchteam/diamond-ui/composition/Grid/GridItem';
 
-import '@/components/composition/Layout/Layout';
-import '@/components/composition/Header/Header';
-import '@/components/canvas/Tip/Tip';
-import '@/components/composition/Wrap/Wrap';
-import '@/components/content/HeaderTitle/HeaderTitle';
-import '@/components/content/Icon/Icon';
-import '@/components/control/NavBar/NavBar';
 import TipContent from '@/components/content/TipContent/TipContent';
 import Menu from '@/components/control/Menu/Menu';
 import { useAppState } from '@/hooks/AppStateProvider';

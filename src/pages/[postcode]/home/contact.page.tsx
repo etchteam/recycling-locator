@@ -1,7 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import '@etchteam/diamond-ui/composition/Enter/Enter';
 
-import '@/components/composition/BorderedList/BorderedList';
 import RateThisInfo from '@/components/control/RateThisInfo/RateThisInfo';
 import { useLocalAuthority } from '@/hooks/useLocalAuthority';
 import { LocalAuthority } from '@/types/locatorApi';

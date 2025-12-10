@@ -2,13 +2,7 @@ import { ComponentChildren } from 'preact';
 import { useRef } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
 import { Link, useSearchParams } from 'wouter-preact';
-import '@etchteam/diamond-ui/control/Button/Button';
 
-import '@/components/composition/Layout/Layout';
-import '@/components/composition/Header/Header';
-import '@/components/content/HeaderTitle/HeaderTitle';
-import '@/components/content/Icon/Icon';
-import '@/components/control/NavBar/NavBar';
 import { usePostcode } from '@/hooks/PostcodeProvider';
 import useScrollRestoration from '@/hooks/useScrollRestoration';
 

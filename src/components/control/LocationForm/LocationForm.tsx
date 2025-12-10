@@ -3,13 +3,7 @@ import { ComponentChildren } from 'preact';
 import { useEffect } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useSearchParams } from 'wouter-preact';
-import '@etchteam/diamond-ui/composition/FormGroup/FormGroup';
-import '@etchteam/diamond-ui/composition/Grid/Grid';
-import '@etchteam/diamond-ui/composition/Grid/GridItem';
-import '@etchteam/diamond-ui/control/Button/Button';
-import '@etchteam/diamond-ui/control/RadioCheckbox/RadioCheckbox';
 
-import '@/components/canvas/Highlight/Highlight';
 import LocationInput from '@/components/control/LocationInput/LocationInput';
 import { useAppState } from '@/hooks/AppStateProvider';
 import useFormValidation from '@/hooks/useFormValidation';

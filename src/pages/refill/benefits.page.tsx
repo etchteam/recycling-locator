@@ -3,8 +3,6 @@ import { Link, useSearchParams } from 'wouter-preact';
 
 import { useAppState } from '@/hooks/AppStateProvider';
 
-import '@etchteam/diamond-ui/canvas/Section/Section';
-
 export default function BenfitsPage() {
   const { publicPath } = useAppState();
   const { t } = useTranslation();

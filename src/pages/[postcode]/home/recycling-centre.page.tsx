@@ -1,12 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'wouter-preact';
-import '@etchteam/diamond-ui/canvas/Card/Card';
-import '@etchteam/diamond-ui/composition/Grid/Grid';
-import '@etchteam/diamond-ui/composition/Grid/GridItem';
 
-import '@/components/canvas/IconCircle/IconCircle';
-import '@/components/composition/IconText/IconText';
-import '@/components/content/Icon/Icon';
 import Place from '@/components/content/Place/Place';
 import { usePostcode } from '@/hooks/PostcodeProvider';
 import { useLocations } from '@/hooks/useLocations';

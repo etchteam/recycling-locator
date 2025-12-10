@@ -1,13 +1,7 @@
 import { useEffect } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
 import { Link, useSearchParams } from 'wouter-preact';
-import '@etchteam/diamond-ui/composition/Enter/Enter';
 
-import '@/components/canvas/Loading/Loading';
-import '@/components/content/Icon/Icon';
-import '@/components/canvas/LoadingCard/LoadingCard';
-import '@/components/canvas/Hero/Hero';
-import '@/components/composition/Wrap/Wrap';
 import TipContent from '@/components/content/TipContent/TipContent';
 import RateThisInfo from '@/components/control/RateThisInfo/RateThisInfo';
 import { usePostcode } from '@/hooks/PostcodeProvider';

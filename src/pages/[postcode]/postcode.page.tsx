@@ -1,23 +1,7 @@
 import { useEffect } from 'preact/hooks';
 import { Trans, useTranslation } from 'react-i18next';
 import { Link, useSearchParams } from 'wouter-preact';
-import '@etchteam/diamond-ui/canvas/Section/Section';
-import '@etchteam/diamond-ui/composition/Grid/Grid';
-import '@etchteam/diamond-ui/composition/Grid/GridItem';
-import '@etchteam/diamond-ui/composition/Enter/Enter';
-import '@etchteam/diamond-ui/control/Button/Button';
-import '@etchteam/diamond-ui/control/Link/Link';
 
-import '@/components/canvas/ContextHeader/ContextHeader';
-import '@/components/canvas/IconCircle/IconCircle';
-import '@/components/canvas/Loading/Loading';
-import '@/components/canvas/Hero/Hero';
-import '@/components/composition/Wrap/Wrap';
-import '@/components/composition/BorderedList/BorderedList';
-import '@/components/content/Icon/Icon';
-import '@/components/content/RescueMeRecyclePromo/RescueMeRecyclePromo';
-import '@/components/control/IconLink/IconLink';
-import '@/components/canvas/LoadingCard/LoadingCard';
 import MaterialSearchInput from '@/components/control/MaterialSearchInput/MaterialSearchInput';
 import { useAppState } from '@/hooks/AppStateProvider';
 import { usePostcode } from '@/hooks/PostcodeProvider';

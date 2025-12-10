@@ -2,18 +2,7 @@ import { useSignal } from '@preact/signals';
 import { useEffect, useRef } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
 import { Link, useSearchParams } from 'wouter-preact';
-import '@etchteam/diamond-ui/canvas/Section/Section';
-import '@etchteam/diamond-ui/composition/Grid/Grid';
-import '@etchteam/diamond-ui/composition/Grid/GridItem';
-import '@etchteam/diamond-ui/control/Button/Button';
 
-import '@/components/canvas/Tip/Tip';
-import '@/components/canvas/ContextHeader/ContextHeader';
-import '@/components/composition/Layout/Layout';
-import '@/components/composition/Header/Header';
-import '@/components/composition/Wrap/Wrap';
-import '@/components/content/HeaderTitle/HeaderTitle';
-import '@/components/content/Icon/Icon';
 import TipContent from '@/components/content/TipContent/TipContent';
 import MaterialSearchInput from '@/components/control/MaterialSearchInput/MaterialSearchInput';
 import RateThisInfo from '@/components/control/RateThisInfo/RateThisInfo';

@@ -1,7 +1,3 @@
-import '@etchteam/diamond-ui/control/Button/Button';
-import '@etchteam/diamond-ui/composition/Enter/Enter';
-
-import '@/components/content/Icon/Icon';
 import { useAppState } from '@/hooks/AppStateProvider';
 import { RecyclingMeta } from '@/types/locatorApi';
 

@@ -4,13 +4,9 @@ import uniqBy from 'lodash/uniqBy';
 import upperFirst from 'lodash/upperFirst';
 import { Trans, useTranslation } from 'react-i18next';
 import { useParams } from 'wouter-preact';
-import '@etchteam/diamond-ui/canvas/Card/Card';
-import '@etchteam/diamond-ui/composition/Enter/Enter';
 
-import '@/components/content/Icon/Icon';
 import MaterialSearchBanner from '@/components/content/MaterialSearchBanner/MaterialSearchBanner';
 import MaterialSearchInput from '@/components/control/MaterialSearchInput/MaterialSearchInput';
-import '@/components/control/Details/Details';
 import RateThisInfo from '@/components/control/RateThisInfo/RateThisInfo';
 import useAnalytics from '@/hooks/useAnalytics';
 import useFormValidation from '@/hooks/useFormValidation';

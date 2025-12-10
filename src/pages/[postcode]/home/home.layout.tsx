@@ -6,6 +6,7 @@ import { Link } from 'wouter-preact';
 
 import TipContent from '@/components/content/TipContent/TipContent';
 import Menu from '@/components/control/Menu/Menu';
+import NavLink from '@/components/control/NavBar/NavLink';
 import { useAppState } from '@/hooks/AppStateProvider';
 import { usePostcode } from '@/hooks/PostcodeProvider';
 import { useLocalAuthority } from '@/hooks/useLocalAuthority';
@@ -104,19 +105,19 @@ export default function HomeRecyclingLayout({
                 <nav>
                   <ul>
                     <li>
-                      <Link href={`/${postcode}/home`}>
+                      <NavLink href={`/${postcode}/home`}>
                         {t('homeRecycling.nav.collections')}
-                      </Link>
+                      </NavLink>
                     </li>
                     <li>
-                      <Link href={`/${postcode}/home/recycling-centre`}>
+                      <NavLink href={`/${postcode}/home/recycling-centre`}>
                         {t('homeRecycling.nav.hwrc')}
-                      </Link>
+                      </NavLink>
                     </li>
                     <li>
-                      <Link href={`/${postcode}/home/contact`}>
+                      <NavLink href={`/${postcode}/home/contact`}>
                         {t('homeRecycling.nav.contact')}
-                      </Link>
+                      </NavLink>
                     </li>
                   </ul>
                 </nav>

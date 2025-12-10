@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { Link, useRoute, useSearchParams } from 'wouter-preact';
 
 import Menu from '@/components/control/Menu/Menu';
+import NavLink from '@/components/control/NavBar/NavLink';
 import { useAppState } from '@/hooks/AppStateProvider';
 import useScrollRestoration from '@/hooks/useScrollRestoration';
 
@@ -132,14 +133,14 @@ export default function StartLayout({
                 <ul>
                   {pages.map((page) => (
                     <li key={page}>
-                      <Link
+                      <NavLink
                         href={
                           (page === 'intro' ? '/refill' : `/refill/${page}`) +
                           postcodeQuery
                         }
                       >
                         {t(`refill.nav.${page}.title`)}
-                      </Link>
+                      </NavLink>
                     </li>
                   ))}
                 </ul>

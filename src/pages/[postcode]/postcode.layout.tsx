@@ -124,7 +124,15 @@ export default function PostcodeLayout({
         )}
       </div>
       <div slot="layout-main" id="locator-layout-main" ref={layoutRef}>
-        {infoOpen ? <About /> : children}
+        {infoOpen ? (
+          <locator-wrap>
+            <diamond-section padding="lg">
+              <About />
+            </diamond-section>
+          </locator-wrap>
+        ) : (
+          children
+        )}
       </div>
       <div slot="layout-aside" className="display-contents">
         <PostcodeLayoutAside />

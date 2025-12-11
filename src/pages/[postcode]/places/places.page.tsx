@@ -192,8 +192,7 @@ function Places() {
                 ref={loadMoreButton}
                 onClick={() => {
                   const newParams = new URLSearchParams(searchParams);
-                  const newLimit = Math.min(limit + 30, maxLimit);
-                  newParams.set('limit', String(newLimit));
+                  newParams.set('page', String(Number(currentPage) + 1));
                   setSearchParams(newParams);
                 }}
               >

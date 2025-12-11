@@ -10,6 +10,7 @@ import useAnalytics from '@/hooks/useAnalytics';
 import { useLocations } from '@/hooks/useLocations';
 import PostCodeResolver from '@/lib/PostcodeResolver';
 import directions from '@/lib/directions';
+import mapSearchParams from '@/lib/mapSearchParams';
 import { Location } from '@/types/locatorApi';
 
 function Loading() {
@@ -37,10 +38,19 @@ export function PlacesMapPageContent() {
   const defaultLongitude = locations?.meta?.longitude;
   const activeLocation = useSignal<Location | null>(null);
   const showSearchThisArea = useSignal(false);
-  const page = useSignal(1);
-  const radius = useSignal(25);
-  const lat = useSignal(defaultLatitude);
-  const lng = useSignal(defaultLongitude);
+  const currentLat = searchParams.get('lat')
+    ? parseFloat(searchParams.get('lat')!)
+    : defaultLatitude;
+  const currentLng = searchParams.get('lng')
+    ? parseFloat(searchParams.get('lng')!)
+    : defaultLongitude;
+  // Track pending changes for "search this area" button
+  const pendingChanges = useSignal<{
+    page?: number;
+    radius?: number;
+    lat?: number;
+    lng?: number;
+  }>({});
 
   useEffect(() => {
     if (locations && defaultActiveLocationId) {
@@ -52,7 +62,7 @@ export function PlacesMapPageContent() {
         activeLocation.value = location;
       }
     }
-  }, [defaultActiveLocationId]);
+  }, [locations, defaultActiveLocationId]);
 
   useEffect(() => {
     showSearchThisArea.value = false;
@@ -87,20 +97,28 @@ export function PlacesMapPageContent() {
     };
 
     const { zoomRadius, zoomPage } = zoomLevelMilesMap[Math.floor(zoom)];
+    const currentRadius = parseInt(searchParams.get('radius') || '25');
+    const currentPage = parseInt(searchParams.get('page') || '1');
 
-    if (radius.value !== zoomRadius || page.value !== zoomPage) {
-      radius.value = zoomRadius;
-      page.value = zoomPage;
+    if (currentRadius !== zoomRadius || currentPage !== zoomPage) {
+      pendingChanges.value = {
+        ...pendingChanges.value,
+        radius: zoomRadius,
+        page: zoomPage,
+      };
       showSearchThisArea.value = true;
     }
   };
 
   const handleDrag = (geoPoint: H.geo.Point) => {
-    const distance = geoPoint.distance({ lat: lat.value, lng: lng.value });
+    const distance = geoPoint.distance({ lat: currentLat, lng: currentLng });
 
     if (distance > 1500) {
-      lat.value = geoPoint.lat;
-      lng.value = geoPoint.lng;
+      pendingChanges.value = {
+        ...pendingChanges.value,
+        lat: geoPoint.lat,
+        lng: geoPoint.lng,
+      };
       showSearchThisArea.value = true;
     }
   };
@@ -108,11 +126,17 @@ export function PlacesMapPageContent() {
   const handleSearchThisArea = (event: Event) => {
     event.preventDefault();
     const newParams = new URLSearchParams(searchParams);
-    newParams.set('page', String(page.value));
-    newParams.set('radius', String(radius.value));
-    newParams.set('lat', String(lat.value));
-    newParams.set('lng', String(lng.value));
+    const updatedParams = mapSearchParams(
+      ['page', 'radius', 'lat', 'lng'],
+      pendingChanges.value,
+    );
+
+    updatedParams.forEach((value, key) => {
+      newParams.set(key, value);
+    });
+
     setSearchParams(newParams);
+    pendingChanges.value = {};
     showSearchThisArea.value = false;
   };
 

@@ -11,7 +11,7 @@ export default function HomeRecyclingStartPage() {
   return (
     <>
       <h2>{t('start.homeRecycling.title')}</h2>
-      <LocationForm action="/home-recycling" />
+      <LocationForm action="/home" />
     </>
   );
 }

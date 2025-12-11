@@ -79,6 +79,11 @@ export default function StartRoutes() {
             <MaterialStartPage />
           </StartLayout>
         </Route>
+        <Route path="/not-found">
+          <StartLayout>
+            <NotFoundPage />
+          </StartLayout>
+        </Route>
         <Route path="/refill/*?" component={RefillRoutes} />
         <Route path="/:postcode/*?" component={PostcodeRoutes} />
         <Route>

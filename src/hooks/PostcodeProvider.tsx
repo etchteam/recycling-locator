@@ -1,6 +1,6 @@
 import { createContext, ComponentChildren } from 'preact';
 import { useState, useEffect, useContext } from 'preact/hooks';
-import { useParams } from 'wouter-preact';
+import { useParams, useLocation } from 'wouter-preact';
 
 import PostCodeResolver from '@/lib/PostcodeResolver';
 import i18n from '@/lib/i18n';
@@ -31,6 +31,7 @@ const PostcodeContext = createContext<PostcodeState | null>(null);
 export function PostcodeProvider({ children }: PostcodeProviderProps) {
   const params = useParams<{ postcode: string }>();
   const postcode = params.postcode;
+  const setLocation = useLocation()[1];
   const [state, setState] = useState<PostcodeState>({
     loading: true,
     data: null,
@@ -71,6 +72,20 @@ export function PostcodeProvider({ children }: PostcodeProviderProps) {
           postcode,
         });
       } catch (error) {
+        const errorMessage = error instanceof Error ? error.message : '';
+
+        // Navigate to not-found page for specific "not found" errors
+        if (errorMessage === PostCodeResolver.ERROR_NOT_IN_UK) {
+          setLocation('/not-found?reason=notInTheUK');
+          return;
+        }
+
+        if (errorMessage === PostCodeResolver.ERROR_SEARCH_FAILED) {
+          setLocation('/not-found');
+          return;
+        }
+
+        // For other errors, set error state (will be thrown below)
         setState({
           loading: false,
           data: null,
@@ -84,7 +99,7 @@ export function PostcodeProvider({ children }: PostcodeProviderProps) {
     }
 
     validateAndFetch();
-  }, [postcode]);
+  }, [postcode, setLocation]);
 
   if (state.error) {
     throw state.error;

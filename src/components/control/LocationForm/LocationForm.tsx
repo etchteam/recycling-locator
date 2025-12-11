@@ -9,6 +9,7 @@ import { useAppState } from '@/hooks/AppStateProvider';
 import useFormValidation from '@/hooks/useFormValidation';
 import PostCodeResolver from '@/lib/PostcodeResolver';
 import i18n from '@/lib/i18n';
+import mapSearchParams from '@/lib/mapSearchParams';
 import { captureException } from '@/lib/sentry';
 
 export default function LocationForm({
@@ -41,15 +42,20 @@ export default function LocationForm({
     const locationValue = formData.get('location') as string;
     const lat = Number(formData.get('lat'));
     const lng = Number(formData.get('lng'));
-
-    // Resolve postcode from location string or lat/lng
     const postcode =
       lat && lng
         ? await PostCodeResolver.fromLatLng(lat, lng)
         : await PostCodeResolver.fromString(locationValue);
-
     const openInNewTab = formData.get('new-tab') === 'yes';
-    const route = `/${postcode}${path}`;
+    const queryParams = mapSearchParams(
+      ['materials', 'category', 'search'],
+      formData,
+    );
+    let route = `/${postcode}${path}`;
+
+    if (queryParams.toString()) {
+      route += `?${queryParams.toString()}`;
+    }
 
     if (openInNewTab) {
       const locale = formData.get('locale') as string;
@@ -90,6 +96,23 @@ export default function LocationForm({
         await resolveAndNavigate(formData, action === '/' ? '' : action);
       } catch (error) {
         form.submitting.value = false;
+
+        const errorMessage = error instanceof Error ? error.message : '';
+
+        // Navigate to not-found page for specific "not found" errors
+        if (errorMessage === PostCodeResolver.ERROR_NOT_IN_UK) {
+          setLocation('/not-found?reason=notInTheUK');
+          return;
+        }
+
+        if (
+          errorMessage === PostCodeResolver.ERROR_SEARCH_FAILED ||
+          errorMessage === PostCodeResolver.ERROR_POSTCODE_NOT_FOUND
+        ) {
+          setLocation('/not-found');
+          return;
+        }
+
         captureException(error, {
           component: 'LocationForm postcode resolution',
         });

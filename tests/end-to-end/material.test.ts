@@ -34,15 +34,17 @@ test.describe('Material page', () => {
       .getByText(i18n.t('material.nearbyPlaces.places.title'))
       .first();
 
-    await widget.evaluate((node) =>
-      node.setAttribute(
-        'path',
-        '/EX32 7RB/material?materials=43&search=Plastic milk bottles',
+    await Promise.all([
+      page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT),
+      page.waitForRequest(LOCATIONS_ENDPOINT),
+      page.waitForRequest(MATERIAL_ENDPOINT),
+      widget.evaluate((node) =>
+        node.setAttribute(
+          'path',
+          '/EX32 7RB/material?materials=43&search=Plastic milk bottles',
+        ),
       ),
-    );
-    await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
-    await page.waitForRequest(LOCATIONS_ENDPOINT);
-    await page.waitForRequest(MATERIAL_ENDPOINT);
+    ]);
     await expect(recyclableText).toBeVisible();
     await expect(homeText).toBeVisible();
     await expect(locationsText).toBeVisible();
@@ -107,15 +109,17 @@ test.describe('Material page', () => {
       .first();
 
     await expect(recyclableText).not.toBeVisible();
-    await widget.evaluate((node) =>
-      node.setAttribute(
-        'path',
-        '/EX32 7RB/material?materials=43&search=Plastic milk bottles',
+    await Promise.all([
+      page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT),
+      page.waitForRequest(LOCATIONS_ENDPOINT),
+      page.waitForRequest(MATERIAL_ENDPOINT),
+      widget.evaluate((node) =>
+        node.setAttribute(
+          'path',
+          '/EX32 7RB/material?materials=43&search=Plastic milk bottles',
+        ),
       ),
-    );
-    await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
-    await page.waitForRequest(LOCATIONS_ENDPOINT);
-    await page.waitForRequest(MATERIAL_ENDPOINT);
+    ]);
     await expect(recyclableText).toBeVisible();
     await expect(somePropertiesText).toBeVisible();
     await expect(schemeOneText).toBeVisible();
@@ -183,15 +187,17 @@ test.describe('Material page', () => {
       .first();
 
     await expect(recyclableText).not.toBeVisible();
-    await widget.evaluate((node) =>
-      node.setAttribute(
-        'path',
-        '/EX32 7RB/material?materials=43&search=Plastic milk bottles',
+    await Promise.all([
+      page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT),
+      page.waitForRequest(LOCATIONS_ENDPOINT),
+      page.waitForRequest(MATERIAL_ENDPOINT),
+      widget.evaluate((node) =>
+        node.setAttribute(
+          'path',
+          '/EX32 7RB/material?materials=43&search=Plastic milk bottles',
+        ),
       ),
-    );
-    await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
-    await page.waitForRequest(LOCATIONS_ENDPOINT);
-    await page.waitForRequest(MATERIAL_ENDPOINT);
+    ]);
     await expect(recyclableText).toBeVisible();
     await expect(somePropertiesText).toBeVisible();
     await expect(schemeOneText).toBeVisible();
@@ -222,15 +228,17 @@ test.describe('Material page', () => {
       .first();
 
     await expect(recyclableText).not.toBeVisible();
-    await widget.evaluate((node) =>
-      node.setAttribute(
-        'path',
-        '/EX32 7RB/material?materials=79&search=Car batteries',
+    await Promise.all([
+      page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT),
+      page.waitForRequest(LOCATIONS_ENDPOINT),
+      page.waitForRequest(MATERIAL_ENDPOINT),
+      widget.evaluate((node) =>
+        node.setAttribute(
+          'path',
+          '/EX32 7RB/material?materials=79&search=Car batteries',
+        ),
       ),
-    );
-    await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
-    await page.waitForRequest(LOCATIONS_ENDPOINT);
-    await page.waitForRequest(MATERIAL_ENDPOINT);
+    ]);
     await expect(recyclableText).toBeVisible();
     await expect(homeText).toBeVisible();
     await expect(locationsText).toBeVisible();
@@ -254,15 +262,17 @@ test.describe('Material page', () => {
       .first();
 
     await expect(recyclableText).not.toBeVisible();
-    await widget.evaluate((node) =>
-      node.setAttribute(
-        'path',
-        '/EX32 7RB/material?materials=122&search=Toilet roll wrapping',
+    await Promise.all([
+      page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT),
+      page.waitForRequest(LOCATIONS_ENDPOINT),
+      page.waitForRequest(MATERIAL_ENDPOINT),
+      widget.evaluate((node) =>
+        node.setAttribute(
+          'path',
+          '/EX32 7RB/material?materials=122&search=Toilet roll wrapping',
+        ),
       ),
-    );
-    await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
-    await page.waitForRequest(LOCATIONS_ENDPOINT);
-    await page.waitForRequest(MATERIAL_ENDPOINT);
+    ]);
     await expect(recyclableText).toBeVisible();
   });
 
@@ -290,15 +300,17 @@ test.describe('Material page', () => {
     const recyclableText = widget.getByText(i18n.t('material.hero.no')).first();
 
     await expect(recyclableText).not.toBeVisible();
-    await widget.evaluate((node) =>
-      node.setAttribute(
-        'path',
-        '/EX32%207RB/material?materials=123&search=Example material',
+    await Promise.all([
+      page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT),
+      page.waitForRequest(LOCATIONS_ENDPOINT),
+      page.waitForRequest(MATERIAL_ENDPOINT),
+      widget.evaluate((node) =>
+        node.setAttribute(
+          'path',
+          '/EX32%207RB/material?materials=123&search=Example material',
+        ),
       ),
-    );
-    await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
-    await page.waitForRequest(LOCATIONS_ENDPOINT);
-    await page.waitForRequest(MATERIAL_ENDPOINT);
+    ]);
     await expect(recyclableText).toBeVisible();
   });
 
@@ -334,15 +346,17 @@ test.describe('Material page', () => {
       .first();
 
     await expect(recyclableText).not.toBeVisible();
-    await widget.evaluate((node) =>
-      node.setAttribute(
-        'path',
-        '/EX32 7RB/material?materials=146&search=Asbestos',
+    await Promise.all([
+      page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT),
+      page.waitForRequest(LOCATIONS_ENDPOINT),
+      page.waitForRequest(MATERIAL_ENDPOINT),
+      widget.evaluate((node) =>
+        node.setAttribute(
+          'path',
+          '/EX32 7RB/material?materials=146&search=Asbestos',
+        ),
       ),
-    );
-    await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
-    await page.waitForRequest(LOCATIONS_ENDPOINT);
-    await page.waitForRequest(MATERIAL_ENDPOINT);
+    ]);
     await expect(recyclableText).toBeVisible();
     await expect(hazardousWarningTitle).toBeVisible();
     await expect(hazardousWarningContent).toBeVisible();

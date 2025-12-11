@@ -21,7 +21,7 @@ export default function HazardousWarning({
       <p className="diamond-text-size-sm">{t(`${tContext}.content`)}</p>
       <diamond-button width="full-width">
         <a
-          href={`${localAuthority.recyclingUri}?referrer=wrap-recycling-locator`}
+          href={`${localAuthority.recyclingUri}?utm_source=wrap-recycling-locator`}
           target="_blank"
           rel="noopener noreferrer"
         >

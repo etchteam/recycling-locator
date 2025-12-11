@@ -65,19 +65,19 @@ function PlaceDetailsPageContent({
               ))}
             </div>
           )}
-          {websites.length > 0 && (
+          {websites.size > 0 && (
             <div>
               <dt>
                 <locator-icon icon="link" /> {t('place.details.website')}
               </dt>
-              {websites.map((site) => (
+              {[...websites].map(([site, linkText]) => (
                 <dd key={site}>
                   <a
                     href={`${site}?utm_source=wrap-recycling-locator`}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    {site}
+                    {linkText}
                   </a>
                 </dd>
               ))}

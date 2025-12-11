@@ -24,7 +24,7 @@ describe('getWebsites', () => {
       ...baseLocation,
       locations: [],
     };
-    expect(getWebsites(location)).toEqual([]);
+    expect(getWebsites(location)).toEqual(new Map<string, string>());
   });
 
   test('returns a single website, prepending https if needed', () => {
@@ -32,7 +32,7 @@ describe('getWebsites', () => {
       ...baseLocation,
       locations: [makeLoc('example.com')],
     };
-    expect(getWebsites(location)).toEqual(['https://example.com']);
+    expect(getWebsites(location)).toMatchSnapshot();
   });
 
   test('returns multiple websites, cleaned and unique', () => {
@@ -42,15 +42,14 @@ describe('getWebsites', () => {
         makeLoc('example.com'),
         makeLoc('https://example.com'), // duplicate
         makeLoc('http://another.com'),
+        makeLoc('https://www.example.com'),
+        makeLoc('http://www.another.com'),
         makeLoc(null),
         makeLoc(undefined),
         makeLoc(''),
       ],
     };
-    expect(getWebsites(location)).toEqual([
-      'https://example.com',
-      'http://another.com',
-    ]);
+    expect(getWebsites(location)).toMatchSnapshot();
   });
 
   test('trims whitespace and prepends https if missing', () => {
@@ -58,10 +57,7 @@ describe('getWebsites', () => {
       ...baseLocation,
       locations: [makeLoc('  example.com  '), makeLoc('   https://foo.com  ')],
     };
-    expect(getWebsites(location)).toEqual([
-      'https://example.com',
-      'https://foo.com',
-    ]);
+    expect(getWebsites(location)).toMatchSnapshot();
   });
 
   test('handles missing locations property gracefully', () => {

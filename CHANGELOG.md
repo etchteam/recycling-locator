@@ -1,3 +1,11 @@
+## [1.68.3](https://github.com/etchteam/recycling-locator/compare/v1.68.2...v1.68.3) (2025-12-05)
+
+
+### Bug Fixes
+
+* strip protocol and www subdomain from links for a cleaner ux ([2e73823](https://github.com/etchteam/recycling-locator/commit/2e73823cffd457323a97fa6001497ffe1c81bf68))
+* use utm_source for referral source ([01cf5c8](https://github.com/etchteam/recycling-locator/commit/01cf5c8114424fd7f4ed2eda2600d823e7a01167))
+
 ## [1.68.2](https://github.com/etchteam/recycling-locator/compare/v1.68.1...v1.68.2) (2025-11-04)
 
 

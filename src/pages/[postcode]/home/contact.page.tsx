@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 
 import RateThisInfo from '@/components/control/RateThisInfo/RateThisInfo';
 import { useLocalAuthority } from '@/hooks/useLocalAuthority';
+import { getLinkText } from '@/lib/details/getWebsites';
 import tArray from '@/lib/tArray';
 import { LocalAuthority } from '@/types/locatorApi';
 
@@ -22,11 +23,11 @@ function HomeRecyclingContactPageContent({
             <dt>{t(`${tContext}.website`)}</dt>
             <dd>
               <a
-                href={`${localAuthority.recyclingUri}?referrer=wrap-recycling-locator`}
+                href={`${localAuthority.recyclingUri}?utm_source=wrap-recycling-locator`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                {localAuthority.recyclingUri}
+                {getLinkText(localAuthority.recyclingUri)}
               </a>
             </dd>
           </div>

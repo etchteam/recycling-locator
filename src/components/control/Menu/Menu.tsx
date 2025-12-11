@@ -51,7 +51,7 @@ export default function Menu({
   ];
 
   const handleClick = (event: Event, href: string) => {
-    if (location === href.split('?')[0]) {
+    if (encodeURI(location) === href.split('?')[0]) {
       // If the link is already active, close the menu
       event.preventDefault();
       handleClose();

@@ -32,7 +32,12 @@ async function sendAnalyticsRequest(event: AnalyticsEvent) {
   }
 
   try {
-    const query = new URLSearchParams(event as any);
+    const query = new URLSearchParams(
+      Object.entries(event)
+        .filter((entry) => entry[1] !== undefined)
+        .map(([key, value]) => [key, String(value)]),
+    );
+
     await fetch(
       encodeURI(`${config.locatorAnalyticsPath}?${query.toString()}`),
       {
@@ -51,7 +56,7 @@ export default function useAnalytics() {
   const { locale, sessionId } = useAppState();
   const [location] = useLocation();
 
-  const path = typeof window !== 'undefined' ? window?.location?.pathname : '/';
+  const path = typeof window === 'undefined' ? '/' : window?.location?.pathname;
 
   function createEvent(event: Partial<AnalyticsEvent>): AnalyticsEvent {
     // Parse location string into pathname, search, hash

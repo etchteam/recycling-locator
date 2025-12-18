@@ -89,7 +89,7 @@ function Loading() {
 export default function RecyclingLocator({
   locale,
   variant = 'widget',
-  basename = '/',
+  basename = '',
   path,
   publicPath = config.publicPath,
   theme = 'green',

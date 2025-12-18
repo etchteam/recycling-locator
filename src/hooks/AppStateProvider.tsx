@@ -1,6 +1,6 @@
 import uniqueId from 'lodash/uniqueId';
 import { ComponentChildren, createContext } from 'preact';
-import { useContext } from 'preact/hooks';
+import { useContext, useMemo } from 'preact/hooks';
 
 import { RecyclingLocatorAttributes } from '@/index';
 import getStartPath from '@/lib/getStartPath';
@@ -25,11 +25,14 @@ export function AppStateProvider({
     window?.crypto?.randomUUID?.() ??
     uniqueId('session')) as unknown as string;
 
-  const appState: AppStateData = {
-    ...attributes,
-    sessionId,
-    startPath: getStartPath(attributes),
-  };
+  const appState: AppStateData = useMemo(
+    () => ({
+      ...attributes,
+      sessionId,
+      startPath: getStartPath(attributes),
+    }),
+    [attributes, sessionId],
+  );
 
   return (
     <AppStateContext.Provider value={appState}>

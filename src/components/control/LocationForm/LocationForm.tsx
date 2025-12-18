@@ -41,9 +41,9 @@ export default function LocationForm({
     geolocation.value = false;
     geolocationError.value = true;
 
-    const checkbox = formElement.querySelector(
+    const checkbox = formElement.querySelector<HTMLInputElement>(
       'input[name="geolocation"]',
-    ) as HTMLInputElement | null;
+    );
 
     if (checkbox) {
       checkbox.checked = false;

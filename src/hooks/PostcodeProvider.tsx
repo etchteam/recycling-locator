@@ -4,6 +4,7 @@ import { useParams, useLocation } from 'wouter-preact';
 
 import PostCodeResolver from '@/lib/PostcodeResolver';
 import i18n from '@/lib/i18n';
+import { handlePostcodeError } from '@/lib/postcodeErrorHandler';
 
 interface PostcodeData {
   postcode: string;
@@ -72,16 +73,10 @@ export function PostcodeProvider({ children }: PostcodeProviderProps) {
           postcode,
         });
       } catch (error) {
-        const errorMessage = error instanceof Error ? error.message : '';
+        const errorResult = handlePostcodeError(error);
 
-        // Navigate to not-found page for specific "not found" errors
-        if (errorMessage === PostCodeResolver.ERROR_NOT_IN_UK) {
-          setLocation('/not-found?reason=notInTheUK');
-          return;
-        }
-
-        if (errorMessage === PostCodeResolver.ERROR_SEARCH_FAILED) {
-          setLocation('/not-found');
+        if (errorResult.shouldNavigate && errorResult.navigateTo) {
+          setLocation(errorResult.navigateTo);
           return;
         }
 

@@ -193,8 +193,6 @@ export default function MaterialPage() {
   const [searchParams] = useSearchParams();
   const search = searchParams.get('search');
   const materialId = searchParams.get('materials');
-
-  // Fetch data using hooks
   const localAuthorityResult = useLocalAuthority();
   const locationsResult = useLocations();
   const materialResult = useMaterial(materialId);

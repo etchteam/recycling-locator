@@ -39,10 +39,10 @@ export function PlacesMapPageContent() {
   const activeLocation = useSignal<Location | null>(null);
   const showSearchThisArea = useSignal(false);
   const currentLat = searchParams.get('lat')
-    ? parseFloat(searchParams.get('lat')!)
+    ? parseFloat(searchParams.get('lat'))
     : defaultLatitude;
   const currentLng = searchParams.get('lng')
-    ? parseFloat(searchParams.get('lng')!)
+    ? parseFloat(searchParams.get('lng'))
     : defaultLongitude;
   // Track pending changes for "search this area" button
   const pendingChanges = useSignal<{

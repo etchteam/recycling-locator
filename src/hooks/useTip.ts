@@ -14,7 +14,7 @@ export function useTip(options: UseTipOptions = {}) {
   const { path, materialId } = options;
 
   const fetchTip = () => {
-    return materialId ? getTipByMaterial(materialId) : getTipByPath(path!);
+    return materialId ? getTipByMaterial(materialId) : getTipByPath(path);
   };
 
   return useData<RecyclingMeta>(path || materialId ? fetchTip : null, [

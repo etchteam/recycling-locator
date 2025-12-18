@@ -60,7 +60,7 @@ export default function LocationForm({
     if (openInNewTab) {
       const locale = formData.get('locale') as string;
       const domain =
-        locale === 'cy' || window.location.host.includes('walesrecycles.org.uk')
+        locale === 'cy' || window.location.host === 'walesrecycles.org.uk'
           ? 'locator.walesrecycles.org.uk'
           : 'locator.recyclenow.com';
       const url = new URL(`https://${domain}${route}`);

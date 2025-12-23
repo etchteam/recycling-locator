@@ -1,9 +1,5 @@
 import { Meta, StoryObj } from '@storybook/preact';
-import '@etchteam/diamond-ui/composition/Grid/Grid';
-import '@etchteam/diamond-ui/composition/Grid/GridItem';
-import '@etchteam/diamond-ui/control/Button/Button';
 
-import '@/components/content/Icon/Icon';
 import formatPostcode from '@/lib/formatPostcode';
 import './ContextHeader';
 

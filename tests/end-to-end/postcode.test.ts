@@ -123,10 +123,12 @@ test.describe('Postcode page', () => {
     await expect(recyclableText).not.toBeVisible();
     await expect(materialSearchPageTitle).toBeVisible();
     await input.fill(material);
-    await input.press('Enter');
-    await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
-    await page.waitForRequest(LOCATIONS_ENDPOINT);
-    await page.waitForRequest(MATERIAL_ENDPOINT);
+    await Promise.all([
+      page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT),
+      page.waitForRequest(LOCATIONS_ENDPOINT),
+      page.waitForRequest(MATERIAL_ENDPOINT),
+      input.press('Enter'),
+    ]);
     await expect(materialText).toBeVisible();
     await expect(recyclableText).toBeVisible();
     await expect(materialPageTitle).toBeVisible();

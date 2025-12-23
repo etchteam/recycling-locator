@@ -1,21 +1,12 @@
 import { useEffect, useState } from 'preact/hooks';
 import { Trans, useTranslation } from 'react-i18next';
-import { useSearchParams } from 'react-router';
+import { useSearchParams } from 'wouter-preact';
 
-import '@etchteam/diamond-ui/composition/FormGroup/FormGroup';
-import '@etchteam/diamond-ui/control/Button/Button';
-import '@etchteam/diamond-ui/canvas/Section/Section';
-
-import '@/components/composition/Wrap/Wrap';
-import '@/components/control/LocationInput/LocationInput';
-
+import LocationForm from '@/components/control/LocationForm/LocationForm';
 import LocatorApi from '@/lib/LocatorApi';
 import { captureException } from '@/lib/sentry';
 import tArray from '@/lib/tArray';
-import StartLayout from '@/pages/start.layout';
 import { MaterialWithCategory } from '@/types/locatorApi';
-
-import LocationForm from './LocationForm';
 
 async function getMaterialsOrCategoryNameById(
   materials: string,
@@ -77,34 +68,28 @@ export default function MaterialStartPage() {
   }, [search]);
 
   return (
-    <StartLayout>
-      <locator-wrap>
-        <diamond-section padding="lg">
-          <h2>
-            <Trans
-              i18nKey={'start.material.title'}
-              components={{ bold: <strong /> }}
-              values={{ material: search?.toLocaleLowerCase() }}
-            />
-          </h2>
-          <LocationForm action="/material">
-            {search && <input type="hidden" name="search" value={search} />}
-            {materials && (
-              <input type="hidden" name="materials" value={materials} />
-            )}
-            {category && (
-              <input type="hidden" name="category" value={category} />
-            )}
-          </LocationForm>
-          <hr className="diamond-spacing-top-lg" />
-          <p className="diamond-spacing-top-md">{t('start.aside.paragraph')}</p>
-          <ul>
-            {tArray('start.aside.list').map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-        </diamond-section>
-      </locator-wrap>
-    </StartLayout>
+    <>
+      <h2>
+        <Trans
+          i18nKey={'start.material.title'}
+          components={{ bold: <strong /> }}
+          values={{ material: search?.toLocaleLowerCase() }}
+        />
+      </h2>
+      <LocationForm action="/material">
+        {search && <input type="hidden" name="search" value={search} />}
+        {materials && (
+          <input type="hidden" name="materials" value={materials} />
+        )}
+        {category && <input type="hidden" name="category" value={category} />}
+      </LocationForm>
+      <hr className="diamond-spacing-top-lg" />
+      <p className="diamond-spacing-top-md">{t('start.aside.paragraph')}</p>
+      <ul>
+        {tArray('start.aside.list').map((item) => (
+          <li key={item}>{item}</li>
+        ))}
+      </ul>
+    </>
   );
 }

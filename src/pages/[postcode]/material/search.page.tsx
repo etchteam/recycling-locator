@@ -1,41 +1,22 @@
-import { Suspense } from 'preact/compat';
-import { useEffect } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
-import {
-  Await,
-  Form,
-  useLoaderData,
-  useLocation,
-  useParams,
-  useSearchParams,
-} from 'react-router';
-import '@etchteam/diamond-ui/canvas/Section/Section';
-import '@etchteam/diamond-ui/composition/FormGroup/FormGroup';
-import '@etchteam/diamond-ui/composition/Enter/Enter';
+import { useLocation, useSearchParams } from 'wouter-preact';
 
-import '@/components/composition/Wrap/Wrap';
-import '@/components/composition/BorderedList/BorderedList';
-import MaterialSearchInput from '@/components/control/MaterialSearchInput/MaterialSearchInput';
-import PopularMaterials from '@/components/template/PopularMaterials/PopularMaterials';
-import TipContent from '@/components/template/TipContent/TipContent';
-import useFormValidation from '@/lib/useFormValidation';
+import PopularMaterials from '@/components/content/PopularMaterials/PopularMaterials';
+import TipContent from '@/components/content/TipContent/TipContent';
+import MaterialSearchForm from '@/components/control/MaterialSearchForm/MaterialSearchForm';
+import { usePostcode } from '@/hooks/PostcodeProvider';
+import { usePopularMaterials } from '@/hooks/usePopularMaterials';
+import { useTip } from '@/hooks/useTip';
 import { Material } from '@/types/locatorApi';
-
-import { MaterialSearchLoaderResponse } from './search.loader';
 
 export default function MaterialSearchPage() {
   const { t } = useTranslation();
-  const { postcode } = useParams();
-  const location = useLocation();
-  const form = useFormValidation('search');
+  const { postcode } = usePostcode();
+  const [location] = useLocation();
   const [searchParams] = useSearchParams();
   const search = searchParams.get('search');
-  const { popularMaterials: popularMaterialsPromise, tip: tipPromise } =
-    useLoaderData() as MaterialSearchLoaderResponse;
-
-  useEffect(() => {
-    form.submitting.value = false;
-  }, [search, location]);
+  const { data: popularMaterials } = usePopularMaterials();
+  const { data: tip } = useTip({ path: location });
 
   function generatePopularMaterialPath(material: Material) {
     const materialSearchParams = new URLSearchParams();
@@ -58,45 +39,27 @@ export default function MaterialSearchPage() {
                   </span>
                 </h3>
               )}
-              <Form method="post" onSubmit={form.handleSubmit}>
-                <diamond-form-group>
-                  <label htmlFor="locator-material-input">
-                    {t('actions.searchAgain')}
-                  </label>
-                  <MaterialSearchInput
-                    handleInput={form.handleInput}
-                    submitting={form.submitting.value}
-                    valid={form.valid.value}
-                    defaultValue={search ?? ''}
-                    defaultInvalid={!!search}
-                    checkMaterial
-                    includeFeedbackForm
-                  ></MaterialSearchInput>
-                </diamond-form-group>
-              </Form>
+              <MaterialSearchForm
+                path="material"
+                label={t('actions.searchAgain')}
+                defaultValue={search ?? ''}
+                defaultInvalid={!!search}
+                checkMaterial
+                includeFeedbackForm
+              />
             </diamond-enter>
 
-            <Suspense fallback={/* No loading UI necessary */ null}>
-              <Await resolve={popularMaterialsPromise}>
-                {(popularMaterials) => (
-                  <PopularMaterials
-                    materials={popularMaterials}
-                    generatePath={generatePopularMaterialPath}
-                  />
-                )}
-              </Await>
-            </Suspense>
+            {popularMaterials && (
+              <PopularMaterials
+                materials={popularMaterials}
+                generatePath={generatePopularMaterialPath}
+              />
+            )}
           </diamond-section>
         </locator-wrap>
       </div>
       <locator-tip slot="layout-aside" text-align="center">
-        <locator-wrap>
-          <Suspense fallback={null}>
-            <Await resolve={tipPromise}>
-              {(tip) => <TipContent tip={tip} />}
-            </Await>
-          </Suspense>
-        </locator-wrap>
+        <locator-wrap>{tip && <TipContent tip={tip} />}</locator-wrap>
       </locator-tip>
     </>
   );

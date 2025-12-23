@@ -1,22 +1,14 @@
 import { useSignal } from '@preact/signals';
 import { ComponentChildren } from 'preact';
-import { Suspense } from 'preact/compat';
 import { useTranslation } from 'react-i18next';
-import { Await, Link, Outlet, useParams, useSearchParams } from 'react-router';
-import '@etchteam/diamond-ui/control/Button/Button';
+import { Link, useSearchParams } from 'wouter-preact';
 
-import '@/components/composition/Layout/Layout';
-import '@/components/composition/PlacesHeader/PlacesHeader';
-import '@/components/content/HeaderTitle/HeaderTitle';
-import '@/components/content/Icon/Icon';
-import '@/components/control/TagButton/TagButton';
-import { usePostcodeLoaderData } from '../postcode.loader';
 import Menu from '@/components/control/Menu/Menu';
+import { usePostcode } from '@/hooks/PostcodeProvider';
+import { useLocations } from '@/hooks/useLocations';
 import formatPostcode from '@/lib/formatPostcode';
 import i18n from '@/lib/i18n';
 import mapSearchParams from '@/lib/mapSearchParams';
-
-import { usePlacesLoaderData } from './places.loader';
 
 export default function PlacesLayout({
   children,
@@ -25,13 +17,12 @@ export default function PlacesLayout({
 }) {
   const { t } = useTranslation();
   const locale = i18n.language;
-  const { postcode } = useParams();
-  const loaderData = usePlacesLoaderData();
-  const { city } = usePostcodeLoaderData();
-  const locationsPromise = loaderData?.locations;
+  const { postcode, data: postcodeData } = usePostcode();
+  const { data: locations, loading: locationsLoading } = useLocations();
   const open = useSignal(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const search = searchParams.get('search');
+  const city = postcodeData?.city;
   const query = mapSearchParams(
     ['materials', 'category', 'search', 'autofocus'],
     {
@@ -54,7 +45,7 @@ export default function PlacesLayout({
       <locator-header slot="layout-header">
         {open.value ? (
           <locator-header-content>
-            <Link to={`/${postcode}`}>
+            <Link href={`/${postcode}`}>
               <locator-logo locale={locale}></locator-logo>
             </Link>
             <diamond-button width="square" size="sm">
@@ -75,7 +66,7 @@ export default function PlacesLayout({
         ) : (
           <>
             <locator-header-logo>
-              <Link to={`/${postcode}`}>
+              <Link href={`/${postcode}`}>
                 <locator-logo type="logo-only"></locator-logo>
               </Link>
             </locator-header-logo>
@@ -100,36 +91,27 @@ export default function PlacesLayout({
                 </div>
               </locator-header-title>
               <locator-places-header-search>
-                {search && (
-                  <Suspense fallback={null}>
-                    <Await resolve={locationsPromise}>
-                      {(locations) => (
-                        <diamond-enter type="fade">
-                          <locator-tag-button
-                            variant={
-                              locations?.items.length > 0 &&
-                              searchParams.get('materials') !== 'undefined'
-                                ? 'positive'
-                                : 'negative'
-                            }
-                          >
-                            <button type="button" onClick={handleResetSearch}>
-                              {search}
-                              <locator-icon
-                                icon="close"
-                                label={t('actions.resetSearch')}
-                              />
-                            </button>
-                          </locator-tag-button>
-                        </diamond-enter>
-                      )}
-                    </Await>
-                  </Suspense>
+                {search && !locationsLoading && locations && (
+                  <diamond-enter type="fade">
+                    <locator-tag-button
+                      variant={
+                        locations?.items.length > 0 &&
+                        searchParams.get('materials') !== 'undefined'
+                          ? 'positive'
+                          : 'negative'
+                      }
+                    >
+                      <button type="button" onClick={handleResetSearch}>
+                        {search}
+                        <locator-icon
+                          icon="close"
+                          label={t('actions.resetSearch')}
+                        />
+                      </button>
+                    </locator-tag-button>
+                  </diamond-enter>
                 )}
-                <Link
-                  to={`/${postcode}/places/search?${query.toString()}`}
-                  unstable_viewTransition
-                >
+                <Link href={`/${postcode}/places/search?${query.toString()}`}>
                   {!search && t('places.searchPlaceholder')}
                   <locator-icon icon="search" color="primary" />
                 </Link>
@@ -146,10 +128,7 @@ export default function PlacesLayout({
             city={city}
           />
         ) : (
-          <>
-            <Outlet />
-            {children}
-          </>
+          <>{children}</>
         )}
       </div>
     </locator-layout>

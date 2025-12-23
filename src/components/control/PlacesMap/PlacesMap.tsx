@@ -1,7 +1,5 @@
 import { Component, ComponentChildren, ErrorInfo, createRef } from 'preact';
-import '@etchteam/diamond-ui/control/Input/Input';
 
-import '@/components/content/Icon/Icon';
 import config from '@/config';
 import i18n from '@/lib/i18n';
 import { captureException } from '@/lib/sentry';

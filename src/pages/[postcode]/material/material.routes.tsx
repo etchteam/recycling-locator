@@ -1,34 +1,32 @@
-import { RouteObject } from 'react-router';
+import { useTranslation } from 'react-i18next';
+import { Route, Switch } from 'wouter-preact';
 
-import postcodeAction from '../postcode.action';
+import { ErrorBoundaryPage } from '@/components/ErrorBoundary';
+import { usePostcode } from '@/hooks/PostcodeProvider';
 
-import MaterialErrorPage from './error.page';
 import MaterialLayout from './material.layout';
-import materialLoader from './material.loader';
 import MaterialPage from './material.page';
-import materialSearchLoader from './search.loader';
 import MaterialSearchPage from './search.page';
 
-const routes: RouteObject[] = [
-  {
-    path: '/:postcode/material',
-    element: <MaterialLayout />,
-    children: [
-      {
-        index: true,
-        element: <MaterialPage />,
-        errorElement: <MaterialErrorPage />,
-        loader: materialLoader,
-      },
-      {
-        path: 'search',
-        element: <MaterialSearchPage />,
-        action: postcodeAction,
-        loader: materialSearchLoader,
-        errorElement: <MaterialErrorPage />,
-      },
-    ],
-  },
-];
+export default function MaterialRoutes() {
+  const { postcode } = usePostcode();
+  const { t } = useTranslation();
 
-export default routes;
+  return (
+    <MaterialLayout>
+      <ErrorBoundaryPage
+        link={`/${postcode}/material/search`}
+        message={t('material.error.message')}
+        cta={t('actions.searchAgain')}
+      >
+        <Switch>
+          <Route path="/:postcode/material" component={MaterialPage} />
+          <Route
+            path="/:postcode/material/search"
+            component={MaterialSearchPage}
+          />
+        </Switch>
+      </ErrorBoundaryPage>
+    </MaterialLayout>
+  );
+}

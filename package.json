@@ -59,7 +59,7 @@
     "preact": "^10.26.6",
     "preact-custom-element": "^4.3.0",
     "react-i18next": "^15.5.2",
-    "react-router": "^7.6.0"
+    "wouter-preact": "^3.8.1"
   },
   "devDependencies": {
     "@babel/plugin-syntax-import-attributes": "^7.26.0",

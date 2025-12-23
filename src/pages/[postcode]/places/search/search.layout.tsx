@@ -1,24 +1,19 @@
+import { ComponentChildren } from 'preact';
 import { useRef } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
-import {
-  Link,
-  NavLink,
-  Outlet,
-  useParams,
-  useSearchParams,
-} from 'react-router';
-import '@etchteam/diamond-ui/control/Button/Button';
+import { Link, useSearchParams } from 'wouter-preact';
 
-import '@/components/composition/Layout/Layout';
-import '@/components/composition/Header/Header';
-import '@/components/content/HeaderTitle/HeaderTitle';
-import '@/components/content/Icon/Icon';
-import '@/components/control/NavBar/NavBar';
-import useScrollRestoration from '@/lib/useScrollRestoration';
+import NavLink from '@/components/control/NavBar/NavLink';
+import { usePostcode } from '@/hooks/PostcodeProvider';
+import useScrollRestoration from '@/hooks/useScrollRestoration';
 
-export default function PlacesSearchLayout() {
+export default function PlacesSearchLayout({
+  children,
+}: {
+  readonly children?: ComponentChildren;
+}) {
   const { t } = useTranslation();
-  const { postcode } = useParams();
+  const { postcode } = usePostcode();
   const layoutRef = useRef();
   useScrollRestoration(layoutRef);
   const [searchParams] = useSearchParams();
@@ -27,7 +22,7 @@ export default function PlacesSearchLayout() {
     <locator-layout>
       <locator-header slot="layout-header">
         <locator-header-logo>
-          <Link to={`/${postcode}`}>
+          <Link href={`/${postcode}`}>
             <locator-logo type="logo-only"></locator-logo>
           </Link>
         </locator-header-logo>
@@ -36,10 +31,7 @@ export default function PlacesSearchLayout() {
             <h2>{t('places.search.title')}</h2>
           </locator-header-title>
           <diamond-button width="square" size="sm">
-            <Link
-              to={`/${postcode}/places?${searchParams.toString()}`}
-              unstable_viewTransition
-            >
+            <Link href={`/${postcode}/places?${searchParams.toString()}`}>
               <locator-icon
                 icon="close"
                 color="primary"
@@ -55,17 +47,16 @@ export default function PlacesSearchLayout() {
             <ul>
               <li>
                 <NavLink
-                  to={`/${postcode}/places/search`}
-                  unstable_viewTransition
-                  end
+                  href={`/${postcode}/places/search`}
+                  path="/:postcode/places/search"
                 >
                   {t('places.search.nav.search')}
                 </NavLink>
               </li>
               <li>
                 <NavLink
-                  to={`/${postcode}/places/search/categories`}
-                  unstable_viewTransition
+                  href={`/${postcode}/places/search/categories`}
+                  path="/:postcode/places/search/categories"
                 >
                   <span className="hidden-tablet">
                     {t('places.search.nav.categories')}
@@ -77,8 +68,8 @@ export default function PlacesSearchLayout() {
               </li>
               <li>
                 <NavLink
-                  to={`/${postcode}/places/search/a-z`}
-                  unstable_viewTransition
+                  href={`/${postcode}/places/search/a-z`}
+                  path="/:postcode/places/search/a-z"
                 >
                   <span className="hidden-tablet">
                     {t('places.search.nav.aToZ')}
@@ -91,7 +82,7 @@ export default function PlacesSearchLayout() {
             </ul>
           </nav>
         </locator-nav-bar>
-        <Outlet />
+        {children}
       </div>
     </locator-layout>
   );

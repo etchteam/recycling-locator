@@ -1,5 +1,4 @@
 import { Meta, StoryObj } from '@storybook/preact';
-import '@etchteam/diamond-ui/control/Button/Button';
 
 import './Fab';
 

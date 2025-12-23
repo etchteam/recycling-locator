@@ -1,14 +1,10 @@
-import { Suspense } from 'preact/compat';
 import { useTranslation } from 'react-i18next';
-import { Await } from 'react-router';
-import '@etchteam/diamond-ui/composition/Enter/Enter';
 
-import '@/components/composition/BorderedList/BorderedList';
 import RateThisInfo from '@/components/control/RateThisInfo/RateThisInfo';
+import { useLocalAuthority } from '@/hooks/useLocalAuthority';
 import { getLinkText } from '@/lib/details/getWebsites';
+import tArray from '@/lib/tArray';
 import { LocalAuthority } from '@/types/locatorApi';
-
-import { useHomeRecyclingLoaderData } from './home.loader';
 
 function HomeRecyclingContactPageContent({
   localAuthority,
@@ -44,7 +40,7 @@ function HomeRecyclingContactPageContent({
             <dd>
               <p>{t(`${tContext}.notes.paragraphOne`)}</p>
               <ul>
-                {(t(`${tContext}.notes.list`) as string[]).map((item) => (
+                {tArray(`${tContext}.notes.list`).map((item) => (
                   <li key={item}>{item}</li>
                 ))}
               </ul>
@@ -71,21 +67,17 @@ function HomeRecyclingContactPageContent({
 
 export default function HomeRecyclingContactPage() {
   const { t } = useTranslation();
-  const { localAuthority: localAuthorityPromise } =
-    useHomeRecyclingLoaderData();
+  const { data: localAuthority, loading } = useLocalAuthority();
+  const hasLoaded = !loading && localAuthority;
 
   return (
     <>
       <h3 className="diamond-spacing-bottom-md">
         {t(`homeRecycling.contact.title`)}
       </h3>
-      <Suspense fallback={/* hitting loading here is unexpected */ null}>
-        <Await resolve={localAuthorityPromise}>
-          {(localAuthority) => (
-            <HomeRecyclingContactPageContent localAuthority={localAuthority} />
-          )}
-        </Await>
-      </Suspense>
+      {hasLoaded && (
+        <HomeRecyclingContactPageContent localAuthority={localAuthority} />
+      )}
     </>
   );
 }

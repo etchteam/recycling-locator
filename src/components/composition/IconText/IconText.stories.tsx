@@ -1,7 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/preact';
 
-import '@/components/canvas/IconCircle/IconCircle';
-import '@/components/content/Icon/Icon';
 import './IconText';
 
 const meta: Meta = {

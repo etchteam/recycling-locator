@@ -2,28 +2,12 @@ import { useSignal } from '@preact/signals';
 import { ComponentChildren } from 'preact';
 import { useRef } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
-import {
-  Link,
-  NavLink,
-  Outlet,
-  useLocation,
-  useSearchParams,
-} from 'react-router';
+import { Link, useRoute, useSearchParams } from 'wouter-preact';
 
 import Menu from '@/components/control/Menu/Menu';
-import { useAppState } from '@/lib/AppState';
-import useScrollRestoration from '@/lib/useScrollRestoration';
-
-import '@etchteam/diamond-ui/control/Button/Button';
-import '@etchteam/diamond-ui/canvas/Section/Section';
-import '@etchteam/diamond-ui/composition/Enter/Enter';
-
-import '@/components/composition/Layout/Layout';
-import '@/components/composition/Header/Header';
-import '@/components/content/Logo/Logo';
-import '@/components/content/Icon/Icon';
-import '@/components/canvas/Tip/Tip';
-import '@/components/composition/Wrap/Wrap';
+import NavLink from '@/components/control/NavBar/NavLink';
+import { useAppState } from '@/hooks/AppStateProvider';
+import useScrollRestoration from '@/hooks/useScrollRestoration';
 
 const pages = ['intro', 'guide', 'options', 'benefits', 'sign-up'];
 
@@ -41,9 +25,7 @@ export function RefillAside({ postcode }: { readonly postcode: string }) {
         <p>{t('refill.aside.content')}</p>
         <diamond-enter type="fade">
           <diamond-button width="full-width">
-            <Link to={'/' + postcode} unstable_viewTransition>
-              {t('refill.aside.cta')}
-            </Link>
+            <Link href={'/' + postcode}>{t('refill.aside.cta')}</Link>
           </diamond-button>
         </diamond-enter>
       </locator-wrap>
@@ -77,8 +59,7 @@ export default function StartLayout({
 }) {
   const { t } = useTranslation();
   const open = useSignal(false);
-  const location = useLocation();
-  const isHome = location.pathname === '/refill';
+  const [isHome] = useRoute('/refill');
 
   const [searchParams] = useSearchParams();
   const postcode = searchParams.get('postcode');
@@ -92,7 +73,7 @@ export default function StartLayout({
       <locator-header slot="layout-header">
         {open.value ? (
           <locator-header-content>
-            <Link to={`/${postcode}`}>
+            <Link href={`/${postcode}`}>
               {/* replace with refill logo */}
               <locator-logo type="logo-only"></locator-logo>
             </Link>
@@ -123,10 +104,7 @@ export default function StartLayout({
                   {postcode && isHome ? (
                     <FullMenu handleClick={() => (open.value = !open.value)} />
                   ) : (
-                    <Link
-                      to={isHome ? '/' : `/refill${postcodeQuery}`}
-                      unstable_viewTransition
-                    >
+                    <Link href={isHome ? '/' : `/refill${postcodeQuery}`}>
                       <locator-icon
                         icon="arrow-left"
                         label="Back"
@@ -156,12 +134,10 @@ export default function StartLayout({
                   {pages.map((page) => (
                     <li key={page}>
                       <NavLink
-                        to={
+                        href={
                           (page === 'intro' ? '/refill' : `/refill/${page}`) +
                           postcodeQuery
                         }
-                        unstable_viewTransition
-                        end
                       >
                         {t(`refill.nav.${page}.title`)}
                       </NavLink>
@@ -171,8 +147,7 @@ export default function StartLayout({
               </nav>
             </locator-nav-bar>
             <locator-wrap large-screen-only={isHome}>
-              <Outlet />
-              {children}
+              <diamond-section padding="lg">{children}</diamond-section>
             </locator-wrap>
           </>
         )}

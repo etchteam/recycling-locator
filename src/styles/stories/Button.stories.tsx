@@ -1,7 +1,4 @@
 import { Meta, StoryObj } from '@storybook/preact';
-import '@etchteam/diamond-ui/composition/Grid/Grid';
-import '@etchteam/diamond-ui/composition/Grid/GridItem';
-import '@etchteam/diamond-ui/control/Button/Button';
 
 const meta: Meta = {
   title: 'Styles/Button',

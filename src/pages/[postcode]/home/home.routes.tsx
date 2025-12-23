@@ -1,47 +1,49 @@
-import { RouteObject } from 'react-router';
+import { useTranslation } from 'react-i18next';
+import { Route, Switch } from 'wouter-preact';
 
-import homeCollectionLoader from './collection.loader';
+import ErrorBoundary, { ErrorPage } from '@/components/ErrorBoundary';
+import { usePostcode } from '@/hooks/PostcodeProvider';
+
 import CollectionPage from './collection.page';
 import HomeRecyclingContactPage from './contact.page';
-import HomeRecyclingErrorPage from './error.page';
 import HomeRecyclingLayout from './home.layout';
-import homeRecyclingLoader from './home.loader';
 import HomeRecyclingPage from './home.page';
-import homeRecyclingCentreLoader from './recycling-centre.loader';
 import HomeRecyclingCentrePage from './recycling-centre.page';
 
-const routes: RouteObject[] = [
-  {
-    path: '/:postcode/home',
-    loader: homeRecyclingLoader,
-    id: 'home-recycling',
-    errorElement: <HomeRecyclingErrorPage />,
-    children: [
-      {
-        element: <HomeRecyclingLayout />,
-        children: [
-          {
-            index: true,
-            element: <HomeRecyclingPage />,
-          },
-          {
-            path: 'recycling-centre',
-            element: <HomeRecyclingCentrePage />,
-            loader: homeRecyclingCentreLoader,
-          },
-          {
-            path: 'contact',
-            element: <HomeRecyclingContactPage />,
-          },
-        ],
-      },
-      {
-        path: 'collection',
-        loader: homeCollectionLoader,
-        element: <CollectionPage />,
-      },
-    ],
-  },
-];
+export default function HomeRecyclingRoutes() {
+  const { postcode } = usePostcode();
+  const { t } = useTranslation();
 
-export default routes;
+  return (
+    <ErrorBoundary
+      fallback={
+        <HomeRecyclingLayout>
+          <ErrorPage
+            link={`/${postcode}/home`}
+            message={t('homeRecycling.error.message')}
+            cta={t('actions.tryAgain')}
+          />
+        </HomeRecyclingLayout>
+      }
+    >
+      <Switch>
+        <Route path="/:postcode/home/collection" component={CollectionPage} />
+        <Route path="/:postcode/home/*?">
+          <HomeRecyclingLayout>
+            <Switch>
+              <Route path="/:postcode/home" component={HomeRecyclingPage} />
+              <Route
+                path="/:postcode/home/recycling-centre"
+                component={HomeRecyclingCentrePage}
+              />
+              <Route
+                path="/:postcode/home/contact"
+                component={HomeRecyclingContactPage}
+              />
+            </Switch>
+          </HomeRecyclingLayout>
+        </Route>
+      </Switch>
+    </ErrorBoundary>
+  );
+}

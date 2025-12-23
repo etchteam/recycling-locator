@@ -282,7 +282,7 @@ test.describe('Material page', () => {
     });
 
     await page.route(LOCATIONS_ENDPOINT, (route) => {
-      route.fulfill({ json: LocationsResponse });
+      route.fulfill({ json: { ...LocationsResponse, items: [] } });
     });
 
     await page.route(MATERIAL_ENDPOINT, (route) => {

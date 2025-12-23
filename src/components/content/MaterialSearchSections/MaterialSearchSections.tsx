@@ -45,7 +45,7 @@ function getSortedSectionKeys(
 
   sortedSectionKeys.push('recycleAtHome');
 
-  if (doorstepCollection) {
+  if (doorstepCollection && propertiesCollectingThisMaterial) {
     sortedSectionKeys.push('doorstepCollection');
   }
 

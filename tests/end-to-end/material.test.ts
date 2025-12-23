@@ -1,4 +1,8 @@
 import {
+  DOORSTEP_COLLECTIONS_ENDPOINT,
+  DoorstepCollectionsResponse,
+} from '../mocks/doorstepCollections';
+import {
   LOCAL_AUTHORITY_ENDPOINT,
   LocalAuthorityResponse,
 } from '../mocks/localAuthority';
@@ -360,5 +364,131 @@ test.describe('Material page', () => {
     await expect(recyclableText).toBeVisible();
     await expect(hazardousWarningTitle).toBeVisible();
     await expect(hazardousWarningContent).toBeVisible();
+  });
+
+  test('Doorstep collection with home recycling', async ({
+    page,
+    widget,
+    i18n,
+  }) => {
+    await page.route(LOCAL_AUTHORITY_ENDPOINT, (route) => {
+      route.fulfill({ json: LocalAuthorityResponse });
+    });
+
+    await page.route(LOCATIONS_ENDPOINT, (route) => {
+      route.fulfill({ json: LocationsResponse });
+    });
+
+    await page.route(MATERIAL_ENDPOINT, (route) => {
+      route.fulfill({ json: ValidMaterialResponse });
+    });
+
+    await page.route(DOORSTEP_COLLECTIONS_ENDPOINT, (route) => {
+      route.fulfill({ json: DoorstepCollectionsResponse });
+    });
+
+    const recyclableText = widget
+      .getByText(i18n.t('material.hero.yes'))
+      .first();
+    const homeText = widget
+      .getByText(
+        i18n.t('material.recycleAtHome.oneProperty.collection', { count: 1 }),
+      )
+      .first();
+    const doorstepTitle = widget
+      .getByText(i18n.t('material.doorstepCollection.title'))
+      .first();
+    const locationsText = widget
+      .getByText(i18n.t('material.nearbyPlaces.places.title'))
+      .first();
+
+    await Promise.all([
+      page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT),
+      page.waitForRequest(LOCATIONS_ENDPOINT),
+      page.waitForRequest(MATERIAL_ENDPOINT),
+      page.waitForRequest(DOORSTEP_COLLECTIONS_ENDPOINT),
+      widget.evaluate((node) =>
+        node.setAttribute(
+          'path',
+          '/EX32 7RB/material?materials=43&search=Plastic milk bottles',
+        ),
+      ),
+    ]);
+
+    await expect(recyclableText).toBeVisible();
+    await expect(homeText).toBeVisible();
+    await expect(doorstepTitle).toBeVisible();
+    await expect(locationsText).toBeVisible();
+
+    // Verify doorstep collection appears after home recycling
+    const doorstepCardBelowHome = widget
+      .locator(
+        `diamond-card:below(diamond-card:has-text("${i18n.t('material.recycleAtHome.cta')}"))`,
+      )
+      .filter({ hasText: i18n.t('material.doorstepCollection.title') });
+    await expect(doorstepCardBelowHome).toBeVisible();
+  });
+
+  test('Doorstep collection without home recycling', async ({
+    page,
+    widget,
+    i18n,
+  }) => {
+    await page.route(LOCAL_AUTHORITY_ENDPOINT, (route) => {
+      route.fulfill({ json: LocalAuthorityResponse });
+    });
+
+    await page.route(LOCATIONS_ENDPOINT, (route) => {
+      route.fulfill({ json: LocationsResponse });
+    });
+
+    await page.route(MATERIAL_ENDPOINT, (route) => {
+      route.fulfill({ json: ValidMaterialResponse });
+    });
+
+    await page.route(DOORSTEP_COLLECTIONS_ENDPOINT, (route) => {
+      route.fulfill({ json: DoorstepCollectionsResponse });
+    });
+
+    const recyclableText = widget
+      .getByText(i18n.t('material.hero.yes'))
+      .first();
+    const doorstepTitle = widget
+      .getByText(i18n.t('material.doorstepCollection.title'))
+      .first();
+    const noHomeText = widget
+      .getByText(i18n.t('material.recycleAtHome.noProperties.content'))
+      .first();
+    const locationsText = widget
+      .getByText(i18n.t('material.nearbyPlaces.places.title'))
+      .first();
+
+    await Promise.all([
+      page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT),
+      page.waitForRequest(LOCATIONS_ENDPOINT),
+      page.waitForRequest(MATERIAL_ENDPOINT),
+      page.waitForRequest(DOORSTEP_COLLECTIONS_ENDPOINT),
+      widget.evaluate((node) =>
+        node.setAttribute(
+          'path',
+          '/EX32 7RB/material?materials=79&search=Car batteries',
+        ),
+      ),
+    ]);
+
+    await expect(recyclableText).toBeVisible();
+    await expect(doorstepTitle).toBeVisible();
+    await expect(noHomeText).toBeVisible();
+    await expect(locationsText).toBeVisible();
+
+    // Verify doorstep collection appears before home recycling section when no home options
+    const homeCardBelowDoorstep = widget
+      .locator(
+        `diamond-card:below(diamond-card:has-text("${i18n.t('material.doorstepCollection.title')}"))`,
+      )
+      .filter({
+        hasText: i18n.t('material.recycleAtHome.noProperties.title'),
+      });
+    await expect(homeCardBelowDoorstep).toBeVisible();
   });
 });

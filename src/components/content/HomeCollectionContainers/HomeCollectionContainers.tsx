@@ -192,7 +192,7 @@ function FoodAndGardenContainers({
   );
 }
 
-export default function ContainerList({
+export default function HomeCollectionContainers({
   localAuthority,
   containerList: originalContainerList,
   search,

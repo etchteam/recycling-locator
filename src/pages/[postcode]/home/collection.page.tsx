@@ -3,6 +3,7 @@ import { useEffect, useRef } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
 import { Link, useSearchParams } from 'wouter-preact';
 
+import HomeCollectionContainers from '@/components/content/HomeCollectionContainers/HomeCollectionContainers';
 import TipContent from '@/components/content/TipContent/TipContent';
 import MaterialSearchInput from '@/components/control/MaterialSearchInput/MaterialSearchInput';
 import RateThisInfo from '@/components/control/RateThisInfo/RateThisInfo';
@@ -15,8 +16,6 @@ import { useTip } from '@/hooks/useTip';
 import getContainerList from '@/lib/getContainerList';
 import sortPropertyTypes from '@/lib/sortPropertyTypes';
 import { LocalAuthority } from '@/types/locatorApi';
-
-import ContainerList from './ContainerList';
 
 function CollectionPageContent({
   localAuthority,
@@ -137,7 +136,7 @@ function CollectionPageContent({
 
             <div className="diamond-spacing-bottom-sm" />
 
-            <ContainerList
+            <HomeCollectionContainers
               localAuthority={localAuthority}
               containerList={containerList}
               search={search}

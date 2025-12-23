@@ -33,17 +33,17 @@ function NoPlaces() {
 
 function Places({
   locations,
-  recyclable,
+  nonRecyclable,
 }: {
   readonly locations: LocationsResponse;
-  readonly recyclable: boolean;
+  readonly nonRecyclable: boolean;
 }) {
   const { t } = useTranslation();
   const { postcode } = usePostcode();
   const [searchParams] = useSearchParams();
-  const tContext = recyclable
-    ? 'material.nearbyPlaces.places'
-    : 'material.nearbyPlaces.disposal';
+  const tContext = nonRecyclable
+    ? 'material.nearbyPlaces.disposal'
+    : 'material.nearbyPlaces.places';
   const count = locations.items.length;
 
   const placesSearchParams = mapSearchParams(
@@ -111,15 +111,15 @@ function Places({
 
 export default function NearbyPlaces({
   locations,
-  recyclable = true,
+  nonRecyclable,
 }: {
   readonly locations: LocationsResponse;
-  readonly recyclable?: boolean;
+  readonly nonRecyclable?: boolean;
 }) {
   const hasLocations = locations.items.length > 0;
 
   if (hasLocations) {
-    return <Places locations={locations} recyclable={recyclable} />;
+    return <Places locations={locations} nonRecyclable={nonRecyclable} />;
   }
 
   return <NoPlaces />;

@@ -15,10 +15,8 @@ export default function MaterialSearchPage() {
   const [location] = useLocation();
   const [searchParams] = useSearchParams();
   const search = searchParams.get('search');
-
-  // Fetch data using hooks
-  const popularMaterialsResult = usePopularMaterials();
-  const tipResult = useTip({ path: location });
+  const { data: popularMaterials } = usePopularMaterials();
+  const { data: tip } = useTip({ path: location });
 
   function generatePopularMaterialPath(material: Material) {
     const materialSearchParams = new URLSearchParams();
@@ -51,9 +49,9 @@ export default function MaterialSearchPage() {
               />
             </diamond-enter>
 
-            {popularMaterialsResult.data && (
+            {popularMaterials && (
               <PopularMaterials
-                materials={popularMaterialsResult.data}
+                materials={popularMaterials}
                 generatePath={generatePopularMaterialPath}
               />
             )}
@@ -61,9 +59,7 @@ export default function MaterialSearchPage() {
         </locator-wrap>
       </div>
       <locator-tip slot="layout-aside" text-align="center">
-        <locator-wrap>
-          {tipResult.data && <TipContent tip={tipResult.data} />}
-        </locator-wrap>
+        <locator-wrap>{tip && <TipContent tip={tip} />}</locator-wrap>
       </locator-tip>
     </>
   );

@@ -8,13 +8,15 @@ import {
   Material,
 } from '@/types/locatorApi';
 
+export interface DoorstepCollectionProps {
+  readonly collection: DoorstepCollectionType;
+  readonly material: Material;
+}
+
 export default function DoorstepCollection({
   collection,
   material,
-}: {
-  readonly collection: DoorstepCollectionType;
-  readonly material: Material;
-}) {
+}: DoorstepCollectionProps) {
   const { t } = useTranslation();
   const { recordEvent } = useAnalytics();
   const { postcode } = usePostcode();

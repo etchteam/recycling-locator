@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'preact/hooks';
 
-interface UseDataState<T> {
+export interface UseDataState<T> {
   loading: boolean;
   data: T | null;
   error: Error | null;

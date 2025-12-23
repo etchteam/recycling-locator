@@ -48,7 +48,6 @@ export interface RecyclingLocatorAttributes {
     | 'green'
     | 'red'
     | 'blue'
-    | 'green'
     | 'orange'
     | 'purple'
     | 'brown'

@@ -33,7 +33,7 @@ export default function MaterialPage() {
     },
   );
   const doorstepCollection =
-    doorstepCollections?.[
+    doorstepCollections?.data?.[
       Math.floor(Math.random() * doorstepCollections?.data?.length)
     ];
   const nonRecyclable = material?.data?.nonRecyclable;

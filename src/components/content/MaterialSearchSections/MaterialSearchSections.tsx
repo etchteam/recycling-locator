@@ -1,7 +1,6 @@
-import MaterialSearchResult from '../../../components/content/MaterialSearchSections/MaterialSearchSection';
-import MaterialSearchSection from '../../../components/content/MaterialSearchSections/MaterialSearchSection';
 import DoorstepCollection from '@/components/content/MaterialSearchSections/DoorstepCollection';
 import HazardousWarning from '@/components/content/MaterialSearchSections/HazardousWarning';
+import MaterialSearchSection from '@/components/content/MaterialSearchSections/MaterialSearchSection';
 import NearbyPlaces from '@/components/content/MaterialSearchSections/NearbyPlaces';
 import RecycleAtHome from '@/components/content/MaterialSearchSections/RecycleAtHome';
 import type { UseDataState } from '@/hooks/useData';
@@ -65,7 +64,7 @@ export default function MaterialSearchSections({
   hazardous,
   nonRecyclable,
 }: MaterialSearchResultSectionsProps) {
-  const sections = new Map<SectionKey, () => preact.JSX.Element>();
+  const sections = new Map<SectionKey, preact.JSX.Element>();
   const sortedSectionKeys = getSortedSectionKeys(
     doorstepCollection,
     propertiesCollectingThisMaterial,
@@ -73,8 +72,9 @@ export default function MaterialSearchSections({
   );
 
   if (doorstepCollection) {
-    sections.set('doorstepCollection', () => (
-      <MaterialSearchResult
+    sections.set(
+      'doorstepCollection',
+      <MaterialSearchSection
         result={doorstepCollections}
         showLoadingCard={false}
       >
@@ -82,33 +82,36 @@ export default function MaterialSearchSections({
           collection={doorstepCollection}
           material={material?.data}
         />
-      </MaterialSearchResult>
-    ));
+      </MaterialSearchSection>,
+    );
   }
 
   if (hazardous) {
-    sections.set('hazardousWarning', () => (
+    sections.set(
+      'hazardousWarning',
       <MaterialSearchSection result={la} showLoadingCard={false}>
         <HazardousWarning localAuthority={la?.data} />
-      </MaterialSearchSection>
-    ));
+      </MaterialSearchSection>,
+    );
   }
 
-  sections.set('recycleAtHome', () => (
+  sections.set(
+    'recycleAtHome',
     <MaterialSearchSection result={la}>
       <RecycleAtHome
         allProperties={la?.data?.properties}
         propertiesCollectingThisMaterial={propertiesCollectingThisMaterial}
         nonRecyclable={nonRecyclable}
       />
-    </MaterialSearchSection>
-  ));
+    </MaterialSearchSection>,
+  );
 
-  sections.set('nearbyPlaces', () => (
+  sections.set(
+    'nearbyPlaces',
     <MaterialSearchSection result={locations}>
       <NearbyPlaces locations={locations?.data} nonRecyclable={nonRecyclable} />
-    </MaterialSearchSection>
-  ));
+    </MaterialSearchSection>,
+  );
 
   return (
     <>

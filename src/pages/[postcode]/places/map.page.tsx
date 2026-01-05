@@ -39,10 +39,10 @@ export function PlacesMapPageContent() {
   const activeLocation = useSignal<Location | null>(null);
   const showSearchThisArea = useSignal(false);
   const currentLat = searchParams.get('lat')
-    ? parseFloat(searchParams.get('lat'))
+    ? Number.parseFloat(searchParams.get('lat'))
     : defaultLatitude;
   const currentLng = searchParams.get('lng')
-    ? parseFloat(searchParams.get('lng'))
+    ? Number.parseFloat(searchParams.get('lng'))
     : defaultLongitude;
   // Track pending changes for "search this area" button
   const pendingChanges = useSignal<{
@@ -97,8 +97,8 @@ export function PlacesMapPageContent() {
     };
 
     const { zoomRadius, zoomPage } = zoomLevelMilesMap[Math.floor(zoom)];
-    const currentRadius = parseInt(searchParams.get('radius') || '25');
-    const currentPage = parseInt(searchParams.get('page') || '1');
+    const currentRadius = Number.parseInt(searchParams.get('radius') || '25');
+    const currentPage = Number.parseInt(searchParams.get('page') || '1');
 
     if (currentRadius !== zoomRadius || currentPage !== zoomPage) {
       pendingChanges.value = {

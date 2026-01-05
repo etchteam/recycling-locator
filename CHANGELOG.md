@@ -1,3 +1,32 @@
+## [1.69.0](https://github.com/etchteam/recycling-locator/compare/v1.68.3...v1.69.0) (2026-01-05)
+
+
+### Features
+
+* memoize app state ([73d7021](https://github.com/etchteam/recycling-locator/commit/73d7021a23cb3c0e2526826afb60aa522ca698fc))
+* migrate to wouter ([473f7f1](https://github.com/etchteam/recycling-locator/commit/473f7f13206596b3ea0ac51a809e970d47741bd8))
+
+
+### Bug Fixes
+
+* active nav links ([75cdf93](https://github.com/etchteam/recycling-locator/commit/75cdf93248ff8efb97bf5ddf7157607b6265d1b2))
+* active nav links for place and places search ([4c7035b](https://github.com/etchteam/recycling-locator/commit/4c7035b5c2933d687453c1e79e4659c1d92a74ca))
+* basename for browser location routing (standalone) ([d16255d](https://github.com/etchteam/recycling-locator/commit/d16255d3ac8de30a6750918cda278b4d0242d653))
+* double doorstep collection section render and add tests ([0dfa575](https://github.com/etchteam/recycling-locator/commit/0dfa57532b8c541c1b2ecdf1085cd8153215f879))
+* handle postcode not found errors and material prefilled location form ([98da4f0](https://github.com/etchteam/recycling-locator/commit/98da4f083bd1b07e3ecf58805ee5de4db643592d))
+* hasRecyclingOptions boolean prop ([756d5ef](https://github.com/etchteam/recycling-locator/commit/756d5ef384b0142e9cd6e27bf32999221b70efa3))
+* i18n.t() type errors ([45c0185](https://github.com/etchteam/recycling-locator/commit/45c01854274c399d312a21e4319e8522b6572786))
+* icon link hover color on heading text ([8a8de63](https://github.com/etchteam/recycling-locator/commit/8a8de63eac68d6fdbaf7ba6109c513ecdabd0ec5))
+* icon link hover color transition on heading text ([404ea95](https://github.com/etchteam/recycling-locator/commit/404ea9576f0642038b2d06850ca48784e8d0a769))
+* incomplete URL substring sanitization ([225b27e](https://github.com/etchteam/recycling-locator/commit/225b27e841e27357cb2fb4d2e3f1e6126d9e2cb6))
+* loading state on load more button press ([a995125](https://github.com/etchteam/recycling-locator/commit/a9951259b601f6b6993e8fe94d90530f8e27a342))
+* map view not loading ([f90c38d](https://github.com/etchteam/recycling-locator/commit/f90c38d8848969ceb65aa873c801a4f07ff63f43))
+* material results section rendering issues ([fc30ebf](https://github.com/etchteam/recycling-locator/commit/fc30ebf6e634a3bcc6f2e6448bdbdab34a87852f))
+* menu close on active link click ([cb2a7aa](https://github.com/etchteam/recycling-locator/commit/cb2a7aa54cfc7d839b182889a4ece425844c2df4))
+* nested ternary and list a11y ([a4d6f5d](https://github.com/etchteam/recycling-locator/commit/a4d6f5d73759ec4b1daf04787571459fff8162d9))
+* start path not loading when query params are present ([0003eef](https://github.com/etchteam/recycling-locator/commit/0003eef227631a9b56e9bce758e4a74ff83aba8a))
+* useLocations lat lng postcode resolving and page loading ([90cfc42](https://github.com/etchteam/recycling-locator/commit/90cfc4286003c6e4e8800129cee3145e29562009))
+
 ## [1.68.3](https://github.com/etchteam/recycling-locator/compare/v1.68.2...v1.68.3) (2025-12-05)
 
 

@@ -44,6 +44,7 @@ export function captureException(
   tags: { [key: string]: string },
   extras?: { [key: string]: unknown },
 ): void {
+  console.error(error, { tags, extras });
   scope.setTags(tags);
 
   if (extras) {

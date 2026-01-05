@@ -1,8 +1,5 @@
 import { Meta, StoryObj } from '@storybook/preact';
-import '@etchteam/diamond-ui/canvas/Card/Card';
 
-import '@/components/content/Icon/Icon';
-import '@/components/composition/Wrap/Wrap';
 import './Hero';
 
 const meta: Meta = {

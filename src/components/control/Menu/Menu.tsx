@@ -1,13 +1,8 @@
 import { useTranslation } from 'react-i18next';
-import { Link, useLocation } from 'react-router';
-import '@etchteam/diamond-ui/composition/Enter/Enter';
-import '@etchteam/diamond-ui/canvas/Section/Section';
+import { Link, useLocation } from 'wouter-preact';
 
-import '@/components/composition/Wrap/Wrap';
-import '@/components/composition/BorderedList/BorderedList';
 import Footer from '@/components/content/Footer/Footer';
 import { IconAttributes } from '@/components/content/Icon/Icon';
-import '@/components/control/IconLink/IconLink';
 import formatPostcode from '@/lib/formatPostcode';
 import { CustomElement } from '@/types/customElement';
 
@@ -21,42 +16,42 @@ export default function Menu({
   readonly city?: string;
 }) {
   const { t } = useTranslation();
-  const location = useLocation();
+  const [location] = useLocation();
 
   const items: {
     icon: IconAttributes['icon'];
     text: string;
-    to: string;
+    href: string;
   }[] = [
     {
       icon: 'pin',
       text: t('components.menu.changeLocation'),
-      to: '/?autofocus=true',
+      href: '/?autofocus=true',
     },
     {
       icon: 'search',
       text: t('components.menu.recycleSpecificItem'),
-      to: `/${encodeURIComponent(postcode)}?autofocus=true`,
+      href: `/${encodeURIComponent(postcode)}?autofocus=true`,
     },
     {
       icon: 'home',
       text: t('components.menu.homeRecycling'),
-      to: `/${encodeURIComponent(postcode)}/home`,
+      href: `/${encodeURIComponent(postcode)}/home`,
     },
     {
       icon: 'distance',
       text: t('components.menu.findNearbyPlaces'),
-      to: `/${encodeURIComponent(postcode)}/places`,
+      href: `/${encodeURIComponent(postcode)}/places`,
     },
     {
       icon: 'refill',
       text: t('components.menu.refill'),
-      to: `/refill?${encodeURIComponent(postcode)}`,
+      href: `/refill?${encodeURIComponent(postcode)}`,
     },
   ];
 
-  const handleClick = (event: Event, to: string) => {
-    if (location.pathname === to.split('?')[0]) {
+  const handleClick = (event: Event, href: string) => {
+    if (encodeURI(location) === href.split('?')[0]) {
       // If the link is already active, close the menu
       event.preventDefault();
       handleClose();
@@ -89,8 +84,8 @@ export default function Menu({
                   <diamond-enter type="fade" delay={i * 0.1}>
                     <locator-icon-link key={item.icon} border>
                       <Link
-                        to={item.to}
-                        onClick={(event) => handleClick(event, item.to)}
+                        href={item.href}
+                        onClick={(event) => handleClick(event, item.href)}
                       >
                         <locator-icon-circle>
                           <locator-icon icon={item.icon} color="primary" />

@@ -1,31 +1,17 @@
 import { useSignal } from '@preact/signals';
-import { Suspense, useEffect } from 'preact/compat';
+import { useEffect } from 'preact/compat';
 import { useTranslation } from 'react-i18next';
-import {
-  Await,
-  FetcherWithComponents,
-  Link,
-  useFetcher,
-  useLocation,
-  useParams,
-  useSearchParams,
-} from 'react-router';
-import '@etchteam/diamond-ui/canvas/Card/Card';
-import '@etchteam/diamond-ui/control/Button/Button';
-import '@etchteam/diamond-ui/composition/Grid/Grid';
-import '@etchteam/diamond-ui/composition/Grid/GridItem';
-import '@etchteam/diamond-ui/composition/Enter/Enter';
+import { Link, useLocation, useSearchParams } from 'wouter-preact';
 
-import '@/components/content/Icon/Icon';
-import '@/components/control/Fab/Fab';
+import Place from '@/components/content/Place/Place';
 import PlacesMap from '@/components/control/PlacesMap/PlacesMap';
-import Place from '@/components/template/Place/Place';
+import { usePostcode } from '@/hooks/PostcodeProvider';
+import useAnalytics from '@/hooks/useAnalytics';
+import { useLocations } from '@/hooks/useLocations';
 import PostCodeResolver from '@/lib/PostcodeResolver';
 import directions from '@/lib/directions';
-import useAnalytics from '@/lib/useAnalytics';
-import { Location, LocationsResponse } from '@/types/locatorApi';
-
-import { PlacesLoaderResponse, usePlacesLoaderData } from './places.loader';
+import mapSearchParams from '@/lib/mapSearchParams';
+import { Location } from '@/types/locatorApi';
 
 function Loading() {
   const { t } = useTranslation();
@@ -40,43 +26,34 @@ function Loading() {
   );
 }
 
-export function PlacesMapPageContent({
-  locations: loadedLocations,
-}: {
-  readonly locations: LocationsResponse;
-}) {
-  const { postcode } = useParams();
+export function PlacesMapPageContent() {
+  const { postcode } = usePostcode();
   const { t } = useTranslation();
-  const location = useLocation();
+  const [location] = useLocation();
   const { recordEvent } = useAnalytics();
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const defaultActiveLocationId = searchParams.get('activeLocation');
-  const materials = searchParams.get('materials');
-  const category = searchParams.get('category');
-  const fetcher = useFetcher() as FetcherWithComponents<PlacesLoaderResponse>;
-  const fetchedLocations = fetcher.data?.locations;
-  const locations = (fetchedLocations ?? loadedLocations) as LocationsResponse;
-
-  if (locations.error) {
-    throw new Error(locations.error);
-  }
-
-  const defaultLatitude = locations.meta.latitude;
-  const defaultLongitude = locations.meta.longitude;
+  const { data: locations, loading } = useLocations();
+  const defaultLatitude = locations?.meta?.latitude;
+  const defaultLongitude = locations?.meta?.longitude;
   const activeLocation = useSignal<Location | null>(null);
   const showSearchThisArea = useSignal(false);
-  const page = useSignal(1);
-  const radius = useSignal(25);
-  const lat = useSignal(defaultLatitude);
-  const lng = useSignal(defaultLongitude);
-
-  const activeLocationPostcode = PostCodeResolver.extractPostcodeFromString(
-    activeLocation.value?.address,
-  );
-  const activeLocationName = encodeURIComponent(activeLocation.value?.name);
+  const currentLat = searchParams.get('lat')
+    ? Number.parseFloat(searchParams.get('lat'))
+    : defaultLatitude;
+  const currentLng = searchParams.get('lng')
+    ? Number.parseFloat(searchParams.get('lng'))
+    : defaultLongitude;
+  // Track pending changes for "search this area" button
+  const pendingChanges = useSignal<{
+    page?: number;
+    radius?: number;
+    lat?: number;
+    lng?: number;
+  }>({});
 
   useEffect(() => {
-    if (defaultActiveLocationId) {
+    if (locations && defaultActiveLocationId) {
       const location = locations.items.find(
         (location) => location.id === defaultActiveLocationId,
       );
@@ -85,11 +62,24 @@ export function PlacesMapPageContent({
         activeLocation.value = location;
       }
     }
-  }, [defaultActiveLocationId]);
+  }, [locations, defaultActiveLocationId]);
 
   useEffect(() => {
     showSearchThisArea.value = false;
   }, [location]);
+
+  if (loading || !locations) {
+    return <Loading />;
+  }
+
+  if (locations.error) {
+    throw new Error(locations.error);
+  }
+
+  const activeLocationPostcode = PostCodeResolver.extractPostcodeFromString(
+    activeLocation.value?.address,
+  );
+  const activeLocationName = encodeURIComponent(activeLocation.value?.name);
 
   const handleMarkerClick = (location: Location) => {
     activeLocation.value = location;
@@ -107,22 +97,47 @@ export function PlacesMapPageContent({
     };
 
     const { zoomRadius, zoomPage } = zoomLevelMilesMap[Math.floor(zoom)];
+    const currentRadius = Number.parseInt(searchParams.get('radius') || '25');
+    const currentPage = Number.parseInt(searchParams.get('page') || '1');
 
-    if (radius.value !== zoomRadius || page.value !== zoomPage) {
-      radius.value = zoomRadius;
-      page.value = zoomPage;
+    if (currentRadius !== zoomRadius || currentPage !== zoomPage) {
+      pendingChanges.value = {
+        ...pendingChanges.value,
+        radius: zoomRadius,
+        page: zoomPage,
+      };
       showSearchThisArea.value = true;
     }
   };
 
   const handleDrag = (geoPoint: H.geo.Point) => {
-    const distance = geoPoint.distance({ lat: lat.value, lng: lng.value });
+    const distance = geoPoint.distance({ lat: currentLat, lng: currentLng });
 
     if (distance > 1500) {
-      lat.value = geoPoint.lat;
-      lng.value = geoPoint.lng;
+      pendingChanges.value = {
+        ...pendingChanges.value,
+        lat: geoPoint.lat,
+        lng: geoPoint.lng,
+      };
       showSearchThisArea.value = true;
     }
+  };
+
+  const handleSearchThisArea = (event: Event) => {
+    event.preventDefault();
+    const newParams = new URLSearchParams(searchParams);
+    const updatedParams = mapSearchParams(
+      ['page', 'radius', 'lat', 'lng'],
+      pendingChanges.value,
+    );
+
+    updatedParams.forEach((value, key) => {
+      newParams.set(key, value);
+    });
+
+    setSearchParams(newParams);
+    pendingChanges.value = {};
+    showSearchThisArea.value = false;
   };
 
   return (
@@ -136,31 +151,15 @@ export function PlacesMapPageContent({
         onZoom={handleZoom}
         onDrag={handleDrag}
       >
-        {(showSearchThisArea.value || fetcher.state !== 'idle') && (
-          <fetcher.Form
-            method="GET"
-            action={`/${postcode}/places`}
-            onSubmit={() => (showSearchThisArea.value = false)}
-          >
-            <input type="hidden" name="page" value={page.value} />
-            <input type="hidden" name="radius" value={radius.value} />
-            <input type="hidden" name="lat" value={lat.value} />
-            <input type="hidden" name="lng" value={lng.value} />
-            {materials && (
-              <input type="hidden" name="materials" value={materials} />
-            )}
-            {category && (
-              <input type="hidden" name="category" value={category} />
-            )}
-            <locator-fab position="top">
-              <diamond-button>
-                <button type="submit" disabled={fetcher.state !== 'idle'}>
-                  <locator-icon icon="sync" />
-                  {t('places.map.searchThisArea')}
-                </button>
-              </diamond-button>
-            </locator-fab>
-          </fetcher.Form>
+        {showSearchThisArea.value && (
+          <locator-fab position="top">
+            <diamond-button>
+              <button type="button" onClick={handleSearchThisArea}>
+                <locator-icon icon="sync" />
+                {t('places.map.searchThisArea')}
+              </button>
+            </diamond-button>
+          </locator-fab>
         )}
         {activeLocation.value ? (
           <locator-places-map-card>
@@ -187,7 +186,7 @@ export function PlacesMapPageContent({
               <diamond-grid-item small-mobile="6">
                 <diamond-button width="full-width" variant="primary" size="sm">
                   <Link
-                    to={`/${postcode}/places/${activeLocationName}/${activeLocationPostcode}?${searchParams.toString()}`}
+                    href={`/${postcode}/places/${activeLocationName}/${activeLocationPostcode}?${searchParams.toString()}`}
                   >
                     {t('actions.viewDetails')}
                   </Link>
@@ -217,7 +216,7 @@ export function PlacesMapPageContent({
           <diamond-enter type="fade" delay={0.5}>
             <locator-fab>
               <diamond-button size="sm" variant="primary">
-                <Link to={`/${postcode}/places?${searchParams.toString()}`}>
+                <Link href={`/${postcode}/places?${searchParams.toString()}`}>
                   <locator-icon icon="list"></locator-icon>
                   {t('actions.showList')}
                 </Link>
@@ -231,13 +230,5 @@ export function PlacesMapPageContent({
 }
 
 export default function PlacesMapPage() {
-  const { locations: locationsPromise } = usePlacesLoaderData();
-
-  return (
-    <Suspense fallback={<Loading />}>
-      <Await resolve={locationsPromise}>
-        {(locations) => <PlacesMapPageContent locations={locations} />}
-      </Await>
-    </Suspense>
-  );
+  return <PlacesMapPageContent />;
 }

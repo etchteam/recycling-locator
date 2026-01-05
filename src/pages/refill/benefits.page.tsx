@@ -1,9 +1,7 @@
 import { useTranslation } from 'react-i18next';
-import { Link, useSearchParams } from 'react-router';
+import { Link, useSearchParams } from 'wouter-preact';
 
-import { useAppState } from '@/lib/AppState';
-
-import '@etchteam/diamond-ui/canvas/Section/Section';
+import { useAppState } from '@/hooks/AppStateProvider';
 
 export default function BenfitsPage() {
   const { publicPath } = useAppState();
@@ -14,7 +12,7 @@ export default function BenfitsPage() {
   const postcodeQuery = postcode ? `?postcode=${postcode}` : '';
 
   return (
-    <diamond-section padding="lg">
+    <>
       <h2>{t('refill.benefits.title')}</h2>
       <p>{t('refill.benefits.intro')}</p>
       <diamond-card className="theme-positive diamond-spacing-bottom-md" muted>
@@ -93,7 +91,7 @@ export default function BenfitsPage() {
       <hr className="diamond-spacing-top-md diamond-spacing-bottom-md" />
 
       <locator-icon-link border>
-        <Link to={'/refill/options' + postcodeQuery} unstable_viewTransition>
+        <Link href={'/refill/options' + postcodeQuery}>
           <locator-icon-circle>
             <locator-icon icon="refill" color="primary"></locator-icon>
           </locator-icon-circle>
@@ -108,10 +106,10 @@ export default function BenfitsPage() {
         </Link>
       </locator-icon-link>
       <diamond-button width="full-width" className="diamond-spacing-top-md">
-        <Link to={'/refill/sign-up' + postcodeQuery} unstable_viewTransition>
+        <Link href={'/refill/sign-up' + postcodeQuery}>
           {t('refill.benefits.cta')}
         </Link>
       </diamond-button>
-    </diamond-section>
+    </>
   );
 }

@@ -12,5 +12,8 @@
   "i18n-ally.localesPaths": [
     "public/translations"
   ],
-  "i18n-ally.keystyle": "nested"
+  "i18n-ally.keystyle": "nested",
+  "cSpell.words": [
+    "Wouter"
+  ]
 }

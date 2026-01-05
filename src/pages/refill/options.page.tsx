@@ -1,9 +1,8 @@
 import { useTranslation } from 'react-i18next';
-import { Link, useSearchParams } from 'react-router';
+import { Link, useSearchParams } from 'wouter-preact';
 
-import { useAppState } from '@/lib/AppState';
-
-import '@etchteam/diamond-ui/canvas/Section/Section';
+import { useAppState } from '@/hooks/AppStateProvider';
+import tArray from '@/lib/tArray';
 
 export default function OptionsPage() {
   const { publicPath } = useAppState();
@@ -14,7 +13,7 @@ export default function OptionsPage() {
   const postcodeQuery = postcode ? `?postcode=${postcode}` : '';
 
   return (
-    <diamond-section padding="lg">
+    <>
       <h2>{t('refill.options.title')}</h2>
       <p>{t('refill.options.intro')}</p>
       <diamond-img radius>
@@ -35,11 +34,11 @@ export default function OptionsPage() {
               <locator-icon icon="expand" />
             </summary>
             <ul>
-              {(
-                t(`refill.options.categories.${category}.content`) as string[]
-              ).map((item) => (
-                <li key={item}>{item}</li>
-              ))}
+              {tArray(`refill.options.categories.${category}.content`).map(
+                (item) => (
+                  <li key={item}>{item}</li>
+                ),
+              )}
             </ul>
             <locator-highlight className="theme-info">
               <locator-icon-text>
@@ -64,7 +63,7 @@ export default function OptionsPage() {
       <hr className="diamond-spacing-top-md diamond-spacing-bottom-md" />
 
       <locator-icon-link border>
-        <Link to={'/refill/benefits' + postcodeQuery}>
+        <Link href={'/refill/benefits' + postcodeQuery}>
           <locator-icon-circle>
             <locator-icon icon="star" color="primary"></locator-icon>
           </locator-icon-circle>
@@ -79,10 +78,10 @@ export default function OptionsPage() {
         </Link>
       </locator-icon-link>
       <diamond-button width="full-width" className="diamond-spacing-top-md">
-        <Link to={'/refill/sign-up' + postcodeQuery}>
+        <Link href={'/refill/sign-up' + postcodeQuery}>
           {t('refill.options.cta')}
         </Link>
       </diamond-button>
-    </diamond-section>
+    </>
   );
 }

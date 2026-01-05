@@ -1,69 +1,13 @@
-import { useSignal } from '@preact/signals';
 import { ComponentChildren } from 'preact';
-import { Suspense } from 'react';
+import { useState } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
-import { Await, useLoaderData } from 'react-router';
-import '@etchteam/diamond-ui/control/Button/Button';
-import '@etchteam/diamond-ui/canvas/Section/Section';
-import '@etchteam/diamond-ui/composition/Enter/Enter';
+import { useLocation } from 'wouter-preact';
 
-import '@/components/composition/Layout/Layout';
-import '@/components/composition/Header/Header';
-import '@/components/content/Logo/Logo';
-import '@/components/content/Icon/Icon';
-import '@/components/canvas/Tip/Tip';
-import '@/components/composition/Wrap/Wrap';
-
-import Footer from '@/components/content/Footer/Footer';
-import TipContent from '@/components/template/TipContent/TipContent';
-import { useAppState } from '@/lib/AppState';
-import i18n from '@/lib/i18n';
-import useAnalytics from '@/lib/useAnalytics';
-
-import { StartLoaderResponse } from './start.loader';
-
-function About() {
-  const { t } = useTranslation();
-
-  return (
-    <locator-wrap>
-      <diamond-section padding="lg">
-        <diamond-enter type="fade">
-          <h2>{t('about.title')}</h2>
-          <p>{t('about.intro')}</p>
-          <h3 className="diamond-spacing-top-md">
-            {t('about.becomeAPartner.title')}
-          </h3>
-          <p>{t('about.becomeAPartner.description')}</p>
-          <diamond-button width="full-width">
-            <a
-              href={t('about.becomeAPartner.url')}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {t('about.becomeAPartner.cta')}
-            </a>
-          </diamond-button>
-          <h3 className="diamond-spacing-top-md">
-            {t('about.feedback.title')}
-          </h3>
-          <p>{t('about.feedback.description')}</p>
-          <diamond-button width="full-width">
-            <a
-              href={t('about.feedback.url')}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {t('about.feedback.cta')}
-            </a>
-          </diamond-button>
-          <hr className="diamond-spacing-bottom-md diamond-spacing-top-lg" />
-          <Footer />
-        </diamond-enter>
-      </diamond-section>
-    </locator-wrap>
-  );
-}
+import About from '@/components/content/About/About';
+import InfoHeader from '@/components/content/Header/InfoHeader';
+import TipContent from '@/components/content/TipContent/TipContent';
+import { useAppState } from '@/hooks/AppStateProvider';
+import { useTip } from '@/hooks/useTip';
 
 export function DefaultTip() {
   const { publicPath } = useAppState();
@@ -87,78 +31,88 @@ export function LoadingTip() {
 }
 
 export function DefaultAside() {
-  const loaderData = useLoaderData() as StartLoaderResponse;
-  const tipPromise = loaderData?.tip;
+  const [location] = useLocation();
+  const { data: tip, loading } = useTip({ path: location });
+
+  if (loading) {
+    return <LoadingTip />;
+  }
+
+  return tip ? (
+    <locator-tip type="promo" text-align="center">
+      <locator-wrap>
+        <TipContent tip={tip} />
+      </locator-wrap>
+    </locator-tip>
+  ) : (
+    <DefaultTip />
+  );
+}
+
+export function NotFoundAside() {
+  const { t } = useTranslation();
+
+  const links = [
+    {
+      href: 'https://www.gov.im/categories/home-and-neighbourhood/recycling/recycling-locations/',
+      label: t('notFound.aside.isleOfMan'),
+    },
+    {
+      href: 'https://www.gov.je/Environment/WasteReduceReuseRecycle/pages/default.aspx',
+      label: t('notFound.aside.jersey'),
+    },
+    {
+      href: 'https://www.gov.gg/recycling',
+      label: t('notFound.aside.guernsey'),
+    },
+  ];
 
   return (
-    <div slot="layout-aside" className="display-contents">
-      <Suspense fallback={<LoadingTip />}>
-        <Await resolve={tipPromise}>
-          {(tip) =>
-            tip ? (
-              <locator-tip slot="layout-aside" type="promo" text-align="center">
-                <locator-wrap>
-                  <TipContent tip={tip} />
-                </locator-wrap>
-              </locator-tip>
-            ) : (
-              <DefaultTip />
-            )
-          }
-        </Await>
-      </Suspense>
-    </div>
+    <locator-tip>
+      <locator-wrap>
+        <p>{t('notFound.aside.content')}</p>
+        <ul>
+          {links.map(({ href, label }) => (
+            <li key={label}>
+              <a href={href} target="_blank" rel="noopener noreferrer">
+                {label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </locator-wrap>
+    </locator-tip>
   );
 }
 
 export default function StartLayout({
   children,
-  aside,
 }: {
   readonly children: ComponentChildren;
-  readonly aside?: ComponentChildren;
 }) {
-  const { t } = useTranslation();
-  const { recordEvent } = useAnalytics();
-  const locale = i18n.language;
-  const open = useSignal(false);
-
-  open.subscribe((value) => {
-    if (value === true) {
-      recordEvent({
-        category: 'About',
-        action: 'Open',
-      });
-    }
-  });
+  const [infoOpen, setInfoOpen] = useState(false);
+  const [location] = useLocation();
+  const isNotFoundPage = !['/', '/home-recycling', '/material'].includes(
+    location,
+  );
 
   return (
     <locator-layout>
-      <locator-header slot="layout-header">
-        <locator-header-content>
-          <locator-logo locale={locale}></locator-logo>
-          <diamond-button variant="text" width="square">
-            <button
-              type="button"
-              data-testid="about-button"
-              aria-expanded={open.value}
-              aria-controls="locator-layout-main"
-              onClick={() => (open.value = !open.value)}
-            >
-              <locator-icon
-                icon={open.value ? 'close' : 'info'}
-                label={t(`about.button.${open.value ? 'close' : 'view'}`)}
-                color="primary"
-              ></locator-icon>
-            </button>
-          </diamond-button>
-        </locator-header-content>
-      </locator-header>
+      <div slot="layout-header" className="display-contents">
+        <InfoHeader
+          infoOpen={infoOpen}
+          handleOpenInfo={() => setInfoOpen(!infoOpen)}
+        />
+      </div>
       <div slot="layout-main" id="locator-layout-main">
-        {open.value ? <About /> : children}
+        <locator-wrap>
+          <diamond-section padding="lg">
+            {infoOpen ? <About /> : children}
+          </diamond-section>
+        </locator-wrap>
       </div>
       <div slot="layout-aside" className="display-contents">
-        {aside ?? <DefaultAside />}
+        {isNotFoundPage ? <NotFoundAside /> : <DefaultAside />}
       </div>
     </locator-layout>
   );

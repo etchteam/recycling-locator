@@ -1,8 +1,5 @@
 import { useSignal } from '@preact/signals';
-import { Link } from 'react-router';
-
-import '@/components/content/Icon/Icon';
-import '@/components/composition/BorderedList/BorderedList';
+import { Link } from 'wouter-preact';
 
 import mapSearchParams from '@/lib/mapSearchParams';
 import { CustomElement } from '@/types/customElement';
@@ -75,7 +72,7 @@ export default function MaterialCategoriesNav({
 
                     return (
                       <li key={material.id}>
-                        <Link to={`${basePath}?${searchParams.toString()}`}>
+                        <Link href={`${basePath}?${searchParams.toString()}`}>
                           {material.name}
                         </Link>
                       </li>

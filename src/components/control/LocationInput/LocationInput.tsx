@@ -2,12 +2,10 @@
 import { Signal, signal } from '@preact/signals';
 import debounce from 'lodash/debounce';
 import { Component, createRef } from 'preact';
-import '@etchteam/diamond-ui/control/Input/Input';
 
 import config from '@/config';
 import i18n from '@/lib/i18n';
 import { captureException } from '@/lib/sentry';
-import '@/components/content/Icon/Icon';
 
 interface HereMapsAutosuggestResult {
   items: {

@@ -1,6 +1,6 @@
 import { ComponentChildren } from 'preact';
 
-import { useAppState } from '@/lib/AppState';
+import { useAppState } from '@/hooks/AppStateProvider';
 import { CustomElement } from '@/types/customElement';
 
 export default function MapSvg({

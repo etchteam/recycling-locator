@@ -200,9 +200,11 @@ test.describe('Start page', () => {
     await expect(input).toBeVisible();
     await expect(recyclableText).not.toBeVisible();
     await input.fill('Barnstaple');
-    await input.press('Enter');
-    await page.waitForRequest(LOCATIONS_ENDPOINT);
-    await page.waitForRequest(MATERIAL_ENDPOINT);
+    await Promise.all([
+      page.waitForRequest(LOCATIONS_ENDPOINT),
+      page.waitForRequest(MATERIAL_ENDPOINT),
+      input.press('Enter'),
+    ]);
     await expect(recyclableText).toBeVisible();
   });
 });

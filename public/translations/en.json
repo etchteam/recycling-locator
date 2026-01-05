@@ -184,6 +184,7 @@
   },
   "postcode": {
     "title": "Check how to recycle a specific item",
+    "exploreOptions": "Explore options",
     "exploreNearby": "Explore options in {{city}}",
     "exploreTheMap": "Explore the map",
     "options": {
@@ -276,7 +277,7 @@
       "message": "An unexpected error occurred whilst searching for places to recycle this item."
     },
     "doorstepCollection": {
-      "title": "Arrange a free collection",
+      "title": "Collect and reuse",
       "intro": "A doorstep collection service is being operated in your area and may be available to you.",
       "cta": "Book online"
     }

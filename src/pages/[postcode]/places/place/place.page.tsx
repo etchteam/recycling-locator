@@ -2,23 +2,17 @@ import { useSignal } from '@preact/signals';
 import groupBy from 'lodash/groupBy';
 import uniqBy from 'lodash/uniqBy';
 import upperFirst from 'lodash/upperFirst';
-import { Suspense } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
-import { Await, Form } from 'react-router';
-import '@etchteam/diamond-ui/canvas/Card/Card';
-import '@etchteam/diamond-ui/composition/Enter/Enter';
+import { useParams } from 'wouter-preact';
 
-import '@/components/content/Icon/Icon';
+import MaterialSearchBanner from '@/components/content/MaterialSearchBanner/MaterialSearchBanner';
 import MaterialSearchInput from '@/components/control/MaterialSearchInput/MaterialSearchInput';
-import '@/components/control/Details/Details';
 import RateThisInfo from '@/components/control/RateThisInfo/RateThisInfo';
-import MaterialSearchBanner from '@/components/template/MaterialSearchBanner/MaterialSearchBanner';
+import useAnalytics from '@/hooks/useAnalytics';
+import useFormValidation from '@/hooks/useFormValidation';
+import { usePlace } from '@/hooks/usePlace';
 import materialNameSearch from '@/lib/materialNameSearch';
-import useAnalytics from '@/lib/useAnalytics';
-import useFormValidation from '@/lib/useFormValidation';
 import { Location } from '@/types/locatorApi';
-
-import { usePlaceLoaderData } from './place.loader';
 
 function Loading() {
   return (
@@ -127,7 +121,7 @@ function PlacePageContent({ location }: { readonly location: Location }) {
       </h3>
 
       <diamond-enter type="fade" className="layer-one">
-        <Form method="get" onSubmit={handleSearch}>
+        <form onSubmit={handleSearch}>
           <MaterialSearchInput
             inputLabelledBy="material-search-title"
             handleInput={form.handleInput}
@@ -135,7 +129,7 @@ function PlacePageContent({ location }: { readonly location: Location }) {
             valid={form.valid.value}
             checkMaterial
           ></MaterialSearchInput>
-        </Form>
+        </form>
       </diamond-enter>
 
       <div className="diamond-spacing-top-sm diamond-spacing-bottom-md">
@@ -174,24 +168,26 @@ function PlacePageContent({ location }: { readonly location: Location }) {
 }
 
 export default function PlacePage() {
-  const { location: locationPromise } = usePlaceLoaderData();
+  const params = useParams<{ placeName: string; placePostcode: string }>();
+  const { data: location, loading } = usePlace(
+    params.placeName,
+    params.placePostcode,
+  );
+
+  if (loading || !location) {
+    return <Loading />;
+  }
 
   return (
-    <Suspense fallback={<Loading />}>
-      <Await resolve={locationPromise}>
-        {(location) => (
-          <>
-            <PlacePageContent location={location} />
-            <diamond-enter
-              className="diamond-spacing-top-md"
-              type="fade"
-              delay={0.25}
-            >
-              <RateThisInfo />
-            </diamond-enter>
-          </>
-        )}
-      </Await>
-    </Suspense>
+    <>
+      <PlacePageContent location={location} />
+      <diamond-enter
+        className="diamond-spacing-top-md"
+        type="fade"
+        delay={0.25}
+      >
+        <RateThisInfo />
+      </diamond-enter>
+    </>
   );
 }

@@ -1,6 +1,4 @@
 import { Meta, StoryObj } from '@storybook/preact';
-import '@etchteam/diamond-ui/canvas/Card/Card';
-import '@etchteam/diamond-ui/composition/Grid/Grid';
 
 import './Overflow';
 

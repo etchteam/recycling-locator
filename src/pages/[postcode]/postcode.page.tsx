@@ -88,81 +88,90 @@ export default function PostcodePage() {
 
           <diamond-enter type="fade-in-up" delay={0.25}>
             <hr className="diamond-spacing-top-md" />
-            {city && (
-              <h3 className="diamond-text-size-base diamond-text-weight-bold diamond-spacing-top-md">
-                {t('postcode.exploreNearby', { city })}
-              </h3>
-            )}
             <nav className={locale === 'en' ? 'diamond-spacing-bottom-lg' : ''}>
-              <dl>
-                <locator-icon-link border className="diamond-spacing-top-md">
-                  <Link href={`/${postcode}/home`}>
-                    <locator-icon-circle>
-                      <locator-icon icon="home" color="primary"></locator-icon>
-                    </locator-icon-circle>
-                    <div>
-                      <dt>{t('postcode.options.home.title')}</dt>
-                      <dd className="diamond-text-size-sm">
-                        {t('postcode.options.home.description')}
-                      </dd>
-                    </div>
-                  </Link>
-                </locator-icon-link>
-                {locationsLoading ? (
-                  <Loading />
-                ) : locations ? (
-                  <locator-icon-link border className="diamond-spacing-top-md">
-                    <Link href={`/${postcode}/places`}>
+              <h3 className="diamond-text-size-base diamond-text-weight-bold diamond-spacing-top-md">
+                {city
+                  ? t('postcode.exploreNearby', { city })
+                  : t('postcode.exploreOptions')}
+              </h3>
+              <ul role="list" className="list-style-none">
+                <li className="diamond-spacing-top-md">
+                  <locator-icon-link border>
+                    <Link href={`/${postcode}/home`}>
                       <locator-icon-circle>
                         <locator-icon
-                          icon="distance"
+                          icon="home"
                           color="primary"
                         ></locator-icon>
                       </locator-icon-circle>
                       <div>
-                        <dt>{t('postcode.options.nearest.title')}</dt>
-                        <dd className="diamond-text-size-sm">
-                          {t('postcode.options.nearest.description', {
-                            count: locations.items?.length ?? 0,
-                          })}
-                        </dd>
+                        <h4 className="diamond-text-size-base diamond-spacing-bottom-none">
+                          {t('postcode.options.home.title')}
+                        </h4>
+                        <p className="diamond-text-size-sm">
+                          {t('postcode.options.home.description')}
+                        </p>
                       </div>
                     </Link>
                   </locator-icon-link>
-                ) : null}
-                <diamond-grid
-                  className="diamond-spacing-top-sm"
-                  align-items="center"
-                >
-                  <diamond-grid-item grow>
-                    <hr aria-hidden="true" />
-                  </diamond-grid-item>
-                  <diamond-grid-item>
-                    <span className="diamond-text-size-sm">
-                      {t('common.or')}
-                    </span>
-                  </diamond-grid-item>
-                  <diamond-grid-item grow>
-                    <hr aria-hidden="true" />
-                  </diamond-grid-item>
-                </diamond-grid>
-                <locator-icon-link border className="diamond-spacing-top-md">
-                  <Link href={`/refill?${postcode}`}>
-                    <locator-icon-circle>
-                      <locator-icon
-                        icon="refill"
-                        color="primary"
-                      ></locator-icon>
-                    </locator-icon-circle>
-                    <div>
-                      <dt>{t('postcode.options.refill.title')}</dt>
-                      <dd className="diamond-text-size-sm">
-                        {t('postcode.options.refill.description')}
-                      </dd>
-                    </div>
-                  </Link>
-                </locator-icon-link>
-              </dl>
+                </li>
+                <li className="diamond-spacing-top-md">
+                  {locationsLoading && <Loading />}
+                  {!locationsLoading && locations && (
+                    <locator-icon-link border>
+                      <Link href={`/${postcode}/places`}>
+                        <locator-icon-circle>
+                          <locator-icon
+                            icon="distance"
+                            color="primary"
+                          ></locator-icon>
+                        </locator-icon-circle>
+                        <div>
+                          <h4 className="diamond-text-size-base diamond-spacing-bottom-none">
+                            {t('postcode.options.nearest.title')}
+                          </h4>
+                          <p className="diamond-text-size-sm">
+                            {t('postcode.options.nearest.description', {
+                              count: locations.items?.length ?? 0,
+                            })}
+                          </p>
+                        </div>
+                      </Link>
+                    </locator-icon-link>
+                  )}
+                </li>
+              </ul>
+
+              <diamond-grid
+                className="diamond-spacing-top-sm"
+                align-items="center"
+              >
+                <diamond-grid-item grow>
+                  <hr aria-hidden="true" />
+                </diamond-grid-item>
+                <diamond-grid-item>
+                  <span className="diamond-text-size-sm">{t('common.or')}</span>
+                </diamond-grid-item>
+                <diamond-grid-item grow>
+                  <hr aria-hidden="true" />
+                </diamond-grid-item>
+              </diamond-grid>
+
+              <locator-icon-link border className="diamond-spacing-top-md">
+                <Link href={`/refill?${postcode}`}>
+                  <locator-icon-circle>
+                    <locator-icon icon="refill" color="primary"></locator-icon>
+                  </locator-icon-circle>
+                  <div>
+                    <h4 className="diamond-text-size-base diamond-spacing-bottom-none">
+                      {t('postcode.options.refill.title')}
+                    </h4>
+                    <p className="diamond-text-size-sm">
+                      {t('postcode.options.refill.description')}
+                    </p>
+                  </div>
+                </Link>
+              </locator-icon-link>
             </nav>
             {locale === 'en' &&
               !window.location.host.includes('walesrecycles') && (

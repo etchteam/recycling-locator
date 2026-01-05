@@ -184,6 +184,7 @@
   },
   "postcode": {
     "title": "Gwirio sut i ailgylchu eitem benodol",
+    "exploreOptions": "Archwilio opsiynau",
     "exploreNearby": "Archwilio opsiynau yn: {{city}}",
     "exploreTheMap": "Pori’r map",
     "options": {

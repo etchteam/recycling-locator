@@ -70,7 +70,7 @@ export default function MaterialPage() {
           <MaterialSearchStatus
             hazardous={hazardous}
             nonRecyclable={nonRecyclable}
-            hasRecyclingOptions={hasRecyclingOptions}
+            hasRecyclingOptions={Boolean(hasRecyclingOptions)}
             loading={
               la?.loading ||
               material?.loading ||

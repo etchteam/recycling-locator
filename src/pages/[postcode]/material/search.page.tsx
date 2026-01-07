@@ -29,12 +29,12 @@ export default function MaterialSearchPage() {
     <>
       <div slot="layout-main">
         <locator-wrap>
-          <diamond-section padding="lg">
-            <diamond-enter type="fade" className="layer-one">
+          <evg-section padding="lg">
+            <evg-enter type="fade" className="layer-one">
               {search && (
                 <h3>
                   {t('material.search.notFound')}{' '}
-                  <span className="diamond-text-weight-bold">
+                  <span className="evg-text-weight-bold">
                     {search.toLocaleLowerCase()}
                   </span>
                 </h3>
@@ -47,7 +47,7 @@ export default function MaterialSearchPage() {
                 checkMaterial
                 includeFeedbackForm
               />
-            </diamond-enter>
+            </evg-enter>
 
             {popularMaterials && (
               <PopularMaterials
@@ -55,7 +55,7 @@ export default function MaterialSearchPage() {
                 generatePath={generatePopularMaterialPath}
               />
             )}
-          </diamond-section>
+          </evg-section>
         </locator-wrap>
       </div>
       <locator-tip slot="layout-aside" text-align="center">

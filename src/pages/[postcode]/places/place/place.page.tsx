@@ -16,9 +16,9 @@ import { Location } from '@/types/locatorApi';
 
 function Loading() {
   return (
-    <diamond-enter type="fade-in-up">
+    <evg-enter type="fade-in-up">
       <locator-loading-card />
-    </diamond-enter>
+    </evg-enter>
   );
 }
 
@@ -63,8 +63,8 @@ function PlacePageContent({ location }: { readonly location: Location }) {
     );
 
     return (
-      <diamond-enter type="fade">
-        <h3 className="diamond-spacing-bottom-md">
+      <evg-enter type="fade">
+        <h3 className="evg-spacing-bottom-md">
           {materialCategoryNames[0] === 'Others' ? (
             t('place.recycle.theseItemsAreRecycled', {
               count: materials.length,
@@ -77,50 +77,55 @@ function PlacePageContent({ location }: { readonly location: Location }) {
             />
           )}
         </h3>
-        <diamond-card border radius>
-          <ul className="diamond-text-size-sm">
-            {materials.map((material) => (
-              <li key={material.name}>{material.name}</li>
-            ))}
-          </ul>
-        </diamond-card>
-      </diamond-enter>
+        <evg-card radius="sm">
+          <evg-card-content>
+            <ul className="evg-text-size-body-xs">
+              {materials.map((material) => (
+                <li key={material.name}>{material.name}</li>
+              ))}
+            </ul>
+          </evg-card-content>
+        </evg-card>
+      </evg-enter>
     );
   }
 
   if (materialCategoryNames.length <= 3) {
     return (
-      <diamond-enter type="fade">
-        <h3 id="material-search-title" className="diamond-spacing-bottom-md">
+      <evg-enter type="fade">
+        <h3 id="material-search-title" className="evg-spacing-bottom-md">
           {t('place.recycle.theseItemsAreRecycled')}
         </h3>
 
         {materialCategoryNames.map((category) => (
-          <diamond-card
-            className="diamond-spacing-bottom-sm"
+          <evg-card
+            className="evg-spacing-bottom-sm"
             key={category}
-            border
-            radius
+            radius="sm"
           >
-            {upperFirst(category)}
-            <ul className="diamond-text-size-sm">
-              {uniqBy(materialCategories[category], 'name').map((material) => (
-                <li key={material.name}>{material.name}</li>
-              ))}
-            </ul>
-          </diamond-card>
+            <evg-card-content>
+              {upperFirst(category)}
+              <ul className="evg-text-size-body-xs">
+                {uniqBy(materialCategories[category], 'name').map(
+                  (material) => (
+                    <li key={material.name}>{material.name}</li>
+                  ),
+                )}
+              </ul>
+            </evg-card-content>
+          </evg-card>
         ))}
-      </diamond-enter>
+      </evg-enter>
     );
   }
 
   return (
-    <diamond-enter type="fade">
-      <h3 id="material-search-title" className="diamond-spacing-bottom-md">
+    <evg-enter type="fade">
+      <h3 id="material-search-title" className="evg-spacing-bottom-md">
         {t('place.recycle.title')}
       </h3>
 
-      <diamond-enter type="fade" className="layer-one">
+      <evg-enter type="fade" className="layer-one">
         <form onSubmit={handleSearch}>
           <MaterialSearchInput
             inputLabelledBy="material-search-title"
@@ -130,9 +135,9 @@ function PlacePageContent({ location }: { readonly location: Location }) {
             checkMaterial
           ></MaterialSearchInput>
         </form>
-      </diamond-enter>
+      </evg-enter>
 
-      <div className="diamond-spacing-top-sm diamond-spacing-bottom-md">
+      <div className="evg-spacing-top-sm evg-spacing-bottom-md">
         <MaterialSearchBanner
           search={search.value}
           searchResult={materialRecyclableHere}
@@ -144,15 +149,15 @@ function PlacePageContent({ location }: { readonly location: Location }) {
         ></MaterialSearchBanner>
       </div>
 
-      <diamond-enter type="fade-in-up" delay={0.25}>
+      <evg-enter type="fade-in-up" delay={0.25}>
         {materialCategoryNames.map((category) => (
-          <locator-details key={category} className="diamond-spacing-bottom-sm">
+          <locator-details key={category} className="evg-spacing-bottom-sm">
             <details>
               <summary>
                 {upperFirst(category)}
                 <locator-icon icon="expand" />
               </summary>
-              <ul className="diamond-text-size-sm">
+              <ul className="evg-text-size-body-xs">
                 {uniqBy(materialCategories[category], 'name').map(
                   (material) => (
                     <li key={material.name}>{material.name}</li>
@@ -162,8 +167,8 @@ function PlacePageContent({ location }: { readonly location: Location }) {
             </details>
           </locator-details>
         ))}
-      </diamond-enter>
-    </diamond-enter>
+      </evg-enter>
+    </evg-enter>
   );
 }
 
@@ -181,13 +186,9 @@ export default function PlacePage() {
   return (
     <>
       <PlacePageContent location={location} />
-      <diamond-enter
-        className="diamond-spacing-top-md"
-        type="fade"
-        delay={0.25}
-      >
+      <evg-enter className="evg-spacing-top-md" type="fade" delay={0.25}>
         <RateThisInfo />
-      </diamond-enter>
+      </evg-enter>
     </>
   );
 }

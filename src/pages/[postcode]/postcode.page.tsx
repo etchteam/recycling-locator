@@ -12,9 +12,9 @@ import i18n from '@/lib/i18n';
 
 function Loading() {
   return (
-    <diamond-enter type="fade-in-up">
-      <locator-loading-card className="diamond-spacing-top-md" />
-    </diamond-enter>
+    <evg-enter type="fade-in-up">
+      <locator-loading-card className="evg-spacing-top-md" />
+    </evg-enter>
   );
 }
 
@@ -43,21 +43,21 @@ export default function PostcodePage() {
     <>
       <locator-context-header>
         <div>
-          <span className="diamond-text-weight-bold">
+          <span className="evg-text-weight-bold">
             {formatPostcode(postcode)}
           </span>
           {city && <>&nbsp;&ndash; {city}</>}
         </div>
-        <diamond-button variant="text" size="sm">
+        <evg-button variant="ghost" size="sm">
           <Link href="/">{t('actions.change')}</Link>
-        </diamond-button>
+        </evg-button>
       </locator-context-header>
       <locator-wrap>
-        <diamond-section padding="lg">
-          <diamond-enter type="fade" className="layer-one">
+        <evg-section padding="lg">
+          <evg-enter type="fade" className="layer-one">
             <h2
               id="material-search-title"
-              className="diamond-text-size-h3 diamond-spacing-bottom-sm"
+              className="evg-text-size-heading-md evg-spacing-bottom-sm"
             >
               {t('postcode.title')}
             </h2>
@@ -69,33 +69,31 @@ export default function PostcodePage() {
               autofocus={autofocus}
               includeFeedbackForm
             />
-            <p className="diamond-spacing-top-sm">
-              <diamond-link>
-                <Trans
-                  i18nKey={'components.materialSearchInput.searchList'}
-                  components={{
-                    a: (
-                      <Link
-                        href={`/${postcode}/places/search/a-z`}
-                        className="locator-report-missing-material__toggle"
-                      />
-                    ),
-                  }}
-                />
-              </diamond-link>
+            <p className="evg-spacing-top-sm">
+              <Trans
+                i18nKey={'components.materialSearchInput.searchList'}
+                components={{
+                  a: (
+                    <Link
+                      href={`/${postcode}/places/search/a-z`}
+                      className="locator-report-missing-material__toggle"
+                    />
+                  ),
+                }}
+              />
             </p>
-          </diamond-enter>
+          </evg-enter>
 
-          <diamond-enter type="fade-in-up" delay={0.25}>
-            <hr className="diamond-spacing-top-md" />
-            <nav className={locale === 'en' ? 'diamond-spacing-bottom-lg' : ''}>
-              <h3 className="diamond-text-size-base diamond-text-weight-bold diamond-spacing-top-md">
+          <evg-enter type="fade-in-up" delay={0.25}>
+            <hr className="evg-spacing-top-md" />
+            <nav className={locale === 'en' ? 'evg-spacing-bottom-lg' : ''}>
+              <h3 className="text-size-base evg-text-weight-bold evg-spacing-top-md">
                 {city
                   ? t('postcode.exploreNearby', { city })
                   : t('postcode.exploreOptions')}
               </h3>
               <ul role="list" className="list-style-none">
-                <li className="diamond-spacing-top-md">
+                <li className="evg-spacing-top-md">
                   <locator-icon-link border>
                     <Link href={`/${postcode}/home`}>
                       <locator-icon-circle>
@@ -105,17 +103,17 @@ export default function PostcodePage() {
                         ></locator-icon>
                       </locator-icon-circle>
                       <div>
-                        <h4 className="diamond-text-size-base diamond-spacing-bottom-none">
+                        <h4 className="text-size-base evg-spacing-bottom-none">
                           {t('postcode.options.home.title')}
                         </h4>
-                        <p className="diamond-text-size-sm">
+                        <p className="evg-text-size-body-xs">
                           {t('postcode.options.home.description')}
                         </p>
                       </div>
                     </Link>
                   </locator-icon-link>
                 </li>
-                <li className="diamond-spacing-top-md">
+                <li className="evg-spacing-top-md">
                   {locationsLoading && <Loading />}
                   {!locationsLoading && locations && (
                     <locator-icon-link border>
@@ -127,10 +125,10 @@ export default function PostcodePage() {
                           ></locator-icon>
                         </locator-icon-circle>
                         <div>
-                          <h4 className="diamond-text-size-base diamond-spacing-bottom-none">
+                          <h4 className="text-size-base evg-spacing-bottom-none">
                             {t('postcode.options.nearest.title')}
                           </h4>
-                          <p className="diamond-text-size-sm">
+                          <p className="evg-text-size-body-xs">
                             {t('postcode.options.nearest.description', {
                               count: locations.items?.length ?? 0,
                             })}
@@ -142,31 +140,30 @@ export default function PostcodePage() {
                 </li>
               </ul>
 
-              <diamond-grid
-                className="diamond-spacing-top-sm"
-                align-items="center"
-              >
-                <diamond-grid-item grow>
+              <evg-grid className="evg-spacing-top-sm" align-items="center">
+                <evg-grid-item grow>
                   <hr aria-hidden="true" />
-                </diamond-grid-item>
-                <diamond-grid-item>
-                  <span className="diamond-text-size-sm">{t('common.or')}</span>
-                </diamond-grid-item>
-                <diamond-grid-item grow>
+                </evg-grid-item>
+                <evg-grid-item>
+                  <span className="evg-text-size-body-xs">
+                    {t('common.or')}
+                  </span>
+                </evg-grid-item>
+                <evg-grid-item grow>
                   <hr aria-hidden="true" />
-                </diamond-grid-item>
-              </diamond-grid>
+                </evg-grid-item>
+              </evg-grid>
 
-              <locator-icon-link border className="diamond-spacing-top-md">
+              <locator-icon-link border className="evg-spacing-top-md">
                 <Link href={`/refill?${postcode}`}>
                   <locator-icon-circle>
                     <locator-icon icon="refill" color="primary"></locator-icon>
                   </locator-icon-circle>
                   <div>
-                    <h4 className="diamond-text-size-base diamond-spacing-bottom-none">
+                    <h4 className="text-size-base evg-spacing-bottom-none">
                       {t('postcode.options.refill.title')}
                     </h4>
-                    <p className="diamond-text-size-sm">
+                    <p className="evg-text-size-body-xs">
                       {t('postcode.options.refill.description')}
                     </p>
                   </div>
@@ -186,8 +183,8 @@ export default function PostcodePage() {
                   </Link>
                 </locator-rescue-me-recycle-promo>
               )}
-          </diamond-enter>
-        </diamond-section>
+          </evg-enter>
+        </evg-section>
       </locator-wrap>
     </>
   );

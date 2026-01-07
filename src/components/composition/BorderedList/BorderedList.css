@@ -1,12 +1,12 @@
 locator-bordered-list {
-  --_item-padding: var(--diamond-spacing);
+  --_item-padding: var(--evg-spacing);
   display: block;
 
   > h2,
   > h3,
   > h4 {
-    font-size: var(--diamond-font-size-sm);
-    font-weight: var(--diamond-font-weight-bold);
+    font-size: var(--evg-font-size-body-xs);
+    font-weight: var(--evg-font-weight-bold);
   }
 
   > nav > ul,
@@ -26,12 +26,12 @@ locator-bordered-list {
   > nav > ul > li,
   > ul > li,
   > dl > div {
-    border-top: var(--diamond-border);
+    border-top: var(--evg-border);
     padding-block: var(--_item-padding);
   }
 
   > dl > div > dt {
-    font-weight: var(--diamond-font-weight-bold);
+    font-weight: var(--evg-font-weight-bold);
   }
 
   > dl > div > dd {
@@ -52,6 +52,6 @@ locator-bordered-list {
   }
 
   &[size='sm'] {
-    --_item-padding: var(--diamond-spacing-sm);
+    --_item-padding: var(--evg-spacing-sm);
   }
 }

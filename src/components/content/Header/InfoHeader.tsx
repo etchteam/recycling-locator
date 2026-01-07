@@ -30,7 +30,7 @@ export default function InfoHeader({
     <locator-header>
       <locator-header-content>
         <locator-logo locale={locale}></locator-logo>
-        <diamond-button variant="text" width="square">
+        <evg-button variant="ghost" width="square">
           <button
             type="button"
             data-testid="about-button"
@@ -44,7 +44,7 @@ export default function InfoHeader({
               color="primary"
             ></locator-icon>
           </button>
-        </diamond-button>
+        </evg-button>
       </locator-header-content>
     </locator-header>
   );

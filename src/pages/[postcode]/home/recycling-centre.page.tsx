@@ -12,19 +12,19 @@ function Loading() {
 
   return (
     <>
-      <section className="diamond-spacing-bottom-lg">
+      <section className="evg-spacing-bottom-lg">
         <h3>{t('homeRecycling.hwrc.title')}</h3>
-        <diamond-enter type="fade-in-up">
+        <evg-enter type="fade-in-up">
           <locator-loading-card />
-        </diamond-enter>
+        </evg-enter>
       </section>
-      <section className="diamond-spacing-bottom-lg">
-        <h3 className="diamond-spacing-bottom-md">
+      <section className="evg-spacing-bottom-lg">
+        <h3 className="evg-spacing-bottom-md">
           {t('homeRecycling.hwrc.nearbyPlaces.title')}
         </h3>
-        <diamond-enter type="fade-in-up">
+        <evg-enter type="fade-in-up">
           <locator-loading-card />
-        </diamond-enter>
+        </evg-enter>
       </section>
     </>
   );
@@ -46,10 +46,10 @@ function HomeRecyclingCentrePageContent({
 
   return (
     <>
-      <section className="diamond-spacing-bottom-lg">
+      <section className="evg-spacing-bottom-lg">
         <h3>{t('homeRecycling.hwrc.title')}</h3>
 
-        <diamond-enter type="fade">
+        <evg-enter type="fade">
           {hwrcLocationsCount > 0 ? (
             <>
               <p>
@@ -58,18 +58,20 @@ function HomeRecyclingCentrePageContent({
                   { count: hwrcLocationsCount },
                 )}
               </p>
-              <diamond-card
-                className="theme-info diamond-spacing-bottom-md"
+              <evg-card
+                className="theme-info evg-spacing-bottom-md"
                 padding="sm"
-                radius
+                radius="sm"
               >
-                <locator-icon-text>
-                  <locator-icon icon="info"></locator-icon>
-                  <p className="diamond-text-size-sm">
-                    {t('homeRecycling.hwrc.info')}
-                  </p>
-                </locator-icon-text>
-              </diamond-card>
+                <evg-card-content>
+                  <locator-icon-text>
+                    <locator-icon icon="info"></locator-icon>
+                    <p className="evg-text-size-body-xs">
+                      {t('homeRecycling.hwrc.info')}
+                    </p>
+                  </locator-icon-text>
+                </evg-card-content>
+              </evg-card>
 
               {hwrcLocations.map((location) => {
                 const locationPostcode =
@@ -81,74 +83,76 @@ function HomeRecyclingCentrePageContent({
                     href={`/${postcode}/places/${locationName}/${locationPostcode}`}
                     key={location.id}
                   >
-                    <diamond-card
-                      className="diamond-spacing-bottom-sm"
-                      border
-                      radius
-                    >
-                      <Place location={location} />
-                    </diamond-card>
+                    <evg-card className="evg-spacing-bottom-sm" radius="sm">
+                      <evg-card-content>
+                        <Place location={location} />
+                      </evg-card-content>
+                    </evg-card>
                   </Link>
                 );
               })}
             </>
           ) : (
-            <diamond-card border radius>
-              <locator-icon-text>
-                <locator-icon-circle variant="negative">
-                  <locator-icon icon="place-hwrc"></locator-icon>
-                </locator-icon-circle>
-                <p className="diamond-text-weight-bold">
-                  {t('homeRecycling.hwrc.content', { count: 0 })}
-                </p>
-              </locator-icon-text>
-            </diamond-card>
+            <evg-card radius="sm">
+              <evg-card-content>
+                <locator-icon-text>
+                  <locator-icon-circle variant="negative">
+                    <locator-icon icon="place-hwrc"></locator-icon>
+                  </locator-icon-circle>
+                  <p className="evg-text-weight-bold">
+                    {t('homeRecycling.hwrc.content', { count: 0 })}
+                  </p>
+                </locator-icon-text>
+              </evg-card-content>
+            </evg-card>
           )}
-        </diamond-enter>
+        </evg-enter>
       </section>
 
-      <section className="diamond-spacing-bottom-lg">
-        <h3 className="diamond-spacing-bottom-md">
+      <section className="evg-spacing-bottom-lg">
+        <h3 className="evg-spacing-bottom-md">
           {t('homeRecycling.hwrc.nearbyPlaces.title')}
         </h3>
 
-        <diamond-enter type="fade">
-          <diamond-card border radius>
-            <locator-icon-text className="diamond-spacing-bottom-md">
-              <locator-icon-circle
-                variant={otherLocationsCount === 0 ? 'negative' : 'positive'}
-              >
-                <locator-icon icon="place"></locator-icon>
-              </locator-icon-circle>
-              <h3>
-                {t(
-                  `homeRecycling.hwrc.nearbyPlaces.content${otherLocationsCount >= 30 ? 'ThirtyPlus' : ''}`,
-                  {
-                    count: otherLocationsCount,
-                  },
-                )}
-              </h3>
-            </locator-icon-text>
-            <diamond-button width="full-width">
-              <diamond-grid>
-                <diamond-grid-item small-mobile="6">
-                  <diamond-button width="full-width">
-                    <Link href={`/${postcode}/places`}>
-                      {t('actions.listPlaces')}
-                    </Link>
-                  </diamond-button>
-                </diamond-grid-item>
-                <diamond-grid-item small-mobile="6">
-                  <diamond-button width="full-width">
-                    <Link href={`/${postcode}/places/map`}>
-                      {t('actions.showMap')}
-                    </Link>
-                  </diamond-button>
-                </diamond-grid-item>
-              </diamond-grid>
-            </diamond-button>
-          </diamond-card>
-        </diamond-enter>
+        <evg-enter type="fade">
+          <evg-card radius="sm">
+            <evg-card-content>
+              <locator-icon-text className="evg-spacing-bottom-md">
+                <locator-icon-circle
+                  variant={otherLocationsCount === 0 ? 'negative' : 'positive'}
+                >
+                  <locator-icon icon="place"></locator-icon>
+                </locator-icon-circle>
+                <h3>
+                  {t(
+                    `homeRecycling.hwrc.nearbyPlaces.content${otherLocationsCount >= 30 ? 'ThirtyPlus' : ''}`,
+                    {
+                      count: otherLocationsCount,
+                    },
+                  )}
+                </h3>
+              </locator-icon-text>
+              <evg-button width="full-width">
+                <evg-grid>
+                  <evg-grid-item small-mobile="6">
+                    <evg-button width="full-width">
+                      <Link href={`/${postcode}/places`}>
+                        {t('actions.listPlaces')}
+                      </Link>
+                    </evg-button>
+                  </evg-grid-item>
+                  <evg-grid-item small-mobile="6">
+                    <evg-button width="full-width">
+                      <Link href={`/${postcode}/places/map`}>
+                        {t('actions.showMap')}
+                      </Link>
+                    </evg-button>
+                  </evg-grid-item>
+                </evg-grid>
+              </evg-button>
+            </evg-card-content>
+          </evg-card>
+        </evg-enter>
       </section>
     </>
   );

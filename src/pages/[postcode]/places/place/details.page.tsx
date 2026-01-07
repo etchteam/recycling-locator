@@ -44,8 +44,8 @@ function PlaceDetailsPageContent({
   const collectionDetails = getCollectionDetails(location);
 
   return (
-    <diamond-enter type="fade">
-      <locator-bordered-list size="sm" className="diamond-spacing-bottom-md">
+    <evg-enter type="fade">
+      <locator-bordered-list size="sm" className="evg-spacing-bottom-md">
         <dl>
           <div>
             <dt>
@@ -139,7 +139,7 @@ function PlaceDetailsPageContent({
       </locator-bordered-list>
 
       <RateThisInfo />
-    </diamond-enter>
+    </evg-enter>
   );
 }
 
@@ -157,7 +157,7 @@ export default function PlaceDetailsPage() {
 
   return (
     <>
-      <h3 className="diamond-spacing-bottom-md">{t('place.details.title')}</h3>
+      <h3 className="evg-spacing-bottom-md">{t('place.details.title')}</h3>
       <PlaceDetailsPageContent location={location} />
     </>
   );

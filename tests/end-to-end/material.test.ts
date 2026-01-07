@@ -423,7 +423,7 @@ test.describe('Material page', () => {
     // Verify doorstep collection appears after home recycling
     const doorstepCardBelowHome = widget
       .locator(
-        `diamond-card:below(diamond-card:has-text("${i18n.t('material.recycleAtHome.cta')}"))`,
+        `evg-card:below(evg-card:has-text("${i18n.t('material.recycleAtHome.cta')}"))`,
       )
       .filter({ hasText: i18n.t('material.doorstepCollection.title') });
     await expect(doorstepCardBelowHome).toBeVisible();
@@ -484,7 +484,7 @@ test.describe('Material page', () => {
     // Verify doorstep collection appears before home recycling section when no home options
     const homeCardBelowDoorstep = widget
       .locator(
-        `diamond-card:below(diamond-card:has-text("${i18n.t('material.doorstepCollection.title')}"))`,
+        `evg-card:below(evg-card:has-text("${i18n.t('material.doorstepCollection.title')}"))`,
       )
       .filter({
         hasText: i18n.t('material.recycleAtHome.noProperties.title'),

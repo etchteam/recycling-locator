@@ -1,15 +1,15 @@
 locator-context-header {
   align-items: center;
-  background: var(--diamond-theme-background);
-  border-bottom: var(--diamond-border);
-  color: var(--diamond-theme-color);
+  background: var(--evg-theme-background);
+  border-bottom: var(--evg-border);
+  color: var(--evg-theme-color);
   display: grid;
   grid-template-areas: 'content action';
   grid-template-columns: 1fr auto;
-  padding: var(--diamond-spacing-sm) var(--diamond-spacing);
+  padding: var(--evg-spacing-sm) var(--evg-spacing);
   position: sticky;
   top: var(--header-height);
-  transition: color var(--diamond-transition);
+  transition: color var(--evg-transition);
   z-index: var(--layer-four);
 
   @container (width > 768px) {
@@ -26,22 +26,22 @@ locator-context-header {
   }
 
   /* Remove icon buttons size to stop hover effect escaping the container */
-  diamond-button[variant='text'] {
+  evg-button[variant='ghost'] {
     line-height: 1;
 
     a,
     button {
       color: var(--color-primary-dark);
-      margin: calc(var(--diamond-spacing-xs) * -1);
+      margin: calc(var(--evg-spacing-xs) * -1);
       min-height: 0;
       min-width: 0;
-      padding: var(--diamond-spacing-xs);
+      padding: var(--evg-spacing-xs);
     }
   }
 }
 
 @media (hover: hover) {
   a:hover locator-context-header {
-    color: var(--diamond-theme-color-hover);
+    color: var(--evg-theme-color-hover);
   }
 }

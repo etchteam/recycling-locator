@@ -5,20 +5,8 @@
  * Import this file once in the entry point to register all components globally.
  */
 
-// Diamond UI components
-import '@etchteam/diamond-ui/canvas/Card/Card';
-import '@etchteam/diamond-ui/canvas/Section/Section';
-import '@etchteam/diamond-ui/composition/Collapse/Collapse';
-import '@etchteam/diamond-ui/composition/Enter/Enter';
-import '@etchteam/diamond-ui/composition/FormGroup/FormGroup';
-import '@etchteam/diamond-ui/composition/Grid/Grid';
-import '@etchteam/diamond-ui/composition/Grid/GridItem';
-import '@etchteam/diamond-ui/composition/Wrap/Wrap';
-import '@etchteam/diamond-ui/content/Img/Img';
-import '@etchteam/diamond-ui/control/Button/Button';
-import '@etchteam/diamond-ui/control/Input/Input';
-import '@etchteam/diamond-ui/control/Link/Link';
-import '@etchteam/diamond-ui/control/RadioCheckbox/RadioCheckbox';
+// Evergreen UI components
+import '@wrap.ngo/evergreen/components';
 
 // Local components
 import '@/components/canvas/ContextHeader/ContextHeader';

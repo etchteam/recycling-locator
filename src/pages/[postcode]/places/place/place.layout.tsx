@@ -37,17 +37,17 @@ function PlaceMap({ location }: { readonly location: Location }) {
         <locator-places-map-scrim />
       </Link>
       <locator-places-map-card>
-        <diamond-grid>
-          <diamond-grid-item small-mobile="6">
-            <diamond-button width="full-width" size="sm">
+        <evg-grid>
+          <evg-grid-item small-mobile="6">
+            <evg-button width="full-width" size="sm">
               <Link href={mapUrl}>
                 <locator-icon icon="map" />
                 {t('actions.showMap')}
               </Link>
-            </diamond-button>
-          </diamond-grid-item>
-          <diamond-grid-item small-mobile="6">
-            <diamond-button width="full-width" size="sm">
+            </evg-button>
+          </evg-grid-item>
+          <evg-grid-item small-mobile="6">
+            <evg-button width="full-width" size="sm">
               <a
                 href={directions(postcode, location.address)}
                 target="_blank"
@@ -62,9 +62,9 @@ function PlaceMap({ location }: { readonly location: Location }) {
                 {t('actions.directions')}
                 <locator-icon icon="external" />
               </a>
-            </diamond-button>
-          </diamond-grid-item>
-        </diamond-grid>
+            </evg-button>
+          </evg-grid-item>
+        </evg-grid>
       </locator-places-map-card>
     </PlacesMap>
   );
@@ -100,11 +100,11 @@ export default function PlaceLayout({
         </locator-header-logo>
         <locator-header-content>
           <locator-header-title>
-            <diamond-button>
+            <evg-button>
               <Link href={`/${postcode}/places?${searchParams.toString()}`}>
                 <locator-icon icon="arrow-left" label="Back"></locator-icon>
               </Link>
-            </diamond-button>
+            </evg-button>
             <div>
               <h2>{placeName}</h2>
               <p>{placePostcode !== 'null' ? placePostcode : ''}</p>
@@ -135,9 +135,9 @@ export default function PlaceLayout({
             </ul>
           </nav>
         </locator-nav-bar>
-        <diamond-section padding="lg">
+        <evg-section padding="lg">
           <locator-wrap>{children}</locator-wrap>
-        </diamond-section>
+        </evg-section>
       </div>
       <div slot="layout-aside" className="display-contents">
         {!locationLoading &&

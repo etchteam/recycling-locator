@@ -60,8 +60,8 @@ locator-layout {
   }
 
   &::part(header) {
-    background: var(--diamond-color-white);
-    border-bottom: var(--diamond-border);
+    background: var(--color-white);
+    border-bottom: var(--evg-border);
     grid-area: header;
     position: sticky;
     top: 0;
@@ -79,7 +79,7 @@ locator-layout {
   }
 
   &::part(aside) {
-    border-top: var(--diamond-border);
+    border-top: var(--evg-border);
     grid-area: aside;
     position: relative;
   }
@@ -95,7 +95,7 @@ locator-layout {
     }
 
     &::part(aside) {
-      border-left: var(--diamond-border);
+      border-left: var(--evg-border);
       border-top: 0 none;
       height: 100%;
     }

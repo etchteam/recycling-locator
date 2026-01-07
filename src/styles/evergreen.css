@@ -1,0 +1,94 @@
+@import '../../node_modules/@wrap.ngo/evergreen/dist/styles/main.css';
+
+/* Evergreen style overrides */
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: var(--evg-font-weight-base);
+  margin-block-end: var(--evg-spacing-sm);
+  text-wrap: balance;
+}
+
+a {
+  text-decoration: var(--evg-link-text-decoration);
+
+  &:has(evg-card) {
+    text-decoration: none;
+  }
+
+  &:hover evg-card {
+    border-color: var(--evg-theme-border-color-hover);
+  }
+}
+
+ul,
+ol {
+  margin: 0 0 var(--evg-spacing-sm) var(--evg-spacing-xs);
+  padding-left: var(--evg-spacing);
+}
+
+label {
+  font-weight: bold;
+}
+
+.evg-spacing-bottom-none {
+  margin-block-end: 0;
+}
+
+evg-card {
+  --evg-card-content-gap: 0;
+
+  h3,
+  h4 {
+    font-size: var(--font-size-base);
+    font-weight: var(--evg-font-weight-bold);
+  }
+
+  evg-card {
+    border: 0 none;
+  }
+
+  evg-card-content {
+    min-width: 0;
+  }
+}
+
+evg-button[variant='ghost'] :is(button, a) {
+  font-weight: var(--evg-font-weight-base);
+}
+
+evg-button[size='sm'] :is(button, a) {
+  font-size: var(--evg-font-size-body-xs);
+}
+
+evg-radio-checkbox {
+  border: 0 none;
+
+  &::part(indicator) {
+    margin-inline-start: 0;
+  }
+
+  &:hover {
+    --evg-input-border: var(--evg-theme-border-color-hover);
+  }
+
+  &:has(input:focus-visible) {
+    outline: 5px auto Highlight;
+    outline: 5px auto -webkit-focus-ring-color;
+  }
+
+  input:focus-visible {
+    outline: none;
+  }
+
+  label {
+    font-size: var(--evg-font-size-body-xs);
+    min-height: auto;
+    padding: 0;
+    padding-left: calc(
+      1.25rem + var(--evg-spacing-sm) + var(--evg-input-padding-inline)
+    );
+  }
+}

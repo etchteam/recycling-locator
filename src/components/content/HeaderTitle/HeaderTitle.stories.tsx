@@ -11,11 +11,11 @@ export default meta;
 export const HeaderTitle: StoryObj = {
   render: () => (
     <locator-header-title>
-      <diamond-button>
+      <evg-button>
         <a href="#link">
           <locator-icon icon="arrow-left" label="Back"></locator-icon>
         </a>
-      </diamond-button>
+      </evg-button>
       <div>
         <h2>Recycle a specific item</h2>
         <p>EX327RB</p>

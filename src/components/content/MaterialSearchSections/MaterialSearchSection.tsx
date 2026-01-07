@@ -35,5 +35,5 @@ export default function MaterialSearchSection<T>({
     return null;
   }
 
-  return <diamond-enter type="fade">{children}</diamond-enter>;
+  return <evg-enter type="fade">{children}</evg-enter>;
 }

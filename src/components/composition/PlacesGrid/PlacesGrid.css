@@ -3,7 +3,7 @@ locator-places-grid {
 
   ul {
     display: grid;
-    gap: var(--diamond-spacing-sm);
+    gap: var(--evg-spacing-sm);
     grid-template-columns: 1fr;
     list-style: none;
     margin: 0;
@@ -17,7 +17,7 @@ locator-places-grid {
 
     /* large tablet */
     @container (width >= 1024px) {
-      gap: var(--diamond-spacing);
+      gap: var(--evg-spacing);
       grid-template-columns: repeat(3, 1fr);
     }
 

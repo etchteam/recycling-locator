@@ -8,34 +8,34 @@ export default meta;
 
 export const Button: StoryObj = {
   render: () => (
-    <diamond-grid wrap="wrap">
-      <diamond-grid-item>
-        <diamond-button>
+    <evg-grid wrap="wrap">
+      <evg-grid-item>
+        <evg-button>
           <button>Button</button>
-        </diamond-button>
-      </diamond-grid-item>
-      <diamond-grid-item>
-        <diamond-button>
+        </evg-button>
+      </evg-grid-item>
+      <evg-grid-item>
+        <evg-button>
           <button disabled>Button</button>
-        </diamond-button>
-      </diamond-grid-item>
-    </diamond-grid>
+        </evg-button>
+      </evg-grid-item>
+    </evg-grid>
   ),
 };
 
 export const Primary: StoryObj = {
   render: () => (
-    <diamond-grid wrap="wrap">
-      <diamond-grid-item>
-        <diamond-button variant="primary">
+    <evg-grid wrap="wrap">
+      <evg-grid-item>
+        <evg-button variant="primary">
           <button>Button</button>
-        </diamond-button>
-      </diamond-grid-item>
-      <diamond-grid-item>
-        <diamond-button variant="primary">
+        </evg-button>
+      </evg-grid-item>
+      <evg-grid-item>
+        <evg-button variant="primary">
           <button disabled>Button</button>
-        </diamond-button>
-      </diamond-grid-item>
-    </diamond-grid>
+        </evg-button>
+      </evg-grid-item>
+    </evg-grid>
   ),
 };

@@ -20,14 +20,14 @@ export function RefillAside({ postcode }: { readonly postcode: string }) {
     <locator-tip slot="layout-aside" text-align="center">
       <locator-wrap>
         <img src={generalTipImgSrc} alt="" />
-        <p className="diamond-text-weight-bold">{t('refill.aside.subtitle')}</p>
+        <p className="evg-text-weight-bold">{t('refill.aside.subtitle')}</p>
         <h2>{t('refill.aside.title')}</h2>
         <p>{t('refill.aside.content')}</p>
-        <diamond-enter type="fade">
-          <diamond-button width="full-width">
+        <evg-enter type="fade">
+          <evg-button width="full-width">
             <Link href={'/' + postcode}>{t('refill.aside.cta')}</Link>
-          </diamond-button>
-        </diamond-enter>
+          </evg-button>
+        </evg-enter>
       </locator-wrap>
     </locator-tip>
   );
@@ -77,7 +77,7 @@ export default function StartLayout({
               {/* replace with refill logo */}
               <locator-logo type="logo-only"></locator-logo>
             </Link>
-            <diamond-button width="square" size="sm">
+            <evg-button variant="ghost" width="square">
               <button
                 type="button"
                 aria-expanded="true"
@@ -90,7 +90,7 @@ export default function StartLayout({
                   color="primary"
                 ></locator-icon>
               </button>
-            </diamond-button>
+            </evg-button>
           </locator-header-content>
         ) : (
           <>
@@ -100,7 +100,7 @@ export default function StartLayout({
             </locator-header-logo>
             <locator-header-content>
               <locator-header-title>
-                <diamond-button>
+                <evg-button>
                   {postcode && isHome ? (
                     <FullMenu handleClick={() => (open.value = !open.value)} />
                   ) : (
@@ -111,10 +111,10 @@ export default function StartLayout({
                       ></locator-icon>
                     </Link>
                   )}
-                </diamond-button>
+                </evg-button>
                 <div>
                   <h2>{t('refill.header.title')}</h2>
-                  <p className="text-color-positive text-italic diamond-text-weight-bold">
+                  <p className="text-color-positive text-italic evg-text-weight-bold">
                     {t('refill.header.comingSoon')}
                   </p>
                 </div>
@@ -147,7 +147,7 @@ export default function StartLayout({
               </nav>
             </locator-nav-bar>
             <locator-wrap large-screen-only={isHome}>
-              <diamond-section padding="lg">{children}</diamond-section>
+              <evg-section padding="lg">{children}</evg-section>
             </locator-wrap>
           </>
         )}

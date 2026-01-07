@@ -1,8 +1,8 @@
 locator-icon {
-  --_size: var(--diamond-icon-size);
+  --_size: var(--evg-icon-size);
 
   dt & {
-    --_size: var(--diamond-font-size-sm);
+    --_size: var(--evg-font-size-body-xs);
     vertical-align: middle;
   }
 

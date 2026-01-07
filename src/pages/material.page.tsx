@@ -83,8 +83,8 @@ export default function MaterialStartPage() {
         )}
         {category && <input type="hidden" name="category" value={category} />}
       </LocationForm>
-      <hr className="diamond-spacing-top-lg" />
-      <p className="diamond-spacing-top-md">{t('start.aside.paragraph')}</p>
+      <hr className="evg-spacing-top-lg" />
+      <p className="evg-spacing-top-md">{t('start.aside.paragraph')}</p>
       <ul>
         {tArray('start.aside.list').map((item) => (
           <li key={item}>{item}</li>

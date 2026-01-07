@@ -52,13 +52,13 @@ function AtoZPageContent({
   }
 
   return (
-    <diamond-enter type="fade">
-      <locator-alphabet-nav className="diamond-spacing-bottom-lg">
+    <evg-enter type="fade">
+      <locator-alphabet-nav className="evg-spacing-bottom-lg">
         <nav>
           <ul>
             {alphabet.map((letter) => (
               <li key={letter}>
-                <diamond-button width="square">
+                <evg-button width="square">
                   <Link
                     href={`#letter-${letter}`}
                     disabled={!availableLetters.includes(letter)}
@@ -67,7 +67,7 @@ function AtoZPageContent({
                   >
                     {letter}
                   </Link>
-                </diamond-button>
+                </evg-button>
               </li>
             ))}
           </ul>
@@ -75,17 +75,17 @@ function AtoZPageContent({
       </locator-alphabet-nav>
       {availableLetters.map((letter) => (
         <>
-          <diamond-grid>
-            <diamond-grid-item grow shrink>
+          <evg-grid>
+            <evg-grid-item grow shrink>
               <h3
-                className="diamond-text-weight-bold diamond-text-size-h4 scroll-anchor"
+                className="evg-text-weight-bold evg-text-size-heading-sm scroll-anchor"
                 id={`letter-${letter}`}
               >
                 {letter}
               </h3>
-            </diamond-grid-item>
-            <diamond-grid-item>
-              <diamond-button variant="text" width="square" size="sm">
+            </evg-grid-item>
+            <evg-grid-item>
+              <evg-button variant="ghost" width="square" size="sm">
                 <button type="button" onClick={backToTop}>
                   <locator-icon
                     icon="arrow-up"
@@ -93,13 +93,10 @@ function AtoZPageContent({
                     color="primary"
                   />
                 </button>
-              </diamond-button>
-            </diamond-grid-item>
-          </diamond-grid>
-          <locator-bordered-list
-            className="diamond-spacing-bottom-md"
-            size="sm"
-          >
+              </evg-button>
+            </evg-grid-item>
+          </evg-grid>
+          <locator-bordered-list className="evg-spacing-bottom-md" size="sm">
             <nav>
               <ul>
                 {groupedMaterials[letter].map((material) => {
@@ -122,7 +119,7 @@ function AtoZPageContent({
           </locator-bordered-list>
         </>
       ))}
-    </diamond-enter>
+    </evg-enter>
   );
 }
 
@@ -134,10 +131,10 @@ export default function AtoZPage() {
   }
 
   return (
-    <diamond-section padding="lg">
+    <evg-section padding="lg">
       <locator-wrap>
         <AtoZPageContent materials={materials} />
       </locator-wrap>
-    </diamond-section>
+    </evg-section>
   );
 }

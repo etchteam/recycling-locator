@@ -22,10 +22,10 @@ export default function PlacesSearchPage() {
   }
 
   return (
-    <diamond-section padding="lg">
+    <evg-section padding="lg">
       <locator-wrap>
         <h3 id="places-search-label">{t('places.search.label')}</h3>
-        <diamond-enter type="fade" className="layer-one">
+        <evg-enter type="fade" className="layer-one">
           <MaterialSearchForm
             path="places"
             inputLabelledBy="places-search-label"
@@ -39,8 +39,8 @@ export default function PlacesSearchPage() {
               generatePath={generatePopularMaterialPath}
             />
           )}
-        </diamond-enter>
+        </evg-enter>
       </locator-wrap>
-    </diamond-section>
+    </evg-section>
   );
 }

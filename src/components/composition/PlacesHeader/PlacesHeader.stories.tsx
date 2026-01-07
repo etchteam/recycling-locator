@@ -12,11 +12,11 @@ export const PlacesHeader: StoryObj = {
   render: () => (
     <locator-places-header>
       <locator-header-title>
-        <diamond-button>
+        <evg-button>
           <a href="#link">
             <locator-icon icon="arrow-left" label="Back"></locator-icon>
           </a>
-        </diamond-button>
+        </evg-button>
         <div>
           <h2>Places to recycle</h2>
           <p>EX327RB</p>

@@ -93,14 +93,14 @@ function CollectionPageContent({
                         href={`/${postcode}/home/collection?propertyType=${type}`}
                         onClick={handleMenuItemClick}
                       >
-                        <diamond-grid align-items="center" gap="xs">
-                          <diamond-grid-item grow shrink>
+                        <evg-grid align-items="center" gap="xs">
+                          <evg-grid-item grow shrink>
                             {type}
-                          </diamond-grid-item>
-                          <diamond-grid-item>
+                          </evg-grid-item>
+                          <evg-grid-item>
                             <locator-icon icon="arrow-right" />
-                          </diamond-grid-item>
-                        </diamond-grid>
+                          </evg-grid-item>
+                        </evg-grid>
                       </Link>
                     </li>
                   ))}
@@ -109,13 +109,13 @@ function CollectionPageContent({
             </details>
           </locator-details>
         ) : (
-          <span className="diamond-text-weight-bold">{propertyType}</span>
+          <span className="evg-text-weight-bold">{propertyType}</span>
         )}
       </locator-context-header>
-      <diamond-enter type="fade">
-        <diamond-section padding="lg">
+      <evg-enter type="fade">
+        <evg-section padding="lg">
           <locator-wrap>
-            <h3 id="bin-search-title" className="diamond-spacing-bottom-md">
+            <h3 id="bin-search-title" className="evg-spacing-bottom-md">
               {t('homeRecycling.collection.search.label')}
             </h3>
 
@@ -134,7 +134,7 @@ function CollectionPageContent({
               ></MaterialSearchInput>
             </form>
 
-            <div className="diamond-spacing-bottom-sm" />
+            <div className="evg-spacing-bottom-sm" />
 
             <HomeCollectionContainers
               localAuthority={localAuthority}
@@ -144,8 +144,8 @@ function CollectionPageContent({
 
             <RateThisInfo />
           </locator-wrap>
-        </diamond-section>
-      </diamond-enter>
+        </evg-section>
+      </evg-enter>
     </>
   );
 }
@@ -175,17 +175,17 @@ export default function CollectionPage() {
           </locator-header-logo>
           <locator-header-content>
             <locator-header-title>
-              <diamond-button>
+              <evg-button>
                 <Link href={`/${postcode}/home`}>
                   <locator-icon icon="arrow-left" label="Back"></locator-icon>
                 </Link>
-              </diamond-button>
+              </evg-button>
               <div>
                 <h2>{t('homeRecycling.collection.title')}</h2>
                 {hasLoadedLocalAuthority && (
-                  <diamond-enter type="fade">
+                  <evg-enter type="fade">
                     <p>{localAuthority.name}</p>
-                  </diamond-enter>
+                  </evg-enter>
                 )}
               </div>
             </locator-header-title>

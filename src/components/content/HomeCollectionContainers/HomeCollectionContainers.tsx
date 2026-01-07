@@ -26,13 +26,13 @@ function ContainerNotes({
 
   return (
     <locator-details
-      className="diamond-spacing-top-sm diamond-spacing-bottom-sm"
+      className="evg-spacing-top-sm evg-spacing-bottom-sm"
       flush={flush}
     >
       <details>
         <summary>
           <locator-details-summary-content>
-            <span className="diamond-text-size-sm">
+            <span className="evg-text-size-body-xs">
               {t('components.container.notes')}
             </span>
             <locator-details-summary-preview>
@@ -42,7 +42,7 @@ function ContainerNotes({
           <locator-icon icon="expand" />
         </summary>
         <p
-          className="diamond-text-size-sm"
+          className="evg-text-size-body-xs"
           dangerouslySetInnerHTML={{
             __html: nl2br(container.notes.join('\n\n')),
           }}
@@ -57,7 +57,7 @@ function DryContainer({ container }: { readonly container: Container }) {
 
   return (
     <>
-      <locator-container className="diamond-spacing-bottom-sm">
+      <locator-container className="evg-spacing-bottom-sm">
         <locator-container-icon>
           <ContainerSVG
             name={container.name}
@@ -66,19 +66,19 @@ function DryContainer({ container }: { readonly container: Container }) {
           />
         </locator-container-icon>
         <locator-container-content>
-          <locator-container-name className="diamond-text-weight-bold">
+          <locator-container-name className="evg-text-weight-bold">
             {containerName(container)}
           </locator-container-name>
         </locator-container-content>
       </locator-container>
       {Object.keys(materialCategories)?.map((category) => (
-        <locator-details key={category} className="diamond-spacing-bottom-sm">
+        <locator-details key={category} className="evg-spacing-bottom-sm">
           <details>
             <summary>
               {category}
               <locator-icon icon="expand" />
             </summary>
-            <ul className="diamond-text-size-sm">
+            <ul className="evg-text-size-body-xs">
               {materialCategories[category].map((material) => (
                 <li key={material.name}>{material.name}</li>
               ))}
@@ -113,79 +113,84 @@ function FoodAndGardenContainers({
         const icon = streamType.toLowerCase() as 'food' | 'garden';
 
         return (
-          <diamond-card
-            className="diamond-spacing-bottom-lg"
+          <evg-card
+            className="evg-spacing-bottom-lg"
             key={streamType}
-            border
-            radius
+            radius="sm"
           >
-            <locator-icon-text className="diamond-spacing-bottom-sm">
-              <locator-icon-circle variant="primary">
-                <locator-icon icon={icon} />
-              </locator-icon-circle>
-              <h4>{streamType}</h4>
-            </locator-icon-text>
-            <div className="diamond-text-size-sm diamond-spacing-bottom-sm">
-              <p>{t(`homeRecycling.collection.collected${streamType}Items`)}</p>
-              <ul>
-                {containerList[streamType][0].materials.map((material) => (
-                  <li key={material.name}>{material.name}</li>
-                ))}
-              </ul>
-              <p>{t(`homeRecycling.collection.binsInYourArea`)}</p>
-            </div>
-            <ul
-              role="list"
-              className="list-style-none diamond-spacing-bottom-md"
-            >
-              {containerList[streamType].map((container) => (
-                <li key={container.name} className="diamond-spacing-bottom-md">
-                  <locator-container>
-                    <locator-container-icon>
-                      <ContainerSVG
-                        name={container.name}
-                        bodyColour={container.bodyColour}
-                        lidColour={container.lidColour}
+            <evg-card-content>
+              <div>
+                <locator-icon-text className="evg-spacing-bottom-sm">
+                  <locator-icon-circle variant="primary">
+                    <locator-icon icon={icon} />
+                  </locator-icon-circle>
+                  <h4>{streamType}</h4>
+                </locator-icon-text>
+                <div className="evg-text-size-body-xs evg-spacing-bottom-sm">
+                  <p>
+                    {t(`homeRecycling.collection.collected${streamType}Items`)}
+                  </p>
+                  <ul>
+                    {containerList[streamType][0].materials.map((material) => (
+                      <li key={material.name}>{material.name}</li>
+                    ))}
+                  </ul>
+                  <p>{t(`homeRecycling.collection.binsInYourArea`)}</p>
+                </div>
+                <ul
+                  role="list"
+                  className="list-style-none evg-spacing-bottom-md"
+                >
+                  {containerList[streamType].map((container) => (
+                    <li key={container.name} className="evg-spacing-bottom-md">
+                      <locator-container>
+                        <locator-container-icon>
+                          <ContainerSVG
+                            name={container.name}
+                            bodyColour={container.bodyColour}
+                            lidColour={container.lidColour}
+                          />
+                        </locator-container-icon>
+                        <locator-container-content>
+                          <locator-container-name className="evg-text-weight-bold">
+                            {containerName({
+                              displayName: container.name,
+                              bodyColour: container.bodyColour,
+                              lidColour: container.lidColour,
+                            })}
+                          </locator-container-name>
+                        </locator-container-content>
+                      </locator-container>
+                      <ContainerNotes container={container} flush />
+                    </li>
+                  ))}
+                </ul>
+                {streamType === 'Garden' && hasGardenSubscription && (
+                  <>
+                    <hr className="evg-spacing-bottom-sm" />
+                    <p className="evg-text-size-body-xs evg-spacing-bottom-sm">
+                      <Trans
+                        i18nKey={'homeRecycling.collection.gardenSubscription'}
+                        components={{ bold: <strong /> }}
                       />
-                    </locator-container-icon>
-                    <locator-container-content>
-                      <locator-container-name className="diamond-text-weight-bold">
-                        {containerName({
-                          displayName: container.name,
-                          bodyColour: container.bodyColour,
-                          lidColour: container.lidColour,
-                        })}
-                      </locator-container-name>
-                    </locator-container-content>
-                  </locator-container>
-                  <ContainerNotes container={container} flush />
-                </li>
-              ))}
-            </ul>
-            {streamType === 'Garden' && hasGardenSubscription && (
-              <>
-                <hr className="diamond-spacing-bottom-sm" />
-                <p className="diamond-text-size-sm">
-                  <Trans
-                    i18nKey={'homeRecycling.collection.gardenSubscription'}
-                    components={{ bold: <strong /> }}
-                  />
-                </p>
-                {localAuthority.gardenWasteUri && (
-                  <diamond-button width="full-width" size="sm">
-                    <a
-                      href={localAuthority.gardenWasteUri}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {localAuthority.name}
-                      <locator-icon icon="external"></locator-icon>
-                    </a>
-                  </diamond-button>
+                    </p>
+                    {localAuthority.gardenWasteUri && (
+                      <evg-button width="full-width" size="sm">
+                        <a
+                          href={localAuthority.gardenWasteUri}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {localAuthority.name}
+                          <locator-icon icon="external"></locator-icon>
+                        </a>
+                      </evg-button>
+                    )}
+                  </>
                 )}
-              </>
-            )}
-          </diamond-card>
+              </div>
+            </evg-card-content>
+          </evg-card>
         );
       })}
     </>
@@ -209,9 +214,9 @@ export default function HomeCollectionContainers({
 
   return (
     <>
-      <div className="diamond-spacing-bottom-lg">
+      <div className="evg-spacing-bottom-lg">
         {searchResult ? (
-          <diamond-enter type="fade">
+          <evg-enter type="fade">
             <MaterialSearchBanner
               search={search}
               searchResult={searchResult === 'positive'}
@@ -221,11 +226,11 @@ export default function HomeCollectionContainers({
                 }),
               )}
             ></MaterialSearchBanner>
-          </diamond-enter>
+          </evg-enter>
         ) : (
           <>
             {containerList.Dry?.length > 1 && (
-              <p className="diamond-text-size-sm diamond-spacing-top-md">
+              <p className="evg-text-size-body-xs evg-spacing-top-md">
                 <strong>
                   {t('homeRecycling.collection.multipleCollectionsOperate')}
                 </strong>
@@ -238,9 +243,9 @@ export default function HomeCollectionContainers({
       </div>
 
       {containerList.Dry?.length === 1 ? (
-        <ul role="list" className="list-style-none diamond-spacing-bottom-md">
+        <ul role="list" className="list-style-none evg-spacing-bottom-md">
           {containerList.Dry[0].containers.map((container) => (
-            <li key={container.name} className="diamond-spacing-bottom-md">
+            <li key={container.name} className="evg-spacing-bottom-md">
               <DryContainer container={container} />
             </li>
           ))}
@@ -248,35 +253,33 @@ export default function HomeCollectionContainers({
       ) : (
         <>
           {containerList.Dry.map((scheme) => (
-            <diamond-card
-              className="diamond-spacing-bottom-lg"
+            <evg-card
+              className="evg-spacing-bottom-lg"
               key={scheme.name}
-              border
-              radius
+              radius="sm"
             >
-              <locator-icon-text className="diamond-spacing-bottom-sm">
-                <locator-icon-circle variant="primary">
-                  <locator-icon icon="dry" />
-                </locator-icon-circle>
-                <h4>{scheme.name}</h4>
-              </locator-icon-text>
-              <p className="diamond-text-size-sm diamond-spacing-bottom-md">
-                {t(`homeRecycling.collection.binsInYourArea`)}
-              </p>
-              <ul
-                role="list"
-                className="list-style-none diamond-spacing-bottom-md"
-              >
-                {scheme.containers.map((container) => (
-                  <li
-                    key={container.name}
-                    className="diamond-spacing-bottom-md"
-                  >
-                    <DryContainer container={container} />
-                  </li>
-                ))}
-              </ul>
-            </diamond-card>
+              <evg-card-content>
+                <locator-icon-text className="evg-spacing-bottom-sm">
+                  <locator-icon-circle variant="primary">
+                    <locator-icon icon="dry" />
+                  </locator-icon-circle>
+                  <h4>{scheme.name}</h4>
+                </locator-icon-text>
+                <p className="evg-text-size-body-xs evg-spacing-bottom-md">
+                  {t(`homeRecycling.collection.binsInYourArea`)}
+                </p>
+                <ul
+                  role="list"
+                  className="list-style-none evg-spacing-bottom-md"
+                >
+                  {scheme.containers.map((container) => (
+                    <li key={container.name} className="evg-spacing-bottom-md">
+                      <DryContainer container={container} />
+                    </li>
+                  ))}
+                </ul>
+              </evg-card-content>
+            </evg-card>
           ))}
         </>
       )}

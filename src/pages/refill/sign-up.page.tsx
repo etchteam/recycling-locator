@@ -1,7 +1,7 @@
 import fetchJsonp from 'fetch-jsonp';
 import { useEffect, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
-import { Link, useSearchParams } from 'wouter-preact';
+import { useSearchParams } from 'wouter-preact';
 
 import i18n from '@/lib/i18n';
 
@@ -116,7 +116,7 @@ export default function SignUpPage() {
     <>
       <div aria-live="polite" role="status" aria-atomic="true">
         {isSuccessful && (
-          <div className="diamond-spacing-bottom-md">
+          <div className="evg-spacing-bottom-md">
             <h2>{t('refill.sign-up.success.title')}</h2>
             <p className="text-color-positive">
               {t('refill.sign-up.success.description')}
@@ -142,11 +142,11 @@ export default function SignUpPage() {
               name="b_65343110dd35be920e719fccd_3d85122919"
               value=""
             />
-            <diamond-form-group className="diamond-spacing-bottom-md">
+            <evg-form-group className="evg-spacing-bottom-md">
               <label htmlFor="name-input">
                 {t('refill.sign-up.form.name.label')}
               </label>
-              <diamond-input>
+              <evg-input>
                 <input
                   id="name-input"
                   name="MMERGE6"
@@ -157,22 +157,22 @@ export default function SignUpPage() {
                     setErrors((prev) => ({ ...prev, name: false }))
                   }
                 />
-              </diamond-input>
+              </evg-input>
               {errors.name && (
                 <p
                   id="name-error"
-                  className="text-color-negative diamond-text-size-sm"
+                  className="text-color-negative evg-text-size-body-xs"
                   aria-live="polite"
                 >
                   {t('refill.sign-up.form.name.error')}
                 </p>
               )}
-            </diamond-form-group>
-            <diamond-form-group className="diamond-spacing-bottom-md">
+            </evg-form-group>
+            <evg-form-group className="evg-spacing-bottom-md">
               <label htmlFor="email-input">
                 {t('refill.sign-up.form.email.label')}
               </label>
-              <diamond-input>
+              <evg-input>
                 <input
                   id="email-input"
                   name="EMAIL"
@@ -187,22 +187,22 @@ export default function SignUpPage() {
                     setErrors((prev) => ({ ...prev, email: false }))
                   }
                 />
-              </diamond-input>
+              </evg-input>
               {errors.email && (
                 <p
                   id="email-error"
-                  className="text-color-negative diamond-text-size-sm"
+                  className="text-color-negative evg-text-size-body-xs"
                   aria-live="polite"
                 >
                   {t('refill.sign-up.form.email.error')}
                 </p>
               )}
-            </diamond-form-group>
-            <diamond-form-group className="diamond-spacing-bottom-md">
+            </evg-form-group>
+            <evg-form-group className="evg-spacing-bottom-md">
               <label htmlFor="postcode-input">
                 {t('refill.sign-up.form.postcode.label')}
               </label>
-              <diamond-input>
+              <evg-input>
                 <locator-icon icon="pin" color="primary" />
                 <input
                   id="postcode-input"
@@ -218,20 +218,20 @@ export default function SignUpPage() {
                     setErrors((prev) => ({ ...prev, postcode: false }))
                   }
                 />
-              </diamond-input>
+              </evg-input>
               {errors.postcode && (
                 <p
                   id="postcode-error"
-                  className="text-color-negative diamond-text-size-sm"
+                  className="text-color-negative evg-text-size-body-xs"
                   aria-live="polite"
                 >
                   {t('refill.sign-up.form.postcode.error')}
                 </p>
               )}
-            </diamond-form-group>
+            </evg-form-group>
 
-            <diamond-form-group className="diamond-spacing-bottom-md">
-              <diamond-radio-checkbox className="diamond-spacing-bottom-none">
+            <evg-form-group className="evg-spacing-bottom-md">
+              <evg-radio-checkbox className="evg-spacing-bottom-none">
                 <label>
                   <input
                     type="checkbox"
@@ -248,44 +248,47 @@ export default function SignUpPage() {
                       i18nKey={'refill.sign-up.form.gdpr.label'}
                       components={{
                         a: (
-                          <Link
-                            href={t('refill.sign-up.form.gdpr.link') as string}
+                          // eslint-disable-next-line jsx-a11y/anchor-has-content
+                          <a
+                            href={t('refill.sign-up.form.gdpr.link')}
+                            target="_blank"
+                            rel="external"
                           />
                         ),
                       }}
                     />
                   </span>
                 </label>
-              </diamond-radio-checkbox>
+              </evg-radio-checkbox>
               {errors.gdpr && (
                 <p
                   id="gdpr-error"
-                  className="text-color-negative diamond-text-size-sm"
+                  className="text-color-negative evg-text-size-body-xs"
                   aria-live="polite"
                 >
                   {t('refill.sign-up.form.gdpr.error')}
                 </p>
               )}
-            </diamond-form-group>
+            </evg-form-group>
 
             <p
-              className="text-color-negative diamond-text-size-sm"
+              className="text-color-negative evg-text-size-body-xs"
               aria-live="polite"
             >
               {error}
             </p>
 
-            <diamond-button
+            <evg-button
               variant="primary"
               width="full-width"
-              className="diamond-spacing-bottom-md"
+              className="evg-spacing-bottom-md"
             >
               <button type="submit" disabled={isSubmitting || isSuccessful}>
                 {isSubmitting
                   ? t('refill.sign-up.loading')
                   : t('refill.sign-up.button')}
               </button>
-            </diamond-button>
+            </evg-button>
           </form>
         </>
       )}
@@ -294,7 +297,14 @@ export default function SignUpPage() {
         <Trans
           i18nKey={'refill.sign-up.business'}
           components={{
-            a: <Link href={t('refill.sign-up.businessLink') as string} />,
+            a: (
+              // eslint-disable-next-line jsx-a11y/anchor-has-content
+              <a
+                href={t('refill.sign-up.businessLink')}
+                target="_blank"
+                rel="external"
+              />
+            ),
           }}
         />
       </p>

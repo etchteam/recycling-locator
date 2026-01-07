@@ -22,7 +22,7 @@ export default function RescueMeRecyclePage() {
 
   return (
     <locator-wrap>
-      <diamond-section padding="lg">
+      <evg-section padding="lg">
         <h2>{t('rescueMeRecycle.title')}</h2>
         <p>{t('rescueMeRecycle.intro')}</p>
         <h3>{t('rescueMeRecycle.statsTitle')}</h3>
@@ -33,39 +33,45 @@ export default function RescueMeRecyclePage() {
         </ul>
         <h3>{t('rescueMeRecycle.ctaTitle')}</h3>
         <p>{t('rescueMeRecycle.ctaText')}</p>
-        <diamond-section padding="sm">
-          <nav className="diamond-spacing-bottom-lg">
-            <dl>
-              <locator-icon-link border className="diamond-spacing-top-md">
+        <evg-section padding="sm">
+          <ul role="list" className="list-style-none">
+            <li>
+              <locator-icon-link border className="evg-spacing-top-md">
                 <Link href={`/${postcode}`}>
                   <locator-icon-circle>
                     <locator-icon icon="search" color="primary"></locator-icon>
                   </locator-icon-circle>
                   <div>
-                    <dt>{t('material.title')}</dt>
-                    <dd className="diamond-text-size-sm">
+                    <h4 className="text-size-base evg-spacing-bottom-none">
+                      {t('material.title')}
+                    </h4>
+                    <p className="evg-text-size-body-xs">
                       {t('material.description')}
-                    </dd>
+                    </p>
                   </div>
                 </Link>
               </locator-icon-link>
-              <locator-icon-link border className="diamond-spacing-top-md">
+            </li>
+            <li>
+              <locator-icon-link border className="evg-spacing-top-md">
                 <Link href={`/${postcode}/home`}>
                   <locator-icon-circle>
                     <locator-icon icon="home" color="primary"></locator-icon>
                   </locator-icon-circle>
                   <div>
-                    <dt>{t('postcode.options.home.title')}</dt>
-                    <dd className="diamond-text-size-sm">
+                    <h4 className="text-size-base evg-spacing-bottom-none">
+                      {t('postcode.options.home.title')}
+                    </h4>
+                    <p className="evg-text-size-body-xs">
                       {t('postcode.options.home.description')}
-                    </dd>
+                    </p>
                   </div>
                 </Link>
               </locator-icon-link>
-            </dl>
-          </nav>
-        </diamond-section>
-      </diamond-section>
+            </li>
+          </ul>
+        </evg-section>
+      </evg-section>
     </locator-wrap>
   );
 }

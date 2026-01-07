@@ -106,9 +106,9 @@ export default function StartLayout({
       </div>
       <div slot="layout-main" id="locator-layout-main">
         <locator-wrap>
-          <diamond-section padding="lg">
+          <evg-section padding="lg">
             {infoOpen ? <About /> : children}
-          </diamond-section>
+          </evg-section>
         </locator-wrap>
       </div>
       <div slot="layout-aside" className="display-contents">

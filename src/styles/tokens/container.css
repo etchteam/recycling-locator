@@ -2,7 +2,7 @@
   * These tokens control the widgets outer wrapping container
   */
 :host {
-  --container-border-default: 1px solid var(--diamond-theme-border-color);
+  --container-border-default: 1px solid var(--evg-theme-border-color);
   --container-border: var(
     --recycling-locator-container-border,
     var(--container-border-default)
@@ -20,8 +20,4 @@
   @media (width >= 768px) {
     --container-height: 640px;
   }
-}
-
-.recycling-locator-variant-standalone {
-  --container-height: 100cqh;
 }

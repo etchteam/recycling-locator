@@ -19,25 +19,25 @@ function Loading() {
 
   return (
     <>
-      <h3 className="diamond-text-size-md diamond-spacing-bottom-md">
+      <h3 className="evg-text-size-body-lg evg-spacing-bottom-md">
         {t('places.loading')}
       </h3>
       <locator-places-grid>
         <ul>
           <li>
-            <diamond-enter type="fade-in-up">
+            <evg-enter type="fade-in-up">
               <locator-loading-card></locator-loading-card>
-            </diamond-enter>
+            </evg-enter>
           </li>
           <li>
-            <diamond-enter type="fade-in-up" delay={0.5}>
+            <evg-enter type="fade-in-up" delay={0.5}>
               <locator-loading-card></locator-loading-card>
-            </diamond-enter>
+            </evg-enter>
           </li>
           <li>
-            <diamond-enter type="fade-in-up" delay={1}>
+            <evg-enter type="fade-in-up" delay={1}>
               <locator-loading-card></locator-loading-card>
-            </diamond-enter>
+            </evg-enter>
           </li>
         </ul>
       </locator-places-grid>
@@ -112,16 +112,16 @@ function Places() {
   };
 
   return (
-    <diamond-enter type="fade">
+    <evg-enter type="fade">
       {showLocations ? (
         <>
           <h3
             id="places-count"
-            className="diamond-text-size-md diamond-spacing-bottom-md"
+            className="evg-text-size-body-lg evg-spacing-bottom-md"
           >
             {t('places.count', { count })}
           </h3>
-          <locator-places-grid className="diamond-spacing-bottom-lg">
+          <locator-places-grid className="evg-spacing-bottom-lg">
             <nav aria-labelledby="places-count">
               <ul>
                 {locations.items.map((location) => {
@@ -136,11 +136,13 @@ function Places() {
                       <Link
                         href={`/${postcode}/places/${locationName}/${locationPostcode}?${locationSearchParams.toString()}`}
                       >
-                        <diamond-enter type="fade">
-                          <diamond-card border radius>
-                            <Place location={location} />
-                          </diamond-card>
-                        </diamond-enter>
+                        <evg-enter type="fade">
+                          <evg-card radius="sm">
+                            <evg-card-content>
+                              <Place location={location} />
+                            </evg-card-content>
+                          </evg-card>
+                        </evg-enter>
                       </Link>
                     </li>
                   );
@@ -151,42 +153,37 @@ function Places() {
         </>
       ) : (
         <locator-wrap>
-          <diamond-card className="diamond-spacing-top-md" border radius>
-            <locator-icon-text className="diamond-spacing-bottom-xs">
-              <locator-icon-circle variant="negative">
-                <locator-icon icon="place"></locator-icon>
-              </locator-icon-circle>
-              <h3>{t('material.nearbyPlaces.noPlaces.title')}</h3>
-            </locator-icon-text>
-            <p>
-              {t('material.nearbyPlaces.noPlaces.content', {
-                postcode: formatPostcode(postcode),
-              })}
-            </p>
-            <diamond-button
-              width="full-width"
-              className="diamond-spacing-bottom-sm"
-            >
-              <Link href={`/${postcode}/places/search`}>
-                {t('actions.searchAgain')}
-              </Link>
-            </diamond-button>
-            <diamond-button width="full-width">
-              <button type="button" onClick={handleResetSearch}>
-                {t('places.viewAll')}
-              </button>
-            </diamond-button>
-          </diamond-card>
+          <evg-card className="evg-spacing-top-md" radius="sm">
+            <evg-card-content>
+              <locator-icon-text className="evg-spacing-bottom-xs">
+                <locator-icon-circle variant="negative">
+                  <locator-icon icon="place"></locator-icon>
+                </locator-icon-circle>
+                <h3>{t('material.nearbyPlaces.noPlaces.title')}</h3>
+              </locator-icon-text>
+              <p>
+                {t('material.nearbyPlaces.noPlaces.content', {
+                  postcode: formatPostcode(postcode),
+                })}
+              </p>
+              <evg-button width="full-width" className="evg-spacing-bottom-sm">
+                <Link href={`/${postcode}/places/search`}>
+                  {t('actions.searchAgain')}
+                </Link>
+              </evg-button>
+              <evg-button width="full-width">
+                <button type="button" onClick={handleResetSearch}>
+                  {t('places.viewAll')}
+                </button>
+              </evg-button>
+            </evg-card-content>
+          </evg-card>
         </locator-wrap>
       )}
       {showLoadMore && (
-        <diamond-grid justify-content="center">
-          <diamond-grid-item
-            small-mobile="12"
-            small-tablet="6"
-            large-tablet="4"
-          >
-            <diamond-button width="full-width">
+        <evg-grid justify-content="center">
+          <evg-grid-item small-mobile="12" small-tablet="6" large-tablet="4">
+            <evg-button width="full-width">
               <button
                 type="button"
                 ref={loadMoreButton}
@@ -198,11 +195,11 @@ function Places() {
               >
                 {t('actions.loadMore')}
               </button>
-            </diamond-button>
-          </diamond-grid-item>
-        </diamond-grid>
+            </evg-button>
+          </evg-grid-item>
+        </evg-grid>
       )}
-    </diamond-enter>
+    </evg-enter>
   );
 }
 
@@ -216,14 +213,14 @@ export default function PlacesPage() {
 
   return (
     <locator-wrap max-width="none" gutter="fluid">
-      <diamond-section padding="md">
-        <section className="diamond-spacing-bottom-lg">
+      <evg-section padding="md">
+        <section className="evg-spacing-bottom-lg">
           <Places />
         </section>
-      </diamond-section>
+      </evg-section>
       <section>
         {!tipLoading && (
-          <diamond-enter type="fade-in-up">
+          <evg-enter type="fade-in-up">
             <locator-tip text-align="center" wrap="wrap">
               <img src={tip?.image ?? materialTipImgSrc} alt="" />
               <locator-tip-content>
@@ -233,22 +230,22 @@ export default function PlacesPage() {
                   showImage={false}
                 />
                 {/** Space for the fab */}
-                <div className="diamond-spacing-bottom-xl"></div>
+                <div className="evg-spacing-bottom-xl"></div>
               </locator-tip-content>
             </locator-tip>
-          </diamond-enter>
+          </evg-enter>
         )}
       </section>
-      <diamond-enter type="fade" delay={0.25}>
+      <evg-enter type="fade" delay={0.25}>
         <locator-fab sticky>
-          <diamond-button size="sm" variant="primary">
+          <evg-button size="sm" variant="primary">
             <Link href={`/${postcode}/places/map?${searchParams.toString()}`}>
               <locator-icon icon="map"></locator-icon>
               {t('actions.showMap')}
             </Link>
-          </diamond-button>
+          </evg-button>
         </locator-fab>
-      </diamond-enter>
+      </evg-enter>
     </locator-wrap>
   );
 }

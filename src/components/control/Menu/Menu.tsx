@@ -60,28 +60,28 @@ export default function Menu({
 
   return (
     <locator-menu>
-      <diamond-enter type="fade">
+      <evg-enter type="fade">
         <locator-context-header>
           <div>
-            <span className="diamond-text-weight-bold">
+            <span className="evg-text-weight-bold">
               {formatPostcode(postcode)}
             </span>{' '}
             {city ? <>&ndash; {city}</> : null}
           </div>
         </locator-context-header>
-      </diamond-enter>
-      <diamond-section padding="md">
+      </evg-enter>
+      <evg-section padding="md">
         <locator-wrap>
-          <diamond-enter type="fade" class="diamond-spacing-bottom-md">
-            <p className="diamond-text-size-h4">
+          <evg-enter type="fade" class="evg-spacing-bottom-md">
+            <p className="evg-text-size-heading-sm">
               {t('components.menu.whatDoYouWantToDo')}
             </p>
-          </diamond-enter>
+          </evg-enter>
           <nav>
             <ul className="locator-menu__menu-list">
               {items.map((item, i) => (
-                <li key={item.icon} className="diamond-spacing-bottom-md">
-                  <diamond-enter type="fade" delay={i * 0.1}>
+                <li key={item.icon} className="evg-spacing-bottom-md">
+                  <evg-enter type="fade" delay={i * 0.1}>
                     <locator-icon-link key={item.icon} border>
                       <Link
                         href={item.href}
@@ -93,17 +93,17 @@ export default function Menu({
                         {item.text}
                       </Link>
                     </locator-icon-link>
-                  </diamond-enter>
+                  </evg-enter>
                 </li>
               ))}
             </ul>
           </nav>
-          <diamond-enter type="fade" delay={items.length * 0.1}>
-            <hr className="diamond-spacing-bottom-md" />
+          <evg-enter type="fade" delay={items.length * 0.1}>
+            <hr className="evg-spacing-bottom-md" />
             <Footer />
-          </diamond-enter>
+          </evg-enter>
         </locator-wrap>
-      </diamond-section>
+      </evg-section>
     </locator-menu>
   );
 }

@@ -8,31 +8,30 @@ locator-material-categories-nav {
     list-style: none;
     margin: 0;
     max-height: calc(
-      var(--container-height) -
-        (var(--header-height) * 2 - var(--diamond-spacing))
+      var(--container-height) - (var(--header-height) * 2 - var(--evg-spacing))
     );
     overflow-y: auto;
     overscroll-behavior: contain;
-    padding: var(--diamond-spacing-lg)
-      clamp(var(--diamond-spacing), 5cqw, var(--diamond-spacing-xl));
+    padding: var(--evg-spacing-lg)
+      clamp(var(--evg-spacing), 5cqw, var(--evg-spacing-xl));
   }
 
   button {
     align-items: center;
     background: none;
     border: 0 none;
-    border-radius: var(--diamond-border-radius);
-    color: var(--diamond-theme-color);
-    column-gap: var(--diamond-spacing-sm);
+    border-radius: var(--evg-border-radius);
+    color: var(--evg-theme-color);
+    column-gap: var(--evg-spacing-sm);
     cursor: pointer;
     display: inline-flex;
     justify-content: space-between;
-    margin-inline: calc(var(--diamond-spacing-sm) * -1);
-    padding: var(--diamond-spacing-sm);
+    margin-inline: calc(var(--evg-spacing-sm) * -1);
+    padding: var(--evg-spacing-sm);
     transition:
-      color var(--diamond-transition),
-      background var(--diamond-transition),
-      opacity var(--diamond-transition),
+      color var(--evg-transition),
+      background var(--evg-transition),
+      opacity var(--evg-transition),
       visibility linear 0s;
     width: 100%;
   }
@@ -41,15 +40,15 @@ locator-material-categories-nav {
     border-top: var(--_materials-border);
     color: inherit;
     display: block;
-    padding-block: var(--diamond-spacing-sm);
+    padding-block: var(--evg-spacing-sm);
     text-decoration: none;
-    transition: color var(--diamond-transition);
+    transition: color var(--evg-transition);
   }
 
   @media (hover: hover) {
     button:hover,
     a:hover {
-      color: var(--diamond-theme-color-hover);
+      color: var(--evg-theme-color-hover);
     }
   }
 
@@ -61,14 +60,14 @@ locator-material-categories-nav {
     &.material-categories-nav__categories--has-active > li > button {
       opacity: 0;
       transition:
-        opacity var(--diamond-transition),
-        visibility var(--diamond-transition) var(--diamond-transition-duration);
+        opacity var(--evg-transition),
+        visibility var(--evg-transition) var(--evg-transition-duration);
       visibility: hidden;
     }
   }
 
   .material-categories-nav__materials {
-    background: var(--diamond-theme-background);
+    background: var(--evg-theme-background);
     left: 100cqw;
     min-width: 100%;
     opacity: 0;
@@ -76,17 +75,17 @@ locator-material-categories-nav {
     position: absolute;
     top: 0;
     transition:
-      left var(--diamond-transition),
-      opacity var(--diamond-transition),
-      visibility var(--diamond-transition) var(--diamond-transition-duration);
+      left var(--evg-transition),
+      opacity var(--evg-transition),
+      visibility var(--evg-transition) var(--evg-transition-duration);
     visibility: hidden;
     z-index: var(--layer-one);
 
     li:first-child {
-      background: var(--diamond-theme-background);
-      border-bottom: var(--diamond-border);
-      margin-block-end: var(--diamond-spacing-sm);
-      padding: var(--diamond-spacing) 0 var(--diamond-spacing-sm);
+      background: var(--evg-theme-background);
+      border-bottom: var(--evg-border);
+      margin-block-end: var(--evg-spacing-sm);
+      padding: var(--evg-spacing) 0 var(--evg-spacing-sm);
       position: sticky;
       top: 0;
 
@@ -107,8 +106,8 @@ locator-material-categories-nav {
       left: 0;
       opacity: 1;
       transition:
-        left var(--diamond-transition),
-        opacity var(--diamond-transition),
+        left var(--evg-transition),
+        opacity var(--evg-transition),
         visibility linear 0s;
       visibility: visible;
     }
@@ -122,12 +121,12 @@ locator-material-categories-nav {
     .material-categories-nav__categories,
     .material-categories-nav__materials {
       min-width: 50%;
-      padding-block: var(--diamond-spacing-xl);
+      padding-block: var(--evg-spacing-xl);
       width: 50%;
     }
 
     .material-categories-nav__categories {
-      border-right: var(--diamond-border);
+      border-right: var(--evg-border);
 
       &.material-categories-nav__categories--has-active > li > button {
         opacity: 1;

@@ -14,12 +14,12 @@ locator-loading-card {
     var(--color-grey-light) 35%,
     var(--color-white)
   );
-  background: var(--diamond-theme-background);
-  border: var(--diamond-border-width) var(--diamond-border-style)
+  background: var(--evg-theme-background);
+  border: var(--evg-border-width) var(--evg-border-style)
     var(--_loading-background);
-  border-radius: var(--diamond-border-radius);
+  border-radius: var(--evg-border-radius);
   display: block;
-  padding: var(--diamond-spacing);
+  padding: var(--evg-spacing);
 
   &::before,
   &::after {
@@ -38,8 +38,8 @@ locator-loading-card {
     background-size: 200% 200%;
     content: '';
     display: block;
-    height: calc(var(--diamond-font-size-md) * var(--diamond-font-line-height));
-    margin-bottom: var(--diamond-spacing-sm);
+    height: calc(var(--font-size-base) * var(--evg-font-line-height));
+    margin-bottom: var(--evg-spacing-sm);
     width: 100%;
   }
 

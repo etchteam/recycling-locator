@@ -58,15 +58,15 @@ export default function MaterialPage() {
         {searchTerm && (
           <Link
             href={`/${postcode}/material/search`}
-            className="diamond-text-decoration-none"
+            className="text-decoration-none"
           >
             <locator-context-header>
-              <div className="diamond-text-weight-bold">{searchTerm}</div>
+              <div className="evg-text-weight-bold">{searchTerm}</div>
               <locator-icon icon="search" color="primary" />
             </locator-context-header>
           </Link>
         )}
-        <diamond-enter type="fade">
+        <evg-enter type="fade">
           <MaterialSearchStatus
             hazardous={hazardous}
             nonRecyclable={nonRecyclable}
@@ -79,9 +79,9 @@ export default function MaterialPage() {
             }
           />
 
-          <div className="diamond-spacing-bottom-lg" />
+          <div className="evg-spacing-bottom-lg" />
 
-          <diamond-enter type="fade-in-up" delay={0.25}>
+          <evg-enter type="fade-in-up" delay={0.25}>
             <locator-wrap>
               <MaterialSearchSections
                 la={la}
@@ -96,13 +96,13 @@ export default function MaterialPage() {
                 nonRecyclable={nonRecyclable}
               />
 
-              <diamond-enter type="fade-in-up" delay={1}>
+              <evg-enter type="fade-in-up" delay={1}>
                 <RateThisInfo />
-                <div className="diamond-spacing-bottom-lg" />
-              </diamond-enter>
+                <div className="evg-spacing-bottom-lg" />
+              </evg-enter>
             </locator-wrap>
-          </diamond-enter>
-        </diamond-enter>
+          </evg-enter>
+        </evg-enter>
       </div>
       <locator-tip slot="layout-aside" text-align="center">
         <locator-wrap>

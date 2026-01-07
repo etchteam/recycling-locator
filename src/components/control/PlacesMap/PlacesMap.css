@@ -32,11 +32,11 @@ locator-places-map {
 
   locator-places-map-card,
   .locator-places-map__marker {
-    animation-duration: var(--diamond-transition-duration-enter);
+    animation-duration: var(--evg-transition-duration-enter);
     animation-fill-mode: forwards;
     animation-iteration-count: 1;
     animation-name: fade;
-    animation-timing-function: var(--diamond-transition-timing-enter);
+    animation-timing-function: var(--evg-transition-timing-enter);
   }
 
   .locator-places-map__marker {
@@ -89,7 +89,7 @@ locator-places-map {
     inset: 0;
     opacity: 0.3;
     position: absolute;
-    transition: opacity var(--diamond-transition);
+    transition: opacity var(--evg-transition);
     z-index: 122; /* 121 markers + 1 */
 
     &:hover {
@@ -98,21 +98,21 @@ locator-places-map {
   }
 
   locator-places-map-card {
-    background: var(--diamond-theme-background);
+    background: var(--evg-theme-background);
     display: block;
-    padding: var(--diamond-spacing);
+    padding: var(--evg-spacing);
     position: relative;
     z-index: 123; /* 121 markers + 1 scrim + 1 */
   }
 
   @container (width >= 768px) {
     locator-places-map-card {
-      border-radius: var(--diamond-border-radius);
-      bottom: var(--diamond-spacing);
-      box-shadow: var(--diamond-shadow);
+      border-radius: var(--evg-border-radius);
+      bottom: var(--evg-spacing);
+      box-shadow: var(--evg-shadow);
       left: 50%;
-      max-width: calc(100% - var(--diamond-spacing-lg));
-      padding-inline: var(--diamond-spacing);
+      max-width: calc(100% - var(--evg-spacing-lg));
+      padding-inline: var(--evg-spacing);
       position: absolute;
       transform: translateX(-50%);
       width: var(--wrap-max-width);

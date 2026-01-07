@@ -93,16 +93,16 @@ export default function RateThisInfo() {
           </div>
         </fieldset>
         {!rating.value && (
-          <p className="text-color-muted diamond-text-size-sm">
+          <p className="text-color-muted evg-text-size-body-xs">
             {t(`${tContext}.help`)}
           </p>
         )}
-        <diamond-collapse open={!!rating.value && !hasSubmittedFeedback.value}>
-          <diamond-form-group className="locator-rate-this-info__comment diamond-spacing-bottom-md">
+        <evg-collapse open={!!rating.value && !hasSubmittedFeedback.value}>
+          <evg-form-group className="locator-rate-this-info__comment evg-spacing-bottom-md">
             <label htmlFor="rating-comment">
               {t(`${tContext}.comment.label`)}
             </label>
-            <diamond-input state={commentValid.value ? undefined : 'invalid'}>
+            <evg-input state={commentValid.value ? undefined : 'invalid'}>
               <textarea
                 id="rating-comment"
                 name="comment"
@@ -128,24 +128,24 @@ export default function RateThisInfo() {
               >
                 {comment.value.length} / 250
               </span>
-            </diamond-input>
+            </evg-input>
             {!commentValid.value && (
               <p
                 id="rating-comment-error"
-                className="text-color-negative diamond-text-size-sm diamond-spacing-top-xs"
+                className="text-color-negative evg-text-size-body-xs evg-spacing-top-xs"
                 aria-live="polite"
               >
                 {t(`${tContext}.comment.error`)}
               </p>
             )}
-          </diamond-form-group>
-          <diamond-button width="full-width">
+          </evg-form-group>
+          <evg-button width="full-width">
             <button type="submit">{t(`${tContext}.cta`)}</button>
-          </diamond-button>
-        </diamond-collapse>
+          </evg-button>
+        </evg-collapse>
         <output
           name="result"
-          className="text-color-positive diamond-text-size-sm"
+          className="text-color-positive evg-text-size-body-xs"
           htmlFor="rating-thumb-up rating-thumb-down rating-comment"
         >
           {hasSubmittedFeedback.value

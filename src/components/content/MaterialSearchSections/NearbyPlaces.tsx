@@ -12,22 +12,24 @@ function NoPlaces() {
   const tContext = 'material.nearbyPlaces.noPlaces';
 
   return (
-    <diamond-card border radius>
-      <locator-icon-text className="diamond-spacing-bottom-xs">
-        <locator-icon-circle variant="negative">
-          <locator-icon icon="place"></locator-icon>
-        </locator-icon-circle>
-        <h3>{t(`${tContext}.title`)}</h3>
-      </locator-icon-text>
-      <p className="diamond-text-size-sm">
-        {t(`${tContext}.content`, { postcode })}
-      </p>
-      <diamond-button width="full-width">
-        <Link href={`/${postcode}/material/search`}>
-          {t('actions.searchAgain')}
-        </Link>
-      </diamond-button>
-    </diamond-card>
+    <evg-card radius="sm">
+      <evg-card-content>
+        <locator-icon-text className="evg-spacing-bottom-xs">
+          <locator-icon-circle variant="negative">
+            <locator-icon icon="place"></locator-icon>
+          </locator-icon-circle>
+          <h3>{t(`${tContext}.title`)}</h3>
+        </locator-icon-text>
+        <p className="evg-text-size-body-xs evg-spacing-bottom-sm">
+          {t(`${tContext}.content`, { postcode })}
+        </p>
+        <evg-button width="full-width">
+          <Link href={`/${postcode}/material/search`}>
+            {t('actions.searchAgain')}
+          </Link>
+        </evg-button>
+      </evg-card-content>
+    </evg-card>
   );
 }
 
@@ -52,22 +54,24 @@ function Places({
   );
 
   return (
-    <diamond-card padding="none" border radius>
-      <diamond-card>
-        <locator-icon-text className="diamond-spacing-bottom-xs">
-          <locator-icon-circle variant="positive">
-            <locator-icon icon="place"></locator-icon>
-          </locator-icon-circle>
-          <h3>{t(`${tContext}.title`)}</h3>
-        </locator-icon-text>
-        <p className="diamond-text-size-sm">
-          <Trans
-            i18nKey={`${tContext}.content${count >= 30 ? 'ThirtyPlus' : ''}`}
-            components={{ bold: <strong /> }}
-            values={{ count }}
-          />
-        </p>
-      </diamond-card>
+    <evg-card padding="none" radius="sm">
+      <evg-card>
+        <evg-card-content>
+          <locator-icon-text className="evg-spacing-bottom-xs">
+            <locator-icon-circle variant="positive">
+              <locator-icon icon="place"></locator-icon>
+            </locator-icon-circle>
+            <h3>{t(`${tContext}.title`)}</h3>
+          </locator-icon-text>
+          <p className="evg-text-size-body-xs">
+            <Trans
+              i18nKey={`${tContext}.content${count >= 30 ? 'ThirtyPlus' : ''}`}
+              components={{ bold: <strong /> }}
+              values={{ count }}
+            />
+          </p>
+        </evg-card-content>
+      </evg-card>
       <locator-places-map-wrapper>
         <PlacesMap
           latitude={locations.meta.latitude}
@@ -83,29 +87,31 @@ function Places({
           </Link>
         </PlacesMap>
       </locator-places-map-wrapper>
-      <diamond-card>
-        <diamond-grid>
-          <diamond-grid-item small-mobile="6">
-            <diamond-button width="full-width">
-              <Link
-                href={`/${postcode}/places?${placesSearchParams.toString()}`}
-              >
-                {t('actions.listPlaces')}
-              </Link>
-            </diamond-button>
-          </diamond-grid-item>
-          <diamond-grid-item small-mobile="6">
-            <diamond-button width="full-width">
-              <Link
-                href={`/${postcode}/places/map?${placesSearchParams.toString()}`}
-              >
-                {t('actions.showMap')}
-              </Link>
-            </diamond-button>
-          </diamond-grid-item>
-        </diamond-grid>
-      </diamond-card>
-    </diamond-card>
+      <evg-card>
+        <evg-card-content>
+          <evg-grid>
+            <evg-grid-item small-mobile="6">
+              <evg-button width="full-width">
+                <Link
+                  href={`/${postcode}/places?${placesSearchParams.toString()}`}
+                >
+                  {t('actions.listPlaces')}
+                </Link>
+              </evg-button>
+            </evg-grid-item>
+            <evg-grid-item small-mobile="6">
+              <evg-button width="full-width">
+                <Link
+                  href={`/${postcode}/places/map?${placesSearchParams.toString()}`}
+                >
+                  {t('actions.showMap')}
+                </Link>
+              </evg-button>
+            </evg-grid-item>
+          </evg-grid>
+        </evg-card-content>
+      </evg-card>
+    </evg-card>
   );
 }
 

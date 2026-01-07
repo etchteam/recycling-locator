@@ -1,14 +1,14 @@
 locator-tip {
-  --diamond-theme-background: var(--color-primary-lightest);
-  --diamond-theme-color: var(--color-body);
-  --diamond-theme-heading-color: var(--color-primary-dark);
-  --diamond-theme-link-color: var(--color-blue-dark);
+  --evg-theme-background: var(--color-primary-lightest);
+  --evg-theme-color: var(--color-body);
+  --evg-theme-heading-color: var(--color-primary-dark);
+  --evg-theme-link-color: var(--color-blue-dark);
 
-  background: var(--diamond-theme-background);
-  color: var(--diamond-theme-color);
+  background: var(--evg-theme-background);
+  color: var(--evg-theme-color);
   display: grid;
   min-height: 100%;
-  padding-block: var(--diamond-spacing);
+  padding-block: var(--evg-spacing);
   place-content: center;
 
   locator-tip-content {
@@ -16,8 +16,8 @@ locator-tip {
   }
 
   h2 {
-    font-size: var(--diamond-font-size-xl);
-    font-weight: var(--diamond-font-weight-bold);
+    font-size: var(--evg-font-size-body-lg);
+    font-weight: var(--evg-font-weight-bold);
   }
 
   img {
@@ -34,9 +34,9 @@ locator-tip {
   }
 
   &[type='promo'] {
-    --diamond-theme-background: var(--color-green);
-    --diamond-theme-color: var(--color-body);
-    --diamond-theme-heading-color: var(--color-body);
+    --evg-theme-background: var(--color-green);
+    --evg-theme-color: var(--color-body);
+    --evg-theme-heading-color: var(--color-body);
 
     img {
       width: 100%;
@@ -48,16 +48,16 @@ locator-tip {
   }
 
   &[wrap='wrap'] {
-    padding: var(--diamond-spacing);
+    padding: var(--evg-spacing);
   }
 
   /* large tablet */
   @container (width >= 1024px) {
     &[wrap='wrap'] {
-      border-radius: var(--diamond-border-radius);
+      border-radius: var(--evg-border-radius);
       grid-template-areas: 'content image';
       grid-template-columns: 66.666% 33.333%;
-      margin: 0 0 var(--diamond-spacing-xl);
+      margin: 0 0 var(--evg-spacing-xl);
       padding: 0;
       text-align: left;
 
@@ -66,13 +66,13 @@ locator-tip {
         margin: 0;
         max-height: 100%;
         object-fit: cover;
-        padding-inline-end: var(--diamond-spacing);
+        padding-inline-end: var(--evg-spacing);
         width: 100%;
       }
 
       locator-tip-content {
         grid-area: content;
-        padding: var(--diamond-spacing-lg);
+        padding: var(--evg-spacing-lg);
       }
     }
   }

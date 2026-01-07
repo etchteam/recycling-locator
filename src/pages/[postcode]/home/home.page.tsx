@@ -10,9 +10,9 @@ import { LocalAuthority } from '@/types/locatorApi';
 
 function Loading() {
   return (
-    <diamond-enter type="fade-in-up">
+    <evg-enter type="fade-in-up">
       <locator-loading-card />
-    </diamond-enter>
+    </evg-enter>
   );
 }
 
@@ -26,7 +26,7 @@ function PropertyList({
   const propertyTypes = Object.keys(properties);
 
   return (
-    <diamond-enter type="fade">
+    <evg-enter type="fade">
       {propertyTypes.map((propertyType) => {
         const safePropertyType = encodeURIComponent(propertyType);
         const property = properties[propertyType];
@@ -37,16 +37,18 @@ function PropertyList({
             href={`/${postcode}/home/collection?propertyType=${safePropertyType}`}
             key={safePropertyType}
           >
-            <diamond-card className="diamond-spacing-bottom-md" border radius>
-              <h4 className="diamond-spacing-bottom-md">{propertyType}</h4>
-              <SchemeContainerSummary containers={containers} limit={3} />
-            </diamond-card>
+            <evg-card className="evg-spacing-bottom-md" radius="sm">
+              <evg-card-content>
+                <h4 className="evg-spacing-bottom-md">{propertyType}</h4>
+                <SchemeContainerSummary containers={containers} limit={3} />
+              </evg-card-content>
+            </evg-card>
           </Link>
         );
       })}
 
       <RateThisInfo />
-    </diamond-enter>
+    </evg-enter>
   );
 }
 
@@ -56,7 +58,7 @@ export default function HomeRecyclingPage() {
   const hasLoaded = !loading && localAuthority;
 
   return (
-    <section className="diamond-spacing-bottom-lg">
+    <section className="evg-spacing-bottom-lg">
       <h3>{t('homeRecycling.collections.title')}</h3>
       <p>{t('homeRecycling.collections.help')}</p>
 

@@ -11,8 +11,8 @@ export default meta;
 
 export const Container: StoryObj = {
   render: () => (
-    <diamond-grid wrap="wrap">
-      <diamond-grid-item small-mobile="12">
+    <evg-grid wrap="wrap">
+      <evg-grid-item small-mobile="12">
         <locator-container>
           <locator-container-icon>
             <ContainerSVG
@@ -23,8 +23,8 @@ export const Container: StoryObj = {
             />
           </locator-container-icon>
         </locator-container>
-      </diamond-grid-item>
-      <diamond-grid-item small-mobile="12">
+      </evg-grid-item>
+      <evg-grid-item small-mobile="12">
         <locator-container>
           <locator-container-icon>
             <ContainerSVG
@@ -39,8 +39,8 @@ export const Container: StoryObj = {
             </locator-container-name>
           </locator-container-content>
         </locator-container>
-      </diamond-grid-item>
-      <diamond-grid-item small-mobile="12">
+      </evg-grid-item>
+      <evg-grid-item small-mobile="12">
         <locator-container>
           <locator-container-icon>
             <ContainerSVG bodyColour="#2d9cdb" lidColour="#2d9cdb" name="Box" />
@@ -49,8 +49,8 @@ export const Container: StoryObj = {
             <locator-container-name>Paid for box</locator-container-name>
           </locator-container-content>
         </locator-container>
-      </diamond-grid-item>
-      <diamond-grid-item small-mobile="12">
+      </evg-grid-item>
+      <evg-grid-item small-mobile="12">
         <locator-container>
           <locator-container-icon>
             <ContainerSVG bodyColour="#2d9cdb" name="Kitchen Caddy" />
@@ -61,15 +61,15 @@ export const Container: StoryObj = {
             </locator-container-name>
           </locator-container-content>
         </locator-container>
-      </diamond-grid-item>
-    </diamond-grid>
+      </evg-grid-item>
+    </evg-grid>
   ),
 };
 
 export const Trolibocs: StoryObj = {
   render: () => (
-    <diamond-grid wrap="wrap">
-      <diamond-grid-item small-mobile="12">
+    <evg-grid wrap="wrap">
+      <evg-grid-item small-mobile="12">
         <locator-container>
           <locator-container-icon>
             <ContainerSVG name="Trolibocs" bodyColour="pink" />
@@ -80,8 +80,8 @@ export const Trolibocs: StoryObj = {
             </locator-container-name>
           </locator-container-content>
         </locator-container>
-      </diamond-grid-item>
-      <diamond-grid-item small-mobile="12">
+      </evg-grid-item>
+      <evg-grid-item small-mobile="12">
         <locator-container>
           <locator-container-icon>
             <ContainerSVG
@@ -96,8 +96,8 @@ export const Trolibocs: StoryObj = {
             </locator-container-name>
           </locator-container-content>
         </locator-container>
-      </diamond-grid-item>
-      <diamond-grid-item small-mobile="12">
+      </evg-grid-item>
+      <evg-grid-item small-mobile="12">
         <locator-container>
           <locator-container-icon>
             <ContainerSVG
@@ -112,8 +112,8 @@ export const Trolibocs: StoryObj = {
             </locator-container-name>
           </locator-container-content>
         </locator-container>
-      </diamond-grid-item>
-      <diamond-grid-item small-mobile="12">
+      </evg-grid-item>
+      <evg-grid-item small-mobile="12">
         <locator-container>
           <locator-container-icon>
             <ContainerSVG
@@ -128,8 +128,8 @@ export const Trolibocs: StoryObj = {
             </locator-container-name>
           </locator-container-content>
         </locator-container>
-      </diamond-grid-item>
-      <diamond-grid-item small-mobile="12">
+      </evg-grid-item>
+      <evg-grid-item small-mobile="12">
         <locator-container>
           <locator-container-icon>
             <ContainerSVG
@@ -156,7 +156,7 @@ export const Trolibocs: StoryObj = {
             </locator-container-name>
           </locator-container-content>
         </locator-container>
-      </diamond-grid-item>
-    </diamond-grid>
+      </evg-grid-item>
+    </evg-grid>
   ),
 };

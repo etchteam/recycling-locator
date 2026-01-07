@@ -1,4 +1,8 @@
 :host {
-  --diamond-border-radius: 4px;
-  --diamond-radius: var(--diamond-border-radius);
+  --evg-border-radius: 4px;
+  --evg-radius: var(--evg-border-radius);
+  --evg-border-width: 1px;
+  --evg-border-style: solid;
+  --evg-border: var(--evg-border-width) var(--evg-border-style)
+    var(--evg-theme-border-color);
 }

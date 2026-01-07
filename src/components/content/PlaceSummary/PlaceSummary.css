@@ -1,15 +1,18 @@
 locator-place-summary {
+  display: block;
+  width: 100%;
+
   h3,
   h4 {
-    font-size: var(--diamond-font-size-base);
-    font-weight: var(--diamond-font-weight-bold);
-    margin-block-end: var(--diamond-spacing-xs);
+    font-size: var(--font-size-base);
+    font-weight: var(--evg-font-weight-bold);
+    margin-block-end: var(--evg-spacing-xs);
   }
 
   h3,
   h4,
   p {
-    margin-block-end: var(--diamond-spacing-xs);
+    margin-block-end: var(--evg-spacing-xs);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -17,11 +20,11 @@ locator-place-summary {
 
   p,
   dl {
-    font-size: var(--diamond-font-size-sm);
+    font-size: var(--evg-font-size-body-xs);
   }
 
   p {
-    color: var(--diamond-theme-color-muted);
+    color: var(--evg-theme-color-muted);
   }
 
   dl,
@@ -31,16 +34,16 @@ locator-place-summary {
 
   dl {
     display: flex;
-    gap: var(--diamond-spacing-xs);
+    gap: var(--evg-spacing-xs);
   }
 
   dt {
-    font-weight: var(--diamond-font-weight-normal);
+    font-weight: var(--evg-font-weight-normal);
     position: relative;
 
     &:not(:last-child) {
-      margin-inline-end: var(--diamond-spacing-xs);
-      padding-inline-end: var(--diamond-spacing-sm);
+      margin-inline-end: var(--evg-spacing-xs);
+      padding-inline-end: var(--evg-spacing-sm);
 
       &::after {
         background: var(--color-grey-light);

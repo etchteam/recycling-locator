@@ -1,42 +1,49 @@
-diamond-button {
-  --_size: 1em;
+evg-button {
+  --evg-button-border-radius: 4px;
+  --evg-button-font-weight: var(--evg-font-weight-base);
+  --evg-button-padding-block: 0.75em;
 
-  --diamond-button-background: var(--color-white);
-  --diamond-button-background-hover: var(--color-primary-lightest);
-  --diamond-button-background-disabled: var(--diamond-button-background);
-  --diamond-button-border-color: var(--color-primary-dark);
-  --diamond-button-border-color-hover: var(--color-primary-dark);
-  --diamond-button-border-color-disabled: var(--color-primary);
-  --diamond-button-color: var(--color-primary-dark);
-  --diamond-button-color-hover: var(--color-primary-dark);
-  --diamond-button-color-disabled: var(--color-primary);
-  --diamond-button-padding-block: 0.75em;
+  --evg-button-background-default: var(--color-white);
+  --evg-button-background-hover-default: var(--color-primary-lightest);
+  --evg-button-background-disabled-default: var(
+    --evg-button-background-default
+  );
+  --evg-button-border-color-default: var(--color-primary-dark);
+  --evg-button-border-color-hover-default: var(--color-primary-dark);
+  --evg-button-border-color-disabled-default: var(--color-grey);
+  --evg-button-color-default: var(--color-primary-dark);
+  --evg-button-color-hover-default: var(--color-primary-dark);
+  --evg-button-color-disabled-default: var(--color-grey);
 
-  --diamond-button-primary-background: var(--color-primary-dark);
-  --diamond-button-primary-background-hover: color-mix(
+  --evg-button-background-primary: var(--color-primary-dark);
+  --evg-button-background-hover-primary: color-mix(
     in srgb,
     var(--color-primary-dark) 85%,
     var(--color-black)
   );
-  --diamond-button-primary-background-disabled: var(--color-primary);
-  --diamond-button-primary-border-color: var(--color-primary-dark);
-  --diamond-button-primary-border-color-hover: color-mix(
+  --evg-button-background-disabled-primary: var(
+    --evg-button-background-disabled-default
+  );
+  --evg-button-border-color-primary: var(--color-primary-dark);
+  --evg-button-border-color-hover-primary: color-mix(
     in srgb,
     var(--color-primary-dark) 75%,
     var(--color-black)
   );
-  --diamond-button-primary-border-color-disabled: var(--color-primary);
-  --diamond-button-primary-color: var(--color-white);
-  --diamond-button-primary-color-hover: var(--diamond-button-primary-color);
-  --diamond-button-primary-color-disabled: var(--diamond-button-primary-color);
+  --evg-button-border-color-disabled-primary: var(
+    --evg-button-border-color-disabled-default
+  );
+  --evg-button-color-primary: var(--color-white);
+  --evg-button-color-hover-primary: var(--evg-button-color-primary);
+  --evg-button-color-disabled-primary: var(--evg-button-color-disabled-default);
 
-  --diamond-button-text-background-hover: var(--color-primary-lightest);
+  --evg-button-background-hover-ghost: var(--color-primary-lightest);
 }
 
-diamond-button[variant='primary'] {
-  --diamond-button-font-weight: var(--diamond-font-weight-bold);
+evg-button[variant='primary'] {
+  --evg-button-font-weight: var(--evg-font-weight-bold);
 }
 
-diamond-button[width='square'][size='sm'] {
-  --diamond-button-padding-block: 0.5em;
+evg-button[width='square'][size='sm'] {
+  --evg-button-padding-block: 0.5em;
 }

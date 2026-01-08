@@ -39,27 +39,29 @@ export default function DoorstepCollection({
   }, [collection, material, postcode, recordEvent]);
 
   return (
-    <diamond-card border radius>
-      <locator-icon-text className="diamond-spacing-bottom-xs">
-        <locator-icon-circle variant={'positive'}>
-          <locator-icon icon="doorstep-collection"></locator-icon>
-        </locator-icon-circle>
-        <h3>{t(`material.doorstepCollection.title`)}</h3>
-      </locator-icon-text>
-      <p className="diamond-text-size-sm">
-        {t('material.doorstepCollection.intro')}
-      </p>
-      <diamond-button width="full-width">
-        <a
-          href={bookingUrl.toString()}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={handleClick}
-        >
-          {t(`material.doorstepCollection.cta`)}{' '}
-          <locator-icon icon="external"></locator-icon>
-        </a>
-      </diamond-button>
-    </diamond-card>
+    <evg-card radius="sm">
+      <evg-card-content>
+        <locator-icon-text className="evg-spacing-bottom-xs">
+          <locator-icon-circle variant={'positive'}>
+            <locator-icon icon="doorstep-collection"></locator-icon>
+          </locator-icon-circle>
+          <h3>{t(`material.doorstepCollection.title`)}</h3>
+        </locator-icon-text>
+        <p className="evg-text-size-body-xs evg-spacing-bottom-sm">
+          {t('material.doorstepCollection.intro')}
+        </p>
+        <evg-button width="full-width">
+          <a
+            href={bookingUrl.toString()}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={handleClick}
+          >
+            {t(`material.doorstepCollection.cta`)}{' '}
+            <locator-icon icon="external"></locator-icon>
+          </a>
+        </evg-button>
+      </evg-card-content>
+    </evg-card>
   );
 }

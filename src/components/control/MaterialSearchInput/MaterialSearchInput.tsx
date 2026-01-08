@@ -154,7 +154,7 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
           >
             {(open) => (
               <>
-                <diamond-input state={valid ? undefined : 'invalid'}>
+                <evg-input state={valid ? undefined : 'invalid'}>
                   <ComboboxInput
                     name="search"
                     type="text"
@@ -190,7 +190,7 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
                       />
                     </button>
                   )}
-                </diamond-input>
+                </evg-input>
                 {open && showMaterials && (
                   <ComboboxOptions static>
                     {materials.map((material) => {
@@ -198,7 +198,7 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
                         ? material.name.replace(
                             RegExp(escapeRegExp(this.inputValue.value), 'ig'),
                             (match) =>
-                              `<span class="diamond-text-weight-bold">${match}</span>`,
+                              `<span class="evg-text-weight-bold">${match}</span>`,
                           )
                         : material.name;
 
@@ -215,7 +215,7 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
               </>
             )}
           </Combobox>
-          <diamond-button width="square" variant="primary">
+          <evg-button width="square" variant="primary">
             <button
               type="submit"
               ref={this.buttonRef}
@@ -229,12 +229,12 @@ export default class MaterialSearchInput extends Component<MaterialSearchInputPr
                 label={i18n.t('actions.search')}
               ></locator-icon>
             </button>
-          </diamond-button>
+          </evg-button>
         </locator-material-search-input>
         {!valid && (
           <p
             id={`${this.props.inputId}-error`}
-            className="text-color-negative diamond-spacing-top-sm"
+            className="text-color-negative evg-spacing-top-sm"
             aria-live="polite"
           >
             {materialNotFound

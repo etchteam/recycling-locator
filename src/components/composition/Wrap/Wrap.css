@@ -2,7 +2,7 @@ locator-wrap {
   display: block;
   margin: 0 auto;
   max-width: var(--wrap-max-width);
-  padding-inline: var(--diamond-spacing);
+  padding-inline: var(--evg-spacing);
   width: 100%;
 
   &[max-width='none'] {
@@ -10,11 +10,7 @@ locator-wrap {
   }
 
   &[gutter='fluid'] {
-    padding-inline: clamp(
-      var(--diamond-spacing),
-      5cqw,
-      var(--diamond-spacing-xl)
-    );
+    padding-inline: clamp(var(--evg-spacing), 5cqw, var(--evg-spacing-xl));
   }
 
   &[large-screen-only] {

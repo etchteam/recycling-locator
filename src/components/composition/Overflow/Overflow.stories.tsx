@@ -14,28 +14,28 @@ export const Overflow: StoryObj = {
       <locator-overflow>
         <ul>
           <li>
-            <diamond-card muted>Item 1</diamond-card>
+            <evg-card>Item 1</evg-card>
           </li>
           <li>
-            <diamond-card muted>Item 2</diamond-card>
+            <evg-card>Item 2</evg-card>
           </li>
           <li>
-            <diamond-card muted>Item 3</diamond-card>
+            <evg-card>Item 3</evg-card>
           </li>
           <li>
-            <diamond-card muted>Item 4</diamond-card>
+            <evg-card>Item 4</evg-card>
           </li>
           <li>
-            <diamond-card muted>Item 5</diamond-card>
+            <evg-card>Item 5</evg-card>
           </li>
           <li>
-            <diamond-card muted>Item 6</diamond-card>
+            <evg-card>Item 6</evg-card>
           </li>
           <li>
-            <diamond-card muted>Item 7</diamond-card>
+            <evg-card>Item 7</evg-card>
           </li>
           <li>
-            <diamond-card muted>Item 8</diamond-card>
+            <evg-card>Item 8</evg-card>
           </li>
         </ul>
       </locator-overflow>

@@ -11,14 +11,14 @@ locator-alphabet-nav {
     padding: 0;
   }
 
-  diamond-button {
-    --diamond-button-padding-block: 0;
-    --diamond-button-padding-inline: 0;
-    --diamond-button-color-disabled: var(--color-grey);
-    --diamond-button-border-color-disabled: var(--color-grey);
+  evg-button {
+    --evg-button-padding-block: 0;
+    --evg-button-padding-inline: 0;
+    --evg-button-color-disabled: var(--color-grey);
+    --evg-button-border-color-disabled: var(--color-grey);
   }
 
-  diamond-button a {
+  evg-button a {
     height: var(--_letter-size);
     text-align: center;
     width: var(--_letter-size);

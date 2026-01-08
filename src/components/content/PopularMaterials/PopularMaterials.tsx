@@ -25,8 +25,8 @@ export default function PopularMaterials({
   }
 
   return (
-    <diamond-enter type="fade-in-up">
-      <locator-bordered-list size="sm" className="diamond-spacing-top-lg">
+    <evg-enter type="fade-in-up">
+      <locator-bordered-list size="sm" className="evg-spacing-top-lg">
         <h3>{t('common.popularSearches')}</h3>
         <nav>
           <ul>
@@ -38,6 +38,6 @@ export default function PopularMaterials({
           </ul>
         </nav>
       </locator-bordered-list>
-    </diamond-enter>
+    </evg-enter>
   );
 }

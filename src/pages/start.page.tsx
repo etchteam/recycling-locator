@@ -14,7 +14,7 @@ export default function StartPage() {
           <li key={item}>{item}</li>
         ))}
       </ul>
-      <div className="diamond-spacing-bottom-md">
+      <div className="evg-spacing-bottom-md">
         <LocationForm />
       </div>
     </>

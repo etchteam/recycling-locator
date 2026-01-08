@@ -1,5 +1,5 @@
 locator-loading {
-  background: var(--diamond-theme-background-muted);
+  background: var(--evg-theme-background-muted);
   display: grid;
   place-content: center;
   text-align: center;

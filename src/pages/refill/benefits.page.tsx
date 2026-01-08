@@ -15,80 +15,82 @@ export default function BenfitsPage() {
     <>
       <h2>{t('refill.benefits.title')}</h2>
       <p>{t('refill.benefits.intro')}</p>
-      <diamond-card className="theme-positive diamond-spacing-bottom-md" muted>
-        <p className="diamond-text-weight-bold diamond-spacing-bottom-none">
-          {t('refill.benefits.card.holiday.question')}
-        </p>
-        <p style={{ textAlign: 'right' }}>
-          {t('refill.benefits.card.holiday.answer')}
-        </p>
-
-        <p className="diamond-text-weight-bold diamond-spacing-bottom-none">
-          {t('refill.benefits.card.hosting.question')}
-        </p>
-        <p style={{ textAlign: 'right' }}>
-          {t('refill.benefits.card.hosting.answer')}
-        </p>
-
-        <p className="diamond-text-weight-bold diamond-spacing-bottom-none">
-          {t('refill.benefits.card.recipe.question')}
-        </p>
-        <p style={{ textAlign: 'right' }}>
-          {t('refill.benefits.card.recipe.answer')}
-        </p>
-      </diamond-card>
-      <diamond-img radius>
+      <evg-card className="theme-positive-muted evg-spacing-bottom-md">
+        <evg-card-content>
+          {['holiday', 'hosting', 'recipe'].map((activity) => (
+            <evg-grid
+              key={activity}
+              className="evg-spacing-bottom-sm"
+              justifyContent="space-between"
+              wrap="wrap"
+              gap="xs"
+            >
+              <evg-grid-item grow>
+                <p className="evg-text-weight-bold">
+                  {t(`refill.benefits.card.${activity}.question`)}
+                </p>
+              </evg-grid-item>
+              <evg-grid-item>
+                <p className="evg-text-align-right">
+                  {t(`refill.benefits.card.${activity}.answer`)}
+                </p>
+              </evg-grid-item>
+            </evg-grid>
+          ))}
+        </evg-card-content>
+      </evg-card>
+      <evg-img radius="sm">
         <img src={`${publicPath}images/refill/benefits.webp`} alt="" />
-      </diamond-img>
-      <h3 className="diamond-text-size-base diamond-text-weight-bold diamond-spacing-top-md">
+      </evg-img>
+      <h3 className="text-size-base evg-text-weight-bold evg-spacing-top-md">
         {t('refill.benefits.communitySupport.title')}
       </h3>
       <p>{t('refill.benefits.communitySupport.content.chains')}</p>
       <p>{t('refill.benefits.communitySupport.content.community')}</p>
-      <hr className="diamond-spacing-top-md diamond-spacing-bottom-md" />
-      <h3 className="diamond-text-size-base diamond-text-weight-bold">
+      <hr className="evg-spacing-top-md evg-spacing-bottom-md" />
+      <h3 className="text-size-base evg-text-weight-bold">
         {t('refill.benefits.withoutRefillStore.title')}
       </h3>
       <p>{t('refill.benefits.withoutRefillStore.intro')}</p>
       <ul>
         <li>
-          <span className="diamond-text-weight-bold">
+          <span className="evg-text-weight-bold">
             {t('refill.benefits.withoutRefillStore.buyLoose.title')}
           </span>
           <br aria-hidden="true" />
-          <span className="diamond-text-size-sm">
+          <span className="evg-text-size-body-xs">
             {t('refill.benefits.withoutRefillStore.buyLoose.description')}
           </span>
         </li>
         <li>
-          <span className="diamond-text-weight-bold">
+          <span className="evg-text-weight-bold">
             {t('refill.benefits.withoutRefillStore.shopConcentrate.title')}
           </span>
           <br aria-hidden="true" />
-          <span className="diamond-text-size-sm">
+          <span className="evg-text-size-body-xs">
             {t(
               'refill.benefits.withoutRefillStore.shopConcentrate.description',
             )}
           </span>
         </li>
         <li>
-          <span className="diamond-text-weight-bold">
+          <span className="evg-text-weight-bold">
             {t('refill.benefits.withoutRefillStore.shopOnline.title')}
           </span>
           <br aria-hidden="true" />
-          <span className="diamond-text-size-sm">
+          <span className="evg-text-size-body-xs">
             {t('refill.benefits.withoutRefillStore.shopOnline.description')}
           </span>
         </li>
       </ul>
-      <diamond-img radius>
+      <evg-img radius="sm">
         <img
           src={`${publicPath}images/refill/benefits-secondary.webp`}
           alt=""
         />
-      </diamond-img>
+      </evg-img>
 
-      <hr className="diamond-spacing-top-md diamond-spacing-bottom-md" />
+      <hr className="evg-spacing-top-md evg-spacing-bottom-md" />
 
       <locator-icon-link border>
         <Link href={'/refill/options' + postcodeQuery}>
@@ -96,20 +98,20 @@ export default function BenfitsPage() {
             <locator-icon icon="refill" color="primary"></locator-icon>
           </locator-icon-circle>
           <div>
-            <p className="diamond-text-size-base diamond-spacing-bottom-none">
+            <p className="text-size-base evg-spacing-bottom-none">
               {t('refill.benefits.iconLink.title')}
             </p>
-            <p className="diamond-text-size-sm">
+            <p className="evg-text-size-body-xs">
               {t('refill.benefits.iconLink.content')}
             </p>
           </div>
         </Link>
       </locator-icon-link>
-      <diamond-button width="full-width" className="diamond-spacing-top-md">
+      <evg-button width="full-width" className="evg-spacing-top-md">
         <Link href={'/refill/sign-up' + postcodeQuery}>
           {t('refill.benefits.cta')}
         </Link>
-      </diamond-button>
+      </evg-button>
     </>
   );
 }

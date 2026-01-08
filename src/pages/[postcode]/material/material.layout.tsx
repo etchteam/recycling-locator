@@ -22,11 +22,11 @@ export default function MaterialLayout({
         </locator-header-logo>
         <locator-header-content>
           <locator-header-title>
-            <diamond-button>
+            <evg-button>
               <Link href={`/${postcode}`}>
                 <locator-icon icon="arrow-left" label="Back"></locator-icon>
               </Link>
-            </diamond-button>
+            </evg-button>
             <div>
               <h2>{t('material.title')}</h2>
               <p>{postcode}</p>

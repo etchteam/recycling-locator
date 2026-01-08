@@ -1,6 +1,6 @@
 locator-icon-text {
   display: grid;
-  gap: var(--diamond-spacing-sm);
+  gap: var(--evg-spacing-sm);
   grid-template-columns: auto 1fr;
 
   :first-child {

@@ -15,7 +15,7 @@ function HomeRecyclingContactPageContent({
   const tContext = 'homeRecycling.contact';
 
   return (
-    <diamond-enter type="fade">
+    <evg-enter type="fade">
       <locator-bordered-list size="sm">
         <h4 className="text-color-muted">{localAuthority.name}</h4>
         <dl>
@@ -51,7 +51,7 @@ function HomeRecyclingContactPageContent({
         </dl>
       </locator-bordered-list>
       <hr />
-      <div className="diamond-spacing-top-sm diamond-spacing-bottom-md diamond-text-size-sm">
+      <div className="evg-spacing-top-sm evg-spacing-bottom-md evg-text-size-body-xs">
         <span className="text-color-muted">
           {t('common.updated')}:{' '}
           {new Intl.DateTimeFormat('en-GB').format(
@@ -61,7 +61,7 @@ function HomeRecyclingContactPageContent({
       </div>
 
       <RateThisInfo />
-    </diamond-enter>
+    </evg-enter>
   );
 }
 
@@ -72,7 +72,7 @@ export default function HomeRecyclingContactPage() {
 
   return (
     <>
-      <h3 className="diamond-spacing-bottom-md">
+      <h3 className="evg-spacing-bottom-md">
         {t(`homeRecycling.contact.title`)}
       </h3>
       {hasLoaded && (

@@ -1,23 +1,27 @@
 locator-hero {
-  --_background: var(--diamond-theme-background-muted);
-  --_color: var(--diamond-theme-color-muted);
+  --_background: var(--evg-theme-background-muted);
+  --_color: var(--evg-theme-color-muted);
   --_icon-color: var(--color-primary);
-  --diamond-theme-heading-color: var(--_color);
-  --diamond-theme-color: var(--_color);
+  --evg-theme-heading-color: var(--_color);
+  --evg-theme-color: var(--_color);
   background: var(--_background);
   color: var(--_color);
   display: block;
-  padding-block: var(--diamond-spacing);
+  padding-block: var(--evg-spacing);
 
   &[size='full'] {
-    margin-bottom: calc(var(--diamond-spacing) * -1);
-    padding-block: var(--diamond-spacing-lg);
+    margin-bottom: calc(var(--evg-spacing) * -1);
+    padding-block: var(--evg-spacing-lg);
     text-align: center;
 
     locator-icon {
       /* Giant icon just for the hero */
-      font-size: var(--diamond-font-size-xxxl);
-      margin-block-end: var(--diamond-spacing-xs);
+      font-size: clamp(
+        var(--evg-font-size-24),
+        calc(var(--evg-font-size-24) + ((100vw - 320px) * 0.018)),
+        var(--evg-font-size-40)
+      );
+      margin-block-end: var(--evg-spacing-xs);
     }
   }
 
@@ -30,7 +34,7 @@ locator-hero {
   h2,
   h3,
   h4 {
-    font-weight: var(--diamond-font-weight-bold);
+    font-weight: var(--evg-font-weight-bold);
     margin-block-end: 0;
   }
 

@@ -1,20 +1,29 @@
-@import './diamond-ui.css';
-@import './tokens.css';
-/* stylelint-disable-next-line scss/at-rule-no-unknown */
-@import-glob '../components/**/*.css';
+@import './evergreen.css';
 @import './utils.css';
+/* stylelint-disable scss/at-rule-no-unknown */
+@import-glob './tokens/*.css';
+@import-glob '../components/**/*.css';
+/* stylelint-enable scss/at-rule-no-unknown */
+
+:host {
+  color: var(--evg-theme-color);
+  font-family: var(--evg-font-family);
+  font-size: var(--font-size-base);
+  -webkit-font-smoothing: antialiased;
+  line-height: var(--evg-font-line-height);
+}
 
 article {
-  background: var(--diamond-theme-background);
+  background: var(--evg-theme-background);
   container-type: inline-size;
-  font-size: var(--diamond-font-size-base);
+  font-size: var(--font-size-base);
   overflow-y: auto;
   position: relative;
   transform: scale(1);
 }
 
 mark {
-  background-color: var(--diamond-theme-background);
+  background-color: var(--evg-theme-background);
   color: inherit;
 }
 
@@ -27,14 +36,15 @@ mark {
 }
 
 .recycling-locator-variant-standalone {
+  --container-height: 100cqh;
   height: 100dvh;
 }
 
 .recycling-locator-test-mode {
   /* Stop animations */
-  --diamond-transition-duration-boing: 0s;
-  --diamond-transition-duration: 0s;
-  --diamond-transition-duration-enter: 0s;
+  --evg-transition-duration-boing: 0s;
+  --evg-transition-duration: 0s;
+  --evg-transition-duration-enter: 0s;
   /* Height restriction is removed for snapshots */
   height: auto;
 }

@@ -1,3 +1,4 @@
 :host {
-  --diamond-input-checked: var(--color-primary-dark);
+  --evg-input-checked: var(--color-primary-dark);
+  --evg-input-color: var(--evg-theme-color);
 }

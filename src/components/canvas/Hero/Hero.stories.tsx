@@ -18,9 +18,9 @@ export const Neutral: StoryObj = {
         </locator-wrap>
       </locator-hero>
       <locator-wrap>
-        <diamond-card border radius>
+        <evg-card radius="sm">
           <p>Overlapping content</p>
-        </diamond-card>
+        </evg-card>
       </locator-wrap>
     </>
   ),
@@ -36,9 +36,9 @@ export const Positive: StoryObj = {
         </locator-wrap>
       </locator-hero>
       <locator-wrap>
-        <diamond-card border radius>
+        <evg-card radius="sm">
           <p>Overlapping content</p>
-        </diamond-card>
+        </evg-card>
       </locator-wrap>
     </>
   ),
@@ -54,9 +54,9 @@ export const Negative: StoryObj = {
         </locator-wrap>
       </locator-hero>
       <locator-wrap>
-        <diamond-card border radius>
+        <evg-card radius="sm">
           <p>Overlapping content</p>
-        </diamond-card>
+        </evg-card>
       </locator-wrap>
     </>
   ),
@@ -72,9 +72,9 @@ export const Hazardous: StoryObj = {
         </locator-wrap>
       </locator-hero>
       <locator-wrap>
-        <diamond-card border radius>
+        <evg-card radius="sm">
           <p>Overlapping content</p>
-        </diamond-card>
+        </evg-card>
       </locator-wrap>
     </>
   ),
@@ -91,10 +91,10 @@ export const PositiveReduced: StoryObj = {
           </locator-icon-text>
         </locator-wrap>
       </locator-hero>
-      <locator-wrap className="diamond-spacing-top-md">
-        <diamond-card border radius>
+      <locator-wrap className="evg-spacing-top-md">
+        <evg-card radius="sm">
           <p>Non-overlapping content</p>
-        </diamond-card>
+        </evg-card>
       </locator-wrap>
     </>
   ),

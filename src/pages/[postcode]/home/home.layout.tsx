@@ -41,7 +41,7 @@ export default function HomeRecyclingLayout({
             <Link href={`/${postcode}`}>
               <locator-logo locale={locale}></locator-logo>
             </Link>
-            <diamond-button width="square" size="sm">
+            <evg-button variant="ghost" width="square">
               <button
                 type="button"
                 aria-expanded="true"
@@ -54,7 +54,7 @@ export default function HomeRecyclingLayout({
                   color="primary"
                 ></locator-icon>
               </button>
-            </diamond-button>
+            </evg-button>
           </locator-header-content>
         ) : (
           <>
@@ -65,7 +65,7 @@ export default function HomeRecyclingLayout({
             </locator-header-logo>
             <locator-header-content>
               <locator-header-title>
-                <diamond-button>
+                <evg-button>
                   <button
                     type="button"
                     aria-expanded="false"
@@ -77,13 +77,13 @@ export default function HomeRecyclingLayout({
                       label={t('actions.menu')}
                     ></locator-icon>
                   </button>
-                </diamond-button>
+                </evg-button>
                 <div>
                   <h2>{t('homeRecycling.title')}</h2>
                   {!laLoading && localAuthority && (
-                    <diamond-enter type="fade">
+                    <evg-enter type="fade">
                       <p>{localAuthority.name}</p>
-                    </diamond-enter>
+                    </evg-enter>
                   )}
                 </div>
               </locator-header-title>
@@ -132,9 +132,9 @@ export default function HomeRecyclingLayout({
                 </nav>
               </locator-nav-bar>
             )}
-            <diamond-section padding="lg">
+            <evg-section padding="lg">
               <locator-wrap>{children}</locator-wrap>
-            </diamond-section>
+            </evg-section>
           </>
         )}
       </div>
@@ -147,13 +147,13 @@ export default function HomeRecyclingLayout({
               <img
                 src={homeTipImgSrc}
                 alt=""
-                className="diamond-spacing-bottom-sm"
+                className="evg-spacing-bottom-sm"
               />
               <h2>{t('homeRecycling.aside.title')}</h2>
               <p>{t('homeRecycling.aside.content')}</p>
               {!laLoading && localAuthority && (
-                <diamond-enter type="fade">
-                  <diamond-button width="full-width">
+                <evg-enter type="fade">
+                  <evg-button width="full-width">
                     <a
                       href={localAuthority.recyclingUri}
                       target="_blank"
@@ -162,8 +162,8 @@ export default function HomeRecyclingLayout({
                       {localAuthority.name}
                       <locator-icon icon="external"></locator-icon>
                     </a>
-                  </diamond-button>
-                </diamond-enter>
+                  </evg-button>
+                </evg-enter>
               )}
             </>
           )}

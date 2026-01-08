@@ -43,9 +43,9 @@ export const AlphabetNav: StoryObj = {
           <ul>
             {alphabet.map((letter) => (
               <li key={letter}>
-                <diamond-button>
+                <evg-button>
                   <a href={`#letter-${letter}`}>{letter}</a>
-                </diamond-button>
+                </evg-button>
               </li>
             ))}
           </ul>

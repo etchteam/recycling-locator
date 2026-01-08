@@ -6,9 +6,9 @@ locator-header {
   locator-header-logo {
     align-items: center;
     align-self: stretch;
-    border-right: var(--diamond-border);
+    border-right: var(--evg-border);
     display: none;
-    padding: var(--diamond-spacing-sm) var(--diamond-spacing);
+    padding: var(--evg-spacing-sm) var(--evg-spacing);
   }
 
   @container (width > 768px) {
@@ -21,12 +21,12 @@ locator-header {
     align-items: center;
     display: flex;
     flex: 1 1 auto;
-    gap: var(--diamond-spacing);
+    gap: var(--evg-spacing);
     height: var(--header-height);
     justify-content: space-between;
-    padding: var(--diamond-spacing-sm) var(--diamond-spacing);
+    padding: var(--evg-spacing-sm) var(--evg-spacing);
 
-    diamond-button[variant='text'] {
+    evg-button[variant='ghost'] {
       line-height: 1;
     }
   }

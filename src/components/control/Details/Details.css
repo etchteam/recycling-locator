@@ -1,10 +1,10 @@
 locator-details {
-  --_details-padding: var(--diamond-spacing-sm);
+  --_details-padding: var(--evg-spacing-sm);
   display: block;
 
   details {
-    border: var(--diamond-border);
-    border-radius: var(--diamond-border-radius);
+    border: var(--evg-border);
+    border-radius: var(--evg-border-radius);
 
     > summary {
       appearance: none;
@@ -12,17 +12,17 @@ locator-details {
       border: 0 none;
       cursor: pointer;
       display: flex;
-      font-weight: var(--diamond-font-weight-normal);
+      font-weight: var(--evg-font-weight-normal);
       justify-content: space-between;
       padding: var(--_details-padding);
-      transition: color var(--diamond-transition);
+      transition: color var(--evg-transition);
 
       &::-webkit-details-marker {
         display: none;
       }
 
       &:hover {
-        color: var(--diamond-theme-color-hover);
+        color: var(--evg-theme-color-hover);
       }
     }
 
@@ -32,9 +32,9 @@ locator-details {
     }
 
     locator-details-summary-preview {
-      color: var(--diamond-theme-color-muted);
+      color: var(--evg-theme-color-muted);
       display: block;
-      font-size: var(--diamond-font-size-sm);
+      font-size: var(--evg-font-size-body-xs);
       font-weight: normal;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -64,7 +64,7 @@ locator-details {
   }
 
   &[flush] details {
-    --_details-padding: var(--diamond-spacing-xs);
+    --_details-padding: var(--evg-spacing-xs);
     border: 0 none;
   }
 
@@ -83,18 +83,18 @@ locator-details {
     }
 
     a {
-      color: var(--diamond-theme-color-muted);
+      color: var(--evg-theme-color-muted);
       text-decoration: none;
-      transition: color var(--diamond-transition);
+      transition: color var(--evg-transition);
 
       locator-icon {
         color: var(--color-grey-light);
-        transition: color var(--diamond-transition);
+        transition: color var(--evg-transition);
       }
 
       &:hover,
       &:hover locator-icon {
-        color: var(--diamond-theme-color-hover);
+        color: var(--evg-theme-color-hover);
       }
     }
   }

@@ -1,12 +1,12 @@
 locator-star-rating {
   display: inline-block;
-  font-size: var(--diamond-font-size-sm);
-  font-weight: var(--diamond-font-weight-bold);
+  font-size: var(--evg-font-size-body-xs);
+  font-weight: var(--evg-font-weight-bold);
 
   &::before {
-    color: var(--diamond-theme-color);
+    color: var(--evg-theme-color);
     content: '★★★★★';
-    letter-spacing: var(--diamond-spacing-xs);
+    letter-spacing: var(--evg-spacing-xs);
   }
 
   &[rating='0']::before {

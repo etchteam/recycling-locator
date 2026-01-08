@@ -13,25 +13,25 @@ export const Postcode: StoryObj = {
   render: () => (
     <locator-context-header>
       <div>
-        <span className="diamond-text-weight-bold">
+        <span className="evg-text-weight-bold">
           {formatPostcode('EX327RB')}
         </span>{' '}
         &ndash; Barnstaple
       </div>
-      <diamond-button variant="text" size="sm">
+      <evg-button variant="ghost" size="sm">
         <a href="#link">
           <locator-icon icon="close" color="primary"></locator-icon>
         </a>
-      </diamond-button>
+      </evg-button>
     </locator-context-header>
   ),
 };
 
 export const Search: StoryObj = {
   render: () => (
-    <a href="#link" className="diamond-text-decoration-none">
+    <a href="#link" className="text-decoration-none">
       <locator-context-header>
-        <div className="diamond-text-weight-bold">Plastic milk bottles</div>
+        <div className="evg-text-weight-bold">Plastic milk bottles</div>
         <locator-icon icon="search" color="primary"></locator-icon>
       </locator-context-header>
     </a>

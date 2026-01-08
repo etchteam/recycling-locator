@@ -8,8 +8,12 @@
   padding: 0;
 }
 
+.text-size-base {
+  font-size: var(--font-size-base);
+}
+
 .text-color-muted {
-  color: var(--diamond-theme-color-muted);
+  color: var(--evg-theme-color-muted);
 }
 
 .text-color-negative {
@@ -24,6 +28,10 @@
   color: var(--color-white);
 }
 
+.text-decoration-none {
+  text-decoration: none;
+}
+
 .layer-one {
   position: relative;
   z-index: var(--layer-one);
@@ -31,7 +39,7 @@
 
 .scroll-anchor {
   /* Scroll anchors need extra space above for scrollIntoView to be positioned correctly */
-  scroll-margin-block-start: var(--diamond-spacing-xl);
+  scroll-margin-block-start: var(--evg-spacing-xl);
 }
 
 .hidden {

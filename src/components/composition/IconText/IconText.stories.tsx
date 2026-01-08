@@ -11,7 +11,7 @@ export default meta;
 export const IconText: StoryObj = {
   render: () => (
     <>
-      <locator-icon-text className="diamond-spacing-bottom-md">
+      <locator-icon-text className="evg-spacing-bottom-md">
         <locator-icon-circle>
           <locator-icon icon="search" color="primary"></locator-icon>
         </locator-icon-circle>

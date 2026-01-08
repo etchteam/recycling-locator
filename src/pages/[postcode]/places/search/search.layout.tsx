@@ -30,7 +30,7 @@ export default function PlacesSearchLayout({
           <locator-header-title>
             <h2>{t('places.search.title')}</h2>
           </locator-header-title>
-          <diamond-button width="square" size="sm">
+          <evg-button variant="ghost" width="square">
             <Link href={`/${postcode}/places?${searchParams.toString()}`}>
               <locator-icon
                 icon="close"
@@ -38,7 +38,7 @@ export default function PlacesSearchLayout({
                 label={t('actions.close')}
               />
             </Link>
-          </diamond-button>
+          </evg-button>
         </locator-header-content>
       </locator-header>
       <div slot="layout-main" ref={layoutRef}>

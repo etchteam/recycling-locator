@@ -99,7 +99,7 @@ export default function LocationForm({
   return (
     <form onSubmit={handleSubmit}>
       <input type="hidden" name="locale" value={locale} />
-      <diamond-form-group className="diamond-spacing-bottom-md">
+      <evg-form-group className="evg-spacing-bottom-md">
         <label htmlFor="location-input">{label ?? t('start.label')}</label>
         <LocationInput
           autofocus={autofocus}
@@ -108,16 +108,13 @@ export default function LocationForm({
           disabled={geolocation.value}
           valid={form.valid.value || geolocation.value}
         ></LocationInput>
-      </diamond-form-group>
+      </evg-form-group>
       {isStandalone ? (
-        <diamond-grid
-          align-items="center"
-          className="diamond-spacing-bottom-md"
-        >
-          <diamond-grid-item>
-            <diamond-radio-checkbox
+        <evg-grid align-items="center" className="evg-spacing-bottom-md">
+          <evg-grid-item>
+            <evg-radio-checkbox
               state={geolocationError.value ? 'invalid' : undefined}
-              className="diamond-text-size-sm"
+              className="evg-text-size-body-xs"
             >
               <label>
                 <input
@@ -136,43 +133,40 @@ export default function LocationForm({
                 />
                 {t('start.geolocation.label')}
               </label>
-            </diamond-radio-checkbox>
-          </diamond-grid-item>
-          <diamond-grid-item>
+            </evg-radio-checkbox>
+          </evg-grid-item>
+          <evg-grid-item>
             <locator-highlight
               id="geolocation-error"
-              className={`diamond-text-size-xs ${geolocationError.value ? 'theme-negative' : 'theme-info'}`}
+              className={`evg-text-size-body-xs ${geolocationError.value ? 'theme-negative' : 'theme-info'}`}
             >
               {t('start.geolocation.permission')}
             </locator-highlight>
-          </diamond-grid-item>
-        </diamond-grid>
+          </evg-grid-item>
+        </evg-grid>
       ) : (
-        <diamond-grid
-          align-items="center"
-          className="diamond-spacing-bottom-md"
-        >
-          <diamond-grid-item>
-            <diamond-radio-checkbox className="diamond-text-size-sm">
+        <evg-grid align-items="center" className="evg-spacing-bottom-md">
+          <evg-grid-item>
+            <evg-radio-checkbox className="evg-text-size-body-xs">
               <label>
                 <input type="checkbox" name="new-tab" value="yes" />
                 {t('start.newTab.label')}
               </label>
-            </diamond-radio-checkbox>
-          </diamond-grid-item>
-          <diamond-grid-item>
-            <locator-highlight className="diamond-text-size-xs theme-positive">
+            </evg-radio-checkbox>
+          </evg-grid-item>
+          <evg-grid-item>
+            <locator-highlight className="evg-text-size-body-xs theme-positive">
               {t('start.newTab.bestExperience')}
             </locator-highlight>
-          </diamond-grid-item>
-        </diamond-grid>
+          </evg-grid-item>
+        </evg-grid>
       )}
       {children}
-      <diamond-button width="full-width" variant="primary">
+      <evg-button width="full-width" variant="primary">
         <button type="submit" disabled={form.submitting.value}>
           {cta ?? t('start.cta')}
         </button>
-      </diamond-button>
+      </evg-button>
     </form>
   );
 }

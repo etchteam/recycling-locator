@@ -1,7 +1,7 @@
 locator-header-title {
   align-items: center;
   display: grid;
-  gap: var(--diamond-spacing-sm);
+  gap: var(--evg-spacing-sm);
   grid-template-areas: 'button title';
   grid-template-columns: auto 1fr;
 
@@ -13,11 +13,11 @@ locator-header-title {
     overflow: hidden;
   }
 
-  diamond-button {
+  evg-button {
     grid-area: button;
-    --diamond-button-border-radius: 50%;
-    --diamond-button-padding-block: var(--diamond-spacing-sm);
-    --diamond-button-padding-inline: var(--diamond-spacing-sm);
+    --evg-button-border-radius: 50%;
+    --evg-button-padding-block: var(--evg-spacing-sm);
+    --evg-button-padding-inline: var(--evg-spacing-sm);
   }
 
   h2,
@@ -29,11 +29,11 @@ locator-header-title {
   }
 
   h2 {
-    font-size: var(--diamond-font-size-lg);
-    font-weight: var(--diamond-font-weight-bold);
+    font-size: var(--evg-font-size-body-md);
+    font-weight: var(--evg-font-weight-bold);
   }
 
   p {
-    font-size: var(--diamond-font-size-sm);
+    font-size: var(--evg-font-size-body-xs);
   }
 }

@@ -23,9 +23,9 @@ export default function SchemeContainerSummary({
   const remainingContainers = otherContainers.slice(limitWithoutTrolibocs);
 
   return (
-    <ul role="list" className="list-style-none diamond-spacing-bottom-md">
+    <ul role="list" className="list-style-none evg-spacing-bottom-md">
       {completeTrolibocs ? (
-        <li key={'Trolibocs'} className="diamond-spacing-bottom-sm">
+        <li key={'Trolibocs'} className="evg-spacing-bottom-sm">
           <locator-container>
             <locator-container-icon>
               <ContainerSvg
@@ -42,10 +42,7 @@ export default function SchemeContainerSummary({
         </li>
       ) : null}
       {firstContainers.map((container) => (
-        <li
-          key={uniqueId(container.name)}
-          className="diamond-spacing-bottom-sm"
-        >
+        <li key={uniqueId(container.name)} className="evg-spacing-bottom-sm">
           <locator-container>
             <locator-container-icon>
               <ContainerSvg

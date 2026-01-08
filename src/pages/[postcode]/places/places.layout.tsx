@@ -48,7 +48,7 @@ export default function PlacesLayout({
             <Link href={`/${postcode}`}>
               <locator-logo locale={locale}></locator-logo>
             </Link>
-            <diamond-button width="square" size="sm">
+            <evg-button variant="ghost" width="square">
               <button
                 type="button"
                 aria-expanded="true"
@@ -61,7 +61,7 @@ export default function PlacesLayout({
                   color="primary"
                 ></locator-icon>
               </button>
-            </diamond-button>
+            </evg-button>
           </locator-header-content>
         ) : (
           <>
@@ -72,7 +72,7 @@ export default function PlacesLayout({
             </locator-header-logo>
             <locator-places-header>
               <locator-header-title>
-                <diamond-button>
+                <evg-button>
                   <button
                     type="button"
                     aria-expanded="false"
@@ -84,7 +84,7 @@ export default function PlacesLayout({
                       label={t('actions.menu')}
                     ></locator-icon>
                   </button>
-                </diamond-button>
+                </evg-button>
                 <div>
                   <h2>{t('places.title')}</h2>
                   <p>{formatPostcode(postcode)}</p>
@@ -92,7 +92,7 @@ export default function PlacesLayout({
               </locator-header-title>
               <locator-places-header-search>
                 {search && !locationsLoading && locations && (
-                  <diamond-enter type="fade">
+                  <evg-enter type="fade">
                     <locator-tag-button
                       variant={
                         locations?.items.length > 0 &&
@@ -109,7 +109,7 @@ export default function PlacesLayout({
                         />
                       </button>
                     </locator-tag-button>
-                  </diamond-enter>
+                  </evg-enter>
                 )}
                 <Link href={`/${postcode}/places/search?${query.toString()}`}>
                   {!search && t('places.searchPlaceholder')}

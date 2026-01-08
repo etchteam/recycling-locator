@@ -1,6 +1,6 @@
 locator-nav-bar {
-  background: var(--diamond-theme-background);
-  border-bottom: var(--diamond-border);
+  background: var(--evg-theme-background);
+  border-bottom: var(--evg-border);
   display: block;
   position: sticky;
   top: var(--header-height);
@@ -16,7 +16,7 @@ locator-nav-bar {
 
   ul {
     display: flex;
-    gap: var(--diamond-spacing-sm);
+    gap: var(--evg-spacing-sm);
     justify-content: center;
     list-style: none;
     margin: 0;
@@ -26,30 +26,30 @@ locator-nav-bar {
   a {
     align-items: center;
     border-bottom: 2px solid transparent;
-    color: var(--diamond-theme-color);
+    color: var(--evg-theme-color);
     display: flex;
-    margin-block-start: var(--diamond-spacing-xs);
-    padding: var(--diamond-spacing-sm);
+    margin-block-start: var(--evg-spacing-xs);
+    padding: var(--evg-spacing-sm);
     text-decoration: none;
     transition:
-      border var(--diamond-transition),
-      color var(--diamond-transition);
+      border var(--evg-transition),
+      color var(--evg-transition);
 
     &:hover,
     &[aria-current='page'] {
-      color: var(--diamond-theme-color-hover);
+      color: var(--evg-theme-color-hover);
     }
 
     &:hover {
       border-bottom-color: color-mix(
         in srgb,
-        var(--diamond-theme-border-color-hover) 40%,
+        var(--evg-theme-border-color-hover) 40%,
         var(--color-white)
       );
     }
 
     &[aria-current='page'] {
-      border-bottom-color: var(--diamond-theme-border-color-hover);
+      border-bottom-color: var(--evg-theme-border-color-hover);
     }
   }
 }

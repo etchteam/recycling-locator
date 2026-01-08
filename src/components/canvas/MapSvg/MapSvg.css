@@ -20,14 +20,14 @@ locator-map-svg {
     box-sizing: border-box;
     display: block;
     margin: 0 auto;
-    padding: var(--diamond-spacing);
-    width: min(100%, calc(var(--wrap-max-width) - var(--diamond-spacing-lg)));
+    padding: var(--evg-spacing);
+    width: min(100%, calc(var(--wrap-max-width) - var(--evg-spacing-lg)));
   }
 
   @container (width > 768px) {
     locator-map-svg-content {
       place-self: end;
-      width: calc(var(--wrap-max-width) - var(--diamond-spacing-xl));
+      width: calc(var(--wrap-max-width) - var(--evg-spacing-xl));
     }
   }
 }

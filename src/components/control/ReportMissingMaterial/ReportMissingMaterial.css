@@ -2,14 +2,14 @@ locator-report-missing-material {
   .locator-report-missing-material__toggle {
     background: transparent;
     border: 0 none;
-    color: var(--diamond-theme-color);
+    color: var(--evg-theme-color);
     cursor: pointer;
     padding: 0;
     text-decoration: underline;
-    transition: color var(--diamond-transition);
+    transition: color var(--evg-transition);
 
     &:hover {
-      color: var(--diamond-theme-color-hover);
+      color: var(--evg-theme-color-hover);
     }
   }
 }

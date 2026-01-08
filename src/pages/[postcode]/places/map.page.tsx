@@ -141,7 +141,7 @@ export function PlacesMapPageContent() {
   };
 
   return (
-    <diamond-enter type="fade">
+    <evg-enter type="fade">
       <PlacesMap
         latitude={defaultLatitude}
         longitude={defaultLongitude}
@@ -153,22 +153,22 @@ export function PlacesMapPageContent() {
       >
         {showSearchThisArea.value && (
           <locator-fab position="top">
-            <diamond-button>
+            <evg-button>
               <button type="button" onClick={handleSearchThisArea}>
                 <locator-icon icon="sync" />
                 {t('places.map.searchThisArea')}
               </button>
-            </diamond-button>
+            </evg-button>
           </locator-fab>
         )}
         {activeLocation.value ? (
           <locator-places-map-card>
-            <diamond-grid>
-              <diamond-grid-item grow shrink>
+            <evg-grid>
+              <evg-grid-item grow shrink>
                 <Place location={activeLocation.value} withAddress={false} />
-              </diamond-grid-item>
-              <diamond-grid-item>
-                <diamond-button variant="text">
+              </evg-grid-item>
+              <evg-grid-item>
+                <evg-button variant="ghost">
                   <button
                     type="button"
                     onClick={() => (activeLocation.value = null)}
@@ -179,21 +179,21 @@ export function PlacesMapPageContent() {
                       label={t('actions.close')}
                     />
                   </button>
-                </diamond-button>
-              </diamond-grid-item>
-            </diamond-grid>
-            <diamond-grid>
-              <diamond-grid-item small-mobile="6">
-                <diamond-button width="full-width" variant="primary" size="sm">
+                </evg-button>
+              </evg-grid-item>
+            </evg-grid>
+            <evg-grid>
+              <evg-grid-item small-mobile="6">
+                <evg-button width="full-width" variant="primary" size="sm">
                   <Link
                     href={`/${postcode}/places/${activeLocationName}/${activeLocationPostcode}?${searchParams.toString()}`}
                   >
                     {t('actions.viewDetails')}
                   </Link>
-                </diamond-button>
-              </diamond-grid-item>
-              <diamond-grid-item small-mobile="6">
-                <diamond-button width="full-width" size="sm">
+                </evg-button>
+              </evg-grid-item>
+              <evg-grid-item small-mobile="6">
+                <evg-button width="full-width" size="sm">
                   <a
                     href={directions(postcode, activeLocation.value.address)}
                     target="_blank"
@@ -208,24 +208,24 @@ export function PlacesMapPageContent() {
                     {t('actions.directions')}
                     <locator-icon icon="external" />
                   </a>
-                </diamond-button>
-              </diamond-grid-item>
-            </diamond-grid>
+                </evg-button>
+              </evg-grid-item>
+            </evg-grid>
           </locator-places-map-card>
         ) : (
-          <diamond-enter type="fade" delay={0.5}>
+          <evg-enter type="fade" delay={0.5}>
             <locator-fab>
-              <diamond-button size="sm" variant="primary">
+              <evg-button size="sm" variant="primary">
                 <Link href={`/${postcode}/places?${searchParams.toString()}`}>
                   <locator-icon icon="list"></locator-icon>
                   {t('actions.showList')}
                 </Link>
-              </diamond-button>
+              </evg-button>
             </locator-fab>
-          </diamond-enter>
+          </evg-enter>
         )}
       </PlacesMap>
-    </diamond-enter>
+    </evg-enter>
   );
 }
 

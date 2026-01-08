@@ -116,7 +116,7 @@ export default function MaterialSearchSections({
   return (
     <>
       {sortedSectionKeys.map((sectionKey) => (
-        <div key={sectionKey} className="diamond-spacing-bottom-lg">
+        <div key={sectionKey} className="evg-spacing-bottom-lg">
           {sections.get(sectionKey)}
         </div>
       ))}

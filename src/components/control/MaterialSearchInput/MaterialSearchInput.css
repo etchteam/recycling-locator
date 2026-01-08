@@ -10,15 +10,15 @@
 
 locator-material-search-input {
   --_option-height: calc(
-    var(--diamond-font-size-base) * var(--diamond-font-line-height) +
-      (var(--diamond-spacing-sm) * 2) + var(--diamond-border-width)
+    var(--font-size-base) * var(--evg-font-line-height) +
+      (var(--evg-spacing-sm) * 2) + var(--evg-border-width)
   );
 
   display: flex;
   position: relative;
   width: 100%;
 
-  diamond-input {
+  evg-input {
     border-bottom-right-radius: 0;
     border-top-right-radius: 0;
     flex: 1 1 auto;
@@ -37,7 +37,7 @@ locator-material-search-input {
     color: var(--color-grey);
     cursor: pointer;
     line-height: 1;
-    margin-inline-end: var(--diamond-spacing-sm);
+    margin-inline-end: var(--evg-spacing-sm);
     padding: 0;
   }
 
@@ -46,10 +46,10 @@ locator-material-search-input {
     animation-fill-mode: forwards;
     animation-iteration-count: 1;
     animation-name: fade;
-    animation-timing-function: var(--diamond-transition-timing-enter);
-    background: var(--diamond-theme-background);
-    border: var(--diamond-border);
-    border-radius: var(--diamond-border-radius);
+    animation-timing-function: var(--evg-transition-timing-enter);
+    background: var(--evg-theme-background);
+    border: var(--evg-border);
+    border-radius: var(--evg-border-radius);
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.35);
     display: none;
     left: 0;
@@ -69,12 +69,12 @@ locator-material-search-input {
   }
 
   div[role='option'] {
-    border-bottom: var(--diamond-border);
+    border-bottom: var(--evg-border);
     cursor: pointer;
-    padding: var(--diamond-spacing-sm);
+    padding: var(--evg-spacing-sm);
     transition:
-      background var(--diamond-transition),
-      color var(--diamond-transition);
+      background var(--evg-transition),
+      color var(--evg-transition);
 
     &:last-child {
       border-bottom: 0 none;

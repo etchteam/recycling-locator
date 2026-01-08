@@ -11,11 +11,11 @@ export default function CategoriesPage() {
   }
 
   return (
-    <diamond-enter type="fade">
+    <evg-enter type="fade">
       <MaterialCategoriesNav
         basePath={`/${postcode}/places`}
         materialCategories={materialCategories}
       />
-    </diamond-enter>
+    </evg-enter>
   );
 }

@@ -19,14 +19,14 @@ export default function MaterialSearchStatus({
     return (
       <locator-hero variant="hazardous" size="reduced">
         <locator-wrap>
-          <diamond-enter type="fade">
-            <locator-icon-text>
+          <evg-enter type="fade">
+            <evg-row gap="sm">
               <locator-icon icon="warning" />
-              <h3 className="diamond-text-size-md">
+              <h3 className="evg-text-size-body-md">
                 {t('material.hero.hazardous')}
               </h3>
-            </locator-icon-text>
-          </diamond-enter>
+            </evg-row>
+          </evg-enter>
         </locator-wrap>
       </locator-hero>
     );
@@ -36,10 +36,10 @@ export default function MaterialSearchStatus({
     return (
       <locator-hero variant="positive" size="full">
         <locator-wrap>
-          <diamond-enter type="fade">
+          <evg-enter type="fade">
             <locator-icon icon="tick-circle" />
             <h3>{t('material.hero.yes')}</h3>
-          </diamond-enter>
+          </evg-enter>
         </locator-wrap>
       </locator-hero>
     );
@@ -49,16 +49,16 @@ export default function MaterialSearchStatus({
     return (
       <locator-hero variant="negative" size="reduced">
         <locator-wrap>
-          <diamond-enter type="fade">
+          <evg-enter type="fade">
             <locator-icon-text>
               <locator-icon icon="cross-circle" />
-              <h3 className="diamond-text-size-md">
+              <h3 className="evg-text-size-body-lg">
                 {nonRecyclable
                   ? t('material.hero.no')
                   : t('material.hero.noOptions')}
               </h3>
             </locator-icon-text>
-          </diamond-enter>
+          </evg-enter>
         </locator-wrap>
       </locator-hero>
     );

@@ -54,13 +54,13 @@ export function ErrorPage({ link = '/', message, cta }: ErrorPageProps) {
     <>
       <h2>{t('error.title')}</h2>
       {message && <p>{message}</p>}
-      <p className="diamond-text-size-sm">{t('error.message')}</p>
-      <p className="diamond-spacing-bottom-md diamond-text-weight-bold">
+      <p className="evg-text-size-body-xs">{t('error.message')}</p>
+      <p className="evg-spacing-bottom-md evg-text-weight-bold">
         {t('error.label')}
       </p>
-      <diamond-button width="full-width" variant="primary">
+      <evg-button width="full-width" variant="primary">
         <Link href={link}>{cta ?? t('error.cta')}</Link>
-      </diamond-button>
+      </evg-button>
     </>
   );
 }

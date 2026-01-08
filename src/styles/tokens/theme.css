@@ -1,37 +1,37 @@
 :host {
-  --diamond-theme-background: var(
+  --evg-theme-background: var(
     --recycling-locator-theme-background,
     var(--color-white)
   );
-  --diamond-theme-background-muted: var(
+  --evg-theme-background-muted: var(
     --recycling-locator-theme-background-muted-light,
     var(--color-grey-lightest)
   );
-  --diamond-theme-heading-color: var(
+  --evg-theme-heading-color: var(
     --recycling-locator-theme-heading-color-light,
     var(--color-body)
   );
-  --diamond-theme-color: var(
+  --evg-theme-color: var(
     --recycling-locator-theme-color-light,
     var(--color-body)
   );
-  --diamond-theme-color-muted: var(
+  --evg-theme-color-muted: var(
     --recycling-locator-theme-color-muted-light,
     var(--color-grey-muted)
   );
-  --diamond-theme-color-hover: var(
+  --evg-theme-color-hover: var(
     --recycling-locator-theme-color-hover,
     var(--color-primary-dark)
   );
-  --diamond-theme-border-color: var(
+  --evg-theme-border-color: var(
     --recycling-locator-theme-border-color-light,
     var(--color-border)
   );
-  --diamond-theme-border-color-hover: var(
+  --evg-theme-border-color-hover: var(
     --recycling-locator-theme-border-color-hover-light,
     var(--color-primary-dark)
   );
-  --diamond-theme-link-color: var(
+  --evg-theme-link-color: var(
     --recycling-locator-theme-link-color,
     var(--color-primary-dark)
   );
@@ -114,35 +114,64 @@
 }
 
 [class*=' theme-preset-'] {
-  --diamond-theme-color-hover: var(--color-primary-dark);
-  --diamond-theme-border-color-hover: var(--color-primary-dark);
+  --evg-theme-color-hover: var(--color-primary-dark);
+  --evg-theme-border-color-hover: var(--color-primary-dark);
 
-  diamond-input:hover,
-  diamond-input:focus-within {
+  evg-input:hover,
+  evg-input:focus-within {
     --_border-color: var(--color-primary-dark);
   }
 }
 
-.theme-info {
-  --diamond-theme-background-muted: var(--theme-background-info-muted);
-  --diamond-theme-background: var(--theme-background-info);
-  --diamond-theme-heading-color: var(--theme-heading-color-info);
-  --diamond-theme-color: var(--theme-color-info);
-  --diamond-theme-link-color: var(--theme-link-color-info);
+.theme-info,
+.theme-info-muted {
+  --evg-theme-background-muted: var(--theme-background-info-muted);
+  --evg-theme-background: var(--theme-background-info);
+  --evg-theme-heading-color: var(--theme-heading-color-info);
+  --evg-theme-color: var(--theme-color-info);
+  --evg-theme-link-color: var(--theme-link-color-info);
 }
 
-.theme-positive {
-  --diamond-theme-background-muted: var(--theme-background-positive-muted);
-  --diamond-theme-background: var(--theme-background-positive);
-  --diamond-theme-heading-color: var(--theme-heading-color-positive);
-  --diamond-theme-color: var(--theme-color-positive);
-  --diamond-theme-link-color: var(--theme-link-color-positive);
+.theme-info-muted {
+  --evg-theme-background: var(--theme-background-info-muted);
 }
 
-.theme-negative {
-  --diamond-theme-background-muted: var(--theme-background-negative-muted);
-  --diamond-theme-background: var(--theme-background-negative);
-  --diamond-theme-heading-color: var(--theme-heading-color-negative);
-  --diamond-theme-color: var(--theme-color-negative);
-  --diamond-theme-link-color: var(--theme-link-color-negative);
+.theme-positive,
+.theme-positive-muted {
+  --evg-theme-background-muted: var(--theme-background-positive-muted);
+  --evg-theme-background: var(--theme-background-positive);
+  --evg-theme-heading-color: var(--theme-heading-color-positive);
+  --evg-theme-color: var(--theme-color-positive);
+  --evg-theme-link-color: var(--theme-link-color-positive);
+}
+
+.theme-positive-muted {
+  --evg-theme-background: var(--theme-background-positive-muted);
+}
+
+.theme-negative,
+.theme-negative-muted {
+  --evg-theme-background-muted: var(--theme-background-negative-muted);
+  --evg-theme-background: var(--theme-background-negative);
+  --evg-theme-heading-color: var(--theme-heading-color-negative);
+  --evg-theme-color: var(--theme-color-negative);
+  --evg-theme-link-color: var(--theme-link-color-negative);
+}
+
+.theme-negative-muted {
+  --evg-theme-background: var(--theme-background-negative-muted);
+}
+
+/* Themed card border hiding */
+.theme-info,
+.theme-info-muted,
+.theme-positive,
+.theme-positive-muted,
+.theme-negative,
+.theme-negative-muted {
+  border: 0 none;
+
+  evg-card {
+    border: 0 none;
+  }
 }

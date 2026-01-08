@@ -1,13 +1,15 @@
 locator-rate-this-info {
-  background: var(--diamond-theme-background-muted);
-  border-radius: var(--diamond-border-radius);
+  background: var(--evg-theme-background-muted);
+  border-radius: var(--evg-border-radius);
   display: block;
-  padding: var(--diamond-spacing-sm) var(--diamond-spacing-sm)
-    var(--diamond-spacing);
+  padding: var(--evg-spacing);
   text-align: center;
 
   h2 {
-    font-size: var(--diamond-font-size-default);
+    font-size: var(--evg-font-size-default);
+  }
+
+  p {
     margin-block-end: 0;
   }
 
@@ -19,7 +21,7 @@ locator-rate-this-info {
   .locator-rate-this-info__rating {
     display: flex;
     justify-content: center;
-    margin-block-end: var(--diamond-spacing-sm);
+    margin-block-end: var(--evg-spacing-sm);
 
     input {
       cursor: pointer;
@@ -29,27 +31,28 @@ locator-rate-this-info {
 
     label {
       --_background: var(--color-white);
-      --_color: var(--diamond-theme-color-muted);
-      --_border-color: var(--diamond-theme-border-color);
+      --_color: var(--evg-theme-color-muted);
+      --_border-color: var(--evg-theme-border-color);
 
       aspect-ratio: 1;
       background: var(--_background);
-      border: var(--diamond-border-width) var(--diamond-border-style)
+      border: var(--evg-border-width) var(--evg-border-style)
         var(--_border-color);
-      border-radius: var(--diamond-border-radius);
+      border-radius: var(--evg-border-radius);
       color: var(--_color);
       cursor: pointer;
-      padding: var(--diamond-spacing-sm);
+      line-height: 1;
+      padding: var(--evg-spacing-sm);
       position: relative;
       transition:
-        background-color var(--diamond-transition),
-        border-color var(--diamond-transition),
-        color var(--diamond-transition);
+        background-color var(--evg-transition),
+        border-color var(--evg-transition),
+        color var(--evg-transition);
 
       &:has(input:focus-visible) {
         outline: 5px auto Highlight;
         outline: 5px auto -webkit-focus-ring-color;
-        outline-offset: var(--diamond-input-outline-offset);
+        outline-offset: var(--evg-input-outline-offset);
       }
 
       &:has(input:checked) {
@@ -59,8 +62,8 @@ locator-rate-this-info {
       &:has(input:disabled),
       &:has(input:disabled):hover {
         --_background: var(--color-grey-lightest);
-        --_color: var(--diamond-theme-color-muted);
-        --_border-color: var(--diamond-theme-border-color);
+        --_color: var(--evg-theme-color-muted);
+        --_border-color: var(--evg-theme-border-color);
         cursor: not-allowed;
 
         input {
@@ -103,20 +106,20 @@ locator-rate-this-info {
 
   .locator-rate-this-info__comment {
     label {
-      font-size: var(--diamond-font-size-sm);
+      font-size: var(--evg-font-size-body-xs);
       justify-content: center;
     }
 
-    diamond-input {
+    evg-input {
       /* extra space for the count */
-      padding-block-end: var(--diamond-spacing);
+      padding-block-end: var(--evg-spacing);
       /* position context for the count */
       position: relative;
     }
 
     span {
       bottom: 0;
-      font-size: var(--diamond-font-size-xs);
+      font-size: var(--evg-font-size-body-xs);
       pointer-events: none;
       position: absolute;
       right: 0;

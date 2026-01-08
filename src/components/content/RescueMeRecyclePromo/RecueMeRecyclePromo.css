@@ -1,11 +1,11 @@
 locator-rescue-me-recycle-promo {
-  --diamond-theme-background: var(--color-green-lightest);
+  --evg-theme-background: var(--color-green-lightest);
 
   a {
-    background: var(--diamond-theme-background);
-    border: var(--diamond-border-width) var(--diamond-border-style) transparent;
+    background: var(--evg-theme-background);
+    border: var(--evg-border-width) var(--evg-border-style) transparent;
     display: block;
-    transition: border-color var(--diamond-transition);
+    transition: border-color var(--evg-transition);
 
     &:hover {
       border-color: var(--color-green-dark);

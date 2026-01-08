@@ -80,7 +80,7 @@ export default class LocationInput extends Component<LocationInputProps> {
 
     return (
       <>
-        <diamond-input state={valid ? undefined : 'invalid'}>
+        <evg-input state={valid ? undefined : 'invalid'}>
           <locator-icon icon="pin" color="primary" />
           <input
             type="text"
@@ -97,11 +97,11 @@ export default class LocationInput extends Component<LocationInputProps> {
             aria-invalid={!valid}
             aria-errormessage={!valid ? 'location-input-error' : undefined}
           />
-        </diamond-input>
+        </evg-input>
         {!valid && (
           <p
             id="location-input-error"
-            className="text-color-negative diamond-text-size-sm diamond-spacing-top-xs"
+            className="text-color-negative evg-text-size-body-xs evg-spacing-top-xs"
             aria-live="polite"
           >
             {i18n.t('components.locationInput.error')}

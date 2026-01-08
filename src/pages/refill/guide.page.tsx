@@ -21,7 +21,7 @@ export default function GuidePage() {
   return (
     <>
       <h2>{t('refill.guide.title')}</h2>
-      <h3 className="diamond-text-size-base diamond-text-weight-bold diamond-spacing-top-md">
+      <h3 className="text-size-base evg-text-weight-bold evg-spacing-top-md">
         {t('refill.guide.steps.title')}
       </h3>
       <locator-steps>
@@ -31,25 +31,25 @@ export default function GuidePage() {
           <li>{t('refill.guide.steps.items.2')}</li>
         </ol>
       </locator-steps>
-      <diamond-img radius className="diamond-spacing-top-md">
+      <evg-img radius="sm" className="evg-spacing-top-md">
         <img src={`${publicPath}images/refill/guide.webp`} alt="" />
-      </diamond-img>
-      <h3 className="diamond-text-size-base diamond-text-weight-bold diamond-spacing-top-md">
+      </evg-img>
+      <h3 className="text-size-base evg-text-weight-bold evg-spacing-top-md">
         {t('refill.guide.simple.title')}
       </h3>
       <p>{t('refill.guide.simple.content.browseFillPay')}</p>
       <p>{t('refill.guide.simple.content.friendlyStaff')}</p>
-      <h3 className="diamond-text-size-base diamond-text-weight-bold diamond-spacing-top-md">
+      <h3 className="text-size-base evg-text-weight-bold evg-spacing-top-md">
         {t('refill.guide.shopping.title')}
       </h3>
       <p>{t('refill.guide.shopping.content')}</p>
-      <diamond-img radius>
+      <evg-img radius="sm">
         <img src={`${publicPath}images/refill/guide-secondary.webp`} alt="" />
-      </diamond-img>
+      </evg-img>
       {questions.map((question) => (
         <locator-details
           key={question}
-          className="diamond-spacing-top-sm diamond-spacing-bottom-sm"
+          className="evg-spacing-top-sm evg-spacing-bottom-sm"
         >
           <details>
             <summary>
@@ -57,7 +57,7 @@ export default function GuidePage() {
               <locator-icon icon="expand" />
             </summary>
             <p>
-              <span className="diamond-text-weight-bold">
+              <span className="evg-text-weight-bold">
                 {t(`refill.guide.faq.${question}.answerBold`)}
               </span>{' '}
               {t(`refill.guide.faq.${question}.answer`)}
@@ -66,7 +66,7 @@ export default function GuidePage() {
         </locator-details>
       ))}
 
-      <hr className="diamond-spacing-top-md diamond-spacing-bottom-md" />
+      <hr className="evg-spacing-top-md evg-spacing-bottom-md" />
 
       <locator-icon-link border>
         <Link href={'/refill/options' + postcodeQuery}>
@@ -77,20 +77,20 @@ export default function GuidePage() {
             ></locator-icon>
           </locator-icon-circle>
           <div>
-            <p className="diamond-text-size-base diamond-spacing-bottom-none">
+            <p className="text-size-base evg-spacing-bottom-none">
               {t('refill.guide.nextSection.title')}
             </p>
-            <p className="diamond-text-size-sm">
+            <p className="evg-text-size-body-xs">
               {t('refill.guide.nextSection.description')}
             </p>
           </div>
         </Link>
       </locator-icon-link>
-      <diamond-button width="full-width" className="diamond-spacing-top-md">
+      <evg-button width="full-width" className="evg-spacing-top-md">
         <Link href={'/refill/sign-up' + postcodeQuery}>
           {t('refill.guide.ctaButton')}
         </Link>
-      </diamond-button>
+      </evg-button>
     </>
   );
 }

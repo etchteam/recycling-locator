@@ -79,10 +79,10 @@ export default function MaterialSearchForm({
 
   return (
     <form method="post" onSubmit={handleSubmit}>
-      <diamond-form-group>
+      <evg-form-group>
         {label && <label htmlFor="locator-material-input">{label}</label>}
         <MaterialSearchInput {...inputProps} />
-      </diamond-form-group>
+      </evg-form-group>
       {children}
     </form>
   );

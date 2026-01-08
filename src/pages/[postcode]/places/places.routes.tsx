@@ -19,13 +19,13 @@ export default function PlacesRoutes() {
       fallback={
         <PlacesLayout>
           <locator-wrap>
-            <diamond-section padding="lg">
+            <evg-section padding="lg">
               <ErrorPage
                 link={`/${postcode}/places`}
                 message={t('places.error.message')}
                 cta={t('actions.tryAgain')}
               />
-            </diamond-section>
+            </evg-section>
           </locator-wrap>
         </PlacesLayout>
       }

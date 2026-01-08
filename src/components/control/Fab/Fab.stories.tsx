@@ -12,9 +12,9 @@ export const Fab: StoryObj = {
   render: () => (
     <div style="position: relative;height: 200px;overflow-y:scroll;">
       <locator-fab position="top">
-        <diamond-button size="sm">
+        <evg-button size="sm">
           <button type="button">Floating top button</button>
-        </diamond-button>
+        </evg-button>
       </locator-fab>
       {[...Array(50).keys()].map((key) => (
         <div key={key}>
@@ -24,9 +24,9 @@ export const Fab: StoryObj = {
         </div>
       ))}
       <locator-fab>
-        <diamond-button variant="primary" size="sm">
+        <evg-button variant="primary" size="sm">
           <button type="button">Floating bottom button</button>
-        </diamond-button>
+        </evg-button>
       </locator-fab>
     </div>
   ),

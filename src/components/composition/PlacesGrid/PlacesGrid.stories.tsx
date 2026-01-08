@@ -15,72 +15,52 @@ export const PlacesGrid: StoryObj = {
         <ul>
           <li>
             <a href="#place-1">
-              <diamond-card border radius>
-                Place 1
-              </diamond-card>
+              <evg-card radius="sm">Place 1</evg-card>
             </a>
           </li>
           <li>
             <a href="#place-2">
-              <diamond-card border radius>
-                Place 2
-              </diamond-card>
+              <evg-card radius="sm">Place 2</evg-card>
             </a>
           </li>
           <li>
             <a href="#place-3">
-              <diamond-card border radius>
-                Place 3
-              </diamond-card>
+              <evg-card radius="sm">Place 3</evg-card>
             </a>
           </li>
           <li>
             <a href="#place-4">
-              <diamond-card border radius>
-                Place 4
-              </diamond-card>
+              <evg-card radius="sm">Place 4</evg-card>
             </a>
           </li>
           <li>
             <a href="#place-5">
-              <diamond-card border radius>
-                Place 5
-              </diamond-card>
+              <evg-card radius="sm">Place 5</evg-card>
             </a>
           </li>
           <li>
             <a href="#place-6">
-              <diamond-card border radius>
-                Place 6
-              </diamond-card>
+              <evg-card radius="sm">Place 6</evg-card>
             </a>
           </li>
           <li>
             <a href="#place-7">
-              <diamond-card border radius>
-                Place 7
-              </diamond-card>
+              <evg-card radius="sm">Place 7</evg-card>
             </a>
           </li>
           <li>
             <a href="#place-8">
-              <diamond-card border radius>
-                Place 8
-              </diamond-card>
+              <evg-card radius="sm">Place 8</evg-card>
             </a>
           </li>
           <li>
             <a href="#place-9">
-              <diamond-card border radius>
-                Place 9
-              </diamond-card>
+              <evg-card radius="sm">Place 9</evg-card>
             </a>
           </li>
           <li>
             <a href="#place-10">
-              <diamond-card border radius>
-                Place 10
-              </diamond-card>
+              <evg-card radius="sm">Place 10</evg-card>
             </a>
           </li>
         </ul>

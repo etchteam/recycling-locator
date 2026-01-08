@@ -24,7 +24,7 @@ export default function RefillPage() {
   return (
     <>
       <h2>{t('refill.start.title')}</h2>
-      <h3 className="diamond-text-size-base diamond-text-weight-bold diamond-spacing-bottom-none">
+      <h3 className="text-size-base evg-text-weight-bold evg-spacing-bottom-none">
         {t('refill.start.comingSoon')}
       </h3>
       <p>{t('refill.start.subtitle')}</p>
@@ -42,7 +42,7 @@ export default function RefillPage() {
                     />
                   </locator-card-link-img>
                   <locator-card-link-content>
-                    <p className="diamond-text-weight-bold diamond-spacing-bottom-none">
+                    <p className="evg-text-weight-bold evg-spacing-bottom-none">
                       {t(`refill.start.nav.${page}.title`)}
                     </p>
                     <p>{t(`refill.start.nav.${page}.description`)}</p>
@@ -54,47 +54,43 @@ export default function RefillPage() {
         </ul>
       </locator-overflow>
 
-      <h3 className="diamond-text-size-base diamond-text-weight-bold diamond-spacing-top-lg">
+      <h3 className="text-size-base evg-text-weight-bold evg-spacing-top-lg">
         {t('refill.start.reviews.title')}
       </h3>
       <locator-overflow largeScreen>
         <ul>
           {reviewers.map((reviewer) => (
             <li key={reviewer}>
-              <diamond-card className="theme-info">
-                <diamond-grid align-items="center" gap="sm">
-                  <diamond-grid-item>
-                    <h4 className="diamond-spacing-bottom-none">{reviewer}</h4>
-                  </diamond-grid-item>
-                  <diamond-grid-item>
+              <evg-card className="theme-info" padding="sm">
+                <evg-card-content>
+                  <evg-row gap="sm">
+                    <h4 className="evg-spacing-bottom-none">{reviewer}</h4>
                     <span
-                      aria-label={
-                        t('refill.start.reviews.rating', {
-                          rating: 5,
-                        }) as string
-                      }
+                      aria-label={t('refill.start.reviews.rating', {
+                        rating: 5,
+                      })}
                     >
                       <locator-star-rating rating={5} aria-hidden />
                     </span>
-                  </diamond-grid-item>
-                </diamond-grid>
-                <p>{t(`refill.start.reviews.testimonials.${reviewer}`)}</p>
-              </diamond-card>
+                  </evg-row>
+                  <p>{t(`refill.start.reviews.testimonials.${reviewer}`)}</p>
+                </evg-card-content>
+              </evg-card>
             </li>
           ))}
         </ul>
       </locator-overflow>
 
-      <locator-icon-link border className="diamond-spacing-top-md">
+      <locator-icon-link border className="evg-spacing-top-md">
         <Link href={'/refill/sign-up' + postcodeQuery}>
           <locator-icon-circle>
             <locator-icon icon="home-pin" color="primary"></locator-icon>
           </locator-icon-circle>
           <div>
-            <p className="diamond-text-size-base diamond-spacing-bottom-none">
+            <p className="text-size-base evg-spacing-bottom-none">
               {t('refill.start.alerts.title')}
             </p>
-            <p className="diamond-text-size-sm">
+            <p className="evg-text-size-body-xs">
               {t('refill.start.alerts.description')}
             </p>
           </div>

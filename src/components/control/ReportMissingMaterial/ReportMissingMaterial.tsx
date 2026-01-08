@@ -106,20 +106,18 @@ export default function ReportMissingMaterial({
           {hasSubmittedFeedback.value ? t(`${tContext}.confirmation`) : ''}
         </output>
       </locator-icon-text>
-      <diamond-collapse
+      <evg-collapse
         id="report-missing-material-collapse"
         open={feedbackFormOpen.value}
       >
-        <diamond-form-group className="diamond-spacing-bottom-md">
+        <evg-form-group className="evg-spacing-bottom-md">
           <label
             htmlFor="report-missing-material-category"
-            className="diamond-sr-only"
+            className="evg-sr-only"
           >
             {t(`${tContext}.placeholder`)}
           </label>
-          <diamond-input
-            state={showCategoryError.value ? 'invalid' : undefined}
-          >
+          <evg-input state={showCategoryError.value ? 'invalid' : undefined}>
             <select
               id="report-missing-material-category"
               name="suggested-category"
@@ -140,23 +138,23 @@ export default function ReportMissingMaterial({
               ))}
             </select>
             <locator-icon icon="expand"></locator-icon>
-          </diamond-input>
+          </evg-input>
           {showCategoryError.value && (
             <p
               id="report-missing-material-category-error"
-              className="text-color-negative diamond-text-size-sm diamond-spacing-top-xs"
+              className="text-color-negative evg-text-size-body-xs evg-spacing-top-xs"
               aria-live="polite"
             >
               {t(`${tContext}.error`)}
             </p>
           )}
-        </diamond-form-group>
-        <diamond-button width="full-width">
+        </evg-form-group>
+        <evg-button width="full-width">
           <button type="button" onClick={sendFeedback}>
             {t(`${tContext}.cta`)}
           </button>
-        </diamond-button>
-      </diamond-collapse>
+        </evg-button>
+      </evg-collapse>
     </locator-report-missing-material>
   );
 }

@@ -29,12 +29,12 @@ function MapErrorFallback() {
 
   return (
     <MapSvg>
-      <diamond-button width="full-width">
+      <evg-button width="full-width">
         <Link href={`/${postcode}/places/map`}>
           {t('postcode.exploreTheMap')}
           <locator-icon icon="map" color="primary"></locator-icon>
         </Link>
-      </diamond-button>
+      </evg-button>
     </MapSvg>
   );
 }
@@ -75,12 +75,12 @@ export function PostcodeLayoutAside() {
         <locator-places-map-scrim />
       </Link>
       <locator-places-map-card padding="none">
-        <diamond-button width="full-width">
+        <evg-button width="full-width">
           <Link href={`/${postcode}/places/map`}>
             {t('postcode.exploreTheMap')}
             <locator-icon icon="map" color="primary"></locator-icon>
           </Link>
-        </diamond-button>
+        </evg-button>
       </locator-places-map-card>
     </PlacesMap>
   );
@@ -105,7 +105,7 @@ export default function PostcodeLayout({
           <locator-header slot="layout-header">
             <locator-header-content>
               <locator-logo locale={locale}></locator-logo>
-              <diamond-button variant="text" width="square">
+              <evg-button variant="ghost" width="square">
                 <Link href={`/${postcode}`}>
                   <locator-icon
                     icon="close"
@@ -113,7 +113,7 @@ export default function PostcodeLayout({
                     color="primary"
                   ></locator-icon>
                 </Link>
-              </diamond-button>
+              </evg-button>
             </locator-header-content>
           </locator-header>
         ) : (
@@ -126,9 +126,9 @@ export default function PostcodeLayout({
       <div slot="layout-main" id="locator-layout-main" ref={layoutRef}>
         {infoOpen ? (
           <locator-wrap>
-            <diamond-section padding="lg">
+            <evg-section padding="lg">
               <About />
-            </diamond-section>
+            </evg-section>
           </locator-wrap>
         ) : (
           children

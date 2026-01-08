@@ -1,12 +1,8 @@
 locator-highlight {
-  background: var(
-    --diamond-theme-background-muted,
-    --theme-background-info-muted
-  );
-  border-radius: var(--diamond-border-radius);
-  color: var(--diamond-theme-color, --theme-color-info);
+  background: var(--evg-theme-background-muted, --theme-background-info-muted);
+  border-radius: var(--evg-border-radius);
+  color: var(--evg-theme-color, --theme-color-info);
   display: inline-block;
-  padding: var(--diamond-spacing-xs) var(--diamond-spacing-sm);
-  transition: background var(--diamond-transition) color
-    var(--diamond-transition);
+  padding: var(--evg-spacing-xs) var(--evg-spacing-sm);
+  transition: background var(--evg-transition) color var(--evg-transition);
 }

@@ -16,6 +16,6 @@
     "vite": "^6.3.6"
   },
   "dependencies": {
-    "@etchteam/recycling-locator": "^1.68.3"
+    "@etchteam/recycling-locator": "^1.70.0"
   }
 }

@@ -1,3 +1,10 @@
+## [1.70.0](https://github.com/etchteam/recycling-locator/compare/v1.69.0...v1.70.0) (2026-01-08)
+
+
+### Features
+
+* migrate from diamond to evergreen ([aab89e6](https://github.com/etchteam/recycling-locator/commit/aab89e63c22d9973d3dce4673c432a7d60d77088))
+
 ## [1.69.0](https://github.com/etchteam/recycling-locator/compare/v1.68.3...v1.69.0) (2026-01-05)
 
 

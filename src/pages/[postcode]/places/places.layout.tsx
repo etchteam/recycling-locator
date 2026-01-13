@@ -1,10 +1,10 @@
 import { ComponentChildren } from 'preact';
+import { useState } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
 import { Link, useSearchParams } from 'wouter-preact';
 
 import HeaderWithMenu, {
   MenuLayout,
-  useMenuOpen,
 } from '@/components/content/HeaderLayouts/HeaderWithMenu';
 import { usePostcode } from '@/hooks/PostcodeProvider';
 import { useLocations } from '@/hooks/useLocations';
@@ -19,7 +19,7 @@ export default function PlacesLayout({
   const { t } = useTranslation();
   const { postcode, data: postcodeData } = usePostcode();
   const { data: locations, loading: locationsLoading } = useLocations();
-  const menuOpen = useMenuOpen();
+  const [menuOpen, setMenuOpen] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const search = searchParams.get('search');
   const city = postcodeData?.city;
@@ -48,6 +48,7 @@ export default function PlacesLayout({
           title={t('places.title')}
           subtitle={formatPostcode(postcode)}
           menuOpen={menuOpen}
+          onToggleMenu={() => setMenuOpen(!menuOpen)}
         >
           <locator-places-header-search>
             {search && !locationsLoading && locations && (
@@ -78,7 +79,12 @@ export default function PlacesLayout({
         </HeaderWithMenu>
       </div>
       <div slot="layout-main" id="locator-layout-main">
-        <MenuLayout menuOpen={menuOpen} postcode={postcode} city={city}>
+        <MenuLayout
+          menuOpen={menuOpen}
+          onCloseMenu={() => setMenuOpen(false)}
+          postcode={postcode}
+          city={city}
+        >
           {children}
         </MenuLayout>
       </div>

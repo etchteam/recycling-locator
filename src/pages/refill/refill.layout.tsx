@@ -1,12 +1,11 @@
 import { ComponentChildren } from 'preact';
-import { useRef } from 'preact/hooks';
+import { useRef, useState } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
 import { Link, useRoute, useSearchParams } from 'wouter-preact';
 
 import HeaderWithBackButton from '@/components/content/HeaderLayouts/HeaderWithBackButton';
 import HeaderWithMenu, {
   MenuLayout,
-  useMenuOpen,
 } from '@/components/content/HeaderLayouts/HeaderWithMenu';
 import NavLink from '@/components/control/NavBar/NavLink';
 import { useAppState } from '@/hooks/AppStateProvider';
@@ -52,7 +51,7 @@ export default function RefillLayout({
   readonly children?: ComponentChildren;
 }) {
   const { t } = useTranslation();
-  const menuOpen = useMenuOpen();
+  const [menuOpen, setMenuOpen] = useState(false);
   const [isHome] = useRoute('/refill');
 
   const [searchParams] = useSearchParams();
@@ -75,6 +74,7 @@ export default function RefillLayout({
             title={t('refill.header.title')}
             subtitle={<RefillSubtitle />}
             menuOpen={menuOpen}
+            onToggleMenu={() => setMenuOpen(!menuOpen)}
           />
         ) : (
           <HeaderWithBackButton
@@ -86,7 +86,11 @@ export default function RefillLayout({
         )}
       </div>
       <div slot="layout-main" id="locator-layout-main" ref={layoutRef}>
-        <MenuLayout menuOpen={menuOpen} postcode={postcode ?? undefined}>
+        <MenuLayout
+          menuOpen={menuOpen}
+          onCloseMenu={() => setMenuOpen(false)}
+          postcode={postcode ?? undefined}
+        >
           <locator-nav-bar>
             <nav>
               <ul>

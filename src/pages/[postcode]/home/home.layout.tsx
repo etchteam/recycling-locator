@@ -1,10 +1,9 @@
 import { ComponentChildren } from 'preact';
-import { useRef } from 'preact/hooks';
+import { useRef, useState } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
 
 import HeaderWithMenu, {
   MenuLayout,
-  useMenuOpen,
 } from '@/components/content/HeaderLayouts/HeaderWithMenu';
 import TipContent from '@/components/content/TipContent/TipContent';
 import NavLink from '@/components/control/NavBar/NavLink';
@@ -27,7 +26,7 @@ export default function HomeRecyclingLayout({
   const { data: tip, loading: tipLoading } = useTip({
     path: '/:postcode/home',
   });
-  const menuOpen = useMenuOpen();
+  const [menuOpen, setMenuOpen] = useState(false);
   useScrollRestoration(layoutRef);
   const homeTipImgSrc = `${publicPath}images/home-tip.svg`;
   const city = postcodeData?.city;
@@ -40,10 +39,16 @@ export default function HomeRecyclingLayout({
           title={t('homeRecycling.title')}
           subtitle={!laLoading && localAuthority ? localAuthority.name : ''}
           menuOpen={menuOpen}
+          onToggleMenu={() => setMenuOpen(!menuOpen)}
         />
       </div>
       <div slot="layout-main" id="locator-layout-main" ref={layoutRef}>
-        <MenuLayout menuOpen={menuOpen} postcode={postcode} city={city}>
+        <MenuLayout
+          menuOpen={menuOpen}
+          onCloseMenu={() => setMenuOpen(false)}
+          postcode={postcode}
+          city={city}
+        >
           {localAuthority && (
             <locator-nav-bar>
               <nav>

@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useLocation } from 'wouter-preact';
 
 import About from '@/components/content/About/About';
-import InfoHeader from '@/components/content/HeaderLayouts/InfoHeader';
+import HeaderWithInfoButton from '@/components/content/HeaderLayouts/HeaderWithInfoButton';
 import TipContent from '@/components/content/TipContent/TipContent';
 import { useAppState } from '@/hooks/AppStateProvider';
 import { useTip } from '@/hooks/useTip';
@@ -99,9 +99,9 @@ export default function StartLayout({
   return (
     <locator-layout>
       <div slot="layout-header" className="display-contents">
-        <InfoHeader
+        <HeaderWithInfoButton
           infoOpen={infoOpen}
-          handleOpenInfo={() => setInfoOpen(!infoOpen)}
+          onToggleInfo={() => setInfoOpen(!infoOpen)}
         />
       </div>
       <div slot="layout-main" id="locator-layout-main">

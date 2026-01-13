@@ -40,6 +40,7 @@ export default function HomeRecyclingLayout({
           subtitle={!laLoading && localAuthority ? localAuthority.name : ''}
           menuOpen={menuOpen}
           onToggleMenu={() => setMenuOpen(!menuOpen)}
+          mainContentId="locator-layout-main"
         />
       </div>
       <div slot="layout-main" id="locator-layout-main" ref={layoutRef}>

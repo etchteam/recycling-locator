@@ -14,6 +14,11 @@ export interface HeaderWithInfoButtonProps {
    * Callback to toggle the info panel open/closed state.
    */
   readonly onToggleInfo: () => void;
+  /**
+   * ID of the main content area controlled by this header's toggle button.
+   * Used for aria-controls attribute for accessibility.
+   */
+  readonly mainContentId: string;
 }
 
 /**
@@ -24,6 +29,7 @@ export interface HeaderWithInfoButtonProps {
 export default function HeaderWithInfoButton({
   infoOpen,
   onToggleInfo,
+  mainContentId,
 }: HeaderWithInfoButtonProps) {
   const { t } = useTranslation();
   const { recordEvent } = useAnalytics();
@@ -44,7 +50,7 @@ export default function HeaderWithInfoButton({
           type="button"
           data-testid="about-button"
           aria-expanded={infoOpen}
-          aria-controls="locator-layout-main"
+          aria-controls={mainContentId}
           onClick={onToggleInfo}
         >
           <locator-icon

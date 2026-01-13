@@ -49,6 +49,7 @@ export default function PlacesLayout({
           subtitle={formatPostcode(postcode)}
           menuOpen={menuOpen}
           onToggleMenu={() => setMenuOpen(!menuOpen)}
+          mainContentId="locator-layout-main"
         >
           <locator-places-header-search>
             {search && !locationsLoading && locations && (

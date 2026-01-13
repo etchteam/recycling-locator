@@ -17,6 +17,11 @@ export interface HeaderWithMenuProps extends HeaderWithTitleLayoutProps {
    * Callback to toggle the menu open/closed state.
    */
   readonly onToggleMenu: () => void;
+  /**
+   * ID of the main content area controlled by this header's toggle button.
+   * Used for aria-controls attribute for accessibility.
+   */
+  readonly mainContentId: string;
 }
 
 /**
@@ -30,6 +35,7 @@ export default function HeaderWithMenu({
   subtitle,
   menuOpen,
   onToggleMenu,
+  mainContentId,
   children,
 }: HeaderWithMenuProps) {
   const { t } = useTranslation();
@@ -41,7 +47,7 @@ export default function HeaderWithMenu({
           <button
             type="button"
             aria-expanded="true"
-            aria-controls="locator-layout-main"
+            aria-controls={mainContentId}
             onClick={onToggleMenu}
           >
             <locator-icon
@@ -64,7 +70,7 @@ export default function HeaderWithMenu({
           <button
             type="button"
             aria-expanded="false"
-            aria-controls="locator-layout-main"
+            aria-controls={mainContentId}
             onClick={onToggleMenu}
           >
             <locator-icon icon="menu" label={t('actions.menu')} />

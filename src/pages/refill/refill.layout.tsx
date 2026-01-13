@@ -75,6 +75,7 @@ export default function RefillLayout({
             subtitle={<RefillSubtitle />}
             menuOpen={menuOpen}
             onToggleMenu={() => setMenuOpen(!menuOpen)}
+            mainContentId="locator-layout-main"
           />
         ) : (
           <HeaderWithBackButton

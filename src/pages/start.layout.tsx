@@ -102,6 +102,7 @@ export default function StartLayout({
         <HeaderWithInfoButton
           infoOpen={infoOpen}
           onToggleInfo={() => setInfoOpen(!infoOpen)}
+          mainContentId="locator-layout-main"
         />
       </div>
       <div slot="layout-main" id="locator-layout-main">

@@ -109,6 +109,7 @@ export default function PostcodeLayout({
           <HeaderWithInfoButton
             infoOpen={infoOpen}
             onToggleInfo={() => setInfoOpen(!infoOpen)}
+            mainContentId="locator-layout-main"
           />
         )}
       </div>

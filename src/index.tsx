@@ -3,6 +3,7 @@ import { Suspense } from 'preact/compat';
 import register from 'preact-custom-element';
 
 import { AppStateProvider } from '@/hooks/AppStateProvider';
+import { NavigationProvider } from '@/hooks/NavigationProvider';
 import { RouterProvider } from '@/hooks/RouterProvider';
 import { i18nInit } from '@/lib/i18n';
 import StartRoutes from '@/pages/start.routes';
@@ -111,18 +112,20 @@ export default function RecyclingLocator({
             basename={basename}
             initialPath={path || '/'}
           >
-            <AppStateProvider
-              attributes={{
-                locale,
-                variant,
-                basename,
-                path,
-                publicPath,
-                theme,
-              }}
-            >
-              <StartRoutes />
-            </AppStateProvider>
+            <NavigationProvider>
+              <AppStateProvider
+                attributes={{
+                  locale,
+                  variant,
+                  basename,
+                  path,
+                  publicPath,
+                  theme,
+                }}
+              >
+                <StartRoutes />
+              </AppStateProvider>
+            </NavigationProvider>
           </RouterProvider>
         </Suspense>
       </article>

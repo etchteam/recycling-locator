@@ -1,4 +1,3 @@
-import { Signal, useSignal } from '@preact/signals';
 import { ComponentChildren } from 'preact';
 import { useTranslation } from 'react-i18next';
 
@@ -11,9 +10,13 @@ import HeaderBase, {
 
 export interface HeaderWithMenuProps extends HeaderWithTitleLayoutProps {
   /**
-   * Signal to control the menu open state.
+   * Whether the menu is currently open.
    */
-  readonly menuOpen: Signal<boolean>;
+  readonly menuOpen: boolean;
+  /**
+   * Callback to toggle the menu open/closed state.
+   */
+  readonly onToggleMenu: () => void;
 }
 
 /**
@@ -26,11 +29,12 @@ export default function HeaderWithMenu({
   title,
   subtitle,
   menuOpen,
+  onToggleMenu,
   children,
 }: HeaderWithMenuProps) {
   const { t } = useTranslation();
 
-  if (menuOpen.value) {
+  if (menuOpen) {
     return (
       <HeaderBase logoHref={logoHref} logoType={undefined}>
         <evg-button variant="ghost" width="square">
@@ -38,7 +42,7 @@ export default function HeaderWithMenu({
             type="button"
             aria-expanded="true"
             aria-controls="locator-layout-main"
-            onClick={() => (menuOpen.value = false)}
+            onClick={onToggleMenu}
           >
             <locator-icon
               icon="close"
@@ -61,7 +65,7 @@ export default function HeaderWithMenu({
             type="button"
             aria-expanded="false"
             aria-controls="locator-layout-main"
-            onClick={() => (menuOpen.value = true)}
+            onClick={onToggleMenu}
           >
             <locator-icon icon="menu" label={t('actions.menu')} />
           </button>
@@ -82,9 +86,13 @@ export interface MenuLayoutProps {
    */
   readonly city?: string;
   /**
-   * Signal to control the menu open state.
+   * Whether the menu is currently open.
    */
-  readonly menuOpen: Signal<boolean>;
+  readonly menuOpen: boolean;
+  /**
+   * Callback to close the menu.
+   */
+  readonly onCloseMenu: () => void;
   /**
    * Content to render when menu is closed.
    */
@@ -99,24 +107,12 @@ export function MenuLayout({
   postcode,
   city,
   menuOpen,
+  onCloseMenu,
   children,
 }: MenuLayoutProps) {
-  if (menuOpen.value) {
-    return (
-      <Menu
-        handleClose={() => (menuOpen.value = false)}
-        postcode={postcode}
-        city={city}
-      />
-    );
+  if (menuOpen) {
+    return <Menu handleClose={onCloseMenu} postcode={postcode} city={city} />;
   }
 
   return <>{children}</>;
-}
-
-/**
- * Hook to create a menu open signal for use with HeaderWithMenu and MenuLayout.
- */
-export function useMenuOpen() {
-  return useSignal(false);
 }

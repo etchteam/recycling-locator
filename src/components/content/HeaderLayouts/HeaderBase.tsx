@@ -80,6 +80,11 @@ export default function HeaderBase({
 
   const logo = <locator-logo type={logoType} locale={locale} />;
 
+  // Logo placement depends on type:
+  // - 'logo-only' (icon): Renders in locator-header-logo, which is hidden on mobile
+  //   via CSS and shown on larger screens with a border separator
+  // - undefined (full logo): Renders inside locator-header-content so it's always
+  //   visible and flows with the header content
   return (
     <locator-header>
       {logoType === 'logo-only' && (

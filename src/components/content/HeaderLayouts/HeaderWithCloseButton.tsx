@@ -6,9 +6,9 @@ import HeaderBase, { HeaderBaseProps } from './HeaderBase';
 export interface HeaderWithCloseButtonProps
   extends Omit<HeaderBaseProps, 'children'> {
   /**
-   * The main title text displayed in the header.
+   * Optional title text displayed in the header.
    */
-  readonly title: string;
+  readonly title?: string;
   /**
    * The path to navigate to when the close button is clicked.
    */
@@ -29,9 +29,11 @@ export default function HeaderWithCloseButton({
 
   return (
     <HeaderBase logoHref={logoHref} logoType={logoType}>
-      <locator-header-title>
-        <h2>{title}</h2>
-      </locator-header-title>
+      {title && (
+        <locator-header-title>
+          <h2>{title}</h2>
+        </locator-header-title>
+      )}
       <evg-button variant="ghost" width="square">
         <Link href={closeHref}>
           <locator-icon

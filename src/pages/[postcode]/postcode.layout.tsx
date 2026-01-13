@@ -5,12 +5,12 @@ import { Link, useRoute } from 'wouter-preact';
 
 import MapSvg from '@/components/canvas/MapSvg/MapSvg';
 import About from '@/components/content/About/About';
-import InfoHeader from '@/components/content/HeaderLayouts/InfoHeader';
+import HeaderWithCloseButton from '@/components/content/HeaderLayouts/HeaderWithCloseButton';
+import HeaderWithInfoButton from '@/components/content/HeaderLayouts/HeaderWithInfoButton';
 import PlacesMap from '@/components/control/PlacesMap/PlacesMap';
 import { usePostcode } from '@/hooks/PostcodeProvider';
 import { useLocations } from '@/hooks/useLocations';
 import useScrollRestoration from '@/hooks/useScrollRestoration';
-import i18n from '@/lib/i18n';
 import sentry from '@/lib/sentry';
 
 function MapLoadingFallback() {
@@ -94,7 +94,6 @@ export default function PostcodeLayout({
   const [infoOpen, setInfoOpen] = useState(false);
   const [isRescueMeRecyclePage] = useRoute('/:postcode/rescue-me-recycle');
   const { postcode } = usePostcode();
-  const locale = i18n.language;
   const layoutRef = useRef();
   useScrollRestoration(layoutRef);
 
@@ -102,24 +101,14 @@ export default function PostcodeLayout({
     <locator-layout>
       <div slot="layout-header" className="display-contents">
         {isRescueMeRecyclePage ? (
-          <locator-header slot="layout-header">
-            <locator-header-content>
-              <locator-logo locale={locale}></locator-logo>
-              <evg-button variant="ghost" width="square">
-                <Link href={`/${postcode}`}>
-                  <locator-icon
-                    icon="close"
-                    label="Back"
-                    color="primary"
-                  ></locator-icon>
-                </Link>
-              </evg-button>
-            </locator-header-content>
-          </locator-header>
+          <HeaderWithCloseButton
+            logoType={undefined}
+            closeHref={`/${postcode}`}
+          />
         ) : (
-          <InfoHeader
+          <HeaderWithInfoButton
             infoOpen={infoOpen}
-            handleOpenInfo={() => setInfoOpen(!infoOpen)}
+            onToggleInfo={() => setInfoOpen(!infoOpen)}
           />
         )}
       </div>

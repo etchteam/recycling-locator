@@ -1,8 +1,10 @@
+import { GEOCODE_ENDPOINT, PostcodeGeocodeResponse } from '../mocks/geocode';
 import {
   LOCAL_AUTHORITY_ENDPOINT,
   LocalAuthorityResponse,
 } from '../mocks/localAuthority';
 import { LOCATIONS_ENDPOINT, LocationsResponse } from '../mocks/locations';
+import { MATERIAL_ENDPOINT, ValidMaterialResponse } from '../mocks/materials';
 
 import { test, expect } from './fixtures';
 
@@ -13,6 +15,10 @@ test.describe('Header layouts', () => {
       widget,
       i18n,
     }) => {
+      await page.route(GEOCODE_ENDPOINT, (route) => {
+        route.fulfill({ json: PostcodeGeocodeResponse });
+      });
+
       await page.route(LOCAL_AUTHORITY_ENDPOINT, (route) => {
         route.fulfill({ json: LocalAuthorityResponse });
       });
@@ -23,18 +29,20 @@ test.describe('Header layouts', () => {
 
       // Navigate to postcode page first
       await widget.evaluate((node) => node.setAttribute('path', '/EX32 7RB'));
+      await page.waitForRequest(GEOCODE_ENDPOINT);
 
-      // Then navigate to places page
+      // Then navigate to places page via "Recycle at nearby places" option
       const placesLink = widget.getByRole('link', {
-        name: i18n.t('postcode.places.title'),
+        name: i18n.t('postcode.options.nearest.title'),
       });
       await expect(placesLink).toBeVisible();
       await placesLink.click();
 
-      // Then navigate to a place detail page
-      await page.waitForRequest(LOCATIONS_ENDPOINT);
+      // Wait for places page content
       const placeName = widget.getByText(LocationsResponse.items[0].name);
       await expect(placeName.first()).toBeVisible();
+
+      // Navigate to a place detail page
       await placeName.first().click();
 
       // Verify we're on the place page
@@ -61,12 +69,20 @@ test.describe('Header layouts', () => {
       widget,
       i18n,
     }) => {
+      await page.route(GEOCODE_ENDPOINT, (route) => {
+        route.fulfill({ json: PostcodeGeocodeResponse });
+      });
+
       await page.route(LOCAL_AUTHORITY_ENDPOINT, (route) => {
         route.fulfill({ json: LocalAuthorityResponse });
       });
 
       await page.route(LOCATIONS_ENDPOINT, (route) => {
         route.fulfill({ json: LocationsResponse });
+      });
+
+      await page.route(MATERIAL_ENDPOINT, (route) => {
+        route.fulfill({ json: ValidMaterialResponse });
       });
 
       // Navigate directly to material page (no prior history)
@@ -93,7 +109,11 @@ test.describe('Header layouts', () => {
   });
 
   test.describe('HeaderWithMenu - menu toggle', () => {
-    test('Menu button opens and closes menu', async ({ page, widget, i18n }) => {
+    test('Menu button opens and closes menu', async ({
+      page,
+      widget,
+      i18n,
+    }) => {
       await page.route(LOCAL_AUTHORITY_ENDPOINT, (route) => {
         route.fulfill({ json: LocalAuthorityResponse });
       });
@@ -122,9 +142,9 @@ test.describe('Header layouts', () => {
       await expect(menuButton).toBeVisible();
       await menuButton.click();
 
-      // Verify menu content is visible
+      // Verify menu content is visible - use the actual menu link text
       const menuHomeLink = widget.getByRole('link', {
-        name: i18n.t('menu.home.title'),
+        name: i18n.t('components.menu.homeRecycling'),
       });
       await expect(menuHomeLink.first()).toBeVisible();
 
@@ -166,11 +186,11 @@ test.describe('Header layouts', () => {
       await expect(searchLink).toBeVisible();
       await searchLink.click();
 
-      // Verify search page is visible
-      const searchTitle = widget.getByRole('heading', {
-        name: i18n.t('search.title'),
-      });
-      await expect(searchTitle.first()).toBeVisible();
+      // Verify search page is visible by checking for search input
+      const searchInput = widget
+        .getByPlaceholder(i18n.t('components.materialSearchInput.placeholder'))
+        .first();
+      await expect(searchInput).toBeVisible();
 
       // Click close button - should return to places
       const closeButton = widget

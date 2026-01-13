@@ -17,7 +17,56 @@ export interface HeaderBaseProps {
   /**
    * Content to render in the header content area.
    */
-  readonly children: ComponentChildren;
+  readonly children?: ComponentChildren;
+}
+
+export interface HeaderTitleProps {
+  /**
+   * The main title text displayed in the header.
+   */
+  readonly title: string;
+  /**
+   * Optional subtitle content displayed below the title.
+   * Can be a string or custom JSX for unique formatting.
+   */
+  readonly subtitle?: ComponentChildren;
+  /**
+   * Optional action button displayed before the title (e.g., back, menu).
+   */
+  readonly actionButton?: ComponentChildren;
+}
+
+/**
+ * Common props for header layouts that display a title.
+ * Combines required logoHref with title/subtitle props.
+ */
+export interface HeaderWithTitleLayoutProps
+  extends Pick<HeaderTitleProps, 'title' | 'subtitle'>,
+    Pick<HeaderBaseProps, 'children'> {
+  /**
+   * Link destination for the logo.
+   */
+  readonly logoHref: string;
+}
+
+/**
+ * Title/subtitle component for use within header layouts.
+ * Renders a title with optional subtitle and action button.
+ */
+export function HeaderTitle({
+  title,
+  subtitle,
+  actionButton,
+}: HeaderTitleProps) {
+  return (
+    <locator-header-title>
+      {actionButton && <evg-button>{actionButton}</evg-button>}
+      <div>
+        <h2>{title}</h2>
+        {typeof subtitle === 'string' ? <p>{subtitle}</p> : subtitle}
+      </div>
+    </locator-header-title>
+  );
 }
 
 /**

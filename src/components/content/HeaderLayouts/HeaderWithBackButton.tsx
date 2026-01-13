@@ -1,31 +1,15 @@
-import { ComponentChildren } from 'preact';
-import { Link } from 'wouter-preact';
-
 import BackLink from '@/components/control/BackLink/BackLink';
 
-export interface HeaderWithBackButtonProps {
-  /**
-   * Link destination for the logo.
-   */
-  readonly logoHref: string;
-  /**
-   * The main title text displayed in the header.
-   */
-  readonly title: string;
-  /**
-   * Optional subtitle content displayed below the title.
-   * Can be a string or custom JSX for unique formatting.
-   */
-  readonly subtitle?: ComponentChildren;
+import HeaderBase, {
+  HeaderTitle,
+  HeaderWithTitleLayoutProps,
+} from './HeaderBase';
+
+export interface HeaderWithBackButtonProps extends HeaderWithTitleLayoutProps {
   /**
    * Fallback path for the back button when no navigation history exists.
    */
   readonly backFallback: string;
-  /**
-   * Optional content to display on the right side of the header.
-   * On small screens, this wraps below the title.
-   */
-  readonly children?: ComponentChildren;
 }
 
 /**
@@ -42,24 +26,13 @@ export default function HeaderWithBackButton({
   children,
 }: HeaderWithBackButtonProps) {
   return (
-    <locator-header>
-      <locator-header-logo>
-        <Link href={logoHref}>
-          <locator-logo type="logo-only" />
-        </Link>
-      </locator-header-logo>
-      <locator-header-content-wrap>
-        <locator-header-title>
-          <evg-button>
-            <BackLink fallback={backFallback} />
-          </evg-button>
-          <div>
-            <h2>{title}</h2>
-            {typeof subtitle === 'string' ? <p>{subtitle}</p> : subtitle}
-          </div>
-        </locator-header-title>
-        {children}
-      </locator-header-content-wrap>
-    </locator-header>
+    <HeaderBase logoHref={logoHref}>
+      <HeaderTitle
+        title={title}
+        subtitle={subtitle}
+        actionButton={<BackLink fallback={backFallback} />}
+      />
+      {children}
+    </HeaderBase>
   );
 }

@@ -1,7 +1,8 @@
+import { ComponentChildren } from 'preact';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'wouter-preact';
 
-import HeaderBase, { HeaderBaseProps } from './HeaderBase';
+import HeaderBase, { HeaderBaseProps, HeaderTitle } from './HeaderBase';
 
 export interface HeaderWithCloseButtonProps
   extends Omit<HeaderBaseProps, 'children'> {
@@ -9,6 +10,10 @@ export interface HeaderWithCloseButtonProps
    * Optional title text displayed in the header.
    */
   readonly title?: string;
+  /**
+   * Optional subtitle content displayed below the title.
+   */
+  readonly subtitle?: ComponentChildren;
   /**
    * The path to navigate to when the close button is clicked.
    */
@@ -23,17 +28,14 @@ export default function HeaderWithCloseButton({
   logoHref,
   logoType,
   title,
+  subtitle,
   closeHref,
 }: HeaderWithCloseButtonProps) {
   const { t } = useTranslation();
 
   return (
     <HeaderBase logoHref={logoHref} logoType={logoType}>
-      {title && (
-        <locator-header-title>
-          <h2>{title}</h2>
-        </locator-header-title>
-      )}
+      {title && <HeaderTitle title={title} subtitle={subtitle} />}
       <evg-button variant="ghost" width="square">
         <Link href={closeHref}>
           <locator-icon

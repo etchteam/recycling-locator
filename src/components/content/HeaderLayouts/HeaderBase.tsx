@@ -24,7 +24,7 @@ export interface HeaderTitleProps {
   /**
    * The main title text displayed in the header.
    */
-  readonly title: string;
+  readonly title?: string;
   /**
    * Optional subtitle content displayed below the title.
    * Can be a string or custom JSX for unique formatting.
@@ -57,10 +57,12 @@ export function HeaderTitle({ title, subtitle, children }: HeaderTitleProps) {
   return (
     <locator-header-title>
       {children}
-      <div>
-        <h2>{title}</h2>
-        {typeof subtitle === 'string' ? <p>{subtitle}</p> : subtitle}
-      </div>
+      {title && (
+        <div>
+          <h2>{title}</h2>
+          {typeof subtitle === 'string' ? <p>{subtitle}</p> : subtitle}
+        </div>
+      )}
     </locator-header-title>
   );
 }

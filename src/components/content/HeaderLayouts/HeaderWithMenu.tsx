@@ -40,38 +40,27 @@ export default function HeaderWithMenu({
 }: HeaderWithMenuProps) {
   const { t } = useTranslation();
 
-  if (menuOpen) {
-    return (
-      <HeaderBase logoHref={logoHref} logoType={undefined}>
-        <evg-button variant="ghost" width="square">
+  return (
+    <HeaderBase
+      logoHref={logoHref}
+      logoType={menuOpen ? undefined : 'logo-only'}
+    >
+      <HeaderTitle
+        title={menuOpen ? undefined : title}
+        subtitle={menuOpen ? undefined : subtitle}
+      >
+        <evg-button>
           <button
             type="button"
-            aria-expanded="true"
+            aria-expanded={menuOpen}
             aria-controls={mainContentId}
             onClick={onToggleMenu}
           >
             <locator-icon
-              icon="close"
-              label={t('actions.close')}
+              icon={menuOpen ? 'close' : 'menu'}
+              label={t(`actions.${menuOpen ? 'close' : 'menu'}`)}
               color="primary"
             />
-          </button>
-        </evg-button>
-      </HeaderBase>
-    );
-  }
-
-  return (
-    <HeaderBase logoHref={logoHref}>
-      <HeaderTitle title={title} subtitle={subtitle}>
-        <evg-button>
-          <button
-            type="button"
-            aria-expanded="false"
-            aria-controls={mainContentId}
-            onClick={onToggleMenu}
-          >
-            <locator-icon icon="menu" label={t('actions.menu')} />
           </button>
         </evg-button>
       </HeaderTitle>

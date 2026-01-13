@@ -20,7 +20,7 @@ import '@/components/composition/BorderedList/BorderedList';
 import '@/components/composition/Header/Header';
 import '@/components/composition/IconText/IconText';
 import '@/components/composition/Layout/Layout';
-import '@/components/composition/PlacesHeader/PlacesHeader';
+import '@/components/composition/PlacesHeaderSearch/PlacesHeaderSearch';
 import '@/components/composition/Wrap/Wrap';
 import '@/components/content/Container/Container';
 import '@/components/content/HeaderTitle/HeaderTitle';

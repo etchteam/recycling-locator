@@ -10,7 +10,6 @@ interface PlacesHeaderSearchAttributes {
 declare module 'react' {
   namespace JSX {
     interface IntrinsicElements {
-      'locator-places-header': CustomElement;
       'locator-places-header-search': CustomElement<PlacesHeaderSearchAttributes>;
     }
   }

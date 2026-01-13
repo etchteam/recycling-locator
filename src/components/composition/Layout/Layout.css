@@ -20,7 +20,7 @@ locator-layout {
   grid-template-rows: var(--_layout-header-height) min-content auto;
   min-height: var(--container-height);
 
-  &:has(locator-places-header) {
+  &:has(locator-places-header-search) {
     --_layout-header-height: auto;
   }
 
@@ -37,7 +37,7 @@ locator-layout {
     grid-template-rows: auto 1fr;
     height: var(--container-height);
 
-    &:has(locator-places-header) {
+    &:has(locator-places-header-search) {
       --_layout-header-height: var(--header-height);
     }
 

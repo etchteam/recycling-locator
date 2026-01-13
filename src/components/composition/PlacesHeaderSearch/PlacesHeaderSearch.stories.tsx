@@ -1,16 +1,17 @@
 import { Meta, StoryObj } from '@storybook/preact';
 
-import './PlacesHeader';
+import '../Header/Header';
+import './PlacesHeaderSearch';
 
 const meta: Meta = {
-  title: 'Components/Composition/PlacesHeader',
+  title: 'Components/Composition/PlacesHeaderSearch',
 };
 
 export default meta;
 
-export const PlacesHeader: StoryObj = {
+export const PlacesHeaderSearch: StoryObj = {
   render: () => (
-    <locator-places-header>
+    <locator-header-content-wrap>
       <locator-header-title>
         <evg-button>
           <a href="#link">
@@ -28,6 +29,6 @@ export const PlacesHeader: StoryObj = {
           <locator-icon icon="search" color="primary" />
         </a>
       </locator-places-header-search>
-    </locator-places-header>
+    </locator-header-content-wrap>
   ),
 };

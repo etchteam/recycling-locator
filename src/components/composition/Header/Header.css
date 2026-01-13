@@ -30,4 +30,22 @@ locator-header {
       line-height: 1;
     }
   }
+
+  /**
+   * Wrapping header content layout.
+   * Children wrap below the title on small screens,
+   * move inline on larger screens.
+   */
+  locator-header-content-wrap {
+    align-items: center;
+    display: flex;
+    flex: 1 1 auto;
+    flex-wrap: wrap;
+    width: 100%;
+
+    locator-header-title {
+      flex: 1 1 auto;
+      padding: var(--evg-spacing-sm) var(--evg-spacing);
+    }
+  }
 }

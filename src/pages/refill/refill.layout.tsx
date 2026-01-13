@@ -1,10 +1,13 @@
-import { useSignal } from '@preact/signals';
 import { ComponentChildren } from 'preact';
 import { useRef } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
 import { Link, useRoute, useSearchParams } from 'wouter-preact';
 
-import Menu from '@/components/control/Menu/Menu';
+import HeaderWithBackButton from '@/components/content/HeaderLayouts/HeaderWithBackButton';
+import HeaderWithMenu, {
+  MenuLayout,
+  useMenuOpen,
+} from '@/components/content/HeaderLayouts/HeaderWithMenu';
 import NavLink from '@/components/control/NavBar/NavLink';
 import { useAppState } from '@/hooks/AppStateProvider';
 import useScrollRestoration from '@/hooks/useScrollRestoration';
@@ -33,32 +36,23 @@ export function RefillAside({ postcode }: { readonly postcode: string }) {
   );
 }
 
-export function FullMenu({
-  handleClick,
-}: {
-  readonly handleClick?: () => boolean;
-}) {
+function RefillSubtitle() {
   const { t } = useTranslation();
 
   return (
-    <button
-      type="button"
-      aria-expanded="false"
-      aria-controls="locator-layout-main"
-      onClick={handleClick}
-    >
-      <locator-icon icon="menu" label={t('actions.menu')}></locator-icon>
-    </button>
+    <p className="text-color-positive text-italic evg-text-weight-bold">
+      {t('refill.header.comingSoon')}
+    </p>
   );
 }
 
-export default function StartLayout({
+export default function RefillLayout({
   children,
 }: {
   readonly children?: ComponentChildren;
 }) {
   const { t } = useTranslation();
-  const open = useSignal(false);
+  const menuOpen = useMenuOpen();
   const [isHome] = useRoute('/refill');
 
   const [searchParams] = useSearchParams();
@@ -68,89 +62,53 @@ export default function StartLayout({
   const layoutRef = useRef();
   useScrollRestoration(layoutRef);
 
+  // Show menu when on home page with postcode, otherwise show back button
+  const showMenu = postcode && isHome;
+  const backFallback = isHome ? '/' : `/refill${postcodeQuery}`;
+
   return (
     <locator-layout>
-      <locator-header slot="layout-header">
-        {open.value ? (
-          <locator-header-content>
-            <Link href={`/${postcode}`}>
-              {/* replace with refill logo */}
-              <locator-logo type="logo-only"></locator-logo>
-            </Link>
-            <evg-button variant="ghost" width="square">
-              <button
-                type="button"
-                aria-expanded="true"
-                aria-controls="locator-layout-main"
-                onClick={() => (open.value = !open.value)}
-              >
-                <locator-icon
-                  icon="close"
-                  label={t('actions.close')}
-                  color="primary"
-                ></locator-icon>
-              </button>
-            </evg-button>
-          </locator-header-content>
+      <div slot="layout-header" className="display-contents">
+        {showMenu ? (
+          <HeaderWithMenu
+            logoHref={`/${postcode}`}
+            title={t('refill.header.title')}
+            subtitle={<RefillSubtitle />}
+            menuOpen={menuOpen}
+          />
         ) : (
-          <>
-            <locator-header-logo>
-              {/* replace with refill logo */}
-              <locator-logo type="logo-only"></locator-logo>
-            </locator-header-logo>
-            <locator-header-content>
-              <locator-header-title>
-                <evg-button>
-                  {postcode && isHome ? (
-                    <FullMenu handleClick={() => (open.value = !open.value)} />
-                  ) : (
-                    <Link href={isHome ? '/' : `/refill${postcodeQuery}`}>
-                      <locator-icon
-                        icon="arrow-left"
-                        label="Back"
-                      ></locator-icon>
-                    </Link>
-                  )}
-                </evg-button>
-                <div>
-                  <h2>{t('refill.header.title')}</h2>
-                  <p className="text-color-positive text-italic evg-text-weight-bold">
-                    {t('refill.header.comingSoon')}
-                  </p>
-                </div>
-              </locator-header-title>
-            </locator-header-content>
-          </>
+          <HeaderWithBackButton
+            logoHref="/"
+            title={t('refill.header.title')}
+            subtitle={<RefillSubtitle />}
+            backFallback={backFallback}
+          />
         )}
-      </locator-header>
+      </div>
       <div slot="layout-main" id="locator-layout-main" ref={layoutRef}>
-        {open.value ? (
-          <Menu handleClose={() => (open.value = false)} postcode={postcode} />
-        ) : (
-          <>
-            <locator-nav-bar>
-              <nav>
-                <ul>
-                  {pages.map((page) => (
-                    <li key={page}>
-                      <NavLink
-                        href={
-                          (page === 'intro' ? '/refill' : `/refill/${page}`) +
-                          postcodeQuery
-                        }
-                      >
-                        {t(`refill.nav.${page}.title`)}
-                      </NavLink>
-                    </li>
-                  ))}
-                </ul>
-              </nav>
-            </locator-nav-bar>
-            <locator-wrap large-screen-only={isHome}>
-              <evg-section padding="lg">{children}</evg-section>
-            </locator-wrap>
-          </>
-        )}
+        <MenuLayout menuOpen={menuOpen} postcode={postcode ?? undefined}>
+          <locator-nav-bar>
+            <nav>
+              <ul>
+                {pages.map((page) => (
+                  <li key={page}>
+                    <NavLink
+                      href={
+                        (page === 'intro' ? '/refill' : `/refill/${page}`) +
+                        postcodeQuery
+                      }
+                    >
+                      {t(`refill.nav.${page}.title`)}
+                    </NavLink>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </locator-nav-bar>
+          <locator-wrap large-screen-only={isHome}>
+            <evg-section padding="lg">{children}</evg-section>
+          </locator-wrap>
+        </MenuLayout>
       </div>
       <RefillAside postcode={postcode || ''} />
     </locator-layout>

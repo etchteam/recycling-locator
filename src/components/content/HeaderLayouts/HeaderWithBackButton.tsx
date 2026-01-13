@@ -13,9 +13,10 @@ export interface HeaderWithBackButtonProps {
    */
   readonly title: string;
   /**
-   * Optional subtitle text displayed below the title.
+   * Optional subtitle content displayed below the title.
+   * Can be a string or custom JSX for unique formatting.
    */
-  readonly subtitle?: string;
+  readonly subtitle?: ComponentChildren;
   /**
    * Fallback path for the back button when no navigation history exists.
    */
@@ -54,7 +55,7 @@ export default function HeaderWithBackButton({
           </evg-button>
           <div>
             <h2>{title}</h2>
-            {subtitle && <p>{subtitle}</p>}
+            {typeof subtitle === 'string' ? <p>{subtitle}</p> : subtitle}
           </div>
         </locator-header-title>
         {children}

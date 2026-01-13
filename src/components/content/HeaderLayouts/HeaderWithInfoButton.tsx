@@ -3,9 +3,10 @@ import { useTranslation } from 'react-i18next';
 
 import useAnalytics from '@/hooks/useAnalytics';
 
-import HeaderBase from './HeaderBase';
+import HeaderBase, { HeaderBaseProps } from './HeaderBase';
 
-export interface HeaderWithInfoButtonProps {
+export interface HeaderWithInfoButtonProps
+  extends Pick<HeaderBaseProps, 'logoType'> {
   /**
    * Whether the info panel is currently open.
    */
@@ -22,11 +23,12 @@ export interface HeaderWithInfoButtonProps {
 }
 
 /**
- * Header layout with full logo and info/close toggle button.
+ * Header layout with logo and info/close toggle button.
  * Used on start and postcode pages to show the about panel.
  * Tracks analytics when info panel is opened.
  */
 export default function HeaderWithInfoButton({
+  logoType,
   infoOpen,
   onToggleInfo,
   mainContentId,
@@ -44,7 +46,7 @@ export default function HeaderWithInfoButton({
   }, [infoOpen, recordEvent]);
 
   return (
-    <HeaderBase logoType={undefined}>
+    <HeaderBase logoType={logoType}>
       <evg-button variant="ghost" width="square">
         <button
           type="button"

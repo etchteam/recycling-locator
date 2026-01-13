@@ -1,8 +1,9 @@
 import { ComponentChildren } from 'preact';
 import { useRef } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
-import { Link, useSearchParams } from 'wouter-preact';
+import { useSearchParams } from 'wouter-preact';
 
+import HeaderWithCloseButton from '@/components/content/HeaderLayouts/HeaderWithCloseButton';
 import NavLink from '@/components/control/NavBar/NavLink';
 import { usePostcode } from '@/hooks/PostcodeProvider';
 import useScrollRestoration from '@/hooks/useScrollRestoration';
@@ -20,27 +21,13 @@ export default function PlacesSearchLayout({
 
   return (
     <locator-layout>
-      <locator-header slot="layout-header">
-        <locator-header-logo>
-          <Link href={`/${postcode}`}>
-            <locator-logo type="logo-only"></locator-logo>
-          </Link>
-        </locator-header-logo>
-        <locator-header-content>
-          <locator-header-title>
-            <h2>{t('places.search.title')}</h2>
-          </locator-header-title>
-          <evg-button variant="ghost" width="square">
-            <Link href={`/${postcode}/places?${searchParams.toString()}`}>
-              <locator-icon
-                icon="close"
-                color="primary"
-                label={t('actions.close')}
-              />
-            </Link>
-          </evg-button>
-        </locator-header-content>
-      </locator-header>
+      <div slot="layout-header" className="display-contents">
+        <HeaderWithCloseButton
+          logoHref={`/${postcode}`}
+          title={t('places.search.title')}
+          closeHref={`/${postcode}/places?${searchParams.toString()}`}
+        />
+      </div>
       <div slot="layout-main" ref={layoutRef}>
         <locator-nav-bar>
           <nav>

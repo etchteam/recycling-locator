@@ -5,7 +5,7 @@ import { Link, useRoute } from 'wouter-preact';
 
 import MapSvg from '@/components/canvas/MapSvg/MapSvg';
 import About from '@/components/content/About/About';
-import InfoHeader from '@/components/content/Header/InfoHeader';
+import InfoHeader from '@/components/content/HeaderLayouts/InfoHeader';
 import PlacesMap from '@/components/control/PlacesMap/PlacesMap';
 import { usePostcode } from '@/hooks/PostcodeProvider';
 import { useLocations } from '@/hooks/useLocations';

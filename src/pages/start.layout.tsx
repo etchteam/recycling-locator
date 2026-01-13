@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useLocation } from 'wouter-preact';
 
 import About from '@/components/content/About/About';
-import InfoHeader from '@/components/content/Header/InfoHeader';
+import InfoHeader from '@/components/content/HeaderLayouts/InfoHeader';
 import TipContent from '@/components/content/TipContent/TipContent';
 import { useAppState } from '@/hooks/AppStateProvider';
 import { useTip } from '@/hooks/useTip';

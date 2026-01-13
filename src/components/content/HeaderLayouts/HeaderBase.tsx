@@ -31,9 +31,9 @@ export interface HeaderTitleProps {
    */
   readonly subtitle?: ComponentChildren;
   /**
-   * Optional action button displayed before the title (e.g., back, menu).
+   * Optional content displayed before the title (e.g., back button, menu button).
    */
-  readonly actionButton?: ComponentChildren;
+  readonly children?: ComponentChildren;
 }
 
 /**
@@ -51,16 +51,12 @@ export interface HeaderWithTitleLayoutProps
 
 /**
  * Title/subtitle component for use within header layouts.
- * Renders a title with optional subtitle and action button.
+ * Renders a title with optional subtitle and leading content slot.
  */
-export function HeaderTitle({
-  title,
-  subtitle,
-  actionButton,
-}: HeaderTitleProps) {
+export function HeaderTitle({ title, subtitle, children }: HeaderTitleProps) {
   return (
     <locator-header-title>
-      {actionButton && <evg-button>{actionButton}</evg-button>}
+      {children}
       <div>
         <h2>{title}</h2>
         {typeof subtitle === 'string' ? <p>{subtitle}</p> : subtitle}

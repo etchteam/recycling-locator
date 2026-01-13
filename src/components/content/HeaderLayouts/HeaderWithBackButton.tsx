@@ -27,11 +27,11 @@ export default function HeaderWithBackButton({
 }: HeaderWithBackButtonProps) {
   return (
     <HeaderBase logoHref={logoHref}>
-      <HeaderTitle
-        title={title}
-        subtitle={subtitle}
-        actionButton={<BackLink fallback={backFallback} />}
-      />
+      <HeaderTitle title={title} subtitle={subtitle}>
+        <evg-button>
+          <BackLink fallback={backFallback} />
+        </evg-button>
+      </HeaderTitle>
       {children}
     </HeaderBase>
   );

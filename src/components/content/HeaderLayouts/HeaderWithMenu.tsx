@@ -63,10 +63,8 @@ export default function HeaderWithMenu({
 
   return (
     <HeaderBase logoHref={logoHref}>
-      <HeaderTitle
-        title={title}
-        subtitle={subtitle}
-        actionButton={
+      <HeaderTitle title={title} subtitle={subtitle}>
+        <evg-button>
           <button
             type="button"
             aria-expanded="false"
@@ -75,8 +73,8 @@ export default function HeaderWithMenu({
           >
             <locator-icon icon="menu" label={t('actions.menu')} />
           </button>
-        }
-      />
+        </evg-button>
+      </HeaderTitle>
       {children}
     </HeaderBase>
   );

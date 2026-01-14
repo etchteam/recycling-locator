@@ -10,7 +10,7 @@ locator-tag-button {
     display: block;
     font-size: var(--evg-font-size-body-xs);
     font-weight: bold;
-    ''gap: var(--evg-spacing-sm);
+    gap: var(--evg-spacing-sm);
     max-width: 13em;
     overflow: hidden;
     padding: var(--evg-spacing-xs) var(--evg-spacing-lg) var(--evg-spacing-xs)

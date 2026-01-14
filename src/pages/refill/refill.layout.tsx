@@ -59,7 +59,7 @@ export default function RefillLayout({
   const layoutRef = useRef();
 
   useScrollRestoration(layoutRef);
-  console.log(isHome, postcode);
+
   // Show menu when on home page with postcode, otherwise show back button
   const showMenu = postcode && isHome;
   const backFallback = isHome ? '/' : `/refill${postcodeQuery}`;

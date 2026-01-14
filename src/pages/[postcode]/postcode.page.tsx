@@ -155,7 +155,7 @@ export default function PostcodePage() {
               </evg-grid>
 
               <locator-icon-link border className="evg-spacing-top-md">
-                <Link href={`/refill?${postcode}`}>
+                <Link href={`/refill?postcode=${encodeURIComponent(postcode)}`}>
                   <locator-icon-circle>
                     <locator-icon icon="refill" color="primary"></locator-icon>
                   </locator-icon-circle>

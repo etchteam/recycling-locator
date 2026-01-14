@@ -46,7 +46,7 @@ export default function Menu({
     {
       icon: 'refill',
       text: t('components.menu.refill'),
-      href: `/refill?${encodeURIComponent(postcode)}`,
+      href: `/refill?postcode=${encodeURIComponent(postcode)}`,
     },
   ];
 

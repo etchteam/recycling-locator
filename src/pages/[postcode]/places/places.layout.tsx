@@ -51,7 +51,7 @@ export default function PlacesLayout({
           onToggleMenu={() => setMenuOpen(!menuOpen)}
           mainContentId="locator-layout-main"
         >
-          <locator-places-header-search>
+          <locator-header-search>
             {search && !locationsLoading && locations && (
               <evg-enter type="fade">
                 <locator-tag-button
@@ -76,7 +76,7 @@ export default function PlacesLayout({
               {!search && t('places.searchPlaceholder')}
               <locator-icon icon="search" color="primary" />
             </Link>
-          </locator-places-header-search>
+          </locator-header-search>
         </HeaderWithMenu>
       </div>
       <div slot="layout-main" id="locator-layout-main">

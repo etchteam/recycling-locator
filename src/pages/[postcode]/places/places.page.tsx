@@ -117,7 +117,7 @@ function Places() {
         <>
           <h3
             id="places-count"
-            className="evg-text-size-body-lg evg-spacing-bottom-md"
+            className="evg-text-size-heading-sm evg-spacing-bottom-md"
           >
             {t('places.count', { count })}
           </h3>
@@ -161,7 +161,7 @@ function Places() {
                 </locator-icon-circle>
                 <h3>{t('material.nearbyPlaces.noPlaces.title')}</h3>
               </locator-icon-text>
-              <p>
+              <p className="evg-spacing-bottom-sm">
                 {t('material.nearbyPlaces.noPlaces.content', {
                   postcode: formatPostcode(postcode),
                 })}

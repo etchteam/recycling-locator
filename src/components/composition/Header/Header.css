@@ -9,6 +9,48 @@ locator-header {
     border-right: var(--evg-border);
     display: none;
     padding: var(--evg-spacing-sm) var(--evg-spacing);
+
+    @container (width > 768px) {
+      display: flex;
+    }
+  }
+
+  locator-header-search {
+    border-top: var(--evg-border);
+    display: inline-flex;
+    margin-inline: calc(var(--evg-spacing) * -1);
+    padding: var(--evg-spacing-sm) var(--evg-spacing);
+    width: 100%;
+    width: calc(100% + var(--evg-spacing) * 2);
+
+    > a {
+      align-items: center;
+      color: var(--evg-theme-color-muted);
+      display: flex;
+      flex: 1 1 auto;
+      justify-content: space-between;
+      margin: calc(var(--evg-spacing-sm) * -1) calc(var(--evg-spacing) * -1);
+      padding: var(--evg-spacing-sm) var(--evg-spacing);
+      text-decoration: none;
+      transition: color var(--evg-transition);
+
+      locator-icon {
+        margin-inline-start: auto;
+      }
+    }
+
+    @media (hover: hover) {
+      > a:hover {
+        color: var(--evg-theme-color-hover);
+      }
+    }
+
+    @container (width > 768px) {
+      border: var(--evg-border);
+      border-radius: var(--evg-border-radius);
+      margin-inline: 0;
+      width: 18em;
+    }
   }
 
   locator-header-content {
@@ -17,7 +59,7 @@ locator-header {
     display: flex;
     flex: 1 1 auto;
     flex-wrap: wrap;
-    gap: var(--evg-spacing);
+    gap: var(--evg-spacing-sm);
     height: var(--header-height);
     justify-content: space-between;
     padding: var(--evg-spacing-sm) var(--evg-spacing);
@@ -30,15 +72,20 @@ locator-header {
     evg-button[variant='ghost'] {
       line-height: 1;
     }
+
+    &:has(locator-header-search) {
+      padding: var(--evg-spacing-sm) var(--evg-spacing) 0;
+    }
   }
 
   @container (width > 768px) {
-    locator-header-logo {
-      display: flex;
-    }
-
     locator-header-content {
       --evg-button-font-size: var(--evg-font-size-16);
+      gap: var(--evg-spacing);
+
+      &:has(locator-header-search) {
+        padding: var(--evg-spacing-sm) var(--evg-spacing);
+      }
     }
   }
 }

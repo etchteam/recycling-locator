@@ -2,7 +2,9 @@ import { ComponentChildren } from 'preact';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'wouter-preact';
 
-import HeaderBase, { HeaderBaseProps, HeaderTitle } from './HeaderBase';
+import { HeaderTitle } from '../HeaderTitle/HeaderTitle';
+
+import HeaderBase, { HeaderBaseProps } from './HeaderBase';
 
 export interface HeaderWithCloseButtonProps
   extends Omit<HeaderBaseProps, 'children'> {
@@ -25,8 +27,8 @@ export interface HeaderWithCloseButtonProps
  * Used for overlay/modal-style views like search.
  */
 export default function HeaderWithCloseButton({
-  logoHref,
   logoType,
+  logoHref,
   title,
   subtitle,
   closeHref,

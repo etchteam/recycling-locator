@@ -1,7 +1,7 @@
 locator-logo {
   display: block;
   line-height: 1;
-  max-width: 13.75em;
+  max-width: 12em;
   width: 100%;
 
   svg {
@@ -24,7 +24,7 @@ locator-logo {
     }
   }
 
-  &[type='logo-only'] {
+  &[type='icon-only'] {
     /* Crop the space the logo text takes up to create a 40px square */
     overflow: hidden;
     width: 40px;
@@ -36,5 +36,9 @@ locator-logo {
     .logo-text {
       display: none;
     }
+  }
+
+  @container (width > 768px) {
+    max-width: 13.75em;
   }
 }

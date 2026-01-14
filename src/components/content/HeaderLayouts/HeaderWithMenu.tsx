@@ -1,12 +1,10 @@
 import { ComponentChildren } from 'preact';
 import { useTranslation } from 'react-i18next';
 
+import { HeaderTitle } from '../HeaderTitle/HeaderTitle';
 import Menu from '@/components/control/Menu/Menu';
 
-import HeaderBase, {
-  HeaderTitle,
-  HeaderWithTitleLayoutProps,
-} from './HeaderBase';
+import HeaderBase, { HeaderWithTitleLayoutProps } from './HeaderBase';
 
 export interface HeaderWithMenuProps extends HeaderWithTitleLayoutProps {
   /**
@@ -43,13 +41,14 @@ export default function HeaderWithMenu({
   return (
     <HeaderBase
       logoHref={logoHref}
-      logoType={menuOpen ? undefined : 'logo-only'}
+      logoType={menuOpen ? undefined : 'icon-only'}
     >
       <HeaderTitle
         title={menuOpen ? undefined : title}
         subtitle={menuOpen ? undefined : subtitle}
+        variant={menuOpen ? 'title-first' : 'title-last'}
       >
-        <evg-button>
+        <evg-button width="square">
           <button
             type="button"
             aria-expanded={menuOpen}
@@ -64,7 +63,7 @@ export default function HeaderWithMenu({
           </button>
         </evg-button>
       </HeaderTitle>
-      {children}
+      {!menuOpen && children}
     </HeaderBase>
   );
 }

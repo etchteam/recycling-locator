@@ -36,4 +36,9 @@ locator-header-title {
   p {
     font-size: var(--evg-font-size-body-xs);
   }
+
+  &[variant='title-first'] {
+    grid-template-areas: 'title button';
+    grid-template-columns: 1fr auto;
+  }
 }

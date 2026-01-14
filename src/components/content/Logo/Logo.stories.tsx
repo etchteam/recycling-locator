@@ -14,5 +14,5 @@ export const Logo: StoryObj = {
 };
 
 export const LogoOnly: StoryObj = {
-  render: () => <locator-logo type="logo-only"></locator-logo>,
+  render: () => <locator-logo type="icon-only"></locator-logo>,
 };

@@ -100,7 +100,6 @@ export default function StartLayout({
     <locator-layout>
       <div slot="layout-header" className="display-contents">
         <HeaderWithInfoButton
-          logoType={undefined}
           infoOpen={infoOpen}
           onToggleInfo={() => setInfoOpen(!infoOpen)}
           mainContentId="locator-layout-main"

@@ -23,6 +23,7 @@ export default function PlacesSearchLayout({
     <locator-layout>
       <div slot="layout-header" className="display-contents">
         <HeaderWithCloseButton
+          logoType="icon-only"
           logoHref={`/${postcode}`}
           title={t('places.search.title')}
           closeHref={`/${postcode}/places?${searchParams.toString()}`}

@@ -16,6 +16,7 @@ export default function MaterialLayout({
     <locator-layout>
       <div slot="layout-header" className="display-contents">
         <HeaderWithBackButton
+          logoType="icon-only"
           logoHref={`/${postcode}`}
           title={t('material.title')}
           subtitle={postcode}

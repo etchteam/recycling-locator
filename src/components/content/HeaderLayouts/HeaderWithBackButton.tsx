@@ -1,9 +1,7 @@
+import { HeaderTitle } from '../HeaderTitle/HeaderTitle';
 import BackLink from '@/components/control/BackLink/BackLink';
 
-import HeaderBase, {
-  HeaderTitle,
-  HeaderWithTitleLayoutProps,
-} from './HeaderBase';
+import HeaderBase, { HeaderWithTitleLayoutProps } from './HeaderBase';
 
 export interface HeaderWithBackButtonProps extends HeaderWithTitleLayoutProps {
   /**
@@ -19,6 +17,7 @@ export interface HeaderWithBackButtonProps extends HeaderWithTitleLayoutProps {
  * Accepts optional children for right-side content that wraps on small screens.
  */
 export default function HeaderWithBackButton({
+  logoType,
   logoHref,
   title,
   subtitle,
@@ -26,7 +25,7 @@ export default function HeaderWithBackButton({
   children,
 }: HeaderWithBackButtonProps) {
   return (
-    <HeaderBase logoHref={logoHref}>
+    <HeaderBase logoHref={logoHref} logoType={logoType}>
       <HeaderTitle title={title} subtitle={subtitle}>
         <evg-button>
           <BackLink fallback={backFallback} />

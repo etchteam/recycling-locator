@@ -6,7 +6,7 @@ import useAnalytics from '@/hooks/useAnalytics';
 import HeaderBase, { HeaderBaseProps } from './HeaderBase';
 
 export interface HeaderWithInfoButtonProps
-  extends Pick<HeaderBaseProps, 'logoType'> {
+  extends Omit<HeaderBaseProps, 'children'> {
   /**
    * Whether the info panel is currently open.
    */
@@ -29,6 +29,7 @@ export interface HeaderWithInfoButtonProps
  */
 export default function HeaderWithInfoButton({
   logoType,
+  logoHref,
   infoOpen,
   onToggleInfo,
   mainContentId,
@@ -46,7 +47,7 @@ export default function HeaderWithInfoButton({
   }, [infoOpen, recordEvent]);
 
   return (
-    <HeaderBase logoType={logoType}>
+    <HeaderBase logoHref={logoHref} logoType={logoType}>
       <evg-button variant="ghost" width="square">
         <button
           type="button"

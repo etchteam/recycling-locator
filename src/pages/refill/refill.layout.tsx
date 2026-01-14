@@ -53,14 +53,13 @@ export default function RefillLayout({
   const { t } = useTranslation();
   const [menuOpen, setMenuOpen] = useState(false);
   const [isHome] = useRoute('/refill');
-
   const [searchParams] = useSearchParams();
   const postcode = searchParams.get('postcode');
   const postcodeQuery = postcode ? `?postcode=${postcode}` : '';
-
   const layoutRef = useRef();
-  useScrollRestoration(layoutRef);
 
+  useScrollRestoration(layoutRef);
+  console.log(isHome, postcode);
   // Show menu when on home page with postcode, otherwise show back button
   const showMenu = postcode && isHome;
   const backFallback = isHome ? '/' : `/refill${postcodeQuery}`;
@@ -70,6 +69,7 @@ export default function RefillLayout({
       <div slot="layout-header" className="display-contents">
         {showMenu ? (
           <HeaderWithMenu
+            logoType="icon-only"
             logoHref={`/${postcode}`}
             title={t('refill.header.title')}
             subtitle={<RefillSubtitle />}
@@ -79,6 +79,7 @@ export default function RefillLayout({
           />
         ) : (
           <HeaderWithBackButton
+            logoType="icon-only"
             logoHref="/"
             title={t('refill.header.title')}
             subtitle={<RefillSubtitle />}

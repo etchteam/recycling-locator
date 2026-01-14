@@ -6,7 +6,7 @@ import { Locale } from '@/types/locale';
 import LogoSvg from './logo.svg?react';
 
 export interface LogoAttributes {
-  readonly type?: 'logo-only';
+  readonly type?: 'icon-only';
   readonly locale?: Locale;
 }
 

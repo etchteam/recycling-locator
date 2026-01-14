@@ -169,6 +169,7 @@ export default function CollectionPage() {
     <locator-layout>
       <div slot="layout-header" className="display-contents">
         <HeaderWithBackButton
+          logoType="icon-only"
           logoHref={`/${postcode}`}
           title={t('homeRecycling.collection.title')}
           subtitle={hasLoadedLocalAuthority ? localAuthority.name : ''}

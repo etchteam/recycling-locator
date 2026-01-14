@@ -1,6 +1,7 @@
 import { ComponentChildren } from 'preact';
 import { Link } from 'wouter-preact';
 
+import { HeaderTitleProps } from '../HeaderTitle/HeaderTitle';
 import { LogoAttributes } from '@/components/content/Logo/Logo';
 import i18n from '@/lib/i18n';
 
@@ -20,50 +21,28 @@ export interface HeaderBaseProps {
   readonly children?: ComponentChildren;
 }
 
-export interface HeaderTitleProps {
-  /**
-   * The main title text displayed in the header.
-   */
-  readonly title?: string;
-  /**
-   * Optional subtitle content displayed below the title.
-   * Can be a string or custom JSX for unique formatting.
-   */
-  readonly subtitle?: ComponentChildren;
-  /**
-   * Optional content displayed before the title (e.g., back button, menu button).
-   */
-  readonly children?: ComponentChildren;
-}
-
 /**
  * Common props for header layouts that display a title.
  * Combines required logoHref with title/subtitle props.
  */
-export interface HeaderWithTitleLayoutProps
-  extends Pick<HeaderTitleProps, 'title' | 'subtitle'>,
-    Pick<HeaderBaseProps, 'children'> {
-  /**
-   * Link destination for the logo.
-   */
-  readonly logoHref: string;
-}
+export type HeaderWithTitleLayoutProps = Pick<
+  HeaderTitleProps,
+  'title' | 'subtitle'
+> &
+  Pick<HeaderBaseProps, 'logoType' | 'logoHref' | 'children'>;
 
-/**
- * Title/subtitle component for use within header layouts.
- * Renders a title with optional subtitle and leading content slot.
- */
-export function HeaderTitle({ title, subtitle, children }: HeaderTitleProps) {
-  return (
-    <locator-header-title>
-      {children}
-      {title && (
-        <div>
-          <h2>{title}</h2>
-          {typeof subtitle === 'string' ? <p>{subtitle}</p> : subtitle}
-        </div>
-      )}
-    </locator-header-title>
+export function HeaderLogo({
+  logoType,
+  logoHref,
+}: Pick<HeaderBaseProps, 'logoHref' | 'logoType'>) {
+  const locale = i18n.language;
+
+  return logoHref ? (
+    <Link href={logoHref}>
+      <locator-logo type={logoType} locale={locale} />
+    </Link>
+  ) : (
+    <locator-logo type={logoType} locale={locale} />
   );
 }
 
@@ -72,29 +51,26 @@ export function HeaderTitle({ title, subtitle, children }: HeaderTitleProps) {
  * Use this as a foundation for specific header layout variants.
  */
 export default function HeaderBase({
+  logoType,
   logoHref,
-  logoType = 'logo-only',
   children,
 }: HeaderBaseProps) {
-  const locale = i18n.language;
-
-  const logo = <locator-logo type={logoType} locale={locale} />;
-
   // Logo placement depends on type:
-  // - 'logo-only' (icon): Renders in locator-header-logo, which is hidden on mobile
+  // - 'icon-only': Renders in locator-header-logo, which is hidden on mobile
   //   via CSS and shown on larger screens with a border separator
   // - undefined (full logo): Renders inside locator-header-content so it's always
   //   visible and flows with the header content
   return (
     <locator-header>
-      {logoType === 'logo-only' && (
+      {logoType === 'icon-only' && (
         <locator-header-logo>
-          {logoHref ? <Link href={logoHref}>{logo}</Link> : logo}
+          <HeaderLogo logoHref={logoHref} logoType={logoType} />
         </locator-header-logo>
       )}
       <locator-header-content>
-        {logoType !== 'logo-only' &&
-          (logoHref ? <Link href={logoHref}>{logo}</Link> : logo)}
+        {logoType !== 'icon-only' && (
+          <HeaderLogo logoHref={logoHref} logoType={logoType} />
+        )}
         {children}
       </locator-header-content>
     </locator-header>

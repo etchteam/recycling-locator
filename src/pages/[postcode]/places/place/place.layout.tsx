@@ -95,6 +95,7 @@ export default function PlaceLayout({
     <locator-layout>
       <div slot="layout-header" className="display-contents">
         <HeaderWithBackButton
+          logoType="icon-only"
           logoHref={`/${postcode}`}
           title={placeName}
           subtitle={placePostcode === 'null' ? '' : placePostcode}

@@ -101,12 +101,10 @@ export default function PostcodeLayout({
     <locator-layout>
       <div slot="layout-header" className="display-contents">
         {isRescueMeRecyclePage ? (
-          <HeaderWithCloseButton
-            logoType={undefined}
-            closeHref={`/${postcode}`}
-          />
+          <HeaderWithCloseButton closeHref={`/${postcode}`} />
         ) : (
           <HeaderWithInfoButton
+            logoHref="/"
             infoOpen={infoOpen}
             onToggleInfo={() => setInfoOpen(!infoOpen)}
             mainContentId="locator-layout-main"

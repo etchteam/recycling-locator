@@ -65,6 +65,10 @@ locator-header {
     padding: var(--evg-spacing-sm) var(--evg-spacing);
     width: 100%;
 
+    > a:has(locator-logo) {
+      text-decoration: none;
+    }
+
     locator-header-title {
       flex: 1 1 auto;
     }

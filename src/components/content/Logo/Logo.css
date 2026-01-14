@@ -41,4 +41,36 @@ locator-logo {
   @container (width > 768px) {
     max-width: 13.75em;
   }
+
+  &[variant='refill'] {
+    align-items: center;
+    display: flex;
+    gap: var(--evg-spacing-sm);
+    max-width: none;
+    padding-right: var(--evg-spacing);
+    width: auto;
+
+    svg {
+      flex-shrink: 0;
+      height: 40px;
+      width: 36px;
+    }
+
+    .locator-logo-text {
+      color: var(--color-body);
+      display: block;
+      font-size: var(--evg-font-size-heading-sm);
+      font-weight: var(--evg-font-weight-bold);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    &[type='icon-only'] {
+      padding-right: 0;
+
+      .logo-text {
+        display: none;
+      }
+    }
+  }
 }

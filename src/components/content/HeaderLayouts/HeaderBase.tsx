@@ -1,9 +1,9 @@
 import { ComponentChildren } from 'preact';
-import { Link } from 'wouter-preact';
 
 import { HeaderTitleProps } from '../HeaderTitle/HeaderTitle';
 import { LogoAttributes } from '@/components/content/Logo/Logo';
-import i18n from '@/lib/i18n';
+
+import { HeaderLogo } from './HeaderLogo';
 
 export interface HeaderBaseProps {
   /**
@@ -30,21 +30,6 @@ export type HeaderWithTitleLayoutProps = Pick<
   'title' | 'subtitle'
 > &
   Pick<HeaderBaseProps, 'logoType' | 'logoHref' | 'children'>;
-
-export function HeaderLogo({
-  logoType,
-  logoHref,
-}: Pick<HeaderBaseProps, 'logoHref' | 'logoType'>) {
-  const locale = i18n.language;
-
-  return logoHref ? (
-    <Link href={logoHref}>
-      <locator-logo type={logoType} locale={locale} />
-    </Link>
-  ) : (
-    <locator-logo type={logoType} locale={locale} />
-  );
-}
 
 /**
  * Base header component that provides the common shell structure.

@@ -205,4 +205,56 @@ test.describe('Header layouts', () => {
       await expect(placesTitle.first()).toBeVisible();
     });
   });
+
+  test.describe('Refill logo variant', () => {
+    test('Refill page shows refill logo (icon-only)', async ({ widget }) => {
+      // Navigate to refill page
+      await widget.evaluate((node) => node.setAttribute('path', '/refill'));
+
+      // Verify refill logo is displayed with variant attribute and icon-only type
+      // Note: Refill layout always uses logoType="icon-only"
+      const refillLogo = widget
+        .locator('locator-logo[variant="refill"][type="icon-only"]')
+        .first();
+      await expect(refillLogo).toBeVisible();
+    });
+
+    test('Refill page with postcode shows refill logo (icon-only)', async ({
+      widget,
+    }) => {
+      // Navigate to refill page with postcode
+      await widget.evaluate((node) =>
+        node.setAttribute('path', '/refill?postcode=EX32 7RB'),
+      );
+
+      // Verify refill logo is displayed with variant attribute and icon-only type
+      const refillLogo = widget
+        .locator('locator-logo[variant="refill"][type="icon-only"]')
+        .first();
+      await expect(refillLogo).toBeVisible();
+    });
+
+    test('Regular postcode page shows standard logo', async ({
+      page,
+      widget,
+    }) => {
+      await page.route(GEOCODE_ENDPOINT, (route) => {
+        route.fulfill({ json: PostcodeGeocodeResponse });
+      });
+
+      await page.route(LOCAL_AUTHORITY_ENDPOINT, (route) => {
+        route.fulfill({ json: LocalAuthorityResponse });
+      });
+
+      // Navigate to postcode page
+      await widget.evaluate((node) => node.setAttribute('path', '/EX32 7RB'));
+      await page.waitForRequest(GEOCODE_ENDPOINT);
+
+      // Verify standard logo is displayed (no variant attribute)
+      const standardLogo = widget.locator(
+        'locator-logo:not([variant="refill"])',
+      );
+      await expect(standardLogo.first()).toBeVisible();
+    });
+  });
 });

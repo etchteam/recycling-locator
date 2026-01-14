@@ -70,7 +70,6 @@ export default function RefillLayout({
         {showMenu ? (
           <HeaderWithMenu
             logoType="icon-only"
-            logoHref={`/${postcode}`}
             title={t('refill.header.title')}
             subtitle={<RefillSubtitle />}
             menuOpen={menuOpen}

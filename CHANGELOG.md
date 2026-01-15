@@ -1,3 +1,31 @@
+## [1.71.0](https://github.com/etchteam/recycling-locator/compare/v1.70.0...v1.71.0) (2026-01-15)
+
+
+### Features
+
+* **a11y:** add mainContentId prop for aria-controls ([7be6ff8](https://github.com/etchteam/recycling-locator/commit/7be6ff86e04ccd42163490a9ba708180a9725b87))
+* add BackLink component for contextual back navigation ([016b3ee](https://github.com/etchteam/recycling-locator/commit/016b3eeb6a76b54a8663812160bf917bd02f06d1))
+* add HeaderBase component ([0a3a7a0](https://github.com/etchteam/recycling-locator/commit/0a3a7a0719ab0dad63ca39dbc2267035f1234f2b))
+* add HeaderWithBackButton component ([b9f3bf3](https://github.com/etchteam/recycling-locator/commit/b9f3bf30ae8ef0ca30dab21caab4ce4f58c780e2))
+* add HeaderWithCloseButton component ([95db347](https://github.com/etchteam/recycling-locator/commit/95db347f769b872a2d165c508d265107cc8c86d6))
+* add HeaderWithInfoButton component ([e3b35d6](https://github.com/etchteam/recycling-locator/commit/e3b35d6c5654b74a27e12bbaae09c9877793e744))
+* add HeaderWithMenu component and wrapping content support ([e2d7eed](https://github.com/etchteam/recycling-locator/commit/e2d7eedfb486d3513eb09d934f8a00322eb87b5f))
+* add HeaderWithTitle component ([0eb0625](https://github.com/etchteam/recycling-locator/commit/0eb0625ffac2f5b17f66867a69fdba34174e1ffd))
+* add navigation provider ([5f0480a](https://github.com/etchteam/recycling-locator/commit/5f0480a21bfdcb7b58232b6a788de534d4540775))
+* add refill logo variant ([3a64179](https://github.com/etchteam/recycling-locator/commit/3a64179cf1390de470ee22b3fe8e9976bacf7f67))
+* **header:** add logoType prop to HeaderWithInfoButton ([3679608](https://github.com/etchteam/recycling-locator/commit/36796082dbb835ec09c1c3bbdf5ea1bc418b7d70))
+
+
+### Bug Fixes
+
+* postcode search param when navigating to refill pages ([e2033dd](https://github.com/etchteam/recycling-locator/commit/e2033dde480d29ce3a05e1858ae8cd00d2db6cf5))
+* search bar layout issues by moving it into the header ([e9d01d1](https://github.com/etchteam/recycling-locator/commit/e9d01d1bc487399ab2945f91207af066e4425523))
+
+
+### Reverts
+
+* debug ([009931c](https://github.com/etchteam/recycling-locator/commit/009931cce5dcb1b200a3880d7e1f749e19ff9306))
+
 ## [1.70.0](https://github.com/etchteam/recycling-locator/compare/v1.69.0...v1.70.0) (2026-01-08)
 
 

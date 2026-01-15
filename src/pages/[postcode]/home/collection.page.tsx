@@ -3,6 +3,7 @@ import { useEffect, useRef } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
 import { Link, useSearchParams } from 'wouter-preact';
 
+import HeaderWithBackButton from '@/components/content/HeaderLayouts/HeaderWithBackButton';
 import HomeCollectionContainers from '@/components/content/HomeCollectionContainers/HomeCollectionContainers';
 import TipContent from '@/components/content/TipContent/TipContent';
 import MaterialSearchInput from '@/components/control/MaterialSearchInput/MaterialSearchInput';
@@ -166,31 +167,14 @@ export default function CollectionPage() {
 
   return (
     <locator-layout>
-      <div slot="layout-header">
-        <locator-header>
-          <locator-header-logo>
-            <Link href={`/${postcode}`}>
-              <locator-logo type="logo-only"></locator-logo>
-            </Link>
-          </locator-header-logo>
-          <locator-header-content>
-            <locator-header-title>
-              <evg-button>
-                <Link href={`/${postcode}/home`}>
-                  <locator-icon icon="arrow-left" label="Back"></locator-icon>
-                </Link>
-              </evg-button>
-              <div>
-                <h2>{t('homeRecycling.collection.title')}</h2>
-                {hasLoadedLocalAuthority && (
-                  <evg-enter type="fade">
-                    <p>{localAuthority.name}</p>
-                  </evg-enter>
-                )}
-              </div>
-            </locator-header-title>
-          </locator-header-content>
-        </locator-header>
+      <div slot="layout-header" className="display-contents">
+        <HeaderWithBackButton
+          logoType="icon-only"
+          logoHref={`/${postcode}`}
+          title={t('homeRecycling.collection.title')}
+          subtitle={hasLoadedLocalAuthority ? localAuthority.name : ''}
+          backFallback={`/${postcode}/home`}
+        />
       </div>
       <div slot="layout-main" ref={layoutRef}>
         {hasLoadedLocalAuthority && (

@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Link, useParams, useSearchParams } from 'wouter-preact';
 
 import MapSvg from '@/components/canvas/MapSvg/MapSvg';
+import HeaderWithBackButton from '@/components/content/HeaderLayouts/HeaderWithBackButton';
 import NavLink from '@/components/control/NavBar/NavLink';
 import PlacesMap from '@/components/control/PlacesMap/PlacesMap';
 import { usePostcode } from '@/hooks/PostcodeProvider';
@@ -92,26 +93,15 @@ export default function PlaceLayout({
 
   return (
     <locator-layout>
-      <locator-header slot="layout-header">
-        <locator-header-logo>
-          <Link href={`/${postcode}`}>
-            <locator-logo type="logo-only"></locator-logo>
-          </Link>
-        </locator-header-logo>
-        <locator-header-content>
-          <locator-header-title>
-            <evg-button>
-              <Link href={`/${postcode}/places?${searchParams.toString()}`}>
-                <locator-icon icon="arrow-left" label="Back"></locator-icon>
-              </Link>
-            </evg-button>
-            <div>
-              <h2>{placeName}</h2>
-              <p>{placePostcode !== 'null' ? placePostcode : ''}</p>
-            </div>
-          </locator-header-title>
-        </locator-header-content>
-      </locator-header>
+      <div slot="layout-header" className="display-contents">
+        <HeaderWithBackButton
+          logoType="icon-only"
+          logoHref={`/${postcode}`}
+          title={placeName}
+          subtitle={placePostcode === 'null' ? '' : placePostcode}
+          backFallback={`/${postcode}/places?${searchParams.toString()}`}
+        />
+      </div>
       <div slot="layout-main" ref={layoutRef}>
         <locator-nav-bar>
           <nav>

@@ -1,7 +1,7 @@
 locator-logo {
   display: block;
   line-height: 1;
-  max-width: 13.75em;
+  max-width: 12em;
   width: 100%;
 
   svg {
@@ -24,7 +24,7 @@ locator-logo {
     }
   }
 
-  &[type='logo-only'] {
+  &[type='icon-only'] {
     /* Crop the space the logo text takes up to create a 40px square */
     overflow: hidden;
     width: 40px;
@@ -35,6 +35,42 @@ locator-logo {
 
     .logo-text {
       display: none;
+    }
+  }
+
+  @container (width > 768px) {
+    max-width: 13.75em;
+  }
+
+  &[variant='refill'] {
+    align-items: center;
+    display: flex;
+    gap: var(--evg-spacing-sm);
+    max-width: none;
+    padding-right: var(--evg-spacing);
+    width: auto;
+
+    svg {
+      flex-shrink: 0;
+      height: 40px;
+      width: 36px;
+    }
+
+    .locator-logo-text {
+      color: var(--color-body);
+      display: block;
+      font-size: var(--evg-font-size-heading-sm);
+      font-weight: var(--evg-font-weight-bold);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    &[type='icon-only'] {
+      padding-right: 0;
+
+      .logo-text {
+        display: none;
+      }
     }
   }
 }

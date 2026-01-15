@@ -1,13 +1,14 @@
-import { useSignal } from '@preact/signals';
 import { ComponentChildren } from 'preact';
+import { useState } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
 import { Link, useSearchParams } from 'wouter-preact';
 
-import Menu from '@/components/control/Menu/Menu';
+import HeaderWithMenu, {
+  MenuLayout,
+} from '@/components/content/HeaderLayouts/HeaderWithMenu';
 import { usePostcode } from '@/hooks/PostcodeProvider';
 import { useLocations } from '@/hooks/useLocations';
 import formatPostcode from '@/lib/formatPostcode';
-import i18n from '@/lib/i18n';
 import mapSearchParams from '@/lib/mapSearchParams';
 
 export default function PlacesLayout({
@@ -16,10 +17,9 @@ export default function PlacesLayout({
   readonly children?: ComponentChildren;
 }) {
   const { t } = useTranslation();
-  const locale = i18n.language;
   const { postcode, data: postcodeData } = usePostcode();
   const { data: locations, loading: locationsLoading } = useLocations();
-  const open = useSignal(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const search = searchParams.get('search');
   const city = postcodeData?.city;
@@ -42,94 +42,52 @@ export default function PlacesLayout({
 
   return (
     <locator-layout>
-      <locator-header slot="layout-header">
-        {open.value ? (
-          <locator-header-content>
-            <Link href={`/${postcode}`}>
-              <locator-logo locale={locale}></locator-logo>
-            </Link>
-            <evg-button variant="ghost" width="square">
-              <button
-                type="button"
-                aria-expanded="true"
-                aria-controls="locator-layout-main"
-                onClick={() => (open.value = !open.value)}
-              >
-                <locator-icon
-                  icon="close"
-                  label={t('actions.close')}
-                  color="primary"
-                ></locator-icon>
-              </button>
-            </evg-button>
-          </locator-header-content>
-        ) : (
-          <>
-            <locator-header-logo>
-              <Link href={`/${postcode}`}>
-                <locator-logo type="logo-only"></locator-logo>
-              </Link>
-            </locator-header-logo>
-            <locator-places-header>
-              <locator-header-title>
-                <evg-button>
-                  <button
-                    type="button"
-                    aria-expanded="false"
-                    aria-controls="locator-layout-main"
-                    onClick={() => (open.value = !open.value)}
-                  >
+      <div slot="layout-header" className="display-contents">
+        <HeaderWithMenu
+          logoHref={`/${postcode}`}
+          title={t('places.title')}
+          subtitle={formatPostcode(postcode)}
+          menuOpen={menuOpen}
+          onToggleMenu={() => setMenuOpen(!menuOpen)}
+          mainContentId="locator-layout-main"
+        >
+          <locator-header-search>
+            {search && !locationsLoading && locations && (
+              <evg-enter type="fade">
+                <locator-tag-button
+                  variant={
+                    locations?.items.length > 0 &&
+                    searchParams.get('materials') !== 'undefined'
+                      ? 'positive'
+                      : 'negative'
+                  }
+                >
+                  <button type="button" onClick={handleResetSearch}>
+                    {search}
                     <locator-icon
-                      icon="menu"
-                      label={t('actions.menu')}
-                    ></locator-icon>
+                      icon="close"
+                      label={t('actions.resetSearch')}
+                    />
                   </button>
-                </evg-button>
-                <div>
-                  <h2>{t('places.title')}</h2>
-                  <p>{formatPostcode(postcode)}</p>
-                </div>
-              </locator-header-title>
-              <locator-places-header-search>
-                {search && !locationsLoading && locations && (
-                  <evg-enter type="fade">
-                    <locator-tag-button
-                      variant={
-                        locations?.items.length > 0 &&
-                        searchParams.get('materials') !== 'undefined'
-                          ? 'positive'
-                          : 'negative'
-                      }
-                    >
-                      <button type="button" onClick={handleResetSearch}>
-                        {search}
-                        <locator-icon
-                          icon="close"
-                          label={t('actions.resetSearch')}
-                        />
-                      </button>
-                    </locator-tag-button>
-                  </evg-enter>
-                )}
-                <Link href={`/${postcode}/places/search?${query.toString()}`}>
-                  {!search && t('places.searchPlaceholder')}
-                  <locator-icon icon="search" color="primary" />
-                </Link>
-              </locator-places-header-search>
-            </locator-places-header>
-          </>
-        )}
-      </locator-header>
+                </locator-tag-button>
+              </evg-enter>
+            )}
+            <Link href={`/${postcode}/places/search?${query.toString()}`}>
+              {!search && t('places.searchPlaceholder')}
+              <locator-icon icon="search" color="primary" />
+            </Link>
+          </locator-header-search>
+        </HeaderWithMenu>
+      </div>
       <div slot="layout-main" id="locator-layout-main">
-        {open.value ? (
-          <Menu
-            handleClose={() => (open.value = false)}
-            postcode={postcode}
-            city={city}
-          />
-        ) : (
-          <>{children}</>
-        )}
+        <MenuLayout
+          menuOpen={menuOpen}
+          onCloseMenu={() => setMenuOpen(false)}
+          postcode={postcode}
+          city={city}
+        >
+          {children}
+        </MenuLayout>
       </div>
     </locator-layout>
   );

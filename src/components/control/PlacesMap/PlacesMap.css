@@ -103,6 +103,19 @@ locator-places-map {
     padding: var(--evg-spacing);
     position: relative;
     z-index: 123; /* 121 markers + 1 scrim + 1 */
+
+    .locator-places-map-card__header {
+      display: grid;
+      gap: var(--evg-spacing-sm);
+      grid-template-columns: 1fr auto;
+      margin-block-end: var(--evg-spacing-sm);
+    }
+
+    .locator-places-map-card__actions {
+      display: grid;
+      gap: var(--evg-spacing-sm);
+      grid-template-columns: 1fr 1fr;
+    }
   }
 
   @container (width >= 768px) {

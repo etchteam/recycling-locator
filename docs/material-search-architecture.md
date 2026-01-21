@@ -175,19 +175,19 @@ recordEvent({
 ## Known Limitations
 
 1. **Category searches** don't show:
-   - Doorstep collection options
-   - Material-specific tips
-   - Hazardous/non-recyclable warnings
+  - Doorstep collection options
+  - Material-specific tips
+  - Hazardous/non-recyclable warnings
 
-   This is intentional - categories contain multiple materials with potentially different properties.
+  This is intentional - categories contain multiple materials with potentially different properties.
 
 2. **Multi-material searches** (comma-separated):
-   - Display only the first material's name
-   - Only fetch first material's hazardous/nonRecyclable status
-   - Don't fetch doorstep collections or tips
-   - Location filtering works correctly for all materials
+  - Display only the first material's name
+  - Only fetch first material's hazardous/nonRecyclable status
+  - Don't fetch doorstep collections or tips
+  - Location filtering works correctly for all materials
 
 3. **The `search` URL param** is kept for:
-   - Fallback display when material/category fetch fails
-   - SEO/sharing purposes
-   - But should not be trusted for display without validation
+  - Fallback display when material/category fetch fails
+  - SEO/sharing purposes
+  - But should not be trusted for display without validation

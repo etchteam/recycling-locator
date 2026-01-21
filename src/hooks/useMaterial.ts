@@ -3,14 +3,16 @@ import LocatorApi from '@/lib/LocatorApi';
 import { Material } from '@/types/locatorApi';
 
 /**
- * Fetches material details by ID
- * If materialId is null, fetches generic material data (used for categories)
+ * Fetches material details by ID.
+ * Returns null data if no materialId is provided.
  */
 export function useMaterial(materialId: string | null) {
   const fetchMaterial = () => {
-    const path = materialId ? `materials/${materialId}` : 'materials';
-    return LocatorApi.getInstance().get<Material>(path);
+    if (!materialId) {
+      return Promise.resolve(null);
+    }
+    return LocatorApi.getInstance().get<Material>(`materials/${materialId}`);
   };
 
-  return useData<Material>(fetchMaterial, [materialId]);
+  return useData<Material | null>(fetchMaterial, [materialId]);
 }

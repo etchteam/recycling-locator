@@ -38,14 +38,14 @@ function PlaceMap({ location }: { readonly location: Location }) {
       <PlacesMapCard
         variant="preview"
         location={location}
-        primaryAction={() => (
+        primaryAction={
           <evg-button width="full-width" size="sm">
             <Link href={mapUrl}>
               <locator-icon icon="map" />
               {t('actions.showMap')}
             </Link>
           </evg-button>
-        )}
+        }
       />
     </PlacesMap>
   );

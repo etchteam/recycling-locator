@@ -78,7 +78,7 @@ export function PlacesMapPageContent() {
             variant="interactive"
             location={activeLocation.value}
             onClose={() => (activeLocation.value = null)}
-            primaryAction={() => (
+            primaryAction={
               <evg-button width="full-width" variant="primary" size="sm">
                 <Link
                   href={`/${postcode}/places/${activeLocationName}/${activeLocationPostcode}?${searchParams.toString()}`}
@@ -86,7 +86,7 @@ export function PlacesMapPageContent() {
                   {t('actions.viewDetails')}
                 </Link>
               </evg-button>
-            )}
+            }
           />
         ) : (
           <evg-enter type="fade" delay={0.5}>

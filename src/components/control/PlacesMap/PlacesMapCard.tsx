@@ -17,8 +17,8 @@ export interface PlacesMapCardProps {
   readonly location: Location;
   /** Handler for close button (required for 'interactive' variant) */
   readonly onClose?: () => void;
-  /** Render prop for the primary action (should include evg-button wrapper) */
-  readonly primaryAction: () => ComponentChildren;
+  /** Primary action element (should include evg-button wrapper) */
+  readonly primaryAction: ComponentChildren;
 }
 
 /**
@@ -59,7 +59,7 @@ export default function PlacesMapCard({
         </div>
       )}
       <div className="locator-places-map-card__actions">
-        {primaryAction()}
+        {primaryAction}
         <evg-button width="full-width" size="sm">
           <a
             href={directions(postcode, location.address)}

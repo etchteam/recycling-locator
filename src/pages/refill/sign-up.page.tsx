@@ -89,15 +89,15 @@ export default function SignUpPage() {
         );
         window.scrollTo({ top: 0, behavior: 'smooth' });
       } else {
-        throw new Error(result.msg || t('refill.sign-up.error'));
+        throw new Error(result.msg || t('refill.discover.sign-up.error'));
       }
 
       setIsSubmitting(false);
     } catch (error) {
       console.error(error);
-      let errorMessage = error.message || t('refill.sign-up.error');
+      let errorMessage = error.message || t('refill.discover.sign-up.error');
 
-      if (locale === 'cy') errorMessage = t('refill.sign-up.error');
+      if (locale === 'cy') errorMessage = t('refill.discover.sign-up.error');
 
       // Remove error number prefix from MailChimp errors (e.g., "0 - This email address...")
       if (
@@ -117,13 +117,13 @@ export default function SignUpPage() {
       <div aria-live="polite" role="status" aria-atomic="true">
         {isSuccessful && (
           <div className="evg-spacing-bottom-md">
-            <h2>{t('refill.sign-up.success.title')}</h2>
+            <h2>{t('refill.discover.sign-up.success.title')}</h2>
             <p className="text-color-positive">
-              {t('refill.sign-up.success.description')}
+              {t('refill.discover.sign-up.success.description')}
             </p>
             <p>
               {t(
-                `refill.sign-up.success.${alreadySubmitted ? 'already' : 'confirmation'}`,
+                `refill.discover.sign-up.success.${alreadySubmitted ? 'already' : 'confirmation'}`,
               )}
             </p>
           </div>
@@ -132,8 +132,8 @@ export default function SignUpPage() {
 
       {!isSuccessful && (
         <>
-          <h2>{t('refill.sign-up.title')}</h2>
-          <p>{t('refill.sign-up.description')}</p>
+          <h2>{t('refill.discover.sign-up.title')}</h2>
+          <p>{t('refill.discover.sign-up.description')}</p>
           <form onSubmit={handleSubmit} noValidate>
             <input
               type="hidden"
@@ -144,7 +144,7 @@ export default function SignUpPage() {
             />
             <evg-form-group className="evg-spacing-bottom-md">
               <label htmlFor="name-input">
-                {t('refill.sign-up.form.name.label')}
+                {t('refill.discover.sign-up.form.name.label')}
               </label>
               <evg-input>
                 <input
@@ -164,13 +164,13 @@ export default function SignUpPage() {
                   className="text-color-negative evg-text-size-body-xs"
                   aria-live="polite"
                 >
-                  {t('refill.sign-up.form.name.error')}
+                  {t('refill.discover.sign-up.form.name.error')}
                 </p>
               )}
             </evg-form-group>
             <evg-form-group className="evg-spacing-bottom-md">
               <label htmlFor="email-input">
-                {t('refill.sign-up.form.email.label')}
+                {t('refill.discover.sign-up.form.email.label')}
               </label>
               <evg-input>
                 <input
@@ -179,7 +179,9 @@ export default function SignUpPage() {
                   type="email"
                   autoComplete="email"
                   placeholder={
-                    t('refill.sign-up.form.email.placeholder') as string
+                    t(
+                      'refill.discover.sign-up.form.email.placeholder',
+                    ) as string
                   }
                   required
                   disabled={isSubmitting || isSuccessful}
@@ -194,13 +196,13 @@ export default function SignUpPage() {
                   className="text-color-negative evg-text-size-body-xs"
                   aria-live="polite"
                 >
-                  {t('refill.sign-up.form.email.error')}
+                  {t('refill.discover.sign-up.form.email.error')}
                 </p>
               )}
             </evg-form-group>
             <evg-form-group className="evg-spacing-bottom-md">
               <label htmlFor="postcode-input">
-                {t('refill.sign-up.form.postcode.label')}
+                {t('refill.discover.sign-up.form.postcode.label')}
               </label>
               <evg-input>
                 <locator-icon icon="pin" color="primary" />
@@ -210,7 +212,9 @@ export default function SignUpPage() {
                   type="text"
                   defaultValue={postcode}
                   placeholder={
-                    t('refill.sign-up.form.postcode.placeholder') as string
+                    t(
+                      'refill.discover.sign-up.form.postcode.placeholder',
+                    ) as string
                   }
                   required
                   disabled={isSubmitting || isSuccessful}
@@ -225,7 +229,7 @@ export default function SignUpPage() {
                   className="text-color-negative evg-text-size-body-xs"
                   aria-live="polite"
                 >
-                  {t('refill.sign-up.form.postcode.error')}
+                  {t('refill.discover.sign-up.form.postcode.error')}
                 </p>
               )}
             </evg-form-group>
@@ -245,12 +249,12 @@ export default function SignUpPage() {
                   />
                   <span>
                     <Trans
-                      i18nKey={'refill.sign-up.form.gdpr.label'}
+                      i18nKey={'refill.discover.sign-up.form.gdpr.label'}
                       components={{
                         a: (
                           // eslint-disable-next-line jsx-a11y/anchor-has-content
                           <a
-                            href={t('refill.sign-up.form.gdpr.link')}
+                            href={t('refill.discover.sign-up.form.gdpr.link')}
                             target="_blank"
                             rel="external"
                           />
@@ -266,7 +270,7 @@ export default function SignUpPage() {
                   className="text-color-negative evg-text-size-body-xs"
                   aria-live="polite"
                 >
-                  {t('refill.sign-up.form.gdpr.error')}
+                  {t('refill.discover.sign-up.form.gdpr.error')}
                 </p>
               )}
             </evg-form-group>
@@ -285,8 +289,8 @@ export default function SignUpPage() {
             >
               <button type="submit" disabled={isSubmitting || isSuccessful}>
                 {isSubmitting
-                  ? t('refill.sign-up.loading')
-                  : t('refill.sign-up.button')}
+                  ? t('refill.discover.sign-up.loading')
+                  : t('refill.discover.sign-up.button')}
               </button>
             </evg-button>
           </form>
@@ -295,12 +299,12 @@ export default function SignUpPage() {
 
       <p>
         <Trans
-          i18nKey={'refill.sign-up.business'}
+          i18nKey={'refill.discover.sign-up.business'}
           components={{
             a: (
               // eslint-disable-next-line jsx-a11y/anchor-has-content
               <a
-                href={t('refill.sign-up.businessLink')}
+                href={t('refill.discover.sign-up.businessLink')}
                 target="_blank"
                 rel="external"
               />

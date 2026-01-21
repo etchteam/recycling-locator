@@ -22,12 +22,14 @@ export function RefillAside({ postcode }: { readonly postcode: string }) {
     <locator-tip slot="layout-aside" text-align="center">
       <locator-wrap>
         <img src={generalTipImgSrc} alt="" />
-        <p className="evg-text-weight-bold">{t('refill.aside.subtitle')}</p>
-        <h2>{t('refill.aside.title')}</h2>
-        <p>{t('refill.aside.content')}</p>
+        <p className="evg-text-weight-bold">
+          {t('refill.discover.aside.subtitle')}
+        </p>
+        <h2>{t('refill.discover.aside.title')}</h2>
+        <p>{t('refill.discover.aside.content')}</p>
         <evg-enter type="fade">
           <evg-button width="full-width">
-            <Link href={'/' + postcode}>{t('refill.aside.cta')}</Link>
+            <Link href={'/' + postcode}>{t('refill.discover.aside.cta')}</Link>
           </evg-button>
         </evg-enter>
       </locator-wrap>
@@ -103,7 +105,7 @@ export default function RefillLayout({
                         postcodeQuery
                       }
                     >
-                      {t(`refill.nav.${page}.title`)}
+                      {t(`refill.discover.nav.${page}.label`)}
                     </NavLink>
                   </li>
                 ))}

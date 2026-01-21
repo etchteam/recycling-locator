@@ -23,11 +23,11 @@ export default function RefillPage() {
 
   return (
     <>
-      <h2>{t('refill.start.title')}</h2>
+      <h2>{t('refill.discover.title')}</h2>
       <h3 className="text-size-base evg-text-weight-bold evg-spacing-bottom-none">
-        {t('refill.start.comingSoon')}
+        {t('refill.discover.comingSoon')}
       </h3>
-      <p>{t('refill.start.subtitle')}</p>
+      <p>{t('refill.discover.subtitle')}</p>
 
       <locator-overflow>
         <ul>
@@ -43,9 +43,9 @@ export default function RefillPage() {
                   </locator-card-link-img>
                   <locator-card-link-content>
                     <p className="evg-text-weight-bold evg-spacing-bottom-none">
-                      {t(`refill.start.nav.${page}.title`)}
+                      {t(`refill.discover.nav.${page}.title`)}
                     </p>
-                    <p>{t(`refill.start.nav.${page}.description`)}</p>
+                    <p>{t(`refill.discover.nav.${page}.description`)}</p>
                   </locator-card-link-content>
                 </Link>
               </locator-card-link>
@@ -55,7 +55,7 @@ export default function RefillPage() {
       </locator-overflow>
 
       <h3 className="text-size-base evg-text-weight-bold evg-spacing-top-lg">
-        {t('refill.start.reviews.title')}
+        {t('refill.discover.reviews.title')}
       </h3>
       <locator-overflow largeScreen>
         <ul>
@@ -66,14 +66,14 @@ export default function RefillPage() {
                   <evg-row gap="sm">
                     <h4 className="evg-spacing-bottom-none">{reviewer}</h4>
                     <span
-                      aria-label={t('refill.start.reviews.rating', {
+                      aria-label={t('refill.discover.reviews.rating', {
                         rating: 5,
                       })}
                     >
                       <locator-star-rating rating={5} aria-hidden />
                     </span>
                   </evg-row>
-                  <p>{t(`refill.start.reviews.testimonials.${reviewer}`)}</p>
+                  <p>{t(`refill.discover.reviews.testimonials.${reviewer}`)}</p>
                 </evg-card-content>
               </evg-card>
             </li>
@@ -88,10 +88,10 @@ export default function RefillPage() {
           </locator-icon-circle>
           <div>
             <p className="text-size-base evg-spacing-bottom-none">
-              {t('refill.start.alerts.title')}
+              {t('refill.discover.alerts.title')}
             </p>
             <p className="evg-text-size-body-xs">
-              {t('refill.start.alerts.description')}
+              {t('refill.discover.alerts.description')}
             </p>
           </div>
         </Link>

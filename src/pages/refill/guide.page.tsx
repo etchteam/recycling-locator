@@ -20,29 +20,29 @@ export default function GuidePage() {
 
   return (
     <>
-      <h2>{t('refill.guide.title')}</h2>
+      <h2>{t('refill.discover.guide.title')}</h2>
       <h3 className="text-size-base evg-text-weight-bold evg-spacing-top-md">
-        {t('refill.guide.steps.title')}
+        {t('refill.discover.guide.steps.title')}
       </h3>
       <locator-steps>
         <ol>
-          <li>{t('refill.guide.steps.items.0')}</li>
-          <li>{t('refill.guide.steps.items.1')}</li>
-          <li>{t('refill.guide.steps.items.2')}</li>
+          <li>{t('refill.discover.guide.steps.items.0')}</li>
+          <li>{t('refill.discover.guide.steps.items.1')}</li>
+          <li>{t('refill.discover.guide.steps.items.2')}</li>
         </ol>
       </locator-steps>
       <evg-img radius="sm" className="evg-spacing-top-md">
         <img src={`${publicPath}images/refill/guide.webp`} alt="" />
       </evg-img>
       <h3 className="text-size-base evg-text-weight-bold evg-spacing-top-md">
-        {t('refill.guide.simple.title')}
+        {t('refill.discover.guide.simple.title')}
       </h3>
-      <p>{t('refill.guide.simple.content.browseFillPay')}</p>
-      <p>{t('refill.guide.simple.content.friendlyStaff')}</p>
+      <p>{t('refill.discover.guide.simple.content.browseFillPay')}</p>
+      <p>{t('refill.discover.guide.simple.content.friendlyStaff')}</p>
       <h3 className="text-size-base evg-text-weight-bold evg-spacing-top-md">
-        {t('refill.guide.shopping.title')}
+        {t('refill.discover.guide.shopping.title')}
       </h3>
-      <p>{t('refill.guide.shopping.content')}</p>
+      <p>{t('refill.discover.guide.shopping.content')}</p>
       <evg-img radius="sm">
         <img src={`${publicPath}images/refill/guide-secondary.webp`} alt="" />
       </evg-img>
@@ -53,14 +53,14 @@ export default function GuidePage() {
         >
           <details>
             <summary>
-              {t(`refill.guide.faq.${question}.question`)}
+              {t(`refill.discover.guide.faq.${question}.question`)}
               <locator-icon icon="expand" />
             </summary>
             <p>
               <span className="evg-text-weight-bold">
-                {t(`refill.guide.faq.${question}.answerBold`)}
+                {t(`refill.discover.guide.faq.${question}.answerBold`)}
               </span>{' '}
-              {t(`refill.guide.faq.${question}.answer`)}
+              {t(`refill.discover.guide.faq.${question}.answer`)}
             </p>
           </details>
         </locator-details>
@@ -78,17 +78,17 @@ export default function GuidePage() {
           </locator-icon-circle>
           <div>
             <p className="text-size-base evg-spacing-bottom-none">
-              {t('refill.guide.nextSection.title')}
+              {t('refill.discover.guide.nextSection.title')}
             </p>
             <p className="evg-text-size-body-xs">
-              {t('refill.guide.nextSection.description')}
+              {t('refill.discover.guide.nextSection.description')}
             </p>
           </div>
         </Link>
       </locator-icon-link>
       <evg-button width="full-width" className="evg-spacing-top-md">
         <Link href={'/refill/sign-up' + postcodeQuery}>
-          {t('refill.guide.ctaButton')}
+          {t('refill.discover.guide.ctaButton')}
         </Link>
       </evg-button>
     </>

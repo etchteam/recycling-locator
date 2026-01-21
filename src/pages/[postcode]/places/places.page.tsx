@@ -9,6 +9,7 @@ import { useAppState } from '@/hooks/AppStateProvider';
 import { usePostcode } from '@/hooks/PostcodeProvider';
 import useAnalytics from '@/hooks/useAnalytics';
 import { useLocations } from '@/hooks/useLocations';
+import { useMaterialSearchTerm } from '@/hooks/useMaterialSearchTerm';
 import { usePaginatedLocations } from '@/hooks/usePaginatedLocations';
 import { useTip } from '@/hooks/useTip';
 import PostCodeResolver from '@/lib/PostcodeResolver';
@@ -19,7 +20,7 @@ function Places() {
   const { t } = useTranslation();
   const { recordEvent } = useAnalytics();
   const [searchParams, setSearchParams] = useSearchParams();
-  const search = searchParams.get('search');
+  const { searchTerm } = useMaterialSearchTerm();
   const materials = searchParams.get('materials');
   const locationsResult = useLocations();
   const {
@@ -36,13 +37,13 @@ function Places() {
   locationSearchParams.set('page', String(currentPage));
 
   useEffect(() => {
-    if (search) {
+    if (searchTerm) {
       recordEvent({
         category: `PlacesList::MaterialSearch::${showLocations ? '' : 'Empty'}`,
-        action: search,
+        action: searchTerm,
       });
     }
-  }, [search]);
+  }, [searchTerm]);
 
   if (isInitialLoad) {
     return <LoadingPlacesList />;

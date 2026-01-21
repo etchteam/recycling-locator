@@ -137,6 +137,13 @@ async function handleSubmit(e: Event) {
 <form onSubmit={handleSubmit}>
 ```
 
+### Material Search
+
+Material searches use URL parameters (`materials`, `category`, `search`) that flow through hooks and API calls. See [docs/material-search-architecture.md](docs/material-search-architecture.md) for the full architecture including:
+- How materials vs categories are handled differently
+- Which hooks support which search types
+- Display logic and URL injection prevention
+
 ## Code Style
 
 - Use async/await with try/catch (not .then/.catch)

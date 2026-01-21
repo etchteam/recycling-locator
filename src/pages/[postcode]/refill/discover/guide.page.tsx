@@ -1,7 +1,8 @@
 import { useTranslation } from 'react-i18next';
-import { Link, useSearchParams } from 'wouter-preact';
+import { Link } from 'wouter-preact';
 
 import { useAppState } from '@/hooks/AppStateProvider';
+import { usePostcode } from '@/hooks/PostcodeProvider';
 
 const questions = [
   'whatCanRefill',
@@ -13,10 +14,7 @@ const questions = [
 export default function GuidePage() {
   const { publicPath } = useAppState();
   const { t } = useTranslation();
-
-  const [searchParams] = useSearchParams();
-  const postcode = searchParams.get('postcode');
-  const postcodeQuery = postcode ? `?postcode=${postcode}` : '';
+  const { postcode } = usePostcode();
 
   return (
     <>
@@ -69,7 +67,7 @@ export default function GuidePage() {
       <hr className="evg-spacing-top-md evg-spacing-bottom-md" />
 
       <locator-icon-link border>
-        <Link href={'/refill/options' + postcodeQuery}>
+        <Link href={`/${postcode}/refill/discover/options`}>
           <locator-icon-circle>
             <locator-icon
               icon="shopping-cart-add"
@@ -87,7 +85,7 @@ export default function GuidePage() {
         </Link>
       </locator-icon-link>
       <evg-button width="full-width" className="evg-spacing-top-md">
-        <Link href={'/refill/sign-up' + postcodeQuery}>
+        <Link href={`/${postcode}/refill/discover/sign-up`}>
           {t('refill.discover.guide.ctaButton')}
         </Link>
       </evg-button>

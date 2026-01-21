@@ -1,24 +1,20 @@
 import fetchJsonp from 'fetch-jsonp';
 import { useEffect, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
-import { useSearchParams } from 'wouter-preact';
 
+import { usePostcode } from '@/hooks/PostcodeProvider';
 import i18n from '@/lib/i18n';
 
 export default function SignUpPage() {
   const { t } = useTranslation();
   const locale = i18n.language;
-
-  const [searchParams] = useSearchParams();
-  const postcode = searchParams.get('postcode');
-
+  const { postcode } = usePostcode();
   const [errors, setErrors] = useState({
     name: false,
     email: false,
     postcode: false,
     gdpr: false,
   });
-
   const [error, setError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccessful, setIsSuccessful] = useState(false);

@@ -1,7 +1,8 @@
 import { useTranslation } from 'react-i18next';
-import { Link, useSearchParams } from 'wouter-preact';
+import { Link } from 'wouter-preact';
 
 import { useAppState } from '@/hooks/AppStateProvider';
+import { usePostcode } from '@/hooks/PostcodeProvider';
 
 const pages = ['guide', 'options', 'benefits'];
 const reviewers = [
@@ -13,13 +14,10 @@ const reviewers = [
   'Helen P',
 ];
 
-export default function RefillPage() {
+export default function DiscoverRefillPage() {
   const { t } = useTranslation();
   const { publicPath } = useAppState();
-
-  const [searchParams] = useSearchParams();
-  const postcode = searchParams.get('postcode');
-  const postcodeQuery = postcode ? `?postcode=${postcode}` : '';
+  const { postcode } = usePostcode();
 
   return (
     <>
@@ -34,7 +32,7 @@ export default function RefillPage() {
           {pages.map((page) => (
             <li key={page}>
               <locator-card-link>
-                <Link href={'/refill/' + page + postcodeQuery}>
+                <Link href={`/${postcode}/refill/discover/${page}`}>
                   <locator-card-link-img>
                     <img
                       src={`${publicPath}images/refill/${page}.webp`}
@@ -82,7 +80,7 @@ export default function RefillPage() {
       </locator-overflow>
 
       <locator-icon-link border className="evg-spacing-top-md">
-        <Link href={'/refill/sign-up' + postcodeQuery}>
+        <Link href={`/${postcode}/refill/discover/sign-up`}>
           <locator-icon-circle>
             <locator-icon icon="home-pin" color="primary"></locator-icon>
           </locator-icon-circle>

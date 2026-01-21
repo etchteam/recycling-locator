@@ -1,16 +1,14 @@
 import { useTranslation } from 'react-i18next';
-import { Link, useSearchParams } from 'wouter-preact';
+import { Link } from 'wouter-preact';
 
 import { useAppState } from '@/hooks/AppStateProvider';
+import { usePostcode } from '@/hooks/PostcodeProvider';
 import tArray from '@/lib/tArray';
 
 export default function OptionsPage() {
   const { publicPath } = useAppState();
   const { t } = useTranslation();
-
-  const [searchParams] = useSearchParams();
-  const postcode = searchParams.get('postcode');
-  const postcodeQuery = postcode ? `?postcode=${postcode}` : '';
+  const { postcode } = usePostcode();
 
   return (
     <>
@@ -63,7 +61,7 @@ export default function OptionsPage() {
       <hr className="evg-spacing-top-md evg-spacing-bottom-md" />
 
       <locator-icon-link border>
-        <Link href={'/refill/benefits' + postcodeQuery}>
+        <Link href={`/${postcode}/refill/discover/benefits`}>
           <locator-icon-circle>
             <locator-icon icon="star" color="primary"></locator-icon>
           </locator-icon-circle>
@@ -78,7 +76,7 @@ export default function OptionsPage() {
         </Link>
       </locator-icon-link>
       <evg-button width="full-width" className="evg-spacing-top-md">
-        <Link href={'/refill/sign-up' + postcodeQuery}>
+        <Link href={`/${postcode}/refill/discover/sign-up`}>
           {t('refill.discover.options.cta')}
         </Link>
       </evg-button>

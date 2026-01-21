@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import LocationForm from '@/components/control/LocationForm/LocationForm';
 import tArray from '@/lib/tArray';
 
-export default function StartPage() {
+export default function RefillStartPage() {
   const { t } = useTranslation();
 
   return (

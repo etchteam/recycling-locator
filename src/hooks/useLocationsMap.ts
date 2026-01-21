@@ -65,10 +65,10 @@ export function useLocationsMap(): UseLocationsMapResult {
   }>({});
 
   const currentLat = searchParams.get('lat')
-    ? Number.parseFloat(searchParams.get('lat')!)
+    ? Number.parseFloat(searchParams.get('lat'))
     : defaultLatitude;
   const currentLng = searchParams.get('lng')
-    ? Number.parseFloat(searchParams.get('lng')!)
+    ? Number.parseFloat(searchParams.get('lng'))
     : defaultLongitude;
 
   // Set active location from URL param when data loads

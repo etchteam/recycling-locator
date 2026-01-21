@@ -1,7 +1,7 @@
 import { ComponentChildren } from 'preact';
 import { useRef, useState } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
-import { Link, useRoute, useSearchParams } from 'wouter-preact';
+import { Link, useRoute } from 'wouter-preact';
 
 import HeaderWithBackButton from '@/components/content/HeaderLayouts/HeaderWithBackButton';
 import HeaderWithMenu, {
@@ -9,25 +9,29 @@ import HeaderWithMenu, {
 } from '@/components/content/HeaderLayouts/HeaderWithMenu';
 import NavLink from '@/components/control/NavBar/NavLink';
 import { useAppState } from '@/hooks/AppStateProvider';
+import { usePostcode } from '@/hooks/PostcodeProvider';
 import useScrollRestoration from '@/hooks/useScrollRestoration';
 
 const pages = ['intro', 'guide', 'options', 'benefits', 'sign-up'];
 
-export function RefillAside({ postcode }: { readonly postcode: string }) {
+export function DiscoverRefillAside() {
   const { t } = useTranslation();
   const { publicPath } = useAppState();
+  const { postcode } = usePostcode();
   const generalTipImgSrc = `${publicPath}images/material-tip.svg`;
 
   return (
     <locator-tip slot="layout-aside" text-align="center">
       <locator-wrap>
         <img src={generalTipImgSrc} alt="" />
-        <p className="evg-text-weight-bold">{t('refill.aside.subtitle')}</p>
-        <h2>{t('refill.aside.title')}</h2>
-        <p>{t('refill.aside.content')}</p>
+        <p className="evg-text-weight-bold">
+          {t('refill.discover.aside.subtitle')}
+        </p>
+        <h2>{t('refill.discover.aside.title')}</h2>
+        <p>{t('refill.discover.aside.content')}</p>
         <evg-enter type="fade">
           <evg-button width="full-width">
-            <Link href={'/' + postcode}>{t('refill.aside.cta')}</Link>
+            <Link href={`/${postcode}`}>{t('refill.discover.aside.cta')}</Link>
           </evg-button>
         </evg-enter>
       </locator-wrap>
@@ -35,54 +39,38 @@ export function RefillAside({ postcode }: { readonly postcode: string }) {
   );
 }
 
-function RefillSubtitle() {
-  const { t } = useTranslation();
-
-  return (
-    <p className="text-color-positive text-italic evg-text-weight-bold">
-      {t('refill.header.comingSoon')}
-    </p>
-  );
-}
-
-export default function RefillLayout({
+export default function DiscoverRefillLayout({
   children,
 }: {
   readonly children?: ComponentChildren;
 }) {
   const { t } = useTranslation();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [isHome] = useRoute('/refill');
-  const [searchParams] = useSearchParams();
-  const postcode = searchParams.get('postcode');
-  const postcodeQuery = postcode ? `?postcode=${postcode}` : '';
+  const [isHome] = useRoute('/:postcode/refill/discover');
+  const { postcode } = usePostcode();
   const layoutRef = useRef();
 
   useScrollRestoration(layoutRef);
 
-  // Show menu when on home page with postcode, otherwise show back button
-  const showMenu = postcode && isHome;
-  const backFallback = isHome ? '/' : `/refill${postcodeQuery}`;
-
   return (
     <locator-layout>
       <div slot="layout-header" className="display-contents">
-        {showMenu ? (
+        {isHome ? (
+          <HeaderWithBackButton
+            logoType="icon-only"
+            logoHref="/refill"
+            title={t('refill.header.title')}
+            subtitle={postcode}
+            backFallback={`/${postcode}/refill`}
+          />
+        ) : (
           <HeaderWithMenu
             logoType="icon-only"
             title={t('refill.header.title')}
-            subtitle={<RefillSubtitle />}
+            subtitle={postcode}
             menuOpen={menuOpen}
             onToggleMenu={() => setMenuOpen(!menuOpen)}
             mainContentId="locator-layout-main"
-          />
-        ) : (
-          <HeaderWithBackButton
-            logoType="icon-only"
-            logoHref="/"
-            title={t('refill.header.title')}
-            subtitle={<RefillSubtitle />}
-            backFallback={backFallback}
           />
         )}
       </div>
@@ -99,11 +87,12 @@ export default function RefillLayout({
                   <li key={page}>
                     <NavLink
                       href={
-                        (page === 'intro' ? '/refill' : `/refill/${page}`) +
-                        postcodeQuery
+                        page === 'intro'
+                          ? `/${postcode}/refill/discover`
+                          : `/${postcode}/refill/discover/${page}`
                       }
                     >
-                      {t(`refill.nav.${page}.title`)}
+                      {t(`refill.discover.nav.${page}.label`)}
                     </NavLink>
                   </li>
                 ))}
@@ -115,7 +104,7 @@ export default function RefillLayout({
           </locator-wrap>
         </MenuLayout>
       </div>
-      <RefillAside postcode={postcode || ''} />
+      <DiscoverRefillAside />
     </locator-layout>
   );
 }

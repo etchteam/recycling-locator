@@ -10,7 +10,7 @@ import PostcodeRoutes from './[postcode]/postcode.routes';
 import HomeRecyclingStartPage from './home-recycling.page';
 import MaterialStartPage from './material.page';
 import NotFoundPage from './not-found.page';
-import RefillRoutes from './refill/refill.routes';
+import RefillStartPage from './refill.page';
 import StartLayout from './start.layout';
 import StartPage from './start.page';
 
@@ -79,12 +79,16 @@ export default function StartRoutes() {
             <MaterialStartPage />
           </StartLayout>
         </Route>
+        <Route path="/refill">
+          <StartLayout>
+            <RefillStartPage />
+          </StartLayout>
+        </Route>
         <Route path="/not-found">
           <StartLayout>
             <NotFoundPage />
           </StartLayout>
         </Route>
-        <Route path="/refill/*?" component={RefillRoutes} />
         <Route path="/:postcode/*?" component={PostcodeRoutes} />
         <Route>
           <StartLayout>

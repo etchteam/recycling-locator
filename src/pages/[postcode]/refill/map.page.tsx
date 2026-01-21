@@ -8,7 +8,8 @@ import { usePostcode } from '@/hooks/PostcodeProvider';
 import { useLocationsMap } from '@/hooks/useLocationsMap';
 import PostCodeResolver from '@/lib/PostcodeResolver';
 
-export default function PlacesMapPage() {
+/* TODO: show only refill locations */
+export default function RefillMapPage() {
   const { postcode } = usePostcode();
   const { t } = useTranslation();
   const [searchParams] = useSearchParams();
@@ -69,7 +70,7 @@ export default function PlacesMapPage() {
             primaryAction={
               <evg-button width="full-width" variant="primary" size="sm">
                 <Link
-                  href={`/${postcode}/places/${activeLocationName}/${activeLocationPostcode}?${searchParams.toString()}`}
+                  href={`/${postcode}/refill/${activeLocationName}/${activeLocationPostcode}?${searchParams.toString()}`}
                 >
                   {t('actions.viewDetails')}
                 </Link>
@@ -80,7 +81,7 @@ export default function PlacesMapPage() {
           <evg-enter type="fade" delay={0.5}>
             <locator-fab>
               <evg-button size="sm" variant="primary">
-                <Link href={`/${postcode}/places?${searchParams.toString()}`}>
+                <Link href={`/${postcode}/refill?${searchParams.toString()}`}>
                   <locator-icon icon="list"></locator-icon>
                   {t('actions.showList')}
                 </Link>

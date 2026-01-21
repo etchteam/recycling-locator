@@ -7,18 +7,16 @@ import MapSvg from '@/components/canvas/MapSvg/MapSvg';
 import HeaderWithBackButton from '@/components/content/HeaderLayouts/HeaderWithBackButton';
 import NavLink from '@/components/control/NavBar/NavLink';
 import PlacesMap from '@/components/control/PlacesMap/PlacesMap';
+import PlacesMapCard from '@/components/control/PlacesMap/PlacesMapCard';
 import { usePostcode } from '@/hooks/PostcodeProvider';
-import useAnalytics from '@/hooks/useAnalytics';
 import { usePlace } from '@/hooks/usePlace';
 import useScrollRestoration from '@/hooks/useScrollRestoration';
-import directions from '@/lib/directions';
 import { Location } from '@/types/locatorApi';
 
 function PlaceMap({ location }: { readonly location: Location }) {
   const { t } = useTranslation();
   const [searchParams] = useSearchParams();
   const { postcode } = usePostcode();
-  const { recordEvent } = useAnalytics();
 
   const mapSearchParams = new URLSearchParams(searchParams);
   mapSearchParams.set('lat', String(location.latitude));
@@ -37,36 +35,18 @@ function PlaceMap({ location }: { readonly location: Location }) {
       <Link href={mapUrl} aria-label={t('actions.showMap')}>
         <locator-places-map-scrim />
       </Link>
-      <locator-places-map-card>
-        <evg-grid>
-          <evg-grid-item small-mobile="6">
-            <evg-button width="full-width" size="sm">
-              <Link href={mapUrl}>
-                <locator-icon icon="map" />
-                {t('actions.showMap')}
-              </Link>
-            </evg-button>
-          </evg-grid-item>
-          <evg-grid-item small-mobile="6">
-            <evg-button width="full-width" size="sm">
-              <a
-                href={directions(postcode, location.address)}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => {
-                  recordEvent({
-                    category: 'PlaceDetails::Directions',
-                    action: location.address,
-                  });
-                }}
-              >
-                {t('actions.directions')}
-                <locator-icon icon="external" />
-              </a>
-            </evg-button>
-          </evg-grid-item>
-        </evg-grid>
-      </locator-places-map-card>
+      <PlacesMapCard
+        variant="preview"
+        location={location}
+        primaryAction={
+          <evg-button width="full-width" size="sm">
+            <Link href={mapUrl}>
+              <locator-icon icon="map" />
+              {t('actions.showMap')}
+            </Link>
+          </evg-button>
+        }
+      />
     </PlacesMap>
   );
 }

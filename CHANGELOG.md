@@ -1,3 +1,10 @@
+## [1.71.1](https://github.com/etchteam/recycling-locator/compare/v1.71.0...v1.71.1) (2026-01-22)
+
+
+### Bug Fixes
+
+* prevent URL search term injection on material pages ([eff6dc6](https://github.com/etchteam/recycling-locator/commit/eff6dc6287fb1b0ef409ae5860d77934d84a5749))
+
 ## [1.71.0](https://github.com/etchteam/recycling-locator/compare/v1.70.0...v1.71.0) (2026-01-15)
 
 

@@ -6,12 +6,12 @@ This document describes how material searches, categories, and material IDs flow
 
 Three URL parameters control material filtering:
 
-| Parameter | Example | Description |
-|-----------|---------|-------------|
-| `materials` | `materials=28` | Single material ID |
-| `materials` | `materials=1,2,3` | Comma-separated material IDs |
-| `category` | `category=1` | Material category ID |
-| `search` | `search=Batteries` | Display text (should match material/category name) |
+| Parameter   | Example             | Description                                       |
+| ----------- | ------------------- | ------------------------------------------------- |
+| `materials` | `materials=28`      | Single material ID                                |
+| `materials` | `materials=1,2,3`   | Comma-separated material IDs                      |
+| `category`  | `category=1`        | Material category ID                              |
+| `search`    | `search=Batteries`  | Display text (should match material/category name)|
 
 **Important**: `materials` and `category` are mutually exclusive - a search uses one or the other, never both.
 
@@ -92,23 +92,23 @@ The user would see "Batteries" (material 28's actual name), not "dogs".
 
 ### Material Results Page (`/[postcode]/material`)
 
-| Feature | Material Search | Category Search | Multi-Material |
-|---------|-----------------|-----------------|----------------|
-| Search term display | ✅ Material name | ✅ Category name | ✅ First material name |
-| Locations | ✅ | ✅ | ✅ |
-| Home recycling | ✅ | ✅ | ✅ |
-| Doorstep collections | ✅ | ❌ | ❌ |
-| Tips | ✅ | ❌ | ❌ |
-| Hazardous warning | ✅ | ❌ | ✅ (first material) |
-| Non-recyclable warning | ✅ | ❌ | ✅ (first material) |
+| Feature                | Material Search  | Category Search  | Multi-Material         |
+| ---------------------- | ---------------- | ---------------- | ---------------------- |
+| Search term display    | ✅ Material name | ✅ Category name | ✅ First material name |
+| Locations              | ✅               | ✅               | ✅                     |
+| Home recycling         | ✅               | ✅               | ✅                     |
+| Doorstep collections   | ✅               | ❌               | ❌                     |
+| Tips                   | ✅               | ❌               | ❌                     |
+| Hazardous warning      | ✅               | ❌               | ✅ (first material)    |
+| Non-recyclable warning | ✅               | ❌               | ✅ (first material)    |
 
 ### Places Page (`/[postcode]/places`)
 
-| Feature | Material Search | Category Search | Multi-Material |
-|---------|-----------------|-----------------|----------------|
+| Feature             | Material Search  | Category Search  | Multi-Material         |
+| ------------------- | ---------------- | ---------------- | ---------------------- |
 | Search term display | ✅ Material name | ✅ Category name | ✅ First material name |
-| Locations list | ✅ | ✅ | ✅ |
-| Map | ✅ | ✅ | ✅ |
+| Locations list      | ✅               | ✅               | ✅                     |
+| Map                 | ✅               | ✅               | ✅                     |
 
 ### Material Start Page (`/material`)
 
@@ -144,15 +144,15 @@ getPropertiesByMaterial(properties, { materials, category })
 
 ## Key Hooks
 
-| Hook | Purpose | Supports Category | Supports Multi-Material |
-|------|---------|-------------------|------------------------|
-| `useMaterialSearchTerm` | Derives display search term | ✅ | ✅ (first only) |
-| `useMaterial` | Fetches single material data | ❌ | ❌ |
-| `useCategory` | Fetches single category data | ✅ | N/A |
-| `useMaterials` | Fetches all materials (A-Z list) | N/A | N/A |
-| `useLocations` | Fetches nearby locations | ✅ | ✅ |
-| `useDoorstepCollections` | Fetches doorstep collection options | ❌ | ❌ |
-| `useTip` | Fetches contextual tips | ❌ | ❌ |
+| Hook                     | Purpose                            | Supports Category | Supports Multi-Material |
+| ------------------------ | ---------------------------------- | ----------------- | ----------------------- |
+| `useMaterialSearchTerm`  | Derives display search term        | ✅                | ✅ (first only)         |
+| `useMaterial`            | Fetches single material data       | ❌                | ❌                      |
+| `useCategory`            | Fetches single category data       | ✅                | N/A                     |
+| `useMaterials`           | Fetches all materials (A-Z list)   | N/A               | N/A                     |
+| `useLocations`           | Fetches nearby locations           | ✅                | ✅                      |
+| `useDoorstepCollections` | Fetches doorstep collection options| ❌                | ❌                      |
+| `useTip`                 | Fetches contextual tips            | ❌                | ❌                      |
 
 ## Analytics
 

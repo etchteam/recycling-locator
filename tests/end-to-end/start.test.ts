@@ -183,26 +183,28 @@ test.describe('Start page', () => {
     });
 
     const input = widget.locator('input[type="text"]').first();
+    // Search term is fetched from API and displayed lowercase in the title
     const materialStartPageTitle = widget
-      .getByText('Plastic drinks bottles')
+      .getByText(ValidMaterialResponse.name.toLowerCase())
       .first();
     const recyclableText = widget
       .getByText(i18n.t('material.hero.yes'))
       .first();
 
-    await widget.evaluate((node) =>
-      node.setAttribute(
-        'path',
-        `/material?materials=44&search=Plastic drinks bottles`,
-      ),
+    await widget.evaluate(
+      (node, materialId) =>
+        node.setAttribute('path', `/material?materials=${materialId}`),
+      ValidMaterialResponse.id,
     );
+    // Material is fetched on the start page to derive the search term
+    await page.waitForRequest(MATERIAL_ENDPOINT);
     await expect(materialStartPageTitle).toBeVisible();
     await expect(input).toBeVisible();
     await expect(recyclableText).not.toBeVisible();
     await input.fill('Barnstaple');
+    // Material is already cached from start page, so only locations is fetched
     await Promise.all([
       page.waitForRequest(LOCATIONS_ENDPOINT),
-      page.waitForRequest(MATERIAL_ENDPOINT),
       input.press('Enter'),
     ]);
     await expect(recyclableText).toBeVisible();

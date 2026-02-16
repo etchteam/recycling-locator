@@ -5,6 +5,7 @@ import { ErrorBoundaryPage } from '@/components/ErrorBoundary';
 
 import DiscoverRefillRoutes from './discover/discover.routes';
 import RefillMapPage from './map.page';
+import RefillPlaceRoutes from './place/place.routes';
 import RefillLayout from './refill.layout';
 import RefillPage from './refill.page';
 
@@ -18,6 +19,10 @@ export default function RefillRoutes() {
       cta={t('actions.tryAgain')}
     >
       <Switch>
+        <Route
+          path="/:postcode/refill/:placeName/:placePostcode/*?"
+          component={RefillPlaceRoutes}
+        />
         <Route path="/:postcode/refill">
           <RefillLayout>
             <RefillPage />

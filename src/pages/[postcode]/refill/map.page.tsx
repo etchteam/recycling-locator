@@ -6,13 +6,14 @@ import PlacesMap from '@/components/control/PlacesMap/PlacesMap';
 import PlacesMapCard from '@/components/control/PlacesMap/PlacesMapCard';
 import { usePostcode } from '@/hooks/PostcodeProvider';
 import { useLocationsMap } from '@/hooks/useLocationsMap';
+import { useRefillLocations } from '@/hooks/useRefillLocations';
 import PostCodeResolver from '@/lib/PostcodeResolver';
 
-/* TODO: show only refill locations */
 export default function RefillMapPage() {
   const { postcode } = usePostcode();
   const { t } = useTranslation();
   const [searchParams] = useSearchParams();
+  const locationsResult = useRefillLocations();
   const {
     data: locations,
     loading,
@@ -24,7 +25,7 @@ export default function RefillMapPage() {
     handleZoom,
     handleDrag,
     handleSearchThisArea,
-  } = useLocationsMap();
+  } = useLocationsMap(locationsResult);
 
   if (loading || !locations) {
     return <LoadingPlacesMap />;

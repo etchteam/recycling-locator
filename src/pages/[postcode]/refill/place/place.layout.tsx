@@ -10,6 +10,7 @@ import PlacesMapCard from '@/components/control/PlacesMap/PlacesMapCard';
 import { usePostcode } from '@/hooks/PostcodeProvider';
 import { useRefillPlace } from '@/hooks/useRefillPlace';
 import useScrollRestoration from '@/hooks/useScrollRestoration';
+import PostCodeResolver from '@/lib/PostcodeResolver';
 import { Location } from '@/types/locatorApi';
 
 function PlaceMap({ location }: { readonly location: Location }) {
@@ -57,12 +58,9 @@ export default function RefillPlaceLayout({
 }) {
   const { postcode } = usePostcode();
   const [searchParams] = useSearchParams();
-  const params = useParams<{ placeName: string; placePostcode: string }>();
-  const placeName = params.placeName;
-  const placePostcode = params.placePostcode;
+  const params = useParams<{ id: string }>();
   const { data: location, loading: locationLoading } = useRefillPlace(
-    placeName,
-    placePostcode,
+    params.id,
   );
   const layoutRef = useRef();
   useScrollRestoration(layoutRef);
@@ -73,8 +71,12 @@ export default function RefillPlaceLayout({
         <HeaderWithBackButton
           logoType="icon-only"
           logoHref={`/${postcode}`}
-          title={placeName}
-          subtitle={placePostcode === 'null' ? '' : placePostcode}
+          title={location?.name}
+          subtitle={
+            location
+              ? PostCodeResolver.extractPostcodeFromString(location.address)
+              : ''
+          }
           backFallback={`/${postcode}/refill?${searchParams.toString()}`}
         />
       </div>

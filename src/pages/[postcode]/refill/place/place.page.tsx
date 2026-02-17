@@ -141,11 +141,8 @@ function RefillPlaceContent({ location }: { readonly location: Location }) {
 
 export default function RefillPlacePage() {
   const { t } = useTranslation();
-  const params = useParams<{ placeName: string; placePostcode: string }>();
-  const { data: location, loading } = useRefillPlace(
-    params.placeName,
-    params.placePostcode,
-  );
+  const params = useParams<{ id: string }>();
+  const { data: location, loading } = useRefillPlace(params.id);
 
   if (loading || !location) {
     return null;

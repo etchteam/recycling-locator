@@ -5,18 +5,10 @@ import { Location } from '@/types/locatorApi';
 /**
  * Fetches individual refill location details
  */
-export function useRefillPlace(
-  placeName: string | undefined,
-  placePostcode: string | undefined,
-) {
+export function useRefillPlace(id: string | undefined) {
   const fetchPlace = () => {
-    return LocatorApi.getInstance().get<Location>(
-      `refill-location/${placeName}/${placePostcode}`,
-    );
+    return LocatorApi.getInstance().get<Location>(`refill-location/${id}`);
   };
 
-  return useData<Location>(placeName && placePostcode ? fetchPlace : null, [
-    placeName,
-    placePostcode,
-  ]);
+  return useData<Location>(id ? fetchPlace : null, [id]);
 }

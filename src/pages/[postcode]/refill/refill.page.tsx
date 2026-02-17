@@ -6,7 +6,6 @@ import Place from '@/components/content/Place/Place';
 import { usePostcode } from '@/hooks/PostcodeProvider';
 import { usePaginatedLocations } from '@/hooks/usePaginatedLocations';
 import { useRefillLocations } from '@/hooks/useRefillLocations';
-import PostCodeResolver from '@/lib/PostcodeResolver';
 
 function RefillLocations() {
   const { postcode } = usePostcode();
@@ -53,14 +52,10 @@ function RefillLocations() {
         <nav aria-labelledby="refill-places-count">
           <ul>
             {locations.items.map((location) => {
-              const locationPostcode =
-                PostCodeResolver.extractPostcodeFromString(location.address);
-              const locationName = encodeURIComponent(location.name);
-
               return (
                 <li key={`${location.id}`}>
                   <Link
-                    href={`/${postcode}/refill/${locationName}/${locationPostcode}?${locationSearchParams.toString()}`}
+                    href={`/${postcode}/refill/${location.id}?${locationSearchParams.toString()}`}
                   >
                     <evg-enter type="fade">
                       <evg-card radius="sm">

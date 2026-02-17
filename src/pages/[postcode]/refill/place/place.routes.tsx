@@ -19,10 +19,7 @@ export default function RefillPlaceRoutes() {
         cta={t('actions.tryAgain')}
       >
         <Switch>
-          <Route
-            path="/:postcode/refill/:placeName/:placePostcode"
-            component={RefillPlacePage}
-          />
+          <Route path="/:postcode/refill/:id" component={RefillPlacePage} />
         </Switch>
       </ErrorBoundaryPage>
     </RefillPlaceLayout>

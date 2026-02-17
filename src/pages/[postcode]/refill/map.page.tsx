@@ -7,7 +7,6 @@ import PlacesMapCard from '@/components/control/PlacesMap/PlacesMapCard';
 import { usePostcode } from '@/hooks/PostcodeProvider';
 import { useLocationsMap } from '@/hooks/useLocationsMap';
 import { useRefillLocations } from '@/hooks/useRefillLocations';
-import PostCodeResolver from '@/lib/PostcodeResolver';
 
 export default function RefillMapPage() {
   const { postcode } = usePostcode();
@@ -34,13 +33,6 @@ export default function RefillMapPage() {
   if (locations.error) {
     throw new Error(locations.error);
   }
-
-  const activeLocationPostcode = PostCodeResolver.extractPostcodeFromString(
-    activeLocation.value?.address,
-  );
-  const activeLocationName = encodeURIComponent(
-    activeLocation.value?.name ?? '',
-  );
 
   return (
     <evg-enter type="fade">
@@ -71,7 +63,7 @@ export default function RefillMapPage() {
             primaryAction={
               <evg-button width="full-width" variant="primary" size="sm">
                 <Link
-                  href={`/${postcode}/refill/${activeLocationName}/${activeLocationPostcode}?${searchParams.toString()}`}
+                  href={`/${postcode}/refill/${activeLocation.value?.id}?${searchParams.toString()}`}
                 >
                   {t('actions.viewDetails')}
                 </Link>

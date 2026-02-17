@@ -5,6 +5,7 @@ import LoadingPlacesMap from '@/components/content/LoadingPlacesMap/LoadingPlace
 import PlacesMap from '@/components/control/PlacesMap/PlacesMap';
 import PlacesMapCard from '@/components/control/PlacesMap/PlacesMapCard';
 import { usePostcode } from '@/hooks/PostcodeProvider';
+import { useLocations } from '@/hooks/useLocations';
 import { useLocationsMap } from '@/hooks/useLocationsMap';
 import PostCodeResolver from '@/lib/PostcodeResolver';
 
@@ -12,6 +13,7 @@ export default function PlacesMapPage() {
   const { postcode } = usePostcode();
   const { t } = useTranslation();
   const [searchParams] = useSearchParams();
+  const locationsResult = useLocations();
   const {
     data: locations,
     loading,
@@ -23,7 +25,7 @@ export default function PlacesMapPage() {
     handleZoom,
     handleDrag,
     handleSearchThisArea,
-  } = useLocationsMap();
+  } = useLocationsMap(locationsResult);
 
   if (loading || !locations) {
     return <LoadingPlacesMap />;

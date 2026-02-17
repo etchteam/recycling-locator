@@ -45,6 +45,7 @@ test-results
 
 # Misc
 .DS_Store
+*_PLAN.md
 
 # Sentry Config File
 .env.sentry-build-plugin

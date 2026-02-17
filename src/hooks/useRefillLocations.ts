@@ -1,16 +1,15 @@
 import { useLocationsFetch } from '@/hooks/useLocationsFetch';
 
 /**
- * Fetches locations for the current postcode, reacting to search param changes
+ * Fetches refill locations for the current postcode, reacting to search param changes
  */
-export function useLocations() {
+export function useRefillLocations() {
   return useLocationsFetch({
-    endpoint: 'locations',
+    endpoint: 'refill-locations',
     buildQueryParams: (searchParams, page) => ({
       limit: page * 30,
       radius: searchParams.get('radius') ?? 25,
-      materials: searchParams.get('materials'),
-      category: searchParams.get('category'),
+      categories: searchParams.get('categories'),
     }),
   });
 }

@@ -102,6 +102,11 @@ export interface LocalAuthority {
   properties: { [key in PROPERTY_TYPE_EN]?: LocalAuthorityProperty[] };
 }
 
+export interface RefillCategory {
+  id: string;
+  name: string;
+}
+
 export interface Location {
   id: string;
   address: string;
@@ -119,6 +124,9 @@ export interface Location {
     collectionDetails?: string;
     telephone?: string;
   }[];
+  company?: {
+    refillCategories: RefillCategory[];
+  };
   error?: string;
 }
 

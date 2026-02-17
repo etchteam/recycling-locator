@@ -3,7 +3,7 @@ import { RefObject } from 'preact';
 import { useEffect, useRef } from 'preact/hooks';
 import { useSearchParams } from 'wouter-preact';
 
-import { useLocations } from '@/hooks/useLocations';
+import { UseDataState } from '@/hooks/useData';
 import { LocationsResponse } from '@/types/locatorApi';
 
 export interface UsePaginatedLocationsConfig {
@@ -39,12 +39,13 @@ export interface UsePaginatedLocationsResult {
  * Extracts common pagination logic from places list pages
  */
 export function usePaginatedLocations(
+  locationsResult: UseDataState<LocationsResponse>,
   config?: UsePaginatedLocationsConfig,
 ): UsePaginatedLocationsResult {
   const { limit = 30, maxLimit = 120 } = config ?? {};
 
   const [searchParams, setSearchParams] = useSearchParams();
-  const { data: locations, loading } = useLocations();
+  const { data: locations, loading } = locationsResult;
 
   const loadMoreRef = useRef<HTMLButtonElement>(null);
   const lastLoadMoreOffset = useSignal<number>(0);

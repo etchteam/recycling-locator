@@ -1,7 +1,95 @@
 import { useTranslation } from 'react-i18next';
 import { Link, useSearchParams } from 'wouter-preact';
 
+import LoadingPlacesList from '@/components/content/LoadingPlacesList/LoadingPlacesList';
+import Place from '@/components/content/Place/Place';
 import { usePostcode } from '@/hooks/PostcodeProvider';
+import { usePaginatedLocations } from '@/hooks/usePaginatedLocations';
+import { useRefillLocations } from '@/hooks/useRefillLocations';
+import PostCodeResolver from '@/lib/PostcodeResolver';
+
+function RefillLocations() {
+  const { postcode } = usePostcode();
+  const { t } = useTranslation();
+  const [searchParams] = useSearchParams();
+  const locationsResult = useRefillLocations();
+  const {
+    data: locations,
+    count,
+    currentPage,
+    hasMore,
+    isInitialLoad,
+    loadMore,
+    loadMoreRef,
+  } = usePaginatedLocations(locationsResult);
+  const locationSearchParams = new URLSearchParams(searchParams);
+  locationSearchParams.set('page', String(currentPage));
+
+  if (isInitialLoad) {
+    return <LoadingPlacesList />;
+  }
+
+  if (!locations) {
+    return null;
+  }
+
+  if (locations.error) {
+    throw new Error(locations.error);
+  }
+
+  if (count === 0) {
+    return null;
+  }
+
+  return (
+    <evg-enter type="fade">
+      <h3
+        id="refill-places-count"
+        className="evg-text-size-heading-sm evg-spacing-bottom-md"
+      >
+        {t('places.count', { count })}
+      </h3>
+      <locator-places-grid className="evg-spacing-bottom-lg">
+        <nav aria-labelledby="refill-places-count">
+          <ul>
+            {locations.items.map((location) => {
+              const locationPostcode =
+                PostCodeResolver.extractPostcodeFromString(location.address);
+              const locationName = encodeURIComponent(location.name);
+
+              return (
+                <li key={`${location.id}`}>
+                  <Link
+                    href={`/${postcode}/refill/${locationName}/${locationPostcode}?${locationSearchParams.toString()}`}
+                  >
+                    <evg-enter type="fade">
+                      <evg-card radius="sm">
+                        <evg-card-content>
+                          <Place location={location} />
+                        </evg-card-content>
+                      </evg-card>
+                    </evg-enter>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+      </locator-places-grid>
+      {hasMore && (
+        <evg-grid justify-content="center">
+          <evg-grid-item small-mobile="12" small-tablet="6" large-tablet="4">
+            <evg-button width="full-width">
+              <button type="button" ref={loadMoreRef} onClick={loadMore}>
+                {t('actions.loadMore')}
+              </button>
+            </evg-button>
+          </evg-grid-item>
+        </evg-grid>
+      )}
+    </evg-enter>
+  );
+}
 
 export default function RefillPage() {
   const { t } = useTranslation();
@@ -27,7 +115,7 @@ export default function RefillPage() {
               </div>
             </Link>
           </locator-icon-link>
-          {/* TODO: Refill locations */}
+          <RefillLocations />
         </section>
       </evg-section>
       <evg-enter type="fade" delay={0.25}>

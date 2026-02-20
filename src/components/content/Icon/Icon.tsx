@@ -11,6 +11,7 @@ export interface IconAttributes {
   readonly icon:
     | 'arrow-left'
     | 'arrow-right'
+    | 'arrow-outward'
     | 'arrow-up'
     | 'call'
     | 'close'

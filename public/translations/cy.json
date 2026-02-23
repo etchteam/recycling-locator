@@ -142,9 +142,11 @@
     },
     "title": "Ynglŷn â’r gwasanaeth hwn",
     "intro": "Caiff yr offeryn hwn ei bweru gan RecycleNow.com, a gellir ei ddefnyddio i chwilio a dod o hyd i leoliadau ailgylchu ledled y Deyrnas Unedig.",
+    "refillIntro": "Caiff yr offeryn hwn ei bweru gan RecycleNow.com, a gellir ei ddefnyddio i chwilio a dod o hyd i leoliadau ail-lenwi ledled y Deyrnas Unedig.",
     "becomeAPartner": {
       "title": "Ychwanegu’r offeryn hwn at eich gwefan",
       "description": "Mae wedi cael ei greu fel teclyn y gellir ei wreiddio, a gellir ei ychwanegu at unrhyw wefan i helpu ymwelwyr ddarganfod mwy o opsiynau ailgylchu. Er enghraifft, gallai cynhyrchwr diodydd ddefnyddio’r offeryn i ddangos lleoedd lle gellir ailgylchu caniau diodydd.",
+      "refillDescription": "Mae wedi cael ei greu fel teclyn y gellir ei wreiddio, a gellir ei ychwanegu at unrhyw wefan i helpu ymwelwyr ddarganfod mwy o opsiynau ail-lenwi.",
       "cta": "Bod yn bartner",
       "url": "https://wrap.org.uk/taking-action/citizen-behaviour-change/recycle-now/recycling-locator-tool"
     },
@@ -428,13 +430,13 @@
     },
     "start": {
       "title": "Darganfod opsiynau ail-lenwi yn eich ardal chi",
-      "intro": "Dewch â'ch cynwysyddion gwag a llenwch eich ffefrynnau heb y gwastraff deunydd pacio.",
+      "intro": "Dewch o hyd i leoedd i ail-lenwi cynhyrchion bwyd, glanhau a gofal personol yn agos atoch chi.",
       "aside": {
-        "paragraph": "Gallwch hefyd ddefnyddio'r gwasanaeth hwn i:",
+        "paragraph": "Pam dewis ail-lenwi?",
         "list": [
-          "Darganfod sut mae Ail-lenwi yn gweithio",
-          "Dysgu pam mae eraill yn caru Ail-lenwi",
-          "Gwirio am gynhyrchion Ail-lenwi cyffredin"
+          "Torri gwastraff deunydd pacio",
+          "Lleihau eich ôl troed carbon",
+          "Cefnogi busnesau a siopau lleol"
         ]
       }
     },

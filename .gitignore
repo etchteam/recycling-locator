@@ -36,7 +36,7 @@ node_modules
 
 # Build output
 dist
-uat-dist
+preview
 public/styles.css
 
 # Test output

@@ -13,8 +13,10 @@ export default function RefillStartPage() {
       <div className="evg-spacing-bottom-md">
         <LocationForm action="/refill" />
       </div>
-      <hr className="diamond-spacing-bottom-md" />
-      <p>{t('refill.start.aside.paragraph')}</p>
+      <hr className="evg-spacing-bottom-md" />
+      <p className="evg-text-weight-bold evg-spacing-bottom-none">
+        {t('refill.start.aside.paragraph')}
+      </p>
       <ul>
         {tArray('refill.start.aside.list').map((item) => (
           <li key={item}>{item}</li>

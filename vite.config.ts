@@ -44,7 +44,15 @@ export default defineConfig(({ mode }) => {
     },
   };
 
-  if (!publicEnv.VITE_TEST) {
+  if (mode === 'preview') {
+    config.base = publicEnv.VITE_BASE_PATH || '/';
+    config.build = {
+      outDir: 'preview',
+      rollupOptions: {
+        input: path.resolve(__dirname, 'index.html'),
+      },
+    };
+  } else if (!publicEnv.VITE_TEST) {
     config.build = {
       sourcemap: true,
       manifest: true,

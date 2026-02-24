@@ -76,7 +76,7 @@ export default function HomeDeliveryPage() {
             <evg-grid-item small-mobile="12" large-tablet="4">
               <evg-img>
                 <img
-                  src="/images/refill/home-delivery.webp"
+                  src="/images/refill/home-delivery-hero.webp"
                   alt=""
                   width="300"
                   height="200"

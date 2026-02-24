@@ -10,8 +10,10 @@ import formatPostcode from '@/lib/formatPostcode';
 
 export default function RefillLayout({
   children,
+  title,
 }: {
   readonly children?: ComponentChildren;
+  readonly title?: string;
 }) {
   const { t } = useTranslation();
   const { postcode, data: postcodeData } = usePostcode();
@@ -22,14 +24,12 @@ export default function RefillLayout({
       <div slot="layout-header" className="display-contents">
         <HeaderWithMenu
           logoHref={`/${postcode}`}
-          title={t('refill.header.title')}
+          title={title ?? t('refill.header.title')}
           subtitle={formatPostcode(postcode)}
           menuOpen={menuOpen}
           onToggleMenu={() => setMenuOpen(!menuOpen)}
           mainContentId="locator-layout-main"
-        >
-          {/* TODO: filters? */}
-        </HeaderWithMenu>
+        ></HeaderWithMenu>
       </div>
       <div slot="layout-main" id="locator-layout-main">
         <MenuLayout

@@ -1,0 +1,22 @@
+locator-refill-alert {
+  align-items: center;
+  display: flex;
+  gap: var(--evg-spacing-sm);
+  justify-content: space-between;
+
+  p {
+    font-size: var(--evg-font-size-body-xs);
+  }
+
+  evg-button[variant='ghost'] {
+    flex-shrink: 0;
+    line-height: 1;
+
+    button {
+      color: var(--color-primary-dark);
+      min-height: 0;
+      min-width: 0;
+      white-space: nowrap;
+    }
+  }
+}

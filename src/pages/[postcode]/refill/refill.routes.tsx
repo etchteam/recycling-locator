@@ -20,7 +20,7 @@ export default function RefillRoutes() {
     >
       <Switch>
         <Route path="/:postcode/refill">
-          <RefillLayout>
+          <RefillLayout title={t('refill.places.title')}>
             <RefillPage />
           </RefillLayout>
         </Route>

@@ -428,6 +428,23 @@
       "title": "Lleolydd Ail-lenwi",
       "comingSoon": "Ar y gweill!"
     },
+    "places": {
+      "title": "Lleoedd i ail-lenwi",
+      "count": "Rydym wedi dod o hyd i {{count}} lle i ail-lenwi",
+      "count_one": "Rydym wedi dod o hyd i 1 lle i ail-lenwi",
+      "count_zero": "Dim lleoedd i ail-lenwi o fewn 25 milltir"
+    },
+    "filters": {
+      "all": "Pob un",
+      "Food": "Bwyd",
+      "Cleaning": "Glanhau",
+      "Personal Care": "Gofal",
+      "label": "Hidlo yn ôl categori",
+      "filteredCount": "<bold>{{count}}</bold> lle gyda chynhyrchion <bold>{{category}}</bold>",
+      "filteredCount_one": "<bold>1</bold> lle gyda chynhyrchion <bold>{{category}}</bold>",
+      "filteredCount_zero": "Dim lleoedd gyda chynhyrchion <bold>{{category}}</bold>",
+      "clearFilters": "Clirio hidlwyr"
+    },
     "start": {
       "title": "Darganfod opsiynau ail-lenwi yn eich ardal chi",
       "intro": "Dewch o hyd i leoedd i ail-lenwi cynhyrchion bwyd, glanhau a gofal personol yn agos atoch chi.",

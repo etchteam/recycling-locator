@@ -56,5 +56,16 @@ locator-place-summary {
         width: 1px;
       }
     }
+
+    .refill-categories {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: var(--evg-spacing-xs);
+      grid-template-columns: none;
+
+      locator-icon {
+        color: var(--color-primary-dark);
+      }
+    }
   }
 }

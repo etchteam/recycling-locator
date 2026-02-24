@@ -442,6 +442,23 @@
       "title": "Refill Locator",
       "comingSoon": "Coming Soon!"
     },
+    "places": {
+      "title": "Places to refill",
+      "count": "We found {{count}} places to refill",
+      "count_one": "We found 1 place to refill",
+      "count_zero": "No places to refill within 25 miles"
+    },
+    "filters": {
+      "all": "All",
+      "Food": "Food",
+      "Cleaning": "Cleaning",
+      "Personal Care": "Care",
+      "label": "Filter by category",
+      "filteredCount": "<bold>{{count}}</bold> places with <bold>{{category}}</bold> products",
+      "filteredCount_one": "<bold>1</bold> place with <bold>{{category}}</bold> products",
+      "filteredCount_zero": "No places with <bold>{{category}}</bold> products",
+      "clearFilters": "Clear filters"
+    },
     "start": {
       "title": "Discover refill options in your area",
       "intro": "Find places to refill food, cleaning and personal care products near you.",

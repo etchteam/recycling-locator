@@ -28,14 +28,14 @@ export default function RefillRoutes() {
           </RefillLayout>
         </Route>
         <Route path="/:postcode/refill/places">
-          <RefillLayout>
+          <RefillPlacesLayout>
             <RefillPlacesPage />
-          </RefillLayout>
+          </RefillPlacesLayout>
         </Route>
         <Route path="/:postcode/refill/map">
-          <RefillLayout>
+          <RefillPlacesLayout>
             <RefillMapPage />
-          </RefillLayout>
+          </RefillPlacesLayout>
         </Route>
         <Route path="/:postcode/refill/home-delivery">
           <RefillPlacesLayout>

@@ -115,7 +115,7 @@ export interface Location {
   latitude: number;
   longitude: number;
   locations: {
-    locationType: 'RECYCLE' | 'HWRC';
+    locationType: 'RECYCLE' | 'HWRC' | 'REFILL';
     source: 'valpak' | 'wrap';
     materials: MaterialWithCategory[];
     notes?: string;
@@ -123,10 +123,11 @@ export interface Location {
     website?: string;
     collectionDetails?: string;
     telephone?: string;
+    company?: {
+      name: string;
+      refillCategories: RefillCategory[];
+    };
   }[];
-  company?: {
-    refillCategories: RefillCategory[];
-  };
   error?: string;
 }
 

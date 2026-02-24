@@ -2,6 +2,7 @@ import { CustomElement } from '@/types/customElement';
 
 export interface OverflowAttributes {
   largeScreen?: boolean;
+  wrapCards?: boolean;
 }
 
 declare module 'react' {

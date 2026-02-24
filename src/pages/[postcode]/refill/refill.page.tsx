@@ -6,6 +6,7 @@ import { useAppState } from '@/hooks/AppStateProvider';
 import { usePostcode } from '@/hooks/PostcodeProvider';
 import { useRefillLocations } from '@/hooks/useRefillLocations';
 import formatPostcode from '@/lib/formatPostcode';
+import getRefillCategoryAvailability from '@/lib/getRefillCategoryAvailability';
 
 function Loading() {
   return (
@@ -50,6 +51,8 @@ export default function RefillPage() {
   const { data: refillLocations, loading: locationsLoading } =
     useRefillLocations();
   const { publicPath } = useAppState();
+
+  const categories = ['mixed-food', 'cleaning', 'personal-care'];
 
   const navCards = ['guide', 'home-delivery'];
 
@@ -106,6 +109,43 @@ export default function RefillPage() {
                       },
                     )}
                   />
+                  {getRefillCategoryAvailability(refillLocations?.items) && (
+                    <>
+                      <p className="evg-text-size-body evg-spacing-top-md evg-spacing-bottom-sm">
+                        Refill your favourites
+                      </p>
+                      <locator-overflow largeScreen wrapCards>
+                        <ul>
+                          {categories.map((category) => (
+                            <li key={category}>
+                              <Link
+                                href={`/${postcode}/refill/places?category=${category}`}
+                              >
+                                <evg-card radius="sm">
+                                  <img
+                                    src={`${publicPath}images/refill/categories/${category}.webp`}
+                                    alt=""
+                                    width="180"
+                                    height="220"
+                                  />
+                                  <evg-button>
+                                    <button type="button">
+                                      <locator-icon
+                                        icon={
+                                          category as IconAttributes['icon']
+                                        }
+                                      ></locator-icon>
+                                      {t(`refill.category.${category}`)}
+                                    </button>
+                                  </evg-button>
+                                </evg-card>
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </locator-overflow>
+                    </>
+                  )}
                   <ul className="list-style-none">
                     {navLinks.map(({ href, icon, title, description }) => (
                       <li key={href} className="evg-spacing-top-md">

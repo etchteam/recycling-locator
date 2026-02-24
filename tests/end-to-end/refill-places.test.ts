@@ -14,7 +14,7 @@ test.describe('Refill places', () => {
     });
 
     await widget.evaluate((node) =>
-      node.setAttribute('path', '/EX32 7RB/refill'),
+      node.setAttribute('path', '/EX32 7RB/refill/places'),
     );
 
     await page.waitForRequest(REFILL_LOCATIONS_ENDPOINT);
@@ -40,7 +40,7 @@ test.describe('Refill places', () => {
     });
 
     await widget.evaluate((node) =>
-      node.setAttribute('path', '/EX32 7RB/refill'),
+      node.setAttribute('path', '/EX32 7RB/refill/places'),
     );
 
     const headerTitle = widget
@@ -56,7 +56,7 @@ test.describe('Refill places', () => {
     });
 
     await widget.evaluate((node) =>
-      node.setAttribute('path', '/EX32 7RB/refill'),
+      node.setAttribute('path', '/EX32 7RB/refill/places'),
     );
 
     await page.waitForRequest(REFILL_LOCATIONS_ENDPOINT);
@@ -99,7 +99,7 @@ test.describe('Refill places', () => {
     });
 
     await widget.evaluate((node) =>
-      node.setAttribute('path', '/EX32 7RB/refill'),
+      node.setAttribute('path', '/EX32 7RB/refill/places'),
     );
 
     await page.waitForRequest(REFILL_LOCATIONS_ENDPOINT);
@@ -139,7 +139,7 @@ test.describe('Refill places', () => {
     });
 
     await widget.evaluate((node) =>
-      node.setAttribute('path', '/EX32 7RB/refill'),
+      node.setAttribute('path', '/EX32 7RB/refill/places'),
     );
 
     await page.waitForRequest(REFILL_LOCATIONS_ENDPOINT);
@@ -171,7 +171,7 @@ test.describe('Refill places', () => {
     });
 
     await widget.evaluate((node) =>
-      node.setAttribute('path', '/EX32 7RB/refill'),
+      node.setAttribute('path', '/EX32 7RB/refill/places'),
     );
 
     await page.waitForRequest(REFILL_LOCATIONS_ENDPOINT);
@@ -205,7 +205,7 @@ test.describe('Refill places', () => {
     });
 
     await widget.evaluate((node) =>
-      node.setAttribute('path', '/EX32 7RB/refill'),
+      node.setAttribute('path', '/EX32 7RB/refill/places'),
     );
 
     await page.waitForRequest(REFILL_LOCATIONS_ENDPOINT);
@@ -237,7 +237,7 @@ test.describe('Refill places', () => {
     });
 
     await widget.evaluate((node) =>
-      node.setAttribute('path', '/EX32 7RB/refill'),
+      node.setAttribute('path', '/EX32 7RB/refill/places'),
     );
 
     await page.waitForRequest(REFILL_LOCATIONS_ENDPOINT);
@@ -253,25 +253,4 @@ test.describe('Refill places', () => {
     await expect(categoryIcons.first()).toBeVisible();
   });
 
-  test('Discover section appears below places list', async ({
-    page,
-    widget,
-    i18n,
-  }) => {
-    await page.route(REFILL_LOCATIONS_ENDPOINT, (route) => {
-      route.fulfill({ json: RefillLocationsResponse });
-    });
-
-    await widget.evaluate((node) =>
-      node.setAttribute('path', '/EX32 7RB/refill'),
-    );
-
-    await page.waitForRequest(REFILL_LOCATIONS_ENDPOINT);
-
-    const discoverLink = widget
-      .getByText(i18n.t('postcode.options.refill.title'))
-      .first();
-
-    await expect(discoverLink).toBeVisible();
-  });
 });

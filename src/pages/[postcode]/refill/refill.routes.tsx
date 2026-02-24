@@ -4,8 +4,11 @@ import { Route, Switch } from 'wouter-preact';
 import { ErrorBoundaryPage } from '@/components/ErrorBoundary';
 
 import DiscoverRefillRoutes from './discover/discover.routes';
-import RefillMapPage from './map.page';
-import RefillPlaceRoutes from './place/place.routes';
+import HomeDeliveryPage from './places/home-delivery.page';
+import RefillMapPage from './places/map.page';
+import RefillPlaceRoutes from './places/place/place.routes';
+import RefillPlacesLayout from './places/places.layout';
+import RefillPlacesPage from './places/places.page';
 import RefillLayout from './refill.layout';
 import RefillPage from './refill.page';
 
@@ -20,14 +23,24 @@ export default function RefillRoutes() {
     >
       <Switch>
         <Route path="/:postcode/refill">
-          <RefillLayout title={t('refill.places.title')}>
+          <RefillLayout>
             <RefillPage />
           </RefillLayout>
         </Route>
+        <Route path="/:postcode/refill/places">
+          <RefillPlacesLayout title={t('refill.places.title')}>
+            <RefillPlacesPage />
+          </RefillPlacesLayout>
+        </Route>
         <Route path="/:postcode/refill/map">
-          <RefillLayout>
+          <RefillPlacesLayout>
             <RefillMapPage />
-          </RefillLayout>
+          </RefillPlacesLayout>
+        </Route>
+        <Route path="/:postcode/refill/home-delivery">
+          <RefillPlacesLayout>
+            <HomeDeliveryPage />
+          </RefillPlacesLayout>
         </Route>
         <Route
           path="/:postcode/refill/discover/*?"

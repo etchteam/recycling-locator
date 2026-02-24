@@ -95,6 +95,12 @@ locator-overflow {
       }
     }
   }
+
+  &[wrapCards] ul {
+    li {
+      min-width: fit-content;
+    }
+  }
 }
 
 @container (width >= 768px) {

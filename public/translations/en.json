@@ -488,6 +488,11 @@
           "title": "How refill could work for you",
           "description": "Learn how refill could fit into your existing routines and cupboards"
         },
+         "home-delivery": {
+          "label": "Home delivery services",
+          "title": "Home delivery services",
+          "description": "Order essentials to your door in returnable packaging - just like a Milkman!"
+        },
         "sign-up": {
           "label": "Sign Up"
         }
@@ -688,6 +693,33 @@
       },
       "error": {
         "message": "An unexpected error occurred while loading Refill information."
+      }
+    },
+    "explore": {
+      "title": "Explore refill in this area",
+      "nearestLocations": {
+        "title": "Your nearest refill locations",
+        "description": "{{count}} places within 25 miles"
+      },
+      "homeDelivery": {
+        "title": "Home delivery services",
+        "description": "Order products in returnable packaging to your door"
+      },
+      "gettingStarted": {
+        "title": "Getting started with refill",
+        "description": "New to refill? It's surprisingly simple!"
+      },
+      "signUp": {
+        "title": "Sign up",
+        "description": "Get notified when new refill places are discovered in your area."
+      },
+      "recyclingOptions": {
+        "title": "Recycling options in your area",
+        "description": "Find your nearest places to recycle"
+      },
+      "noPlaces": {
+        "title": "No nearby refill places",
+        "description": "We couldn't find any within 25 miles"
       }
     },
     "homeDelivery": {

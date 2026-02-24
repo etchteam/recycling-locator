@@ -2,13 +2,23 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'wouter-preact';
 
 import { IconAttributes } from '@/components/content/Icon/Icon';
+import { useAppState } from '@/hooks/AppStateProvider';
 import { usePostcode } from '@/hooks/PostcodeProvider';
 import { useRefillLocations } from '@/hooks/useRefillLocations';
+import formatPostcode from '@/lib/formatPostcode';
+
+function Loading() {
+  return (
+    <evg-enter type="fade-in-up">
+      <locator-loading-card className="evg-spacing-top-md" />
+    </evg-enter>
+  );
+}
 
 interface NavLinkProps {
   readonly href: string;
   readonly icon: IconAttributes['icon'];
-  readonly title: string;
+  readonly title?: string;
   readonly description: string;
 }
 
@@ -20,7 +30,11 @@ function NavLink({ href, icon, title, description }: NavLinkProps) {
           <locator-icon icon={icon} color="primary"></locator-icon>
         </locator-icon-circle>
         <div>
-          <h4 className="text-size-base evg-spacing-bottom-none">{title}</h4>
+          {title && (
+            <h4 className="text-size-base evg-text-weight-bold evg-spacing-bottom-none">
+              {title}
+            </h4>
+          )}
           <p className="evg-text-size-body-xs">{description}</p>
         </div>
       </Link>
@@ -30,18 +44,16 @@ function NavLink({ href, icon, title, description }: NavLinkProps) {
 
 export default function RefillPage() {
   const { t } = useTranslation();
-  const { postcode } = usePostcode();
-  const { data: refillLocations } = useRefillLocations();
+  const { data: postcodeData } = usePostcode();
+  const postcode = postcodeData?.postcode || '';
+  const city = postcodeData?.city || '';
+  const { data: refillLocations, loading: locationsLoading } =
+    useRefillLocations();
+  const { publicPath } = useAppState();
+
+  const navCards = ['guide', 'home-delivery'];
 
   const navLinks: NavLinkProps[] = [
-    {
-      href: `/${postcode}/refill/places`,
-      icon: 'refill',
-      title: t('refill.explore.nearestLocations.title'),
-      description: t('refill.explore.nearestLocations.description', {
-        count: refillLocations?.items?.length ?? 0,
-      }),
-    },
     {
       href: `/${postcode}/refill/home-delivery`,
       icon: 'home',
@@ -63,43 +75,136 @@ export default function RefillPage() {
   ];
 
   return (
-    <locator-wrap max-width="none" gutter="fluid">
-      <evg-section padding="md">
-        <h2>{t('refill.explore.title')}</h2>
-        <section className="evg-spacing-bottom-lg">
-          <ul className="list-style-none">
-            {navLinks.map(({ href, icon, title, description }) => (
-              <li key={href} className="evg-spacing-top-md">
-                <NavLink
-                  href={href}
-                  icon={icon}
-                  title={title}
-                  description={description}
-                />
-              </li>
-            ))}
-          </ul>
+    <>
+      <locator-context-header>
+        <div>
+          <span className="evg-text-weight-bold">
+            {formatPostcode(postcode)}
+          </span>
+          {city && <>&nbsp;&ndash; {city}</>}
+        </div>
+        <evg-button variant="ghost" size="sm">
+          <Link href="/refill">{t('actions.change')}</Link>
+        </evg-button>
+      </locator-context-header>
+      <locator-wrap max-width="none" gutter="fluid">
+        <evg-section padding="md">
+          <h2>{t('refill.explore.title')}</h2>
+          {locationsLoading && <Loading />}
+          {!locationsLoading && refillLocations && (
+            <section className="evg-spacing-bottom-lg">
+              {refillLocations?.items?.length > 0 ? (
+                <>
+                  <NavLink
+                    href={`/${postcode}/refill/places`}
+                    icon="refill"
+                    title={t('refill.explore.nearestLocations.title')}
+                    description={t(
+                      'refill.explore.nearestLocations.description',
+                      {
+                        count: refillLocations?.items?.length ?? 0,
+                      },
+                    )}
+                  />
+                  <ul className="list-style-none">
+                    {navLinks.map(({ href, icon, title, description }) => (
+                      <li key={href} className="evg-spacing-top-md">
+                        <NavLink
+                          href={href}
+                          icon={icon}
+                          title={title}
+                          description={description}
+                        />
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              ) : (
+                <>
+                  <evg-card
+                    className="evg-spacing-top-md theme-negative-muted"
+                    radius="sm"
+                    padding="sm"
+                  >
+                    <evg-card-content>
+                      <evg-row>
+                        <locator-icon-circle variant="negative" transparent>
+                          <locator-icon icon="pin"></locator-icon>
+                        </locator-icon-circle>
+                        <div>
+                          <h3 className="evg-spacing-bottom-none">
+                            {t('refill.explore.noPlaces.title')}
+                          </h3>
+                          <p className="evg-text-size-body-xs">
+                            {t('refill.explore.noPlaces.description')}
+                          </p>
+                        </div>
+                      </evg-row>
+                    </evg-card-content>
+                  </evg-card>
+                  <ul className="list-style-none">
+                    <li className="evg-spacing-top-md">
+                      <NavLink
+                        href={`/${postcode}/refill/discover/sign-up`}
+                        icon="home-pin"
+                        description={t('refill.explore.signUp.description')}
+                      />
+                    </li>
+                  </ul>
 
-          <evg-grid className="evg-spacing-top-sm" align-items="center">
-            <evg-grid-item grow>
-              <hr aria-hidden="true" />
-            </evg-grid-item>
-            <evg-grid-item>
-              <span className="evg-text-size-body-xs">{t('common.or')}</span>
-            </evg-grid-item>
-            <evg-grid-item grow>
-              <hr aria-hidden="true" />
-            </evg-grid-item>
-          </evg-grid>
+                  <p className="evg-text-size-body evg-spacing-top-md evg-spacing-bottom-sm">
+                    You still have options
+                  </p>
+                  <ul className="list-style-none">
+                    {navCards.map((page) => (
+                      <li key={page} className="evg-spacing-bottom-md">
+                        <locator-card-link>
+                          <Link href={`/${postcode}/refill/discover/${page}`}>
+                            <locator-card-link-img>
+                              <img
+                                src={`${publicPath}images/refill/${page}.webp`}
+                                alt=""
+                              />
+                            </locator-card-link-img>
+                            <locator-card-link-content>
+                              <p className="evg-text-weight-bold evg-spacing-bottom-none">
+                                {t(`refill.discover.nav.${page}.title`)}
+                              </p>
+                              <p>
+                                {t(`refill.discover.nav.${page}.description`)}
+                              </p>
+                            </locator-card-link-content>
+                          </Link>
+                        </locator-card-link>
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              )}
+              <evg-grid className="evg-spacing-top-sm" align-items="center">
+                <evg-grid-item grow>
+                  <hr aria-hidden="true" />
+                </evg-grid-item>
+                <evg-grid-item>
+                  <span className="evg-text-size-body-xs">
+                    {t('common.or')}
+                  </span>
+                </evg-grid-item>
+                <evg-grid-item grow>
+                  <hr aria-hidden="true" />
+                </evg-grid-item>
+              </evg-grid>
 
-          <NavLink
-            href={`/${postcode}`}
-            icon="recycle"
-            title={t('refill.explore.recyclingOptions.title')}
-            description={t('refill.explore.recyclingOptions.description')}
-          />
-        </section>
-      </evg-section>
-    </locator-wrap>
+              <NavLink
+                href={`/${postcode}`}
+                icon="recycle"
+                title={t('refill.explore.recyclingOptions.title')}
+                description={t('refill.explore.recyclingOptions.description')}
+              />
+            </section>
+          )}
+        </evg-section>
+      </locator-wrap>
+    </>
   );
 }

@@ -142,9 +142,11 @@
     },
     "title": "About this service",
     "intro": "Powered by RecycleNow.com, this tool can be used to search and find recycling locations throughout the United Kingdom.",
+    "refillIntro": "Powered by RecycleNow.com, this tool can be used to search and find refill locations throughout the United Kingdom.",
     "becomeAPartner": {
       "title": "Add this tool to your website",
       "description": "It’s been created as an embeddable widget that can be added to any website to help visitors discover more recycling options. For example, a beverage manufacturer could use the tool to show places to recycle drinks cans.",
+      "refillDescription": "It’s been created as an embeddable widget that can be added to any website to help visitors discover more refill options.",
       "cta": "Become a partner",
       "url": "https://wrap.org.uk/taking-action/citizen-behaviour-change/recycle-now/recycling-locator-tool"
     },
@@ -442,13 +444,13 @@
     },
     "start": {
       "title": "Discover refill options in your area",
-      "intro": "Bring your empty containers and fill up your favourites without the packaging waste.",
+      "intro": "Find places to refill food, cleaning and personal care products near you.",
       "aside": {
-        "paragraph": "You can also use this service to:",
+        "paragraph": "Why choose refill?",
         "list": [
-          "Find out how Refill works",
-          "Learn why others love Refill",
-          "Check for common Refill products"
+          "Cut packaging waste",
+          "Reduce your carbon footprint",
+          "Support local business and shops"
         ]
       }
     },

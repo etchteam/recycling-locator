@@ -39,7 +39,10 @@ export function DefaultAside() {
   }
 
   return tip ? (
-    <locator-tip type="promo" text-align="center">
+    <locator-tip
+      type={location === '/' ? 'promo' : undefined}
+      text-align="center"
+    >
       <locator-wrap>
         <TipContent tip={tip} />
       </locator-wrap>
@@ -92,9 +95,12 @@ export default function StartLayout({
 }) {
   const [infoOpen, setInfoOpen] = useState(false);
   const [location] = useLocation();
-  const isNotFoundPage = !['/', '/home-recycling', '/material'].includes(
-    location,
-  );
+  const isNotFoundPage = ![
+    '/',
+    '/home-recycling',
+    '/material',
+    '/refill',
+  ].includes(location);
 
   return (
     <locator-layout>

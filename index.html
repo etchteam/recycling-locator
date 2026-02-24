@@ -7,6 +7,7 @@
     <title>Recycling Locator Widget</title>
     <meta name="description" content="Find places to recycle, refill or reuse items." />
     <meta name="keywords" content="recycling, refill, reuse, recycle, locator, widget" />
+    <meta name="robots" content="noindex, nofollow" />
     <!--
       CSP testing
       <meta
@@ -16,125 +17,159 @@
     -->
 
     <style>
+      body {
+        font-family: -apple-system, system-ui, blinkmacsystemfont, roboto,
+          helvetica, arial, sans-serif;
+        font-size: 16px;
+        -webkit-font-smoothing: antialiased;
+        line-height: 1.5;
+        margin: 0;
+        padding: 0;
+      }
+
       main {
         margin: 0 auto;
-        max-width: 1400px;
+        max-width: 1500px;
         padding: 1rem;
       }
 
       h1 {
-        margin: 0 0 2rem;
+        font-weight: bold;
+        line-height: 1.25;
+        margin: 0 0 1rem;
       }
 
-      ul {
-        padding: 0;
+      label {
+        display: block;
+        font-weight: bold;
+        font-size: 0.875rem;
+        margin-bottom: 0.25rem;
       }
 
-      ul ul {
-        padding-left: 1rem;
+      select {
+        width: 100%;
+        padding: 0.375rem 0.5rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 0.875rem;
+      }
+
+      .control-group {
+        margin-bottom: 0.75rem;
+      }
+
+      .controls-toggle {
+        display: none;
+        font-size: 0.75rem;
+        cursor: pointer;
+        background: #fff;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 0.25rem 0.5rem;
+      }
+
+      .standalone .controls-toggle {
+        display: block;
+        position: fixed;
+        top: 0.5rem;
+        right: 0.5rem;
+        z-index: 1001;
       }
 
       @media (width >= 768px) {
-        .wrap {
+        .layout {
           display: grid;
           grid-template-columns: 250px 1fr;
+          gap: 1rem;
         }
+      }
+
+      /* Standalone mode */
+      .standalone main {
+        max-width: none;
+        padding: 0;
+      }
+
+      .standalone h1 {
+        display: none;
+      }
+
+      .standalone .layout {
+        display: block;
+      }
+
+      .standalone #controls {
+        position: fixed;
+        top: 0.5rem;
+        right: 0.5rem;
+        z-index: 1000;
+        background: #fff;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 0.75rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        width: 220px;
+      }
+
+      .standalone #controls.hidden {
+        display: none;
       }
     </style>
   </head>
   <body>
     <main>
-      <h1>Recycling Locator Widget</h1>
+      <h1>Recycling Locator Widget Demo</h1>
 
-      <div class="wrap">
-        <nav>
-          <ul>
-            <li>
-              <a href="/">Start</a>
-              <ul>
-                <li>
-                  <a href="/home-recycling">Home recycling</a>
-                </li>
-                <li>
-                  <a href="/material?category=1&search=Cardboard">Material</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a href="/EX32 7RB">Postcode</a>
-              <ul>
-                <li>
-                  <a href="/notapostcode">Not found</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a href="/EX32 7RB/material?materials=43&search=Plastic milk bottles">Material</a>
-              <ul>
-                <li>
-                  <a href="/EX32 7RB/material/search?search=Not a material">Not found</a>
-                </li>
-                <li>
-                  <a href="/YO23 1LY/material?materials=6&search=Food and drink cartons">Some home recycling options</a>
-                </li>
-                <li>
-                  <a href="/YO23 1LY/material?materials=43&search=Plastic milk bottles">All home recycling options</a>
-                </li>
-                <li>
-                  <a href="/EX32 7RB/material?materials=79&search=Car batteries">No home recycling</a>
-                </li>
-                <li>
-                  <a href="/EX32 7RB/material?materials=122&search=Toilet roll wrapping">Not recyclable</a>
-                </li>
-                <li>
-                  <a href="/EX32 7RB/material?search=Asbestos&materials=146">Hazardous</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a href="/EX32 7RB/home">Home recycling</a>
-              <ul>
-                <li>
-                  <a href="/HP19 0GE/home/collection?scheme=Kerbside properties">Collection</a>
-                </li>
-                <li>
-                  <a href="/NOTAPOSTCODE/home">LA not found</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a href="/EX32 7RB/places">Places</a>
-              <ul>
-                <li>
-                  <a href="/EX32 7RB/places/map">Map</a>
-                </li>
-                <li>
-                  <a href="/EX32 7RB/places/search">Search</a>
-                </li>
-                <li>
-                  <a href="/EX32 7RB/places?materials=43&search=Plastic milk bottles">Filtered</a>
-                </li>
-                <li>
-                  <a href="/EX32 7RB/places?materials=122&search=Toilet roll wrapping">No results</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a href="/EX32 7RB/places/Tesco Car Park/EX312AS">Place</a>
-            </li>
-            <li>
-              <a href="/refill">Refill</a>
-              <ul>
-                <li>
-                  <a href="/EX32 7RB/refill/">Postcode</a>
-                </li>
-                <li>
-                  <a href="/EX32 7RB/refill/home-delivery">Home delivery</a>
-                </li>
-              </ul>
-            </li>
-          </ul>
+      <div class="layout" id="layout">
+        <nav id="controls">
+          <div class="control-group">
+            <label for="start-point">Start point</label>
+            <select id="start-point">
+              <option value="/">Default</option>
+              <option value="/home-recycling">Home recycling</option>
+              <option value="/refill">Refill</option>
+              <option value="/material?name=Plastic drinks bottles">Pre-filled material</option>
+              <option value="/EX32 8JL">Pre-filled location</option>
+            </select>
+          </div>
+
+          <div class="control-group">
+            <label for="theme">Theme</label>
+            <select id="theme">
+              <option value="green">Green (Default)</option>
+              <option value="red">Red</option>
+              <option value="blue">Blue</option>
+              <option value="orange">Orange</option>
+              <option value="purple">Purple</option>
+              <option value="brown">Brown</option>
+              <option value="navy">Navy</option>
+              <option value="black">Black</option>
+              <option value="none">None</option>
+            </select>
+          </div>
+
+          <div class="control-group">
+            <label for="locale">Locale</label>
+            <select id="locale">
+              <option value="">English</option>
+              <option value="cy">Welsh (Cymraeg)</option>
+              <option value="cy-GB">Wales (English)</option>
+            </select>
+          </div>
+
+          <div class="control-group">
+            <label for="variant">Variant</label>
+            <select id="variant">
+              <option value="widget">Widget</option>
+              <option value="standalone">Standalone</option>
+            </select>
+          </div>
+
         </nav>
+
+        <button class="controls-toggle" id="controls-toggle" type="button">
+          Hide controls
+        </button>
 
         <recycling-locator></recycling-locator>
       </div>
@@ -144,15 +179,51 @@
 
     <script>
       const recyclingLocator = document.querySelector('recycling-locator');
-      const links = document.querySelectorAll('nav a');
+      const controls = document.getElementById('controls');
+      const toggleBtn = document.getElementById('controls-toggle');
 
-      links.forEach((link) => {
-        link.addEventListener('click', (event) => {
-          event.preventDefault();
-          const path = link.getAttribute('href');
-          recyclingLocator.setAttribute('path', path);
-        });
+      // Start point selector
+      document.getElementById('start-point').addEventListener('change', (e) => {
+        recyclingLocator.setAttribute('path', e.target.value);
       });
+
+      // Theme selector
+      document.getElementById('theme').addEventListener('change', (e) => {
+        recyclingLocator.setAttribute('theme', e.target.value);
+      });
+
+      // Locale selector
+      document.getElementById('locale').addEventListener('change', (e) => {
+        if (e.target.value) {
+          recyclingLocator.setAttribute('locale', e.target.value);
+        } else {
+          recyclingLocator.removeAttribute('locale');
+        }
+      });
+
+      // Variant selector
+      document.getElementById('variant').addEventListener('change', (e) => {
+        const isStandalone = e.target.value === 'standalone';
+        recyclingLocator.setAttribute('variant', e.target.value);
+        document.body.classList.toggle('standalone', isStandalone);
+      });
+
+      // Toggle controls visibility (standalone mode)
+      toggleBtn.addEventListener('click', () => {
+        const isHidden = controls.classList.toggle('hidden');
+        toggleBtn.textContent = isHidden ? 'Show controls' : 'Hide controls';
+      });
+    </script>
+
+    <!-- Marker.io: only loads when VITE_MARKER_KEY env var is set (demo/UAT) -->
+    <script type="module">
+      const MARKER_KEY = import.meta.env.VITE_MARKER_KEY;
+      if (MARKER_KEY) {
+        window.markerConfig = { project: MARKER_KEY, source: 'snippet' };
+        /* eslint-disable */
+        !function(e,r,a){if(!e.__Marker){e.__Marker={};var t=[],n={__cs:t};["show","hide","isVisible","capture","cancelCapture","unload","reload","isExtensionInstalled","setReporter","setCustomData","on","off"].forEach(function(e){n[e]=function(){var r=Array.prototype.slice.call(arguments);r.unshift(e),t.push(r)}});e.Marker=n;var s=r.createElement("script");s.async=1;s.src="https://edge.marker.io/latest/shim.js";var i=r.getElementsByTagName("script")[0];i.parentNode.insertBefore(s,i)}}(window,document);
+        /* eslint-enable */
+      }
     </script>
   </body>
 </html>

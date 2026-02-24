@@ -440,6 +440,11 @@
         ]
       }
     },
+    "category": {
+      "mixed-food": "Bwyd",
+      "personal-care": "Gofal personol",
+      "cleaning": "Glanhau"
+    },
     "discover": {
       "aside": {
         "title": "Rhoi bywyd newydd i blastig",
@@ -669,6 +674,52 @@
       },
       "error": {
         "message": "Digwyddodd gwall annisgwyl wrth lwytho gwybodaeth Ail-lenwi."
+      }
+    },
+    "homeDelivery": {
+      "pageTitle": "Dosbarthu ail-lenwi i'r cartref",
+      "title": "Cofio'r dyn llaeth?",
+      "subtitle": "Cael hanfodion wedi'u danfon i'ch drws, a dychwelyd y pecynnu i'w ailddefnyddio!",
+      "steps": {
+        "items": [
+          "Pori ar-lein ac archebu eich cynhyrchion",
+          "Mae eich cynhyrchion yn cyrraedd eich drws mewn pecynnu y gellir ei ddychwelyd ac ail-lenwi",
+          "Gwacáu eich cynhyrchion i'ch cynwysyddion a'ch cypyrddau eich hun, a rinsio'r pecynnu y gellir ei ddychwelyd",
+          "Dychwelyd y pecynnu gwag fel y gellir ei ddefnyddio eto"
+        ]
+      },
+      "providersTitle": "Gwasanaethau dosbarthu ail-lenwi i'r cartref",
+      "providers": {
+        "abel-and-cole": {
+          "name": "Abel & Cole",
+          "category": "Bwyd",
+          "description": "Cael eich hanfodion bob dydd wedi'u danfon mewn pecynnu y gellir ei ddychwelyd ac ail-lenwi — dim gwastraff, dim cyfaddawd. Dyna Club Zero."
+        },
+        "beauty-kitchen": {
+          "name": "Beauty Kitchen",
+          "category": "Gofal personol",
+          "description": "Cynllun dychwelyd, ail-lenwi, ailadrodd ar gyfer cynhyrchion harddwch a gofal personol. Anfonwch rai gwag yn ôl am gredyd siop."
+        },
+        "milk-and-more": {
+          "name": "Milk & More",
+          "category": "Bwyd",
+          "description": "Gwasanaeth dosbarthu traddodiadol ar stepen y drws yn dod â llaeth a sudd mewn poteli y gellir eu hail-lenwi sy'n cael eu casglu a'u hailddefnyddio."
+        },
+        "the-modern-milkman": {
+          "name": "The Modern Milkman",
+          "category": "Bwyd",
+          "description": "Gwasanaeth dosbarthu a chasglu ar stepen y drws ar gyfer cynhyrchion ffres. Mae eu poteli gwydr a photiau wedi'u gwneud i ddod yn ôl."
+        },
+        "yoyo": {
+          "name": "Yoyo Grocery",
+          "category": "Bwyd",
+          "description": "Mae Yoyo Grocery yn dosbarthu bwyd naturiol ac organig yn uniongyrchol i'ch drws gyda system ddychwelyd pecynnu ddolen gaeedig."
+        },
+        "ocado": {
+          "name": "Ocado",
+          "category": "Bwyd",
+          "description": "Mae Ocado yn cynnig dewisiadau amgen y gellir eu hailddefnyddio i'w hystod bresennol, mewn nifer ddethol o leoliadau ledled y DU."
+        }
       }
     }
   }

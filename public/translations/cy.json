@@ -469,6 +469,11 @@
           "title": "Sut y gallai ail-lenwi weithio i chi",
           "description": "Dysgwch sut y gallai ail-lenwi ffitio i mewn i'ch arferion a'ch cypyrddau presennol"
         },
+        "home-delivery": {
+          "label": "Gwasanaethau dosbarthu i'r cartref",
+          "title": "Gwasanaethau dosbarthu i'r cartref",
+          "description": "Archebwch hanfodion i'ch drws mewn pecynnu y gellir ei ddychwelyd - yn union fel Dyn Llaeth!"
+        },
         "sign-up": {
           "label": "Cofrestru"
         }
@@ -669,6 +674,33 @@
       },
       "error": {
         "message": "Digwyddodd gwall annisgwyl wrth lwytho gwybodaeth Ail-lenwi."
+      },
+      "explore": {
+        "title": "Archwilio ail-lenwi yn yr ardal hon",
+        "nearestLocations": {
+          "title": "Eich lleoliadau ail-lenwi agosaf",
+          "description": "{{count}} lle o fewn 25 milltir"
+        },
+        "homeDelivery": {
+          "title": "Gwasanaethau dosbarthu i'r cartref",
+          "description": "Archebwch gynhyrchion mewn pecynnu y gellir ei ddychwelyd i'ch drws"
+        },
+        "gettingStarted": {
+          "title": "Dechrau gydag ail-lenwi",
+          "description": "Yn newydd i ail-lenwi? Mae'n syml yn rhyfeddol!"
+        },
+        "signUp": {
+          "title": "Cofrestru",
+          "description": "Cael eich hysbysu pan ddarganfyddir lleoedd ail-lenwi newydd yn eich ardal."
+        },
+        "recyclingOptions": {
+          "title": "Opsiynau ailgylchu yn eich ardal",
+          "description": "Dewch o hyd i'ch lleoedd ailgylchu agosaf"
+        },
+        "noPlaces": {
+          "title": "Dim lleoedd ail-lenwi gerllaw",
+          "description": "Ni allem ddod o hyd i unrhyw rai o fewn 25 milltir"
+        }
       }
     }
   }

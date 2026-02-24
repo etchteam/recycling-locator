@@ -118,28 +118,28 @@ export default function RefillPage() {
                         <ul>
                           {categories.map((category) => (
                             <li key={category}>
-                              <Link
-                                href={`/${postcode}/refill/places?category=${category}`}
-                              >
-                                <evg-card radius="sm">
+                              <locator-category-card>
+                                <Link
+                                  href={`/${postcode}/refill/places?category=${category}`}
+                                >
                                   <img
                                     src={`${publicPath}images/refill/categories/${category}.webp`}
                                     alt=""
                                     width="180"
                                     height="220"
                                   />
-                                  <evg-button>
-                                    <button type="button">
+                                  <evg-chip variant="light">
+                                    <span>
                                       <locator-icon
                                         icon={
                                           category as IconAttributes['icon']
                                         }
                                       ></locator-icon>
                                       {t(`refill.category.${category}`)}
-                                    </button>
-                                  </evg-button>
-                                </evg-card>
-                              </Link>
+                                    </span>
+                                  </evg-chip>
+                                </Link>
+                              </locator-category-card>
                             </li>
                           ))}
                         </ul>

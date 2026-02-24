@@ -11,6 +11,7 @@ export interface IconAttributes {
   readonly icon:
     | 'arrow-left'
     | 'arrow-right'
+    | 'arrow-outward'
     | 'arrow-up'
     | 'call'
     | 'close'
@@ -46,7 +47,10 @@ export interface IconAttributes {
     | 'thumb-up'
     | 'tick-circle'
     | 'tick'
-    | 'warning';
+    | 'warning'
+    | 'mixed-food'
+    | 'cleaning'
+    | 'personal-care';
   readonly color?: 'primary' | 'muted' | 'positive' | 'negative' | 'white';
   readonly label?: string;
 }

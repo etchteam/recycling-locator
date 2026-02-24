@@ -454,6 +454,11 @@
         ]
       }
     },
+    "category": {
+      "mixed-food": "Food",
+      "personal-care": "Personal care",
+      "cleaning": "Cleaning"
+    },
     "discover": {
       "aside": {
         "title": "Give plastic a new life",
@@ -683,6 +688,52 @@
       },
       "error": {
         "message": "An unexpected error occurred while loading Refill information."
+      }
+    },
+    "homeDelivery": {
+      "pageTitle": "Refill home delivery",
+      "title": "Remember the milkman?",
+      "subtitle": "Get essentials delivered to your door, and return the packaging to be reused!",
+      "steps": {
+        "items": [
+          "Browse online and order your products",
+          "Your products arrive at your door in returnable and refillable packaging",
+          "Empty your products into your own containers and cupboards, and give the returnable packaging a rinse",
+          "Return the empty packaging so it can be used again"
+        ]
+      },
+      "providersTitle": "Refill home delivery services",
+      "providers": {
+        "abel-and-cole": {
+          "name": "Abel & Cole",
+          "category": "Food",
+          "description": "Get your everyday essentials delivered in returnable, refillable packaging — no waste, no compromise. That's Club Zero."
+        },
+        "beauty-kitchen": {
+          "name": "Beauty Kitchen",
+          "category": "Personal care",
+          "description": "Return, refill, repeat scheme for beauty and personal care products. Send back empties for store credit."
+        },
+        "milk-and-more": {
+          "name": "Milk & More",
+          "category": "Food",
+          "description": "Traditional doorstep delivery service bringing milk and juice in refillable bottles which are collected and reused."
+        },
+        "the-modern-milkman": {
+          "name": "The Modern Milkman",
+          "category": "Food",
+          "description": "A doorstep delivery and collection service for fresh products. Their glass bottles and pots are made to come back."
+        },
+        "yoyo": {
+          "name": "Yoyo Grocery",
+          "category": "Food",
+          "description": "Yoyo Grocery delivers natural and organic food directly to your door with a closed-loop packaging return system."
+        },
+        "ocado": {
+          "name": "Ocado",
+          "category": "Food",
+          "description": "Ocado offer resuseable alternatives to their existing range, in a select number of locations across the UK."
+        }
       }
     }
   }

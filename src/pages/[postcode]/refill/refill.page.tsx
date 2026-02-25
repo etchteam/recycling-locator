@@ -104,9 +104,13 @@ function RefillOptions({ postcode }: { readonly postcode: string }) {
     return <Loading />;
   }
 
+  if (!refillLocations) {
+    return <Loading />;
+  }
+
   if (refillLocations.items?.length === 0) {
     return (
-      <>
+      <evg-enter type="fade-in-up" delay={0.25}>
         <evg-card
           className="evg-spacing-top-md theme-negative-muted"
           radius="sm"
@@ -164,12 +168,12 @@ function RefillOptions({ postcode }: { readonly postcode: string }) {
           ))}
         </ul>
         <RecyclingLink postcode={postcode} />
-      </>
+      </evg-enter>
     );
   }
 
   return (
-    <>
+    <evg-enter type="fade-in-up" delay={0.25}>
       <NavLink
         href={`/${postcode}/refill/places`}
         icon="refill"
@@ -226,7 +230,7 @@ function RefillOptions({ postcode }: { readonly postcode: string }) {
         ))}
       </ul>
       <RecyclingLink postcode={postcode} />
-    </>
+    </evg-enter>
   );
 }
 
@@ -249,10 +253,14 @@ export default function RefillPage() {
           <Link href="/refill">{t('actions.change')}</Link>
         </evg-button>
       </locator-context-header>
-      <locator-wrap max-width="none" gutter="fluid">
-        <evg-section padding="md">
-          <h2>{t('refill.explore.title')}</h2>
-          <RefillOptions postcode={postcode} />
+      <locator-wrap>
+        <evg-section padding="lg">
+          <evg-enter type="fade" className="layer-one">
+            <h2 className="evg-text-size-heading-md evg-spacing-bottom-sm">
+              {t('refill.explore.title')}
+            </h2>
+            <RefillOptions postcode={postcode} />
+          </evg-enter>
         </evg-section>
       </locator-wrap>
     </>

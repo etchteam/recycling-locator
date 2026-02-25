@@ -5,7 +5,6 @@ import tArray from '@/lib/tArray';
 
 interface DeliveryProvider {
   id: string;
-  name: string;
   category: 'mixed-food' | 'cleaning' | 'personal-care';
   url: string;
 }
@@ -13,37 +12,31 @@ interface DeliveryProvider {
 const deliveryProviders: DeliveryProvider[] = [
   {
     id: 'abel-and-cole',
-    name: 'Abel & Cole',
     category: 'mixed-food',
     url: 'https://www.abelandcole.co.uk',
   },
   {
     id: 'beauty-kitchen',
-    name: 'Beauty Kitchen',
     category: 'personal-care',
     url: 'https://www.abelandcole.co.uk',
   },
   {
     id: 'milk-and-more',
-    name: 'Milk & More',
     category: 'mixed-food',
     url: 'https://www.milkandmore.co.uk',
   },
   {
     id: 'the-modern-milkman',
-    name: 'The Modern Milkman',
     category: 'mixed-food',
     url: 'https://www.abelandcole.co.uk',
   },
   {
     id: 'yoyo',
-    name: 'Yoyo Grocery',
     category: 'mixed-food',
     url: 'https://www.abelandcole.co.uk',
   },
   {
     id: 'ocado',
-    name: 'Ocado',
     category: 'mixed-food',
     url: 'https://www.abelandcole.co.uk',
   },
@@ -91,18 +84,24 @@ export default function HomeDeliveryPage() {
         gutter="fluid"
         className="evg-spacing-top-lg"
       >
-        <h3 className="evg-text-size-body-sm evg-text-weight-bold">
+        <h3
+          id="provides-title"
+          className="evg-text-size-body-sm evg-text-weight-bold"
+        >
           {t('refill.homeDelivery.providersTitle')}
         </h3>
 
         <locator-places-grid className="evg-spacing-bottom-lg">
-          <nav aria-labelledby="places-count">
+          <nav aria-labelledby="provides-title">
             <ul>
               {deliveryProviders.map((provider) => {
+                const providerName = t(
+                  `refill.homeDelivery.providers.${provider.id}.name`,
+                );
                 return (
-                  <li key={`${provider.id}`}>
+                  <li key={provider.id}>
                     <a
-                      href={provider.url ? provider.url : '#'}
+                      href={provider.url}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -113,14 +112,14 @@ export default function HomeDeliveryPage() {
                               <evg-img radius="sm">
                                 <img
                                   src={`/images/refill/logos/${provider.id}.webp`}
-                                  alt={`${provider.name} logo`}
+                                  alt={`${providerName} logo`}
                                   width="48"
                                   height="48"
                                 />
                               </evg-img>
                               <div>
                                 <h4 className="evg-spacing-bottom-xs">
-                                  {provider.name}
+                                  {providerName}
                                 </h4>
                                 <evg-row gap="sm">
                                   <locator-icon

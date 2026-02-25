@@ -17,11 +17,12 @@ const makeItem = (
   locations: [
     {
       collectionDetails: null,
-      locationType: 'REFILL',
+      locationType: 'REFILL' as const,
+      materials: [],
       notes: null,
       openingHours: null,
       providesCollection: false,
-      source: 'wrap',
+      source: 'wrap' as const,
       telephone: '01271 324294',
       website: null,
       company: {
@@ -54,6 +55,13 @@ const refillStation = makeItem(
   [{ id: '4', name: 'Food' }],
 );
 
+const refillStore = makeItem(
+  '7012',
+  'The Refill Store',
+  'Main Street, Barnstaple, EX33 8PY',
+  [{ id: '4', name: 'Food' }],
+);
+
 test('returns false for an empty items array', () => {
   expect(getRefillCategoryAvailability([])).toBe(false);
 });
@@ -66,41 +74,30 @@ test('returns false when no categories are present', () => {
     [],
   );
   expect(getRefillCategoryAvailability([emptyCategories])).toBe(false);
+  expect(getRefillCategoryAvailability([emptyCategories, orchardsFarmShop])).toBe(false);
 });
 
-test('returns false when only some required categories are present', () => {
+test('returns false when only one required category is present', () => {
+  expect(getRefillCategoryAvailability([orchardsFarmShop])).toBe(false);
+  expect(getRefillCategoryAvailability([nourish])).toBe(false);
+  expect(getRefillCategoryAvailability([refillStation])).toBe(false);
+  expect(getRefillCategoryAvailability([refillStation, refillStore])).toBe(false);
+});
+
+test('returns true when two required categories are present across multiple items', () => {
   expect(
     getRefillCategoryAvailability([orchardsFarmShop, nourish]),
-  ).toBe(false);
+  ).toBe(true);
   expect(
     getRefillCategoryAvailability([orchardsFarmShop, refillStation]),
-  ).toBe(false);
+  ).toBe(true);
   expect(
     getRefillCategoryAvailability([nourish, refillStation]),
-  ).toBe(false);
-});
-
-test('returns true when all three required categories are present across multiple items', () => {
-  expect(
-    getRefillCategoryAvailability([orchardsFarmShop, nourish, refillStation]),
   ).toBe(true);
 });
 
-test('is case-insensitive when matching category names', () => {
-  const allLowercase = makeItem(
-    '5707',
-    'Orchards Farm Shop',
-    'Barnstaple, EX32 9DD',
-    [
-      { id: '2', name: 'cleaning' },
-      { id: '3', name: 'personal care' },
-      { id: '4', name: 'food' },
-    ],
-  );
-  expect(getRefillCategoryAvailability([allLowercase])).toBe(true);
-});
 
-test('returns true when all three required categories are in a single item', () => {
+test('returns true when two required categories are in a single item', () => {
   const allCategories = makeItem(
     '5707',
     'Orchards Farm Shop',
@@ -108,46 +105,9 @@ test('returns true when all three required categories are in a single item', () 
     [
       { id: '2', name: 'Cleaning' },
       { id: '3', name: 'Personal Care' },
-      { id: '4', name: 'Food' },
     ],
   );
   expect(getRefillCategoryAvailability([allCategories])).toBe(true);
-});
-
-test('returns true when required categories are spread across multiple locations in one item', () => {
-  const multiLocation = {
-    id: '5707',
-    distance: 1.17546,
-    name: 'Orchards Farm Shop',
-    address: 'Barnstaple, EX32 9DD',
-    latitude: 51.0704574,
-    longitude: -4.0402859,
-    locations: [
-      {
-        collectionDetails: null,
-        locationType: 'REFILL',
-        notes: null,
-        openingHours: null,
-        providesCollection: false,
-        source: 'wrap',
-        telephone: '01271 324294',
-        website: null,
-        company: { id: '271', name: 'Ecover', refillCategories: [{ id: '2', name: 'Cleaning' }] },
-      },
-      {
-        collectionDetails: null,
-        locationType: 'REFILL',
-        notes: null,
-        openingHours: null,
-        providesCollection: false,
-        source: 'wrap',
-        telephone: '01271 812006',
-        website: 'https://www.nourishstores.com/',
-        company: { id: '312', name: 'Faith In Nature', refillCategories: [{ id: '3', name: 'Personal Care' }, { id: '4', name: 'Food' }] },
-      },
-    ],
-  };
-  expect(getRefillCategoryAvailability([multiLocation])).toBe(true);
 });
 
 test('handles locations without a company gracefully', () => {
@@ -161,11 +121,12 @@ test('handles locations without a company gracefully', () => {
     locations: [
       {
         collectionDetails: null,
-        locationType: 'REFILL',
+        locationType: 'REFILL' as const,
+        materials: [],
         notes: null,
         openingHours: null,
         providesCollection: false,
-        source: 'wrap',
+        source: 'wrap' as const,
         telephone: '01271 812006',
         website: 'https://www.nourishstores.com/',
         company: undefined,

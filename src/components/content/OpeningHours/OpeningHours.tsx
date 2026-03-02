@@ -12,16 +12,19 @@ function getTodayClass(hours: string): string {
 export default function OpeningHours({
   openingHours,
 }: {
-  readonly openingHours: string[];
+  readonly openingHours: {
+    today: string;
+    days: string[];
+  };
 }) {
   const { t } = useTranslation();
   const open = useSignal(false);
 
-  if (openingHours.length === 0) {
+  const { today, days } = openingHours;
+
+  if (days.length === 0) {
     return null;
   }
-
-  const [today] = openingHours;
 
   return (
     <div className="locator-opening-hours">
@@ -35,12 +38,12 @@ export default function OpeningHours({
           <strong>{t('place.details.openHours')} </strong>
           <span className={getTodayClass(today)}>{today}</span>
         </span>
-        <locator-icon icon="expand" className="evg-spacing-left-xs" />
+        <locator-icon icon="expand" color="positive" />
       </button>
-      {openingHours.length > 0 && (
+      {days.length > 0 && (
         <evg-collapse id="opening-hours-collapse" open={open.value}>
           <ul>
-            {openingHours.map((hours) => (
+            {days.map((hours) => (
               <li key={hours}>{hours}</li>
             ))}
           </ul>

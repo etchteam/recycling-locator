@@ -9,6 +9,14 @@
     justify-content: space-between;
     padding: 0;
     width: 100%;
+
+    locator-icon {
+      transition: rotate 0.2s ease;
+    }
+
+    &[aria-expanded='true'] locator-icon {
+      rotate: 180deg;
+    }
   }
 
   ul {

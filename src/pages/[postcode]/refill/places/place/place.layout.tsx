@@ -71,14 +71,10 @@ export default function RefillPlaceLayout({
     ? PostCodeResolver.extractPostcodeFromString(location.address)
     : '';
   if (location) {
-    const [todayEntry] = getOpeningHours(location);
-    if (todayEntry) {
-      // Strip "DayName: " prefix and any " (open/closed now)" suffix
-      const time = todayEntry
-        .replace(/^\w+:\s/, '')
-        .replace(/\s\([^)]+\)$/, '');
-      if (time !== 'Closed') {
-        subtitle = `${t('place.details.openToday')}: ${time.replace(' - ', ' \u2013 ')}`;
+    const { today } = getOpeningHours(location);
+    if (today) {
+      if (today !== 'Closed') {
+        subtitle = t('place.details.openToday') + ': ' + today;
       }
     }
   }

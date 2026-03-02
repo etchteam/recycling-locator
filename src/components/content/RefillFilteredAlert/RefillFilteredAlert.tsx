@@ -1,6 +1,7 @@
 import { Trans, useTranslation } from 'react-i18next';
 import { useSearchParams } from 'wouter-preact';
 
+import { isValidCategory } from '@/lib/refillCategories';
 import { CustomElement } from '@/types/customElement';
 
 interface RefillFilteredAlertProps {
@@ -14,7 +15,7 @@ export default function RefillFilteredAlert({
   const [searchParams, setSearchParams] = useSearchParams();
   const categories = searchParams.get('categories');
 
-  if (!categories) {
+  if (!isValidCategory(categories)) {
     return null;
   }
 

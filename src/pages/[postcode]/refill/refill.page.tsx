@@ -7,6 +7,7 @@ import { usePostcode } from '@/hooks/PostcodeProvider';
 import { useRefillLocations } from '@/hooks/useRefillLocations';
 import formatPostcode from '@/lib/formatPostcode';
 import getRefillCategoryAvailability from '@/lib/getRefillCategoryAvailability';
+import { REFILL_CATEGORIES } from '@/lib/refillCategories';
 
 interface NavLinkProps {
   readonly href: string;
@@ -74,8 +75,6 @@ function RefillOptions({ postcode }: { readonly postcode: string }) {
   const { data: refillLocations, loading: locationsLoading } =
     useRefillLocations();
   const { publicPath } = useAppState();
-
-  const categories = ['mixed-food', 'cleaning', 'personal-care'];
 
   const navCards = ['guide', 'home-delivery'];
 
@@ -189,30 +188,32 @@ function RefillOptions({ postcode }: { readonly postcode: string }) {
           </p>
           <locator-overflow largeScreen wrapCards>
             <ul>
-              {categories.map((category) => (
-                <li key={category}>
-                  <locator-category-card>
-                    <Link
-                      href={`/${postcode}/refill/places?category=${category}`}
-                    >
-                      <img
-                        src={`${publicPath}images/refill/categories/${category}.webp`}
-                        alt=""
-                        width="180"
-                        height="220"
-                      />
-                      <evg-chip variant="light">
-                        <span>
-                          <locator-icon
-                            icon={category as IconAttributes['icon']}
-                          ></locator-icon>
-                          {t(`refill.category.${category}`)}
-                        </span>
-                      </evg-chip>
-                    </Link>
-                  </locator-category-card>
-                </li>
-              ))}
+              {REFILL_CATEGORIES.filter((c) => c.param !== null).map(
+                (category) => (
+                  <li key={category.key}>
+                    <locator-category-card>
+                      <Link
+                        href={`/${postcode}/refill/places?categories=${category.param}`}
+                      >
+                        <img
+                          src={`${publicPath}images/refill/categories/${category.slug}.webp`}
+                          alt=""
+                          width="180"
+                          height="220"
+                        />
+                        <evg-chip variant="light">
+                          <span>
+                            <locator-icon
+                              icon={category.slug as IconAttributes['icon']}
+                            ></locator-icon>
+                            {t(`refill.category.${category.slug}`)}
+                          </span>
+                        </evg-chip>
+                      </Link>
+                    </locator-category-card>
+                  </li>
+                ),
+              )}
             </ul>
           </locator-overflow>
         </>

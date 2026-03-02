@@ -1,4 +1,5 @@
 import { useLocationsFetch } from '@/hooks/useLocationsFetch';
+import { isValidCategory } from '@/lib/refillCategories';
 
 interface UseRefillLocationsOptions {
   /** When true, ignores the categories filter to return all refill locations */
@@ -20,7 +21,11 @@ export function useRefillLocations({
       };
 
       if (!unfiltered) {
-        params.categories = searchParams.get('categories');
+        const categories = searchParams.get('categories');
+
+        if (isValidCategory(categories)) {
+          params.categories = categories;
+        }
       }
 
       return params;

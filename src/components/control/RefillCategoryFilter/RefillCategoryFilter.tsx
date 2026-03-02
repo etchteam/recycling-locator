@@ -1,14 +1,8 @@
 import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'wouter-preact';
 
+import { REFILL_CATEGORIES } from '@/lib/refillCategories';
 import { CustomElement } from '@/types/customElement';
-
-const REFILL_CATEGORIES = [
-  { key: 'all', icon: 'refill-all', param: null },
-  { key: 'Food', icon: 'refill-food', param: 'Food' },
-  { key: 'Cleaning', icon: 'refill-cleaning', param: 'Cleaning' },
-  { key: 'Personal Care', icon: 'refill-care', param: 'Personal Care' },
-] as const;
 
 export default function RefillCategoryFilter() {
   const { t, i18n } = useTranslation();

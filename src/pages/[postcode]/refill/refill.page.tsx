@@ -93,7 +93,7 @@ function RefillOptions({ postcode }: { readonly postcode: string }) {
       description: t('refill.explore.gettingStarted.description'),
     },
     {
-      href: `/${postcode}/refill/discover/sign-up`,
+      href: `/${postcode}/refill/sign-up`,
       icon: 'home-pin',
       title: t('refill.explore.signUp.title'),
       description: t('refill.explore.signUp.description'),
@@ -135,7 +135,7 @@ function RefillOptions({ postcode }: { readonly postcode: string }) {
         <ul className="list-style-none">
           <li className="evg-spacing-top-md">
             <NavLink
-              href={`/${postcode}/refill/discover/sign-up`}
+              href={`/${postcode}/refill/sign-up`}
               icon="home-pin"
               description={t('refill.explore.signUp.description')}
             />

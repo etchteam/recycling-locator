@@ -432,7 +432,8 @@
       "title": "Lleoedd i ail-lenwi",
       "count": "Rydym wedi dod o hyd i {{count}} lle i ail-lenwi",
       "count_one": "Rydym wedi dod o hyd i 1 lle i ail-lenwi",
-      "count_zero": "Dim lleoedd i ail-lenwi o fewn 25 milltir"
+      "count_zero": "Dim lleoedd i ail-lenwi o fewn 25 milltir",
+      "noPlacesAlert": "<a>Cael eich hysbysu</a> pan fydd lleoliadau ail-lenwi newydd yn cael eu darganfod yn eich ardal"
     },
     "filters": {
       "all": "Pob un",

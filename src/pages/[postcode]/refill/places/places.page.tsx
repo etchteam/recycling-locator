@@ -1,4 +1,4 @@
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { Link, useSearchParams } from 'wouter-preact';
 
 import LoadingPlacesList from '@/components/content/LoadingPlacesList/LoadingPlacesList';
@@ -59,12 +59,27 @@ function RefillLocations() {
             {t('refill.places.count', { count: totalCount })}
           </h3>
         </evg-grid-item>
-        <evg-grid-item small-mobile="12" small-tablet="auto">
-          <RefillCategoryFilter />
-        </evg-grid-item>
+        {totalCount > 0 && (
+          <evg-grid-item small-mobile="12" small-tablet="auto">
+            <RefillCategoryFilter />
+          </evg-grid-item>
+        )}
       </evg-grid>
       <div className="evg-spacing-bottom-md">
-        <RefillFilteredAlert count={count} />
+        {totalCount === 0 ? (
+          <evg-alert variant="neutral-light">
+            <p>
+              <Trans
+                i18nKey="refill.places.noPlacesAlert"
+                components={{
+                  a: <Link href={`/${postcode}/refill/sign-up`} />,
+                }}
+              />
+            </p>
+          </evg-alert>
+        ) : (
+          <RefillFilteredAlert count={count} />
+        )}
       </div>
       {count > 0 && (
         <>

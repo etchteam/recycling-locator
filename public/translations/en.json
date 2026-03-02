@@ -446,7 +446,8 @@
       "title": "Places to refill",
       "count": "We found {{count}} places to refill",
       "count_one": "We found 1 place to refill",
-      "count_zero": "No places to refill within 25 miles"
+      "count_zero": "No places to refill within 25 miles",
+      "noPlacesAlert": "<a>Get notified</a> when new refill locations are discovered in your area"
     },
     "filters": {
       "all": "All",

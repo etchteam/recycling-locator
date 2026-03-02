@@ -44,9 +44,7 @@ test.describe('Refill places', () => {
       node.setAttribute('path', '/EX32 7RB/refill/places'),
     );
 
-    const headerTitle = widget
-      .getByText(i18n.t('refill.places.title'))
-      .first();
+    const headerTitle = widget.getByText(i18n.t('refill.places.title')).first();
 
     await expect(headerTitle).toBeVisible();
   });
@@ -83,11 +81,7 @@ test.describe('Refill places', () => {
     await expect(careFilter).toBeVisible();
   });
 
-  test('Clicking a filter updates results', async ({
-    page,
-    widget,
-    i18n,
-  }) => {
+  test('Clicking a filter updates results', async ({ page, widget, i18n }) => {
     await page.route(REFILL_LOCATIONS_ENDPOINT, (route) => {
       const url = new URL(route.request().url());
       const categories = url.searchParams.get('categories');
@@ -274,6 +268,48 @@ test.describe('Refill places', () => {
     await expect(brandsCard).not.toBeVisible();
   });
 
+  test('No places alert shows with sign-up link when no refill places exist', async ({
+    page,
+    widget,
+  }) => {
+    await page.route(REFILL_LOCATIONS_ENDPOINT, (route) => {
+      route.fulfill({ json: RefillLocationsEmptyResponse });
+    });
+
+    await widget.evaluate((node) =>
+      node.setAttribute('path', '/EX32 7RB/refill/places'),
+    );
+
+    await page.waitForRequest(REFILL_LOCATIONS_ENDPOINT);
+
+    const link = widget.locator('evg-alert a').first();
+    await expect(link).toHaveAttribute('href', /\/EX32 7RB\/refill\/sign-up/);
+  });
+
+  test('Category filter is hidden when no refill places exist', async ({
+    page,
+    widget,
+    i18n,
+  }) => {
+    await page.route(REFILL_LOCATIONS_ENDPOINT, (route) => {
+      route.fulfill({ json: RefillLocationsEmptyResponse });
+    });
+
+    await widget.evaluate((node) =>
+      node.setAttribute('path', '/EX32 7RB/refill/places'),
+    );
+
+    await page.waitForRequest(REFILL_LOCATIONS_ENDPOINT);
+
+    const alert = widget.locator('evg-alert').first();
+    await expect(alert).toBeVisible();
+
+    const allFilter = widget
+      .getByRole('button', { name: i18n.t('refill.filters.all') })
+      .first();
+    await expect(allFilter).not.toBeVisible();
+  });
+
   test('Place cards show category icons', async ({ page, widget }) => {
     await page.route(REFILL_LOCATIONS_ENDPOINT, (route) => {
       route.fulfill({ json: RefillLocationsResponse });
@@ -295,5 +331,4 @@ test.describe('Refill places', () => {
     );
     await expect(categoryIcons.first()).toBeVisible();
   });
-
 });

@@ -20,7 +20,7 @@ interface RefillBrandsProps {
 export default function RefillBrands({ companyNames }: RefillBrandsProps) {
   const { t } = useTranslation();
   const brands = companyNames.filter((name) => name in BRAND_LOGO_MAP);
-  console.log(companyNames, brands);
+
   if (brands.length === 0) {
     return null;
   }

@@ -447,6 +447,9 @@
       "filteredCount_zero": "Dim lleoedd gyda chynhyrchion <bold>{{category}}</bold>",
       "clearFilters": "Clirio hidlwyr"
     },
+    "brands": {
+      "title": "Brandiau ail-lenwi sydd ar gael yn yr ardal hon"
+    },
     "start": {
       "title": "Darganfod opsiynau ail-lenwi yn eich ardal chi",
       "intro": "Dewch o hyd i leoedd i ail-lenwi cynhyrchion bwyd, glanhau a gofal personol yn agos atoch chi.",

@@ -3,11 +3,13 @@ import { Link, useSearchParams } from 'wouter-preact';
 
 import LoadingPlacesList from '@/components/content/LoadingPlacesList/LoadingPlacesList';
 import Place from '@/components/content/Place/Place';
+import RefillBrands from '@/components/content/RefillBrands/RefillBrands';
 import RefillFilteredAlert from '@/components/content/RefillFilteredAlert/RefillFilteredAlert';
 import RefillCategoryFilter from '@/components/control/RefillCategoryFilter/RefillCategoryFilter';
 import { usePostcode } from '@/hooks/PostcodeProvider';
 import { usePaginatedLocations } from '@/hooks/usePaginatedLocations';
 import { useRefillLocations } from '@/hooks/useRefillLocations';
+import getCompanyNames from '@/lib/getCompanyNames';
 
 function RefillLocations() {
   const { postcode } = usePostcode();
@@ -103,6 +105,7 @@ function RefillLocations() {
               </evg-grid-item>
             </evg-grid>
           )}
+          <RefillBrands companyNames={getCompanyNames(locations)} />
         </>
       )}
     </evg-enter>

@@ -461,6 +461,9 @@
       "filteredCount_zero": "No places with <bold>{{category}}</bold> products",
       "clearFilters": "Clear filters"
     },
+    "brands": {
+      "title": "Refill brands available in this area"
+    },
     "start": {
       "title": "Discover refill options in your area",
       "intro": "Find places to refill food, cleaning and personal care products near you.",

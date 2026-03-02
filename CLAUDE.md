@@ -153,6 +153,7 @@ async function handleSubmit(e: Event) {
 - Unit tests alongside source files or in `__tests__` directories
 - E2E tests in `tests/` directory using Playwright
 - Test both widget and standalone modes for routing changes
+- Use `npx playwright test --reporter=line` for concise E2E output
 
 ## Important Notes
 

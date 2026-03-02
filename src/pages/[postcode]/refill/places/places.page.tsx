@@ -121,7 +121,9 @@ function RefillLocations() {
               </evg-grid-item>
             </evg-grid>
           )}
-          <RefillBrands companyNames={getCompanyNames(locations)} />
+          <RefillBrands
+            companyNames={getCompanyNames(unfilteredResult.data ?? locations)}
+          />
         </>
       )}
     </evg-enter>

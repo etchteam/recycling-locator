@@ -4,6 +4,7 @@ import { Trans, useTranslation } from 'react-i18next';
 import { Link, useParams } from 'wouter-preact';
 
 import { IconAttributes } from '@/components/content/Icon/Icon';
+import OpeningHours from '@/components/content/OpeningHours/OpeningHours';
 import RateThisInfo from '@/components/control/RateThisInfo/RateThisInfo';
 import { usePostcode } from '@/hooks/PostcodeProvider';
 import { useRefillPlace } from '@/hooks/useRefillPlace';
@@ -37,18 +38,6 @@ function Categories({
       ))}
     </span>
   );
-}
-
-function getOpeningHoursClass(idx: number, hours: string): string {
-  if (idx !== 0) {
-    return '';
-  }
-
-  if (hours.toLocaleLowerCase().includes('open')) {
-    return 'text-color-positive';
-  }
-
-  return 'text-color-negative';
 }
 
 function RefillProductsContent({
@@ -182,16 +171,7 @@ function RefillPlaceContent({ location }: { readonly location: Location }) {
     <>
       <locator-bordered-list size="sm" className="evg-spacing-bottom-md">
         <dl>
-          {openingHours.length > 0 && (
-            <div>
-              <dt>{t('place.details.openingHours')}</dt>
-              {openingHours.map((hours, idx) => (
-                <dd class={getOpeningHoursClass(idx, hours)} key={hours}>
-                  {idx === 0 ? <mark>{hours}</mark> : hours}
-                </dd>
-              ))}
-            </div>
-          )}
+          <OpeningHours openingHours={openingHours} />
           {phoneNumbers.length > 0 && (
             <div>
               <dt>{t('place.details.phone')}</dt>

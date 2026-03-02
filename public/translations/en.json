@@ -429,6 +429,7 @@
       "phone": "Phone",
       "website": "Website",
       "openingHours": "Opening hours",
+      "openHours": "Open hours:",
       "openToday": "Open today",
       "collectionDetails": "Collection details",
       "notes": "Notes"

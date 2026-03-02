@@ -11,6 +11,7 @@ import { usePostcode } from '@/hooks/PostcodeProvider';
 import { useRefillPlace } from '@/hooks/useRefillPlace';
 import useScrollRestoration from '@/hooks/useScrollRestoration';
 import PostCodeResolver from '@/lib/PostcodeResolver';
+import getOpeningHours from '@/lib/details/getOpeningHours';
 import { Location } from '@/types/locatorApi';
 
 function PlaceMap({ location }: { readonly location: Location }) {
@@ -56,6 +57,7 @@ export default function RefillPlaceLayout({
 }: {
   readonly children?: ComponentChildren;
 }) {
+  const { t } = useTranslation();
   const { postcode } = usePostcode();
   const [searchParams] = useSearchParams();
   const params = useParams<{ id: string }>();
@@ -65,6 +67,22 @@ export default function RefillPlaceLayout({
   const layoutRef = useRef();
   useScrollRestoration(layoutRef);
 
+  let subtitle = location
+    ? PostCodeResolver.extractPostcodeFromString(location.address)
+    : '';
+  if (location) {
+    const [todayEntry] = getOpeningHours(location);
+    if (todayEntry) {
+      // Strip "DayName: " prefix and any " (open/closed now)" suffix
+      const time = todayEntry
+        .replace(/^\w+:\s/, '')
+        .replace(/\s\([^)]+\)$/, '');
+      if (time !== 'Closed') {
+        subtitle = `${t('place.details.openToday')}: ${time.replace(' - ', ' \u2013 ')}`;
+      }
+    }
+  }
+
   return (
     <locator-layout>
       <div slot="layout-header" className="display-contents">
@@ -72,11 +90,7 @@ export default function RefillPlaceLayout({
           logoType="icon-only"
           logoHref={`/${postcode}`}
           title={location?.name}
-          subtitle={
-            location
-              ? PostCodeResolver.extractPostcodeFromString(location.address)
-              : ''
-          }
+          subtitle={subtitle}
           backFallback={`/${postcode}/refill?${searchParams.toString()}`}
         />
       </div>

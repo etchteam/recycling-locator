@@ -11,7 +11,7 @@ const REFILL_CATEGORIES = [
 ] as const;
 
 export default function RefillCategoryFilter() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
   const activeCategory = searchParams.get('categories') ?? null;
 
@@ -41,7 +41,18 @@ export default function RefillCategoryFilter() {
                   onClick={() => handleFilter(cat.param)}
                 >
                   <locator-icon icon={cat.icon} />
-                  {t(`refill.filters.${cat.key}`)}
+                  {i18n.exists(`refill.filters.${cat.key}_full`) ? (
+                    <>
+                      <span className="filter-label-short">
+                        {t(`refill.filters.${cat.key}`)}
+                      </span>
+                      <span className="filter-label-full">
+                        {t(`refill.filters.${cat.key}_full`)}
+                      </span>
+                    </>
+                  ) : (
+                    t(`refill.filters.${cat.key}`)
+                  )}
                 </button>
               </evg-chip>
             </li>

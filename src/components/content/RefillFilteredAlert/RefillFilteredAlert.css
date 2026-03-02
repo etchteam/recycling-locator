@@ -6,17 +6,16 @@ locator-refill-alert {
 
   p {
     font-size: var(--evg-font-size-body-xs);
+    margin-block-end: 0;
   }
 
-  evg-button[variant='ghost'] {
-    flex-shrink: 0;
-    line-height: 1;
+  evg-button {
+    --evg-button-background-hover-ghost: transparent;
+    --evg-button-color-hover-ghost: var(--color-primary-dark);
+    --evg-button-color-ghost: var(--color-primary-dark);
 
     button {
-      color: var(--color-primary-dark);
-      min-height: 0;
-      min-width: 0;
-      white-space: nowrap;
+      margin: calc(var(--evg-spacing-xs) * -1) calc(var(--evg-spacing-md) * -1);
     }
   }
 }

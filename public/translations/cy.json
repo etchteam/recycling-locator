@@ -436,9 +436,11 @@
     },
     "filters": {
       "all": "Pob un",
+      "all_full": "Pob cynnyrch",
       "Food": "Bwyd",
       "Cleaning": "Glanhau",
       "Personal Care": "Gofal",
+      "Personal Care_full": "Gofal Personol",
       "label": "Hidlo yn ôl categori",
       "filteredCount": "<bold>{{count}}</bold> lle gyda chynhyrchion <bold>{{category}}</bold>",
       "filteredCount_one": "<bold>1</bold> lle gyda chynhyrchion <bold>{{category}}</bold>",

@@ -14,6 +14,7 @@ function RefillLocations() {
   const { t } = useTranslation();
   const [searchParams] = useSearchParams();
   const locationsResult = useRefillLocations();
+  const unfilteredResult = useRefillLocations({ unfiltered: true });
   const {
     data: locations,
     count,
@@ -23,6 +24,7 @@ function RefillLocations() {
     loadMore,
     loadMoreRef,
   } = usePaginatedLocations(locationsResult);
+  const totalCount = unfilteredResult.data?.items?.length ?? count;
   const locationSearchParams = new URLSearchParams(searchParams);
   locationSearchParams.set('page', String(currentPage));
 
@@ -47,8 +49,11 @@ function RefillLocations() {
         className="evg-spacing-bottom-md"
       >
         <evg-grid-item small-mobile="12" small-tablet="auto">
-          <h3 id="refill-places-count" className="evg-text-size-heading-sm">
-            {t('refill.places.count', { count })}
+          <h3
+            id="refill-places-count"
+            className="evg-text-size-heading-sm evg-spacing-bottom-none"
+          >
+            {t('refill.places.count', { count: totalCount })}
           </h3>
         </evg-grid-item>
         <evg-grid-item small-mobile="12" small-tablet="auto">
@@ -67,7 +72,7 @@ function RefillLocations() {
                   return (
                     <li key={`${location.id}`}>
                       <Link
-                        href={`/${postcode}/refill/${location.id}?${locationSearchParams.toString()}`}
+                        href={`/${postcode}/refill/places/${location.id}?${locationSearchParams.toString()}`}
                       >
                         <evg-enter type="fade">
                           <evg-card radius="sm">
@@ -119,7 +124,9 @@ export default function RefillPlacesPage() {
       <evg-enter type="fade" delay={0.25}>
         <locator-fab sticky>
           <evg-button size="sm" variant="primary">
-            <Link href={`/${postcode}/refill/map?${searchParams.toString()}`}>
+            <Link
+              href={`/${postcode}/refill/places/map?${searchParams.toString()}`}
+            >
               <locator-icon icon="map"></locator-icon>
               {t('actions.showMap')}
             </Link>

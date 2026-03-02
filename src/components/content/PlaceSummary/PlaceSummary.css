@@ -61,9 +61,9 @@ locator-place-summary {
       display: flex;
       flex-wrap: nowrap;
       gap: var(--evg-spacing-xs);
-      grid-template-columns: none;
 
       locator-icon {
+        --_size: var(--evg-font-size-body-sm);
         color: var(--color-primary-dark);
       }
     }

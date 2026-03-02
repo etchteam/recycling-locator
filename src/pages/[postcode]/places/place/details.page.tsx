@@ -3,6 +3,7 @@ import nl2br from 'nl2br';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'wouter-preact';
 
+import OpeningHours from '@/components/content/OpeningHours/OpeningHours';
 import RateThisInfo from '@/components/control/RateThisInfo/RateThisInfo';
 import { usePlace } from '@/hooks/usePlace';
 import cleanupAddress from '@/lib/cleanupAddress';
@@ -12,18 +13,6 @@ import getOpeningHours from '@/lib/details/getOpeningHours';
 import getPhoneNumbers from '@/lib/details/getPhoneNumbers';
 import getWebsites from '@/lib/details/getWebsites';
 import { Location } from '@/types/locatorApi';
-
-function getOpeningHoursClass(idx: number, hours: string): string {
-  if (idx !== 0) {
-    return '';
-  }
-
-  if (hours.toLocaleLowerCase().includes('open')) {
-    return 'text-color-positive';
-  }
-
-  return 'text-color-negative';
-}
 
 function PlaceDetailsPageContent({
   location,
@@ -83,19 +72,7 @@ function PlaceDetailsPageContent({
               ))}
             </div>
           )}
-          {openingHours.length > 0 && (
-            <div>
-              <dt>
-                <locator-icon icon="schedule" />{' '}
-                {t('place.details.openingHours')}
-              </dt>
-              {openingHours.map((hours, idx) => (
-                <dd class={getOpeningHoursClass(idx, hours)} key={hours}>
-                  {idx === 0 ? <mark>{hours}</mark> : hours}
-                </dd>
-              ))}
-            </div>
-          )}
+          <OpeningHours openingHours={openingHours} />
           {collectionDetails.length > 0 && (
             <div>
               <dt>

@@ -14,9 +14,10 @@ export default function getRefillCategoryAvailability(
     ),
   );
 
-  return (
-    categoryNames.has('cleaning') &&
-    categoryNames.has('personal care') &&
-    categoryNames.has('food')
-  );
+  const requiredCategories = ['cleaning', 'personal care', 'food'];
+  const foundCount = requiredCategories.filter((category) =>
+    categoryNames.has(category),
+  ).length;
+
+  return foundCount >= 2;
 }

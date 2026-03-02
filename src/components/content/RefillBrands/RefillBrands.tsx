@@ -5,10 +5,10 @@ import { CustomElement } from '@/types/customElement';
 import './RefillBrands.css';
 
 const BRAND_LOGO_MAP: Record<string, string> = {
-  'Bio-D': 'bio-d.webp',
+  'Bio-D': 'bioD.webp',
   Ecover: 'ecover.webp',
-  'Faith in Nature': 'faith-in-nature.webp',
-  'Marks and Spencer': 'marks-and-spencer.webp',
+  'Faith in Nature': 'faithInNature.webp',
+  'Marks and Spencer': 'marksAndSpencer.webp',
   SESI: 'sesi.webp',
   Suma: 'suma.webp',
 };

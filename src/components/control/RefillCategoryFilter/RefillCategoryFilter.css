@@ -4,23 +4,15 @@ locator-refill-filter {
   ul {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--evg-spacing-4);
+    gap: var(--evg-spacing-xs);
     list-style: none;
     margin: 0;
     padding: 0;
   }
 
-  evg-chip {
-    --evg-chip-background-selected-light: var(--color-white);
-    --evg-chip-border-color-selected-light: var(--color-primary-dark);
-    --evg-chip-color-selected-light: var(--color-primary-dark);
-    --evg-chip-background-hover-selected-light: var(--color-white);
-    --evg-chip-border-color-hover-selected-light: var(--color-primary-dark);
-  }
-
   evg-chip button {
     font-size: var(--evg-font-size-body-xs);
-    gap: var(--evg-spacing-4);
+    gap: var(--evg-spacing-xs);
   }
 
   evg-chip button::after {
@@ -36,14 +28,6 @@ locator-refill-filter {
   }
 
   @container (width >= 768px) {
-    ul {
-      gap: var(--evg-spacing-xs);
-    }
-
-    evg-chip button {
-      gap: var(--evg-spacing-xs);
-    }
-
     .filter-label-short {
       display: none;
     }

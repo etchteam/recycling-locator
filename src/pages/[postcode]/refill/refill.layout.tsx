@@ -101,7 +101,10 @@ export default function RefillLayout({
     <locator-layout>
       <div slot="layout-header" className="display-contents">
         <HeaderWithInfoButton
+          logoHref="/refill"
+          infoOpen={infoOpen}
           onToggleInfo={() => setInfoOpen(!infoOpen)}
+          mainContentId="locator-layout-main"
         ></HeaderWithInfoButton>
       </div>
       <div slot="layout-main" id="locator-layout-main">

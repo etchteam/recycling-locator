@@ -753,6 +753,50 @@
           "description": "Mae Ocado yn cynnig dewisiadau amgen y gellir eu hailddefnyddio i'w hystod bresennol, mewn nifer ddethol o leoliadau ledled y DU."
         }
       }
+    },
+    "place": {
+      "title": "Gallwch ail-lenwi cynhyrchion <categories></categories> yn y lle hwn",
+      "supplied": "Mae {{place}} yn cael ei gyflenwi gan:",
+      "websiteLinkText": "Dysgu mwy am {{place}}",
+      "disclaimer": "Mae stoc yn amrywio yn ôl siop, felly mae'n werth gwirio argaeledd cyn gwneud y daith.",
+      "suppliers": {
+        "marksAndSpencer": {
+          "name": "Marks and Spencer",
+          "url": "https://corporate.marksandspencer.com/newsroom/press-releases/ms-expands-popular-refilled-scheme-25-stores-across-uk/",
+          "urlText": "Dysgu mwy am gynllun ail-lenwi Marks and Spencer",
+          "description": "Mae M&S Milton Keynes yn cynnig cynllun ail-lenwi gyda 10 cynnyrch cartref a gofal personol brand eu hunain. Rydych chi'n talu blaendal o £2 am botel y gellir ei dychwelyd, a phan fyddwch chi'n ei dychwelyd ar ôl ei defnyddio, byddwch chi'n derbyn talebyn £2 tuag at eich pryniad Refilled nesaf—gan ei gwneud hi'n hawdd lleihau gwastraff plastig gyda chynhyrchion dibynadwy."
+        },
+        "ecover": {
+          "name": "Ecover",
+          "url": "https://www.ecover.com/uk/en/",
+          "urlText": "ecover.com",
+          "description": "Mae Ecover yn brif frand o gynhyrchion glanhau ecogyfeillgar, gan gynnig ystod o lanhawyr cartref y gellir eu hail-lenwi sydd wedi'u cynllunio i fod yn effeithiol gan leihau effaith amgylcheddol."
+        },
+        "bio-d": {
+          "name": "Bio-D",
+          "url": "https://www.biod.co.uk/",
+          "urlText": "biod.co.uk",
+          "description": "Mae Bio-D yn creu ystod gynhwysfawr o gynhyrchion glanhau effeithiol, sy'n seiliedig ar blanhigion ar gyfer y cartref a golchi dillad, i gyd yn hypoalergenig, cruelty-free ac wedi'u gwneud gyda chynhwysion moesegol, bioddiraddadwy sy'n garedicach i groen sensitif a'r blaned."
+        },
+        "suma": {
+          "name": "Suma",
+          "url": "https://www.suma.coop/",
+          "urlText": "suma.coop",
+          "description": "Mae Suma yn darparu detholiad eang o fwyd a diod naturiol, organig a llysieuol, ystod cartref cyfrifol a chasgliad gofal corff hyfryd sy'n cruelty-free."
+        },
+        "sesi": {
+          "name": "Sesi",
+          "url": "https://www.sesi.org.uk/",
+          "urlText": "sesi.org.uk",
+          "description": "Mae SESI yn cynnig ystod helaeth o ddiriad glanhau fegan, cruelty-free a chynhyrchion cartref y gellir eu hail-lenwi, i gyd wedi'u ffurfio gyda chynhwysion bioddiraddadwy."
+        },
+        "faithInNature": {
+          "name": "Faith in Nature",
+          "url": "https://www.faithinnature.co.uk/",
+          "urlText": "faithinnature.co.uk",
+          "description": "Mae Faith in Nature yn frand gofal personol sy'n creu cynhyrchion sy'n seiliedig ar blanhigion, cruelty-free. Fe'i sefydlwyd yn 1974, mae'r cwmni'n canolbwyntio ar arferion cynaliadwy a chaffael moesegol tra'n osgoi cemegau llym yn eu fformiwleiddiau."
+        }
+      }
     }
   }
 }

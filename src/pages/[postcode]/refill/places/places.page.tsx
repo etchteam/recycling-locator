@@ -6,6 +6,7 @@ import Place from '@/components/content/Place/Place';
 import RefillBrands from '@/components/content/RefillBrands/RefillBrands';
 import RefillFilteredAlert from '@/components/content/RefillFilteredAlert/RefillFilteredAlert';
 import RefillCategoryFilter from '@/components/control/RefillCategoryFilter/RefillCategoryFilter';
+import { useAppState } from '@/hooks/AppStateProvider';
 import { usePostcode } from '@/hooks/PostcodeProvider';
 import { usePaginatedLocations } from '@/hooks/usePaginatedLocations';
 import { useRefillLocations } from '@/hooks/useRefillLocations';
@@ -115,6 +116,7 @@ function RefillLocations() {
 export default function RefillPlacesPage() {
   const { t } = useTranslation();
   const { postcode } = usePostcode();
+  const { publicPath } = useAppState();
   const [searchParams] = useSearchParams();
 
   return (
@@ -123,6 +125,41 @@ export default function RefillPlacesPage() {
         <section className="evg-spacing-bottom-lg">
           <RefillLocations />
         </section>
+        <evg-grid wrap="wrap" className="evg-spacing-bottom-lg">
+          <evg-grid-item small-mobile="12" large-mobile="6">
+            <locator-card-link>
+              <Link href={`/${postcode}/refill/discover`}>
+                <locator-card-link-img>
+                  <img src={`${publicPath}images/refill/guide.webp`} alt="" />
+                </locator-card-link-img>
+                <locator-card-link-content>
+                  <p className="evg-text-weight-bold evg-spacing-bottom-none">
+                    {t('refill.discover.nav.guide.title')}
+                  </p>
+                  <p>{t('refill.discover.nav.guide.description')}</p>
+                </locator-card-link-content>
+              </Link>
+            </locator-card-link>
+          </evg-grid-item>
+          <evg-grid-item small-mobile="12" large-mobile="6">
+            <locator-card-link>
+              <Link href={`/${postcode}/refill/home-delivery`}>
+                <locator-card-link-img>
+                  <img
+                    src={`${publicPath}images/refill/home-delivery.webp`}
+                    alt=""
+                  />
+                </locator-card-link-img>
+                <locator-card-link-content>
+                  <p className="evg-text-weight-bold evg-spacing-bottom-none">
+                    {t('refill.discover.nav.home-delivery.title')}
+                  </p>
+                  <p>{t('refill.discover.nav.home-delivery.description')}</p>
+                </locator-card-link-content>
+              </Link>
+            </locator-card-link>
+          </evg-grid-item>
+        </evg-grid>
       </evg-section>
       <evg-enter type="fade" delay={0.25}>
         <locator-fab sticky>

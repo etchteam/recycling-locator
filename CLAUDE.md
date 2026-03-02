@@ -157,6 +157,7 @@ async function handleSubmit(e: Event) {
 
 ## Important Notes
 
+- **Translations**: All user-facing text must use i18next translation keys via `useTranslation()`. Never hardcode display text. Translation files are in `public/translations/`. Check for existing keys before adding new ones.
 - The widget renders in Shadow DOM for style isolation
 - Multiple widget instances on the same page must remain independent
 - API responses are cached by axios-cache-interceptor - be aware when testing

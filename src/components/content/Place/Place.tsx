@@ -5,9 +5,9 @@ import cleanupAddress from '@/lib/cleanupAddress';
 import { Location } from '@/types/locatorApi';
 
 const CATEGORY_ICON_MAP: Record<string, IconAttributes['icon']> = {
-  Food: 'refill-food',
-  Cleaning: 'refill-cleaning',
-  'Personal Care': 'refill-care',
+  Food: 'mixed-food',
+  Cleaning: 'cleaning',
+  'Personal Care': 'personal-care',
 };
 
 export default function Place({

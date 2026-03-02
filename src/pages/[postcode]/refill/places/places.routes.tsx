@@ -21,26 +21,23 @@ export default function RefillPlacesRoutes() {
       cta={t('actions.tryAgain')}
     >
       <Switch>
+        <Route path="/:postcode/refill/places/map">
+          <RefillPlacesLayout title={t('refill.places.title')}>
+            <RefillMapPage />
+          </RefillPlacesLayout>
+        </Route>
         <Route
           path="/:postcode/refill/places/:id/*?"
           component={RefillPlaceRoutes}
         />
-        <Route path="/:postcode/refill/*?">
+        <Route path="/:postcode/refill/places">
           <RefillPlacesLayout title={t('refill.places.title')}>
-            <Switch>
-              <Route
-                path="/:postcode/refill/places"
-                component={RefillPlacesPage}
-              />
-              <Route
-                path="/:postcode/refill/places/map"
-                component={RefillMapPage}
-              />
-              <Route
-                path="/:postcode/refill/home-delivery"
-                component={HomeDeliveryPage}
-              />
-            </Switch>
+            <RefillPlacesPage />
+          </RefillPlacesLayout>
+        </Route>
+        <Route path="/:postcode/refill/home-delivery">
+          <RefillPlacesLayout title={t('refill.places.title')}>
+            <HomeDeliveryPage />
           </RefillPlacesLayout>
         </Route>
       </Switch>

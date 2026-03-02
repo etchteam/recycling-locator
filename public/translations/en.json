@@ -429,6 +429,8 @@
       "phone": "Phone",
       "website": "Website",
       "openingHours": "Opening hours",
+      "openHours": "Open hours:",
+      "openToday": "Open today",
       "collectionDetails": "Collection details",
       "notes": "Notes"
     },
@@ -488,7 +490,7 @@
           "title": "How refill could work for you",
           "description": "Learn how refill could fit into your existing routines and cupboards"
         },
-         "home-delivery": {
+        "home-delivery": {
           "label": "Home delivery services",
           "title": "Home delivery services",
           "description": "Order essentials to your door in returnable packaging - just like a Milkman!"
@@ -765,6 +767,50 @@
           "name": "Ocado",
           "category": "Food",
           "description": "Ocado offer resuseable alternatives to their existing range, in a select number of locations across the UK."
+        }
+      }
+    },
+    "place": {
+      "title": "You can refill <categories></categories> products at this place",
+      "supplied": "{{place}} is supplied by:",
+      "websiteLinkText": "Learn more about {{place}}",
+      "disclaimer": "Stock varies by store, so it's worth checking availability before you make the trip.",
+      "suppliers": {
+        "marksAndSpencer": {
+          "name": "Marks and Spencer",
+          "url": "https://corporate.marksandspencer.com/newsroom/press-releases/ms-expands-popular-refilled-scheme-25-stores-across-uk/",
+          "urlText": "Learn more about Marks and Spencer's refill scheme",
+          "description": "M&S Milton Keynes is offering a refill scheme with 10 own-brand home and personal care products. You pay a £2 deposit for a returnable bottle, and when you return it after use, you receive a £2 voucher towards your next Refilled purchase—making it easy to reduce plastic waste with trusted products."
+        },
+        "ecover": {
+          "name": "Ecover",
+          "url": "https://uk.ecover.com/",
+          "urlText": "uk.ecover.com",
+          "description": "Ecover is a leading brand of eco-friendly cleaning products, offering a range of refillable household cleaners that are designed to be effective while minimizing environmental impact."
+        },
+        "bio-d": {
+          "name": "Bio-D",
+          "url": "https://www.biod.co.uk/",
+          "urlText": "biod.co.uk",
+          "description": "Bio-D creates a comprehensive range of effective, plant-based cleaning products for home and laundry, all hypoallergenic, cruelty-free and made with ethically sourced, biodegradable ingredients that are kinder to sensitive skin and the planet."
+        },
+        "suma": {
+          "name": "Suma",
+          "url": "https://www.suma.coop/",
+          "urlText": "suma.coop",
+          "description": "Suma provide a wide selection of natural, organic and vegetarian food and drink, a responsibly-sourced household range and gorgeous cruelty-free body care collection."
+        },
+        "sesi": {
+          "name": "Sesi",
+          "url": "https://www.sesi.org.uk/",
+          "urlText": "sesi.org.uk",
+          "description": "SESI offers an extensive range of vegan, cruelty-free cleaning detergents and refillable household products, all formulated with biodegradable ingredients."
+        },
+        "faithInNature": {
+          "name": "Faith in Nature",
+          "url": "https://www.faithinnature.co.uk/",
+          "urlText": "faithinnature.co.uk",
+          "description": "Faith in Nature are personal care brand that creates plant-based, cruelty-free products. Founded in 1974, the company focuses on sustainable practices and ethical sourcing whilst avoiding harsh chemicals in their formulations."
         }
       }
     }

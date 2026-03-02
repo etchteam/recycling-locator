@@ -14,6 +14,7 @@ export interface IconAttributes {
     | 'arrow-outward'
     | 'arrow-up'
     | 'call'
+    | 'cleaning'
     | 'close'
     | 'collection'
     | 'cross-circle'
@@ -34,6 +35,8 @@ export interface IconAttributes {
     | 'list'
     | 'map'
     | 'menu'
+    | 'mixed-food'
+    | 'personal-care'
     | 'pin'
     | 'place-hwrc'
     | 'place'
@@ -49,9 +52,7 @@ export interface IconAttributes {
     | 'tick-circle'
     | 'tick'
     | 'warning'
-    | 'mixed-food'
-    | 'cleaning'
-    | 'personal-care';
+    | 'web-link';
   readonly color?: 'primary' | 'muted' | 'positive' | 'negative' | 'white';
   readonly label?: string;
 }

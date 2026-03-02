@@ -1,15 +1,14 @@
 locator-category-card {
   display: block;
   height: 100%;
-  position: relative;
 
   a {
     align-items: stretch;
     border: solid 1px var(--color-border);
     border-radius: var(--evg-border-radius);
     color: var(--color-body);
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-rows: 1fr;
     height: 100%;
     overflow: hidden;
     text-decoration: none;
@@ -19,14 +18,14 @@ locator-category-card {
       border-color var(--evg-transition);
 
     img {
+      grid-area: 1 / 1;
       transition: transform var(--evg-transition);
     }
 
     evg-chip {
-      bottom: var(--evg-spacing-sm);
-      left: 50%;
-      position: absolute;
-      transform: translateX(-50%);
+      grid-area: 1 / 1;
+      margin-bottom: var(--evg-spacing-sm);
+      place-self: end center;
       white-space: nowrap;
     }
 

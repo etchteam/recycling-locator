@@ -11,6 +11,7 @@ import { usePostcode } from '@/hooks/PostcodeProvider';
 import { useRefillPlace } from '@/hooks/useRefillPlace';
 import useScrollRestoration from '@/hooks/useScrollRestoration';
 import PostCodeResolver from '@/lib/PostcodeResolver';
+import getOpeningHours from '@/lib/details/getOpeningHours';
 import { Location } from '@/types/locatorApi';
 
 function PlaceMap({ location }: { readonly location: Location }) {
@@ -56,6 +57,7 @@ export default function RefillPlaceLayout({
 }: {
   readonly children?: ComponentChildren;
 }) {
+  const { t } = useTranslation();
   const { postcode } = usePostcode();
   const [searchParams] = useSearchParams();
   const params = useParams<{ id: string }>();
@@ -65,19 +67,27 @@ export default function RefillPlaceLayout({
   const layoutRef = useRef();
   useScrollRestoration(layoutRef);
 
+  let subtitle = location
+    ? PostCodeResolver.extractPostcodeFromString(location.address)
+    : '';
+  if (location) {
+    const { today } = getOpeningHours(location);
+    if (today) {
+      if (today !== 'Closed') {
+        subtitle = t('place.details.openToday') + ': ' + today;
+      }
+    }
+  }
+
   return (
     <locator-layout>
       <div slot="layout-header" className="display-contents">
         <HeaderWithBackButton
           logoType="icon-only"
-          logoHref={`/${postcode}`}
+          logoHref={`/${postcode}/refill`}
           title={location?.name}
-          subtitle={
-            location
-              ? PostCodeResolver.extractPostcodeFromString(location.address)
-              : ''
-          }
-          backFallback={`/${postcode}/refill?${searchParams.toString()}`}
+          subtitle={subtitle}
+          backFallback={`/${postcode}/refill/places?${searchParams.toString()}`}
         />
       </div>
       <div slot="layout-main" ref={layoutRef}>

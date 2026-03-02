@@ -20,6 +20,8 @@ const CATEGORY_ICON_MAP: Record<string, IconAttributes['icon']> = {
   'Personal Care': 'personal-care',
 };
 
+const StoreBrands = new Set(['marksAndSpencer']);
+
 function Categories({
   categoriesList,
 }: {
@@ -94,7 +96,7 @@ function RefillCompanyContent({ location }: { readonly location: Location }) {
   return (
     <>
       {companies.map((company) => {
-        if (company === 'marksAndSpencer') {
+        if (StoreBrands.has(company)) {
           return (
             <div key={company} className="evg-spacing-top-md">
               <evg-img>
@@ -218,7 +220,9 @@ function RefillPlaceContent({ location }: { readonly location: Location }) {
               ))}
             </div>
           )}
-          {location.locations[0].company?.name === 'Marks and Spencer' && (
+          {StoreBrands.has(
+            camelCase(location.locations[0].company?.name ?? ''),
+          ) && (
             <div>
               <dt>{t('place.details.website')}</dt>
               <dd>

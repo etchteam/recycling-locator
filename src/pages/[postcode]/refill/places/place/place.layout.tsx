@@ -88,10 +88,10 @@ export default function RefillPlaceLayout({
       <div slot="layout-header" className="display-contents">
         <HeaderWithBackButton
           logoType="icon-only"
-          logoHref={`/${postcode}`}
+          logoHref={`/${postcode}/refill`}
           title={location?.name}
           subtitle={subtitle}
-          backFallback={`/${postcode}/refill?${searchParams.toString()}`}
+          backFallback={`/${postcode}/refill/places?${searchParams.toString()}`}
         />
       </div>
       <div slot="layout-main" ref={layoutRef}>

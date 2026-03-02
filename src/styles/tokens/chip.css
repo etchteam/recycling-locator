@@ -1,0 +1,6 @@
+evg-chip {
+  --evg-chip-color-light: var(--color-primary-dark);
+  --evg-chip-background-light: var(--color-grey-lightest);
+  --evg-chip-background-hover-light: var(--color-white);
+  --evg-chip-border-color-hover-light: var(--color-primary-dark);
+}

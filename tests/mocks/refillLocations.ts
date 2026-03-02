@@ -90,6 +90,58 @@ export const RefillLocationsFilteredResponse: LocationsResponseType = {
   },
 };
 
+export const RefillLocationsWithBrandsResponse: LocationsResponseType = {
+  items: [
+    {
+      ...RefillLocationsResponse.items[0],
+      locations: [
+        {
+          locationType: 'REFILL',
+          source: 'wrap',
+          materials: [],
+          company: {
+            name: 'Ecover',
+            refillCategories: [{ id: '2', name: 'Cleaning' }],
+          },
+        },
+      ],
+    },
+    {
+      ...RefillLocationsResponse.items[1],
+      locations: [
+        {
+          locationType: 'REFILL',
+          source: 'wrap',
+          materials: [],
+          company: {
+            name: 'Faith in Nature',
+            refillCategories: [{ id: '3', name: 'Personal Care' }],
+          },
+        },
+      ],
+    },
+    {
+      ...RefillLocationsResponse.items[2],
+      locations: [
+        {
+          locationType: 'REFILL',
+          source: 'wrap',
+          materials: [],
+          company: {
+            name: 'Ecover',
+            refillCategories: [{ id: '2', name: 'Cleaning' }],
+          },
+        },
+      ],
+    },
+  ],
+  meta: RefillLocationsResponse.meta,
+  pagination: {
+    total: 3,
+    page: 1,
+  },
+};
+
 export const RefillLocationsEmptyResponse: LocationsResponseType = {
   items: [],
   meta: RefillLocationsResponse.meta,

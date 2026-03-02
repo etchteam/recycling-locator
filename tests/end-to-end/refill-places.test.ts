@@ -3,6 +3,7 @@ import {
   RefillLocationsResponse,
   RefillLocationsFilteredResponse,
   RefillLocationsEmptyResponse,
+  RefillLocationsWithBrandsResponse,
 } from '../mocks/refillLocations';
 
 import { test, expect } from './fixtures';
@@ -115,11 +116,8 @@ test.describe('Refill places', () => {
       .first();
     await foodFilter.click();
 
-    const heading2 = widget
-      .getByText(i18n.t('refill.places.count', { count: 2 }))
-      .first();
-
-    await expect(heading2).toBeVisible();
+    const alert = widget.locator('evg-alert[variant="positive-light"]').first();
+    await expect(alert).toBeVisible();
   });
 
   test('Positive alert appears when filtered with results', async ({
@@ -215,20 +213,65 @@ test.describe('Refill places', () => {
       .first();
     await foodFilter.click();
 
-    const heading2 = widget
-      .getByText(i18n.t('refill.places.count', { count: 2 }))
-      .first();
-    await expect(heading2).toBeVisible();
+    const alert = widget.locator('evg-alert[variant="positive-light"]').first();
+    await expect(alert).toBeVisible();
 
     const clearButton = widget
       .getByRole('button', { name: i18n.t('refill.filters.clearFilters') })
       .first();
     await clearButton.click();
 
-    const heading3 = widget
-      .getByText(i18n.t('refill.places.count', { count: 3 }))
+    await expect(alert).not.toBeVisible();
+  });
+
+  test('Brand logos appear when known brands are present', async ({
+    page,
+    widget,
+    i18n,
+  }) => {
+    await page.route(REFILL_LOCATIONS_ENDPOINT, (route) => {
+      route.fulfill({ json: RefillLocationsWithBrandsResponse });
+    });
+
+    await widget.evaluate((node) =>
+      node.setAttribute('path', '/EX32 7RB/refill/places'),
+    );
+
+    await page.waitForRequest(REFILL_LOCATIONS_ENDPOINT);
+
+    const brandsCard = widget.locator('locator-refill-brands').first();
+    await expect(brandsCard).toBeVisible();
+
+    const title = widget.getByText(i18n.t('refill.brands.title')).first();
+    await expect(title).toBeVisible();
+
+    const ecover = brandsCard.getByAltText('Ecover');
+    const faithInNature = brandsCard.getByAltText('Faith in Nature');
+    await expect(ecover).toBeVisible();
+    await expect(faithInNature).toBeVisible();
+  });
+
+  test('Brand logos are hidden when no known brands are present', async ({
+    page,
+    widget,
+  }) => {
+    await page.route(REFILL_LOCATIONS_ENDPOINT, (route) => {
+      route.fulfill({ json: RefillLocationsResponse });
+    });
+
+    await widget.evaluate((node) =>
+      node.setAttribute('path', '/EX32 7RB/refill/places'),
+    );
+
+    await page.waitForRequest(REFILL_LOCATIONS_ENDPOINT);
+
+    const placeName = widget
+      .getByText(RefillLocationsResponse.items[0].name)
       .first();
-    await expect(heading3).toBeVisible();
+    await expect(placeName).toBeVisible();
+
+    const brandsCard = widget.locator('locator-refill-brands').first();
+    await expect(brandsCard).not.toBeVisible();
   });
 
   test('Place cards show category icons', async ({ page, widget }) => {

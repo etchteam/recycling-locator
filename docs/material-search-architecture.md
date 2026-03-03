@@ -167,7 +167,7 @@ recordEvent({
 
 // Places page
 recordEvent({
-  category: `PlacesList::MaterialSearch::${showLocations ? '' : 'Empty'}`,
+  category: `PlacesList::MaterialSearch${showLocations ? '' : '::Empty'}`,
   action: searchTerm,  // Derived from API, not URL
 });
 ```

@@ -37,7 +37,7 @@ function Places() {
   useEffect(() => {
     if (searchTerm) {
       recordEvent({
-        category: `PlacesList::MaterialSearch::${showLocations ? '' : 'Empty'}`,
+        category: `PlacesList::MaterialSearch${showLocations ? '' : '::Empty'}`,
         action: searchTerm,
       });
     }

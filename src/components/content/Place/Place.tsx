@@ -1,14 +1,8 @@
 import { useTranslation } from 'react-i18next';
 
-import { IconAttributes } from '@/components/content/Icon/Icon';
 import cleanupAddress from '@/lib/cleanupAddress';
+import { REFILL_CATEGORIES } from '@/lib/refillCategories';
 import { Location } from '@/types/locatorApi';
-
-const CATEGORY_ICON_MAP: Record<string, IconAttributes['icon']> = {
-  Food: 'mixed-food',
-  Cleaning: 'cleaning',
-  'Personal Care': 'personal-care',
-};
 
 export default function Place({
   location,
@@ -40,14 +34,20 @@ export default function Place({
           refillCategories.length > 0 && (
             <dt>
               <ul className="list-style-none refill-categories">
-                {refillCategories.map((cat) => (
-                  <li key={cat.id}>
-                    <locator-icon
-                      icon={CATEGORY_ICON_MAP[cat.name] ?? 'refill-all'}
-                      label={cat.name}
-                    />
-                  </li>
-                ))}
+                {refillCategories.map((cat) => {
+                  const icon = REFILL_CATEGORIES.find(
+                    (c) => c.key === cat.name,
+                  )?.slug;
+
+                  return (
+                    <li key={cat.id}>
+                      <locator-icon
+                        icon={icon ?? 'refill-all'}
+                        label={cat.name}
+                      />
+                    </li>
+                  );
+                })}
               </ul>
             </dt>
           )

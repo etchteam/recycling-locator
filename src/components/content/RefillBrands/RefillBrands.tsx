@@ -1,17 +1,9 @@
+import camelCase from 'lodash/camelCase';
 import { useTranslation } from 'react-i18next';
 
 import { CustomElement } from '@/types/customElement';
 
 import './RefillBrands.css';
-
-const BRAND_LOGO_MAP: Record<string, string> = {
-  'Bio-D': 'bioD.webp',
-  Ecover: 'ecover.webp',
-  'Faith in Nature': 'faithInNature.webp',
-  'Marks and Spencer': 'marksAndSpencer.webp',
-  SESI: 'sesi.webp',
-  Suma: 'suma.webp',
-};
 
 interface RefillBrandsProps {
   readonly companyNames: string[];
@@ -19,9 +11,8 @@ interface RefillBrandsProps {
 
 export default function RefillBrands({ companyNames }: RefillBrandsProps) {
   const { t } = useTranslation();
-  const brands = companyNames.filter((name) => name in BRAND_LOGO_MAP);
 
-  if (brands.length === 0) {
+  if (companyNames.length === 0) {
     return null;
   }
 
@@ -32,10 +23,10 @@ export default function RefillBrands({ companyNames }: RefillBrandsProps) {
           <div className="refill-brands-content">
             <h3>{t('refill.brands.title')}</h3>
             <ul className="list-style-none refill-brands-list">
-              {brands.map((name) => (
+              {companyNames.map((name) => (
                 <li key={name}>
                   <img
-                    src={`/images/refill/logos/${BRAND_LOGO_MAP[name]}`}
+                    src={`/images/refill/logos/${camelCase(name)}.webp`}
                     alt={name}
                     loading="lazy"
                   />

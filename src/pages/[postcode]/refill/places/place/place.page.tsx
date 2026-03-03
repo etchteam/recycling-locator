@@ -12,6 +12,7 @@ import getNotes from '@/lib/details/getNotes';
 import getOpeningHours from '@/lib/details/getOpeningHours';
 import getPhoneNumbers from '@/lib/details/getPhoneNumbers';
 import getWebsites from '@/lib/details/getWebsites';
+import getCompanyNames from '@/lib/getCompanyNames';
 import { REFILL_CATEGORIES } from '@/lib/refillCategories';
 import { Location, RefillCategory } from '@/types/locatorApi';
 
@@ -76,11 +77,7 @@ function RefillProductsContent({
 function RefillCompanyContent({ location }: { readonly location: Location }) {
   const { t } = useTranslation();
 
-  const companies: string[] = location.locations
-    .map((loc) => loc.company?.name)
-    .filter((name): name is string => Boolean(name))
-    .filter((name, index, arr) => arr.indexOf(name) === index)
-    .map(camelCase);
+  const companies = getCompanyNames(location).map((name) => camelCase(name));
 
   if (companies.length === 0) {
     return null;

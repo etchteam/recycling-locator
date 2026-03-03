@@ -1,3 +1,10 @@
+## [1.71.2](https://github.com/etchteam/recycling-locator/compare/v1.71.1...v1.71.2) (2026-03-03)
+
+
+### Bug Fixes
+
+* materials search analytics title ([5b77a3a](https://github.com/etchteam/recycling-locator/commit/5b77a3adb81b2546031a67ce9d67adbc5f7b4343))
+
 ## [1.71.1](https://github.com/etchteam/recycling-locator/compare/v1.71.0...v1.71.1) (2026-01-22)
 
 

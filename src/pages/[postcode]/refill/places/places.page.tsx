@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'preact/hooks';
 import { Trans, useTranslation } from 'react-i18next';
 import { Link, useSearchParams } from 'wouter-preact';
 
@@ -20,6 +21,7 @@ function RefillLocations() {
   const unfilteredResult = useRefillLocations({ unfiltered: true });
   const {
     data: locations,
+    loading,
     count,
     currentPage,
     hasMore,
@@ -27,7 +29,28 @@ function RefillLocations() {
     loadMore,
     loadMoreRef,
   } = usePaginatedLocations(locationsResult);
+  const categories = searchParams.get('categories');
   const totalCount = unfilteredResult.data?.items?.length ?? count;
+
+  // Fade results out and back in when categories change.
+  // categoriesChanged is computed synchronously to prevent a flash of new data.
+  // Stays faded until both a minimum duration has passed AND data has loaded.
+  const [timerDone, setTimerDone] = useState(true);
+  const prevCategories = useRef(categories);
+  const categoriesChanged = prevCategories.current !== categories;
+
+  useEffect(() => {
+    if (prevCategories.current === categories) {
+      return;
+    }
+
+    prevCategories.current = categories;
+    setTimerDone(false);
+    const timer = setTimeout(() => setTimerDone(true), 300);
+    return () => clearTimeout(timer);
+  }, [categories]);
+
+  const resultsFading = categoriesChanged || !timerDone || loading;
   const locationSearchParams = new URLSearchParams(searchParams);
   locationSearchParams.set('page', String(currentPage));
 
@@ -65,67 +88,67 @@ function RefillLocations() {
           </evg-grid-item>
         )}
       </evg-grid>
-      <div className="evg-spacing-bottom-md">
-        {totalCount === 0 ? (
-          <evg-alert variant="neutral-light">
-            <p>
-              <Trans
-                i18nKey="refill.places.noPlacesAlert"
-                components={{
-                  a: <Link href={`/${postcode}/refill/sign-up`} />,
-                }}
-              />
-            </p>
-          </evg-alert>
-        ) : (
-          <RefillFilteredAlert count={count} />
-        )}
-      </div>
-      {count > 0 && (
-        <>
-          <locator-places-grid className="evg-spacing-bottom-lg">
-            <nav aria-labelledby="refill-places-count">
-              <ul>
-                {locations.items.map((location) => {
-                  return (
-                    <li key={`${location.id}`}>
-                      <Link
-                        href={`/${postcode}/refill/places/${location.id}?${locationSearchParams.toString()}`}
-                      >
-                        <evg-enter type="fade">
+      <locator-fade-transition fading={resultsFading || undefined}>
+        <div className="evg-spacing-bottom-md">
+          {totalCount === 0 ? (
+            <evg-alert variant="neutral-light">
+              <p>
+                <Trans
+                  i18nKey="refill.places.noPlacesAlert"
+                  components={{
+                    a: <Link href={`/${postcode}/refill/sign-up`} />,
+                  }}
+                />
+              </p>
+            </evg-alert>
+          ) : (
+            <RefillFilteredAlert count={count} />
+          )}
+        </div>
+        {count > 0 && (
+          <>
+            <locator-places-grid className="evg-spacing-bottom-lg">
+              <nav aria-labelledby="refill-places-count">
+                <ul>
+                  {locations.items.map((location) => {
+                    return (
+                      <li key={`${location.id}`}>
+                        <Link
+                          href={`/${postcode}/refill/places/${location.id}?${locationSearchParams.toString()}`}
+                        >
                           <evg-card radius="sm">
                             <evg-card-content>
                               <Place location={location} variant="refill" />
                             </evg-card-content>
                           </evg-card>
-                        </evg-enter>
-                      </Link>
-                    </li>
-                  );
-                })}
-              </ul>
-            </nav>
-          </locator-places-grid>
-          {hasMore && (
-            <evg-grid justify-content="center">
-              <evg-grid-item
-                small-mobile="12"
-                small-tablet="6"
-                large-tablet="4"
-              >
-                <evg-button width="full-width">
-                  <button type="button" ref={loadMoreRef} onClick={loadMore}>
-                    {t('actions.loadMore')}
-                  </button>
-                </evg-button>
-              </evg-grid-item>
-            </evg-grid>
-          )}
-          <RefillBrands
-            companyNames={getCompanyNames(unfilteredResult.data ?? locations)}
-          />
-        </>
-      )}
+                        </Link>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </nav>
+            </locator-places-grid>
+            {hasMore && (
+              <evg-grid justify-content="center">
+                <evg-grid-item
+                  small-mobile="12"
+                  small-tablet="6"
+                  large-tablet="4"
+                >
+                  <evg-button width="full-width">
+                    <button type="button" ref={loadMoreRef} onClick={loadMore}>
+                      {t('actions.loadMore')}
+                    </button>
+                  </evg-button>
+                </evg-grid-item>
+              </evg-grid>
+            )}
+            <RefillBrands
+              companyNames={getCompanyNames(unfilteredResult.data ?? locations)}
+            />
+          </>
+        )}
+      </locator-fade-transition>
     </evg-enter>
   );
 }

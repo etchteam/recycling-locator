@@ -27,6 +27,7 @@ locator-category-card {
       margin-bottom: var(--evg-spacing-sm);
       place-self: end center;
       white-space: nowrap;
+      z-index: 1;
     }
 
     &:hover {
@@ -35,6 +36,10 @@ locator-category-card {
 
       img {
         transform: scale(1.02); /* Very slight zoom effect on hover */
+      }
+
+      evg-chip {
+        --evg-chip-border-color-light: var(--color-primary-dark);
       }
     }
   }

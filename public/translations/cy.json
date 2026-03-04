@@ -155,6 +155,11 @@
       "description": "Rydym bob amser yn awyddus i wella’r offeryn hwn a byddai gennym ddiddordeb clywed am eich profiad o’i ddefnyddio, boed dda neu ddrwg.",
       "cta": "Adborth ar yr offeryn hwn",
       "url": "https://wrapcymru.org.uk/contact-wrap-cymru"
+    },
+    "relatedService": {
+      "title": "Gwasanaeth cysylltiedig: Ap Refill Return",
+      "description": "Hefyd yn chwilio am le i ail-lenwi eich potel ddŵr pan fyddwch allan? Mae ap Refill Return gan Ecosurety yn eich helpu i ddod o hyd i leoliadau yn agos atoch chi.",
+      "cta": "Lawrlwytho ap Refill Return"
     }
   },
   "start": {

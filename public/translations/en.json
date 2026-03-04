@@ -155,6 +155,11 @@
       "description": "We’re always looking to improve this tool and would be interested to hear about your experience whilst using it, good or bad.",
       "cta": "Feedback on this tool",
       "url": "https://wrap.org.uk/contact-us"
+    },
+    "relatedService": {
+      "title": "Related service: Refill Return app",
+      "description": "Also looking to refill your water bottle whilst out and about? The Refill Return app by Ecosurety helps you find locations near you.",
+      "cta": "Download the Refill Return app"
     }
   },
   "start": {

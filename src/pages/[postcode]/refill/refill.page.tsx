@@ -24,9 +24,7 @@ function NavLink({ href, icon, title, description }: NavLinkProps) {
         </locator-icon-circle>
         <div>
           {title && (
-            <h4 className="text-size-base evg-text-weight-bold evg-spacing-bottom-none">
-              {title}
-            </h4>
+            <h4 className="text-size-base evg-spacing-bottom-none">{title}</h4>
           )}
           <p className="evg-text-size-body-xs">{description}</p>
         </div>

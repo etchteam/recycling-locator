@@ -185,7 +185,7 @@ function RefillOptions({ postcode }: { readonly postcode: string }) {
           <p className="evg-text-size-body evg-spacing-top-md evg-spacing-bottom-sm">
             Refill your favourites
           </p>
-          <locator-overflow largeScreen wrapCards>
+          <locator-overflow largeScreen centerXLarge wrapCards>
             <ul>
               {categories.map((category) => (
                 <li key={category}>

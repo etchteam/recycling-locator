@@ -31,6 +31,7 @@ export interface RecyclingLocatorAttributes {
   readonly basename?: string;
   /**
    * The initial path to load
+   * - /refill for refill embeds
    * - /{postcode} to pre-fill the location
    * - /home-recycling for home recycling embeds
    * - /material?materials=111&search=Cereal boxes to pre-select a material

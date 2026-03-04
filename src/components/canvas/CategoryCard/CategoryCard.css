@@ -27,6 +27,7 @@ locator-category-card {
       margin-bottom: var(--evg-spacing-sm);
       place-self: end center;
       white-space: nowrap;
+      z-index: 1;
     }
 
     &:hover {

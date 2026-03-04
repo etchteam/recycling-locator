@@ -12,7 +12,7 @@ import { useAppState } from '@/hooks/AppStateProvider';
 import { usePostcode } from '@/hooks/PostcodeProvider';
 import useScrollRestoration from '@/hooks/useScrollRestoration';
 
-const pages = ['intro', 'guide', 'options', 'benefits', 'sign-up'];
+const pages = ['intro', 'guide', 'options', 'benefits'];
 
 export function DiscoverRefillAside() {
   const { t } = useTranslation();

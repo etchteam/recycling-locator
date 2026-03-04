@@ -27,7 +27,7 @@ export default function DiscoverRefillPage() {
       </h3>
       <p className="evg-spacing-bottom-md">{t('refill.discover.subtitle')}</p>
 
-      <locator-overflow style="--anchor-name: --carousel-nav">
+      <locator-overflow>
         <ul>
           {pages.map((page) => (
             <li key={page}>
@@ -55,7 +55,7 @@ export default function DiscoverRefillPage() {
       <h3 className="text-size-base evg-text-weight-bold evg-spacing-top-lg evg-spacing-bottom-sm">
         {t('refill.discover.reviews.title')}
       </h3>
-      <locator-overflow largeScreen style="--anchor-name: --carousel-reviews">
+      <locator-overflow largeScreen>
         <ul>
           {reviewers.map((reviewer) => (
             <li key={reviewer}>

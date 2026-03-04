@@ -6,6 +6,16 @@ export interface OverflowAttributes {
   centerXLarge?: boolean;
 }
 
+let counter = 0;
+
+class LocatorOverflow extends HTMLElement {
+  connectedCallback() {
+    this.style.setProperty('--anchor-name', `--carousel-${++counter}`);
+  }
+}
+
+customElements.define('locator-overflow', LocatorOverflow);
+
 declare module 'react' {
   namespace JSX {
     interface IntrinsicElements {

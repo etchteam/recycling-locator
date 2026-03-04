@@ -20,6 +20,8 @@ export interface UsePaginatedLocationsResult {
   data: LocationsResponse | null;
   /** Whether data is currently loading */
   loading: boolean;
+  /** Fetch error, if any */
+  error: Error | null;
   /** Number of items currently loaded */
   count: number;
   /** Current page number (1-indexed) */
@@ -45,7 +47,7 @@ export function usePaginatedLocations(
   const { limit = 30, maxLimit = 120 } = config ?? {};
 
   const [searchParams, setSearchParams] = useSearchParams();
-  const { data: locations, loading } = locationsResult;
+  const { data: locations, loading, error } = locationsResult;
 
   const loadMoreRef = useRef<HTMLButtonElement>(null);
   const lastLoadMoreOffset = useSignal<number>(0);
@@ -90,6 +92,7 @@ export function usePaginatedLocations(
   return {
     data: locations,
     loading,
+    error,
     count,
     currentPage,
     hasMore,

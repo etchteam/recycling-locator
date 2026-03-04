@@ -1,0 +1,34 @@
+locator-refill-brands {
+  display: block;
+
+  h3 {
+    font-size: var(--evg-font-size-heading-xs);
+    font-weight: normal;
+    text-align: center;
+  }
+
+  evg-card {
+    --evg-theme-background: var(--color-grey-lightest);
+    border: 0 none;
+  }
+
+  .refill-brands-content {
+    width: 100%;
+  }
+
+  .refill-brands-list {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--evg-spacing-sm);
+    justify-content: center;
+  }
+
+  .refill-brands-list img {
+    display: block;
+    filter: grayscale(100%);
+    height: 3rem;
+    mix-blend-mode: multiply;
+    width: auto;
+  }
+}

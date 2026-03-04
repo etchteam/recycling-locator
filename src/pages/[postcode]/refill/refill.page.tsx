@@ -7,6 +7,7 @@ import { usePostcode } from '@/hooks/PostcodeProvider';
 import { useRefillLocations } from '@/hooks/useRefillLocations';
 import formatPostcode from '@/lib/formatPostcode';
 import getRefillCategoryAvailability from '@/lib/getRefillCategoryAvailability';
+import { REFILL_CATEGORIES } from '@/lib/refillCategories';
 
 interface NavLinkProps {
   readonly href: string;
@@ -71,11 +72,12 @@ function RecyclingLink({ postcode }: { readonly postcode: string }) {
 
 function RefillOptions({ postcode }: { readonly postcode: string }) {
   const { t } = useTranslation();
-  const { data: refillLocations, loading: locationsLoading } =
-    useRefillLocations();
+  const {
+    data: refillLocations,
+    loading: locationsLoading,
+    error: refillLocationsError,
+  } = useRefillLocations();
   const { publicPath } = useAppState();
-
-  const categories = ['mixed-food', 'cleaning', 'personal-care'];
 
   const navCards = ['guide', 'home-delivery'];
 
@@ -104,11 +106,11 @@ function RefillOptions({ postcode }: { readonly postcode: string }) {
     return <Loading />;
   }
 
-  if (!refillLocations) {
-    return <Loading />;
-  }
-
-  if (refillLocations.items?.length === 0) {
+  if (
+    !refillLocations ||
+    refillLocationsError ||
+    refillLocations.items?.length === 0
+  ) {
     return (
       <evg-enter type="fade-in-up" delay={0.25}>
         <evg-card
@@ -143,7 +145,7 @@ function RefillOptions({ postcode }: { readonly postcode: string }) {
         </ul>
 
         <p className="evg-text-size-body evg-spacing-top-md evg-spacing-bottom-sm">
-          You still have options
+          {t('refill.explore.stillHaveOptions')}
         </p>
         <ul className="list-style-none">
           {navCards.map((page) => (
@@ -185,28 +187,26 @@ function RefillOptions({ postcode }: { readonly postcode: string }) {
       {getRefillCategoryAvailability(refillLocations.items) && (
         <>
           <p className="evg-text-size-body evg-spacing-top-md evg-spacing-bottom-sm">
-            Refill your favourites
+            {t('refill.explore.refillYourFavourites')}
           </p>
           <locator-overflow largeScreen wrapCards>
             <ul>
-              {categories.map((category) => (
-                <li key={category}>
+              {REFILL_CATEGORIES.map((category) => (
+                <li key={category.key}>
                   <locator-category-card>
                     <Link
-                      href={`/${postcode}/refill/places?category=${category}`}
+                      href={`/${postcode}/refill/places?categories=${category.param}`}
                     >
                       <img
-                        src={`${publicPath}images/refill/categories/${category}.webp`}
+                        src={`${publicPath}images/refill/categories/${category.slug}.webp`}
                         alt=""
                         width="180"
                         height="220"
                       />
                       <evg-chip variant="light">
                         <span>
-                          <locator-icon
-                            icon={category as IconAttributes['icon']}
-                          ></locator-icon>
-                          {t(`refill.category.${category}`)}
+                          <locator-icon icon={category.slug}></locator-icon>
+                          {t(`refill.category.${category.slug}`)}
                         </span>
                       </evg-chip>
                     </Link>

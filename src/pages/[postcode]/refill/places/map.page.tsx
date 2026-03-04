@@ -63,7 +63,7 @@ export default function RefillMapPage() {
             primaryAction={
               <evg-button width="full-width" variant="primary" size="sm">
                 <Link
-                  href={`/${postcode}/refill/${activeLocation.value?.id}?${searchParams.toString()}`}
+                  href={`/${postcode}/refill/places/${activeLocation.value?.id}?${searchParams.toString()}`}
                 >
                   {t('actions.viewDetails')}
                 </Link>
@@ -74,7 +74,9 @@ export default function RefillMapPage() {
           <evg-enter type="fade" delay={0.5}>
             <locator-fab>
               <evg-button size="sm" variant="primary">
-                <Link href={`/${postcode}/refill?${searchParams.toString()}`}>
+                <Link
+                  href={`/${postcode}/refill/places?${searchParams.toString()}`}
+                >
                   <locator-icon icon="list"></locator-icon>
                   {t('actions.showList')}
                 </Link>

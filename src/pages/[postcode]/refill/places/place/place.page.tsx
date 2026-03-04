@@ -3,7 +3,6 @@ import camelCase from 'lodash/camelCase';
 import { Trans, useTranslation } from 'react-i18next';
 import { Link, useParams } from 'wouter-preact';
 
-import { IconAttributes } from '@/components/content/Icon/Icon';
 import OpeningHours from '@/components/content/OpeningHours/OpeningHours';
 import RateThisInfo from '@/components/control/RateThisInfo/RateThisInfo';
 import { usePostcode } from '@/hooks/PostcodeProvider';
@@ -13,13 +12,9 @@ import getNotes from '@/lib/details/getNotes';
 import getOpeningHours from '@/lib/details/getOpeningHours';
 import getPhoneNumbers from '@/lib/details/getPhoneNumbers';
 import getWebsites from '@/lib/details/getWebsites';
+import getCompanyNames from '@/lib/getCompanyNames';
+import { REFILL_CATEGORIES } from '@/lib/refillCategories';
 import { Location, RefillCategory } from '@/types/locatorApi';
-
-const CATEGORY_ICON_MAP: Record<string, IconAttributes['icon']> = {
-  Food: 'mixed-food',
-  Cleaning: 'cleaning',
-  'Personal Care': 'personal-care',
-};
 
 const StoreBrands = new Set(['marksAndSpencer']);
 
@@ -50,18 +45,30 @@ function RefillProductsContent({
 
   return (
     <>
-      <p className="evg-text-weight-bold evg-spacing-bottom-none">Products</p>
-      {categoriesList.map((cat) => (
-        <evg-chip key={cat.id}>
-          <Link href={`/${postcode}/refill/places?category=${cat.name}`}>
-            <locator-icon
-              icon={CATEGORY_ICON_MAP[cat.name]}
-              className="evg-spacing-right-xs"
-            />
-            {t(`refill.category.${CATEGORY_ICON_MAP[cat.name]}`)}
-          </Link>
-        </evg-chip>
-      ))}
+      <p className="evg-text-weight-bold evg-spacing-bottom-none">
+        {t('refill.place.products')}
+      </p>
+      {categoriesList.map((cat) => {
+        const category = REFILL_CATEGORIES.find((c) => c.key === cat.name);
+
+        if (!category?.slug) {
+          return null;
+        }
+
+        return (
+          <evg-chip key={cat.id}>
+            <Link
+              href={`/${postcode}/refill/places?categories=${category.param}`}
+            >
+              <locator-icon
+                icon={category.slug}
+                className="evg-spacing-right-xs"
+              />
+              {t(`refill.category.${category.slug}`)}
+            </Link>
+          </evg-chip>
+        );
+      })}
       <p className="evg-text-size-body-xs evg-spacing-top-xs evg-spacing-bottom-sm">
         {t('refill.place.disclaimer')}
       </p>
@@ -72,11 +79,7 @@ function RefillProductsContent({
 function RefillCompanyContent({ location }: { readonly location: Location }) {
   const { t } = useTranslation();
 
-  const companies: string[] = location.locations
-    .map((loc) => loc.company?.name)
-    .filter((name): name is string => Boolean(name))
-    .filter((name, index, arr) => arr.indexOf(name) === index)
-    .map(camelCase);
+  const companies = getCompanyNames(location).map((name) => camelCase(name));
 
   if (companies.length === 0) {
     return null;
@@ -201,7 +204,7 @@ function RefillPlaceContent({ location }: { readonly location: Location }) {
             </div>
           )}
           {StoreBrands.has(
-            camelCase(location.locations[0].company?.name ?? ''),
+            camelCase(location.locations[0]?.company?.name ?? ''),
           ) && (
             <div>
               <dt>{t('place.details.website')}</dt>
@@ -256,7 +259,11 @@ function RefillPlaceContent({ location }: { readonly location: Location }) {
 
 export default function RefillPlacePage() {
   const params = useParams<{ id: string }>();
-  const { data: location, loading } = useRefillPlace(params.id);
+  const { data: location, loading, error } = useRefillPlace(params.id);
+
+  if (error) {
+    throw error;
+  }
 
   if (loading || !location) {
     return null;

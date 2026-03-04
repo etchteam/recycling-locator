@@ -70,12 +70,15 @@ export function PostcodeLayoutAside() {
       locations={locations.items}
       static
     >
-      <Link href={`/${postcode}/refill/map`} aria-label={t('actions.showMap')}>
+      <Link
+        href={`/${postcode}/refill/places/map`}
+        aria-label={t('actions.showMap')}
+      >
         <locator-places-map-scrim />
       </Link>
       <locator-places-map-card padding="none">
         <evg-button width="full-width">
-          <Link href={`/${postcode}/refill/map`}>
+          <Link href={`/${postcode}/refill/places/map`}>
             {t('postcode.exploreTheMap')}
             <locator-icon icon="map" color="primary"></locator-icon>
           </Link>

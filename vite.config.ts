@@ -16,6 +16,7 @@ export default defineConfig(({ mode }) => {
   const config: UserConfig = {
     define: {
       'process.env': publicEnv,
+      __BUILD_TIME__: JSON.stringify(Date.now().toString(36)),
     },
 
     server: {

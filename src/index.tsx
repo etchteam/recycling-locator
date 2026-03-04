@@ -105,7 +105,10 @@ export default function RecyclingLocator({
 
   return (
     <>
-      <link rel="stylesheet" href={`${publicPath}styles.css`} />
+      <link
+        rel="stylesheet"
+        href={`${publicPath}styles.css?v=${__BUILD_TIME__}`}
+      />
       <article className={classes}>
         <Suspense fallback={<Loading />}>
           <RouterProvider

@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/recycling-locator.css" />
-    <title>Recycling Locator Widget</title>
+    <title>Recycling Locator Widget Demo</title>
     <meta name="description" content="Find places to recycle, refill or reuse items." />
     <meta name="keywords" content="recycling, refill, reuse, recycle, locator, widget" />
     <meta name="robots" content="noindex, nofollow" />
@@ -15,64 +15,58 @@
         content="default-src 'none'; img-src data: https://rl.recyclenow.com https://*.here.com; script-src 'self' https://rl.recyclenow.com 'unsafe-eval'; connect-src blob: http://rl.test https://rl.recyclenow.com https://*.sentry.io https://*.hereapi.com https://*.here.com; style-src 'unsafe-inline' https://rl.recyclenow.com; font-src https://*.here.com; worker-src blob:;"
       />
     -->
-
     <style>
-      body {
-        font-family: -apple-system, system-ui, blinkmacsystemfont, roboto,
-          helvetica, arial, sans-serif;
-        font-size: 16px;
-        -webkit-font-smoothing: antialiased;
-        line-height: 1.5;
-        margin: 0;
-        padding: 0;
-      }
+      @import url('https://esm.sh/@wrap.ngo/evergreen/fonts');
+      @import url('https://esm.sh/@wrap.ngo/evergreen/styles');
 
       main {
         margin: 0 auto;
-        max-width: 1500px;
-        padding: 1rem;
+        max-width: 1440px;
+        padding: var(--evg-spacing-md);
       }
 
       h1 {
-        font-weight: bold;
-        line-height: 1.25;
-        margin: 0 0 1rem;
+        font-size: var(--evg-font-size-heading-lg);
       }
 
-      label {
-        display: block;
-        font-weight: bold;
-        font-size: 0.875rem;
-        margin-bottom: 0.25rem;
+      #controls {
+        display: flex;
+        flex-direction: column;
+        gap: var(--evg-spacing-sm);
       }
 
-      select {
+      #controls h2 {
+        font-size: var(--evg-font-size-heading-sm);
+        margin: 0;
+      }
+
+      #controls label {
+        font-size: var(--evg-font-size-body-sm);
+      }
+
+      #controls select {
+        border: 1px solid var(--evg-input-border);
+        border-radius: var(--evg-input-border-radius);
+        font-size: var(--evg-input-font-size);
+        padding: var(--evg-input-padding);
         width: 100%;
-        padding: 0.375rem 0.5rem;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        font-size: 0.875rem;
-      }
-
-      .control-group {
-        margin-bottom: 0.75rem;
       }
 
       .controls-toggle {
         display: none;
-        font-size: 0.75rem;
+        font-size: var(--evg-font-size-body-xs);
         cursor: pointer;
-        background: #fff;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        padding: 0.25rem 0.5rem;
+        background: var(--evg-color-cloud);
+        border: 1px solid var(--evg-input-border);
+        border-radius: var(--evg-radius-sm);
+        padding: var(--evg-spacing-xs) var(--evg-spacing-sm);
       }
 
       .standalone .controls-toggle {
         display: block;
         position: fixed;
-        top: 0.5rem;
-        right: 0.5rem;
+        top: var(--evg-spacing-sm);
+        right: var(--evg-spacing-sm);
         z-index: 1001;
       }
 
@@ -80,7 +74,7 @@
         .layout {
           display: grid;
           grid-template-columns: 250px 1fr;
-          gap: 1rem;
+          gap: var(--evg-spacing-md);
         }
       }
 
@@ -98,16 +92,20 @@
         display: block;
       }
 
+      .standalone #controls h2 {
+        display: none;
+      }
+
       .standalone #controls {
         position: fixed;
-        top: 0.5rem;
-        right: 0.5rem;
+        top: var(--evg-spacing-sm);
+        right: var(--evg-spacing-sm);
         z-index: 1000;
-        background: #fff;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        padding: 0.75rem;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        background: var(--evg-color-cloud);
+        border: 1px solid var(--evg-input-border);
+        border-radius: var(--evg-radius-sm);
+        padding: var(--evg-spacing-md);
+        box-shadow: var(--evg-shadow);
         width: 220px;
       }
 
@@ -117,62 +115,67 @@
     </style>
   </head>
   <body>
-    <main>
-      <h1>Recycling Locator Widget Demo</h1>
+    <main class="evg-theme-sand">
+      <evg-wrapper gutter="md" size="xxxl">
+        <evg-section padding="lg">
+          <h1>Recycling Locator Widget Demo</h1>
+        </evg-section>
 
-      <div class="layout" id="layout">
-        <nav id="controls">
-          <div class="control-group">
-            <label for="start-point">Start point</label>
-            <select id="start-point">
-              <option value="/">Default</option>
-              <option value="/home-recycling">Home recycling</option>
-              <option value="/refill">Refill</option>
-              <option value="/material?name=Plastic drinks bottles">Pre-filled material</option>
-              <option value="/EX32 8JL">Pre-filled location</option>
-            </select>
-          </div>
+        <div class="layout" id="layout">
+          <nav id="controls">
+            <h2>Preview controls</h2>
+            <div>
+              <label for="start-point">Start point</label>
+              <select id="start-point">
+                <option value="/">Default</option>
+                <option value="/home-recycling">Home recycling</option>
+                <option value="/refill">Refill</option>
+                <option value="/material?name=Plastic drinks bottles">Pre-filled material</option>
+                <option value="/EX32 8JL">Pre-filled location</option>
+              </select>
+            </div>
 
-          <div class="control-group">
-            <label for="theme">Theme</label>
-            <select id="theme">
-              <option value="green">Green (Default)</option>
-              <option value="red">Red</option>
-              <option value="blue">Blue</option>
-              <option value="orange">Orange</option>
-              <option value="purple">Purple</option>
-              <option value="brown">Brown</option>
-              <option value="navy">Navy</option>
-              <option value="black">Black</option>
-              <option value="none">None</option>
-            </select>
-          </div>
+            <div>
+              <label for="theme">Theme</label>
+              <select id="theme">
+                <option value="green">Green (Default)</option>
+                <option value="red">Red</option>
+                <option value="blue">Blue</option>
+                <option value="orange">Orange</option>
+                <option value="purple">Purple</option>
+                <option value="brown">Brown</option>
+                <option value="navy">Navy</option>
+                <option value="black">Black</option>
+                <option value="none">None</option>
+              </select>
+            </div>
 
-          <div class="control-group">
-            <label for="locale">Locale</label>
-            <select id="locale">
-              <option value="">English</option>
-              <option value="cy">Welsh (Cymraeg)</option>
-              <option value="cy-GB">Wales (English)</option>
-            </select>
-          </div>
+            <div>
+              <label for="locale">Locale</label>
+              <select id="locale">
+                <option value="">English</option>
+                <option value="cy">Welsh (Cymraeg)</option>
+                <option value="cy-GB">Wales (English)</option>
+              </select>
+            </div>
 
-          <div class="control-group">
-            <label for="variant">Variant</label>
-            <select id="variant">
-              <option value="widget">Widget</option>
-              <option value="standalone">Standalone</option>
-            </select>
-          </div>
+            <div>
+              <label for="variant">Variant</label>
+              <select id="variant">
+                <option value="widget">Widget</option>
+                <option value="standalone">Standalone</option>
+              </select>
+            </div>
 
-        </nav>
+          </nav>
 
-        <button class="controls-toggle" id="controls-toggle" type="button">
-          Hide controls
-        </button>
+          <button class="controls-toggle" id="controls-toggle" type="button">
+            Hide controls
+          </button>
 
-        <recycling-locator></recycling-locator>
-      </div>
+          <recycling-locator></recycling-locator>
+        </div>
+      </evg-wrapper>
     </main>
 
     <script type="module" src="/src/index.tsx"></script>

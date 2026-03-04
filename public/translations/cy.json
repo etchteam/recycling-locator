@@ -155,6 +155,11 @@
       "description": "Rydym bob amser yn awyddus i wella’r offeryn hwn a byddai gennym ddiddordeb clywed am eich profiad o’i ddefnyddio, boed dda neu ddrwg.",
       "cta": "Adborth ar yr offeryn hwn",
       "url": "https://wrapcymru.org.uk/contact-wrap-cymru"
+    },
+    "relatedService": {
+      "title": "Gwasanaeth cysylltiedig: Ap Refill Return",
+      "description": "Hefyd yn chwilio am le i ail-lenwi eich potel ddŵr pan fyddwch allan? Mae ap Refill Return gan Ecosurety yn eich helpu i ddod o hyd i leoliadau yn agos atoch chi.",
+      "cta": "Lawrlwytho ap Refill Return"
     }
   },
   "start": {
@@ -752,7 +757,7 @@
         "abel-and-cole": {
           "name": "Abel & Cole",
           "category": "Bwyd",
-          "description": "Cael eich hanfodion bob dydd wedi'u danfon mewn pecynnu y gellir ei ddychwelyd ac ail-lenwi — dim gwastraff, dim cyfaddawd. Dyna Club Zero."
+          "description": "Cael eich hanfodion bob dydd wedi'u danfon mewn pecynnu y gellir ei ddychwelyd a'i ail-lenwi. Siopa dim gwastraff gyda gwahaniaeth"
         },
         "beauty-kitchen": {
           "name": "Beauty Kitchen",
@@ -777,7 +782,7 @@
         "ocado": {
           "name": "Ocado",
           "category": "Bwyd",
-          "description": "Mae Ocado yn cynnig dewisiadau amgen y gellir eu hailddefnyddio i'w hystod bresennol, mewn nifer ddethol o leoliadau ledled y DU."
+          "description": "Mae Ocado yn cynnig cynllun pecynnu y gellir ei ailddefnyddio ar-lein mewn nifer ddethol o leoliadau ledled y DU."
         }
       }
     },

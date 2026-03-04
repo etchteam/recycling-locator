@@ -10,7 +10,7 @@ import useAnalytics from '@/hooks/useAnalytics';
 import { useDoorstepCollections } from '@/hooks/useDoorstepCollections';
 import { useLocalAuthority } from '@/hooks/useLocalAuthority';
 import { useLocations } from '@/hooks/useLocations';
-import { useMaterial } from '@/hooks/useMaterial';
+import { useMaterialSearchTerm } from '@/hooks/useMaterialSearchTerm';
 import { useTip } from '@/hooks/useTip';
 import getPropertiesByMaterial from '@/lib/getPropertiesByMaterial';
 
@@ -18,11 +18,10 @@ export default function MaterialPage() {
   const { postcode } = usePostcode();
   const { recordEvent } = useAnalytics();
   const [searchParams] = useSearchParams();
-  const searchTerm = searchParams.get('search');
   const materialId = searchParams.get('materials');
   const la = useLocalAuthority();
   const locations = useLocations();
-  const material = useMaterial(materialId);
+  const { searchTerm, material, category } = useMaterialSearchTerm();
   const doorstepCollections = useDoorstepCollections(materialId);
   const tip = useTip({ materialId });
   const propertiesCollectingThisMaterial = getPropertiesByMaterial(
@@ -74,6 +73,7 @@ export default function MaterialPage() {
             loading={
               la?.loading ||
               material?.loading ||
+              category?.loading ||
               locations?.loading ||
               doorstepCollections?.loading
             }

@@ -155,6 +155,11 @@
       "description": "We’re always looking to improve this tool and would be interested to hear about your experience whilst using it, good or bad.",
       "cta": "Feedback on this tool",
       "url": "https://wrap.org.uk/contact-us"
+    },
+    "relatedService": {
+      "title": "Related service: Refill Return app",
+      "description": "Also looking to refill your water bottle whilst out and about? The Refill Return app by Ecosurety helps you find locations near you.",
+      "cta": "Download the Refill Return app"
     }
   },
   "start": {
@@ -766,7 +771,7 @@
         "abel-and-cole": {
           "name": "Abel & Cole",
           "category": "Food",
-          "description": "Get your everyday essentials delivered in returnable, refillable packaging — no waste, no compromise. That's Club Zero."
+          "description": "Get your everyday essentials delivered in returnable, refillable packaging. It's zero-waste shopping with a difference."
         },
         "beauty-kitchen": {
           "name": "Beauty Kitchen",
@@ -791,7 +796,7 @@
         "ocado": {
           "name": "Ocado",
           "category": "Food",
-          "description": "Ocado offer resuseable alternatives to their existing range, in a select number of locations across the UK."
+          "description": "Ocado offer an online reusable packaging scheme in a select number of locations across the UK."
         }
       }
     },

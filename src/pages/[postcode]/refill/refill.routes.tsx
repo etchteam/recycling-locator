@@ -7,6 +7,7 @@ import DiscoverRefillRoutes from './discover/discover.routes';
 import RefillPlacesRoutes from './places/places.routes';
 import RefillLayout from './refill.layout';
 import RefillPage from './refill.page';
+import SignUpPage from './sign-up/sign-up.page';
 
 export default function RefillRoutes() {
   const { t } = useTranslation();
@@ -23,6 +24,7 @@ export default function RefillRoutes() {
             <RefillPage />
           </RefillLayout>
         </Route>
+        <Route path="/:postcode/refill/sign-up" component={SignUpPage} />
         <Route
           path="/:postcode/refill/discover/*?"
           component={DiscoverRefillRoutes}

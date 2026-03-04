@@ -667,12 +667,12 @@
         "cta": "Cael gwybod pan fydd lleoliadau Ail-lenwi yn lansio"
       },
       "sign-up": {
-        "title": "Byddwch y cyntaf i wybod pan fydd lleoliadau ail-lenwi yn cyrraedd",
-        "description": "Cyn bo hir byddwch yn gallu defnyddio'r Lleolydd i ddod o hyd i siopau ail-lenwi yn eich ardal.",
+        "title": "Byddwch y cyntaf i wybod pan fydd lleoliadau ail-lenwi newydd yn cyrraedd yn eich ardal",
+        "subtitle": "Cael hysbysiad e-bost",
         "button": "Cofrestru",
         "loading": "Wrthi'n cofrestru…",
         "error": "Mae gwall wedi digwydd, rhowch gynnig ar gyflwyno eto.",
-        "business": "neu <a>Cysylltwch â ni ynghylch eich busnes ail-lenwi</a>",
+        "business": "neu <a>Rhowch wybod i ni am eich busnes Ail-lenwi</a>",
         "businessLink": "https://www.wrap.ngo/take-action/recycle-now/recycling-locator-tool",
         "success": {
           "title": "Diolch am gofrestru!",

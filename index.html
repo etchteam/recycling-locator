@@ -19,6 +19,10 @@
       @import url('https://esm.sh/@wrap.ngo/evergreen/fonts');
       @import url('https://esm.sh/@wrap.ngo/evergreen/styles');
 
+      header {
+        margin-block: var(--evg-spacing-lg);
+      }
+
       main {
         margin: 0 auto;
         max-width: 1440px;
@@ -33,6 +37,7 @@
         display: flex;
         flex-direction: column;
         gap: var(--evg-spacing-sm);
+        margin-block-end: var(--evg-spacing-md);
       }
 
       #controls h2 {
@@ -79,6 +84,10 @@
       }
 
       /* Standalone mode */
+      .standalone header {
+        display: none;
+      }
+
       .standalone main {
         max-width: none;
         padding: 0;
@@ -116,106 +125,122 @@
   </head>
   <body>
     <main class="evg-theme-sand">
-      <evg-wrapper gutter="md" size="xxxl">
-        <evg-section padding="lg">
-          <h1>Recycling Locator Widget Demo</h1>
-        </evg-section>
+      <header>
+        <h1>Recycling Locator Widget Demo</h1>
+      </header>
 
-        <div class="layout" id="layout">
-          <nav id="controls">
-            <h2>Preview controls</h2>
-            <div>
-              <label for="start-point">Start point</label>
-              <select id="start-point">
-                <option value="/">Default</option>
-                <option value="/home-recycling">Home recycling</option>
-                <option value="/refill">Refill</option>
-                <option value="/material?name=Plastic drinks bottles">Pre-filled material</option>
-                <option value="/EX32 8JL">Pre-filled location</option>
-              </select>
-            </div>
+      <div class="layout" id="layout">
+        <nav id="controls">
+          <h2>Preview controls</h2>
+          <div>
+            <label for="path">Start point</label>
+            <select id="path" name="path">
+              <option value="/">Default</option>
+              <option value="/home-recycling">Home recycling</option>
+              <option value="/refill">Refill</option>
+              <option value="/material?name=Plastic drinks bottles">Pre-filled material</option>
+              <option value="/EX32 8JL">Pre-filled location</option>
+            </select>
+          </div>
 
-            <div>
-              <label for="theme">Theme</label>
-              <select id="theme">
-                <option value="green">Green (Default)</option>
-                <option value="red">Red</option>
-                <option value="blue">Blue</option>
-                <option value="orange">Orange</option>
-                <option value="purple">Purple</option>
-                <option value="brown">Brown</option>
-                <option value="navy">Navy</option>
-                <option value="black">Black</option>
-                <option value="none">None</option>
-              </select>
-            </div>
+          <div>
+            <label for="theme">Theme</label>
+            <select id="theme" name="theme">
+              <option value="green">Green (Default)</option>
+              <option value="red">Red</option>
+              <option value="blue">Blue</option>
+              <option value="orange">Orange</option>
+              <option value="purple">Purple</option>
+              <option value="brown">Brown</option>
+              <option value="navy">Navy</option>
+              <option value="black">Black</option>
+              <option value="none">None</option>
+            </select>
+          </div>
 
-            <div>
-              <label for="locale">Locale</label>
-              <select id="locale">
-                <option value="">English</option>
-                <option value="cy">Welsh (Cymraeg)</option>
-                <option value="cy-GB">Wales (English)</option>
-              </select>
-            </div>
+          <div>
+            <label for="locale">Locale</label>
+            <select id="locale" name="locale">
+              <option value="">English</option>
+              <option value="cy">Welsh (Cymraeg)</option>
+              <option value="cy-GB">Wales (English)</option>
+            </select>
+          </div>
 
-            <div>
-              <label for="variant">Variant</label>
-              <select id="variant">
-                <option value="widget">Widget</option>
-                <option value="standalone">Standalone</option>
-              </select>
-            </div>
+          <div>
+            <label for="variant">Variant</label>
+            <select id="variant" name="variant">
+              <option value="widget">Widget</option>
+              <option value="standalone">Standalone</option>
+            </select>
+          </div>
 
-          </nav>
+        </nav>
 
-          <button class="controls-toggle" id="controls-toggle" type="button">
-            Hide controls
-          </button>
+        <button class="controls-toggle" id="controls-toggle" type="button">
+          Hide controls
+        </button>
 
-          <recycling-locator></recycling-locator>
-        </div>
-      </evg-wrapper>
+        <recycling-locator></recycling-locator>
+      </div>
     </main>
 
     <script type="module" src="/src/index.tsx"></script>
 
     <script>
-      const recyclingLocator = document.querySelector('recycling-locator');
-      const controls = document.getElementById('controls');
-      const toggleBtn = document.getElementById('controls-toggle');
+      (() => {
+        const recyclingLocator = document.querySelector('recycling-locator');
+        const controls = document.getElementById('controls');
+        const toggleBtn = document.getElementById('controls-toggle');
 
-      // Start point selector
-      document.getElementById('start-point').addEventListener('change', (e) => {
-        recyclingLocator.setAttribute('path', e.target.value);
-      });
+        // Start point selector
+        document.getElementById('path').addEventListener('change', (e) => {
+          recyclingLocator.setAttribute('path', e.target.value);
+        });
 
-      // Theme selector
-      document.getElementById('theme').addEventListener('change', (e) => {
-        recyclingLocator.setAttribute('theme', e.target.value);
-      });
+        // Theme selector
+        document.getElementById('theme').addEventListener('change', (e) => {
+          recyclingLocator.setAttribute('theme', e.target.value);
+        });
 
-      // Locale selector
-      document.getElementById('locale').addEventListener('change', (e) => {
-        if (e.target.value) {
-          recyclingLocator.setAttribute('locale', e.target.value);
-        } else {
-          recyclingLocator.removeAttribute('locale');
-        }
-      });
+        // Locale selector
+        document.getElementById('locale').addEventListener('change', (e) => {
+          if (e.target.value) {
+            recyclingLocator.setAttribute('locale', e.target.value);
+          } else {
+            recyclingLocator.removeAttribute('locale');
+          }
+        });
 
-      // Variant selector
-      document.getElementById('variant').addEventListener('change', (e) => {
-        const isStandalone = e.target.value === 'standalone';
-        recyclingLocator.setAttribute('variant', e.target.value);
-        document.body.classList.toggle('standalone', isStandalone);
-      });
+        // Variant selector
+        document.getElementById('variant').addEventListener('change', (e) => {
+          const isStandalone = e.target.value === 'standalone';
+          recyclingLocator.setAttribute('variant', e.target.value);
+          document.body.classList.toggle('standalone', isStandalone);
+        });
 
-      // Toggle controls visibility (standalone mode)
-      toggleBtn.addEventListener('click', () => {
-        const isHidden = controls.classList.toggle('hidden');
-        toggleBtn.textContent = isHidden ? 'Show controls' : 'Hide controls';
-      });
+        // Toggle controls visibility (standalone mode)
+        toggleBtn.addEventListener('click', () => {
+          const isHidden = controls.classList.toggle('hidden');
+          toggleBtn.textContent = isHidden ? 'Show controls' : 'Hide controls';
+        });
+
+        // Pre-populate controls from query string params
+        const params = new URLSearchParams(globalThis.location.search);
+        const controlIds = ['path', 'theme', 'locale', 'variant'];
+
+        controlIds.forEach((id) => {
+          const value = params.get(id);
+
+          if (!value) {
+            return;
+          }
+
+          const select = document.getElementById(id);
+          select.value = value;
+          select.dispatchEvent(new Event('change'));
+        });
+      })();
     </script>
 
     <!-- Marker.io: only loads when VITE_MARKER_KEY env var is set (demo/UAT) -->

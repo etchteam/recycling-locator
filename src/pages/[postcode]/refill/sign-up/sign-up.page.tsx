@@ -6,6 +6,7 @@ import HeaderWithBackButton from '@/components/content/HeaderLayouts/HeaderWithB
 import { usePostcode } from '@/hooks/PostcodeProvider';
 import useScrollRestoration from '@/hooks/useScrollRestoration';
 import i18n from '@/lib/i18n';
+import { captureException } from '@/lib/sentry';
 
 export default function SignUpPage() {
   const { t } = useTranslation();
@@ -25,21 +26,25 @@ export default function SignUpPage() {
   const [alreadySubmitted, setAlreadySubmitted] = useState(false);
 
   useEffect(() => {
-    if (window.localStorage) {
-      const previouslySubmitted = window.localStorage.getItem('refill-sign-up');
+    try {
+      const previouslySubmitted =
+        globalThis.localStorage?.getItem('refill-sign-up');
       if (previouslySubmitted !== null && previouslySubmitted !== undefined) {
         const loadedValue = JSON.parse(previouslySubmitted);
         setIsSuccessful(loadedValue);
       }
+    } catch {
+      // Ignore localStorage failures
     }
   }, []);
 
   const action =
     'https://wrap.us1.list-manage.com/subscribe/post-json?u=65343110dd35be920e719fccd&amp;id=3d85122919&amp;f_id=00ffd3e0f0';
 
-  async function handleSubmit(event) {
+  async function handleSubmit(event: SubmitEvent) {
     event.preventDefault();
-    const signupForm = event?.submitter?.form ?? event.target;
+    const signupForm = ((event?.submitter as HTMLButtonElement)?.form ??
+      event.target) as HTMLFormElement;
 
     const newErrors = { ...errors };
     Object.keys(errors).forEach((key) => {
@@ -50,15 +55,15 @@ export default function SignUpPage() {
     Object.keys(errors).forEach((key) => {
       const input = signupForm.querySelector(
         `#${key}-input`,
-      ) as HTMLInputElement;
-      if (!input.validity.valid) {
+      ) as HTMLInputElement | null;
+      if (input && !input.validity.valid) {
         newErrors[key] = true;
       }
     });
 
     setErrors(newErrors);
 
-    const hasErrors = Object.values(newErrors).some((error) => error === true);
+    const hasErrors = Object.values(newErrors).includes(true);
     if (hasErrors) {
       return;
     }
@@ -82,19 +87,26 @@ export default function SignUpPage() {
 
       if (result.result === 'success') {
         setIsSuccessful(true);
-        window.localStorage.setItem('refill-sign-up', JSON.stringify(true));
+        try {
+          globalThis.localStorage.setItem(
+            'refill-sign-up',
+            JSON.stringify(true),
+          );
+        } catch {
+          // Ignore localStorage failures
+        }
         setAlreadySubmitted(
-          result.msg &&
+          typeof result.msg === 'string' &&
             result.msg.toLowerCase().includes("you're already subscribed"),
         );
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        globalThis.scrollTo({ top: 0, behavior: 'smooth' });
       } else {
         throw new Error(result.msg || t('refill.discover.sign-up.error'));
       }
 
       setIsSubmitting(false);
     } catch (error) {
-      console.error(error);
+      captureException(error, { component: 'SignUpPage' });
       let errorMessage = error.message || t('refill.discover.sign-up.error');
 
       if (locale === 'cy') errorMessage = t('refill.discover.sign-up.error');
@@ -102,7 +114,7 @@ export default function SignUpPage() {
       // Remove error number prefix from MailChimp errors (e.g., "0 - This email address...")
       if (
         typeof errorMessage === 'string' &&
-        errorMessage.match(/^\d+\s*-\s*/)
+        /^\d+\s*-\s*/.exec(errorMessage)
       ) {
         errorMessage = errorMessage.replace(/^\d+\s*-\s*/, '');
       }
@@ -129,10 +141,10 @@ export default function SignUpPage() {
             <div aria-live="polite" role="status" aria-atomic="true">
               {isSuccessful && (
                 <div className="evg-spacing-bottom-md">
-                  <h2>{t('refill.discover.sign-up.success.title')}</h2>
-                  <p className="text-color-positive">
-                    {t('refill.discover.sign-up.success.description')}
-                  </p>
+                  <h2 className="text-color-positive">
+                    {t('refill.discover.sign-up.success.title')}
+                  </h2>
+                  <p>{t('refill.discover.sign-up.success.description')}</p>
                   <p>
                     {t(
                       `refill.discover.sign-up.success.${alreadySubmitted ? 'already' : 'confirmation'}`,
@@ -145,7 +157,7 @@ export default function SignUpPage() {
             {!isSuccessful && (
               <>
                 <h2>{t('refill.discover.sign-up.title')}</h2>
-                <p className="evg-text-weight-bold">
+                <p className="evg-text-size-body-md">
                   {t('refill.discover.sign-up.subtitle')}
                 </p>
                 <form onSubmit={handleSubmit} noValidate>
@@ -192,11 +204,9 @@ export default function SignUpPage() {
                         name="EMAIL"
                         type="email"
                         autoComplete="email"
-                        placeholder={
-                          t(
-                            'refill.discover.sign-up.form.email.placeholder',
-                          ) as string
-                        }
+                        placeholder={t(
+                          'refill.discover.sign-up.form.email.placeholder',
+                        )}
                         required
                         disabled={isSubmitting || isSuccessful}
                         onChange={() =>
@@ -225,11 +235,9 @@ export default function SignUpPage() {
                         name="MMERGE5"
                         type="text"
                         defaultValue={postcode}
-                        placeholder={
-                          t(
-                            'refill.discover.sign-up.form.postcode.placeholder',
-                          ) as string
-                        }
+                        placeholder={t(
+                          'refill.discover.sign-up.form.postcode.placeholder',
+                        )}
                         required
                         disabled={isSubmitting || isSuccessful}
                         onChange={() =>
@@ -330,24 +338,6 @@ export default function SignUpPage() {
                   </p>
                 </form>
               </>
-            )}
-
-            {isSuccessful && (
-              <p>
-                <Trans
-                  i18nKey={'refill.discover.sign-up.business'}
-                  components={{
-                    a: (
-                      // eslint-disable-next-line jsx-a11y/anchor-has-content
-                      <a
-                        href={t('refill.discover.sign-up.businessLink')}
-                        target="_blank"
-                        rel="external"
-                      />
-                    ),
-                  }}
-                />
-              </p>
             )}
           </evg-section>
         </locator-wrap>

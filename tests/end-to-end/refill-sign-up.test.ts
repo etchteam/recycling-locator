@@ -1,7 +1,4 @@
-import {
-  GEOCODE_ENDPOINT,
-  PostcodeGeocodeResponse,
-} from '../mocks/geocode';
+import { GEOCODE_ENDPOINT, PostcodeGeocodeResponse } from '../mocks/geocode';
 
 import { test, expect } from './fixtures';
 
@@ -99,9 +96,9 @@ test.describe('Refill sign-up page', () => {
       .first();
     await expect(title).toBeVisible();
 
-    await widget.locator('#name-input').fill('Test User');
-    await widget.locator('#email-input').fill('test@example.com');
-    await widget.locator('#gdpr-input').check();
+    await widget.locator('#name-input').first().fill('Test User');
+    await widget.locator('#email-input').first().fill('test@example.com');
+    await widget.getByRole('checkbox').first().check({ force: true });
 
     const submitButton = widget.getByRole('button', {
       name: i18n.t('refill.discover.sign-up.button'),
@@ -143,9 +140,9 @@ test.describe('Refill sign-up page', () => {
       .first();
     await expect(title).toBeVisible();
 
-    await widget.locator('#name-input').fill('Test User');
-    await widget.locator('#email-input').fill('test@example.com');
-    await widget.locator('#gdpr-input').check();
+    await widget.locator('#name-input').first().fill('Test User');
+    await widget.locator('#email-input').first().fill('test@example.com');
+    await widget.getByRole('checkbox').first().check({ force: true });
 
     const submitButton = widget.getByRole('button', {
       name: i18n.t('refill.discover.sign-up.button'),
@@ -187,9 +184,9 @@ test.describe('Refill sign-up page', () => {
       .first();
     await expect(title).toBeVisible();
 
-    await widget.locator('#name-input').fill('Test User');
-    await widget.locator('#email-input').fill('test@example.com');
-    await widget.locator('#gdpr-input').check();
+    await widget.locator('#name-input').first().fill('Test User');
+    await widget.locator('#email-input').first().fill('test@example.com');
+    await widget.getByRole('checkbox').first().check({ force: true });
 
     const submitButton = widget.getByRole('button', {
       name: i18n.t('refill.discover.sign-up.button'),

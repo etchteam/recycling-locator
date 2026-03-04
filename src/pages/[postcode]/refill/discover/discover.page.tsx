@@ -80,7 +80,7 @@ export default function DiscoverRefillPage() {
       </locator-overflow>
 
       <locator-icon-link border className="evg-spacing-top-md">
-        <Link href={`/${postcode}/refill/discover/sign-up`}>
+        <Link href={`/${postcode}/refill/sign-up`}>
           <locator-icon-circle>
             <locator-icon icon="home-pin" color="primary"></locator-icon>
           </locator-icon-circle>

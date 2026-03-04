@@ -1,8 +1,6 @@
 ---
 name: CI
-on:
-  pull_request:
-    branches: ['main']
+on: [pull_request]
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
@@ -58,7 +56,7 @@ jobs:
           VITE_HERE_MAPS_PLACES_KEY: ${{ vars.VITE_HERE_MAPS_PLACES_KEY }}
   test:
     name: Test
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4

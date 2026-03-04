@@ -53,3 +53,6 @@ test-results
 
 # Nix temporary files
 .dev
+
+# Claude Code
+.claude

@@ -430,6 +430,29 @@
       "title": "Lleolydd Ail-lenwi",
       "comingSoon": "Ar y gweill!"
     },
+    "places": {
+      "title": "Lleoedd i ail-lenwi",
+      "count": "Rydym wedi dod o hyd i {{count}} lle i ail-lenwi",
+      "count_one": "Rydym wedi dod o hyd i 1 lle i ail-lenwi",
+      "count_zero": "Dim lleoedd i ail-lenwi o fewn 25 milltir",
+      "noPlacesAlert": "<a>Cael eich hysbysu</a> pan fydd lleoliadau ail-lenwi newydd yn cael eu darganfod yn eich ardal"
+    },
+    "filters": {
+      "all": "Pob un",
+      "all_full": "Pob cynnyrch",
+      "Food": "Bwyd",
+      "Cleaning": "Glanhau",
+      "Personal Care": "Gofal",
+      "Personal Care_full": "Gofal Personol",
+      "label": "Hidlo yn ôl categori",
+      "filteredCount": "<bold>{{count}}</bold> lle gyda chynhyrchion <bold>{{category}}</bold>",
+      "filteredCount_one": "<bold>1</bold> lle gyda chynhyrchion <bold>{{category}}</bold>",
+      "filteredCount_zero": "Dim lleoedd gyda chynhyrchion <bold>{{category}}</bold>",
+      "clearFilters": "Clirio hidlwyr"
+    },
+    "brands": {
+      "title": "Brandiau ail-lenwi sydd ar gael yn yr ardal hon"
+    },
     "start": {
       "title": "Darganfod opsiynau ail-lenwi yn eich ardal chi",
       "intro": "Dewch o hyd i leoedd i ail-lenwi cynhyrchion bwyd, glanhau a gofal personol yn agos atoch chi.",
@@ -707,7 +730,9 @@
         "noPlaces": {
           "title": "Dim lleoedd ail-lenwi gerllaw",
           "description": "Ni allem ddod o hyd i unrhyw rai o fewn 25 milltir"
-        }
+        },
+        "stillHaveOptions": "Mae gennych opsiynau o hyd",
+        "refillYourFavourites": "Ail-lenwi eich ffefrynnau"
       }
     },
     "homeDelivery": {
@@ -760,6 +785,7 @@
       "title": "Gallwch ail-lenwi cynhyrchion <categories></categories> yn y lle hwn",
       "supplied": "Mae {{place}} yn cael ei gyflenwi gan:",
       "websiteLinkText": "Dysgu mwy am {{place}}",
+      "products": "Cynhyrchion",
       "disclaimer": "Mae stoc yn amrywio yn ôl siop, felly mae'n werth gwirio argaeledd cyn gwneud y daith.",
       "suppliers": {
         "marksAndSpencer": {
@@ -774,7 +800,7 @@
           "urlText": "ecover.com",
           "description": "Mae Ecover yn brif frand o gynhyrchion glanhau ecogyfeillgar, gan gynnig ystod o lanhawyr cartref y gellir eu hail-lenwi sydd wedi'u cynllunio i fod yn effeithiol gan leihau effaith amgylcheddol."
         },
-        "bio-d": {
+        "bioD": {
           "name": "Bio-D",
           "url": "https://www.biod.co.uk/",
           "urlText": "biod.co.uk",

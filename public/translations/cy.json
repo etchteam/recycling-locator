@@ -730,7 +730,9 @@
         "noPlaces": {
           "title": "Dim lleoedd ail-lenwi gerllaw",
           "description": "Ni allem ddod o hyd i unrhyw rai o fewn 25 milltir"
-        }
+        },
+        "stillHaveOptions": "Mae gennych opsiynau o hyd",
+        "refillYourFavourites": "Ail-lenwi eich ffefrynnau"
       }
     },
     "homeDelivery": {
@@ -783,6 +785,7 @@
       "title": "Gallwch ail-lenwi cynhyrchion <categories></categories> yn y lle hwn",
       "supplied": "Mae {{place}} yn cael ei gyflenwi gan:",
       "websiteLinkText": "Dysgu mwy am {{place}}",
+      "products": "Cynhyrchion",
       "disclaimer": "Mae stoc yn amrywio yn ôl siop, felly mae'n werth gwirio argaeledd cyn gwneud y daith.",
       "suppliers": {
         "marksAndSpencer": {

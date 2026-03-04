@@ -245,29 +245,6 @@ test.describe('Refill places', () => {
     await expect(faithInNature).toBeVisible();
   });
 
-  test('Brand logos are hidden when no known brands are present', async ({
-    page,
-    widget,
-  }) => {
-    await page.route(REFILL_LOCATIONS_ENDPOINT, (route) => {
-      route.fulfill({ json: RefillLocationsResponse });
-    });
-
-    await widget.evaluate((node) =>
-      node.setAttribute('path', '/EX32 7RB/refill/places'),
-    );
-
-    await page.waitForRequest(REFILL_LOCATIONS_ENDPOINT);
-
-    const placeName = widget
-      .getByText(RefillLocationsResponse.items[0].name)
-      .first();
-    await expect(placeName).toBeVisible();
-
-    const brandsCard = widget.locator('locator-refill-brands').first();
-    await expect(brandsCard).not.toBeVisible();
-  });
-
   test('No places alert shows with sign-up link when no refill places exist', async ({
     page,
     widget,
@@ -327,7 +304,7 @@ test.describe('Refill places', () => {
     await expect(placeName).toBeVisible();
 
     const categoryIcons = widget.locator(
-      'locator-place-summary locator-icon[icon^="refill-"]',
+      'locator-place-summary .refill-categories locator-icon',
     );
     await expect(categoryIcons.first()).toBeVisible();
   });

@@ -72,8 +72,11 @@ function RecyclingLink({ postcode }: { readonly postcode: string }) {
 
 function RefillOptions({ postcode }: { readonly postcode: string }) {
   const { t } = useTranslation();
-  const { data: refillLocations, loading: locationsLoading } =
-    useRefillLocations();
+  const {
+    data: refillLocations,
+    loading: locationsLoading,
+    error: refillLocationsError,
+  } = useRefillLocations();
   const { publicPath } = useAppState();
 
   const navCards = ['guide', 'home-delivery'];
@@ -103,11 +106,11 @@ function RefillOptions({ postcode }: { readonly postcode: string }) {
     return <Loading />;
   }
 
-  if (!refillLocations) {
-    return <Loading />;
-  }
-
-  if (refillLocations.items?.length === 0) {
+  if (
+    !refillLocations ||
+    refillLocationsError ||
+    refillLocations.items?.length === 0
+  ) {
     return (
       <evg-enter type="fade-in-up" delay={0.25}>
         <evg-card
@@ -142,7 +145,7 @@ function RefillOptions({ postcode }: { readonly postcode: string }) {
         </ul>
 
         <p className="evg-text-size-body evg-spacing-top-md evg-spacing-bottom-sm">
-          You still have options
+          {t('refill.explore.stillHaveOptions')}
         </p>
         <ul className="list-style-none">
           {navCards.map((page) => (
@@ -184,7 +187,7 @@ function RefillOptions({ postcode }: { readonly postcode: string }) {
       {getRefillCategoryAvailability(refillLocations.items) && (
         <>
           <p className="evg-text-size-body evg-spacing-top-md evg-spacing-bottom-sm">
-            Refill your favourites
+            {t('refill.explore.refillYourFavourites')}
           </p>
           <locator-overflow largeScreen wrapCards>
             <ul>

@@ -47,7 +47,7 @@ function FilterChip({
 export default function RefillCategoryFilter() {
   const [searchParams, setSearchParams] = useSearchParams();
   const { t } = useTranslation();
-  const activeCategory = searchParams.get('categories') ?? null;
+  const activeCategory = searchParams.get('categories');
 
   const handleFilter = (param: string | null) => {
     const newParams = new URLSearchParams(searchParams);

@@ -22,6 +22,7 @@ function RefillLocations() {
   const {
     data: locations,
     loading,
+    error,
     count,
     currentPage,
     hasMore,
@@ -53,6 +54,10 @@ function RefillLocations() {
   const resultsFading = categoriesChanged || !timerDone || loading;
   const locationSearchParams = new URLSearchParams(searchParams);
   locationSearchParams.set('page', String(currentPage));
+
+  if (error) {
+    throw error;
+  }
 
   if (isInitialLoad) {
     return <LoadingPlacesList />;

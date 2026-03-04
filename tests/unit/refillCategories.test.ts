@@ -7,19 +7,9 @@ import {
 } from '@/lib/refillCategories';
 
 describe('REFILL_CATEGORIES', () => {
-  test('contains the all category with null param and slug', () => {
-    const all = REFILL_CATEGORIES.find((c) => c.key === 'all');
-    expect(all).toEqual({
-      key: 'all',
-      icon: 'refill-all',
-      param: null,
-      slug: null,
-    });
-  });
-
-  test('every non-all category has a param and slug', () => {
-    const filterable = REFILL_CATEGORIES.filter((c) => c.key !== 'all');
-    for (const category of filterable) {
+  test('every category has a key, param and slug', () => {
+    for (const category of REFILL_CATEGORIES) {
+      expect(category.key).toBeTruthy();
       expect(category.param).toBeTruthy();
       expect(category.slug).toBeTruthy();
     }

@@ -45,7 +45,9 @@ function RefillProductsContent({
 
   return (
     <>
-      <p className="evg-text-weight-bold evg-spacing-bottom-none">Products</p>
+      <p className="evg-text-weight-bold evg-spacing-bottom-none">
+        {t('refill.place.products')}
+      </p>
       {categoriesList.map((cat) => {
         const category = REFILL_CATEGORIES.find((c) => c.key === cat.name);
 
@@ -202,7 +204,7 @@ function RefillPlaceContent({ location }: { readonly location: Location }) {
             </div>
           )}
           {StoreBrands.has(
-            camelCase(location.locations[0].company?.name ?? ''),
+            camelCase(location.locations[0]?.company?.name ?? ''),
           ) && (
             <div>
               <dt>{t('place.details.website')}</dt>
@@ -257,7 +259,11 @@ function RefillPlaceContent({ location }: { readonly location: Location }) {
 
 export default function RefillPlacePage() {
   const params = useParams<{ id: string }>();
-  const { data: location, loading } = useRefillPlace(params.id);
+  const { data: location, loading, error } = useRefillPlace(params.id);
+
+  if (error) {
+    throw error;
+  }
 
   if (loading || !location) {
     return null;

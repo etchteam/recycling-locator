@@ -745,7 +745,9 @@
       "noPlaces": {
         "title": "No nearby refill places",
         "description": "We couldn't find any within 25 miles"
-      }
+      },
+      "stillHaveOptions": "You still have options",
+      "refillYourFavourites": "Refill your favourites"
     },
     "homeDelivery": {
       "pageTitle": "Refill home delivery",
@@ -797,6 +799,7 @@
       "title": "You can refill <categories></categories> products at this place",
       "supplied": "{{place}} is supplied by:",
       "websiteLinkText": "Learn more about {{place}}",
+      "products": "Products",
       "disclaimer": "Stock varies by store, so it's worth checking availability before you make the trip.",
       "suppliers": {
         "marksAndSpencer": {

@@ -752,7 +752,7 @@
         "abel-and-cole": {
           "name": "Abel & Cole",
           "category": "Bwyd",
-          "description": "Cael eich hanfodion bob dydd wedi'u danfon mewn pecynnu y gellir ei ddychwelyd ac ail-lenwi — dim gwastraff, dim cyfaddawd. Dyna Club Zero."
+          "description": "Cael eich hanfodion bob dydd wedi'u danfon mewn pecynnu y gellir ei ddychwelyd a'i ail-lenwi. Siopa dim gwastraff gyda gwahaniaeth"
         },
         "beauty-kitchen": {
           "name": "Beauty Kitchen",
@@ -777,7 +777,7 @@
         "ocado": {
           "name": "Ocado",
           "category": "Bwyd",
-          "description": "Mae Ocado yn cynnig dewisiadau amgen y gellir eu hailddefnyddio i'w hystod bresennol, mewn nifer ddethol o leoliadau ledled y DU."
+          "description": "Mae Ocado yn cynnig cynllun pecynnu y gellir ei ailddefnyddio ar-lein mewn nifer ddethol o leoliadau ledled y DU."
         }
       }
     },

@@ -18,7 +18,11 @@ describe('REFILL_CATEGORIES', () => {
 
 describe('VALID_CATEGORY_PARAMS', () => {
   test('contains only non-null params', () => {
-    expect(VALID_CATEGORY_PARAMS).toEqual(['Food', 'Cleaning', 'Personal Care']);
+    expect(VALID_CATEGORY_PARAMS).toEqual([
+      'Food',
+      'Cleaning',
+      'Personal Care',
+    ]);
   });
 
   test('does not include null', () => {

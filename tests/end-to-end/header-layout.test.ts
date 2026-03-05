@@ -218,9 +218,7 @@ test.describe('Header layouts', () => {
       await expect(refillLogo).toBeVisible();
     });
 
-    test('Refill page with postcode shows refill logo', async ({
-      widget,
-    }) => {
+    test('Refill page with postcode shows refill logo', async ({ widget }) => {
       // Navigate to refill page with postcode
       await widget.evaluate((node) =>
         node.setAttribute('path', '/refill?postcode=EX32 7RB'),

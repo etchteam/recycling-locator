@@ -41,12 +41,9 @@ const orchardsFarmShop = makeItem(
   [{ id: '2', name: 'Cleaning' }],
 );
 
-const nourish = makeItem(
-  '6067',
-  'Nourish',
-  'Exeter Road, Braunton, EX33 2JL',
-  [{ id: '3', name: 'Personal Care' }],
-);
+const nourish = makeItem('6067', 'Nourish', 'Exeter Road, Braunton, EX33 2JL', [
+  { id: '3', name: 'Personal Care' },
+]);
 
 const refillStation = makeItem(
   '7012',
@@ -74,28 +71,27 @@ test('returns false when no categories are present', () => {
     [],
   );
   expect(getRefillCategoryAvailability([emptyCategories])).toBe(false);
-  expect(getRefillCategoryAvailability([emptyCategories, orchardsFarmShop])).toBe(false);
+  expect(
+    getRefillCategoryAvailability([emptyCategories, orchardsFarmShop]),
+  ).toBe(false);
 });
 
 test('returns false when only one required category is present', () => {
   expect(getRefillCategoryAvailability([orchardsFarmShop])).toBe(false);
   expect(getRefillCategoryAvailability([nourish])).toBe(false);
   expect(getRefillCategoryAvailability([refillStation])).toBe(false);
-  expect(getRefillCategoryAvailability([refillStation, refillStore])).toBe(false);
+  expect(getRefillCategoryAvailability([refillStation, refillStore])).toBe(
+    false,
+  );
 });
 
 test('returns true when two required categories are present across multiple items', () => {
-  expect(
-    getRefillCategoryAvailability([orchardsFarmShop, nourish]),
-  ).toBe(true);
-  expect(
-    getRefillCategoryAvailability([orchardsFarmShop, refillStation]),
-  ).toBe(true);
-  expect(
-    getRefillCategoryAvailability([nourish, refillStation]),
-  ).toBe(true);
+  expect(getRefillCategoryAvailability([orchardsFarmShop, nourish])).toBe(true);
+  expect(getRefillCategoryAvailability([orchardsFarmShop, refillStation])).toBe(
+    true,
+  );
+  expect(getRefillCategoryAvailability([nourish, refillStation])).toBe(true);
 });
-
 
 test('returns true when two required categories are in a single item', () => {
   const allCategories = makeItem(
@@ -134,7 +130,12 @@ test('handles locations without a company gracefully', () => {
     ],
   };
   expect(
-    getRefillCategoryAvailability([withNoCompany, orchardsFarmShop, nourish, refillStation]),
+    getRefillCategoryAvailability([
+      withNoCompany,
+      orchardsFarmShop,
+      nourish,
+      refillStation,
+    ]),
   ).toBe(true);
 });
 

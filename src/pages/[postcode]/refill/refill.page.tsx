@@ -25,9 +25,7 @@ function NavLink({ href, icon, title, description }: NavLinkProps) {
         </locator-icon-circle>
         <div>
           {title && (
-            <h4 className="text-size-base evg-text-weight-bold evg-spacing-bottom-none">
-              {title}
-            </h4>
+            <h4 className="text-size-base evg-spacing-bottom-none">{title}</h4>
           )}
           <p className="evg-text-size-body-xs">{description}</p>
         </div>
@@ -189,7 +187,7 @@ function RefillOptions({ postcode }: { readonly postcode: string }) {
           <p className="evg-text-size-body evg-spacing-top-md evg-spacing-bottom-sm">
             {t('refill.explore.refillYourFavourites')}
           </p>
-          <locator-overflow largeScreen wrapCards>
+          <locator-overflow largeScreen centerXLarge wrapCards>
             <ul>
               {REFILL_CATEGORIES.map((category) => (
                 <li key={category.key}>

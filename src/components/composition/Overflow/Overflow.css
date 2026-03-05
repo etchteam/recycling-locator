@@ -1,10 +1,9 @@
 /* stylelint-disable selector-pseudo-element-no-unknown */
 locator-overflow {
-  --anchor-name: --carousel; /* localizes anchor name for scroll buttons */
   --margin-inline-padding: var(--evg-spacing);
   /* svgs in css directly to prevent public path issues */
-  --back-arrow-url: url('data:image/svg+xml,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13 18L7 12L13 6L14.4 7.4L9.8 12L14.4 16.6L13 18Z" fill="%238dc63f"/></svg>');
-  --forward-arrow-url: url('data:image/svg+xml,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.6 12L9 7.4L10.4 6L16.4 12L10.4 18L9 16.6L13.6 12Z" fill="%238dc63f"/></svg>');
+  --back-arrow-url: url('data:image/svg+xml,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.825 13L13.425 18.6L12 20L4 12L12 4L13.425 5.4L7.825 11H20V13H7.825Z" fill="%23297f00"/></svg>');
+  --forward-arrow-url: url('data:image/svg+xml,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16.175 13H4V11H16.175L10.575 5.4L12 4L20 12L12 20L10.575 18.6L16.175 13Z" fill="%23297f00"/></svg>');
   display: block;
   margin-inline: calc(
     -1 * var(--margin-inline-padding)
@@ -37,9 +36,10 @@ locator-overflow {
     &::scroll-button(*) {
       align-items: center;
       background: none;
-      border: 1px solid var(--color-green);
-      border-radius: 50%;
-      color: var(--color-green);
+      border: 0;
+      border-radius: var(--evg-border-radius);
+      bottom: calc(anchor(top) + var(--evg-spacing-xs));
+      color: var(--color-primary-dark);
       cursor: pointer;
       display: flex;
       font-size: var(--font-size-base);
@@ -47,14 +47,13 @@ locator-overflow {
       height: var(--evg-spacing-lg);
       justify-content: center;
       line-height: 0.8;
-      margin-top: var(--evg-spacing-sm);
       position: absolute;
       /* stylelint-disable-next-line property-no-unknown */
       position-anchor: var(--anchor-name);
       width: var(--evg-spacing-lg);
 
       &:hover:enabled {
-        background: var(--color-green-lightest);
+        background: var(--color-grey-lightest);
       }
 
       &:disabled {
@@ -123,6 +122,11 @@ locator-overflow {
         }
       }
     }
+
+    &[largeScreen] {
+      /* stylelint-disable-next-line length-zero-no-unit */
+      --margin-inline-padding: 0px; /*without px calcs cause bugs */
+    }
   }
 }
 
@@ -131,13 +135,29 @@ locator-overflow {
   locator-overflow {
     --margin-inline-padding: calc((25cqw - (var(--wrap-max-width) / 2)));
     margin-inline: calc(-1 * var(--margin-inline-padding));
+
+    &[centerXLarge] {
+      margin: 0;
+      padding-bottom: 0;
+
+      ul {
+        justify-content: center;
+        overflow-x: visible;
+
+        &::scroll-button(*) {
+          display: none;
+        }
+      }
+    }
   }
 }
 
 @supports selector(::scroll-button(*)) {
   locator-overflow {
-    padding-bottom: calc(
-      var(--evg-spacing-lg) + var(--evg-spacing)
-    ); /* add space for scroll buttons below the overflow container */
+    &:not([buttonsAbove]) {
+      padding-bottom: calc(
+        var(--evg-spacing-lg) + var(--evg-spacing)
+      ); /* add space for scroll buttons below the overflow container */
+    }
   }
 }

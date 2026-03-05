@@ -18,9 +18,7 @@ const makeLocation = (companyNames: (string | undefined)[]): Location => ({
   })),
 });
 
-const makeLocationsResponse = (
-  locations: Location[],
-): LocationsResponse => ({
+const makeLocationsResponse = (locations: Location[]): LocationsResponse => ({
   items: locations,
   meta: { latitude: 51.5, longitude: -0.1, radius: 25 },
   pagination: { page: 1, total: locations.length },

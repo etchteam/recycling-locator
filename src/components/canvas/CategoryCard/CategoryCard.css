@@ -37,6 +37,10 @@ locator-category-card {
       img {
         transform: scale(1.02); /* Very slight zoom effect on hover */
       }
+
+      evg-chip {
+        --evg-chip-border-color-light: var(--color-primary-dark);
+      }
     }
   }
 }

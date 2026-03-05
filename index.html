@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/recycling-locator.css" />
-    <title>Recycling Locator Widget</title>
+    <title>Recycling Locator Widget Demo</title>
     <meta name="description" content="Find places to recycle, refill or reuse items." />
     <meta name="keywords" content="recycling, refill, reuse, recycle, locator, widget" />
     <meta name="robots" content="noindex, nofollow" />
@@ -15,64 +15,63 @@
         content="default-src 'none'; img-src data: https://rl.recyclenow.com https://*.here.com; script-src 'self' https://rl.recyclenow.com 'unsafe-eval'; connect-src blob: http://rl.test https://rl.recyclenow.com https://*.sentry.io https://*.hereapi.com https://*.here.com; style-src 'unsafe-inline' https://rl.recyclenow.com; font-src https://*.here.com; worker-src blob:;"
       />
     -->
-
     <style>
-      body {
-        font-family: -apple-system, system-ui, blinkmacsystemfont, roboto,
-          helvetica, arial, sans-serif;
-        font-size: 16px;
-        -webkit-font-smoothing: antialiased;
-        line-height: 1.5;
-        margin: 0;
-        padding: 0;
+      @import url('https://esm.sh/@wrap.ngo/evergreen/fonts');
+      @import url('https://esm.sh/@wrap.ngo/evergreen/styles');
+
+      header {
+        margin-block: var(--evg-spacing-lg);
       }
 
       main {
         margin: 0 auto;
-        max-width: 1500px;
-        padding: 1rem;
+        max-width: 1440px;
+        padding: var(--evg-spacing-md);
       }
 
       h1 {
-        font-weight: bold;
-        line-height: 1.25;
-        margin: 0 0 1rem;
+        font-size: var(--evg-font-size-heading-lg);
       }
 
-      label {
-        display: block;
-        font-weight: bold;
-        font-size: 0.875rem;
-        margin-bottom: 0.25rem;
+      #controls {
+        display: flex;
+        flex-direction: column;
+        gap: var(--evg-spacing-sm);
+        margin-block-end: var(--evg-spacing-md);
       }
 
-      select {
+      #controls h2 {
+        font-size: var(--evg-font-size-heading-sm);
+        margin: 0;
+      }
+
+      #controls label {
+        font-size: var(--evg-font-size-body-sm);
+      }
+
+      #controls select {
+        border: 1px solid var(--evg-input-border);
+        border-radius: var(--evg-input-border-radius);
+        font-size: var(--evg-input-font-size);
+        padding: var(--evg-input-padding);
         width: 100%;
-        padding: 0.375rem 0.5rem;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        font-size: 0.875rem;
-      }
-
-      .control-group {
-        margin-bottom: 0.75rem;
       }
 
       .controls-toggle {
         display: none;
-        font-size: 0.75rem;
+        font-size: var(--evg-font-size-body-xs);
         cursor: pointer;
-        background: #fff;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        padding: 0.25rem 0.5rem;
+        background: var(--evg-color-cloud);
+        border: 1px solid var(--evg-input-border);
+        border-radius: var(--evg-radius-sm);
+        padding: var(--evg-spacing-xs) var(--evg-spacing-sm);
       }
 
       .standalone .controls-toggle {
         display: block;
         position: fixed;
-        top: 0.5rem;
-        right: 0.5rem;
+        top: var(--evg-spacing-sm);
+        right: var(--evg-spacing-sm);
         z-index: 1001;
       }
 
@@ -80,11 +79,15 @@
         .layout {
           display: grid;
           grid-template-columns: 250px 1fr;
-          gap: 1rem;
+          gap: var(--evg-spacing-md);
         }
       }
 
       /* Standalone mode */
+      .standalone header {
+        display: none;
+      }
+
       .standalone main {
         max-width: none;
         padding: 0;
@@ -98,16 +101,20 @@
         display: block;
       }
 
+      .standalone #controls h2 {
+        display: none;
+      }
+
       .standalone #controls {
         position: fixed;
-        top: 0.5rem;
-        right: 0.5rem;
+        top: var(--evg-spacing-sm);
+        right: var(--evg-spacing-sm);
         z-index: 1000;
-        background: #fff;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        padding: 0.75rem;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        background: var(--evg-color-cloud);
+        border: 1px solid var(--evg-input-border);
+        border-radius: var(--evg-radius-sm);
+        padding: var(--evg-spacing-md);
+        box-shadow: var(--evg-shadow);
         width: 220px;
       }
 
@@ -117,14 +124,17 @@
     </style>
   </head>
   <body>
-    <main>
-      <h1>Recycling Locator Widget Demo</h1>
+    <main class="evg-theme-sand">
+      <header>
+        <h1>Recycling Locator Widget Demo</h1>
+      </header>
 
       <div class="layout" id="layout">
         <nav id="controls">
-          <div class="control-group">
-            <label for="start-point">Start point</label>
-            <select id="start-point">
+          <h2>Preview controls</h2>
+          <div>
+            <label for="path">Start point</label>
+            <select id="path" name="path">
               <option value="/">Default</option>
               <option value="/home-recycling">Home recycling</option>
               <option value="/refill">Refill</option>
@@ -133,9 +143,9 @@
             </select>
           </div>
 
-          <div class="control-group">
+          <div>
             <label for="theme">Theme</label>
-            <select id="theme">
+            <select id="theme" name="theme">
               <option value="green">Green (Default)</option>
               <option value="red">Red</option>
               <option value="blue">Blue</option>
@@ -148,18 +158,18 @@
             </select>
           </div>
 
-          <div class="control-group">
+          <div>
             <label for="locale">Locale</label>
-            <select id="locale">
+            <select id="locale" name="locale">
               <option value="">English</option>
               <option value="cy">Welsh (Cymraeg)</option>
               <option value="cy-GB">Wales (English)</option>
             </select>
           </div>
 
-          <div class="control-group">
+          <div>
             <label for="variant">Variant</label>
-            <select id="variant">
+            <select id="variant" name="variant">
               <option value="widget">Widget</option>
               <option value="standalone">Standalone</option>
             </select>
@@ -178,41 +188,59 @@
     <script type="module" src="/src/index.tsx"></script>
 
     <script>
-      const recyclingLocator = document.querySelector('recycling-locator');
-      const controls = document.getElementById('controls');
-      const toggleBtn = document.getElementById('controls-toggle');
+      (() => {
+        const recyclingLocator = document.querySelector('recycling-locator');
+        const controls = document.getElementById('controls');
+        const toggleBtn = document.getElementById('controls-toggle');
 
-      // Start point selector
-      document.getElementById('start-point').addEventListener('change', (e) => {
-        recyclingLocator.setAttribute('path', e.target.value);
-      });
+        // Start point selector
+        document.getElementById('path').addEventListener('change', (e) => {
+          recyclingLocator.setAttribute('path', e.target.value);
+        });
 
-      // Theme selector
-      document.getElementById('theme').addEventListener('change', (e) => {
-        recyclingLocator.setAttribute('theme', e.target.value);
-      });
+        // Theme selector
+        document.getElementById('theme').addEventListener('change', (e) => {
+          recyclingLocator.setAttribute('theme', e.target.value);
+        });
 
-      // Locale selector
-      document.getElementById('locale').addEventListener('change', (e) => {
-        if (e.target.value) {
-          recyclingLocator.setAttribute('locale', e.target.value);
-        } else {
-          recyclingLocator.removeAttribute('locale');
-        }
-      });
+        // Locale selector
+        document.getElementById('locale').addEventListener('change', (e) => {
+          if (e.target.value) {
+            recyclingLocator.setAttribute('locale', e.target.value);
+          } else {
+            recyclingLocator.removeAttribute('locale');
+          }
+        });
 
-      // Variant selector
-      document.getElementById('variant').addEventListener('change', (e) => {
-        const isStandalone = e.target.value === 'standalone';
-        recyclingLocator.setAttribute('variant', e.target.value);
-        document.body.classList.toggle('standalone', isStandalone);
-      });
+        // Variant selector
+        document.getElementById('variant').addEventListener('change', (e) => {
+          const isStandalone = e.target.value === 'standalone';
+          recyclingLocator.setAttribute('variant', e.target.value);
+          document.body.classList.toggle('standalone', isStandalone);
+        });
 
-      // Toggle controls visibility (standalone mode)
-      toggleBtn.addEventListener('click', () => {
-        const isHidden = controls.classList.toggle('hidden');
-        toggleBtn.textContent = isHidden ? 'Show controls' : 'Hide controls';
-      });
+        // Toggle controls visibility (standalone mode)
+        toggleBtn.addEventListener('click', () => {
+          const isHidden = controls.classList.toggle('hidden');
+          toggleBtn.textContent = isHidden ? 'Show controls' : 'Hide controls';
+        });
+
+        // Pre-populate controls from query string params
+        const params = new URLSearchParams(globalThis.location.search);
+        const controlIds = ['path', 'theme', 'locale', 'variant'];
+
+        controlIds.forEach((id) => {
+          const value = params.get(id);
+
+          if (!value) {
+            return;
+          }
+
+          const select = document.getElementById(id);
+          select.value = value;
+          select.dispatchEvent(new Event('change'));
+        });
+      })();
     </script>
 
     <!-- Marker.io: only loads when VITE_MARKER_KEY env var is set (demo/UAT) -->

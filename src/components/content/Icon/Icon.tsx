@@ -42,6 +42,7 @@ export interface IconAttributes {
     | 'place'
     | 'recycle'
     | 'refill'
+    | 'refill-all'
     | 'schedule'
     | 'search'
     | 'star'

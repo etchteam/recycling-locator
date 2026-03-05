@@ -85,7 +85,7 @@ export default function GuidePage() {
         </Link>
       </locator-icon-link>
       <evg-button width="full-width" className="evg-spacing-top-md">
-        <Link href={`/${postcode}/refill/discover/sign-up`}>
+        <Link href={`/${postcode}/refill/sign-up`}>
           {t('refill.discover.guide.ctaButton')}
         </Link>
       </evg-button>

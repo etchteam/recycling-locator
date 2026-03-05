@@ -10,10 +10,10 @@ export default function About() {
   const isRefill = isRefillStart || isRefillHome;
 
   return (
-    <evg-enter type="fade">
+    <evg-enter type="fade" className="about">
       <h2>{t('about.title')}</h2>
       <p>{t(isRefill ? 'about.refillIntro' : 'about.intro')}</p>
-      <h3 className="evg-spacing-top-md">{t('about.becomeAPartner.title')}</h3>
+      <h3>{t('about.becomeAPartner.title')}</h3>
       <p>
         {t(
           isRefill
@@ -30,7 +30,7 @@ export default function About() {
           {t('about.becomeAPartner.cta')}
         </a>
       </evg-button>
-      <h3 className="evg-spacing-top-md">{t('about.feedback.title')}</h3>
+      <h3>{t('about.feedback.title')}</h3>
       <p>{t('about.feedback.description')}</p>
       <evg-button width="full-width">
         <a
@@ -41,7 +41,22 @@ export default function About() {
           {t('about.feedback.cta')}
         </a>
       </evg-button>
-      <hr className="evg-spacing-bottom-md evg-spacing-top-lg" />
+      {isRefill && (
+        <>
+          <h3>{t('about.relatedService.title')}</h3>
+          <p>{t('about.relatedService.description')}</p>
+          <evg-button width="full-width">
+            <a
+              href="https://www.refill.org.uk/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {t('about.relatedService.cta')}
+            </a>
+          </evg-button>
+        </>
+      )}
+      <hr />
       <Footer />
     </evg-enter>
   );

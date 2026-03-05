@@ -155,6 +155,11 @@
       "description": "We’re always looking to improve this tool and would be interested to hear about your experience whilst using it, good or bad.",
       "cta": "Feedback on this tool",
       "url": "https://wrap.org.uk/contact-us"
+    },
+    "relatedService": {
+      "title": "Related service: Refill Return app",
+      "description": "Also looking to refill your water bottle whilst out and about? The Refill Return app by Ecosurety helps you find locations near you.",
+      "cta": "Download the Refill Return app"
     }
   },
   "start": {
@@ -444,6 +449,29 @@
       "title": "Refill Locator",
       "comingSoon": "Coming Soon!"
     },
+    "places": {
+      "title": "Places to refill",
+      "count": "We found {{count}} places to refill",
+      "count_one": "We found 1 place to refill",
+      "count_zero": "No places to refill within 25 miles",
+      "noPlacesAlert": "<a>Get notified</a> when new refill locations are discovered in your area"
+    },
+    "filters": {
+      "all": "All",
+      "all_full": "All products",
+      "Food": "Food",
+      "Cleaning": "Cleaning",
+      "Personal Care": "Care",
+      "Personal Care_full": "Personal Care",
+      "label": "Filter by category",
+      "filteredCount": "<bold>{{count}}</bold> places with <bold>{{category}}</bold> products",
+      "filteredCount_one": "<bold>1</bold> place with <bold>{{category}}</bold> products",
+      "filteredCount_zero": "No places with <bold>{{category}}</bold> products",
+      "clearFilters": "Clear filters"
+    },
+    "brands": {
+      "title": "Refill brands available in this area"
+    },
     "start": {
       "title": "Discover refill options in your area",
       "intro": "Find places to refill food, cleaning and personal care products near you.",
@@ -658,12 +686,12 @@
         "cta": "Find out when Refill locations launch"
       },
       "sign-up": {
-        "title": "Be the first to know when refill locations arrive",
-        "description": "You'll soon be able to use the Locator to find refill stores in your area.",
+        "title": "Be the first to know when new refill locations arrive in your area",
+        "subtitle": "Get an email notification",
         "button": "Sign up",
         "loading": "Signing up…",
         "error": "An error has occured, please try submitting again.",
-        "business": "or <a>Get in touch about your refill business</a>",
+        "business": "or <a>Let us know about your Refill business</a>",
         "businessLink": "https://www.wrap.ngo/take-action/recycle-now/recycling-locator-tool",
         "success": {
           "title": "Thank you for signing up!",
@@ -722,7 +750,9 @@
       "noPlaces": {
         "title": "No nearby refill places",
         "description": "We couldn't find any within 25 miles"
-      }
+      },
+      "stillHaveOptions": "You still have options",
+      "refillYourFavourites": "Refill your favourites"
     },
     "homeDelivery": {
       "pageTitle": "Refill home delivery",
@@ -741,7 +771,7 @@
         "abel-and-cole": {
           "name": "Abel & Cole",
           "category": "Food",
-          "description": "Get your everyday essentials delivered in returnable, refillable packaging — no waste, no compromise. That's Club Zero."
+          "description": "Get your everyday essentials delivered in returnable, refillable packaging. It's zero-waste shopping with a difference."
         },
         "beauty-kitchen": {
           "name": "Beauty Kitchen",
@@ -766,7 +796,7 @@
         "ocado": {
           "name": "Ocado",
           "category": "Food",
-          "description": "Ocado offer resuseable alternatives to their existing range, in a select number of locations across the UK."
+          "description": "Ocado offer an online reusable packaging scheme in a select number of locations across the UK."
         }
       }
     },
@@ -774,6 +804,7 @@
       "title": "You can refill <categories></categories> products at this place",
       "supplied": "{{place}} is supplied by:",
       "websiteLinkText": "Learn more about {{place}}",
+      "products": "Products",
       "disclaimer": "Stock varies by store, so it's worth checking availability before you make the trip.",
       "suppliers": {
         "marksAndSpencer": {
@@ -788,7 +819,7 @@
           "urlText": "uk.ecover.com",
           "description": "Ecover is a leading brand of eco-friendly cleaning products, offering a range of refillable household cleaners that are designed to be effective while minimizing environmental impact."
         },
-        "bio-d": {
+        "bioD": {
           "name": "Bio-D",
           "url": "https://www.biod.co.uk/",
           "urlText": "biod.co.uk",

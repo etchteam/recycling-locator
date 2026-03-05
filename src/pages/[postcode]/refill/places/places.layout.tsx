@@ -7,8 +7,10 @@ import formatPostcode from '@/lib/formatPostcode';
 
 export default function RefillPlacesLayout({
   children,
+  title,
 }: {
   readonly children?: ComponentChildren;
+  readonly title?: string;
 }) {
   const { t } = useTranslation();
   const { postcode } = usePostcode();
@@ -19,7 +21,7 @@ export default function RefillPlacesLayout({
         <HeaderWithBackButton
           logoType="icon-only"
           logoHref={`/${postcode}/refill`}
-          title={t('refill.homeDelivery.pageTitle')}
+          title={title ?? t('refill.homeDelivery.pageTitle')}
           subtitle={formatPostcode(postcode)}
           backFallback={`/${postcode}/refill`}
         />

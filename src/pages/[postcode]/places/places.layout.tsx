@@ -8,6 +8,7 @@ import HeaderWithMenu, {
 } from '@/components/content/HeaderLayouts/HeaderWithMenu';
 import { usePostcode } from '@/hooks/PostcodeProvider';
 import { useLocations } from '@/hooks/useLocations';
+import { useMaterialSearchTerm } from '@/hooks/useMaterialSearchTerm';
 import formatPostcode from '@/lib/formatPostcode';
 import mapSearchParams from '@/lib/mapSearchParams';
 
@@ -19,16 +20,16 @@ export default function PlacesLayout({
   const { t } = useTranslation();
   const { postcode, data: postcodeData } = usePostcode();
   const { data: locations, loading: locationsLoading } = useLocations();
+  const { searchTerm, loading: searchTermLoading } = useMaterialSearchTerm();
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
-  const search = searchParams.get('search');
   const city = postcodeData?.city;
   const query = mapSearchParams(
     ['materials', 'category', 'search', 'autofocus'],
     {
       materials: searchParams.get('materials'),
       category: searchParams.get('category'),
-      search,
+      search: searchTerm,
       autofocus: 'true',
     },
   );
@@ -52,7 +53,7 @@ export default function PlacesLayout({
           mainContentId="locator-layout-main"
         >
           <locator-header-search>
-            {search && !locationsLoading && locations && (
+            {searchTerm && !locationsLoading && !searchTermLoading && (
               <evg-enter type="fade">
                 <locator-tag-button
                   variant={
@@ -63,7 +64,7 @@ export default function PlacesLayout({
                   }
                 >
                   <button type="button" onClick={handleResetSearch}>
-                    {search}
+                    {searchTerm}
                     <locator-icon
                       icon="close"
                       label={t('actions.resetSearch')}
@@ -73,7 +74,7 @@ export default function PlacesLayout({
               </evg-enter>
             )}
             <Link href={`/${postcode}/places/search?${query.toString()}`}>
-              {!search && t('places.searchPlaceholder')}
+              {!searchTerm && t('places.searchPlaceholder')}
               <locator-icon icon="search" color="primary" />
             </Link>
           </locator-header-search>

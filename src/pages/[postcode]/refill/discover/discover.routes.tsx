@@ -8,7 +8,6 @@ import DiscoverRefillLayout from './discover.layout';
 import DiscoverRefillPage from './discover.page';
 import GuidePage from './guide.page';
 import OptionsPage from './options.page';
-import SignUpPage from './sign-up.page';
 
 export default function DiscoverRefillRoutes() {
   const { t } = useTranslation();
@@ -36,10 +35,6 @@ export default function DiscoverRefillRoutes() {
           <Route
             path="/:postcode/refill/discover/benefits"
             component={BenefitsPage}
-          />
-          <Route
-            path="/:postcode/refill/discover/sign-up"
-            component={SignUpPage}
           />
         </Switch>
       </ErrorBoundaryPage>

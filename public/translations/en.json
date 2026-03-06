@@ -457,12 +457,12 @@
       "noPlacesAlert": "<a>Get notified</a> when new refill locations are discovered in your area"
     },
     "filters": {
-      "all": "All",
-      "all_full": "All products",
+      "all": "All products",
+      "all_short": "All",
       "Food": "Food",
       "Cleaning": "Cleaning",
-      "Personal Care": "Care",
-      "Personal Care_full": "Personal Care",
+      "Personal Care": "Personal Care",
+      "Personal Care_short": "Care",
       "label": "Filter by category",
       "filteredCount": "<bold>{{count}}</bold> places with <bold>{{category}}</bold> products",
       "filteredCount_one": "<bold>1</bold> place with <bold>{{category}}</bold> products",

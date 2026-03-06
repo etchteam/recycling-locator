@@ -27,13 +27,13 @@ function FilterChip({
         onClick={onClick}
       >
         <locator-icon icon={icon} />
-        {i18n.exists(`refill.filters.${filterKey}_full`) ? (
+        {i18n.exists(`refill.filters.${filterKey}_short`) ? (
           <>
             <div className="filter-label-short">
-              {t(`refill.filters.${filterKey}`)}
+              {t(`refill.filters.${filterKey}_short`)}
             </div>
             <div className="filter-label-full">
-              {t(`refill.filters.${filterKey}_full`)}
+              {t(`refill.filters.${filterKey}`)}
             </div>
           </>
         ) : (

@@ -443,12 +443,12 @@
       "noPlacesAlert": "<a>Cael eich hysbysu</a> pan fydd lleoliadau ail-lenwi newydd yn cael eu darganfod yn eich ardal"
     },
     "filters": {
-      "all": "Pob un",
-      "all_full": "Pob cynnyrch",
+      "all": "Pob cynnyrch",
+      "all_short": "Pob un",
       "Food": "Bwyd",
       "Cleaning": "Glanhau",
-      "Personal Care": "Gofal",
-      "Personal Care_full": "Gofal Personol",
+      "Personal Care": "Gofal Personol",
+      "Personal Care_short": "Gofal",
       "label": "Hidlo yn ôl categori",
       "filteredCount": "<bold>{{count}}</bold> lle gyda chynhyrchion <bold>{{category}}</bold>",
       "filteredCount_one": "<bold>1</bold> lle gyda chynhyrchion <bold>{{category}}</bold>",

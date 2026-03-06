@@ -19,7 +19,7 @@
     "dist"
   ],
   "scripts": {
-    "build:uat": "./scripts/build-uat.sh",
+    "build:preview": "npm run build:css && vite build --mode preview",
     "build:css": "postcss src/styles/base.css -o public/styles.css",
     "build": "npm run build:css && vite build",
     "lint": "eslint 'src/**/*.{ts,tsx,js,jsx,yml,yaml,json}' && stylelint 'src/**/*.{css,scss}'",
@@ -44,7 +44,7 @@
     "@here/maps-api-for-javascript": "^1.68.0",
     "@preact/signals": "^2.0.4",
     "@sentry/browser": "^9.22.0",
-    "@wrap.ngo/evergreen": "^1.0.1",
+    "@wrap.ngo/evergreen": "^1.2.0",
     "axios": "^1.11.0",
     "axios-cache-interceptor": "^1.8.0",
     "date-fns": "^4.1.0",

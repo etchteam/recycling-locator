@@ -142,9 +142,11 @@
     },
     "title": "Ynglŷn â’r gwasanaeth hwn",
     "intro": "Caiff yr offeryn hwn ei bweru gan RecycleNow.com, a gellir ei ddefnyddio i chwilio a dod o hyd i leoliadau ailgylchu ledled y Deyrnas Unedig.",
+    "refillIntro": "Caiff yr offeryn hwn ei bweru gan RecycleNow.com, a gellir ei ddefnyddio i chwilio a dod o hyd i leoliadau ail-lenwi ledled y Deyrnas Unedig.",
     "becomeAPartner": {
       "title": "Ychwanegu’r offeryn hwn at eich gwefan",
       "description": "Mae wedi cael ei greu fel teclyn y gellir ei wreiddio, a gellir ei ychwanegu at unrhyw wefan i helpu ymwelwyr ddarganfod mwy o opsiynau ailgylchu. Er enghraifft, gallai cynhyrchwr diodydd ddefnyddio’r offeryn i ddangos lleoedd lle gellir ailgylchu caniau diodydd.",
+      "refillDescription": "Mae wedi cael ei greu fel teclyn y gellir ei wreiddio, a gellir ei ychwanegu at unrhyw wefan i helpu ymwelwyr ddarganfod mwy o opsiynau ail-lenwi.",
       "cta": "Bod yn bartner",
       "url": "https://wrap.org.uk/taking-action/citizen-behaviour-change/recycle-now/recycling-locator-tool"
     },
@@ -153,6 +155,11 @@
       "description": "Rydym bob amser yn awyddus i wella’r offeryn hwn a byddai gennym ddiddordeb clywed am eich profiad o’i ddefnyddio, boed dda neu ddrwg.",
       "cta": "Adborth ar yr offeryn hwn",
       "url": "https://wrapcymru.org.uk/contact-wrap-cymru"
+    },
+    "relatedService": {
+      "title": "Gwasanaeth cysylltiedig: Ap Refill Return",
+      "description": "Hefyd yn chwilio am le i ail-lenwi eich potel ddŵr pan fyddwch allan? Mae ap Refill Return gan Ecosurety yn eich helpu i ddod o hyd i leoliadau yn agos atoch chi.",
+      "cta": "Lawrlwytho ap Refill Return"
     }
   },
   "start": {
@@ -413,6 +420,8 @@
       "phone": "Ffôn",
       "website": "Gwefan",
       "openingHours": "Oriau",
+      "openHours": "Oriau agor:",
+      "openToday": "Ar agor heddiw",
       "collectionDetails": "Manylion y casgliad",
       "notes": "Nodiadau"
     },
@@ -426,28 +435,82 @@
       "title": "Lleolydd Ail-lenwi",
       "comingSoon": "Ar y gweill!"
     },
-    "aside": {
-      "title": "Rhoi bywyd newydd i blastig",
-      "subtitle": "Lleihau, Ailddefnyddio, Ailgylchu",
-      "content": "Pan nad yw ailddefnyddio ac ail-lenwi yn opsiwn, ailgylchu yw'r ffordd orau o gael gwared ar ein plastigion, gan roi'r cyfle gorau i'r deunydd gael bywyd newydd yn hytrach na mynd i safle tirlenwi neu gael ei losgi am ynni.",
-      "cta": "Opsiynau ailgylchu yn eich ardal chi"
+    "places": {
+      "title": "Lleoedd i ail-lenwi",
+      "count": "Rydym wedi dod o hyd i {{count}} lle i ail-lenwi",
+      "count_one": "Rydym wedi dod o hyd i 1 lle i ail-lenwi",
+      "count_zero": "Dim lleoedd i ail-lenwi o fewn 25 milltir",
+      "noPlacesAlert": "<a>Cael eich hysbysu</a> pan fydd lleoliadau ail-lenwi newydd yn cael eu darganfod yn eich ardal"
+    },
+    "filters": {
+      "all": "Pob cynnyrch",
+      "all_short": "Pob un",
+      "Food": "Bwyd",
+      "Cleaning": "Glanhau",
+      "Personal Care": "Gofal Personol",
+      "Personal Care_short": "Gofal",
+      "label": "Hidlo yn ôl categori",
+      "filteredCount": "<bold>{{count}}</bold> lle gyda chynhyrchion <bold>{{category}}</bold>",
+      "filteredCount_one": "<bold>1</bold> lle gyda chynhyrchion <bold>{{category}}</bold>",
+      "filteredCount_zero": "Dim lleoedd gyda chynhyrchion <bold>{{category}}</bold>",
+      "clearFilters": "Clirio hidlwyr"
+    },
+    "brands": {
+      "title": "Brandiau ail-lenwi sydd ar gael yn yr ardal hon"
     },
     "start": {
+      "title": "Darganfod opsiynau ail-lenwi yn eich ardal chi",
+      "intro": "Dewch o hyd i leoedd i ail-lenwi cynhyrchion bwyd, glanhau a gofal personol yn agos atoch chi.",
+      "aside": {
+        "paragraph": "Pam dewis ail-lenwi?",
+        "list": [
+          "Torri gwastraff deunydd pacio",
+          "Lleihau eich ôl troed carbon",
+          "Cefnogi busnesau a siopau lleol"
+        ]
+      }
+    },
+    "category": {
+      "mixed-food": "Bwyd",
+      "personal-care": "Gofal personol",
+      "cleaning": "Glanhau"
+    },
+    "discover": {
+      "aside": {
+        "title": "Rhoi bywyd newydd i blastig",
+        "subtitle": "Lleihau, Ailddefnyddio, Ailgylchu",
+        "content": "Pan nad yw ailddefnyddio ac ail-lenwi yn opsiwn, ailgylchu yw'r ffordd orau o gael gwared ar ein plastigion, gan roi'r cyfle gorau i'r deunydd gael bywyd newydd yn hytrach na mynd i safle tirlenwi neu gael ei losgi am ynni.",
+        "cta": "Opsiynau ailgylchu yn eich ardal chi"
+      },
       "title": "Darganfod Ail-lenwi",
       "comingSoon": "Mae chwilio am ail-lenwi yn lansio'n fuan!",
       "subtitle": "Dewch o hyd i siopau ail-lenwi cyfagos. Ewch â'ch cynwysyddion gwag a llenwch eich ffefrynnau heb y gwastraff deunydd pacio.",
       "nav": {
+        "intro": {
+          "label": "Cyflwyniad"
+        },
         "guide": {
+          "label": "Canllaw",
           "title": "Mynd ati i Ail-lenwi",
           "description": "Newydd i ail-lenwi? Mae'n syfrdanol o syml! Dysgwch sut i ddechrau arni"
         },
         "options": {
+          "label": "Opsiynau",
           "title": "Mwy o ddewis, nid llai",
           "description": "O olewau moethus i driniaethau melys, darganfyddwch beth allai eich siop leol ei stocio"
         },
         "benefits": {
+          "label": "Manteision",
           "title": "Sut y gallai ail-lenwi weithio i chi",
           "description": "Dysgwch sut y gallai ail-lenwi ffitio i mewn i'ch arferion a'ch cypyrddau presennol"
+        },
+        "home-delivery": {
+          "label": "Gwasanaethau dosbarthu i'r cartref",
+          "title": "Gwasanaethau dosbarthu i'r cartref",
+          "description": "Archebwch hanfodion i'ch drws mewn pecynnu y gellir ei ddychwelyd - yn union fel Dyn Llaeth!"
+        },
+        "sign-up": {
+          "label": "Cofrestru"
         }
       },
       "reviews": {
@@ -465,205 +528,308 @@
       "alerts": {
         "title": "Cofrestrwch ar gyfer hysbysiadau",
         "description": "Cael gwybod pan fydd lleoliadau ail-lenwi yn lansio yn eich ardal leol"
-      }
-    },
-    "guide": {
-      "title": "Mynd ati i Ail-lenwi",
-      "steps": {
-        "title": "Ail-lenwi mewn 3 cham",
-        "items": [
-          "Dewch o hyd i siop ail-lenwi gerllaw",
-          "Ewch â'ch cynwysyddion glân, gwag gyda chi i'w llenwi",
-          "Dewis a dethol yr hyn rydych chi am ei ail-lenwi"
-        ]
-      },
-      "simple": {
-        "title": "Mae'n syfrdanol o syml",
-        "content": {
-          "browseFillPay": "Porwch yr ystod anhygoel, llenwch eich cynhwysydd, pwyswch a thalu.",
-          "friendlyStaff": "Mae'r staff cyfeillgar bob amser yn hapus i helpu, ond does dim pwysau - gallwch archwilio ar eich cyflymder eich hun a darganfod cynhyrchion anhygoel nad oeddech chi'n gwybod eu bod yn bodoli."
-        }
-      },
-      "shopping": {
-        "title": "Siopa, sy'n gwneud synnwyr",
-        "content": "Dewch â'ch cynwysyddion glân, gwag eich hun neu brynu cynhwysydd ailddefnyddiadwy diogel ar gyfer bwyd yno - yna dewiswch yn union yr hyn sydd ei angen arnoch, yn union pan fydd ei angen arnoch. Dim mwy o boteli hanner gwag yn llenwi eich cypyrddau."
-      },
-      "faq": {
-        "whatCanRefill": {
-          "question": "Beth allaf ei ail-lenwi?",
-          "answerBold": "Byddwch yn synnu gan yr amrywiaeth!",
-          "answer": "Mae'r rhan fwyaf o siopau ail-lenwi yn stocio hanfodion cartref fel hylif golchi llestri, powdr golchi dillad, a glanedyddion arwyneb ochr yn ochr â chynhyrchion gofal personol gan gynnwys siampŵ, golchydd corff, a sebon dwylo. Byddwch hefyd yn dod o hyd i ddewis anhygoel o eitemau bwyd - o basta bob dydd, reis, a grawnfwydydd i olewau premiwm, siocledi crefftwr, a sbeisys arbenigol. Mae llawer o siopau hefyd yn cynnig ffa coffi, cnau, ffrwythau sych, a hyd yn oed bwyd anifeiliaid anwes. Meddyliwch amdano fel eich archfarchnad leol wedi'i ailddychmygu!"
-        },
-        "doesRefillCostMore": {
-          "question": "A yw ail-lenwi yn costio mwy?",
-          "answerBold": "Mae'r rhan fwyaf o gwsmeriaid yn cael eu synnu'n ddymunol gan yr arbedion.",
-          "answer": "Er y gallai cynhyrchion premiwm ymddangos yn ddrud fesul gram, nid ydych yn talu am becynnu ffansi, marchnata, neu orbenion brand. Yn ogystal, rydych chi'n prynu yn union yr hyn sydd ei angen arnoch - dim mwy o daflu i ffwrdd boteli hanner eu defnyddio neu brynu meintiau enfawr na fyddwch byth yn eu gorffen. Mae llawer o gwsmeriaid rheolaidd yn gweld eu bod yn gwario 10-20% yn llai ar hanfodion cartref, a gallwch roi cynnig ar gynhyrchion drud mewn symiau bach cyn ymrwymo i symiau mwy. Mae fel cael siopwr personol sy'n eich codi arnoch am yr hyn rydych chi'n ei ddefnyddio mewn gwirionedd yn unig."
-        },
-        "specialContainers": {
-          "question": "A oes angen cynwysyddion arbennig arnaf i ail-lenwi?",
-          "answerBold": "Yn sicr ddim - mae unrhyw gynhwysydd glân, sych yn gweithio'n berffaith.",
-          "answer": "Mae hen jariau jam, poteli saws pasta, neu gynwysyddion sydd gennych eisoes gartref yn ddelfrydol. Mae'r rhan fwyaf o siopau hefyd yn gwerthu cynwysyddion ailddefnyddiadwy diogel ar gyfer bwyd os ydych chi eisiau uwchraddio eich gêm storio. Mae llawer o leoedd yn darparu cynwysyddion os ydych chi'n anghofio dod â'ch rhai eich hun, ac mae rhai hyd yn oed yn cynnig \"llyfrgell cynhwysydd\" lle gallwch fenthyg a dychwelyd. Yr allwedd yw dod â chynwysyddion sy'n lân ac yn sych - bydd y staff cyfeillgar yn dangos i chi yn union beth sy'n gweithio orau ar gyfer cynhyrchion gwahanol."
-        },
-        "makeDifference": {
-          "question": "A yw ail-lenwi yn gwneud gwahaniaeth go iawn?",
-          "answerBold": "Mae pob gweithred fach yn ychwanegu at rywbeth mwy.",
-          "answer": "Pan fyddwch chi'n ail-lenwi potel 500ml yn lle prynu un newydd, rydych chi'n atal y plastig hwnnw rhag cael ei weithgynhyrchu, ei gludo, a'i waredu yn y pen draw. Lluoswch hynny gan eich siopa wythnosol a'r nifer gynyddol o bobl sy'n dewis ail-lenwi, ac mae'r effaith yn dod yn sylweddol. Ond y tu hwnt i'r buddion amgylcheddol, rydych chi'n cefnogi busnesau lleol, yn lleihau annibendod yn eich cartref, ac yn aml yn arbed arian hefyd."
-        }
-      },
-      "nextSection": {
-        "title": "Opsiynau Ail-lenwi",
-        "description": "O felysion i sebonau moethus, dyma beth allech chi ei ganfod mewn siopau Ail-lenwi"
-      },
-      "ctaButton": "Cael gwybod pan fydd lleoliadau Ail-lenwi yn lansio"
-    },
-    "nav": {
-      "intro": {
-        "title": "Cyflwyniad"
       },
       "guide": {
-        "title": "Canllaw"
+        "title": "Mynd ati i Ail-lenwi",
+        "steps": {
+          "title": "Ail-lenwi mewn 3 cham",
+          "items": [
+            "Dewch o hyd i siop ail-lenwi gerllaw",
+            "Ewch â'ch cynwysyddion glân, gwag gyda chi i'w llenwi",
+            "Dewis a dethol yr hyn rydych chi am ei ail-lenwi"
+          ]
+        },
+        "simple": {
+          "title": "Mae'n syfrdanol o syml",
+          "content": {
+            "browseFillPay": "Porwch yr ystod anhygoel, llenwch eich cynhwysydd, pwyswch a thalu.",
+            "friendlyStaff": "Mae'r staff cyfeillgar bob amser yn hapus i helpu, ond does dim pwysau - gallwch archwilio ar eich cyflymder eich hun a darganfod cynhyrchion anhygoel nad oeddech chi'n gwybod eu bod yn bodoli."
+          }
+        },
+        "shopping": {
+          "title": "Siopa, sy'n gwneud synnwyr",
+          "content": "Dewch â'ch cynwysyddion glân, gwag eich hun neu brynu cynhwysydd ailddefnyddiadwy diogel ar gyfer bwyd yno - yna dewiswch yn union yr hyn sydd ei angen arnoch, yn union pan fydd ei angen arnoch. Dim mwy o boteli hanner gwag yn llenwi eich cypyrddau."
+        },
+        "faq": {
+          "whatCanRefill": {
+            "question": "Beth allaf ei ail-lenwi?",
+            "answerBold": "Byddwch yn synnu gan yr amrywiaeth!",
+            "answer": "Mae'r rhan fwyaf o siopau ail-lenwi yn stocio hanfodion cartref fel hylif golchi llestri, powdr golchi dillad, a glanedyddion arwyneb ochr yn ochr â chynhyrchion gofal personol gan gynnwys siampŵ, golchydd corff, a sebon dwylo. Byddwch hefyd yn dod o hyd i ddewis anhygoel o eitemau bwyd - o basta bob dydd, reis, a grawnfwydydd i olewau premiwm, siocledi crefftwr, a sbeisys arbenigol. Mae llawer o siopau hefyd yn cynnig ffa coffi, cnau, ffrwythau sych, a hyd yn oed bwyd anifeiliaid anwes. Meddyliwch amdano fel eich archfarchnad leol wedi'i ailddychmygu!"
+          },
+          "doesRefillCostMore": {
+            "question": "A yw ail-lenwi yn costio mwy?",
+            "answerBold": "Mae'r rhan fwyaf o gwsmeriaid yn cael eu synnu'n ddymunol gan yr arbedion.",
+            "answer": "Er y gallai cynhyrchion premiwm ymddangos yn ddrud fesul gram, nid ydych yn talu am becynnu ffansi, marchnata, neu orbenion brand. Yn ogystal, rydych chi'n prynu yn union yr hyn sydd ei angen arnoch - dim mwy o daflu i ffwrdd boteli hanner eu defnyddio neu brynu meintiau enfawr na fyddwch byth yn eu gorffen. Mae llawer o gwsmeriaid rheolaidd yn gweld eu bod yn gwario 10-20% yn llai ar hanfodion cartref, a gallwch roi cynnig ar gynhyrchion drud mewn symiau bach cyn ymrwymo i symiau mwy. Mae fel cael siopwr personol sy'n eich codi arnoch am yr hyn rydych chi'n ei ddefnyddio mewn gwirionedd yn unig."
+          },
+          "specialContainers": {
+            "question": "A oes angen cynwysyddion arbennig arnaf i ail-lenwi?",
+            "answerBold": "Yn sicr ddim - mae unrhyw gynhwysydd glân, sych yn gweithio'n berffaith.",
+            "answer": "Mae hen jariau jam, poteli saws pasta, neu gynwysyddion sydd gennych eisoes gartref yn ddelfrydol. Mae'r rhan fwyaf o siopau hefyd yn gwerthu cynwysyddion ailddefnyddiadwy diogel ar gyfer bwyd os ydych chi eisiau uwchraddio eich gêm storio. Mae llawer o leoedd yn darparu cynwysyddion os ydych chi'n anghofio dod â'ch rhai eich hun, ac mae rhai hyd yn oed yn cynnig \"llyfrgell cynhwysydd\" lle gallwch fenthyg a dychwelyd. Yr allwedd yw dod â chynwysyddion sy'n lân ac yn sych - bydd y staff cyfeillgar yn dangos i chi yn union beth sy'n gweithio orau ar gyfer cynhyrchion gwahanol."
+          },
+          "makeDifference": {
+            "question": "A yw ail-lenwi yn gwneud gwahaniaeth go iawn?",
+            "answerBold": "Mae pob gweithred fach yn ychwanegu at rywbeth mwy.",
+            "answer": "Pan fyddwch chi'n ail-lenwi potel 500ml yn lle prynu un newydd, rydych chi'n atal y plastig hwnnw rhag cael ei weithgynhyrchu, ei gludo, a'i waredu yn y pen draw. Lluoswch hynny gan eich siopa wythnosol a'r nifer gynyddol o bobl sy'n dewis ail-lenwi, ac mae'r effaith yn dod yn sylweddol. Ond y tu hwnt i'r buddion amgylcheddol, rydych chi'n cefnogi busnesau lleol, yn lleihau annibendod yn eich cartref, ac yn aml yn arbed arian hefyd."
+          }
+        },
+        "nextSection": {
+          "title": "Opsiynau Ail-lenwi",
+          "description": "O felysion i sebonau moethus, dyma beth allech chi ei ganfod mewn siopau Ail-lenwi"
+        },
+        "ctaButton": "Cael gwybod pan fydd lleoliadau Ail-lenwi yn lansio"
       },
       "options": {
-        "title": "Opsiynau"
+        "title": "Mwy o ddewis, nid llai",
+        "intro": "O olewau olewydd moethus a fyddai'n costio ffortiwn mewn pecynnu traddodiadol i hoff felysion plant wedi'u gwerthu wrth y sgŵp, mae siopau ail-lenwi yn stocio amrywiaeth anhygoel.",
+        "commonItems": {
+          "title": "Cynhyrchion ail-lenwi cyffredin",
+          "description": "Yn union fel eich archfarchnad, mae pob siop ail-lenwi yn stocio cynhyrchion gwahanol. Dyma rai hanfodion y gallech chi eu canfod yn eich siop ail-lenwi leol."
+        },
+        "categories": {
+          "foodDryGoods": {
+            "title": "Bwyd a Nwyddau Sych",
+            "content": [
+              "Reis",
+              "Pasta",
+              "Grawnfwyd",
+              "Cnau",
+              "Ffrwythau Sych",
+              "Ffa Coffi",
+              "Sbeisys"
+            ],
+            "highlight": "Dewch â'ch cynwysyddion glân eich hun neu brynu jariau ailddefnyddiadwy yn y siop"
+          },
+          "householdCleaning": {
+            "title": "Glanhau Cartref",
+            "content": [
+              "Hylif Golchi Llestri",
+              "Powdr Golchi Dillad",
+              "Meddalu Ffabrig",
+              "Glanhäwr Amhwrpas"
+            ],
+            "highlight": "Efallai y bydd rhai siopau yn gofyn i chi ddefnyddio cynwysyddion diogel i blant i ail-lenwi cynhyrchion glanhau."
+          },
+          "personalCare": {
+            "title": "Gofal Personol",
+            "content": ["Siampŵ", "Cyflyrydd", "Golchydd Corff", "Sebon Dwylo"],
+            "highlight": "Rhaid i gynwysyddion fod yn gwbl wag a sych."
+          }
+        },
+        "localStore": {
+          "title": "Darganfyddwch beth mae eich siop leol yn ei stocio",
+          "content": "Mae pob siop yn wahanol - mae rhai yn canolbwyntio ar gynhyrchion glanhau, mae eraill yn arbenigo mewn bwydydd swmp, ac mae llawer yn cynnig eu cymysgedd unigryw eu hunain, felly'r ffordd orau o ddarganfod beth sydd ar gael yw ymweld â'ch siop ail-lenwi leol."
+        },
+        "iconLink": {
+          "title": "Manteision Ail-lenwi",
+          "content": "Mynd i'r afael â llygredd plastig, arbed arian a chefnogi'r ardal leol!"
+        },
+        "cta": "Cael gwybod pan fydd lleoliadau Ail-lenwi yn lansio"
       },
       "benefits": {
-        "title": "Manteision"
+        "title": "Sut y gallai ail-lenwi weithio i chi",
+        "intro": "Mae'r rhan fwyaf o gwsmeriaid yn dod yn rheolaidd o fewn eu hymweliadau cyntaf. Nid yw'n ymwneud â bod yn berffaith wyrdd neu wybod yr holl bethau iawn i'w dweud - mae'n syml yn ffordd fwy craff, mwy pleserus o siopa.",
+        "card": {
+          "holiday": {
+            "question": "Yn mynd ar wyliau?",
+            "answer": "Prynu cyfrannau maint teithio."
+          },
+          "hosting": {
+            "question": "Cynnal cinio?",
+            "answer": "Cael yn union yr hyn sydd ei angen arnoch."
+          },
+          "recipe": {
+            "question": "Rhoi cynnig ar rysáit newydd?",
+            "answer": "Profi symiau bach yn gyntaf."
+          }
+        },
+        "communitySupport": {
+          "title": "Cefnogi eich cymuned leol",
+          "content": {
+            "chains": "Cefnogi perchnogion busnes lleol sy'n gwir yn poeni am eu cynhyrchion, eu cwsmeriaid a'u cymuned.",
+            "community": "Mae pob pryniant yn cefnogi eich stryd fawr leol ac yn cadw arian yn eich cymuned."
+          }
+        },
+        "withoutRefillStore": {
+          "title": "Gallwch hyd yn oed ail-lenwi heb siop ail-lenwi",
+          "intro": "Beth? Ie, mae ffyrdd o ail-lenwi yn eich archfarchnad bob dydd!",
+          "buyLoose": {
+            "title": "Prynu'n rhydd",
+            "description": "Rhowch gynnig ar brynu mwy o ffrwythau a llysiau rhydd"
+          },
+          "shopConcentrate": {
+            "title": "Siopa Crynodiad",
+            "description": "Mae llawer o frandiau bellach yn cynnig fersiynau crynodedig o gynhyrchion ystafell ymolchi a glanhau cyffredin - ychwanegwch ddŵr yn unig!"
+          },
+          "shopOnline": {
+            "title": "Dychwelyd Ar-lein",
+            "description": "Mae Ail-lenwi a Dychwelyd yn tyfu mewn poblogrwydd. Gwiriwch a yw eich brand hoff yn caniatáu i chi ddychwelyd eich pecynnu ar gyfer ailddefnydd."
+          }
+        },
+        "iconLink": {
+          "title": "Mynd ati i Ail-lenwi",
+          "content": "Newydd i ail-lenwi? Dyma beth i'w ddisgwyl o'ch siop leol"
+        },
+        "cta": "Cael gwybod pan fydd lleoliadau Ail-lenwi yn lansio"
       },
       "sign-up": {
-        "title": "Cofrestru"
+        "title": "Byddwch y cyntaf i wybod pan fydd lleoliadau ail-lenwi newydd yn cyrraedd yn eich ardal",
+        "subtitle": "Cael hysbysiad e-bost",
+        "button": "Cofrestru",
+        "loading": "Wrthi'n cofrestru…",
+        "error": "Mae gwall wedi digwydd, rhowch gynnig ar gyflwyno eto.",
+        "business": "neu <a>Rhowch wybod i ni am eich busnes Ail-lenwi</a>",
+        "businessLink": "https://www.wrap.ngo/take-action/recycle-now/recycling-locator-tool",
+        "success": {
+          "title": "Diolch am gofrestru!",
+          "description": "Byddwn yn rhoi gwybod i chi pan fydd lleoliadau ail-lenwi ar gael yn eich ardal.",
+          "already": "Rydych chi eisoes wedi tanysgrifio, mae eich proffil wedi'i ddiweddaru. Diolch!",
+          "confirmation": "Gwiriwch eich e-bost a chliciwch ar y ddolen i gadarnhau eich tanysgrifiad."
+        },
+        "form": {
+          "name": {
+            "label": "Enw",
+            "error": "Rhowch eich enw"
+          },
+          "email": {
+            "label": "E-bost",
+            "placeholder": "e.e. enghraifft@gmail.com",
+            "error": "Rhowch gyfeiriad e-bost dilys"
+          },
+          "postcode": {
+            "label": "Cod post",
+            "placeholder": "e.e. SW1A 1AA",
+            "error": "Rhowch eich cod post"
+          },
+          "gdpr": {
+            "label": "Rwy'n cytuno i'r <a>Telerau ac amodau</a>",
+            "link": "https://www.walesrecycles.org.uk/cy/polisi-preifatwrydd",
+            "error": "I gofrestru, rhaid i chi gytuno i'r telerau ac amodau"
+          }
+        }
+      },
+      "error": {
+        "message": "Digwyddodd gwall annisgwyl wrth lwytho gwybodaeth Ail-lenwi."
+      },
+      "explore": {
+        "title": "Archwilio ail-lenwi yn yr ardal hon",
+        "nearestLocations": {
+          "title": "Eich lleoliadau ail-lenwi agosaf",
+          "description": "{{count}} lle o fewn 25 milltir"
+        },
+        "homeDelivery": {
+          "title": "Gwasanaethau dosbarthu i'r cartref",
+          "description": "Archebwch gynhyrchion mewn pecynnu y gellir ei ddychwelyd i'ch drws"
+        },
+        "gettingStarted": {
+          "title": "Dechrau gydag ail-lenwi",
+          "description": "Yn newydd i ail-lenwi? Mae'n syml yn rhyfeddol!"
+        },
+        "signUp": {
+          "title": "Cofrestru",
+          "description": "Cael eich hysbysu pan ddarganfyddir lleoedd ail-lenwi newydd yn eich ardal."
+        },
+        "recyclingOptions": {
+          "title": "Opsiynau ailgylchu yn eich ardal",
+          "description": "Dewch o hyd i'ch lleoedd ailgylchu agosaf"
+        },
+        "noPlaces": {
+          "title": "Dim lleoedd ail-lenwi gerllaw",
+          "description": "Ni allem ddod o hyd i unrhyw rai o fewn 25 milltir"
+        },
+        "stillHaveOptions": "Mae gennych opsiynau o hyd",
+        "refillYourFavourites": "Ail-lenwi eich ffefrynnau"
       }
     },
-    "options": {
-      "title": "Mwy o ddewis, nid llai",
-      "intro": "O olewau olewydd moethus a fyddai'n costio ffortiwn mewn pecynnu traddodiadol i hoff felysion plant wedi'u gwerthu wrth y sgŵp, mae siopau ail-lenwi yn stocio amrywiaeth anhygoel.",
-      "commonItems": {
-        "title": "Cynhyrchion ail-lenwi cyffredin",
-        "description": "Yn union fel eich archfarchnad, mae pob siop ail-lenwi yn stocio cynhyrchion gwahanol. Dyma rai hanfodion y gallech chi eu canfod yn eich siop ail-lenwi leol."
+    "homeDelivery": {
+      "pageTitle": "Dosbarthu ail-lenwi i'r cartref",
+      "title": "Cofio'r dyn llaeth?",
+      "subtitle": "Cael hanfodion wedi'u danfon i'ch drws, a dychwelyd y pecynnu i'w ailddefnyddio!",
+      "steps": {
+        "items": [
+          "Pori ar-lein ac archebu eich cynhyrchion",
+          "Mae eich cynhyrchion yn cyrraedd eich drws mewn pecynnu y gellir ei ddychwelyd ac ail-lenwi",
+          "Gwacáu eich cynhyrchion i'ch cynwysyddion a'ch cypyrddau eich hun, a rinsio'r pecynnu y gellir ei ddychwelyd",
+          "Dychwelyd y pecynnu gwag fel y gellir ei ddefnyddio eto"
+        ]
       },
-      "categories": {
-        "foodDryGoods": {
-          "title": "Bwyd a Nwyddau Sych",
-          "content": [
-            "Reis",
-            "Pasta",
-            "Grawnfwyd",
-            "Cnau",
-            "Ffrwythau Sych",
-            "Ffa Coffi",
-            "Sbeisys"
-          ],
-          "highlight": "Dewch â'ch cynwysyddion glân eich hun neu brynu jariau ailddefnyddiadwy yn y siop"
+      "providersTitle": "Gwasanaethau dosbarthu ail-lenwi i'r cartref",
+      "providers": {
+        "abel-and-cole": {
+          "name": "Abel & Cole",
+          "category": "Bwyd",
+          "description": "Cael eich hanfodion bob dydd wedi'u danfon mewn pecynnu y gellir ei ddychwelyd a'i ail-lenwi. Siopa dim gwastraff gyda gwahaniaeth"
         },
-        "householdCleaning": {
-          "title": "Glanhau Cartref",
-          "content": [
-            "Hylif Golchi Llestri",
-            "Powdr Golchi Dillad",
-            "Meddalu Ffabrig",
-            "Glanhäwr Amhwrpas"
-          ],
-          "highlight": "Efallai y bydd rhai siopau yn gofyn i chi ddefnyddio cynwysyddion diogel i blant i ail-lenwi cynhyrchion glanhau."
+        "beauty-kitchen": {
+          "name": "Beauty Kitchen",
+          "category": "Gofal personol",
+          "description": "Cynllun dychwelyd, ail-lenwi, ailadrodd ar gyfer cynhyrchion harddwch a gofal personol. Anfonwch rai gwag yn ôl am gredyd siop."
         },
-        "personalCare": {
-          "title": "Gofal Personol",
-          "content": ["Siampŵ", "Cyflyrydd", "Golchydd Corff", "Sebon Dwylo"],
-          "highlight": "Rhaid i gynwysyddion fod yn gwbl wag a sych."
-        }
-      },
-      "localStore": {
-        "title": "Darganfyddwch beth mae eich siop leol yn ei stocio",
-        "content": "Mae pob siop yn wahanol - mae rhai yn canolbwyntio ar gynhyrchion glanhau, mae eraill yn arbenigo mewn bwydydd swmp, ac mae llawer yn cynnig eu cymysgedd unigryw eu hunain, felly'r ffordd orau o ddarganfod beth sydd ar gael yw ymweld â'ch siop ail-lenwi leol."
-      },
-      "iconLink": {
-        "title": "Manteision Ail-lenwi",
-        "content": "Mynd i'r afael â llygredd plastig, arbed arian a chefnogi'r ardal leol!"
-      },
-      "cta": "Cael gwybod pan fydd lleoliadau Ail-lenwi yn lansio"
-    },
-    "benefits": {
-      "title": "Sut y gallai ail-lenwi weithio i chi",
-      "intro": "Mae'r rhan fwyaf o gwsmeriaid yn dod yn rheolaidd o fewn eu hymweliadau cyntaf. Nid yw'n ymwneud â bod yn berffaith wyrdd neu wybod yr holl bethau iawn i'w dweud - mae'n syml yn ffordd fwy craff, mwy pleserus o siopa.",
-      "card": {
-        "holiday": {
-          "question": "Yn mynd ar wyliau?",
-          "answer": "Prynu cyfrannau maint teithio."
+        "milk-and-more": {
+          "name": "Milk & More",
+          "category": "Bwyd",
+          "description": "Gwasanaeth dosbarthu traddodiadol ar stepen y drws yn dod â llaeth a sudd mewn poteli y gellir eu hail-lenwi sy'n cael eu casglu a'u hailddefnyddio."
         },
-        "hosting": {
-          "question": "Cynnal cinio?",
-          "answer": "Cael yn union yr hyn sydd ei angen arnoch."
+        "the-modern-milkman": {
+          "name": "The Modern Milkman",
+          "category": "Bwyd",
+          "description": "Gwasanaeth dosbarthu a chasglu ar stepen y drws ar gyfer cynhyrchion ffres. Mae eu poteli gwydr a photiau wedi'u gwneud i ddod yn ôl."
         },
-        "recipe": {
-          "question": "Rhoi cynnig ar rysáit newydd?",
-          "answer": "Profi symiau bach yn gyntaf."
-        }
-      },
-      "communitySupport": {
-        "title": "Cefnogi eich cymuned leol",
-        "content": {
-          "chains": "Cefnogi perchnogion busnes lleol sy'n gwir yn poeni am eu cynhyrchion, eu cwsmeriaid a'u cymuned.",
-          "community": "Mae pob pryniant yn cefnogi eich stryd fawr leol ac yn cadw arian yn eich cymuned."
-        }
-      },
-      "withoutRefillStore": {
-        "title": "Gallwch hyd yn oed ail-lenwi heb siop ail-lenwi",
-        "intro": "Beth? Ie, mae ffyrdd o ail-lenwi yn eich archfarchnad bob dydd!",
-        "buyLoose": {
-          "title": "Prynu'n rhydd",
-          "description": "Rhowch gynnig ar brynu mwy o ffrwythau a llysiau rhydd"
+        "yoyo": {
+          "name": "Yoyo Grocery",
+          "category": "Bwyd",
+          "description": "Mae Yoyo Grocery yn dosbarthu bwyd naturiol ac organig yn uniongyrchol i'ch drws gyda system ddychwelyd pecynnu ddolen gaeedig."
         },
-        "shopConcentrate": {
-          "title": "Siopa Crynodiad",
-          "description": "Mae llawer o frandiau bellach yn cynnig fersiynau crynodedig o gynhyrchion ystafell ymolchi a glanhau cyffredin - ychwanegwch ddŵr yn unig!"
-        },
-        "shopOnline": {
-          "title": "Dychwelyd Ar-lein",
-          "description": "Mae Ail-lenwi a Dychwelyd yn tyfu mewn poblogrwydd. Gwiriwch a yw eich brand hoff yn caniatáu i chi ddychwelyd eich pecynnu ar gyfer ailddefnydd."
-        }
-      },
-      "iconLink": {
-        "title": "Mynd ati i Ail-lenwi",
-        "content": "Newydd i ail-lenwi? Dyma beth i'w ddisgwyl o'ch siop leol"
-      },
-      "cta": "Cael gwybod pan fydd lleoliadau Ail-lenwi yn lansio"
-    },
-    "sign-up": {
-      "title": "Byddwch y cyntaf i wybod pan fydd lleoliadau ail-lenwi yn cyrraedd",
-      "description": "Cyn bo hir byddwch yn gallu defnyddio'r Lleolydd i ddod o hyd i siopau ail-lenwi yn eich ardal.",
-      "button": "Cofrestru",
-      "loading": "Wrthi'n cofrestru…",
-      "error": "Mae gwall wedi digwydd, rhowch gynnig ar gyflwyno eto.",
-      "business": "neu <a>Cysylltwch â ni ynghylch eich busnes ail-lenwi</a>",
-      "businessLink": "https://www.wrap.ngo/take-action/recycle-now/recycling-locator-tool",
-      "success": {
-        "title": "Diolch am gofrestru!",
-        "description": "Byddwn yn rhoi gwybod i chi pan fydd lleoliadau ail-lenwi ar gael yn eich ardal.",
-        "already": "Rydych chi eisoes wedi tanysgrifio, mae eich proffil wedi'i ddiweddaru. Diolch!",
-        "confirmation": "Gwiriwch eich e-bost a chliciwch ar y ddolen i gadarnhau eich tanysgrifiad."
-      },
-      "form": {
-        "name": {
-          "label": "Enw",
-          "error": "Rhowch eich enw"
-        },
-        "email": {
-          "label": "E-bost",
-          "placeholder": "e.e. enghraifft@gmail.com",
-          "error": "Rhowch gyfeiriad e-bost dilys"
-        },
-        "postcode": {
-          "label": "Cod post",
-          "placeholder": "e.e. SW1A 1AA",
-          "error": "Rhowch eich cod post"
-        },
-        "gdpr": {
-          "label": "Rwy'n cytuno i'r <a>Telerau ac amodau</a>",
-          "link": "https://www.walesrecycles.org.uk/cy/polisi-preifatwrydd",
-          "error": "I gofrestru, rhaid i chi gytuno i'r telerau ac amodau"
+        "ocado": {
+          "name": "Ocado",
+          "category": "Bwyd",
+          "description": "Mae Ocado yn cynnig cynllun pecynnu y gellir ei ailddefnyddio ar-lein mewn nifer ddethol o leoliadau ledled y DU."
         }
       }
     },
-    "error": {
-      "message": "Digwyddodd gwall annisgwyl wrth lwytho gwybodaeth Ail-lenwi."
+    "place": {
+      "title": "Gallwch ail-lenwi cynhyrchion <categories></categories> yn y lle hwn",
+      "supplied": "Mae {{place}} yn cael ei gyflenwi gan:",
+      "websiteLinkText": "Dysgu mwy am {{place}}",
+      "products": "Cynhyrchion",
+      "disclaimer": "Mae stoc yn amrywio yn ôl siop, felly mae'n werth gwirio argaeledd cyn gwneud y daith.",
+      "suppliers": {
+        "marksAndSpencer": {
+          "name": "Marks and Spencer",
+          "url": "https://corporate.marksandspencer.com/newsroom/press-releases/ms-expands-popular-refilled-scheme-25-stores-across-uk/",
+          "urlText": "Dysgu mwy am gynllun ail-lenwi Marks and Spencer",
+          "description": "Mae M&S Milton Keynes yn cynnig cynllun ail-lenwi gyda 10 cynnyrch cartref a gofal personol brand eu hunain. Rydych chi'n talu blaendal o £2 am botel y gellir ei dychwelyd, a phan fyddwch chi'n ei dychwelyd ar ôl ei defnyddio, byddwch chi'n derbyn talebyn £2 tuag at eich pryniad Refilled nesaf—gan ei gwneud hi'n hawdd lleihau gwastraff plastig gyda chynhyrchion dibynadwy."
+        },
+        "ecover": {
+          "name": "Ecover",
+          "url": "https://www.ecover.com/uk/en/",
+          "urlText": "ecover.com",
+          "description": "Mae Ecover yn brif frand o gynhyrchion glanhau ecogyfeillgar, gan gynnig ystod o lanhawyr cartref y gellir eu hail-lenwi sydd wedi'u cynllunio i fod yn effeithiol gan leihau effaith amgylcheddol."
+        },
+        "bioD": {
+          "name": "Bio-D",
+          "url": "https://www.biod.co.uk/",
+          "urlText": "biod.co.uk",
+          "description": "Mae Bio-D yn creu ystod gynhwysfawr o gynhyrchion glanhau effeithiol, sy'n seiliedig ar blanhigion ar gyfer y cartref a golchi dillad, i gyd yn hypoalergenig, cruelty-free ac wedi'u gwneud gyda chynhwysion moesegol, bioddiraddadwy sy'n garedicach i groen sensitif a'r blaned."
+        },
+        "suma": {
+          "name": "Suma",
+          "url": "https://www.suma.coop/",
+          "urlText": "suma.coop",
+          "description": "Mae Suma yn darparu detholiad eang o fwyd a diod naturiol, organig a llysieuol, ystod cartref cyfrifol a chasgliad gofal corff hyfryd sy'n cruelty-free."
+        },
+        "sesi": {
+          "name": "Sesi",
+          "url": "https://www.sesi.org.uk/",
+          "urlText": "sesi.org.uk",
+          "description": "Mae SESI yn cynnig ystod helaeth o ddiriad glanhau fegan, cruelty-free a chynhyrchion cartref y gellir eu hail-lenwi, i gyd wedi'u ffurfio gyda chynhwysion bioddiraddadwy."
+        },
+        "faithInNature": {
+          "name": "Faith in Nature",
+          "url": "https://www.faithinnature.co.uk/",
+          "urlText": "faithinnature.co.uk",
+          "description": "Mae Faith in Nature yn frand gofal personol sy'n creu cynhyrchion sy'n seiliedig ar blanhigion, cruelty-free. Fe'i sefydlwyd yn 1974, mae'r cwmni'n canolbwyntio ar arferion cynaliadwy a chaffael moesegol tra'n osgoi cemegau llym yn eu fformiwleiddiau."
+        }
+      }
     }
   }
 }

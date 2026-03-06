@@ -1,6 +1,7 @@
 locator-icon-circle {
   --_background: var(--color-grey-lightest);
   --_color: var(--color-primary-darkest);
+  --_solid-color: var(--_background);
   align-items: center;
   background: var(--_background);
   border-radius: 50%;
@@ -10,17 +11,29 @@ locator-icon-circle {
   padding: 3px;
 
   &[variant='primary'] {
+    --_solid-color: var(--color-primary-dark);
     --_background: var(--color-primary-dark);
     --_color: var(--color-white);
   }
 
   &[variant='positive'] {
+    --_solid-color: var(--theme-background-positive);
     --_background: var(--theme-background-positive);
     --_color: var(--color-white);
   }
 
   &[variant='negative'] {
+    --_solid-color: var(--theme-background-negative);
     --_background: var(--theme-background-negative);
     --_color: var(--color-white);
+  }
+
+  &[transparent] {
+    --_background: color-mix(
+      in srgb,
+      var(--color-grey-lightest) 60%,
+      transparent
+    );
+    --_color: var(--_solid-color);
   }
 }

@@ -29,12 +29,12 @@ function FilterChip({
         <locator-icon icon={icon} />
         {i18n.exists(`refill.filters.${filterKey}_full`) ? (
           <>
-            <span className="filter-label-short">
+            <div className="filter-label-short">
               {t(`refill.filters.${filterKey}`)}
-            </span>
-            <span className="filter-label-full">
+            </div>
+            <div className="filter-label-full">
               {t(`refill.filters.${filterKey}_full`)}
-            </span>
+            </div>
           </>
         ) : (
           t(`refill.filters.${filterKey}`)

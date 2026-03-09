@@ -7,6 +7,7 @@ import BenefitsPage from './benefits.page';
 import DiscoverRefillLayout from './discover.layout';
 import DiscoverRefillPage from './discover.page';
 import GuidePage from './guide.page';
+import HomeRefillPage from './home.page';
 import OptionsPage from './options.page';
 
 export default function DiscoverRefillRoutes() {
@@ -24,6 +25,8 @@ export default function DiscoverRefillRoutes() {
             path="/:postcode/refill/discover"
             component={DiscoverRefillPage}
           />
+
+          <Route path="/:postcode/refill/home" component={HomeRefillPage} />
           <Route
             path="/:postcode/refill/discover/guide"
             component={GuidePage}

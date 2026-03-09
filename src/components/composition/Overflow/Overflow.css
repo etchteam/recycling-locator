@@ -151,13 +151,3 @@ locator-overflow {
     }
   }
 }
-
-@supports selector(::scroll-button(*)) {
-  locator-overflow {
-    &:not([buttonsAbove]) {
-      padding-bottom: calc(
-        var(--evg-spacing-lg) + var(--evg-spacing)
-      ); /* add space for scroll buttons below the overflow container */
-    }
-  }
-}

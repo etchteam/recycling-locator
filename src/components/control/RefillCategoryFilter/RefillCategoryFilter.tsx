@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'wouter-preact';
 
 import { IconAttributes } from '@/components/content/Icon/Icon';
+import useAnalytics from '@/hooks/useAnalytics';
 import { REFILL_CATEGORIES } from '@/lib/refillCategories';
 import { CustomElement } from '@/types/customElement';
 
@@ -47,6 +48,7 @@ function FilterChip({
 export default function RefillCategoryFilter() {
   const [searchParams, setSearchParams] = useSearchParams();
   const { t } = useTranslation();
+  const { recordEvent } = useAnalytics();
   const activeCategory = searchParams.get('categories');
 
   const handleFilter = (param: string | null) => {
@@ -57,6 +59,11 @@ export default function RefillCategoryFilter() {
     } else {
       newParams.set('categories', param);
     }
+
+    recordEvent({
+      category: 'RefillCategoryFilter',
+      action: param ?? 'All',
+    });
 
     setSearchParams(newParams);
   };

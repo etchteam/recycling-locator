@@ -11,22 +11,22 @@ interface DeliveryProvider {
 
 const deliveryProviders: DeliveryProvider[] = [
   {
-    id: 'abel-and-cole',
+    id: 'abelAndCole',
     category: 'mixed-food',
     url: 'https://www.abelandcole.co.uk',
   },
   {
-    id: 'beauty-kitchen',
+    id: 'beautyKitchen',
     category: 'personal-care',
     url: 'https://www.abelandcole.co.uk',
   },
   {
-    id: 'milk-and-more',
+    id: 'milkAndMore',
     category: 'mixed-food',
     url: 'https://www.milkandmore.co.uk',
   },
   {
-    id: 'the-modern-milkman',
+    id: 'theModernMilkman',
     category: 'mixed-food',
     url: 'https://www.abelandcole.co.uk',
   },

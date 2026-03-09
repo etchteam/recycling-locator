@@ -768,22 +768,22 @@
       },
       "providersTitle": "Refill home delivery services",
       "providers": {
-        "abel-and-cole": {
+        "abelAndCole": {
           "name": "Abel & Cole",
           "category": "Food",
           "description": "Get your everyday essentials delivered in returnable, refillable packaging. It's zero-waste shopping with a difference."
         },
-        "beauty-kitchen": {
+        "beautyKitchen": {
           "name": "Beauty Kitchen",
           "category": "Personal care",
           "description": "Return, refill, repeat scheme for beauty and personal care products. Send back empties for store credit."
         },
-        "milk-and-more": {
+        "milkAndMore": {
           "name": "Milk & More",
           "category": "Food",
           "description": "Traditional doorstep delivery service bringing milk and juice in refillable bottles which are collected and reused."
         },
-        "the-modern-milkman": {
+        "theModernMilkman": {
           "name": "The Modern Milkman",
           "category": "Food",
           "description": "A doorstep delivery and collection service for fresh products. Their glass bottles and pots are made to come back."

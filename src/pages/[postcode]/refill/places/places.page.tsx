@@ -149,6 +149,7 @@ function RefillLocations() {
               </evg-grid>
             )}
             <RefillBrands
+              title={t('refill.brands.title')}
               companyNames={getCompanyNames(unfilteredResult.data ?? locations)}
             />
           </>

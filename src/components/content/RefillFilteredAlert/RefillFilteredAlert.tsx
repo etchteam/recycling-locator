@@ -1,6 +1,7 @@
 import { Trans, useTranslation } from 'react-i18next';
 import { useSearchParams } from 'wouter-preact';
 
+import useAnalytics from '@/hooks/useAnalytics';
 import { isValidCategory } from '@/lib/refillCategories';
 import { CustomElement } from '@/types/customElement';
 
@@ -13,6 +14,7 @@ export default function RefillFilteredAlert({
 }: RefillFilteredAlertProps) {
   const { t } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
+  const { recordEvent } = useAnalytics();
   const categories = searchParams.get('categories');
 
   if (!isValidCategory(categories)) {
@@ -22,6 +24,12 @@ export default function RefillFilteredAlert({
   const handleClearFilters = () => {
     const newParams = new URLSearchParams(searchParams);
     newParams.delete('categories');
+
+    recordEvent({
+      category: 'RefillCategoryFilter',
+      action: 'All',
+    });
+
     setSearchParams(newParams);
   };
 

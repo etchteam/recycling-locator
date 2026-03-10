@@ -18,11 +18,10 @@ interface NavLinkProps {
 }
 
 function NavLink({ href, icon, title, description, className }: NavLinkProps) {
+  const classNames = `evg-spacing-top-md ${className ?? ''}`.trim();
+
   return (
-    <locator-icon-link
-      border
-      className={`evg-spacing-top-md${className ? ` ${className}` : ''}`}
-    >
+    <locator-icon-link border className={classNames}>
       <Link href={href}>
         <locator-icon-circle>
           <locator-icon icon={icon} color="primary"></locator-icon>

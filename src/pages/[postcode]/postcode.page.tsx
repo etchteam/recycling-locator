@@ -20,7 +20,7 @@ function Loading() {
 
 export default function PostcodePage() {
   const { t } = useTranslation();
-  const { publicPath } = useAppState();
+  const { publicPath, theme } = useAppState();
   const { recordEvent } = useAnalytics();
   const { data: postcodeData } = usePostcode();
   const postcode = postcodeData?.postcode || '';
@@ -154,7 +154,10 @@ export default function PostcodePage() {
                 </evg-grid-item>
               </evg-grid>
 
-              <locator-icon-link border className="evg-spacing-top-md">
+              <locator-icon-link
+                border
+                className={`evg-spacing-top-md${theme ? '' : ' theme-preset-purple'}`}
+              >
                 <Link href={`/${postcode}/refill`}>
                   <locator-icon-circle>
                     <locator-icon icon="refill" color="primary"></locator-icon>

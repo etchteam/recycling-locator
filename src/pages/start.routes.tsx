@@ -19,7 +19,7 @@ import StartPage from './start.page';
  * navigating to the correct start path then dispatching the 'ready' event.
  */
 export default function StartRoutes() {
-  const { startPath } = useAppState();
+  const { startPath, theme } = useAppState();
   const [location, setLocation] = useLocation();
   const [searchParams] = useSearchParams();
   const { recordView } = useAnalytics();
@@ -80,9 +80,17 @@ export default function StartRoutes() {
           </StartLayout>
         </Route>
         <Route path="/refill">
-          <StartLayout>
-            <RefillStartPage />
-          </StartLayout>
+          {theme ? (
+            <StartLayout>
+              <RefillStartPage />
+            </StartLayout>
+          ) : (
+            <div className="theme-preset-purple">
+              <StartLayout>
+                <RefillStartPage />
+              </StartLayout>
+            </div>
+          )}
         </Route>
         <Route path="/not-found">
           <StartLayout>

@@ -14,11 +14,14 @@ interface NavLinkProps {
   readonly icon: IconAttributes['icon'];
   readonly title?: string;
   readonly description: string;
+  readonly className?: string;
 }
 
-function NavLink({ href, icon, title, description }: NavLinkProps) {
+function NavLink({ href, icon, title, description, className }: NavLinkProps) {
+  const classNames = `evg-spacing-top-md ${className ?? ''}`.trim();
+
   return (
-    <locator-icon-link border className="evg-spacing-top-md">
+    <locator-icon-link border className={classNames}>
       <Link href={href}>
         <locator-icon-circle>
           <locator-icon icon={icon} color="primary"></locator-icon>
@@ -44,6 +47,8 @@ function Loading() {
 
 function RecyclingLink({ postcode }: { readonly postcode: string }) {
   const { t } = useTranslation();
+  const { theme } = useAppState();
+
   return (
     <>
       <evg-grid className="evg-spacing-top-sm" align-items="center">
@@ -63,6 +68,7 @@ function RecyclingLink({ postcode }: { readonly postcode: string }) {
         icon="recycle"
         title={t('refill.explore.recyclingOptions.title')}
         description={t('refill.explore.recyclingOptions.description')}
+        className={theme ? undefined : 'theme-preset-green'}
       />
     </>
   );

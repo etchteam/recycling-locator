@@ -47,7 +47,7 @@ export default function HomeDeliveryPage() {
 
   return (
     <evg-enter type="fade">
-      <evg-section padding="md" className="theme-positive-muted">
+      <evg-section padding="md" className="theme-primary-muted">
         <locator-wrap max-width="none" gutter="fluid">
           <evg-grid
             gap="md"

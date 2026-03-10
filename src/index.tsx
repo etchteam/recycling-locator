@@ -93,11 +93,11 @@ export default function RecyclingLocator({
   basename = '',
   path,
   publicPath = config.publicPath,
-  theme = 'green',
+  theme,
 }: RecyclingLocatorAttributes) {
   const classes = compact([
     `recycling-locator-variant-${variant}`,
-    `theme-preset-${theme}`,
+    theme ? `theme-preset-${theme}` : undefined,
     config.testMode ? 'recycling-locator-test-mode' : undefined,
   ]).join(' ');
 

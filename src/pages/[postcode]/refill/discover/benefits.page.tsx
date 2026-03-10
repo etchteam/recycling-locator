@@ -13,7 +13,7 @@ export default function BenfitsPage() {
     <>
       <h2>{t('refill.discover.benefits.title')}</h2>
       <p>{t('refill.discover.benefits.intro')}</p>
-      <evg-card className="theme-positive-muted evg-spacing-bottom-md">
+      <evg-card className="theme-primary-muted evg-spacing-bottom-md">
         <evg-card-content>
           {['holiday', 'hosting', 'recipe'].map((activity) => (
             <evg-grid

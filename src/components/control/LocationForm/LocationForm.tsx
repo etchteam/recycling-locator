@@ -155,7 +155,7 @@ export default function LocationForm({
             </evg-radio-checkbox>
           </evg-grid-item>
           <evg-grid-item>
-            <locator-highlight className="evg-text-size-body-xs theme-positive">
+            <locator-highlight className="evg-text-size-body-xs theme-primary">
               {t('start.newTab.bestExperience')}
             </locator-highlight>
           </evg-grid-item>

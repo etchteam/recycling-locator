@@ -4,40 +4,13 @@ import { useTranslation } from 'react-i18next';
 import { Link, useRoute } from 'wouter-preact';
 
 import HeaderWithBackButton from '@/components/content/HeaderLayouts/HeaderWithBackButton';
-import HeaderWithMenu, {
-  MenuLayout,
-} from '@/components/content/HeaderLayouts/HeaderWithMenu';
+import { MenuLayout } from '@/components/content/HeaderLayouts/HeaderWithMenu';
 import NavLink from '@/components/control/NavBar/NavLink';
-import { useAppState } from '@/hooks/AppStateProvider';
 import { usePostcode } from '@/hooks/PostcodeProvider';
+import { useRefillLocations } from '@/hooks/useRefillLocations';
 import useScrollRestoration from '@/hooks/useScrollRestoration';
 
 const pages = ['intro', 'guide', 'options', 'benefits'];
-
-export function DiscoverRefillAside() {
-  const { t } = useTranslation();
-  const { publicPath } = useAppState();
-  const { postcode } = usePostcode();
-  const generalTipImgSrc = `${publicPath}images/material-tip.svg`;
-
-  return (
-    <locator-tip slot="layout-aside" text-align="center">
-      <locator-wrap>
-        <img src={generalTipImgSrc} alt="" />
-        <p className="evg-text-weight-bold">
-          {t('refill.discover.aside.subtitle')}
-        </p>
-        <h2>{t('refill.discover.aside.title')}</h2>
-        <p>{t('refill.discover.aside.content')}</p>
-        <evg-enter type="fade">
-          <evg-button width="full-width">
-            <Link href={`/${postcode}`}>{t('refill.discover.aside.cta')}</Link>
-          </evg-button>
-        </evg-enter>
-      </locator-wrap>
-    </locator-tip>
-  );
-}
 
 export default function DiscoverRefillLayout({
   children,
@@ -46,33 +19,25 @@ export default function DiscoverRefillLayout({
 }) {
   const { t } = useTranslation();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [isHome] = useRoute('/:postcode/refill/discover');
+  const [isDiscover] = useRoute('/:postcode/refill/discover');
   const { postcode } = usePostcode();
   const layoutRef = useRef();
+
+  const { data: refillLocations, loading: locationsLoading } =
+    useRefillLocations();
 
   useScrollRestoration(layoutRef);
 
   return (
     <locator-layout>
       <div slot="layout-header" className="display-contents">
-        {isHome ? (
-          <HeaderWithBackButton
-            logoType="icon-only"
-            logoHref="/refill"
-            title={t('refill.header.title')}
-            subtitle={postcode}
-            backFallback={`/${postcode}/refill`}
-          />
-        ) : (
-          <HeaderWithMenu
-            logoType="icon-only"
-            title={t('refill.header.title')}
-            subtitle={postcode}
-            menuOpen={menuOpen}
-            onToggleMenu={() => setMenuOpen(!menuOpen)}
-            mainContentId="locator-layout-main"
-          />
-        )}
+        <HeaderWithBackButton
+          logoType="icon-only"
+          logoHref="/refill"
+          title={t('refill.header.title')}
+          subtitle={postcode}
+          backFallback={`/${postcode}/refill`}
+        />
       </div>
       <div slot="layout-main" id="locator-layout-main" ref={layoutRef}>
         <MenuLayout
@@ -80,31 +45,64 @@ export default function DiscoverRefillLayout({
           onCloseMenu={() => setMenuOpen(false)}
           postcode={postcode ?? undefined}
         >
-          <locator-nav-bar>
-            <nav>
-              <ul>
-                {pages.map((page) => (
-                  <li key={page}>
-                    <NavLink
-                      href={
-                        page === 'intro'
-                          ? `/${postcode}/refill/discover`
-                          : `/${postcode}/refill/discover/${page}`
-                      }
-                    >
-                      {t(`refill.discover.nav.${page}.label`)}
-                    </NavLink>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          </locator-nav-bar>
-          <locator-wrap large-screen-only={isHome}>
+          {!isDiscover && (
+            <locator-nav-bar>
+              <nav>
+                <ul>
+                  {pages.map((page) => (
+                    <li key={page}>
+                      <NavLink
+                        href={
+                          page === 'intro'
+                            ? `/${postcode}/refill/discover`
+                            : `/${postcode}/refill/discover/${page}`
+                        }
+                      >
+                        {t(`refill.discover.nav.${page}.label`)}
+                      </NavLink>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            </locator-nav-bar>
+          )}
+          <locator-wrap max-width="extra-wide" gutter="fluid">
             <evg-section padding="lg">{children}</evg-section>
+            {!locationsLoading && (
+              <evg-section>
+                <locator-tip wrap="wrap" type="image">
+                  <img src="/images/refill/refill-tip.webp" alt="" />
+                  {refillLocations?.items?.length > 0 ? (
+                    <locator-tip-content>
+                      <h2>{t('refill.discover.tip.withLocations.title')}</h2>
+                      <p>
+                        {t('refill.discover.tip.withLocations.description')}
+                      </p>
+                      <evg-button>
+                        <Link href={`/${postcode}/refill/`}>
+                          {t('refill.discover.tip.withLocations.cta', {
+                            count: refillLocations?.items?.length,
+                          })}
+                        </Link>
+                      </evg-button>
+                    </locator-tip-content>
+                  ) : (
+                    <locator-tip-content>
+                      <h2>{t('refill.discover.tip.noLocations.title')}</h2>
+                      <p>{t('refill.discover.tip.noLocations.description')}</p>
+                      <evg-button>
+                        <Link href={`/${postcode}/refill/sign-up`}>
+                          {t('refill.discover.alerts.title')}
+                        </Link>
+                      </evg-button>
+                    </locator-tip-content>
+                  )}
+                </locator-tip>
+              </evg-section>
+            )}
           </locator-wrap>
         </MenuLayout>
       </div>
-      <DiscoverRefillAside />
     </locator-layout>
   );
 }

@@ -71,7 +71,7 @@ export default function DiscoverRefillPage() {
             </h3>
             <evg-grid wrap="wrap" className="evg-spacing-bottom-md">
               {reasons.map((key) => (
-                <evg-grid-item key={key} mobile="12" tablet="6">
+                <evg-grid-item key={key} small-mobile="12" tablet="6">
                   <evg-img radius="sm" aspect-ratio="2/1" object-fit="cover">
                     <img
                       src={`${publicPath}images/refill/${key}.webp`}
@@ -84,7 +84,7 @@ export default function DiscoverRefillPage() {
                   <p>{t(`refill.discover.reasons.${key}.description`)}</p>
                 </evg-grid-item>
               ))}
-              <evg-grid-item mobile="12" tablet="6" fill="true">
+              <evg-grid-item small-mobile="12" tablet="6" fill="true">
                 <evg-card className="theme-positive-muted">
                   <evg-card-content>
                     <h3>{t('refill.discover.reduceWaste.title')}</h3>
@@ -105,7 +105,7 @@ export default function DiscoverRefillPage() {
                   </evg-card-content>
                 </evg-card>
               </evg-grid-item>
-              <evg-grid-item mobile="12" tablet="6" fill="true">
+              <evg-grid-item small-mobile="12" tablet="6" fill="true">
                 <evg-card className="theme-info">
                   <evg-card-content>
                     <h3>{t('refill.discover.saveMoney.title')}</h3>
@@ -157,7 +157,7 @@ export default function DiscoverRefillPage() {
               </ul>
             </locator-overflow>
 
-            <h3>{t('refill.discover.title')}</h3>
+            <h3 className="evg-spacing-top-lg">{t('refill.discover.title')}</h3>
             {questions.map((question) => (
               <locator-details
                 key={question}

@@ -754,27 +754,27 @@
       },
       "providersTitle": "Gwasanaethau dosbarthu ail-lenwi i'r cartref",
       "providers": {
-        "abel-and-cole": {
+        "abelAndCole": {
           "name": "Abel & Cole",
           "category": "Bwyd",
           "description": "Cael eich hanfodion bob dydd wedi'u danfon mewn pecynnu y gellir ei ddychwelyd a'i ail-lenwi. Siopa dim gwastraff gyda gwahaniaeth"
         },
-        "beauty-kitchen": {
+        "beautyKitchen": {
           "name": "Beauty Kitchen",
           "category": "Gofal personol",
           "description": "Cynllun dychwelyd, ail-lenwi, ailadrodd ar gyfer cynhyrchion harddwch a gofal personol. Anfonwch rai gwag yn ôl am gredyd siop."
         },
-        "milk-and-more": {
+        "milkAndMore": {
           "name": "Milk & More",
           "category": "Bwyd",
           "description": "Gwasanaeth dosbarthu traddodiadol ar stepen y drws yn dod â llaeth a sudd mewn poteli y gellir eu hail-lenwi sy'n cael eu casglu a'u hailddefnyddio."
         },
-        "the-modern-milkman": {
+        "theModernMilkman": {
           "name": "The Modern Milkman",
           "category": "Bwyd",
           "description": "Gwasanaeth dosbarthu a chasglu ar stepen y drws ar gyfer cynhyrchion ffres. Mae eu poteli gwydr a photiau wedi'u gwneud i ddod yn ôl."
         },
-        "yoyo": {
+        "yoyoGrocery": {
           "name": "Yoyo Grocery",
           "category": "Bwyd",
           "description": "Mae Yoyo Grocery yn dosbarthu bwyd naturiol ac organig yn uniongyrchol i'ch drws gyda system ddychwelyd pecynnu ddolen gaeedig."
@@ -828,6 +828,12 @@
           "url": "https://www.faithinnature.co.uk/",
           "urlText": "faithinnature.co.uk",
           "description": "Mae Faith in Nature yn frand gofal personol sy'n creu cynhyrchion sy'n seiliedig ar blanhigion, cruelty-free. Fe'i sefydlwyd yn 1974, mae'r cwmni'n canolbwyntio ar arferion cynaliadwy a chaffael moesegol tra'n osgoi cemegau llym yn eu fformiwleiddiau."
+        },
+        "yoyoGrocery": {
+          "name": "Yoyo Grocery",
+          "url": "https://www.yoyogrocery.co.uk/",
+          "urlText": "yoyogrocery.co.uk",
+          "description": "Mae Yoyo Grocery yn cynnig bwyd naturiol ac organig yn y siop gyda system ddychwelyd pecynnu ddolen gaeedig."
         }
       }
     }

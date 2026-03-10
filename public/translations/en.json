@@ -470,7 +470,8 @@
       "clearFilters": "Clear filters"
     },
     "brands": {
-      "title": "Refill brands available in this area"
+      "title": "Refill brands available in this area",
+      "guideTitle": "Same quality products, smarter price"
     },
     "start": {
       "title": "Discover refill options in your area",
@@ -543,12 +544,65 @@
         "title": "Sign up for alerts",
         "description": "Find out when refill locations launch in your local area"
       },
+      "intro": {
+        "title": "Switch to refill on everyday essentials",
+        "howItWorks": {
+          "title": "How refill works",
+          "description": "Bring your empty containers and fill up your favourites without the packaging waste."
+        },
+        "reasonsTitle": "Reasons to refill",
+        "reasons": {
+          "moreChoice": {
+            "description": "From luxury olive oils to chocolate buttons sold by the scoop, refill shops stock an incredible variety of products."
+          },
+          "localStore": {
+            "title": "Discover your local store",
+            "description": "Every shop is different. The best way to find out what's available is to visit your nearest refill store, and discover their unique mix of products."
+          },
+          "skipUnpacking": {
+            "title": "Skip the unpacking",
+            "description": "Bring your own containers, or grab some at your refill shop, and refill straight into them. No more tedious unpacking when you get home, just pop them straight into your cupboards and onto your shelves."
+          }
+        },
+        "reduceWaste": {
+          "title": "Reduce waste",
+          "items": [
+            { "bold": "Cut packaging waste", "text": "and help stop plastic at the source" },
+            { "preText": "Choose from a variety of", "bold": "eco-friendly alternatives" },
+            { "bold": "Support local business", "text": "and help prevent waste." }
+          ]
+        },
+        "saveMoney": {
+          "title": "Save Money",
+          "items": [
+            "You're not paying for packaging - just the product",
+            "Buy exactly what you need, so nothing goes to waste",
+            "Find out if your store offers a loyalty scheme to give you more savings"
+          ]
+        },
+        "gotAQuestion": "Got a question?",
+        "moreWays": {
+          "title": "More ways to refill",
+          "description": "Refill is rapidly growing in popularity, but more than half of Brits struggle to find reuse or refill options at their regular stores. The good news is there are still plenty of ways to reduce packaging waste, even if your everyday supermarket."
+        }
+      },
+      "tip": {
+        "withLocations": {
+          "title": "Leave packaging in the past",
+          "description": "Try refill stores near you today and help reduce packaging waste.",
+          "cta": "{{count}} Refill options in this area"
+        },
+        "noLocations": {
+          "title": "Join the Refill Revolution",
+          "description": "Sign up to find out when new Refill locations are discovered in your area."
+        }
+      },
       "guide": {
         "title": "Getting started with Refill",
         "steps": {
           "title": "Refill in 3 steps",
           "items": [
-            "Find a refill store near you",
+            "Use the locator to find a refill store near you",
             "Take along your clean, empty containers to fill up",
             "Pick and choose what you want to refill"
           ]

@@ -456,7 +456,8 @@
       "clearFilters": "Clirio hidlwyr"
     },
     "brands": {
-      "title": "Brandiau ail-lenwi sydd ar gael yn yr ardal hon"
+      "title": "Brandiau ail-lenwi sydd ar gael yn yr ardal hon",
+      "guideTitle": "Cynhyrchion o'r un ansawdd, pris mwy craff"
     },
     "start": {
       "title": "Darganfod opsiynau ail-lenwi yn eich ardal chi",
@@ -529,12 +530,65 @@
         "title": "Cofrestrwch ar gyfer hysbysiadau",
         "description": "Cael gwybod pan fydd lleoliadau ail-lenwi yn lansio yn eich ardal leol"
       },
+      "intro": {
+        "title": "Newid i ail-lenwi ar hanfodion bob dydd",
+        "howItWorks": {
+          "title": "Sut mae ail-lenwi'n gweithio",
+          "description": "Dewch â'ch cynwysyddion gwag a llenwch eich ffefrynnau heb wastraff deunydd pacio."
+        },
+        "reasonsTitle": "Rhesymau dros ail-lenwi",
+        "reasons": {
+          "moreChoice": {
+            "description": "O olewau olewydd moethus i fotymau siocled a werthir wrth y llwyaid, mae siopau ail-lenwi'n stocio amrywiaeth anhygoel o gynhyrchion."
+          },
+          "localStore": {
+            "title": "Darganfod eich siop leol",
+            "description": "Mae pob siop yn wahanol. Y ffordd orau o ddarganfod beth sydd ar gael yw ymweld â'ch siop ail-lenwi agosaf, a darganfod eu cymysgedd unigryw o gynhyrchion."
+          },
+          "skipUnpacking": {
+            "title": "Hepgor y dadbacio",
+            "description": "Dewch â'ch cynwysyddion eich hun, neu cymerwch rai yn eich siop ail-lenwi, ac ail-lenwi'n syth iddynt. Dim mwy o ddadbacio diflas pan fyddwch chi'n cyrraedd adref, dim ond eu rhoi'n syth yn eich cypyrddau ac ar eich silffoedd."
+          }
+        },
+        "reduceWaste": {
+          "title": "Lleihau gwastraff",
+          "items": [
+            { "bold": "Torri gwastraff deunydd pacio", "text": "a helpu i atal plastig yn y ffynhonnell" },
+            { "preText": "Dewis o amrywiaeth o", "bold": "ddewisiadau amgen eco-gyfeillgar" },
+            { "bold": "Cefnogi busnes lleol", "text": "a helpu i atal gwastraff." }
+          ]
+        },
+        "saveMoney": {
+          "title": "Arbed Arian",
+          "items": [
+            "Nid ydych yn talu am ddeunydd pacio - dim ond y cynnyrch",
+            "Prynwch yn union yr hyn sydd ei angen arnoch, fel nad oes dim yn mynd yn wastraff",
+            "Darganfyddwch a yw eich siop yn cynnig cynllun teyrngarwch i roi mwy o arbedion i chi"
+          ]
+        },
+        "gotAQuestion": "Oes gennych chi gwestiwn?",
+        "moreWays": {
+          "title": "Mwy o ffyrdd o ail-lenwi",
+          "description": "Mae ail-lenwi'n tyfu'n gyflym o ran poblogrwydd, ond mae mwy na hanner o Brydeinwyr yn cael trafferth dod o hyd i opsiynau ailddefnyddio neu ail-lenwi yn eu siopau arferol. Y newyddion da yw bod digon o ffyrdd o leihau gwastraff deunydd pacio o hyd, hyd yn oed yn eich archfarchnad bob dydd."
+        }
+      },
+      "tip": {
+        "withLocations": {
+          "title": "Gadael deunydd pacio yn y gorffennol",
+          "description": "Rhowch gynnig ar siopau ail-lenwi yn agos atoch chi heddiw a helpwch i leihau gwastraff deunydd pacio.",
+          "cta": "{{count}} opsiwn ail-lenwi yn yr ardal hon"
+        },
+        "noLocations": {
+          "title": "Ymunwch â'r Chwyldro Ail-lenwi",
+          "description": "Cofrestrwch i ddarganfod pan fydd lleoliadau Ail-lenwi newydd yn cael eu darganfod yn eich ardal."
+        }
+      },
       "guide": {
         "title": "Mynd ati i Ail-lenwi",
         "steps": {
           "title": "Ail-lenwi mewn 3 cham",
           "items": [
-            "Dewch o hyd i siop ail-lenwi gerllaw",
+            "Defnyddiwch y lleolwr i ddod o hyd i siop ail-lenwi gerllaw",
             "Ewch â'ch cynwysyddion glân, gwag gyda chi i'w llenwi",
             "Dewis a dethol yr hyn rydych chi am ei ail-lenwi"
           ]
@@ -754,22 +808,22 @@
       },
       "providersTitle": "Gwasanaethau dosbarthu ail-lenwi i'r cartref",
       "providers": {
-        "abel-and-cole": {
+        "abelAndCole": {
           "name": "Abel & Cole",
           "category": "Bwyd",
           "description": "Cael eich hanfodion bob dydd wedi'u danfon mewn pecynnu y gellir ei ddychwelyd a'i ail-lenwi. Siopa dim gwastraff gyda gwahaniaeth"
         },
-        "beauty-kitchen": {
+        "beautyKitchen": {
           "name": "Beauty Kitchen",
           "category": "Gofal personol",
           "description": "Cynllun dychwelyd, ail-lenwi, ailadrodd ar gyfer cynhyrchion harddwch a gofal personol. Anfonwch rai gwag yn ôl am gredyd siop."
         },
-        "milk-and-more": {
+        "milkAndMore": {
           "name": "Milk & More",
           "category": "Bwyd",
           "description": "Gwasanaeth dosbarthu traddodiadol ar stepen y drws yn dod â llaeth a sudd mewn poteli y gellir eu hail-lenwi sy'n cael eu casglu a'u hailddefnyddio."
         },
-        "the-modern-milkman": {
+        "theModernMilkman": {
           "name": "The Modern Milkman",
           "category": "Bwyd",
           "description": "Gwasanaeth dosbarthu a chasglu ar stepen y drws ar gyfer cynhyrchion ffres. Mae eu poteli gwydr a photiau wedi'u gwneud i ddod yn ôl."

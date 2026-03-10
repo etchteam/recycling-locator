@@ -157,7 +157,7 @@ export default function DiscoverRefillPage() {
               </ul>
             </locator-overflow>
 
-            <h3>{t('refill.discover.gotAQuestion')}</h3>
+            <h3>{t('refill.discover.title')}</h3>
             {questions.map((question) => (
               <locator-details
                 key={question}

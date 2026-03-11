@@ -654,7 +654,7 @@
           "category": "Bwyd",
           "description": "Gwasanaeth dosbarthu a chasglu ar stepen y drws ar gyfer cynhyrchion ffres. Mae eu poteli gwydr a photiau wedi'u gwneud i ddod yn ôl."
         },
-        "yoyo": {
+        "yoyoGrocery": {
           "name": "Yoyo Grocery",
           "category": "Bwyd",
           "description": "Mae Yoyo Grocery yn dosbarthu bwyd naturiol ac organig yn uniongyrchol i'ch drws gyda system ddychwelyd pecynnu ddolen gaeedig."
@@ -708,6 +708,12 @@
           "url": "https://www.faithinnature.co.uk/",
           "urlText": "faithinnature.co.uk",
           "description": "Mae Faith in Nature yn frand gofal personol sy'n creu cynhyrchion sy'n seiliedig ar blanhigion, cruelty-free. Fe'i sefydlwyd yn 1974, mae'r cwmni'n canolbwyntio ar arferion cynaliadwy a chaffael moesegol tra'n osgoi cemegau llym yn eu fformiwleiddiau."
+        },
+        "yoyoGrocery": {
+          "name": "Yoyo Grocery",
+          "url": "https://www.yoyogrocery.co.uk/",
+          "urlText": "yoyogrocery.co.uk",
+          "description": "Mae Yoyo Grocery yn cynnig bwyd naturiol ac organig yn y siop gyda system ddychwelyd pecynnu ddolen gaeedig."
         }
       }
     }

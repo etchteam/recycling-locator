@@ -4,6 +4,7 @@ import { Trans, useTranslation } from 'react-i18next';
 
 import HeaderWithBackButton from '@/components/content/HeaderLayouts/HeaderWithBackButton';
 import { usePostcode } from '@/hooks/PostcodeProvider';
+import useAnalytics from '@/hooks/useAnalytics';
 import useScrollRestoration from '@/hooks/useScrollRestoration';
 import i18n from '@/lib/i18n';
 import { captureException } from '@/lib/sentry';
@@ -12,6 +13,7 @@ export default function SignUpPage() {
   const { t } = useTranslation();
   const locale = i18n.language;
   const { postcode } = usePostcode();
+  const { recordEvent } = useAnalytics();
   const layoutRef = useRef();
   useScrollRestoration(layoutRef);
   const [errors, setErrors] = useState({
@@ -86,6 +88,10 @@ export default function SignUpPage() {
       const result = await response.json();
 
       if (result.result === 'success') {
+        recordEvent({
+          category: 'RefillSignUp',
+          action: postcode,
+        });
         setIsSuccessful(true);
         try {
           globalThis.localStorage.setItem(

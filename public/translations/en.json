@@ -700,7 +700,7 @@
           "category": "Food",
           "description": "A doorstep delivery and collection service for fresh products. Their glass bottles and pots are made to come back."
         },
-        "yoyo": {
+        "yoyoGrocery": {
           "name": "Yoyo Grocery",
           "category": "Food",
           "description": "Yoyo Grocery delivers natural and organic food directly to your door with a closed-loop packaging return system."
@@ -754,6 +754,12 @@
           "url": "https://www.faithinnature.co.uk/",
           "urlText": "faithinnature.co.uk",
           "description": "Faith in Nature are a personal care brand that creates plant-based, cruelty-free products. Founded in 1974, the company focuses on sustainable practices and ethical sourcing whilst avoiding harsh chemicals in their formulations."
+        },
+        "yoyoGrocery": {
+          "name": "Yoyo Grocery",
+          "url": "https://www.yoyogrocery.co.uk/",
+          "urlText": "yoyogrocery.co.uk",
+          "description": "Yoyo Grocery offers natural and organic food in store with a closed-loop packaging return system."
         }
       }
     }

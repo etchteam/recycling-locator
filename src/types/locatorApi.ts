@@ -15,6 +15,7 @@ export interface Material {
   recycleType?: 'Recycle' | 'Re-use';
   hazardous?: boolean;
   nonRecyclable?: boolean;
+  bulky?: boolean;
   nameCy?: string;
   popular?: boolean;
   valpakMaterials?: ValpakMaterial[];
@@ -91,6 +92,17 @@ export interface LocalAuthorityProperty {
   notes?: string[];
 }
 
+export interface BulkyWasteCollection {
+  id: string;
+  name: string;
+  nameCy?: string;
+  cost?: number;
+  maxItems?: number;
+  notes?: string;
+  notesCy?: string;
+  materials?: Material[];
+}
+
 export interface LocalAuthority {
   id: number;
   name: string;
@@ -99,6 +111,7 @@ export interface LocalAuthority {
   recyclingUri: string;
   hwrcUri: string;
   gardenWasteUri: string;
+  bulkyWaste?: BulkyWasteCollection[];
   properties: { [key in PROPERTY_TYPE_EN]?: LocalAuthorityProperty[] };
 }
 

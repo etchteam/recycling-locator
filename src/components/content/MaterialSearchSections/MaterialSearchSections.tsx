@@ -96,7 +96,6 @@ export default function MaterialSearchSections({
       </MaterialSearchSection>,
     );
   }
-  console.log('la data', la?.data);
 
   sections.set(
     'recycleAtHome',

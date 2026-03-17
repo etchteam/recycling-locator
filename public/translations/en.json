@@ -245,7 +245,8 @@
         "titleDisposal": "At home disposal options",
         "collection": "This item is collected in these bins:",
         "collection_one": "This item is collected in this bin:"
-      }
+      },
+      "bulkyWasteCollection": "You may be able to arrange a collection."
     },
     "nearbyPlaces": {
       "noPlaces": {

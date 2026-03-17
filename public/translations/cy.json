@@ -229,7 +229,8 @@
         "titleDisposal": "Opsiynau gwaredu yn y cartref",
         "collection": "Cesglir yr eitemau hyn yn y biniau hyn:",
         "collection_one": "Cesglir yr eitem hon yn y bin hwn:"
-      }
+      },
+      "bulkyWasteCollection": "Efallai y byddwch chi'n gallu trefnu casgliad."
     },
     "nearbyPlaces": {
       "noPlaces": {

@@ -714,6 +714,12 @@
           "url": "https://www.yoyogrocery.co.uk/",
           "urlText": "yoyogrocery.co.uk",
           "description": "Mae Yoyo Grocery yn cynnig bwyd naturiol ac organig yn y siop gyda system ddychwelyd pecynnu ddolen gaeedig."
+        },
+        "theSourceBulkFoods": {
+          "name": "The Source Bulk Foods",
+          "url": "https://www.thesourcebulkfoods.co.uk/",
+          "urlText": "thesourcebulkfoods.co.uk",
+          "description": "Mae The Source Bulk Foods yn cynnig ystod eang o fwyd, cynhyrchion glanhau a gofal personol mewn swmp heb y pecynnu. Dewch â'ch cynwysyddion eich hun a'u llenwi â chynnyrch o ansawdd, gan helpu i leihau gwastraff o'r cae i'r plât."
         }
       }
     }

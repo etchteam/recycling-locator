@@ -176,13 +176,13 @@ export default function RefillPlacesPage() {
             <locator-card-link>
               <Link href={`/${postcode}/refill/discover`}>
                 <locator-card-link-img>
-                  <img src={`${publicPath}images/refill/guide.webp`} alt="" />
+                  <img src={`${publicPath}images/refill/hero.webp`} alt="" />
                 </locator-card-link-img>
                 <locator-card-link-content>
                   <p className="evg-text-weight-bold evg-spacing-bottom-none">
-                    {t('refill.discover.nav.guide.title')}
+                    {t('refill.explore.gettingStarted.title')}
                   </p>
-                  <p>{t('refill.discover.nav.guide.description')}</p>
+                  <p>{t('refill.explore.gettingStarted.description')}</p>
                 </locator-card-link-content>
               </Link>
             </locator-card-link>
@@ -198,9 +198,9 @@ export default function RefillPlacesPage() {
                 </locator-card-link-img>
                 <locator-card-link-content>
                   <p className="evg-text-weight-bold evg-spacing-bottom-none">
-                    {t('refill.discover.nav.home-delivery.title')}
+                    {t('refill.explore.homeDelivery.title')}
                   </p>
-                  <p>{t('refill.discover.nav.home-delivery.description')}</p>
+                  <p>{t('refill.explore.homeDelivery.description')}</p>
                 </locator-card-link-content>
               </Link>
             </locator-card-link>

@@ -102,6 +102,20 @@ locator-overflow {
   }
 }
 
+@supports selector(::scroll-button(*)) {
+  locator-overflow {
+    padding-top: var(--evg-spacing-lg);
+    /* add space for scroll buttons above the overflow container */
+  }
+}
+
+@container (width >= 375px) {
+  locator-overflow {
+    padding-top: 0;
+    /* space for buttons only required on mobile */
+  }
+}
+
 @container (width >= 768px) {
   locator-overflow {
     &:not([largeScreen]) {
@@ -125,7 +139,7 @@ locator-overflow {
 
     &[largeScreen] {
       /* stylelint-disable-next-line length-zero-no-unit */
-      --margin-inline-padding: 0px; /*without px calcs cause bugs */
+      --margin-inline-padding: 0px; /* without px not compatible with calcs */
     }
   }
 }
@@ -148,16 +162,6 @@ locator-overflow {
           display: none;
         }
       }
-    }
-  }
-}
-
-@supports selector(::scroll-button(*)) {
-  locator-overflow {
-    &:not([buttonsAbove]) {
-      padding-bottom: calc(
-        var(--evg-spacing-lg) + var(--evg-spacing)
-      ); /* add space for scroll buttons below the overflow container */
     }
   }
 }

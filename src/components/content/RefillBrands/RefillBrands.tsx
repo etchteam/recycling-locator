@@ -1,5 +1,4 @@
 import camelCase from 'lodash/camelCase';
-import { useTranslation } from 'react-i18next';
 
 import { CustomElement } from '@/types/customElement';
 
@@ -7,11 +6,13 @@ import './RefillBrands.css';
 
 interface RefillBrandsProps {
   readonly companyNames: string[];
+  readonly title?: string;
 }
 
-export default function RefillBrands({ companyNames }: RefillBrandsProps) {
-  const { t } = useTranslation();
-
+export default function RefillBrands({
+  companyNames,
+  title,
+}: RefillBrandsProps) {
   if (companyNames.length === 0) {
     return null;
   }
@@ -21,7 +22,7 @@ export default function RefillBrands({ companyNames }: RefillBrandsProps) {
       <evg-card radius="sm">
         <evg-card-content>
           <div className="refill-brands-content">
-            <h3>{t('refill.brands.title')}</h3>
+            <h3>{title}</h3>
             <ul className="list-style-none refill-brands-list">
               {companyNames.map((name) => (
                 <li key={name}>

@@ -20,7 +20,7 @@ locator-refill-brands {
     align-items: center;
     display: flex;
     flex-wrap: wrap;
-    gap: var(--evg-spacing-sm);
+    gap: var(--evg-spacing-md);
     justify-content: center;
   }
 

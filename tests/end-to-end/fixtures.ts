@@ -1,4 +1,8 @@
 /* eslint-disable react-hooks/rules-of-hooks */
+import { randomUUID } from 'node:crypto';
+import fs from 'node:fs';
+import path from 'node:path';
+
 import { test as base, Locator } from '@playwright/test';
 import i18next from 'i18next';
 
@@ -11,6 +15,21 @@ import provideI18n from '../utils/providei18n';
 import { waitForWidget } from '../utils/waitForWidget';
 
 export const test = base.extend<{ i18n: typeof i18next; widget: Locator }>({
+  page: async ({ page }, use) => {
+    await use(page);
+
+    const coverage = await page.evaluate(() => (window as any).__coverage__);
+
+    if (coverage) {
+      const outputDir = path.resolve('coverage', 'e2e');
+      fs.mkdirSync(outputDir, { recursive: true });
+      fs.writeFileSync(
+        path.join(outputDir, `${randomUUID()}.json`),
+        JSON.stringify(coverage),
+      );
+    }
+  },
+
   i18n: async ({ context }, use) => {
     const i18n = await provideI18n();
     await translationRouteMock(context);

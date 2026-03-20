@@ -8,7 +8,7 @@ npm run release -- --ci false --dryRun \
   -p @semantic-release/commit-analyzer \
   -p @semantic-release/release-notes-generator \
   -p @semantic-release/github \
-  | grep -i "next release version is" > .semver-output
+  | grep -i "Published release" > .semver-output
 
 # Push this version to the output
 echo "current-version=$([[ $(cat .semver-output) =~ .*([[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+) ]] && echo "${BASH_REMATCH[1]}")" >> "$GITHUB_OUTPUT"

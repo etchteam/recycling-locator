@@ -49,7 +49,9 @@ describe('materialExistsSearch', () => {
   });
 
   test('returns false when the API rejects (e.g. 400 error)', async () => {
-    mockPost.mockRejectedValueOnce(new Error('Request failed with status code 400'));
+    mockPost.mockRejectedValueOnce(
+      new Error('Request failed with status code 400'),
+    );
 
     const result = await materialExistsSearch('test');
     expect(result).toBe(false);

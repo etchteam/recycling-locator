@@ -4,6 +4,7 @@ import { preact } from '@preact/preset-vite';
 import typescript from '@rollup/plugin-typescript';
 import { sentryVitePlugin } from '@sentry/vite-plugin';
 import { defineConfig, loadEnv, UserConfig } from 'vite';
+import istanbul from 'vite-plugin-istanbul';
 import svgr from 'vite-plugin-svgr';
 
 // Vite is used for JavaScript bundling and development server
@@ -43,7 +44,8 @@ export default defineConfig(({ mode }) => {
       globals: true,
       coverage: {
         provider: 'v8',
-        reporter: ['text', 'lcov'],
+        reporter: ['text', 'json'],
+        reportsDirectory: 'coverage/unit',
       },
     },
   };
@@ -98,6 +100,16 @@ export default defineConfig(({ mode }) => {
         }
       },
     });
+  }
+
+  if (process.env.CI) {
+    config.plugins.push(
+      istanbul({
+        include: 'src/**',
+        exclude: ['node_modules', 'tests'],
+        extension: ['.ts', '.tsx'],
+      }),
+    );
   }
 
   return config;

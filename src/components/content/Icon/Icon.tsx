@@ -11,8 +11,10 @@ export interface IconAttributes {
   readonly icon:
     | 'arrow-left'
     | 'arrow-right'
+    | 'arrow-outward'
     | 'arrow-up'
     | 'call'
+    | 'cleaning'
     | 'close'
     | 'collection'
     | 'cross-circle'
@@ -33,10 +35,14 @@ export interface IconAttributes {
     | 'list'
     | 'map'
     | 'menu'
+    | 'mixed-food'
+    | 'personal-care'
     | 'pin'
     | 'place-hwrc'
     | 'place'
+    | 'recycle'
     | 'refill'
+    | 'refill-all'
     | 'schedule'
     | 'search'
     | 'star'
@@ -46,7 +52,8 @@ export interface IconAttributes {
     | 'thumb-up'
     | 'tick-circle'
     | 'tick'
-    | 'warning';
+    | 'warning'
+    | 'web-link';
   readonly color?: 'primary' | 'muted' | 'positive' | 'negative' | 'white';
   readonly label?: string;
 }

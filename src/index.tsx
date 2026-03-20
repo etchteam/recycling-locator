@@ -31,6 +31,7 @@ export interface RecyclingLocatorAttributes {
   readonly basename?: string;
   /**
    * The initial path to load
+   * - /refill for refill embeds
    * - /{postcode} to pre-fill the location
    * - /home-recycling for home recycling embeds
    * - /material?materials=111&search=Cereal boxes to pre-select a material
@@ -92,11 +93,11 @@ export default function RecyclingLocator({
   basename = '',
   path,
   publicPath = config.publicPath,
-  theme = 'green',
+  theme,
 }: RecyclingLocatorAttributes) {
   const classes = compact([
     `recycling-locator-variant-${variant}`,
-    `theme-preset-${theme}`,
+    theme ? `theme-preset-${theme}` : undefined,
     config.testMode ? 'recycling-locator-test-mode' : undefined,
   ]).join(' ');
 
@@ -104,7 +105,10 @@ export default function RecyclingLocator({
 
   return (
     <>
-      <link rel="stylesheet" href={`${publicPath}styles.css`} />
+      <link
+        rel="stylesheet"
+        href={`${publicPath}styles.css?v=${__BUILD_TIME__}`}
+      />
       <article className={classes}>
         <Suspense fallback={<Loading />}>
           <RouterProvider

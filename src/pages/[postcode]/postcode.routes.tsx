@@ -7,6 +7,7 @@ import MaterialRoutes from './material/material.routes';
 import PlacesRoutes from './places/places.routes';
 import PostcodeLayout from './postcode.layout';
 import PostcodePage from './postcode.page';
+import RefillRoutes from './refill/refill.routes';
 import RescueMeRecyclePage from './rescue-me-recycle.page';
 
 export default function PostcodeRoutes() {
@@ -26,6 +27,7 @@ export default function PostcodeRoutes() {
         <Route path="/:postcode/home/*?" component={HomeRecyclingRoutes} />
         <Route path="/:postcode/material/*?" component={MaterialRoutes} />
         <Route path="/:postcode/places/*?" component={PlacesRoutes} />
+        <Route path="/:postcode/refill/*?" component={RefillRoutes} />
       </Switch>
     </PostcodeProvider>
   );

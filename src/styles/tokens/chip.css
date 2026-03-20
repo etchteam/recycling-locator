@@ -1,0 +1,12 @@
+evg-chip {
+  --evg-chip-color-light: var(--color-primary-dark);
+  --evg-chip-background-light: var(--color-grey-lightest);
+  --evg-chip-background-hover-light: var(--color-white);
+  --evg-chip-border-color-hover-light: var(--color-primary-dark);
+
+  --evg-chip-background-selected-light: var(--color-white);
+  --evg-chip-border-color-selected-light: var(--color-primary-dark);
+  --evg-chip-color-selected-light: var(--color-primary-dark);
+  --evg-chip-background-hover-selected-light: var(--color-white);
+  --evg-chip-border-color-hover-selected-light: var(--color-primary-dark);
+}

@@ -64,16 +64,16 @@ describe('getOpeningHours', () => {
     vi.useRealTimers();
   });
 
-  test('returns empty array when location has no locations', () => {
+  test('returns empty result when location has no locations', () => {
     const location: Location = {
       ...baseLocation,
       locations: [],
     };
 
-    expect(getOpeningHours(location)).toEqual([]);
+    expect(getOpeningHours(location)).toEqual({ today: '', days: [] });
   });
 
-  test('returns empty array when no opening hours provided', () => {
+  test('returns empty result when no opening hours provided', () => {
     const location: Location = {
       ...baseLocation,
       locations: [
@@ -85,7 +85,7 @@ describe('getOpeningHours', () => {
       ],
     };
 
-    expect(getOpeningHours(location)).toEqual([]);
+    expect(getOpeningHours(location)).toEqual({ today: '', days: [] });
   });
 
   test('formats basic opening hours correctly', () => {
@@ -99,14 +99,16 @@ describe('getOpeningHours', () => {
 
     const result = getOpeningHours(location);
 
-    // Should start with Tuesday (today) and show open status
-    expect(result[0]).toBe('Tuesday: 09:00 - 17:00 (open now)');
-    expect(result).toContain('Monday: 09:00 - 17:00');
-    expect(result).toContain('Wednesday: 09:00 - 17:00');
-    expect(result).toContain('Thursday: 09:00 - 17:00');
-    expect(result).toContain('Friday: 09:00 - 17:00');
-    expect(result).toContain('Saturday: Closed');
-    expect(result).toContain('Sunday: Closed');
+    // today contains the hours with open/closed status
+    expect(result.today).toBe('09:00 - 17:00 (open now)');
+    // days starts with today but without open/closed status
+    expect(result.days[0]).toBe('Tuesday: 09:00 - 17:00');
+    expect(result.days).toContain('Monday: 09:00 - 17:00');
+    expect(result.days).toContain('Wednesday: 09:00 - 17:00');
+    expect(result.days).toContain('Thursday: 09:00 - 17:00');
+    expect(result.days).toContain('Friday: 09:00 - 17:00');
+    expect(result.days).toContain('Saturday: Closed');
+    expect(result.days).toContain('Sunday: Closed');
   });
 
   test('shows closed status when current time is outside opening hours', () => {
@@ -120,7 +122,7 @@ describe('getOpeningHours', () => {
     });
 
     const result = getOpeningHours(location);
-    expect(result[0]).toBe('Tuesday: 09:00 - 17:00 (closed now)');
+    expect(result.today).toBe('09:00 - 17:00 (closed now)');
   });
 
   test('shows closed status when current time is after closing hours', () => {
@@ -134,7 +136,7 @@ describe('getOpeningHours', () => {
     });
 
     const result = getOpeningHours(location);
-    expect(result[0]).toBe('Tuesday: 09:00 - 17:00 (closed now)');
+    expect(result.today).toBe('09:00 - 17:00 (closed now)');
   });
 
   test('handles 24-hour opening correctly', () => {
@@ -144,7 +146,8 @@ describe('getOpeningHours', () => {
 
     const result = getOpeningHours(location);
     // 24-hour opening doesn't show (open now) status
-    expect(result[0]).toBe('Tuesday: Open 24 hours');
+    expect(result.today).toBe('Open 24 hours');
+    expect(result.days[0]).toBe('Tuesday: Open 24 hours');
   });
 
   test('sorts days starting from today', () => {
@@ -161,13 +164,13 @@ describe('getOpeningHours', () => {
     const result = getOpeningHours(location);
 
     // Should start with Tuesday (today), then Wednesday, Thursday, etc.
-    expect(result[0]).toMatch(/^Tuesday:/);
-    expect(result[1]).toMatch(/^Wednesday:/);
-    expect(result[2]).toMatch(/^Thursday:/);
-    expect(result[3]).toMatch(/^Friday:/);
-    expect(result[4]).toMatch(/^Saturday:/);
-    expect(result[5]).toMatch(/^Sunday:/);
-    expect(result[6]).toMatch(/^Monday:/);
+    expect(result.days[0]).toMatch(/^Tuesday:/);
+    expect(result.days[1]).toMatch(/^Wednesday:/);
+    expect(result.days[2]).toMatch(/^Thursday:/);
+    expect(result.days[3]).toMatch(/^Friday:/);
+    expect(result.days[4]).toMatch(/^Saturday:/);
+    expect(result.days[5]).toMatch(/^Sunday:/);
+    expect(result.days[6]).toMatch(/^Monday:/);
   });
 
   test('handles multiple locations with opening hours', () => {
@@ -196,9 +199,9 @@ describe('getOpeningHours', () => {
 
     const result = getOpeningHours(location);
 
-    // Should combine opening hours from all locations
-    expect(result).toContain('Tuesday: 08:00 - 18:00 (open now)');
-    expect(result).toContain('Wednesday: 08:00 - 18:00');
+    // days uses last location's hours for the day (Map overwrite)
+    expect(result.days).toContain('Tuesday: 08:00 - 18:00');
+    expect(result.days).toContain('Wednesday: 08:00 - 18:00');
   });
 
   test('filters out locations without opening hours', () => {
@@ -222,8 +225,9 @@ describe('getOpeningHours', () => {
     };
 
     const result = getOpeningHours(location);
-    expect(result).toHaveLength(7); // All 7 days
-    expect(result[0]).toBe('Tuesday: 09:00 - 17:00 (open now)');
+    expect(result.days).toHaveLength(7); // All 7 days
+    expect(result.days[0]).toBe('Tuesday: 09:00 - 17:00');
+    expect(result.today).toBe('09:00 - 17:00 (open now)');
   });
 
   test('handles missing days as closed', () => {
@@ -234,9 +238,10 @@ describe('getOpeningHours', () => {
     });
 
     const result = getOpeningHours(location);
-    expect(result[0]).toBe('Tuesday: Closed');
-    expect(result).toContain('Monday: 09:00 - 17:00');
-    expect(result).toContain('Wednesday: 09:00 - 17:00');
+    expect(result.today).toBe('Closed');
+    expect(result.days[0]).toBe('Tuesday: Closed');
+    expect(result.days).toContain('Monday: 09:00 - 17:00');
+    expect(result.days).toContain('Wednesday: 09:00 - 17:00');
   });
 
   test('handles boundary times at exactly opening time', () => {
@@ -250,7 +255,7 @@ describe('getOpeningHours', () => {
     });
 
     const result = getOpeningHours(location);
-    expect(result[0]).toBe('Tuesday: 09:00 - 17:00 (open now)');
+    expect(result.today).toBe('09:00 - 17:00 (open now)');
   });
 
   test('handles boundary times at exactly closing time', () => {
@@ -266,7 +271,7 @@ describe('getOpeningHours', () => {
 
     const result = getOpeningHours(location);
     // At exactly closing time, the place is considered closed
-    expect(result[0]).toBe('Tuesday: 09:00 - 17:00 (closed now)');
+    expect(result.today).toBe('09:00 - 17:00 (closed now)');
   });
 
   test('handles different day formats correctly', () => {
@@ -282,7 +287,7 @@ describe('getOpeningHours', () => {
     });
 
     const result = getOpeningHours(location);
-    expect(result).toHaveLength(7);
-    expect(result.every((day) => day.includes(':'))).toBe(true);
+    expect(result.days).toHaveLength(7);
+    expect(result.days.every((day) => day.includes(':'))).toBe(true);
   });
 });

@@ -21,9 +21,13 @@ export function AppStateProvider({
   children,
   attributes,
 }: AppStateProviderProps) {
-  const sessionId = (window?.wrapAnalyticsId ??
-    window?.crypto?.randomUUID?.() ??
-    uniqueId('session')) as unknown as string;
+  const sessionId = useMemo(
+    () =>
+      (window?.wrapAnalyticsId ??
+        window?.crypto?.randomUUID?.() ??
+        uniqueId('session')) as unknown as string,
+    [],
+  );
 
   const appState: AppStateData = useMemo(
     () => ({

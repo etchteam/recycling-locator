@@ -9,6 +9,28 @@ import {
 import { test, expect } from './fixtures';
 
 test.describe('Refill places', () => {
+  test('All filter is active by default', async ({ page, widget, i18n }) => {
+    await page.route(REFILL_LOCATIONS_ENDPOINT, (route) => {
+      route.fulfill({ json: RefillLocationsResponse });
+    });
+
+    await widget.evaluate((node) =>
+      node.setAttribute('path', '/EX32 7RB/refill/places'),
+    );
+
+    await page.waitForRequest(REFILL_LOCATIONS_ENDPOINT);
+
+    const allFilter = widget
+      .getByRole('button', { name: i18n.t('refill.filters.all') })
+      .first();
+    const foodFilter = widget
+      .getByRole('button', { name: i18n.t('refill.filters.Food') })
+      .first();
+
+    await expect(allFilter).toHaveAttribute('aria-pressed', 'true');
+    await expect(foodFilter).not.toHaveAttribute('aria-pressed', 'true');
+  });
+
   test('Places list displays with heading', async ({ page, widget, i18n }) => {
     await page.route(REFILL_LOCATIONS_ENDPOINT, (route) => {
       route.fulfill({ json: RefillLocationsResponse });

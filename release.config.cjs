@@ -19,7 +19,6 @@ module.exports = {
       '@semantic-release/npm',
       {
         npmPublish: true,
-        provenance: true,
       },
     ],
     '@semantic-release/github',

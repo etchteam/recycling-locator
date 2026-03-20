@@ -32,6 +32,7 @@ jobs:
         run: npm run build:preview
         env:
           VITE_BASE_PATH: /recycling-locator
+          VITE_PUBLIC_PATH: /recycling-locator/
           VITE_MARKER_KEY: 65ef397bdb8bc8524e2e763b
       - name: Setup Pages
         uses: actions/configure-pages@v4

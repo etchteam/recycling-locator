@@ -41,7 +41,8 @@ export default function StartRoutes() {
     if (hasNavigated.value) {
       recordView();
     }
-  }, [location, recordView, hasNavigated]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location]);
 
   // Wait until the startPath has been set before rendering routes
   if (!hasNavigated.value) {

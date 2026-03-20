@@ -41,6 +41,10 @@ export default defineConfig(({ mode }) => {
       include: ['tests/unit/**/*.test.ts'],
       environment: 'happy-dom',
       globals: true,
+      coverage: {
+        provider: 'v8',
+        reporter: ['text', 'lcov'],
+      },
     },
   };
 

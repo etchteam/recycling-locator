@@ -37,7 +37,8 @@
     "test:end-to-end": "playwright test",
     "test:end-to-end:debug": "playwright test --debug",
     "test:end-to-end:ui": "playwright test --ui",
-    "test": "npm run test:unit -- --coverage.enabled=true && npm run test:end-to-end"
+    "test:coverage-merge": "nyc merge coverage/unit coverage/merged/unit.json && nyc merge coverage/e2e coverage/merged/e2e.json && nyc merge coverage/merged coverage/merged/coverage.json && nyc report",
+    "test": "rm -rf coverage && npm run test:unit -- --coverage.enabled=true && npm run test:end-to-end && npm run test:coverage-merge"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.4",

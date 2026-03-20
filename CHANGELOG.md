@@ -1,3 +1,10 @@
+## [1.71.3](https://github.com/etchteam/recycling-locator/compare/v1.71.2...v1.71.3) (2026-03-20)
+
+
+### Bug Fixes
+
+* prevent 400 errors from empty material search on place detail pages ([e4ec7bc](https://github.com/etchteam/recycling-locator/commit/e4ec7bcb75a335c0cf527958edf9acf8d902e3df))
+
 ## [1.71.2](https://github.com/etchteam/recycling-locator/compare/v1.71.1...v1.71.2) (2026-03-03)
 
 

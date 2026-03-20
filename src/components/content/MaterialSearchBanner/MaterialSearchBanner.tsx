@@ -15,6 +15,11 @@ export default function MaterialSearchBanner({
   const materialExists = useSignal<boolean>(false);
 
   useEffect(() => {
+    if (!search.trim()) {
+      materialExists.value = false;
+      return;
+    }
+
     const fetchData = async () => {
       materialExists.value = await materialExistsSearch(search);
     };

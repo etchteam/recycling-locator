@@ -8,7 +8,7 @@ async function getMaterialsList(query: string): Promise<Material[]> {
     body.append('search', query);
     return await LocatorApi.getInstance().post('materials', body);
   } catch (error) {
-    captureException(error, { component: 'MaterialSearchInput' });
+    captureException(error, { component: 'materialExistsSearch' });
     return [];
   }
 }

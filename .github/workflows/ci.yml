@@ -32,12 +32,14 @@ jobs:
           VALIDATE_ALL_CODEBASE: false
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   build:
+    permissions:
+      contents: read
     name: Build
     runs-on: ubuntu-latest
     strategy:
       matrix:
         # node version support based on the engines property of package.json
-        version: [18, 20, 22]
+        version: [20, 22, 24]
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4

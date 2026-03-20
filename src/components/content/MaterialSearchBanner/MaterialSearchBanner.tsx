@@ -15,7 +15,7 @@ export default function MaterialSearchBanner({
   const materialExists = useSignal<boolean>(false);
 
   useEffect(() => {
-    if (!search) {
+    if (!search.trim()) {
       materialExists.value = false;
       return;
     }

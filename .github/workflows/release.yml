@@ -27,7 +27,7 @@ jobs:
           node-version-file: .nvmrc
           cache: npm
           registry-url: https://registry.npmjs.org
-      - run: npm ci
+      - run: npm ci --no-scripts
       - run: npm audit signatures
       - name: Get the package version for this release (previous version + 1)
         id: package-version

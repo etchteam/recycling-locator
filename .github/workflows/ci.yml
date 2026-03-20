@@ -25,7 +25,7 @@ jobs:
           node-version-file: .nvmrc
           cache: 'npm'
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --no-scripts
       - name: MegaLinter
         uses: oxsecurity/megalinter/flavors/javascript@8fbdead70d1409964ab3d5afa885e18ee85388bb
         env:
@@ -51,7 +51,7 @@ jobs:
           node-version: ${{ matrix.version }}
           cache: 'npm'
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --no-scripts
       - name: Build
         run: npm run build
         env:

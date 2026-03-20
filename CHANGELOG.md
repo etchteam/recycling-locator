@@ -1,3 +1,9 @@
+## <small>1.72.1 (2026-03-20)</small>
+
+* Merge pull request #397 from etchteam/build/upgrade-semantic-release-plugins ([2460845](https://github.com/etchteam/recycling-locator/commit/2460845)), closes [#397](https://github.com/etchteam/recycling-locator/issues/397)
+* fix: set VITE_PUBLIC_PATH for GitHub Pages demo site ([de20746](https://github.com/etchteam/recycling-locator/commit/de20746))
+* build: upgrade semantic-release plugins to match v25 ([6bfa1f7](https://github.com/etchteam/recycling-locator/commit/6bfa1f7))
+
 ## 1.72.0 (2026-03-20)
 
 * Merge branch 'main' into release/refill-p2 ([12289fc](https://github.com/etchteam/recycling-locator/commit/12289fc))

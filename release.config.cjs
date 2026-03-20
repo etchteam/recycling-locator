@@ -1,5 +1,8 @@
 module.exports = {
   branches: ['main'],
+  // npm whoami doesn't support OIDC, so skip npm's verifyConditions.
+  // Trusted publishing authenticates via OIDC during npm publish instead.
+  verifyConditions: ['@semantic-release/github', '@semantic-release/git'],
   plugins: [
     [
       '@semantic-release/commit-analyzer',

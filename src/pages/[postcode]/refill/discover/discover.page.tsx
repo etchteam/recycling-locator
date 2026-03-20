@@ -199,7 +199,10 @@ export default function DiscoverRefillPage() {
           {!locationsLoading && (
             <evg-section>
               <locator-tip wrap="wrap" type="image">
-                <img src="/images/refill/refill-tip.webp" alt="" />
+                <img
+                  src={`${publicPath}images/refill/refill-tip.webp`}
+                  alt=""
+                />
                 {refillLocations?.items?.length > 0 ? (
                   <locator-tip-content>
                     <h2>{t('refill.discover.tip.withLocations.title')}</h2>

@@ -168,6 +168,7 @@ Material searches use URL parameters (`materials`, `category`, `search`) that fl
 - The widget renders in Shadow DOM for style isolation
 - Multiple widget instances on the same page must remain independent
 - API responses are cached by axios-cache-interceptor - be aware when testing
+- **Image paths**: Never hardcode image paths with a leading `/`. Use `publicPath` from `useAppState()` so images resolve correctly in all deployment contexts (e.g. `${publicPath}images/example.webp`). The widget may be served from a subpath in production.
 - Wales and Welsh language
   - `cy-GB` locale is for Wales postcodes using English language
   - `cy` locale is for Welsh language

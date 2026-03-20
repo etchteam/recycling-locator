@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 
 import LinkCard from '@/components/control/LinkCard/LinkCard';
+import { useAppState } from '@/hooks/AppStateProvider';
 import tArray from '@/lib/tArray';
 
 interface DeliveryProvider {
@@ -44,6 +45,7 @@ const deliveryProviders: DeliveryProvider[] = [
 
 export default function HomeDeliveryPage() {
   const { t } = useTranslation();
+  const { publicPath } = useAppState();
 
   return (
     <evg-enter type="fade">
@@ -69,7 +71,7 @@ export default function HomeDeliveryPage() {
             <evg-grid-item small-mobile="12" large-tablet="4">
               <evg-img>
                 <img
-                  src="/images/refill/home-delivery-hero.webp"
+                  src={`${publicPath}images/refill/home-delivery-hero.webp`}
                   alt=""
                   width="300"
                   height="200"
@@ -111,7 +113,7 @@ export default function HomeDeliveryPage() {
                             <evg-row gap="sm">
                               <evg-img radius="sm">
                                 <img
-                                  src={`/images/refill/logos/${provider.id}.webp`}
+                                  src={`${publicPath}images/refill/logos/${provider.id}.webp`}
                                   alt={`${providerName} logo`}
                                   width="48"
                                   height="48"

@@ -1,3 +1,9 @@
+## <small>1.73.1 (2026-03-20)</small>
+
+* Merge pull request #400 from etchteam/wrap-2182-recycling-locator-repeatedly-firing-page-view-analyt ([3961ee0](https://github.com/etchteam/recycling-locator/commit/3961ee0)), closes [#400](https://github.com/etchteam/recycling-locator/issues/400)
+* fix: compute sessionId once to prevent unnecessary re-renders ([969a39d](https://github.com/etchteam/recycling-locator/commit/969a39d))
+* fix: prevent duplicate analytics pageviews on re-render ([ec1bac4](https://github.com/etchteam/recycling-locator/commit/ec1bac4))
+
 ## 1.73.0 (2026-03-20)
 
 * fix: use publicPath for refill section image paths ([896ba49](https://github.com/etchteam/recycling-locator/commit/896ba49))

@@ -115,6 +115,7 @@ For more granular control over the theme, add CSS variables to your stylesheet.
 
 The initial path to load. Common examples include:
 
+- `/refill` for refill embeds
 - `/{postcode}` to pre-fill the location
 - `/home-recycling` for home recycling embeds
 - `/material?materials=111&search=Cereal boxes` to pre-select a material

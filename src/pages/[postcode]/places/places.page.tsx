@@ -8,6 +8,7 @@ import TipContent from '@/components/content/TipContent/TipContent';
 import { useAppState } from '@/hooks/AppStateProvider';
 import { usePostcode } from '@/hooks/PostcodeProvider';
 import useAnalytics from '@/hooks/useAnalytics';
+import { useLocations } from '@/hooks/useLocations';
 import { useMaterialSearchTerm } from '@/hooks/useMaterialSearchTerm';
 import { usePaginatedLocations } from '@/hooks/usePaginatedLocations';
 import { useTip } from '@/hooks/useTip';
@@ -21,6 +22,7 @@ function Places() {
   const [searchParams, setSearchParams] = useSearchParams();
   const { searchTerm } = useMaterialSearchTerm();
   const materials = searchParams.get('materials');
+  const locationsResult = useLocations();
   const {
     data: locations,
     count,
@@ -29,7 +31,7 @@ function Places() {
     isInitialLoad,
     loadMore,
     loadMoreRef,
-  } = usePaginatedLocations();
+  } = usePaginatedLocations(locationsResult);
   const showLocations = count > 0 && materials !== 'undefined';
   const locationSearchParams = new URLSearchParams(searchParams);
   locationSearchParams.set('page', String(currentPage));

@@ -28,10 +28,8 @@ npm run storybook
 
 ## Folder structure
 
-- index.html - default embedded widget
-- standalone.html - standalone variant testing available at [https://rl.localhost/standalone](https://rl.localhost/standalone)
+- index.html - preview page with controls for theme, locale, variant, and start point
 - /public - static assets
-- /demo – documentation website for demonstrations of the widget
 - /src
   - /components - all locator specific custom elements
   - /lib - general lib functions
@@ -132,10 +130,18 @@ This file exists on the [recycle locator proxy](https://github.com/etchteam/recy
 
 Be aware that any changes to routes, may result in knock on changes being needed in this script.
 
+## Preview build
+
+Build a standalone preview site from `index.html`:
+
+```bash
+npm run build:preview
+```
+
+This outputs to `/preview` and is used for both the GitHub Pages demo and UAT deployments. Set `VITE_BASE_PATH` to configure the base URL (e.g. `/recycling-locator` for GitHub Pages).
+
 ## UAT instance
 
 https://rl-uat.recyclenow.com/
 
 Updates will be automatically deployed when merged to the "uat" branch.
-
-This builds using `npm run build:uat` to create a reviewable version of the build without requiring an NPM release.

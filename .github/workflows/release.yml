@@ -26,6 +26,7 @@ jobs:
         with:
           node-version-file: .nvmrc
           cache: npm
+          registry-url: https://registry.npmjs.org
       - run: npm ci
       - run: npm audit signatures
       - name: Get the package version for this release (previous version + 1)
@@ -33,7 +34,6 @@ jobs:
         run: ./scripts/get-next-version.sh
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       - run: npm run build
         env:
           SENTRY_ORG: 'wrap'
@@ -48,4 +48,3 @@ jobs:
       - run: npm run release
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

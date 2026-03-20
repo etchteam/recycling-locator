@@ -1,29 +1,19 @@
 import { useTranslation } from 'react-i18next';
 import { Link, useSearchParams } from 'wouter-preact';
 
+import LoadingPlacesMap from '@/components/content/LoadingPlacesMap/LoadingPlacesMap';
 import PlacesMap from '@/components/control/PlacesMap/PlacesMap';
 import PlacesMapCard from '@/components/control/PlacesMap/PlacesMapCard';
 import { usePostcode } from '@/hooks/PostcodeProvider';
+import { useLocations } from '@/hooks/useLocations';
 import { useLocationsMap } from '@/hooks/useLocationsMap';
 import PostCodeResolver from '@/lib/PostcodeResolver';
 
-function Loading() {
-  const { t } = useTranslation();
-
-  return (
-    <locator-loading>
-      <locator-hero size="full">
-        <locator-icon icon="distance" color="muted" />
-        <h3>{t('places.loading')}</h3>
-      </locator-hero>
-    </locator-loading>
-  );
-}
-
-export function PlacesMapPageContent() {
+export default function PlacesMapPage() {
   const { postcode } = usePostcode();
   const { t } = useTranslation();
   const [searchParams] = useSearchParams();
+  const locationsResult = useLocations();
   const {
     data: locations,
     loading,
@@ -35,10 +25,10 @@ export function PlacesMapPageContent() {
     handleZoom,
     handleDrag,
     handleSearchThisArea,
-  } = useLocationsMap();
+  } = useLocationsMap(locationsResult);
 
   if (loading || !locations) {
-    return <Loading />;
+    return <LoadingPlacesMap />;
   }
 
   if (locations.error) {
@@ -103,8 +93,4 @@ export function PlacesMapPageContent() {
       </PlacesMap>
     </evg-enter>
   );
-}
-
-export default function PlacesMapPage() {
-  return <PlacesMapPageContent />;
 }

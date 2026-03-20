@@ -26,8 +26,6 @@ jobs:
           node-version-file: .nvmrc
           cache: 'npm'
       - run: npm ci --no-scripts
-      - run: npm ci --no-scripts
-        working-directory: ./demo
       - run: npx playwright install --with-deps chromium
       - run: npm run test
         env:

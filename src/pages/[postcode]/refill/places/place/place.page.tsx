@@ -5,6 +5,7 @@ import { Link, useParams } from 'wouter-preact';
 
 import OpeningHours from '@/components/content/OpeningHours/OpeningHours';
 import RateThisInfo from '@/components/control/RateThisInfo/RateThisInfo';
+import { useAppState } from '@/hooks/AppStateProvider';
 import { usePostcode } from '@/hooks/PostcodeProvider';
 import { useRefillPlace } from '@/hooks/useRefillPlace';
 import cleanupAddress from '@/lib/cleanupAddress';
@@ -78,6 +79,7 @@ function RefillProductsContent({
 
 function RefillCompanyContent({ location }: { readonly location: Location }) {
   const { t } = useTranslation();
+  const { publicPath } = useAppState();
 
   const companies = getCompanyNames(location).map((name) => camelCase(name));
 
@@ -93,7 +95,7 @@ function RefillCompanyContent({ location }: { readonly location: Location }) {
             <div key={company} className="evg-spacing-top-md">
               <evg-img>
                 <img
-                  src={`/images/refill/logos/${company}.webp`}
+                  src={`${publicPath}images/refill/logos/${company}.webp`}
                   alt={t(`refill.place.suppliers.${company}.name`) + ' logo'}
                   width="100"
                   height="50"
@@ -102,7 +104,7 @@ function RefillCompanyContent({ location }: { readonly location: Location }) {
               <p>{t(`refill.place.suppliers.${company}.description`)}</p>
               <evg-img radius="sm">
                 <img
-                  src={`/images/refill/brand-images/${company}.webp`}
+                  src={`${publicPath}images/refill/brand-images/${company}.webp`}
                   alt={
                     'A picture of the ' +
                     t(`refill.place.suppliers.${company}.name`) +
@@ -123,7 +125,7 @@ function RefillCompanyContent({ location }: { readonly location: Location }) {
             <evg-row>
               <evg-img radius="sm">
                 <img
-                  src={`/images/refill/logos/${company}.webp`}
+                  src={`${publicPath}images/refill/logos/${company}.webp`}
                   alt={t(`refill.place.suppliers.${company}.name`) + ' logo'}
                   width="48"
                   height="48"

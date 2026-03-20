@@ -1,5 +1,6 @@
 import camelCase from 'lodash/camelCase';
 
+import { useAppState } from '@/hooks/AppStateProvider';
 import { CustomElement } from '@/types/customElement';
 
 import './RefillBrands.css';
@@ -13,6 +14,7 @@ export default function RefillBrands({
   companyNames,
   title,
 }: RefillBrandsProps) {
+  const { publicPath } = useAppState();
   if (companyNames.length === 0) {
     return null;
   }
@@ -27,7 +29,7 @@ export default function RefillBrands({
               {companyNames.map((name) => (
                 <li key={name}>
                   <img
-                    src={`/images/refill/logos/${camelCase(name)}.webp`}
+                    src={`${publicPath}images/refill/logos/${camelCase(name)}.webp`}
                     alt={name}
                     loading="lazy"
                   />

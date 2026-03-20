@@ -16,18 +16,18 @@ jobs:
     timeout-minutes: 10
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
         with:
           fetch-depth: 0
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f
         with:
           node-version-file: .nvmrc
           cache: 'npm'
       - name: Install dependencies
         run: npm ci
       - name: MegaLinter
-        uses: oxsecurity/megalinter/flavors/javascript@v7.8.0
+        uses: oxsecurity/megalinter/flavors/javascript@8fbdead70d1409964ab3d5afa885e18ee85388bb
         env:
           VALIDATE_ALL_CODEBASE: false
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -42,11 +42,11 @@ jobs:
         version: [20, 22, 24]
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
         with:
           fetch-depth: 0
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f
         with:
           node-version: ${{ matrix.version }}
           cache: 'npm'

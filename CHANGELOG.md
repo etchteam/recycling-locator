@@ -1,3 +1,26 @@
+## 1.73.0 (2026-03-20)
+
+* fix: use publicPath for refill section image paths ([896ba49](https://github.com/etchteam/recycling-locator/commit/896ba49))
+* Merge pull request #385 from etchteam/add-coverage-collection ([d49faf0](https://github.com/etchteam/recycling-locator/commit/d49faf0)), closes [#385](https://github.com/etchteam/recycling-locator/issues/385)
+* Merge pull request #398 from etchteam/fix/demo-site-env-vars ([f71c50c](https://github.com/etchteam/recycling-locator/commit/f71c50c)), closes [#398](https://github.com/etchteam/recycling-locator/issues/398)
+* Merge remote-tracking branch 'origin/main' into add-coverage-collection ([26d81ac](https://github.com/etchteam/recycling-locator/commit/26d81ac))
+* Merge remote-tracking branch 'origin/main' into add-coverage-collection ([a5cb8a0](https://github.com/etchteam/recycling-locator/commit/a5cb8a0))
+* test: enable vitest coverage ([c483260](https://github.com/etchteam/recycling-locator/commit/c483260))
+* test: exclude stories from coverage collection ([4d492cd](https://github.com/etchteam/recycling-locator/commit/4d492cd))
+* build: add missing env vars to demo site deploy ([a02f7e9](https://github.com/etchteam/recycling-locator/commit/a02f7e9))
+* ci: add --no-scripts to all installs ([800d815](https://github.com/etchteam/recycling-locator/commit/800d815))
+* ci: enable github annotations for playwrite ([f0d4809](https://github.com/etchteam/recycling-locator/commit/f0d4809))
+* ci: lock actions to git shas ([9008aa5](https://github.com/etchteam/recycling-locator/commit/9008aa5))
+* ci: lock down workflow permissions ([349baec](https://github.com/etchteam/recycling-locator/commit/349baec))
+* ci: remove demo dependency install ([9291708](https://github.com/etchteam/recycling-locator/commit/9291708))
+* ci: split tests out to their own workflow ([4f3caf4](https://github.com/etchteam/recycling-locator/commit/4f3caf4))
+* ci: use correct sonar project key ([114e318](https://github.com/etchteam/recycling-locator/commit/114e318))
+* feat: add coverage merging for combined unit and E2E reports ([40a0f6d](https://github.com/etchteam/recycling-locator/commit/40a0f6d))
+* feat: add istanbul instrumentation and update coverage output directory ([132af96](https://github.com/etchteam/recycling-locator/commit/132af96))
+* feat: collect istanbul coverage from Playwright tests ([991e8ae](https://github.com/etchteam/recycling-locator/commit/991e8ae))
+* feat: update node targets ([b0197c5](https://github.com/etchteam/recycling-locator/commit/b0197c5))
+* chore: add vite-plugin-istanbul and nyc for coverage merging ([cb4ed04](https://github.com/etchteam/recycling-locator/commit/cb4ed04))
+
 ## <small>1.72.1 (2026-03-20)</small>
 
 * Merge pull request #397 from etchteam/build/upgrade-semantic-release-plugins ([2460845](https://github.com/etchteam/recycling-locator/commit/2460845)), closes [#397](https://github.com/etchteam/recycling-locator/issues/397)

@@ -45,8 +45,11 @@ export default defineConfig(({ mode }) => {
       globals: true,
       coverage: {
         provider: 'v8',
+        include: ['src/**'],
+        exclude: ['src/**/*.stories.tsx'],
         reporter: ['text', 'json'],
         reportsDirectory: 'coverage/unit',
+        all: true,
       },
     },
   };
@@ -115,7 +118,7 @@ export default defineConfig(({ mode }) => {
     config.plugins.push(
       istanbul({
         include: 'src/**',
-        exclude: ['node_modules', 'tests'],
+        exclude: ['node_modules', 'tests', 'src/**/*.stories.tsx'],
         extension: ['.ts', '.tsx'],
       }),
     );

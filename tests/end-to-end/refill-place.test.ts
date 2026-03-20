@@ -17,10 +17,7 @@ test.describe('Refill place detail', () => {
     });
   });
 
-  test('Place detail page shows location name', async ({
-    page,
-    widget,
-  }) => {
+  test('Place detail page shows location name', async ({ page, widget }) => {
     await widget.evaluate((node) =>
       node.setAttribute('path', '/EX32 7RB/refill/places/1001'),
     );
@@ -98,9 +95,7 @@ test.describe('Refill place detail', () => {
 
     await page.waitForRequest(REFILL_LOCATION_ENDPOINT);
 
-    const phoneLink = widget
-      .locator('a[href^="tel:"]')
-      .first();
+    const phoneLink = widget.locator('a[href^="tel:"]').first();
     await expect(phoneLink).toBeVisible();
   });
 
@@ -136,10 +131,7 @@ test.describe('Refill place detail', () => {
       .first();
     await expect(websiteLink).toBeVisible();
     await expect(websiteLink).toHaveAttribute('target', '_blank');
-    await expect(websiteLink).toHaveAttribute(
-      'rel',
-      /noopener noreferrer/,
-    );
+    await expect(websiteLink).toHaveAttribute('rel', /noopener noreferrer/);
   });
 
   test('Supplier website chip links open in new tab', async ({
@@ -152,14 +144,9 @@ test.describe('Refill place detail', () => {
 
     await page.waitForRequest(REFILL_LOCATION_ENDPOINT);
 
-    const supplierLink = widget
-      .locator('evg-chip a[target="_blank"]')
-      .first();
+    const supplierLink = widget.locator('evg-chip a[target="_blank"]').first();
     await expect(supplierLink).toBeVisible();
-    await expect(supplierLink).toHaveAttribute(
-      'rel',
-      /noopener noreferrer/,
-    );
+    await expect(supplierLink).toHaveAttribute('rel', /noopener noreferrer/);
   });
 
   test('Place detail has back link to places list', async ({

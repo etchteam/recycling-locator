@@ -34,7 +34,6 @@ jobs:
         run: ./scripts/get-next-version.sh
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       - run: npm run build
         env:
           SENTRY_ORG: 'wrap'

@@ -760,6 +760,12 @@
           "url": "https://www.yoyogrocery.co.uk/",
           "urlText": "yoyogrocery.co.uk",
           "description": "Yoyo Grocery offers natural and organic food in store with a closed-loop packaging return system."
+        },
+        "theSourceBulkFoods": {
+          "name": "The Source Bulk Foods",
+          "url": "https://www.thesourcebulkfoods.co.uk/",
+          "urlText": "thesourcebulkfoods.co.uk",
+          "description": "The Source Bulk Foods offers a wide range of bulk food, cleaning and personal care products without the packaging. Bring your own containers and fill up on quality produce, helping to reduce waste from field to plate."
         }
       }
     }

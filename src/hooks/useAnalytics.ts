@@ -1,3 +1,4 @@
+import { useCallback } from 'preact/hooks';
 import { useLocation } from 'wouter-preact';
 
 import config from '@/config';
@@ -58,30 +59,36 @@ export default function useAnalytics() {
 
   const path = typeof window === 'undefined' ? '/' : window?.location?.pathname;
 
-  function createEvent(event: Partial<AnalyticsEvent>): AnalyticsEvent {
-    // Parse location string into pathname, search, hash
-    const [pathname, ...rest] = location.split('?');
-    const searchAndHash = rest.join('?');
-    const [search, hash] = searchAndHash.split('#');
+  const createEvent = useCallback(
+    function createEvent(event: Partial<AnalyticsEvent>): AnalyticsEvent {
+      // Parse location string into pathname, search, hash
+      const [pathname, ...rest] = location.split('?');
+      const searchAndHash = rest.join('?');
+      const [search, hash] = searchAndHash.split('#');
 
-    return {
-      ...event,
-      dp: `${pathname}${search ? '?' + search : ''}${hash ? '#' + hash : ''}`,
-      cid: sessionId,
-      ul: locale === 'cy' ? 'cy-GB' : 'en-GB',
-      dh: `${config.hostname}${path}`,
-      vp: `${window.innerWidth}x${window.innerHeight}`,
-    } as AnalyticsEvent;
-  }
+      return {
+        ...event,
+        dp: `${pathname}${search ? '?' + search : ''}${hash ? '#' + hash : ''}`,
+        cid: sessionId,
+        ul: locale === 'cy' ? 'cy-GB' : 'en-GB',
+        dh: `${config.hostname}${path}`,
+        vp: `${window.innerWidth}x${window.innerHeight}`,
+      } as AnalyticsEvent;
+    },
+    [location, sessionId, locale, path],
+  );
 
-  function recordView(title?: string) {
-    const event = createEvent({
-      dt: title ?? 'View',
-      t: 'pageview',
-    });
+  const recordView = useCallback(
+    function recordView(title?: string) {
+      const event = createEvent({
+        dt: title ?? 'View',
+        t: 'pageview',
+      });
 
-    sendAnalyticsRequest(event);
-  }
+      sendAnalyticsRequest(event);
+    },
+    [createEvent],
+  );
 
   function recordEvent({
     category,

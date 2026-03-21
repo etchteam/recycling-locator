@@ -1,3 +1,7 @@
+## <small>1.73.2 (2026-03-21)</small>
+
+* fix: update evergreen to v1.2.1 to get duplicate element fixes ([a7b2ae0](https://github.com/etchteam/recycling-locator/commit/a7b2ae0))
+
 ## <small>1.73.1 (2026-03-20)</small>
 
 * Merge pull request #400 from etchteam/wrap-2182-recycling-locator-repeatedly-firing-page-view-analyt ([3961ee0](https://github.com/etchteam/recycling-locator/commit/3961ee0)), closes [#400](https://github.com/etchteam/recycling-locator/issues/400)

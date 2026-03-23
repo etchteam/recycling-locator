@@ -90,21 +90,24 @@ export default function useAnalytics() {
     [createEvent],
   );
 
-  function recordEvent({
-    category,
-    action,
-  }: {
-    category: string;
-    action: string;
-  }) {
-    const event = createEvent({
-      ec: category,
-      ea: action,
-      t: 'event',
-    });
+  const recordEvent = useCallback(
+    function recordEvent({
+      category,
+      action,
+    }: {
+      category: string;
+      action: string;
+    }) {
+      const event = createEvent({
+        ec: category,
+        ea: action,
+        t: 'event',
+      });
 
-    sendAnalyticsRequest(event);
-  }
+      sendAnalyticsRequest(event);
+    },
+    [createEvent],
+  );
 
   return { recordView, recordEvent };
 }

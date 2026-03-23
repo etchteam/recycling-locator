@@ -24,8 +24,10 @@ export function HeaderLogo({ logoType, logoHref }: HeaderLogoProps) {
   const [isRefillRoute] = useRoute('/:postcode/refill/*?');
   const [isRefillHome] = useRoute('/:postcode/refill');
   const [isRefillStart] = useRoute('/refill');
+  const [isRefillStartChild] = useRoute('/refill/*');
 
-  const isRefill = isRefillRoute || isRefillHome || isRefillStart;
+  const isRefill =
+    isRefillRoute || isRefillHome || isRefillStart || isRefillStartChild;
   const variant = isRefill ? 'refill' : undefined;
 
   if (logoHref) {

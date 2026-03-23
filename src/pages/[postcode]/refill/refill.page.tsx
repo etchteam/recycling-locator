@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'wouter-preact';
 
 import { IconAttributes } from '@/components/content/Icon/Icon';
+import OrSeparator from '@/components/content/OrSeparator/OrSeparator';
 import { useAppState } from '@/hooks/AppStateProvider';
 import { usePostcode } from '@/hooks/PostcodeProvider';
 import { useRefillLocations } from '@/hooks/useRefillLocations';
@@ -51,17 +52,7 @@ function RecyclingLink({ postcode }: { readonly postcode: string }) {
 
   return (
     <>
-      <evg-grid className="evg-spacing-top-sm" align-items="center">
-        <evg-grid-item grow>
-          <hr aria-hidden="true" />
-        </evg-grid-item>
-        <evg-grid-item>
-          <span className="evg-text-size-body-xs">{t('common.or')}</span>
-        </evg-grid-item>
-        <evg-grid-item grow>
-          <hr aria-hidden="true" />
-        </evg-grid-item>
-      </evg-grid>
+      <OrSeparator />
 
       <NavLink
         href={`/${postcode}`}

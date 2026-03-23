@@ -4,6 +4,7 @@ import { PostcodeProvider } from '@/hooks/PostcodeProvider';
 
 import HomeRecyclingRoutes from './home/home.routes';
 import MaterialRoutes from './material/material.routes';
+import PostcodeNotFoundPage from './not-found.page';
 import PlacesRoutes from './places/places.routes';
 import PostcodeLayout from './postcode.layout';
 import PostcodePage from './postcode.page';
@@ -28,6 +29,9 @@ export default function PostcodeRoutes() {
         <Route path="/:postcode/material/*?" component={MaterialRoutes} />
         <Route path="/:postcode/places/*?" component={PlacesRoutes} />
         <Route path="/:postcode/refill/*?" component={RefillRoutes} />
+        <Route>
+          <PostcodeNotFoundPage />
+        </Route>
       </Switch>
     </PostcodeProvider>
   );

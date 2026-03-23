@@ -319,7 +319,13 @@
       "description": "This council will collect things like old sofas, fridges or washing machines.",
       "descriptionNoCollection": "Most councils provide a collection for large household items like furniture and appliances, typically for a fee, though some offer a limited number of free collections per year.",
       "cta": "View service details",
-      "ctaNoCollection": "Check with this council for service details"
+      "ctaNoCollection": "Check with this council for service details",
+      "heading": "Arrange a special collection for large waste items",
+      "info": "Most councils will collect things like old sofas, fridges or washing machines.",
+      "serviceDetails": "Service details",
+      "cost": "Cost: £{{ cost }}",
+      "maxItems": "Max items: {{ count }}",
+      "link": "Use this council's website to arrange a bulky waste collection."
     },
     "hwrc": {
       "title": "Recycling Centres in your area",

@@ -111,6 +111,7 @@ export interface LocalAuthority {
   recyclingUri: string;
   hwrcUri: string;
   gardenWasteUri: string;
+  bulkyWasteUri: string;
   bulkyWaste?: BulkyWasteCollection[];
   properties: { [key in PROPERTY_TYPE_EN]?: LocalAuthorityProperty[] };
 }

@@ -1,0 +1,19 @@
+locator-bulky-collection-card {
+  --_background: var(--evg-theme-background);
+
+  background: var(--_background);
+  border: 1px solid var(--evg-theme-border-color);
+  border-radius: var(--evg-radius-sm);
+  color: var(--evg-theme-color);
+  display: block;
+  padding: var(--evg-spacing-md);
+
+  h4 {
+    font-size: var(--font-size-base);
+    font-weight: var(--evg-font-weight-bold);
+  }
+
+  &[no-collection] {
+    --_background: var(--evg-theme-background-muted);
+  }
+}

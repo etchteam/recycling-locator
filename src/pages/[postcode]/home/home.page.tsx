@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'wouter-preact';
 
+import BulkyCollectionCard from '@/components/content/BulkyCollectionCard.tsx/BulkyCollectionCard';
 import SchemeContainerSummary from '@/components/content/SchemeContainerSummary/SchemeContainerSummary';
 import RateThisInfo from '@/components/control/RateThisInfo/RateThisInfo';
 import { usePostcode } from '@/hooks/PostcodeProvider';
@@ -46,8 +47,6 @@ function PropertyList({
           </Link>
         );
       })}
-
-      <RateThisInfo />
     </evg-enter>
   );
 }
@@ -63,7 +62,14 @@ export default function HomeRecyclingPage() {
       <p>{t('homeRecycling.collections.help')}</p>
 
       {!hasLoaded && <Loading />}
-      {hasLoaded && <PropertyList localAuthority={localAuthority} />}
+      {hasLoaded && (
+        <>
+          <PropertyList localAuthority={localAuthority} />
+          <BulkyCollectionCard localAuthority={localAuthority} />
+        </>
+      )}
+
+      <RateThisInfo />
     </section>
   );
 }

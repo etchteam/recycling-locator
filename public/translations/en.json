@@ -314,6 +314,13 @@
       "binsInYourArea": "These bins are used in your area:",
       "gardenSubscription": "Garden waste collection is a subscription service and <bold>fees may apply</bold> in some areas. Contact your council to learn more."
     },
+    "bulkyCollection": {
+      "title": "Bulky waste collections",
+      "description": "This council will collect things like old sofas, fridges or washing machines.",
+      "descriptionNoCollection": "Most councils provide a collection for large household items like furniture and appliances, typically for a fee, though some offer a limited number of free collections per year.",
+      "cta": "View service details",
+      "ctaNoCollection": "Check with this council for service details"
+    },
     "hwrc": {
       "title": "Recycling Centres in your area",
       "content": "{{ count }} Recycling Centres within 25 miles",

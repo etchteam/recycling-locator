@@ -4,10 +4,11 @@ import { useSearchParams } from 'wouter-preact';
 import LocationForm from '@/components/control/LocationForm/LocationForm';
 
 /**
- * 404 Not Found page for refill routes without a postcode.
- * Uses /refill as the form action to keep users in the refill flow.
+ * 404 page for refill routes without a postcode.
+ * e.g. /refill/unknown-route
+ * Shows a location form with action="/refill" so users stay in the refill flow.
  */
-export default function RefillNotFoundPage() {
+export default function RefillStartNotFoundPage() {
   const { t } = useTranslation();
   const [searchParams] = useSearchParams();
   const reason = searchParams.get('reason');

@@ -4,7 +4,13 @@ import About from '@/components/content/About/About';
 import HeaderWithInfoButton from '@/components/content/HeaderLayouts/HeaderWithInfoButton';
 import NotFoundOptions from '@/components/content/NotFoundOptions/NotFoundOptions';
 
-export default function RefillNotFoundPage() {
+/**
+ * 404 page for refill routes with a postcode.
+ * e.g. /:postcode/refill/unknown-route
+ * Shows links to refill (primary) and recycling options for that postcode.
+ * Uses its own layout with no menu and no map aside.
+ */
+export default function RefillPostcodeNotFoundPage() {
   const [infoOpen, setInfoOpen] = useState(false);
 
   return (

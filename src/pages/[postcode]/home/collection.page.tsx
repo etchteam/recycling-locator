@@ -105,6 +105,23 @@ function CollectionPageContent({
                       </Link>
                     </li>
                   ))}
+                  {localAuthority.bulkyWaste?.length > 0 && (
+                    <li>
+                      <Link
+                        href={`/${postcode}/home/bulky-collection`}
+                        onClick={handleMenuItemClick}
+                      >
+                        <evg-grid align-items="center" gap="xs">
+                          <evg-grid-item grow shrink>
+                            {t('homeRecycling.bulkyCollection.title')}
+                          </evg-grid-item>
+                          <evg-grid-item>
+                            <locator-icon icon="arrow-right" />
+                          </evg-grid-item>
+                        </evg-grid>
+                      </Link>
+                    </li>
+                  )}
                 </ul>
               </nav>
             </details>

@@ -53,6 +53,9 @@ async function sendAnalyticsRequest(event: AnalyticsEvent) {
   }
 }
 
+// Tracks last recorded pageview per widget instance to deduplicate across Suspense remounts
+const lastPageview = new Map<string, string>();
+
 export default function useAnalytics() {
   const { locale, sessionId } = useAppState();
   const [location] = useLocation();
@@ -85,9 +88,16 @@ export default function useAnalytics() {
         t: 'pageview',
       });
 
+      const key = `${sessionId}:${event.dp}`;
+
+      if (lastPageview.get(sessionId) === key) {
+        return;
+      }
+
+      lastPageview.set(sessionId, key);
       sendAnalyticsRequest(event);
     },
-    [createEvent],
+    [createEvent, sessionId],
   );
 
   const recordEvent = useCallback(

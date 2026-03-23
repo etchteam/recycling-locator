@@ -10,6 +10,7 @@ import PostcodeRoutes from './[postcode]/postcode.routes';
 import HomeRecyclingStartPage from './home-recycling.page';
 import MaterialStartPage from './material.page';
 import NotFoundPage from './not-found.page';
+import RefillStartNotFoundPage from './refill-not-found.page';
 import RefillStartPage from './refill.page';
 import StartLayout from './start.layout';
 import StartPage from './start.page';
@@ -89,6 +90,19 @@ export default function StartRoutes() {
             <div className="theme-preset-purple">
               <StartLayout>
                 <RefillStartPage />
+              </StartLayout>
+            </div>
+          )}
+        </Route>
+        <Route path="/refill/*">
+          {theme ? (
+            <StartLayout>
+              <RefillStartNotFoundPage />
+            </StartLayout>
+          ) : (
+            <div className="theme-preset-purple">
+              <StartLayout>
+                <RefillStartNotFoundPage />
               </StartLayout>
             </div>
           )}

@@ -2,6 +2,7 @@ import { useEffect } from 'preact/hooks';
 import { Trans, useTranslation } from 'react-i18next';
 import { Link, useSearchParams } from 'wouter-preact';
 
+import OrSeparator from '@/components/content/OrSeparator/OrSeparator';
 import MaterialSearchForm from '@/components/control/MaterialSearchForm/MaterialSearchForm';
 import { useAppState } from '@/hooks/AppStateProvider';
 import { usePostcode } from '@/hooks/PostcodeProvider';
@@ -140,19 +141,7 @@ export default function PostcodePage() {
                 </li>
               </ul>
 
-              <evg-grid className="evg-spacing-top-sm" align-items="center">
-                <evg-grid-item grow>
-                  <hr aria-hidden="true" />
-                </evg-grid-item>
-                <evg-grid-item>
-                  <span className="evg-text-size-body-xs">
-                    {t('common.or')}
-                  </span>
-                </evg-grid-item>
-                <evg-grid-item grow>
-                  <hr aria-hidden="true" />
-                </evg-grid-item>
-              </evg-grid>
+              <OrSeparator />
 
               <locator-icon-link
                 border

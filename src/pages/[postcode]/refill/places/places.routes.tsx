@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Route, Switch } from 'wouter-preact';
 
+import RefillNotFoundPage from '../not-found.page';
 import { ErrorBoundaryPage } from '@/components/ErrorBoundary';
 import { usePostcode } from '@/hooks/PostcodeProvider';
 
@@ -39,6 +40,9 @@ export default function RefillPlacesRoutes() {
           <RefillPlacesLayout title={t('refill.places.title')}>
             <HomeDeliveryPage />
           </RefillPlacesLayout>
+        </Route>
+        <Route>
+          <RefillNotFoundPage />
         </Route>
       </Switch>
     </ErrorBoundaryPage>

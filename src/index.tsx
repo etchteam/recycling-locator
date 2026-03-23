@@ -1,5 +1,7 @@
 import compact from 'lodash/compact';
+import uniqueId from 'lodash/uniqueId';
 import { Suspense } from 'preact/compat';
+import { useMemo } from 'preact/hooks';
 import register from 'preact-custom-element';
 
 import { AppStateProvider } from '@/hooks/AppStateProvider';
@@ -101,6 +103,15 @@ export default function RecyclingLocator({
     config.testMode ? 'recycling-locator-test-mode' : undefined,
   ]).join(' ');
 
+  // Needs to be above Suspense to avoid recreation on i18n teardown/remount
+  const sessionId = useMemo(
+    () =>
+      (globalThis?.wrapAnalyticsId ??
+        globalThis?.crypto?.randomUUID?.() ??
+        uniqueId('session')) as unknown as string,
+    [],
+  );
+
   i18nInit(locale, publicPath);
 
   return (
@@ -118,6 +129,7 @@ export default function RecyclingLocator({
           >
             <NavigationProvider>
               <AppStateProvider
+                sessionId={sessionId}
                 attributes={{
                   locale,
                   variant,

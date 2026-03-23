@@ -1,11 +1,11 @@
-import { useSignal } from '@preact/signals';
 import { useEffect, useRef } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
-import { Link, useSearchParams } from 'wouter-preact';
+import { useSearchParams } from 'wouter-preact';
 
 import HeaderWithBackButton from '@/components/content/HeaderLayouts/HeaderWithBackButton';
 import HomeCollectionContainers from '@/components/content/HomeCollectionContainers/HomeCollectionContainers';
 import TipContent from '@/components/content/TipContent/TipContent';
+import CollectionsNav from '@/components/control/CollectionsNav/CollectionsNav';
 import MaterialSearchInput from '@/components/control/MaterialSearchInput/MaterialSearchInput';
 import RateThisInfo from '@/components/control/RateThisInfo/RateThisInfo';
 import { usePostcode } from '@/hooks/PostcodeProvider';
@@ -24,13 +24,10 @@ function CollectionPageContent({
   readonly localAuthority: LocalAuthority;
 }) {
   const { t } = useTranslation();
-  const menuRef = useRef<HTMLDetailsElement>(null);
-  const { postcode } = usePostcode();
   const { recordEvent } = useAnalytics();
   const form = useFormValidation('search');
   const properties = sortPropertyTypes(localAuthority.properties);
   const propertyTypes = Object.keys(properties);
-  const menuOpen = useSignal(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const search = searchParams.get('search');
   const propertyType = searchParams.get('propertyType') ?? propertyTypes[0];
@@ -41,11 +38,6 @@ function CollectionPageContent({
     // Reset submitting state after search params have been updated
     form.submitting.value = false;
   }, [search, form.submitting]);
-
-  function handleMenuItemClick() {
-    menuOpen.value = false;
-    menuRef.current?.removeAttribute('open');
-  }
 
   function handleFormSubmit(event: Event) {
     event.preventDefault();
@@ -75,61 +67,11 @@ function CollectionPageContent({
 
   return (
     <>
-      <locator-context-header>
-        {propertyTypes.length > 1 ? (
-          <locator-details menu>
-            <details ref={menuRef}>
-              {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
-              <summary onClick={() => (menuOpen.value = !menuOpen.value)}>
-                {menuOpen.value
-                  ? t('homeRecycling.collection.summary')
-                  : propertyType}
-                <locator-icon icon="expand" />
-              </summary>
-              <nav>
-                <ul>
-                  {propertyTypes.map((type) => (
-                    <li key={type}>
-                      <Link
-                        href={`/${postcode}/home/collection?propertyType=${type}`}
-                        onClick={handleMenuItemClick}
-                      >
-                        <evg-grid align-items="center" gap="xs">
-                          <evg-grid-item grow shrink>
-                            {type}
-                          </evg-grid-item>
-                          <evg-grid-item>
-                            <locator-icon icon="arrow-right" />
-                          </evg-grid-item>
-                        </evg-grid>
-                      </Link>
-                    </li>
-                  ))}
-                  {localAuthority.bulkyWaste?.length > 0 && (
-                    <li>
-                      <Link
-                        href={`/${postcode}/home/bulky-collection`}
-                        onClick={handleMenuItemClick}
-                      >
-                        <evg-grid align-items="center" gap="xs">
-                          <evg-grid-item grow shrink>
-                            {t('homeRecycling.bulkyCollection.title')}
-                          </evg-grid-item>
-                          <evg-grid-item>
-                            <locator-icon icon="arrow-right" />
-                          </evg-grid-item>
-                        </evg-grid>
-                      </Link>
-                    </li>
-                  )}
-                </ul>
-              </nav>
-            </details>
-          </locator-details>
-        ) : (
-          <span className="evg-text-weight-bold">{propertyType}</span>
-        )}
-      </locator-context-header>
+      <CollectionsNav
+        propertyTypes={propertyTypes}
+        hasBulkyWaste={!!localAuthority.bulkyWaste?.length}
+        currentlySelected={propertyType}
+      />
       <evg-enter type="fade">
         <evg-section padding="lg">
           <locator-wrap>

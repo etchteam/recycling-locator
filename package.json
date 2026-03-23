@@ -1,6 +1,6 @@
 {
   "name": "@etchteam/recycling-locator",
-  "version": "1.71.2",
+  "version": "1.74.0",
   "description": "Find places to recycle, refill or reuse items.",
   "type": "module",
   "author": "Etch <hey@etch.co>",
@@ -19,7 +19,7 @@
     "dist"
   ],
   "scripts": {
-    "build:uat": "./scripts/build-uat.sh",
+    "build:preview": "npm run build:css && vite build --mode preview",
     "build:css": "postcss src/styles/base.css -o public/styles.css",
     "build": "npm run build:css && vite build",
     "lint": "eslint 'src/**/*.{ts,tsx,js,jsx,yml,yaml,json}' && stylelint 'src/**/*.{css,scss}'",
@@ -37,14 +37,15 @@
     "test:end-to-end": "playwright test",
     "test:end-to-end:debug": "playwright test --debug",
     "test:end-to-end:ui": "playwright test --ui",
-    "test": "npm run test:unit && npm run test:end-to-end"
+    "test:coverage-merge": "nyc merge coverage/unit coverage/merged/unit.json && nyc merge coverage/e2e coverage/merged/e2e.json && nyc merge coverage/merged coverage/merged/coverage.json && nyc report",
+    "test": "rm -rf coverage && npm run test:unit -- --coverage.enabled=true && npm run test:end-to-end && npm run test:coverage-merge"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.4",
     "@here/maps-api-for-javascript": "^1.68.0",
     "@preact/signals": "^2.0.4",
     "@sentry/browser": "^9.22.0",
-    "@wrap.ngo/evergreen": "^1.0.1",
+    "@wrap.ngo/evergreen": "^1.2.1",
     "axios": "^1.11.0",
     "axios-cache-interceptor": "^1.8.0",
     "date-fns": "^4.1.0",
@@ -71,17 +72,18 @@
     "@preact/preset-vite": "^2.8.1",
     "@rollup/plugin-typescript": "^11.1.6",
     "@semantic-release/changelog": "^6.0.3",
-    "@semantic-release/commit-analyzer": "^11.1.0",
+    "@semantic-release/commit-analyzer": "^13.0.1",
     "@semantic-release/git": "^10.0.1",
-    "@semantic-release/github": "^9.2.6",
-    "@semantic-release/npm": "^11.0.3",
-    "@semantic-release/release-notes-generator": "^12.1.0",
+    "@semantic-release/github": "^12.0.6",
+    "@semantic-release/npm": "^13.1.5",
+    "@semantic-release/release-notes-generator": "^14.1.0",
     "@sentry/vite-plugin": "^2.16.0",
     "@storybook/addon-essentials": "^8.6.4",
     "@storybook/blocks": "^8.6.4",
     "@storybook/preact": "^7.6.11",
     "@storybook/preact-vite": "^8.6.4",
     "@types/fetch-jsonp": "^1.0.0",
+    "@vitest/coverage-v8": "^3.1.1",
     "@vitest/ui": "^3.1.1",
     "autoprefixer": "^10.4.17",
     "dotenv": "^16.5.0",
@@ -91,6 +93,7 @@
     "lint-staged": "^15.2.0",
     "modify-selectors": "^2.0.0",
     "npm-run-all": "^4.1.5",
+    "nyc": "^18.0.0",
     "playwright": "^1.49.1",
     "postcss": "^8.4.33",
     "postcss-cli": "^11.0.0",
@@ -102,17 +105,18 @@
     "prettier": "^3.2.4",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "semantic-release": "^23.1.1",
+    "semantic-release": "^25.0.3",
     "storybook": "^8.6.4",
     "stylelint": "^15.11.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3",
     "vite": "^6.2.1",
+    "vite-plugin-istanbul": "^8.0.0",
     "vite-plugin-svgr": "^4.2.0",
     "vitest": "^3.1.1"
   },
   "engines": {
-    "npm": "^9 || ^10",
-    "node": "^18 || ^20 || ^22"
+    "npm": "^10 || ^11",
+    "node": "^20 || ^22 || ^24"
   }
 }

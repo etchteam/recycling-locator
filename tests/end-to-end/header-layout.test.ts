@@ -207,29 +207,26 @@ test.describe('Header layouts', () => {
   });
 
   test.describe('Refill logo variant', () => {
-    test('Refill page shows refill logo (icon-only)', async ({ widget }) => {
+    test('Refill page shows refill logo', async ({ widget }) => {
       // Navigate to refill page
       await widget.evaluate((node) => node.setAttribute('path', '/refill'));
 
-      // Verify refill logo is displayed with variant attribute and icon-only type
-      // Note: Refill layout always uses logoType="icon-only"
+      // Verify refill logo is displayed with variant attribute
       const refillLogo = widget
-        .locator('locator-logo[variant="refill"][type="icon-only"]')
+        .locator('locator-logo[variant="refill"]')
         .first();
       await expect(refillLogo).toBeVisible();
     });
 
-    test('Refill page with postcode shows refill logo (icon-only)', async ({
-      widget,
-    }) => {
+    test('Refill page with postcode shows refill logo', async ({ widget }) => {
       // Navigate to refill page with postcode
       await widget.evaluate((node) =>
         node.setAttribute('path', '/refill?postcode=EX32 7RB'),
       );
 
-      // Verify refill logo is displayed with variant attribute and icon-only type
+      // Verify refill logo is displayed with variant attribute
       const refillLogo = widget
-        .locator('locator-logo[variant="refill"][type="icon-only"]')
+        .locator('locator-logo[variant="refill"]')
         .first();
       await expect(refillLogo).toBeVisible();
     });

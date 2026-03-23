@@ -17,6 +17,7 @@ import '@/components/canvas/Loading/Loading';
 import '@/components/canvas/LoadingCard/LoadingCard';
 import '@/components/canvas/Tip/Tip';
 import '@/components/composition/BorderedList/BorderedList';
+import '@/components/composition/Overflow/Overflow';
 import '@/components/composition/Header/Header';
 import '@/components/composition/IconText/IconText';
 import '@/components/composition/Layout/Layout';

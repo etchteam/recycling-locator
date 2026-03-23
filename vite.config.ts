@@ -4,6 +4,7 @@ import { preact } from '@preact/preset-vite';
 import typescript from '@rollup/plugin-typescript';
 import { sentryVitePlugin } from '@sentry/vite-plugin';
 import { defineConfig, loadEnv, UserConfig } from 'vite';
+import istanbul from 'vite-plugin-istanbul';
 import svgr from 'vite-plugin-svgr';
 
 // Vite is used for JavaScript bundling and development server
@@ -16,6 +17,7 @@ export default defineConfig(({ mode }) => {
   const config: UserConfig = {
     define: {
       'process.env': publicEnv,
+      __BUILD_TIME__: JSON.stringify(Date.now().toString(36)),
     },
 
     server: {
@@ -41,10 +43,26 @@ export default defineConfig(({ mode }) => {
       include: ['tests/unit/**/*.test.ts'],
       environment: 'happy-dom',
       globals: true,
+      coverage: {
+        provider: 'v8',
+        include: ['src/**'],
+        exclude: ['src/**/*.stories.tsx'],
+        reporter: ['text', 'json'],
+        reportsDirectory: 'coverage/unit',
+        all: true,
+      },
     },
   };
 
-  if (!publicEnv.VITE_TEST) {
+  if (mode === 'preview') {
+    config.base = publicEnv.VITE_BASE_PATH || '/';
+    config.build = {
+      outDir: 'preview',
+      rollupOptions: {
+        input: path.resolve(__dirname, 'index.html'),
+      },
+    };
+  } else if (!publicEnv.VITE_TEST) {
     config.build = {
       sourcemap: true,
       manifest: true,
@@ -94,6 +112,16 @@ export default defineConfig(({ mode }) => {
         }
       },
     });
+  }
+
+  if (process.env.CI) {
+    config.plugins.push(
+      istanbul({
+        include: 'src/**',
+        exclude: ['node_modules', 'tests', 'src/**/*.stories.tsx'],
+        extension: ['.ts', '.tsx'],
+      }),
+    );
   }
 
   return config;

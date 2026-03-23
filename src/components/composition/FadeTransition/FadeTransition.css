@@ -1,0 +1,11 @@
+locator-fade-transition {
+  display: block;
+
+  &:not([fading]) {
+    transition: opacity var(--evg-transition);
+  }
+
+  &[fading] {
+    opacity: 0;
+  }
+}

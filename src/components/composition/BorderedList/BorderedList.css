@@ -47,7 +47,7 @@ locator-bordered-list {
   }
 
   a {
-    color: var(--color-green-dark);
+    color: var(--color-primary-dark);
     text-decoration: underline;
   }
 

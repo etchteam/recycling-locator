@@ -21,10 +21,13 @@ export interface HeaderLogoProps {
  */
 export function HeaderLogo({ logoType, logoHref }: HeaderLogoProps) {
   const locale = i18n.language;
-  const [isRefillRoute] = useRoute('/refill/:rest*');
-  const [isRefillHome] = useRoute('/refill');
+  const [isRefillRoute] = useRoute('/:postcode/refill/*?');
+  const [isRefillHome] = useRoute('/:postcode/refill');
+  const [isRefillStart] = useRoute('/refill');
+  const [isRefillStartChild] = useRoute('/refill/*');
 
-  const isRefill = isRefillRoute || isRefillHome;
+  const isRefill =
+    isRefillRoute || isRefillHome || isRefillStart || isRefillStartChild;
   const variant = isRefill ? 'refill' : undefined;
 
   if (logoHref) {

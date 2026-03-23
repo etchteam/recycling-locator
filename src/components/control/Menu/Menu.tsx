@@ -3,6 +3,7 @@ import { Link, useLocation } from 'wouter-preact';
 
 import Footer from '@/components/content/Footer/Footer';
 import { IconAttributes } from '@/components/content/Icon/Icon';
+import { useAppState } from '@/hooks/AppStateProvider';
 import formatPostcode from '@/lib/formatPostcode';
 import { CustomElement } from '@/types/customElement';
 
@@ -17,11 +18,13 @@ export default function Menu({
 }) {
   const { t } = useTranslation();
   const [location] = useLocation();
+  const { theme } = useAppState();
 
   const items: {
     icon: IconAttributes['icon'];
     text: string;
     href: string;
+    className?: string;
   }[] = [
     {
       icon: 'pin',
@@ -46,7 +49,8 @@ export default function Menu({
     {
       icon: 'refill',
       text: t('components.menu.refill'),
-      href: `/refill?postcode=${encodeURIComponent(postcode)}`,
+      href: `/${encodeURIComponent(postcode)}/refill`,
+      className: theme ? '' : ' theme-preset-purple',
     },
   ];
 
@@ -82,7 +86,11 @@ export default function Menu({
               {items.map((item, i) => (
                 <li key={item.icon} className="evg-spacing-bottom-md">
                   <evg-enter type="fade" delay={i * 0.1}>
-                    <locator-icon-link key={item.icon} border>
+                    <locator-icon-link
+                      key={item.icon}
+                      border
+                      className={item.className}
+                    >
                       <Link
                         href={item.href}
                         onClick={(event) => handleClick(event, item.href)}

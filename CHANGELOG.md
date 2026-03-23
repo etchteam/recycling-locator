@@ -1,3 +1,14 @@
+## 1.74.0 (2026-03-23)
+
+* Merge pull request #401 from etchteam/fix/memoize-record-view ([dc8ef38](https://github.com/etchteam/recycling-locator/commit/dc8ef38)), closes [#401](https://github.com/etchteam/recycling-locator/issues/401)
+* Merge pull request #402 from etchteam/wrap-2187-need-a-refill-404-page ([8225ab0](https://github.com/etchteam/recycling-locator/commit/8225ab0)), closes [#402](https://github.com/etchteam/recycling-locator/issues/402)
+* Merge pull request #403 from etchteam/release/refill-fixes ([014c983](https://github.com/etchteam/recycling-locator/commit/014c983)), closes [#403](https://github.com/etchteam/recycling-locator/issues/403)
+* refactor: clarify not-found page names and add JSDoc comments ([1f5a1fe](https://github.com/etchteam/recycling-locator/commit/1f5a1fe))
+* feat: add refill and recycling 404 pages with correct theming ([97816b1](https://github.com/etchteam/recycling-locator/commit/97816b1))
+* fix: memoize recordEvent to prevent duplicate analytics events ([0a3eca4](https://github.com/etchteam/recycling-locator/commit/0a3eca4))
+* fix: memoize recordView to prevent duplicate analytics pageviews ([b5a9e01](https://github.com/etchteam/recycling-locator/commit/b5a9e01))
+* fix: stabilise sessionId and deduplicate pageview analytics ([188cc2d](https://github.com/etchteam/recycling-locator/commit/188cc2d))
+
 ## <small>1.73.2 (2026-03-21)</small>
 
 * fix: update evergreen to v1.2.1 to get duplicate element fixes ([a7b2ae0](https://github.com/etchteam/recycling-locator/commit/a7b2ae0))

@@ -95,11 +95,9 @@ export interface LocalAuthorityProperty {
 export interface BulkyWasteCollection {
   id: string;
   name: string;
-  nameCy?: string;
   cost?: number;
   maxItems?: number;
   notes?: string;
-  notesCy?: string;
   materials?: Material[];
 }
 

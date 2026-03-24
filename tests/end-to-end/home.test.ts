@@ -8,6 +8,16 @@ import { PROPERTY_TYPE_EN } from '@/types/locatorApi';
 
 import { test, expect } from './fixtures';
 
+const bulkyWasteCollection = {
+  id: '1',
+  name: 'Bulky waste service',
+  cost: 20,
+  maxItems: 5,
+  notes: 'Book at least 2 weeks in advance',
+};
+
+const bulkyWasteUri = 'https://example.gov.uk/bulky-waste';
+
 test.describe('Home recycling', () => {
   test('Collection tab scheme list', async ({ page, widget }) => {
     const mockedLaResponse = {
@@ -169,5 +179,209 @@ test.describe('Home recycling', () => {
     await input.press('Enter');
     await expect(negativeSearchText).not.toBeVisible();
     await expect(positiveSearchText).toBeVisible();
+  });
+
+  test('Bulky collection card with available service', async ({
+    page,
+    widget,
+    i18n,
+  }) => {
+    const mockedLaResponse = {
+      ...LocalAuthorityResponse,
+      bulkyWasteUri,
+      bulkyWaste: [bulkyWasteCollection],
+    };
+
+    await page.route(LOCAL_AUTHORITY_ENDPOINT, (route) => {
+      route.fulfill({ json: mockedLaResponse });
+    });
+
+    const cardTitle = widget
+      .getByText(i18n.t('homeRecycling.bulkyCollection.title'))
+      .first();
+    const cta = widget
+      .getByRole('link', {
+        name: i18n.t('homeRecycling.bulkyCollection.cta'),
+      })
+      .first();
+
+    await widget.evaluate((node) =>
+      node.setAttribute('path', '/EX32 7RB/home'),
+    );
+    await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
+    await expect(cardTitle).toBeVisible();
+    await expect(cta).toBeVisible();
+  });
+
+  test('Bulky collection card with no available service', async ({
+    page,
+    widget,
+    i18n,
+  }) => {
+    const mockedLaResponse = {
+      ...LocalAuthorityResponse,
+      bulkyWasteUri,
+      bulkyWaste: [],
+    };
+
+    await page.route(LOCAL_AUTHORITY_ENDPOINT, (route) => {
+      route.fulfill({ json: mockedLaResponse });
+    });
+
+    const noCollectionText = widget
+      .getByText(
+        i18n.t('homeRecycling.bulkyCollection.descriptionNoCollection'),
+      )
+      .first();
+    const ctaText = widget
+      .getByText(i18n.t('homeRecycling.bulkyCollection.ctaNoCollection'))
+      .first();
+
+    await widget.evaluate((node) =>
+      node.setAttribute('path', '/EX32 7RB/home'),
+    );
+    await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
+    await expect(noCollectionText).toBeVisible();
+    await expect(ctaText).toBeVisible();
+  });
+
+  test('Bulky collection card links to bulky collection page', async ({
+    page,
+    widget,
+    i18n,
+  }) => {
+    const mockedLaResponse = {
+      ...LocalAuthorityResponse,
+      bulkyWasteUri,
+      bulkyWaste: [bulkyWasteCollection],
+    };
+
+    await page.route(LOCAL_AUTHORITY_ENDPOINT, (route) => {
+      route.fulfill({ json: mockedLaResponse });
+    });
+
+    const cta = widget
+      .getByRole('link', {
+        name: i18n.t('homeRecycling.bulkyCollection.cta'),
+      })
+      .first();
+    const pageHeading = widget
+      .getByText(i18n.t('homeRecycling.bulkyCollection.heading'))
+      .first();
+
+    await widget.evaluate((node) =>
+      node.setAttribute('path', '/EX32 7RB/home'),
+    );
+    await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
+    await cta.click();
+    await expect(pageHeading).toBeVisible();
+  });
+
+  test('Bulky collection page shows service details', async ({
+    page,
+    widget,
+    i18n,
+  }) => {
+    const mockedLaResponse = {
+      ...LocalAuthorityResponse,
+      bulkyWasteUri,
+      bulkyWaste: [bulkyWasteCollection],
+    };
+
+    await page.route(LOCAL_AUTHORITY_ENDPOINT, (route) => {
+      route.fulfill({ json: mockedLaResponse });
+    });
+
+    const serviceDetailsHeading = widget
+      .getByText(i18n.t('homeRecycling.bulkyCollection.serviceDetails'))
+      .first();
+    const cost = widget
+      .getByText(
+        i18n.t('homeRecycling.bulkyCollection.cost', {
+          cost: bulkyWasteCollection.cost,
+        }),
+      )
+      .first();
+    const maxItems = widget
+      .getByText(
+        i18n.t('homeRecycling.bulkyCollection.maxItems', {
+          count: bulkyWasteCollection.maxItems,
+        }),
+      )
+      .first();
+    const notes = widget.getByText(bulkyWasteCollection.notes).first();
+    const councilLink = widget
+      .getByRole('link', { name: new RegExp(LocalAuthorityResponse.name) })
+      .first();
+
+    await widget.evaluate((node) =>
+      node.setAttribute('path', '/EX32 7RB/home/bulky-collection'),
+    );
+    await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
+    await expect(serviceDetailsHeading).toBeVisible();
+    await expect(cost).toBeVisible();
+    await expect(maxItems).toBeVisible();
+    await expect(notes).toBeVisible();
+    await expect(councilLink).toBeVisible();
+  });
+
+  test('Bulky collection page shows individual names for multiple services', async ({
+    page,
+    widget,
+  }) => {
+    const mockedLaResponse = {
+      ...LocalAuthorityResponse,
+      bulkyWasteUri,
+      bulkyWaste: [
+        { ...bulkyWasteCollection, id: '1', name: 'Standard service' },
+        { ...bulkyWasteCollection, id: '2', name: 'Premium service' },
+      ],
+    };
+
+    await page.route(LOCAL_AUTHORITY_ENDPOINT, (route) => {
+      route.fulfill({ json: mockedLaResponse });
+    });
+
+    const firstName = widget.getByText('Standard service').first();
+    const secondName = widget.getByText('Premium service').first();
+
+    await widget.evaluate((node) =>
+      node.setAttribute('path', '/EX32 7RB/home/bulky-collection'),
+    );
+    await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
+    await expect(firstName).toBeVisible();
+    await expect(secondName).toBeVisible();
+  });
+
+  test('Collections nav shows bulky waste option when available', async ({
+    page,
+    widget,
+    i18n,
+  }) => {
+    const mockedLaResponse = {
+      ...LocalAuthorityResponse,
+      bulkyWasteUri,
+      bulkyWaste: [bulkyWasteCollection],
+    };
+
+    await page.route(LOCAL_AUTHORITY_ENDPOINT, (route) => {
+      route.fulfill({ json: mockedLaResponse });
+    });
+
+    const navSummary = widget.locator('locator-context-header summary').first();
+    const bulkyWasteNavLink = widget
+      .getByRole('link', {
+        name: i18n.t('homeRecycling.bulkyCollection.title'),
+      })
+      .first();
+
+    const kerbsidePath = `/EX32 7RB/home/collection?propertyType=${encodeURIComponent(PROPERTY_TYPE_EN.KERBSIDE)}`;
+    await widget.evaluate(
+      (node, path) => node.setAttribute('path', path),
+      kerbsidePath,
+    );
+    await page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT);
+    await navSummary.click();
+    await expect(bulkyWasteNavLink).toBeVisible();
   });
 });

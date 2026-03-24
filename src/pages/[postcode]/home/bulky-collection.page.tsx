@@ -63,25 +63,28 @@ function BulkyCollectionPageContent({
                 </evg-list>
               </div>
             ))}
-            <hr className="evg-spacing-bottom-lg" />
-            <p className="evg-spacing-bottom-lg">
-              {t('homeRecycling.bulkyCollection.link')}
-            </p>
             {localAuthority.bulkyWasteUri && (
-              <evg-button
-                width="full-width"
-                size="sm"
-                className="evg-spacing-bottom-lg"
-              >
-                <a
-                  href={localAuthority.bulkyWasteUri}
-                  target="_blank"
-                  rel="noopener noreferrer"
+              <>
+                <hr className="evg-spacing-bottom-lg" />
+                <p className="evg-spacing-bottom-lg">
+                  {t('homeRecycling.bulkyCollection.link')}
+                </p>
+
+                <evg-button
+                  width="full-width"
+                  size="sm"
+                  className="evg-spacing-bottom-lg"
                 >
-                  {localAuthority.name}
-                  <locator-icon icon="external"></locator-icon>
-                </a>
-              </evg-button>
+                  <a
+                    href={localAuthority.bulkyWasteUri}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {localAuthority.name}
+                    <locator-icon icon="external"></locator-icon>
+                  </a>
+                </evg-button>
+              </>
             )}
             <RateThisInfo />
           </locator-wrap>
@@ -101,6 +104,8 @@ export default function BulkyCollectionPage() {
   });
   const layoutRef = useRef();
   useScrollRestoration(layoutRef);
+
+  console.log('la', localAuthority);
 
   const hasLoadedLocalAuthority = !loadingLocalAuthority && localAuthority;
   const hasLoadedTip = !loadingTip && tip;

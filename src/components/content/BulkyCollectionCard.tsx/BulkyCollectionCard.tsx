@@ -23,7 +23,7 @@ export default function BulkyCollectionCard({
   const hasCollection = bulkyWaste.length > 0;
 
   return (
-    <evg-enter type="fade">
+    <evg-enter type="fade" className="evg-spacing-bottom-md">
       <locator-bulky-collection-card no-collection={!hasCollection}>
         <h4>{t(`${tContext}.title`)}</h4>
         {hasCollection ? (

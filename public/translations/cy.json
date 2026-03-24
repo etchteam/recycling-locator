@@ -305,6 +305,19 @@
       "binsInYourArea": "Defnyddir y biniau hyn yn eich ardal chi:",
       "gardenSubscription": "Mae casglu gwastraff gardd yn wasanaeth tanysgrifio a gall <bold>ffioedd fod yn berthnasol</bold> mewn rhai ardaloedd. Cysylltwch â’ch cyngor i ddysgu mwy."
     },
+    "bulkyCollection": {
+      "title": "Casgliadau gwastraff swmpus",
+      "description": "Bydd y cyngor hwn yn casglu pethau fel sofas, oergelloedd neu beiriannau golchi dillad.",
+      "descriptionNoCollection": "Mae’r rhan fwyaf o gynghorau yn darparu casgliad ar gyfer eitemau cartref mawr fel dodrefn a chyfarpar, fel arfer am ffi, er bod rhai yn cynnig nifer cyfyngedig o gasgliadau am ddim y flwyddyn.",
+      "cta": "Gweld manylion y gwasanaeth",
+      "ctaNoCollection": "Gwiriwch â’r cyngor hwn am fanylion y gwasanaeth",
+      "heading": "Trefnu casgliad arbennig ar gyfer eitemau gwastraff mawr",
+      "info": "Bydd y rhan fwyaf o gynghorau yn casglu pethau fel sofas, oergelloedd neu beiriannau golchi dillad.",
+      "serviceDetails": "Manylion y gwasanaeth",
+      "cost": "Cost: £{{ cost }}",
+      "maxItems": "Uchafswm eitemau: {{ count }}",
+      "link": "Defnyddiwch wefan y cyngor hwn i drefnu casgliad gwastraff swmpus."
+    },
     "hwrc": {
       "title": "Mynd ag eitemau i Ganolfan Ailgylchu yn eich ardal",
       "content": "{{ count }} Canolfan Ailgylchu o fewn 25 milltir",

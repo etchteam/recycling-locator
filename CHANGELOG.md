@@ -1,3 +1,12 @@
+## <small>1.74.2 (2026-03-25)</small>
+
+* Merge pull request #406 from etchteam/wrap-2212-alternatives-options-are-broken-on-the-postcode-page ([6a93af9](https://github.com/etchteam/recycling-locator/commit/6a93af9)), closes [#406](https://github.com/etchteam/recycling-locator/issues/406)
+* Merge pull request #407 from etchteam/wrap-2203-map-store-icon-is-green ([ec38eed](https://github.com/etchteam/recycling-locator/commit/ec38eed)), closes [#407](https://github.com/etchteam/recycling-locator/issues/407)
+* Merge pull request #408 from etchteam/wrap-2211-store-should-only-list-website-once ([e1a8e05](https://github.com/etchteam/recycling-locator/commit/e1a8e05)), closes [#408](https://github.com/etchteam/recycling-locator/issues/408)
+* fix: ensure store map icon is purple in refill ([21860d3](https://github.com/etchteam/recycling-locator/commit/21860d3))
+* fix: use correct copy and links for refill no locations options ([fd2f76c](https://github.com/etchteam/recycling-locator/commit/fd2f76c))
+* fix(refill): only show one website link per place ([c079a04](https://github.com/etchteam/recycling-locator/commit/c079a04))
+
 ## <small>1.74.1 (2026-03-25)</small>
 
 * Merge pull request #404 from etchteam/dependabot/npm_and_yarn/npm_and_yarn-203d1363da ([be57499](https://github.com/etchteam/recycling-locator/commit/be57499)), closes [#404](https://github.com/etchteam/recycling-locator/issues/404)

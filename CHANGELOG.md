@@ -1,3 +1,10 @@
+## <small>1.74.1 (2026-03-25)</small>
+
+* Merge pull request #404 from etchteam/dependabot/npm_and_yarn/npm_and_yarn-203d1363da ([be57499](https://github.com/etchteam/recycling-locator/commit/be57499)), closes [#404](https://github.com/etchteam/recycling-locator/issues/404)
+* Merge pull request #409 from etchteam/wrap-2213-refill-options-should-be-purple-in-the-menu ([4cfcdd8](https://github.com/etchteam/recycling-locator/commit/4cfcdd8)), closes [#409](https://github.com/etchteam/recycling-locator/issues/409)
+* fix: apply refill purple theme to li element in menu ([fdf2468](https://github.com/etchteam/recycling-locator/commit/fdf2468))
+* chore(deps): bump the npm_and_yarn group across 1 directory with 5 updates ([fa944ec](https://github.com/etchteam/recycling-locator/commit/fa944ec))
+
 ## 1.74.0 (2026-03-23)
 
 * Merge pull request #401 from etchteam/fix/memoize-record-view ([dc8ef38](https://github.com/etchteam/recycling-locator/commit/dc8ef38)), closes [#401](https://github.com/etchteam/recycling-locator/issues/401)

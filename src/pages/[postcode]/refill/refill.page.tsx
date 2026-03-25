@@ -74,7 +74,10 @@ function RefillOptions({ postcode }: { readonly postcode: string }) {
   } = useRefillLocations();
   const { publicPath } = useAppState();
 
-  const navCards = ['guide', 'home-delivery'];
+  const navCards = [
+    { page: 'gettingStarted', image: 'hero', link: 'discover' },
+    { page: 'homeDelivery', image: 'home-delivery', link: 'home-delivery' },
+  ];
 
   const navLinks: NavLinkProps[] = [
     {
@@ -143,21 +146,21 @@ function RefillOptions({ postcode }: { readonly postcode: string }) {
           {t('refill.explore.stillHaveOptions')}
         </p>
         <ul className="list-style-none">
-          {navCards.map((page) => (
+          {navCards.map(({ page, image, link }) => (
             <li key={page} className="evg-spacing-bottom-md">
               <locator-card-link>
-                <Link href={`/${postcode}/refill/discover/${page}`}>
+                <Link href={`/${postcode}/refill/${link}`}>
                   <locator-card-link-img>
                     <img
-                      src={`${publicPath}images/refill/${page}.webp`}
+                      src={`${publicPath}images/refill/${image}.webp`}
                       alt=""
                     />
                   </locator-card-link-img>
                   <locator-card-link-content>
                     <p className="evg-text-weight-bold evg-spacing-bottom-none">
-                      {t(`refill.discover.nav.${page}.title`)}
+                      {t(`refill.explore.${page}.title`)}
                     </p>
-                    <p>{t(`refill.discover.nav.${page}.description`)}</p>
+                    <p>{t(`refill.explore.${page}.description`)}</p>
                   </locator-card-link-content>
                 </Link>
               </locator-card-link>

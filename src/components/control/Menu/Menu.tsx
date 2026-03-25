@@ -84,13 +84,12 @@ export default function Menu({
           <nav>
             <ul className="locator-menu__menu-list">
               {items.map((item, i) => (
-                <li key={item.icon} className="evg-spacing-bottom-md">
+                <li
+                  key={item.icon}
+                  className={`evg-spacing-bottom-md${item.className ?? ''}`}
+                >
                   <evg-enter type="fade" delay={i * 0.1}>
-                    <locator-icon-link
-                      key={item.icon}
-                      border
-                      className={item.className}
-                    >
+                    <locator-icon-link border>
                       <Link
                         href={item.href}
                         onClick={(event) => handleClick(event, item.href)}

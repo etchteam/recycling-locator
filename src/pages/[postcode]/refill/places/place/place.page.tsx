@@ -167,7 +167,7 @@ function RefillPlaceContent({ location }: { readonly location: Location }) {
   }
 
   const phoneNumbers = getPhoneNumbers(location);
-  const websites = getWebsites(location);
+  const [firstSite] = getWebsites(location).keys();
   const openingHours = getOpeningHours(location);
   const notes = getNotes(location);
   const address = cleanupAddress(location.address);
@@ -187,22 +187,20 @@ function RefillPlaceContent({ location }: { readonly location: Location }) {
               ))}
             </div>
           )}
-          {websites?.size > 0 && (
+          {firstSite && (
             <div>
               <dt>{t('place.details.website')}</dt>
-              {[...websites].map(([site]) => (
-                <dd key={site}>
-                  <a
-                    href={`${site}?utm_source=wrap-recycling-locator`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {t('refill.place.websiteLinkText', {
-                      place: location.name,
-                    })}
-                  </a>
-                </dd>
-              ))}
+              <dd>
+                <a
+                  href={`${firstSite}?utm_source=wrap-recycling-locator`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {t('refill.place.websiteLinkText', {
+                    place: location.name,
+                  })}
+                </a>
+              </dd>
             </div>
           )}
           {StoreBrands.has(

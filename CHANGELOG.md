@@ -1,3 +1,8 @@
+## 1.75.0 (2026-03-27)
+
+* Merge pull request #411 from etchteam/wrap-2221-update-translations-again-v2 ([8359c6a](https://github.com/etchteam/recycling-locator/commit/8359c6a)), closes [#411](https://github.com/etchteam/recycling-locator/issues/411)
+* feat: update refill Welsh translations ([4231971](https://github.com/etchteam/recycling-locator/commit/4231971))
+
 ## <small>1.74.2 (2026-03-25)</small>
 
 * Merge pull request #406 from etchteam/wrap-2212-alternatives-options-are-broken-on-the-postcode-page ([6a93af9](https://github.com/etchteam/recycling-locator/commit/6a93af9)), closes [#406](https://github.com/etchteam/recycling-locator/issues/406)

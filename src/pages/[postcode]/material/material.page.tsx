@@ -37,6 +37,7 @@ export default function MaterialPage() {
     ];
   const nonRecyclable = material?.data?.nonRecyclable;
   const hazardous = material?.data?.hazardous;
+  const bulky = material?.data?.bulky;
   const hasRecyclingOptions =
     propertiesCollectingThisMaterial ||
     locations?.data?.items.length > 0 ||
@@ -94,6 +95,7 @@ export default function MaterialPage() {
                 }
                 hazardous={hazardous}
                 nonRecyclable={nonRecyclable}
+                bulky={bulky}
               />
 
               <evg-enter type="fade-in-up" delay={1}>

@@ -196,36 +196,24 @@ export default function DiscoverRefillPage() {
               ))}
             </ul>
           </evg-section>
-          {!locationsLoading && (
+          {!locationsLoading && refillLocations?.items?.length > 0 && (
             <evg-section>
               <locator-tip wrap="wrap" type="image">
                 <img
                   src={`${publicPath}images/refill/refill-tip.webp`}
                   alt=""
                 />
-                {refillLocations?.items?.length > 0 ? (
-                  <locator-tip-content>
-                    <h2>{t('refill.discover.tip.withLocations.title')}</h2>
-                    <p>{t('refill.discover.tip.withLocations.description')}</p>
-                    <evg-button>
-                      <Link href={`/${postcode}/refill/`}>
-                        {t('refill.discover.tip.withLocations.cta', {
-                          count: refillLocations?.items?.length,
-                        })}
-                      </Link>
-                    </evg-button>
-                  </locator-tip-content>
-                ) : (
-                  <locator-tip-content>
-                    <h2>{t('refill.discover.tip.noLocations.title')}</h2>
-                    <p>{t('refill.discover.tip.noLocations.description')}</p>
-                    <evg-button>
-                      <Link href={`/${postcode}/refill/sign-up`}>
-                        {t('refill.discover.tip.noLocations.cta')}
-                      </Link>
-                    </evg-button>
-                  </locator-tip-content>
-                )}
+                <locator-tip-content>
+                  <h2>{t('refill.discover.tip.withLocations.title')}</h2>
+                  <p>{t('refill.discover.tip.withLocations.description')}</p>
+                  <evg-button>
+                    <Link href={`/${postcode}/refill/`}>
+                      {t('refill.discover.tip.withLocations.cta', {
+                        count: refillLocations?.items?.length,
+                      })}
+                    </Link>
+                  </evg-button>
+                </locator-tip-content>
               </locator-tip>
             </evg-section>
           )}

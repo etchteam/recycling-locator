@@ -9,7 +9,6 @@ import DiscoverRefillPage from './discover/discover.page';
 import RefillPlacesRoutes from './places/places.routes';
 import RefillLayout from './refill.layout';
 import RefillPage from './refill.page';
-import SignUpPage from './sign-up/sign-up.page';
 
 function RefillTheme({ children }: { readonly children: ComponentChildren }) {
   const { theme } = useAppState();
@@ -42,8 +41,6 @@ export default function RefillRoutes() {
             path="/:postcode/refill/discover"
             component={DiscoverRefillPage}
           />
-
-          <Route path="/:postcode/refill/sign-up" component={SignUpPage} />
 
           <Route path="/:postcode/refill/*?" component={RefillPlacesRoutes} />
         </Switch>

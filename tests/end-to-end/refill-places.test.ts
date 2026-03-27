@@ -267,24 +267,6 @@ test.describe('Refill places', () => {
     await expect(faithInNature).toBeVisible();
   });
 
-  test('No places alert shows with sign-up link when no refill places exist', async ({
-    page,
-    widget,
-  }) => {
-    await page.route(REFILL_LOCATIONS_ENDPOINT, (route) => {
-      route.fulfill({ json: RefillLocationsEmptyResponse });
-    });
-
-    await widget.evaluate((node) =>
-      node.setAttribute('path', '/EX32 7RB/refill/places'),
-    );
-
-    await page.waitForRequest(REFILL_LOCATIONS_ENDPOINT);
-
-    const link = widget.locator('evg-alert a').first();
-    await expect(link).toHaveAttribute('href', /\/EX32 7RB\/refill\/sign-up/);
-  });
-
   test('Category filter is hidden when no refill places exist', async ({
     page,
     widget,

@@ -197,27 +197,6 @@ test.describe('Refill empty state on landing page', () => {
     await expect(noPlacesDescription).toBeVisible();
   });
 
-  test('Empty state shows sign-up link', async ({ page, widget, i18n }) => {
-    await page.route(GEOCODE_ENDPOINT, (route) => {
-      route.fulfill({ json: PostcodeGeocodeResponse });
-    });
-
-    await page.route(REFILL_LOCATIONS_ENDPOINT, (route) => {
-      route.fulfill({ json: RefillLocationsEmptyResponse });
-    });
-
-    await widget.evaluate((node) =>
-      node.setAttribute('path', '/EX32 7RB/refill'),
-    );
-
-    await page.waitForRequest(REFILL_LOCATIONS_ENDPOINT);
-
-    const signUpLink = widget
-      .getByText(i18n.t('refill.explore.signUp.description'))
-      .first();
-    await expect(signUpLink).toBeVisible();
-  });
-
   test('Empty state shows alternative options', async ({
     page,
     widget,

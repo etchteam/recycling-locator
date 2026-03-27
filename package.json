@@ -63,7 +63,6 @@
     "wouter-preact": "^3.8.1"
   },
   "devDependencies": {
-    "@babel/plugin-syntax-import-attributes": "^7.26.0",
     "@commitlint/cli": "^19.3.0",
     "@commitlint/config-conventional": "^19.2.2",
     "@etchteam/eslint-config": "^2.2.16",
@@ -112,7 +111,6 @@
     "typescript": "^5.8.3",
     "vite": "^6.2.1",
     "vite-plugin-istanbul": "^8.0.0",
-    "vite-plugin-svgr": "^4.2.0",
     "vitest": "^3.1.1"
   },
   "engines": {

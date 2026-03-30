@@ -671,7 +671,7 @@
       "supplied": "{{place}} is supplied by:",
       "websiteLinkText": "Learn more about {{place}}",
       "products": "Products",
-      "disclaimer": "Stock varies by store, so it's worth checking availability before you make the trip.",
+      "disclaimer": "Other product types may also be available. Stock varies by store, so it's worth checking availability before you make the trip.",
       "suppliers": {
         "marksAndSpencer": {
           "name": "Marks and Spencer",

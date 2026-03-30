@@ -8,6 +8,10 @@ locator-icon {
 
   display: inline-flex;
 
+  > span {
+    display: contents;
+  }
+
   svg {
     height: var(--_size);
     width: var(--_size);

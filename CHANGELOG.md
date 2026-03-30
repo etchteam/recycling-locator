@@ -1,3 +1,13 @@
+## <small>1.75.1 (2026-03-27)</small>
+
+* Merge pull request #413 from etchteam/wrap-2204-fix-dynamic-import-failure-for-close-icon-chunk-on-r ([0f76e39](https://github.com/etchteam/recycling-locator/commit/0f76e39)), closes [#413](https://github.com/etchteam/recycling-locator/issues/413)
+* fix: replace dynamic SVG imports with static import.meta.glob ([d49e3c2](https://github.com/etchteam/recycling-locator/commit/d49e3c2))
+
+## 1.75.0 (2026-03-27)
+
+* Merge pull request #411 from etchteam/wrap-2221-update-translations-again-v2 ([8359c6a](https://github.com/etchteam/recycling-locator/commit/8359c6a)), closes [#411](https://github.com/etchteam/recycling-locator/issues/411)
+* feat: update refill Welsh translations ([4231971](https://github.com/etchteam/recycling-locator/commit/4231971))
+
 ## <small>1.74.2 (2026-03-25)</small>
 
 * Merge pull request #406 from etchteam/wrap-2212-alternatives-options-are-broken-on-the-postcode-page ([6a93af9](https://github.com/etchteam/recycling-locator/commit/6a93af9)), closes [#406](https://github.com/etchteam/recycling-locator/issues/406)

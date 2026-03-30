@@ -5,7 +5,6 @@ import typescript from '@rollup/plugin-typescript';
 import { sentryVitePlugin } from '@sentry/vite-plugin';
 import { defineConfig, loadEnv, UserConfig } from 'vite';
 import istanbul from 'vite-plugin-istanbul';
-import svgr from 'vite-plugin-svgr';
 
 // Vite is used for JavaScript bundling and development server
 // CSS is built separately by PostCSS
@@ -30,14 +29,7 @@ export default defineConfig(({ mode }) => {
       },
     },
 
-    plugins: [
-      svgr(),
-      preact({
-        babel: {
-          plugins: ['@babel/plugin-syntax-import-attributes'],
-        },
-      }),
-    ],
+    plugins: [preact()],
 
     test: {
       include: ['tests/unit/**/*.test.ts'],

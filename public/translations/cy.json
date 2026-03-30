@@ -439,8 +439,7 @@
       "title": "Mannau i ail-lenwi",
       "count": "Fe wnaethon ni ddod o hyd i {{count}} lle i ail-lenwi",
       "count_one": "Fe wnaethon ni ddod o hyd i 1 lle i ail-lenwi",
-      "count_zero": "Dim lleoedd i ail-lenwi o fewn 25 milltir",
-      "noPlacesAlert": "<a>Cael hysbysiad</a> pan gaiff lleoliadau ail-lenwi newydd eu darganfod yn eich ardal"
+      "count_zero": "Dim lleoedd i ail-lenwi o fewn 25 milltir"
     },
     "filters": {
       "all": "Pob cynnyrch",
@@ -488,10 +487,6 @@
       "gettingStarted": {
         "title": "Mynd ati i ail-lenwi",
         "description": "Newydd i ail-lenwi? Mae’n syfrdanol o syml!"
-      },
-      "signUp": {
-        "title": "Cofrestru",
-        "description": "Cael hysbysiad pan gaiff lleoedd ail-lenwi newydd eu darganfod yn eich ardal."
       },
       "recyclingOptions": {
         "title": "Opsiynau ailgylchu yn eich ardal chi",
@@ -605,47 +600,6 @@
           "title": "Gadewch ddeunydd pacio yn y gorffennol",
           "description": "Rhowch gynnig ar ail-lenwi siopau cyfagos heddiw a helpu i leihau gwastraff deunydd pacio.",
           "cta": "{{count}} Opsiynau ail-lenwi yn yr ardal hon"
-        },
-        "noLocations": {
-          "title": "Ymunwch â’r Chwyldro Ail-lenwi",
-          "description": "Cofrestrwch i gael gwybod pan fydd lleoliadau Ail-lenwi newydd yn cael eu darganfod yn eich ardal.",
-          "cta": "Cofrestrwch ar gyfer hysbysiadau"
-        }
-      },
-      "sign-up": {
-        "title": "Gallwch fod y cyntaf i gael gwybod pan fydd lleoliadau ail-lenwi newydd yn cyrraedd eich ardal",
-        "subtitle": "Cael hysbysiad e-bost",
-        "button": "Cofrestru",
-        "loading": "Wrthi’n cofrestru…",
-        "error": "Mae gwall wedi digwydd, rhowch gynnig ar gyflwyno eto.",
-        "business": "neu <a>Rhowch wybod i ni am eich busnes Ail-lenwi</a>",
-        "businessLink": "https://www.wrap.ngo/take-action/recycle-now/recycling-locator-tool",
-        "success": {
-          "title": "Diolch am gofrestru!",
-          "description": "Byddwn yn rhoi gwybod i chi pan fydd lleoliadau ail-lenwi ar gael yn eich ardal.",
-          "already": "Rydych chi eisoes wedi tanysgrifio, mae eich proffil wedi’i ddiweddaru. Diolch!",
-          "confirmation": "Gwiriwch eich e-bost a chliciwch ar y ddolen i gadarnhau eich tanysgrifiad."
-        },
-        "form": {
-          "name": {
-            "label": "Enw",
-            "error": "Rhowch eich enw"
-          },
-          "email": {
-            "label": "E-bost",
-            "placeholder": "e.e. enghraifft@gmail.com",
-            "error": "Rhowch gyfeiriad e-bost dilys"
-          },
-          "postcode": {
-            "label": "Cod post",
-            "placeholder": "e.e. SW1A 1AA",
-            "error": "Rhowch eich cod post"
-          },
-          "gdpr": {
-            "label": "Rwy’n cytuno i’r <a>Telerau ac amodau</a>",
-            "link": "https://www.walesrecycles.org.uk/cy/polisi-preifatwrydd",
-            "error": "I gofrestru, rhaid i chi gytuno i’r telerau ac amodau"
-          }
         }
       },
       "error": {

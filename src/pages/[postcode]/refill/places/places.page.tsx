@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'preact/hooks';
-import { Trans, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { Link, useSearchParams } from 'wouter-preact';
 
 import LoadingPlacesList from '@/components/content/LoadingPlacesList/LoadingPlacesList';
@@ -94,22 +94,11 @@ function RefillLocations() {
         )}
       </evg-grid>
       <locator-fade-transition fading={resultsFading || undefined}>
-        <div className="evg-spacing-bottom-md">
-          {totalCount === 0 ? (
-            <evg-alert variant="neutral-light">
-              <p>
-                <Trans
-                  i18nKey="refill.places.noPlacesAlert"
-                  components={{
-                    a: <Link href={`/${postcode}/refill/sign-up`} />,
-                  }}
-                />
-              </p>
-            </evg-alert>
-          ) : (
+        {totalCount > 0 && (
+          <div className="evg-spacing-bottom-md">
             <RefillFilteredAlert count={count} />
-          )}
-        </div>
+          </div>
+        )}
         {count > 0 && (
           <>
             <locator-places-grid className="evg-spacing-bottom-lg">

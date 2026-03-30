@@ -92,12 +92,6 @@ function RefillOptions({ postcode }: { readonly postcode: string }) {
       title: t('refill.explore.gettingStarted.title'),
       description: t('refill.explore.gettingStarted.description'),
     },
-    {
-      href: `/${postcode}/refill/sign-up`,
-      icon: 'home-pin',
-      title: t('refill.explore.signUp.title'),
-      description: t('refill.explore.signUp.description'),
-    },
   ];
 
   if (locationsLoading) {
@@ -132,16 +126,6 @@ function RefillOptions({ postcode }: { readonly postcode: string }) {
             </evg-row>
           </evg-card-content>
         </evg-card>
-        <ul className="list-style-none">
-          <li className="evg-spacing-top-md">
-            <NavLink
-              href={`/${postcode}/refill/sign-up`}
-              icon="home-pin"
-              description={t('refill.explore.signUp.description')}
-            />
-          </li>
-        </ul>
-
         <p className="evg-text-size-body evg-spacing-top-md evg-spacing-bottom-sm">
           {t('refill.explore.stillHaveOptions')}
         </p>

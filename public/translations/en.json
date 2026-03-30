@@ -453,8 +453,7 @@
       "title": "Places to refill",
       "count": "We found {{count}} places to refill",
       "count_one": "We found 1 place to refill",
-      "count_zero": "No places to refill within 25 miles",
-      "noPlacesAlert": "<a>Get notified</a> when new refill locations are discovered in your area"
+      "count_zero": "No places to refill within 25 miles"
     },
     "filters": {
       "all": "All products",
@@ -590,47 +589,6 @@
           "title": "Leave packaging in the past",
           "description": "Try refill stores near you today and help reduce packaging waste.",
           "cta": "{{count}} Refill options in this area"
-        },
-        "noLocations": {
-          "title": "Join the Refill Revolution",
-          "description": "Sign up to find out when new Refill locations are discovered in your area.",
-          "cta": "Sign up for alerts"
-        }
-      },
-      "sign-up": {
-        "title": "Be the first to know when new refill locations arrive in your area",
-        "subtitle": "Get an email notification",
-        "button": "Sign up",
-        "loading": "Signing up…",
-        "error": "An error has occured, please try submitting again.",
-        "business": "or <a>Let us know about your Refill business</a>",
-        "businessLink": "https://www.wrap.ngo/take-action/recycle-now/recycling-locator-tool",
-        "success": {
-          "title": "Thank you for signing up!",
-          "description": "We'll let you know when refill locations are available in your area.",
-          "already": "You're already subscribed, your profile has been updated. Thank you!",
-          "confirmation": "Please check your email and click the link to confirm your subscription."
-        },
-        "form": {
-          "name": {
-            "label": "Name",
-            "error": "Please enter your name"
-          },
-          "email": {
-            "label": "Email",
-            "placeholder": "e.g. example@gmail.com",
-            "error": "Please enter a valid email address"
-          },
-          "postcode": {
-            "label": "Postcode",
-            "placeholder": "e.g. SW1A 1AA",
-            "error": "Please enter your postcode"
-          },
-          "gdpr": {
-            "label": "I agree to the <a>Terms and conditions</a>",
-            "link": "https://www.recyclenow.com/privacy-policy",
-            "error": "To sign up, you must agree to the terms and conditions"
-          }
         }
       },
       "error": {
@@ -650,10 +608,6 @@
       "gettingStarted": {
         "title": "Getting started with refill",
         "description": "New to refill? It's surprisingly simple!"
-      },
-      "signUp": {
-        "title": "Sign up",
-        "description": "Get notified when new refill places are discovered in your area."
       },
       "recyclingOptions": {
         "title": "Recycling options in your area",

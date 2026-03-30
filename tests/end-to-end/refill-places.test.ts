@@ -282,8 +282,10 @@ test.describe('Refill places', () => {
 
     await page.waitForRequest(REFILL_LOCATIONS_ENDPOINT);
 
-    const alert = widget.locator('evg-alert').first();
-    await expect(alert).toBeVisible();
+    const heading = widget
+      .getByText(i18n.t('refill.places.count', { count: 0 }))
+      .first();
+    await expect(heading).toBeVisible();
 
     const allFilter = widget
       .getByRole('button', { name: i18n.t('refill.filters.all') })

@@ -1,3 +1,14 @@
+## 1.76.0 (2026-03-30)
+
+* Merge branch 'main' into wrap-2222-remove-the-sign-up-page ([a804975](https://github.com/etchteam/recycling-locator/commit/a804975))
+* Merge pull request #410 from etchteam/dependabot/npm_and_yarn/npm_and_yarn-66413a1f6e ([16c4689](https://github.com/etchteam/recycling-locator/commit/16c4689)), closes [#410](https://github.com/etchteam/recycling-locator/issues/410)
+* Merge pull request #412 from etchteam/wrap-2222-remove-the-sign-up-page ([05f5dc9](https://github.com/etchteam/recycling-locator/commit/05f5dc9)), closes [#412](https://github.com/etchteam/recycling-locator/issues/412)
+* Merge pull request #414 from etchteam/dependabot/npm_and_yarn/npm_and_yarn-c5774b5308 ([aa0d4fd](https://github.com/etchteam/recycling-locator/commit/aa0d4fd)), closes [#414](https://github.com/etchteam/recycling-locator/issues/414)
+* fix: update refill places test to use heading instead of removed alert ([24ec4cb](https://github.com/etchteam/recycling-locator/commit/24ec4cb))
+* chore(deps-dev): bump picomatch ([dbb0007](https://github.com/etchteam/recycling-locator/commit/dbb0007))
+* chore(deps-dev): bump the npm_and_yarn group across 1 directory with 2 updates ([0e66e59](https://github.com/etchteam/recycling-locator/commit/0e66e59))
+* feat: remove refill sign-up page and related code ([b895c21](https://github.com/etchteam/recycling-locator/commit/b895c21))
+
 ## <small>1.75.1 (2026-03-27)</small>
 
 * Merge pull request #413 from etchteam/wrap-2204-fix-dynamic-import-failure-for-close-icon-chunk-on-r ([0f76e39](https://github.com/etchteam/recycling-locator/commit/0f76e39)), closes [#413](https://github.com/etchteam/recycling-locator/issues/413)

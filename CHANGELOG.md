@@ -1,3 +1,8 @@
+## 1.77.0 (2026-03-30)
+
+* Merge pull request #415 from etchteam/wrap-2226-adjust-copy-to-suggest-that-the-store-could-stock-ot ([668ee58](https://github.com/etchteam/recycling-locator/commit/668ee58)), closes [#415](https://github.com/etchteam/recycling-locator/issues/415)
+* feat: adjust disclaimer to suggest the store could stock other products ([811b1fa](https://github.com/etchteam/recycling-locator/commit/811b1fa))
+
 ## 1.76.0 (2026-03-30)
 
 * Merge branch 'main' into wrap-2222-remove-the-sign-up-page ([a804975](https://github.com/etchteam/recycling-locator/commit/a804975))

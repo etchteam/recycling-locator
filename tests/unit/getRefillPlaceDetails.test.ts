@@ -44,7 +44,7 @@ describe('getRefillPlaceDetails', () => {
     expect(result.phoneNumber).toBeUndefined();
     expect(result.website).toBeUndefined();
     expect(result.openingHours).toEqual({ today: '', days: [] });
-    expect(result.notes).toEqual([]);
+    expect(result.note).toBeUndefined();
   });
 
   test('returns undefined phone when no locations have a telephone', () => {
@@ -92,7 +92,7 @@ describe('getRefillPlaceDetails', () => {
         makeLoc({ notes: 'Second valid note' }),
       ],
     };
-    expect(getRefillPlaceDetails(location).notes).toEqual(['First valid note']);
+    expect(getRefillPlaceDetails(location).note).toBe('First valid note');
   });
 
   test('first-wins for opening hours: uses first sub-location that has opening hours', () => {
@@ -133,7 +133,7 @@ describe('getRefillPlaceDetails', () => {
       url: 'https://example.com',
       text: 'example.com',
     });
-    expect(result.notes).toEqual(['A helpful note']);
+    expect(result.note).toBe('A helpful note');
     expect(result.openingHours.today).toBe('10:00 - 18:00 (open now)');
   });
 
@@ -144,9 +144,9 @@ describe('getRefillPlaceDetails', () => {
         makeLoc({ notes: 'Find us at ///filled.count.soap' }),
       ],
     };
-    expect(getRefillPlaceDetails(location).notes).toEqual([
+    expect(getRefillPlaceDetails(location).note).toBe(
       'Find us at https://what3words.com/filled.count.soap',
-    ]);
+    );
   });
 
   test('skips blank/whitespace-only notes', () => {
@@ -158,7 +158,7 @@ describe('getRefillPlaceDetails', () => {
         makeLoc({ notes: 'Real note' }),
       ],
     };
-    expect(getRefillPlaceDetails(location).notes).toEqual(['Real note']);
+    expect(getRefillPlaceDetails(location).note).toBe('Real note');
   });
 
   test('returns undefined website when all locations have no website', () => {
@@ -174,7 +174,7 @@ describe('getRefillPlaceDetails', () => {
       ...baseLocation,
       locations: [makeLoc(), makeLoc()],
     };
-    expect(getRefillPlaceDetails(location).notes).toEqual([]);
+    expect(getRefillPlaceDetails(location).note).toBeUndefined();
   });
 
   test('returns empty opening hours when no sub-location has opening hours', () => {

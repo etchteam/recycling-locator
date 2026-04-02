@@ -163,7 +163,7 @@ function RefillPlaceContent({ location }: { readonly location: Location }) {
     throw new Error(location.error);
   }
 
-  const { phoneNumber, website, openingHours, notes } =
+  const { phoneNumber, website, openingHours, note } =
     getRefillPlaceDetails(location);
   const address = cleanupAddress(location.address);
 
@@ -216,10 +216,10 @@ function RefillPlaceContent({ location }: { readonly location: Location }) {
             <dt>{t('place.details.address')}</dt>
             <dd>{address}</dd>
           </div>
-          {notes.length > 0 && (
+          {note && (
             <div>
               <dt>{t('place.details.notes')}</dt>
-              <PlaceNotes notes={notes} />
+              <PlaceNotes notes={[note]} />
             </div>
           )}
         </dl>

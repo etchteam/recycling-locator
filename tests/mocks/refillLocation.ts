@@ -48,7 +48,7 @@ export const RefillLocationMultiResponse: Location = {
       locationType: 'REFILL',
       source: 'wrap',
       materials: [],
-      telephone: '01271 111111',
+      telephone: '01271111111',
       company: {
         name: 'FirstSupplier',
         refillCategories: [{ id: '1', name: 'Food' }],
@@ -69,7 +69,7 @@ export const RefillLocationMultiResponse: Location = {
       locationType: 'REFILL',
       source: 'wrap',
       materials: [],
-      telephone: '01271 999999',
+      telephone: '01271999999',
       website: 'https://www.third-location.co.uk',
       notes: 'Notes from third location',
       company: {

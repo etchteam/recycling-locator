@@ -195,7 +195,9 @@ test.describe('Refill place detail with multiple locations (first-wins logic)', 
 
     // First sub-location telephone should be shown
     const phoneLink = widget
-      .locator(`a[href="tel:${RefillLocationMultiResponse.locations[0].telephone}"]`)
+      .locator(
+        `a[href="tel:${RefillLocationMultiResponse.locations[0].telephone}"]`,
+      )
       .first();
     await expect(phoneLink).toBeVisible();
 
@@ -223,11 +225,8 @@ test.describe('Refill place detail with multiple locations (first-wins logic)', 
     await expect(websiteLink).toBeVisible();
     await expect(websiteLink).toHaveAttribute(
       'href',
-      new RegExp(
-        RefillLocationMultiResponse.locations[1].website!.replace(
-          /[.*+?^${}()|[\]\\]/g,
-          '\\$&',
-        ),
+      expect.stringContaining(
+        RefillLocationMultiResponse.locations[1].website!,
       ),
     );
 

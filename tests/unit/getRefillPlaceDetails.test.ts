@@ -140,9 +140,7 @@ describe('getRefillPlaceDetails', () => {
   test('What3words conversion still works in notes', () => {
     const location: Location = {
       ...baseLocation,
-      locations: [
-        makeLoc({ notes: 'Find us at ///filled.count.soap' }),
-      ],
+      locations: [makeLoc({ notes: 'Find us at ///filled.count.soap' })],
     };
     expect(getRefillPlaceDetails(location).note).toBe(
       'Find us at https://what3words.com/filled.count.soap',

@@ -10,7 +10,7 @@ import Linkify from 'linkify-react';
  *      so the user sees the familiar `///` notation rather than a full URL.
  */
 function formatWhat3WordsDisplay(value: string): string {
-  if (value.includes('https://what3words.com')) {
+  if (value.startsWith('https://what3words.com/')) {
     return value.replace('https://what3words.com/', '///');
   }
   return value;

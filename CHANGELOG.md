@@ -1,3 +1,8 @@
+## <small>1.77.1 (2026-04-02)</small>
+
+* Merge pull request #416 from etchteam/wrap-2232-clicking-show-map-from-refill-location-details-404s ([017cbb8](https://github.com/etchteam/recycling-locator/commit/017cbb8)), closes [#416](https://github.com/etchteam/recycling-locator/issues/416)
+* fix: correct show map URL on refill place details page ([8fc891f](https://github.com/etchteam/recycling-locator/commit/8fc891f))
+
 ## 1.77.0 (2026-03-30)
 
 * Merge pull request #415 from etchteam/wrap-2226-adjust-copy-to-suggest-that-the-store-could-stock-ot ([668ee58](https://github.com/etchteam/recycling-locator/commit/668ee58)), closes [#415](https://github.com/etchteam/recycling-locator/issues/415)

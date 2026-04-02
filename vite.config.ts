@@ -32,7 +32,7 @@ export default defineConfig(({ mode }) => {
     plugins: [preact()],
 
     test: {
-      include: ['tests/unit/**/*.test.ts'],
+      include: ['tests/unit/**/*.test.{ts,tsx}'],
       environment: 'happy-dom',
       globals: true,
       coverage: {

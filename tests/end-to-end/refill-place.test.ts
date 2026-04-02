@@ -2,6 +2,7 @@ import { GEOCODE_ENDPOINT, PostcodeGeocodeResponse } from '../mocks/geocode';
 import {
   REFILL_LOCATION_ENDPOINT,
   RefillLocationResponse,
+  RefillLocationMultiResponse,
 } from '../mocks/refillLocation';
 
 import { test, expect } from './fixtures';
@@ -168,5 +169,95 @@ test.describe('Refill place detail', () => {
       'href',
       /\/EX32 7RB\/refill\/places/,
     );
+  });
+});
+
+test.describe('Refill place detail with multiple locations (first-wins logic)', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.route(REFILL_LOCATION_ENDPOINT, (route) => {
+      route.fulfill({ json: RefillLocationMultiResponse });
+    });
+
+    await page.route(GEOCODE_ENDPOINT, (route) => {
+      route.fulfill({ json: PostcodeGeocodeResponse });
+    });
+  });
+
+  test('Shows phone from first location that has one', async ({
+    page,
+    widget,
+  }) => {
+    await widget.evaluate((node) =>
+      node.setAttribute('path', '/EX32 7RB/refill/places/1001'),
+    );
+
+    await page.waitForRequest(REFILL_LOCATION_ENDPOINT);
+
+    // First sub-location telephone should be shown
+    const phoneLink = widget
+      .locator(`a[href="tel:${RefillLocationMultiResponse.locations[0].telephone}"]`)
+      .first();
+    await expect(phoneLink).toBeVisible();
+
+    // Third sub-location telephone should NOT appear
+    const thirdPhoneLink = widget.locator(
+      `a[href="tel:${RefillLocationMultiResponse.locations[2].telephone}"]`,
+    );
+    await expect(thirdPhoneLink).not.toBeVisible();
+  });
+
+  test('Shows website from first location that has one', async ({
+    page,
+    widget,
+  }) => {
+    await widget.evaluate((node) =>
+      node.setAttribute('path', '/EX32 7RB/refill/places/1001'),
+    );
+
+    await page.waitForRequest(REFILL_LOCATION_ENDPOINT);
+
+    // Second sub-location website should be shown (first doesn't have one)
+    const websiteLink = widget
+      .locator('a[href*="utm_source=wrap-recycling-locator"]')
+      .first();
+    await expect(websiteLink).toBeVisible();
+    await expect(websiteLink).toHaveAttribute(
+      'href',
+      new RegExp(
+        RefillLocationMultiResponse.locations[1].website!.replace(
+          /[.*+?^${}()|[\]\\]/g,
+          '\\$&',
+        ),
+      ),
+    );
+
+    // Third sub-location website should NOT appear
+    const thirdWebsiteLink = widget.locator(
+      `a[href*="${RefillLocationMultiResponse.locations[2].website}"]`,
+    );
+    await expect(thirdWebsiteLink).not.toBeVisible();
+  });
+
+  test('Shows notes from first location that has them', async ({
+    page,
+    widget,
+  }) => {
+    await widget.evaluate((node) =>
+      node.setAttribute('path', '/EX32 7RB/refill/places/1001'),
+    );
+
+    await page.waitForRequest(REFILL_LOCATION_ENDPOINT);
+
+    // Second sub-location notes should be shown (first doesn't have any)
+    const secondNotes = widget
+      .getByText(RefillLocationMultiResponse.locations[1].notes!)
+      .first();
+    await expect(secondNotes).toBeVisible();
+
+    // Third sub-location notes should NOT appear
+    const thirdNotes = widget.getByText(
+      RefillLocationMultiResponse.locations[2].notes!,
+    );
+    await expect(thirdNotes).not.toBeVisible();
   });
 });

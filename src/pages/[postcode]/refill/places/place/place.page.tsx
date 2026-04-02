@@ -1,18 +1,15 @@
-import Linkify from 'linkify-react';
 import camelCase from 'lodash/camelCase';
 import { Trans, useTranslation } from 'react-i18next';
 import { Link, useParams } from 'wouter-preact';
 
 import OpeningHours from '@/components/content/OpeningHours/OpeningHours';
+import PlaceNotes from '@/components/content/PlaceNotes/PlaceNotes';
 import RateThisInfo from '@/components/control/RateThisInfo/RateThisInfo';
 import { useAppState } from '@/hooks/AppStateProvider';
 import { usePostcode } from '@/hooks/PostcodeProvider';
 import { useRefillPlace } from '@/hooks/useRefillPlace';
 import cleanupAddress from '@/lib/cleanupAddress';
-import getNotes from '@/lib/details/getNotes';
-import getOpeningHours from '@/lib/details/getOpeningHours';
-import getPhoneNumbers from '@/lib/details/getPhoneNumbers';
-import getWebsites from '@/lib/details/getWebsites';
+import getRefillPlaceDetails from '@/lib/details/getRefillPlaceDetails';
 import getCompanyNames from '@/lib/getCompanyNames';
 import { REFILL_CATEGORIES } from '@/lib/refillCategories';
 import { Location, RefillCategory } from '@/types/locatorApi';
@@ -166,10 +163,8 @@ function RefillPlaceContent({ location }: { readonly location: Location }) {
     throw new Error(location.error);
   }
 
-  const phoneNumbers = getPhoneNumbers(location);
-  const [firstSite] = getWebsites(location).keys();
-  const openingHours = getOpeningHours(location);
-  const notes = getNotes(location);
+  const { phoneNumber, website, openingHours, notes } =
+    getRefillPlaceDetails(location);
   const address = cleanupAddress(location.address);
 
   return (
@@ -177,22 +172,20 @@ function RefillPlaceContent({ location }: { readonly location: Location }) {
       <locator-bordered-list size="sm" className="evg-spacing-bottom-md">
         <dl>
           <OpeningHours openingHours={openingHours} />
-          {phoneNumbers.length > 0 && (
+          {phoneNumber && (
             <div>
               <dt>{t('place.details.phone')}</dt>
-              {phoneNumbers.map((num) => (
-                <dd key={num}>
-                  <a href={`tel:${num}`}>{num}</a>
-                </dd>
-              ))}
+              <dd>
+                <a href={`tel:${phoneNumber}`}>{phoneNumber}</a>
+              </dd>
             </div>
           )}
-          {firstSite && (
+          {website && (
             <div>
               <dt>{t('place.details.website')}</dt>
               <dd>
                 <a
-                  href={`${firstSite}?utm_source=wrap-recycling-locator`}
+                  href={`${website.url}?utm_source=wrap-recycling-locator`}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -226,27 +219,7 @@ function RefillPlaceContent({ location }: { readonly location: Location }) {
           {notes.length > 0 && (
             <div>
               <dt>{t('place.details.notes')}</dt>
-              {notes.map((note) => (
-                <dd key={note}>
-                  {
-                    <Linkify
-                      options={{
-                        target: '_blank',
-                        rel: 'noopener noreferrer',
-                        nl2br: true,
-                        defaultProtocol: 'https',
-                        format: (value) => {
-                          return value.includes('https://what3words.com')
-                            ? value.replace('https://what3words.com/', '///')
-                            : value;
-                        },
-                      }}
-                    >
-                      {note}
-                    </Linkify>
-                  }
-                </dd>
-              ))}
+              <PlaceNotes notes={notes} />
             </div>
           )}
         </dl>

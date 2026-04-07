@@ -1,3 +1,12 @@
+## 1.78.0 (2026-04-07)
+
+* Merge pull request #417 from etchteam/dependabot/npm_and_yarn/npm_and_yarn-52571dc7e9 ([a1c3f3b](https://github.com/etchteam/recycling-locator/commit/a1c3f3b)), closes [#417](https://github.com/etchteam/recycling-locator/issues/417)
+* Merge pull request #418 from etchteam/wrap-2234-refill-place-details-notes-has-what-3-words-replaced ([d5d1ba2](https://github.com/etchteam/recycling-locator/commit/d5d1ba2)), closes [#418](https://github.com/etchteam/recycling-locator/issues/418)
+* fix: address CI lint and CodeQL findings ([519773e](https://github.com/etchteam/recycling-locator/commit/519773e))
+* fix: simplify refill details to singular note and fix E2E phone selectors ([f683080](https://github.com/etchteam/recycling-locator/commit/f683080))
+* feat: consolidate what3words display and add refill first-wins detail logic ([4694cac](https://github.com/etchteam/recycling-locator/commit/4694cac))
+* chore(deps): bump lodash in the npm_and_yarn group across 1 directory ([1785140](https://github.com/etchteam/recycling-locator/commit/1785140))
+
 ## <small>1.77.1 (2026-04-02)</small>
 
 * Merge pull request #416 from etchteam/wrap-2232-clicking-show-map-from-refill-location-details-404s ([017cbb8](https://github.com/etchteam/recycling-locator/commit/017cbb8)), closes [#416](https://github.com/etchteam/recycling-locator/issues/416)

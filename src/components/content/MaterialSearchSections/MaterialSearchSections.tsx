@@ -26,6 +26,7 @@ interface MaterialSearchResultSectionsProps {
   readonly propertiesCollectingThisMaterial: LocalAuthority['properties'];
   readonly hazardous: boolean;
   readonly nonRecyclable: boolean;
+  readonly bulky?: boolean;
 }
 
 function getSortedSectionKeys(
@@ -63,6 +64,7 @@ export default function MaterialSearchSections({
   propertiesCollectingThisMaterial,
   hazardous,
   nonRecyclable,
+  bulky,
 }: MaterialSearchResultSectionsProps) {
   const sections = new Map<SectionKey, preact.JSX.Element>();
   const sortedSectionKeys = getSortedSectionKeys(
@@ -102,6 +104,8 @@ export default function MaterialSearchSections({
         allProperties={la?.data?.properties}
         propertiesCollectingThisMaterial={propertiesCollectingThisMaterial}
         nonRecyclable={nonRecyclable}
+        bulky={bulky}
+        bulkyWasteCollections={la?.data?.bulkyWaste}
       />
     </MaterialSearchSection>,
   );

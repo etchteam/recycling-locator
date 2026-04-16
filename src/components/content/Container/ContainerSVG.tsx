@@ -1,11 +1,9 @@
-import { Suspense, lazy } from 'preact/compat';
-
 import getContainerColours from '@/lib/getContainerColours';
 import { captureException } from '@/lib/sentry';
 import { ContainerName } from '@/types/locatorApi';
 
-// The blank svg takes up the same space as a wheeled bin would whilst the icon is loading
-import BlankSvg from './svg/blank.svg?react';
+import containerIcons from './icons';
+
 export interface ContainerSvgAttributes {
   readonly name: ContainerName;
   readonly bodyColour?: string;
@@ -42,17 +40,16 @@ export default function ContainerSvg({
     return null;
   }
 
-  const ContainerIconSvg = lazy(() => {
-    return import(`./svg/${containerNameToSvgName[name]}.svg?react`).catch(
-      (error) => {
-        captureException(error, {
-          component: 'ContainerSvg',
-          containerName: name,
-        });
-        return Promise.resolve({ default: BlankSvg });
-      },
-    );
-  });
+  const svgName = containerNameToSvgName[name];
+  const svg = containerIcons[svgName];
+
+  if (!svg) {
+    captureException(new Error(`Missing container SVG: ${name}`), {
+      component: 'ContainerSvg',
+      containerName: name,
+    });
+    return null;
+  }
 
   const cssVariables = getContainerColours(
     name,
@@ -62,13 +59,14 @@ export default function ContainerSvg({
   );
 
   return (
-    <Suspense fallback={BlankSvg}>
-      <ContainerIconSvg
-        className="container-svg"
-        aria-label={label}
-        aria-hidden={!label}
-        style={cssVariables}
-      />
-    </Suspense>
+    <div
+      className="container-svg"
+      role="img"
+      aria-label={label}
+      aria-hidden={!label}
+      style={cssVariables}
+      {...{ 'lid-colour': lidColour, 'body-colour': bodyColour }}
+      dangerouslySetInnerHTML={{ __html: svg }}
+    />
   );
 }

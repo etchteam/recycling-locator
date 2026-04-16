@@ -1,14 +1,15 @@
-import { Suspense, lazy } from 'preact/compat';
 import { useTranslation } from 'react-i18next';
 
 import i18n from '@/lib/i18n';
 import { CustomElement } from '@/types/customElement';
 
+import recycleLogo from './recycle-logo.svg?raw';
+import walesRecyclesLogo from './wales-recycles-logo.svg?raw';
+
 export default function Footer() {
   const { t } = useTranslation();
   const locale = i18n.language;
-  const logoPath = locale === 'cy' ? 'wales-recycles-logo' : 'recycle-logo';
-  const LogoSvg = lazy(() => import(`./${logoPath}.svg?react`));
+  const svg = locale === 'cy' ? walesRecyclesLogo : recycleLogo;
 
   const links = ['privacy', 'cookies', 'accessibility'].map((item) => ({
     href: t(`components.footer.nav.${item}Link`),
@@ -19,9 +20,11 @@ export default function Footer() {
     <locator-footer>
       <h2 className="locator-footer-title">
         {t('components.footer.poweredBy')}{' '}
-        <Suspense fallback={null}>
-          <LogoSvg title={t('components.footer.recycleNow')} />
-        </Suspense>
+        <div
+          role="img"
+          aria-label={t('components.footer.recycleNow')}
+          dangerouslySetInnerHTML={{ __html: svg }}
+        />
       </h2>
       <p>{t('components.footer.inPartnership')} Valpak</p>
       <nav>

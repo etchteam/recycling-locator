@@ -23,7 +23,7 @@ function PlaceMap({ location }: { readonly location: Location }) {
   mapSearchParams.set('lat', String(location.latitude));
   mapSearchParams.set('lng', String(location.longitude));
   mapSearchParams.set('activeLocation', location.id);
-  const mapUrl = `/${postcode}/refill/map?${mapSearchParams.toString()}`;
+  const mapUrl = `/${postcode}/refill/places/map?${mapSearchParams.toString()}`;
 
   return (
     <PlacesMap

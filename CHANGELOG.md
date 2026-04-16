@@ -1,3 +1,59 @@
+## 1.78.0 (2026-04-07)
+
+* Merge pull request #417 from etchteam/dependabot/npm_and_yarn/npm_and_yarn-52571dc7e9 ([a1c3f3b](https://github.com/etchteam/recycling-locator/commit/a1c3f3b)), closes [#417](https://github.com/etchteam/recycling-locator/issues/417)
+* Merge pull request #418 from etchteam/wrap-2234-refill-place-details-notes-has-what-3-words-replaced ([d5d1ba2](https://github.com/etchteam/recycling-locator/commit/d5d1ba2)), closes [#418](https://github.com/etchteam/recycling-locator/issues/418)
+* fix: address CI lint and CodeQL findings ([519773e](https://github.com/etchteam/recycling-locator/commit/519773e))
+* fix: simplify refill details to singular note and fix E2E phone selectors ([f683080](https://github.com/etchteam/recycling-locator/commit/f683080))
+* feat: consolidate what3words display and add refill first-wins detail logic ([4694cac](https://github.com/etchteam/recycling-locator/commit/4694cac))
+* chore(deps): bump lodash in the npm_and_yarn group across 1 directory ([1785140](https://github.com/etchteam/recycling-locator/commit/1785140))
+
+## <small>1.77.1 (2026-04-02)</small>
+
+* Merge pull request #416 from etchteam/wrap-2232-clicking-show-map-from-refill-location-details-404s ([017cbb8](https://github.com/etchteam/recycling-locator/commit/017cbb8)), closes [#416](https://github.com/etchteam/recycling-locator/issues/416)
+* fix: correct show map URL on refill place details page ([8fc891f](https://github.com/etchteam/recycling-locator/commit/8fc891f))
+
+## 1.77.0 (2026-03-30)
+
+* Merge pull request #415 from etchteam/wrap-2226-adjust-copy-to-suggest-that-the-store-could-stock-ot ([668ee58](https://github.com/etchteam/recycling-locator/commit/668ee58)), closes [#415](https://github.com/etchteam/recycling-locator/issues/415)
+* feat: adjust disclaimer to suggest the store could stock other products ([811b1fa](https://github.com/etchteam/recycling-locator/commit/811b1fa))
+
+## 1.76.0 (2026-03-30)
+
+* Merge branch 'main' into wrap-2222-remove-the-sign-up-page ([a804975](https://github.com/etchteam/recycling-locator/commit/a804975))
+* Merge pull request #410 from etchteam/dependabot/npm_and_yarn/npm_and_yarn-66413a1f6e ([16c4689](https://github.com/etchteam/recycling-locator/commit/16c4689)), closes [#410](https://github.com/etchteam/recycling-locator/issues/410)
+* Merge pull request #412 from etchteam/wrap-2222-remove-the-sign-up-page ([05f5dc9](https://github.com/etchteam/recycling-locator/commit/05f5dc9)), closes [#412](https://github.com/etchteam/recycling-locator/issues/412)
+* Merge pull request #414 from etchteam/dependabot/npm_and_yarn/npm_and_yarn-c5774b5308 ([aa0d4fd](https://github.com/etchteam/recycling-locator/commit/aa0d4fd)), closes [#414](https://github.com/etchteam/recycling-locator/issues/414)
+* fix: update refill places test to use heading instead of removed alert ([24ec4cb](https://github.com/etchteam/recycling-locator/commit/24ec4cb))
+* chore(deps-dev): bump picomatch ([dbb0007](https://github.com/etchteam/recycling-locator/commit/dbb0007))
+* chore(deps-dev): bump the npm_and_yarn group across 1 directory with 2 updates ([0e66e59](https://github.com/etchteam/recycling-locator/commit/0e66e59))
+* feat: remove refill sign-up page and related code ([b895c21](https://github.com/etchteam/recycling-locator/commit/b895c21))
+
+## <small>1.75.1 (2026-03-27)</small>
+
+* Merge pull request #413 from etchteam/wrap-2204-fix-dynamic-import-failure-for-close-icon-chunk-on-r ([0f76e39](https://github.com/etchteam/recycling-locator/commit/0f76e39)), closes [#413](https://github.com/etchteam/recycling-locator/issues/413)
+* fix: replace dynamic SVG imports with static import.meta.glob ([d49e3c2](https://github.com/etchteam/recycling-locator/commit/d49e3c2))
+
+## 1.75.0 (2026-03-27)
+
+* Merge pull request #411 from etchteam/wrap-2221-update-translations-again-v2 ([8359c6a](https://github.com/etchteam/recycling-locator/commit/8359c6a)), closes [#411](https://github.com/etchteam/recycling-locator/issues/411)
+* feat: update refill Welsh translations ([4231971](https://github.com/etchteam/recycling-locator/commit/4231971))
+
+## <small>1.74.2 (2026-03-25)</small>
+
+* Merge pull request #406 from etchteam/wrap-2212-alternatives-options-are-broken-on-the-postcode-page ([6a93af9](https://github.com/etchteam/recycling-locator/commit/6a93af9)), closes [#406](https://github.com/etchteam/recycling-locator/issues/406)
+* Merge pull request #407 from etchteam/wrap-2203-map-store-icon-is-green ([ec38eed](https://github.com/etchteam/recycling-locator/commit/ec38eed)), closes [#407](https://github.com/etchteam/recycling-locator/issues/407)
+* Merge pull request #408 from etchteam/wrap-2211-store-should-only-list-website-once ([e1a8e05](https://github.com/etchteam/recycling-locator/commit/e1a8e05)), closes [#408](https://github.com/etchteam/recycling-locator/issues/408)
+* fix: ensure store map icon is purple in refill ([21860d3](https://github.com/etchteam/recycling-locator/commit/21860d3))
+* fix: use correct copy and links for refill no locations options ([fd2f76c](https://github.com/etchteam/recycling-locator/commit/fd2f76c))
+* fix(refill): only show one website link per place ([c079a04](https://github.com/etchteam/recycling-locator/commit/c079a04))
+
+## <small>1.74.1 (2026-03-25)</small>
+
+* Merge pull request #404 from etchteam/dependabot/npm_and_yarn/npm_and_yarn-203d1363da ([be57499](https://github.com/etchteam/recycling-locator/commit/be57499)), closes [#404](https://github.com/etchteam/recycling-locator/issues/404)
+* Merge pull request #409 from etchteam/wrap-2213-refill-options-should-be-purple-in-the-menu ([4cfcdd8](https://github.com/etchteam/recycling-locator/commit/4cfcdd8)), closes [#409](https://github.com/etchteam/recycling-locator/issues/409)
+* fix: apply refill purple theme to li element in menu ([fdf2468](https://github.com/etchteam/recycling-locator/commit/fdf2468))
+* chore(deps): bump the npm_and_yarn group across 1 directory with 5 updates ([fa944ec](https://github.com/etchteam/recycling-locator/commit/fa944ec))
+
 ## 1.74.0 (2026-03-23)
 
 * Merge pull request #401 from etchteam/fix/memoize-record-view ([dc8ef38](https://github.com/etchteam/recycling-locator/commit/dc8ef38)), closes [#401](https://github.com/etchteam/recycling-locator/issues/401)

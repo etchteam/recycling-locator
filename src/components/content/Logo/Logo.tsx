@@ -4,8 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { CustomElement } from '@/types/customElement';
 import { Locale } from '@/types/locale';
 
-import LogoSvg from './logo.svg?react';
-import RefillLogoSvg from './refill-logo.svg?react';
+import logoSvg from './logo.svg?raw';
+import refillLogoSvg from './refill-logo.svg?raw';
 
 export interface LogoAttributes {
   readonly type?: 'icon-only';
@@ -22,7 +22,7 @@ export default function Logo({
   if (variant === 'refill') {
     return (
       <>
-        <RefillLogoSvg />
+        <span dangerouslySetInnerHTML={{ __html: refillLogoSvg }} />
         {type !== 'icon-only' && (
           <span className="locator-logo-text">{t('refill.header.title')}</span>
         )}
@@ -30,7 +30,7 @@ export default function Logo({
     );
   }
 
-  return <LogoSvg />;
+  return <span dangerouslySetInnerHTML={{ __html: logoSvg }} />;
 }
 
 register(Logo, 'locator-logo', ['type', 'locale', 'variant']);

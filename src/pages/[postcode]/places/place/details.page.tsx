@@ -1,9 +1,9 @@
-import Linkify from 'linkify-react';
 import nl2br from 'nl2br';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'wouter-preact';
 
 import OpeningHours from '@/components/content/OpeningHours/OpeningHours';
+import PlaceNotes from '@/components/content/PlaceNotes/PlaceNotes';
 import RateThisInfo from '@/components/control/RateThisInfo/RateThisInfo';
 import { usePlace } from '@/hooks/usePlace';
 import cleanupAddress from '@/lib/cleanupAddress';
@@ -89,27 +89,7 @@ function PlaceDetailsPageContent({
               <dt>
                 <locator-icon icon="docs" /> {t('place.details.notes')}
               </dt>
-              {notes.map((note) => (
-                <dd key={note}>
-                  {
-                    <Linkify
-                      options={{
-                        target: '_blank',
-                        rel: 'noopener noreferrer',
-                        nl2br: true,
-                        defaultProtocol: 'https',
-                        format: (value) => {
-                          return value.includes('https://what3words.com')
-                            ? value.replace('https://what3words.com/', '///')
-                            : value;
-                        },
-                      }}
-                    >
-                      {note}
-                    </Linkify>
-                  }
-                </dd>
-              ))}
+              <PlaceNotes notes={notes} />
             </div>
           )}
         </dl>

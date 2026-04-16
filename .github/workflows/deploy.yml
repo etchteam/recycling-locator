@@ -7,43 +7,44 @@ on:
       - completed
   workflow_dispatch:
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: none
 concurrency:
   group: "pages"
   cancel-in-progress: false
 jobs:
   deploy:
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f
         with:
           node-version-file: .nvmrc
       - name: Install dependencies
-        run: npm ci
-      - name: Install demo dependencies
-        run: |
-          npm install
-          npm install @etchteam/recycling-locator@latest
-        working-directory: demo
-      - name: Build
-        run: npm run build
+        run: npm ci --no-scripts
+      - name: Build preview
+        run: npm run build:preview
         env:
+          VITE_BASE_PATH: /recycling-locator
+          VITE_PUBLIC_PATH: /recycling-locator/
+          VITE_SENTRY_DSN: 'https://423f7067367670f8a6b166e99b61726d@o1156292.ingest.us.sentry.io/4506864957194240'
+          VITE_HERE_MAPS_PLACES_KEY: ${{ vars.VITE_HERE_MAPS_PLACES_KEY }}
+          VITE_RECYCLING_LOCATOR_API: https://rl.recyclenow.com/widget/
           VITE_MARKER_KEY: 65ef397bdb8bc8524e2e763b
-        working-directory: demo
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './demo/dist'
+          path: './preview'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

@@ -1,4 +1,3 @@
-import uniqueId from 'lodash/uniqueId';
 import { ComponentChildren, createContext } from 'preact';
 import { useContext, useMemo } from 'preact/hooks';
 
@@ -12,6 +11,7 @@ interface AppStateData extends RecyclingLocatorAttributes {
 
 interface AppStateProviderProps {
   readonly attributes: RecyclingLocatorAttributes;
+  readonly sessionId: string;
   readonly children: ComponentChildren;
 }
 
@@ -20,11 +20,8 @@ export const AppStateContext = createContext<AppStateData>(null);
 export function AppStateProvider({
   children,
   attributes,
+  sessionId,
 }: AppStateProviderProps) {
-  const sessionId = (window?.wrapAnalyticsId ??
-    window?.crypto?.randomUUID?.() ??
-    uniqueId('session')) as unknown as string;
-
   const appState: AppStateData = useMemo(
     () => ({
       ...attributes,

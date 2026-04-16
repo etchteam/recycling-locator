@@ -113,6 +113,11 @@ export interface LocalAuthority {
   properties: { [key in PROPERTY_TYPE_EN]?: LocalAuthorityProperty[] };
 }
 
+export interface RefillCategory {
+  id: string;
+  name: string;
+}
+
 export interface Location {
   id: string;
   address: string;
@@ -121,7 +126,7 @@ export interface Location {
   latitude: number;
   longitude: number;
   locations: {
-    locationType: 'RECYCLE' | 'HWRC';
+    locationType: 'RECYCLE' | 'HWRC' | 'REFILL';
     source: 'valpak' | 'wrap';
     materials: MaterialWithCategory[];
     notes?: string;
@@ -129,6 +134,10 @@ export interface Location {
     website?: string;
     collectionDetails?: string;
     telephone?: string;
+    company?: {
+      name: string;
+      refillCategories: RefillCategory[];
+    };
   }[];
   error?: string;
 }

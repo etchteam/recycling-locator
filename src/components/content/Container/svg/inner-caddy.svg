@@ -18,9 +18,9 @@
     fill="#d7e7f5"
   />
   <path
-    className="body"
-    fillRule="evenodd"
-    clipRule="evenodd"
+    class="body"
+    fill-rule="evenodd"
+    clip-rule="evenodd"
     d="M10 18C8.89543 18 8 18.8954 8 20V22H12.2083L13.4692 46.2081C13.5799 48.3335 15.3355 50 17.4638 50H46.5362C48.6645 50 50.4201 48.3335 50.5308 46.2081L51.7917 22H56V20C56 18.8954 55.1046 18 54 18H52H12H10Z"
     fill="#2A8CC1"
   />

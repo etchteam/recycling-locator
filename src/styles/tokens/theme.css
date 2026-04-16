@@ -113,9 +113,11 @@
   --color-primary-dark: var(--color-grey-dark);
 }
 
-[class*=' theme-preset-'] {
+[class*=' theme-preset-'],
+[class^='theme-preset-'] {
   --evg-theme-color-hover: var(--color-primary-dark);
   --evg-theme-border-color-hover: var(--color-primary-dark);
+  --evg-theme-link-color: var(--color-primary-dark);
 
   evg-input:hover,
   evg-input:focus-within {
@@ -162,9 +164,24 @@
   --evg-theme-background: var(--theme-background-negative-muted);
 }
 
+.theme-primary,
+.theme-primary-muted {
+  --evg-theme-background-muted: var(--color-primary-lightest);
+  --evg-theme-background: var(--color-primary);
+  --evg-theme-heading-color: var(--color-grey-dark);
+  --evg-theme-color: var(--color-grey-dark);
+  --evg-theme-link-color: var(--color-primary-dark);
+}
+
+.theme-primary-muted {
+  --evg-theme-background: var(--color-primary-lightest);
+}
+
 /* Themed card border hiding */
 .theme-info,
 .theme-info-muted,
+.theme-primary,
+.theme-primary-muted,
 .theme-positive,
 .theme-positive-muted,
 .theme-negative,

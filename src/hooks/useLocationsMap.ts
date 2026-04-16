@@ -2,7 +2,7 @@ import { Signal, useSignal } from '@preact/signals';
 import { useEffect } from 'preact/compat';
 import { useLocation, useSearchParams } from 'wouter-preact';
 
-import { useLocations } from '@/hooks/useLocations';
+import { UseDataState } from '@/hooks/useData';
 import mapSearchParams from '@/lib/mapSearchParams';
 import { Location, LocationsResponse } from '@/types/locatorApi';
 
@@ -46,10 +46,12 @@ const DRAG_THRESHOLD_METERS = 1500;
 /**
  * Hook for map-based location viewing with zoom/pan interactions
  */
-export function useLocationsMap(): UseLocationsMapResult {
+export function useLocationsMap(
+  locationsResult: UseDataState<LocationsResponse>,
+): UseLocationsMapResult {
   const [location] = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
-  const { data: locations, loading } = useLocations();
+  const { data: locations, loading } = locationsResult;
 
   const defaultActiveLocationId = searchParams.get('activeLocation');
   const defaultLatitude = locations?.meta?.latitude;

@@ -1,0 +1,46 @@
+locator-category-card {
+  display: block;
+  height: 100%;
+
+  a {
+    align-items: stretch;
+    border: solid 1px var(--color-border);
+    border-radius: var(--evg-border-radius);
+    color: var(--color-body);
+    display: grid;
+    grid-template-rows: 1fr;
+    height: 100%;
+    overflow: hidden;
+    text-decoration: none;
+
+    transition:
+      color var(--evg-transition),
+      border-color var(--evg-transition);
+
+    img {
+      grid-area: 1 / 1;
+      transition: transform var(--evg-transition);
+    }
+
+    evg-chip {
+      grid-area: 1 / 1;
+      margin-bottom: var(--evg-spacing-sm);
+      place-self: end center;
+      white-space: nowrap;
+      z-index: 1;
+    }
+
+    &:hover {
+      border-color: var(--evg-theme-color-hover);
+      color: var(--evg-theme-color-hover);
+
+      img {
+        transform: scale(1.02); /* Very slight zoom effect on hover */
+      }
+
+      evg-chip {
+        --evg-chip-border-color-light: var(--color-primary-dark);
+      }
+    }
+  }
+}

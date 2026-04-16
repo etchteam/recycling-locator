@@ -9,14 +9,11 @@ locator-wrap {
     max-width: none;
   }
 
-  &[gutter='fluid'] {
-    padding-inline: clamp(var(--evg-spacing), 5cqw, var(--evg-spacing-xl));
+  &[max-width='extra-wide'] {
+    max-width: calc(var(--wrap-max-width) * 1.5);
   }
 
-  &[large-screen-only] {
-    @container (width < 768px) {
-      /* not mobile first to stay DRY */
-      max-width: none;
-    }
+  &[gutter='fluid'] {
+    padding-inline: clamp(var(--evg-spacing), 5cqw, var(--evg-spacing-xl));
   }
 }

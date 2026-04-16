@@ -4,9 +4,9 @@ import { useSearchParams } from 'wouter-preact';
 import LocationForm from '../components/control/LocationForm/LocationForm';
 
 /**
- * 404 Not Found page
- * Displayed when the user visits a route that doesn't exist
- * Shows different title based on error reason (notInTheUK, etc.)
+ * 404 page for recycling routes without a postcode.
+ * e.g. /not-found, /unknown-route
+ * Shows a location form so users can enter a postcode to get started.
  */
 export default function NotFoundPage() {
   const { t } = useTranslation();

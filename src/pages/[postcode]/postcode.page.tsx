@@ -2,6 +2,7 @@ import { useEffect } from 'preact/hooks';
 import { Trans, useTranslation } from 'react-i18next';
 import { Link, useSearchParams } from 'wouter-preact';
 
+import OrSeparator from '@/components/content/OrSeparator/OrSeparator';
 import MaterialSearchForm from '@/components/control/MaterialSearchForm/MaterialSearchForm';
 import { useAppState } from '@/hooks/AppStateProvider';
 import { usePostcode } from '@/hooks/PostcodeProvider';
@@ -20,7 +21,7 @@ function Loading() {
 
 export default function PostcodePage() {
   const { t } = useTranslation();
-  const { publicPath } = useAppState();
+  const { publicPath, theme } = useAppState();
   const { recordEvent } = useAnalytics();
   const { data: postcodeData } = usePostcode();
   const postcode = postcodeData?.postcode || '';
@@ -140,22 +141,13 @@ export default function PostcodePage() {
                 </li>
               </ul>
 
-              <evg-grid className="evg-spacing-top-sm" align-items="center">
-                <evg-grid-item grow>
-                  <hr aria-hidden="true" />
-                </evg-grid-item>
-                <evg-grid-item>
-                  <span className="evg-text-size-body-xs">
-                    {t('common.or')}
-                  </span>
-                </evg-grid-item>
-                <evg-grid-item grow>
-                  <hr aria-hidden="true" />
-                </evg-grid-item>
-              </evg-grid>
+              <OrSeparator />
 
-              <locator-icon-link border className="evg-spacing-top-md">
-                <Link href={`/refill?postcode=${encodeURIComponent(postcode)}`}>
+              <locator-icon-link
+                border
+                className={`evg-spacing-top-md${theme ? '' : ' theme-preset-purple'}`}
+              >
+                <Link href={`/${postcode}/refill`}>
                   <locator-icon-circle>
                     <locator-icon icon="refill" color="primary"></locator-icon>
                   </locator-icon-circle>

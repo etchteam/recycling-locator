@@ -29,6 +29,7 @@ locator-tip {
 
   &[type='image'] {
     img {
+      align-self: center;
       width: min(100%, 20em);
     }
   }
@@ -52,7 +53,7 @@ locator-tip {
   }
 
   /* large tablet */
-  @container (width >= 1024px) {
+  @container (width >= 768px) {
     &[wrap='wrap'] {
       border-radius: var(--evg-border-radius);
       grid-template-areas: 'content image';

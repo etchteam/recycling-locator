@@ -18,7 +18,7 @@ export default function LoadingPlacesList({
 
   return (
     <>
-      <h3 className="evg-text-size-body-lg evg-spacing-bottom-md">
+      <h3 className="evg-text-size-heading-sm evg-spacing-bottom-md">
         {t('places.loading')}
       </h3>
       <locator-places-grid>

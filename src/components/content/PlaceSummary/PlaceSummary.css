@@ -56,5 +56,16 @@ locator-place-summary {
         width: 1px;
       }
     }
+
+    .refill-categories {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: var(--evg-spacing-xs);
+
+      locator-icon {
+        --_size: var(--evg-font-size-body-sm);
+        color: var(--color-primary-dark);
+      }
+    }
   }
 }

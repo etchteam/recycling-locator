@@ -2,8 +2,7 @@ import { CustomElement } from '@/types/customElement';
 
 export interface WrapAttributes {
   gutter?: 'fluid';
-  'max-width'?: 'none';
-  'large-screen-only'?: boolean;
+  'max-width'?: 'none' | 'extra-wide';
 }
 
 declare module 'react' {

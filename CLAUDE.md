@@ -160,12 +160,15 @@ Material searches use URL parameters (`materials`, `category`, `search`) that fl
 - Unit tests alongside source files or in `__tests__` directories
 - E2E tests in `tests/` directory using Playwright
 - Test both widget and standalone modes for routing changes
+- Use `npx playwright test --reporter=line` for concise E2E output
 
 ## Important Notes
 
+- **Translations**: All user-facing text must use i18next translation keys via `useTranslation()`. Never hardcode display text. Translation files are in `public/translations/`. Check for existing keys before adding new ones.
 - The widget renders in Shadow DOM for style isolation
 - Multiple widget instances on the same page must remain independent
 - API responses are cached by axios-cache-interceptor - be aware when testing
+- **Image paths**: Never hardcode image paths with a leading `/`. Use `publicPath` from `useAppState()` so images resolve correctly in all deployment contexts (e.g. `${publicPath}images/example.webp`). The widget may be served from a subpath in production.
 - Wales and Welsh language
   - `cy-GB` locale is for Wales postcodes using English language
   - `cy` locale is for Welsh language

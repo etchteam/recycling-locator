@@ -1,0 +1,9 @@
+.about h3 {
+  font-size: var(--evg-font-size-heading-xs);
+  font-weight: var(--evg-font-weight-bold);
+  margin-block-start: var(--evg-spacing-md);
+}
+
+.about hr {
+  margin-block: var(--evg-spacing-lg) var(--evg-spacing-md);
+}

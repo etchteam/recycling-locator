@@ -1,0 +1,21 @@
+locator-refill-alert {
+  align-items: center;
+  display: flex;
+  gap: var(--evg-spacing-sm);
+  justify-content: space-between;
+
+  p {
+    font-size: var(--evg-font-size-body-xs);
+    margin-block-end: 0;
+  }
+
+  evg-button {
+    --evg-button-background-hover-ghost: transparent;
+    --evg-button-color-hover-ghost: var(--color-primary-dark);
+    --evg-button-color-ghost: var(--color-primary-dark);
+
+    button {
+      margin: calc(var(--evg-spacing-xs) * -1) calc(var(--evg-spacing-md) * -1);
+    }
+  }
+}

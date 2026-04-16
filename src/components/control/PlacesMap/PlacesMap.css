@@ -81,6 +81,10 @@ locator-places-map {
     .locator-places-map__marker-pin-active {
       display: block;
     }
+
+    .locator-places-map__marker-icon {
+      fill: var(--color-primary-dark);
+    }
   }
 
   locator-places-map-scrim {

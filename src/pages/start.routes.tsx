@@ -10,7 +10,8 @@ import PostcodeRoutes from './[postcode]/postcode.routes';
 import HomeRecyclingStartPage from './home-recycling.page';
 import MaterialStartPage from './material.page';
 import NotFoundPage from './not-found.page';
-import RefillRoutes from './refill/refill.routes';
+import RefillStartNotFoundPage from './refill-not-found.page';
+import RefillStartPage from './refill.page';
 import StartLayout from './start.layout';
 import StartPage from './start.page';
 
@@ -19,7 +20,7 @@ import StartPage from './start.page';
  * navigating to the correct start path then dispatching the 'ready' event.
  */
 export default function StartRoutes() {
-  const { startPath } = useAppState();
+  const { startPath, theme } = useAppState();
   const [location, setLocation] = useLocation();
   const [searchParams] = useSearchParams();
   const { recordView } = useAnalytics();
@@ -41,7 +42,8 @@ export default function StartRoutes() {
     if (hasNavigated.value) {
       recordView();
     }
-  }, [location, recordView, hasNavigated]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location]);
 
   // Wait until the startPath has been set before rendering routes
   if (!hasNavigated.value) {
@@ -79,12 +81,37 @@ export default function StartRoutes() {
             <MaterialStartPage />
           </StartLayout>
         </Route>
+        <Route path="/refill">
+          {theme ? (
+            <StartLayout>
+              <RefillStartPage />
+            </StartLayout>
+          ) : (
+            <div className="theme-preset-purple">
+              <StartLayout>
+                <RefillStartPage />
+              </StartLayout>
+            </div>
+          )}
+        </Route>
+        <Route path="/refill/*">
+          {theme ? (
+            <StartLayout>
+              <RefillStartNotFoundPage />
+            </StartLayout>
+          ) : (
+            <div className="theme-preset-purple">
+              <StartLayout>
+                <RefillStartNotFoundPage />
+              </StartLayout>
+            </div>
+          )}
+        </Route>
         <Route path="/not-found">
           <StartLayout>
             <NotFoundPage />
           </StartLayout>
         </Route>
-        <Route path="/refill/*?" component={RefillRoutes} />
         <Route path="/:postcode/*?" component={PostcodeRoutes} />
         <Route>
           <StartLayout>

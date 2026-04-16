@@ -1,7 +1,6 @@
-declare module '*.svg?react' {
-  const PreactComponent: preact.FunctionComponent<
-    preact.ComponentProps<'svg'> & { title?: string }
-  >;
+declare const __BUILD_TIME__: string;
 
-  export default PreactComponent;
+declare module '*.svg?raw' {
+  const content: string;
+  export default content;
 }

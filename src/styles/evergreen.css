@@ -23,6 +23,10 @@ a {
   }
 }
 
+evg-chip a {
+  text-decoration: none;
+}
+
 ul,
 ol {
   margin: 0 0 var(--evg-spacing-sm) var(--evg-spacing-xs);

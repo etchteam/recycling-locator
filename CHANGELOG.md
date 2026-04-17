@@ -1,3 +1,14 @@
+## <small>1.78.1 (2026-04-17)</small>
+
+* Merge pull request #419 from etchteam/dependabot/npm_and_yarn/npm_and_yarn-9b2ff1f3aa ([118e0a7](https://github.com/etchteam/recycling-locator/commit/118e0a7)), closes [#419](https://github.com/etchteam/recycling-locator/issues/419)
+* Merge pull request #420 from etchteam/dependabot/npm_and_yarn/npm_and_yarn-94be095972 ([639c6e1](https://github.com/etchteam/recycling-locator/commit/639c6e1)), closes [#420](https://github.com/etchteam/recycling-locator/issues/420)
+* Merge pull request #421 from etchteam/dependabot/npm_and_yarn/npm_and_yarn-85af2c71bb ([785f851](https://github.com/etchteam/recycling-locator/commit/785f851)), closes [#421](https://github.com/etchteam/recycling-locator/issues/421)
+* Merge pull request #422 from etchteam/fix/missing-translation-key-start-aside-list ([9dbf729](https://github.com/etchteam/recycling-locator/commit/9dbf729)), closes [#422](https://github.com/etchteam/recycling-locator/issues/422)
+* fix: prevent i18n load failures spamming Sentry as missing keys ([81a7840](https://github.com/etchteam/recycling-locator/commit/81a7840))
+* chore(deps-dev): bump vite in the npm_and_yarn group across 1 directory ([85c384a](https://github.com/etchteam/recycling-locator/commit/85c384a))
+* chore(deps): bump axios in the npm_and_yarn group across 1 directory ([583adcd](https://github.com/etchteam/recycling-locator/commit/583adcd))
+* chore(deps): bump follow-redirects ([df93ab9](https://github.com/etchteam/recycling-locator/commit/df93ab9))
+
 ## 1.78.0 (2026-04-07)
 
 * Merge pull request #417 from etchteam/dependabot/npm_and_yarn/npm_and_yarn-52571dc7e9 ([a1c3f3b](https://github.com/etchteam/recycling-locator/commit/a1c3f3b)), closes [#417](https://github.com/etchteam/recycling-locator/issues/417)

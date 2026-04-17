@@ -1,5 +1,10 @@
 import i18n from '@/lib/i18n';
-import sentry from '@/lib/sentry';
+import { captureException } from '@/lib/sentry';
+
+function translationsLoaded() {
+  const lng = i18n.resolvedLanguage ?? i18n.language;
+  return i18n.isInitialized && i18n.hasResourceBundle(lng, 'translation');
+}
 
 /**
  * Convenience method to iterate an array of translations for a given key
@@ -8,7 +13,13 @@ import sentry from '@/lib/sentry';
  */
 export default function tArray(tKey: string) {
   if (!i18n.exists(tKey)) {
-    sentry.captureMessage(`Missing translation key: ${tKey}`);
+    // Only report when bundle loaded; load failures reported via
+    // i18n `failedLoading` handler in @/lib/i18n
+    if (translationsLoaded()) {
+      captureException(new Error(`Missing translation key: ${tKey}`), {
+        component: 'tArray',
+      });
+    }
     return [];
   }
 

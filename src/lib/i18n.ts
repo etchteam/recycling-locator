@@ -3,6 +3,7 @@ import HttpBackend, { HttpBackendOptions } from 'i18next-http-backend';
 import { initReactI18next } from 'react-i18next';
 
 import config from '@/config';
+import { captureException } from '@/lib/sentry';
 import { Locale } from '@/types/locale';
 
 i18n
@@ -11,6 +12,14 @@ i18n
   .use(HttpBackend)
   // pass the i18n instance to react-i18next.
   .use(initReactI18next);
+
+i18n.on('failedLoading', (lng, ns, msg) => {
+  captureException(
+    new Error(`i18n failed loading ${lng}/${ns}: ${msg}`),
+    { component: 'i18n' },
+    { lng, ns },
+  );
+});
 
 /**
  * Init i18next with the given locale.

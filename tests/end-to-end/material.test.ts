@@ -429,6 +429,121 @@ test.describe('Material page', () => {
     await expect(doorstepCardBelowHome).toBeVisible();
   });
 
+  test('Bulky material with bulky waste collection', async ({
+    page,
+    widget,
+    i18n,
+  }) => {
+    await page.route(LOCAL_AUTHORITY_ENDPOINT, (route) => {
+      route.fulfill({
+        json: {
+          ...LocalAuthorityResponse,
+          bulkyWaste: [{ id: '1', name: 'Bulky waste collection' }],
+        },
+      });
+    });
+
+    await page.route(LOCATIONS_ENDPOINT, (route) => {
+      route.fulfill({ json: LocationsResponse });
+    });
+
+    await page.route(MATERIAL_ENDPOINT, (route) => {
+      route.fulfill({ json: { ...ValidMaterialResponse, bulky: true } });
+    });
+
+    const bulkyText = widget
+      .getByText(i18n.t('material.recycleAtHome.bulkyWasteCollection'))
+      .first();
+
+    await Promise.all([
+      page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT),
+      page.waitForRequest(LOCATIONS_ENDPOINT),
+      page.waitForRequest(MATERIAL_ENDPOINT),
+      widget.evaluate((node) =>
+        node.setAttribute(
+          'path',
+          '/EX32 7RB/material?materials=43&search=Plastic milk bottles',
+        ),
+      ),
+    ]);
+    await expect(bulkyText).toBeVisible();
+  });
+
+  test('Bulky material without bulky waste collection', async ({
+    page,
+    widget,
+    i18n,
+  }) => {
+    await page.route(LOCAL_AUTHORITY_ENDPOINT, (route) => {
+      route.fulfill({ json: LocalAuthorityResponse });
+    });
+
+    await page.route(LOCATIONS_ENDPOINT, (route) => {
+      route.fulfill({ json: LocationsResponse });
+    });
+
+    await page.route(MATERIAL_ENDPOINT, (route) => {
+      route.fulfill({ json: { ...ValidMaterialResponse, bulky: true } });
+    });
+
+    const bulkyText = widget
+      .getByText(i18n.t('material.recycleAtHome.bulkyWasteCollection'))
+      .first();
+
+    await Promise.all([
+      page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT),
+      page.waitForRequest(LOCATIONS_ENDPOINT),
+      page.waitForRequest(MATERIAL_ENDPOINT),
+      widget.evaluate((node) =>
+        node.setAttribute(
+          'path',
+          '/EX32 7RB/material?materials=43&search=Plastic milk bottles',
+        ),
+      ),
+    ]);
+    await expect(bulkyText).not.toBeVisible();
+  });
+
+  test('Non-bulky material with bulky waste collection', async ({
+    page,
+    widget,
+    i18n,
+  }) => {
+    await page.route(LOCAL_AUTHORITY_ENDPOINT, (route) => {
+      route.fulfill({
+        json: {
+          ...LocalAuthorityResponse,
+          bulkyWaste: [{ id: '1', name: 'Bulky waste collection' }],
+        },
+      });
+    });
+
+    await page.route(LOCATIONS_ENDPOINT, (route) => {
+      route.fulfill({ json: LocationsResponse });
+    });
+
+    await page.route(MATERIAL_ENDPOINT, (route) => {
+      route.fulfill({ json: ValidMaterialResponse });
+    });
+
+    const bulkyText = widget
+      .getByText(i18n.t('material.recycleAtHome.bulkyWasteCollection'))
+      .first();
+
+    await Promise.all([
+      page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT),
+      page.waitForRequest(LOCATIONS_ENDPOINT),
+      page.waitForRequest(MATERIAL_ENDPOINT),
+      widget.evaluate((node) =>
+        node.setAttribute(
+          'path',
+          '/EX32 7RB/material?materials=43&search=Plastic milk bottles',
+        ),
+      ),
+    ]);
+    await expect(bulkyText).not.toBeVisible();
+  });
+
   test('Doorstep collection without home recycling', async ({
     page,
     widget,

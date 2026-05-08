@@ -966,6 +966,7 @@ on:
   schedule:
     - cron: '0 6 * * *'
   workflow_dispatch:
+permissions: {}
 jobs:
   update:
     uses: etchteam/recycling-locator/.github/workflows/check-update.yml@v1

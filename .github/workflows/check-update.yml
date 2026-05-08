@@ -13,6 +13,7 @@ on:
         required: false
         type: string
         default: ''
+permissions: {}
 jobs:
   update:
     name: Open PR to update @etchteam/recycling-locator
@@ -28,11 +29,14 @@ jobs:
       - name: Resolve node version
         id: node
         shell: bash
+        env:
+          NODE_VERSION_INPUT: ${{ inputs.node-version }}
+          WORKING_DIRECTORY_INPUT: ${{ inputs.working-directory }}
         run: |
-          if [ -n "${{ inputs.node-version }}" ]; then
-            echo "version=${{ inputs.node-version }}" >> "$GITHUB_OUTPUT"
-          elif [ -f "${{ inputs.working-directory }}/.nvmrc" ]; then
-            echo "version-file=${{ inputs.working-directory }}/.nvmrc" >> "$GITHUB_OUTPUT"
+          if [ -n "$NODE_VERSION_INPUT" ]; then
+            echo "version=$NODE_VERSION_INPUT" >> "$GITHUB_OUTPUT"
+          elif [ -f "$WORKING_DIRECTORY_INPUT/.nvmrc" ]; then
+            echo "version-file=$WORKING_DIRECTORY_INPUT/.nvmrc" >> "$GITHUB_OUTPUT"
           else
             echo "version=24" >> "$GITHUB_OUTPUT"
           fi

@@ -45,7 +45,7 @@ jobs:
           node-version: ${{ steps.node.outputs.version }}
           node-version-file: ${{ steps.node.outputs.version-file }}
       - name: Install latest
-        run: npm install @etchteam/recycling-locator@latest
+        run: npm install --ignore-scripts @etchteam/recycling-locator@latest
       - name: Read installed version
         id: pkg
         run: |

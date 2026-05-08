@@ -1,0 +1,66 @@
+---
+name: Check for package update
+on:
+  workflow_call:
+    inputs:
+      working-directory:
+        description: Path to package.json
+        required: false
+        type: string
+        default: '.'
+      node-version:
+        description: Node version (falls back to .nvmrc then latest LTS)
+        required: false
+        type: string
+        default: ''
+permissions: {}
+jobs:
+  update:
+    name: Open PR to update @etchteam/recycling-locator
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    defaults:
+      run:
+        working-directory: ${{ inputs.working-directory }}
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
+      - name: Resolve node version
+        id: node
+        shell: bash
+        env:
+          NODE_VERSION_INPUT: ${{ inputs.node-version }}
+          WORKING_DIRECTORY_INPUT: ${{ inputs.working-directory }}
+        run: |
+          if [ -n "$NODE_VERSION_INPUT" ]; then
+            echo "version=$NODE_VERSION_INPUT" >> "$GITHUB_OUTPUT"
+          elif [ -f "$WORKING_DIRECTORY_INPUT/.nvmrc" ]; then
+            echo "version-file=$WORKING_DIRECTORY_INPUT/.nvmrc" >> "$GITHUB_OUTPUT"
+          else
+            echo "version=24" >> "$GITHUB_OUTPUT"
+          fi
+      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e  # v6.4.0
+        with:
+          node-version: ${{ steps.node.outputs.version }}
+          node-version-file: ${{ steps.node.outputs.version-file }}
+      - name: Install latest
+        run: npm install --ignore-scripts @etchteam/recycling-locator@latest
+      - name: Read installed version
+        id: pkg
+        run: |
+          VERSION=$(node -p "require('@etchteam/recycling-locator/package.json').version")
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+      - name: Open PR if there is a diff
+        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1  # v8.1.1
+        with:
+          branch: auto-update/recycling-locator-${{ steps.pkg.outputs.version }}
+          base: ${{ github.ref_name }}
+          commit-message: "feat(deps): bump @etchteam/recycling-locator to ${{ steps.pkg.outputs.version }}"
+          title: "feat(deps): bump @etchteam/recycling-locator to ${{ steps.pkg.outputs.version }}"
+          body: |
+            Automated update to `@etchteam/recycling-locator` v${{ steps.pkg.outputs.version }}.
+
+            Release notes: https://github.com/etchteam/recycling-locator/releases/tag/v${{ steps.pkg.outputs.version }}
+          labels: dependencies
+          delete-branch: true

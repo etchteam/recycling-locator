@@ -3,11 +3,6 @@ name: Check for package update
 on:
   workflow_call:
     inputs:
-      package-name:
-        description: NPM package to check
-        required: false
-        type: string
-        default: '@etchteam/recycling-locator'
       working-directory:
         description: Path to package.json
         required: false
@@ -46,21 +41,21 @@ jobs:
           node-version: ${{ steps.node.outputs.version }}
           node-version-file: ${{ steps.node.outputs.version-file }}
       - name: Install latest
-        run: npm install ${{ inputs.package-name }}@latest
+        run: npm install @etchteam/recycling-locator@latest
       - name: Read installed version
         id: pkg
         run: |
-          VERSION=$(node -p "require('${{ inputs.package-name }}/package.json').version")
+          VERSION=$(node -p "require('@etchteam/recycling-locator/package.json').version")
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
       - name: Open PR if there is a diff
         uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1  # v8.1.1
         with:
           branch: auto-update/recycling-locator-${{ steps.pkg.outputs.version }}
           base: ${{ github.ref_name }}
-          commit-message: "feat(deps): bump ${{ inputs.package-name }} to ${{ steps.pkg.outputs.version }}"
-          title: "feat(deps): bump ${{ inputs.package-name }} to ${{ steps.pkg.outputs.version }}"
+          commit-message: "feat(deps): bump @etchteam/recycling-locator to ${{ steps.pkg.outputs.version }}"
+          title: "feat(deps): bump @etchteam/recycling-locator to ${{ steps.pkg.outputs.version }}"
           body: |
-            Automated update to `${{ inputs.package-name }}` v${{ steps.pkg.outputs.version }}.
+            Automated update to `@etchteam/recycling-locator` v${{ steps.pkg.outputs.version }}.
 
             Release notes: https://github.com/etchteam/recycling-locator/releases/tag/v${{ steps.pkg.outputs.version }}
           labels: dependencies

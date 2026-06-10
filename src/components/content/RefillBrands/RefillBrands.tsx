@@ -1,4 +1,5 @@
 import camelCase from 'lodash/camelCase';
+import { useTranslation } from 'react-i18next';
 
 import { useAppState } from '@/hooks/AppStateProvider';
 import { CustomElement } from '@/types/customElement';
@@ -14,8 +15,17 @@ export default function RefillBrands({
   companyNames,
   title,
 }: RefillBrandsProps) {
+  const { i18n } = useTranslation();
   const { publicPath } = useAppState();
   if (companyNames.length === 0) {
+    return null;
+  }
+
+  const filteredBrands = companyNames.filter((name) => {
+    return i18n.exists(`refill.place.suppliers.${camelCase(name)}.name`);
+  });
+
+  if (!filteredBrands.length) {
     return null;
   }
 
@@ -26,7 +36,7 @@ export default function RefillBrands({
           <div className="refill-brands-content">
             <h3>{title}</h3>
             <ul className="list-style-none refill-brands-list">
-              {companyNames.map((name) => (
+              {filteredBrands.map((name) => (
                 <li key={name}>
                   <img
                     src={`${publicPath}images/refill/logos/${camelCase(name)}.webp`}

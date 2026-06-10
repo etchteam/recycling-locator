@@ -31,6 +31,38 @@ export const RefillLocationResponse: Location = {
 };
 
 /**
+ * Mock whose company is NOT one of the known refill suppliers (no entry under
+ * `refill.place.suppliers`). Used to verify the supplier details block is
+ * omitted rather than rendering broken translation keys / images.
+ */
+export const RefillLocationUnknownSupplierResponse: Location = {
+  id: '1001',
+  distance: 0.5,
+  name: 'Independent Refills',
+  address: 'High Street, Barnstaple, EX31 1AA',
+  latitude: 51.0801,
+  longitude: -4.061,
+  locations: [
+    {
+      locationType: 'REFILL',
+      source: 'wrap',
+      materials: [],
+      telephone: '01271 374776',
+      website: 'https://www.independentrefills.co.uk',
+      openingHours:
+        'Monday: 09:00 - 17:00, Tuesday: 09:00 - 17:00, Wednesday: 09:00 - 17:00',
+      company: {
+        name: 'Independent Refill Co',
+        refillCategories: [
+          { id: '1', name: 'Food' },
+          { id: '2', name: 'Cleaning' },
+        ],
+      },
+    },
+  ],
+};
+
+/**
  * Mock with multiple sub-locations to test first-wins detail logic:
  * - First location: telephone only (no website, no notes)
  * - Second location: website and notes (no telephone)

@@ -154,7 +154,7 @@ function RefillCompanyContent({ location }: { readonly location: Location }) {
           );
         }
 
-        return null
+        return null;
       })}
     </>
   );

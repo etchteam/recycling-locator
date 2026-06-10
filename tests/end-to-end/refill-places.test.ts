@@ -4,6 +4,8 @@ import {
   RefillLocationsFilteredResponse,
   RefillLocationsEmptyResponse,
   RefillLocationsWithBrandsResponse,
+  RefillLocationsWithUnknownBrandResponse,
+  RefillLocationsAllUnknownBrandsResponse,
 } from '../mocks/refillLocations';
 
 import { test, expect } from './fixtures';
@@ -265,6 +267,61 @@ test.describe('Refill places', () => {
     const faithInNature = brandsCard.getByAltText('Faith in Nature');
     await expect(ecover).toBeVisible();
     await expect(faithInNature).toBeVisible();
+  });
+
+  test('Only known brand logos render, unknown brands are filtered out', async ({
+    page,
+    widget,
+  }) => {
+    await page.route(REFILL_LOCATIONS_ENDPOINT, (route) => {
+      route.fulfill({ json: RefillLocationsWithUnknownBrandResponse });
+    });
+
+    await widget.evaluate((node) =>
+      node.setAttribute('path', '/EX32 7RB/refill/places'),
+    );
+
+    await page.waitForRequest(REFILL_LOCATIONS_ENDPOINT);
+
+    const brandsCard = widget.locator('locator-refill-brands').first();
+    await expect(brandsCard).toBeVisible();
+
+    // Known supplier renders
+    await expect(brandsCard.getByAltText('Ecover')).toBeVisible();
+
+    // Company without a suppliers translation is filtered out of the DOM
+    // (toHaveCount, not visibility: a broken <img> would also be "not visible")
+    await expect(brandsCard.getByAltText('Independent Refill Co')).toHaveCount(
+      0,
+    );
+    await expect(brandsCard.locator('li')).toHaveCount(1);
+  });
+
+  test('Brands card is hidden when no companies are known brands', async ({
+    page,
+    widget,
+  }) => {
+    await page.route(REFILL_LOCATIONS_ENDPOINT, (route) => {
+      route.fulfill({ json: RefillLocationsAllUnknownBrandsResponse });
+    });
+
+    await widget.evaluate((node) =>
+      node.setAttribute('path', '/EX32 7RB/refill/places'),
+    );
+
+    await page.waitForRequest(REFILL_LOCATIONS_ENDPOINT);
+
+    // Wait for results to render first; RefillBrands renders in the same block
+    // as the places grid, so once the grid is present the brands card has had
+    // its chance to render (or return null). Without this barrier the absence
+    // assertion below would pass trivially against the not-yet-rendered page.
+    await expect(
+      widget.locator('locator-places-grid li').first(),
+    ).toBeVisible();
+
+    // All companies lack a suppliers translation, so the component returns null
+    // and the element is absent from the DOM.
+    await expect(widget.locator('locator-refill-brands')).toHaveCount(0);
   });
 
   test('Category filter is hidden when no refill places exist', async ({

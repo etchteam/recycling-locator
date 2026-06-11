@@ -3,6 +3,7 @@ import {
   REFILL_LOCATION_ENDPOINT,
   RefillLocationResponse,
   RefillLocationMultiResponse,
+  RefillLocationUnknownSupplierResponse,
 } from '../mocks/refillLocation';
 
 import { test, expect } from './fixtures';
@@ -135,6 +136,31 @@ test.describe('Refill place detail', () => {
     await expect(websiteLink).toHaveAttribute('rel', /noopener noreferrer/);
   });
 
+  test('Shows supplier details block for a known supplier', async ({
+    page,
+    widget,
+    i18n,
+  }) => {
+    await widget.evaluate((node) =>
+      node.setAttribute('path', '/EX32 7RB/refill/places/1001'),
+    );
+
+    await page.waitForRequest(REFILL_LOCATION_ENDPOINT);
+
+    // RefillLocationResponse's company is "Ecover", a known supplier
+    const suppliedHeading = widget
+      .getByText(
+        i18n.t('refill.place.supplied', { place: RefillLocationResponse.name }),
+      )
+      .first();
+    await expect(suppliedHeading).toBeVisible();
+
+    const supplierName = widget
+      .getByText(i18n.t('refill.place.suppliers.ecover.name'))
+      .first();
+    await expect(supplierName).toBeVisible();
+  });
+
   test('Supplier website chip links open in new tab', async ({
     page,
     widget,
@@ -258,5 +284,47 @@ test.describe('Refill place detail with multiple locations (first-wins logic)', 
       RefillLocationMultiResponse.locations[2].notes!,
     );
     await expect(thirdNotes).not.toBeVisible();
+  });
+});
+
+test.describe('Refill place detail with an unknown supplier', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.route(REFILL_LOCATION_ENDPOINT, (route) => {
+      route.fulfill({ json: RefillLocationUnknownSupplierResponse });
+    });
+
+    await page.route(GEOCODE_ENDPOINT, (route) => {
+      route.fulfill({ json: PostcodeGeocodeResponse });
+    });
+  });
+
+  test('Omits the supplier details block when the company is not a known supplier', async ({
+    page,
+    widget,
+    i18n,
+  }) => {
+    await widget.evaluate((node) =>
+      node.setAttribute('path', '/EX32 7RB/refill/places/1001'),
+    );
+
+    await page.waitForRequest(REFILL_LOCATION_ENDPOINT);
+
+    // Page still renders (location name is shown)
+    const placeName = widget
+      .getByText(RefillLocationUnknownSupplierResponse.name)
+      .first();
+    await expect(placeName).toBeVisible();
+
+    // The "supplied by" heading must not appear for an unknown supplier
+    const suppliedHeading = widget.getByText(
+      i18n.t('refill.place.supplied', {
+        place: RefillLocationUnknownSupplierResponse.name,
+      }),
+    );
+    await expect(suppliedHeading).not.toBeVisible();
+
+    // No raw, untranslated supplier keys should leak into the DOM
+    const rawKey = widget.getByText(/refill\.place\.suppliers\./);
+    await expect(rawKey).not.toBeVisible();
   });
 });

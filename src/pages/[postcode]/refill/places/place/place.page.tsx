@@ -75,7 +75,7 @@ function RefillProductsContent({
 }
 
 function RefillCompanyContent({ location }: { readonly location: Location }) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { publicPath } = useAppState();
 
   const companies = getCompanyNames(location).map((name) => camelCase(name));
@@ -114,43 +114,47 @@ function RefillCompanyContent({ location }: { readonly location: Location }) {
           );
         }
 
-        return (
-          <div key={company} className="evg-spacing-top-md">
-            <p className="evg-text-weight-bold evg-font-size-sm evg-spacing-bottom-md">
-              {t('refill.place.supplied', { place: location.name })}
-            </p>
-            <evg-row>
-              <evg-img radius="sm">
-                <img
-                  src={`${publicPath}images/refill/logos/${company}.webp`}
-                  alt={t(`refill.place.suppliers.${company}.name`) + ' logo'}
-                  width="48"
-                  height="48"
-                />
-              </evg-img>
-              <div>
-                <p className="evg-text-weight-bold evg-spacing-bottom-none">
-                  {t(`refill.place.suppliers.${company}.name`)}
-                </p>
-                <evg-chip variant="light">
-                  <a
-                    href={t(`refill.place.suppliers.${company}.url`)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <locator-icon
-                      icon="web-link"
-                      className="evg-spacing-right-xs"
-                    />
-                    {t(`refill.place.suppliers.${company}.urlText`)}
-                  </a>
-                </evg-chip>
-              </div>
-            </evg-row>
-            <p>{t(`refill.place.suppliers.${company}.description`)}</p>
-            <hr />
-          </div>
-        );
+        if (i18n.exists(`refill.place.suppliers.${company}.name`)) {
+          return (
+            <div key={company} className="evg-spacing-top-md">
+              <p className="evg-text-weight-bold evg-font-size-sm evg-spacing-bottom-md">
+                {t('refill.place.supplied', { place: location.name })}
+              </p>
+              <evg-row>
+                <evg-img radius="sm">
+                  <img
+                    src={`${publicPath}images/refill/logos/${company}.webp`}
+                    alt={t(`refill.place.suppliers.${company}.name`) + ' logo'}
+                    width="48"
+                    height="48"
+                  />
+                </evg-img>
+                <div>
+                  <p className="evg-text-weight-bold evg-spacing-bottom-none">
+                    {t(`refill.place.suppliers.${company}.name`)}
+                  </p>
+                  <evg-chip variant="light">
+                    <a
+                      href={t(`refill.place.suppliers.${company}.url`)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <locator-icon
+                        icon="web-link"
+                        className="evg-spacing-right-xs"
+                      />
+                      {t(`refill.place.suppliers.${company}.urlText`)}
+                    </a>
+                  </evg-chip>
+                </div>
+              </evg-row>
+              <p>{t(`refill.place.suppliers.${company}.description`)}</p>
+              <hr />
+            </div>
+          );
+        }
+
+        return null;
       })}
     </>
   );

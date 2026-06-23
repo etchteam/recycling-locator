@@ -48,7 +48,7 @@ Include the stylesheet within your website styles (optional)
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@etchteam/recycling-locator@latest/dist/recycling-locator.css">
 ```
 
-⚠️ Dependabot is configured to notify daily for NPM version changes, falling out of date means the widget could stop working due to upstream breaking API changes.
+⚠️ Falling out of date means the widget could stop working due to upstream breaking API changes. See [Keeping up to date (NPM installs)](#keeping-up-to-date-npm-installs) for the recommended auto-update workflow.
 
 ## Available settings
 
@@ -950,6 +950,47 @@ document
     console.info('Ready to recycle');
   });
 ```
+
+## Keeping up to date (NPM installs)
+
+If you install this package via NPM (rather than loading the prebuilt
+widget from a CDN), you should keep it up to date — it calls live APIs
+and ships fixes frequently.
+
+To auto-update, add this workflow to your repo at
+`.github/workflows/recycling-locator-update.yml`:
+
+```yaml
+name: Update recycling-locator
+on:
+  schedule:
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+permissions: {}
+jobs:
+  update:
+    uses: etchteam/recycling-locator/.github/workflows/check-update.yml@v1
+    permissions:
+      contents: write
+      pull-requests: write
+```
+
+Daily at 06:00 UTC the workflow checks npm for a new version and opens a
+PR if found. Manually trigger via the Actions tab → "Update
+recycling-locator" → "Run workflow".
+
+### Options
+
+| Input | Default | Purpose |
+|---|---|---|
+| `working-directory` | `.` | Path to your `package.json` |
+| `node-version` | `.nvmrc` then latest LTS | Node version |
+
+### Auto-merging
+
+PR author is `github-actions[bot]`. If you use mergify or branch
+auto-merge rules, ensure they cover this author for PRs labelled
+`dependencies`.
 
 ## Contributing
 

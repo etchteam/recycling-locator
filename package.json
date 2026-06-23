@@ -1,6 +1,6 @@
 {
   "name": "@etchteam/recycling-locator",
-  "version": "1.78.0",
+  "version": "1.78.1",
   "description": "Find places to recycle, refill or reuse items.",
   "type": "module",
   "author": "Etch <hey@etch.co>",
@@ -80,8 +80,8 @@
     "@storybook/blocks": "^8.6.4",
     "@storybook/preact": "^7.6.11",
     "@storybook/preact-vite": "^8.6.4",
-    "@vitest/coverage-v8": "^3.1.1",
-    "@vitest/ui": "^3.1.1",
+    "@vitest/coverage-v8": "^4.1.8",
+    "@vitest/ui": "^4.1.8",
     "autoprefixer": "^10.4.17",
     "dotenv": "^16.5.0",
     "eslint": "^8.57.0",
@@ -109,7 +109,7 @@
     "typescript": "^5.8.3",
     "vite": "^6.2.1",
     "vite-plugin-istanbul": "^8.0.0",
-    "vitest": "^3.1.1"
+    "vitest": "^4.1.8"
   },
   "engines": {
     "npm": "^10 || ^11",

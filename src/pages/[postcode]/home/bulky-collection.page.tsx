@@ -9,6 +9,7 @@ import { usePostcode } from '@/hooks/PostcodeProvider';
 import { useLocalAuthority } from '@/hooks/useLocalAuthority';
 import useScrollRestoration from '@/hooks/useScrollRestoration';
 import { useTip } from '@/hooks/useTip';
+import sortPropertyTypes from '@/lib/sortPropertyTypes';
 import { LocalAuthority } from '@/types/locatorApi';
 
 function BulkyCollectionPageContent({
@@ -18,11 +19,13 @@ function BulkyCollectionPageContent({
 }) {
   const { t } = useTranslation();
   const collections = localAuthority.bulkyWaste ?? [];
+  const properties = sortPropertyTypes(localAuthority.properties);
+  const propertyTypes = Object.keys(properties);
 
   return (
     <>
       <CollectionsNav
-        propertyTypes={Object.keys(localAuthority.properties)}
+        propertyTypes={propertyTypes}
         hasBulkyWaste={collections.length > 0}
         currentlySelected={t('homeRecycling.bulkyCollection.title')}
       />

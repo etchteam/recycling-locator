@@ -1,5 +1,5 @@
 import { useSignal } from '@preact/signals';
-import { useRef } from 'react';
+import { useRef } from 'preact/hooks';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'wouter-preact';
 

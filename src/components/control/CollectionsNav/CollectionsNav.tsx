@@ -26,7 +26,7 @@ export default function CollectionsNav({
 
   return (
     <locator-context-header>
-      {propertyTypes.length > 1 ? (
+      {propertyTypes.length + Number(hasBulkyWaste) > 1 ? (
         <locator-details menu>
           <details ref={menuRef}>
             {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}

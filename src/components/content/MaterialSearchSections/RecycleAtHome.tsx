@@ -5,7 +5,11 @@ import SchemeContainerSummary from '@/components/content/SchemeContainerSummary/
 import { usePostcode } from '@/hooks/PostcodeProvider';
 import containerHasMaterial from '@/lib/containerHasMaterial';
 import getPropertyTypeEnum from '@/lib/getPropertyTypeEnum';
-import { LocalAuthority, LocalAuthorityProperty } from '@/types/locatorApi';
+import {
+  BulkyWasteCollection,
+  LocalAuthority,
+  LocalAuthorityProperty,
+} from '@/types/locatorApi';
 
 function ManyProperties({
   allPropertyTypes,
@@ -94,10 +98,14 @@ export default function RecycleAtHome({
   allProperties,
   propertiesCollectingThisMaterial,
   nonRecyclable,
+  bulky,
+  bulkyWasteCollections,
 }: {
   readonly allProperties: LocalAuthority['properties'];
   readonly propertiesCollectingThisMaterial: LocalAuthority['properties'];
   readonly nonRecyclable?: boolean;
+  readonly bulky?: boolean;
+  readonly bulkyWasteCollections?: BulkyWasteCollection[];
 }) {
   const PROPERTY_TYPE = getPropertyTypeEnum();
   const { postcode } = usePostcode();
@@ -170,6 +178,12 @@ export default function RecycleAtHome({
               propertyTypesCollectingThisMaterial
             }
           />
+        )}
+
+        {bulky && bulkyWasteCollections?.length > 0 && (
+          <p className="evg-text-size-body-xs evg-spacing-bottom-sm">
+            {t('material.recycleAtHome.bulkyWasteCollection')}
+          </p>
         )}
 
         <evg-button width="full-width">

@@ -8,7 +8,7 @@ import { LocalAuthority } from '@/types/locatorApi';
 import './BulkyCollectionCard.css';
 
 interface BulkyCollectionCardAttributes {
-  noCollection?: boolean;
+  'no-collection'?: boolean;
 }
 
 export default function BulkyCollectionCard({

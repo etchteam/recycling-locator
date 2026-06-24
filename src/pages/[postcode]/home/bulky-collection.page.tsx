@@ -105,8 +105,6 @@ export default function BulkyCollectionPage() {
   const layoutRef = useRef();
   useScrollRestoration(layoutRef);
 
-  console.log('la', localAuthority);
-
   const hasLoadedLocalAuthority = !loadingLocalAuthority && localAuthority;
   const hasLoadedTip = !loadingTip && tip;
 

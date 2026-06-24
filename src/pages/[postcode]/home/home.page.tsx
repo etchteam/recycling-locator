@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'wouter-preact';
 
-import BulkyCollectionCard from '@/components/content/BulkyCollectionCard.tsx/BulkyCollectionCard';
+import BulkyCollectionCard from '@/components/content/BulkyCollectionCard/BulkyCollectionCard';
 import SchemeContainerSummary from '@/components/content/SchemeContainerSummary/SchemeContainerSummary';
 import RateThisInfo from '@/components/control/RateThisInfo/RateThisInfo';
 import { usePostcode } from '@/hooks/PostcodeProvider';

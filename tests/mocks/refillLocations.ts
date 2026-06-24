@@ -142,6 +142,90 @@ export const RefillLocationsWithBrandsResponse: LocationsResponseType = {
   },
 };
 
+/**
+ * Mix of a known supplier (Ecover) and a company with no entry under
+ * `refill.place.suppliers`. Only the known brand's logo should render.
+ */
+export const RefillLocationsWithUnknownBrandResponse: LocationsResponseType = {
+  items: [
+    {
+      ...RefillLocationsResponse.items[0],
+      locations: [
+        {
+          locationType: 'REFILL',
+          source: 'wrap',
+          materials: [],
+          company: {
+            name: 'Ecover',
+            refillCategories: [{ id: '2', name: 'Cleaning' }],
+          },
+        },
+      ],
+    },
+    {
+      ...RefillLocationsResponse.items[1],
+      locations: [
+        {
+          locationType: 'REFILL',
+          source: 'wrap',
+          materials: [],
+          company: {
+            name: 'Independent Refill Co',
+            refillCategories: [{ id: '3', name: 'Personal Care' }],
+          },
+        },
+      ],
+    },
+  ],
+  meta: RefillLocationsResponse.meta,
+  pagination: {
+    total: 2,
+    page: 1,
+  },
+};
+
+/**
+ * Only companies that have no entry under `refill.place.suppliers`. The brands
+ * card should not render at all.
+ */
+export const RefillLocationsAllUnknownBrandsResponse: LocationsResponseType = {
+  items: [
+    {
+      ...RefillLocationsResponse.items[0],
+      locations: [
+        {
+          locationType: 'REFILL',
+          source: 'wrap',
+          materials: [],
+          company: {
+            name: 'Independent Refill Co',
+            refillCategories: [{ id: '2', name: 'Cleaning' }],
+          },
+        },
+      ],
+    },
+    {
+      ...RefillLocationsResponse.items[1],
+      locations: [
+        {
+          locationType: 'REFILL',
+          source: 'wrap',
+          materials: [],
+          company: {
+            name: 'Another Unknown Shop',
+            refillCategories: [{ id: '3', name: 'Personal Care' }],
+          },
+        },
+      ],
+    },
+  ],
+  meta: RefillLocationsResponse.meta,
+  pagination: {
+    total: 2,
+    page: 1,
+  },
+};
+
 export const RefillLocationsEmptyResponse: LocationsResponseType = {
   items: [],
   meta: RefillLocationsResponse.meta,

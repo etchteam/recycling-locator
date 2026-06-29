@@ -4,6 +4,7 @@ import { Route, Switch } from 'wouter-preact';
 import ErrorBoundary, { ErrorPage } from '@/components/ErrorBoundary';
 import { usePostcode } from '@/hooks/PostcodeProvider';
 
+import BulkyCollectionPage from './bulky-collection.page';
 import CollectionPage from './collection.page';
 import HomeRecyclingContactPage from './contact.page';
 import HomeRecyclingLayout from './home.layout';
@@ -28,6 +29,10 @@ export default function HomeRecyclingRoutes() {
     >
       <Switch>
         <Route path="/:postcode/home/collection" component={CollectionPage} />
+        <Route
+          path="/:postcode/home/bulky-collection"
+          component={BulkyCollectionPage}
+        />
         <Route path="/:postcode/home/*?">
           <HomeRecyclingLayout>
             <Switch>

@@ -79,7 +79,7 @@
     "@storybook/addon-essentials": "^8.6.4",
     "@storybook/blocks": "^8.6.4",
     "@storybook/preact": "^7.6.11",
-    "@storybook/preact-vite": "^8.6.4",
+    "@storybook/preact-vite": "^10.4.6",
     "@vitest/coverage-v8": "^4.1.8",
     "@vitest/ui": "^4.1.8",
     "autoprefixer": "^10.4.17",
@@ -107,7 +107,7 @@
     "stylelint": "^15.11.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3",
-    "vite": "^6.2.1",
+    "vite": "^8.0.16",
     "vite-plugin-istanbul": "^8.0.0",
     "vitest": "^4.1.8"
   },

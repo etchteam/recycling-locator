@@ -1,4 +1,3 @@
----
 pull_request_rules:
   - name: Auto-squash dependabot updates when checks pass
     conditions:
@@ -35,4 +34,4 @@ pull_request_rules:
     actions:
       assign:
         users:
-          - "{{author}}"
+          - "{{ author }}"

@@ -3,19 +3,23 @@ import HazardousWarning from '@/components/content/MaterialSearchSections/Hazard
 import MaterialSearchSection from '@/components/content/MaterialSearchSections/MaterialSearchSection';
 import NearbyPlaces from '@/components/content/MaterialSearchSections/NearbyPlaces';
 import RecycleAtHome from '@/components/content/MaterialSearchSections/RecycleAtHome';
+import RefillPromo from '@/components/content/RefillPromo/RefillPromo';
 import type { UseDataState } from '@/hooks/useData';
+import { isRefillPromoCategory } from '@/lib/refillPromoCategories';
 import type {
   DoorstepCollection as DoorstepCollectionType,
   LocalAuthority,
   LocationsResponse,
   Material,
+  MaterialCategory,
 } from '@/types/locatorApi';
 
 type SectionKey =
   | 'doorstepCollection'
   | 'hazardousWarning'
   | 'recycleAtHome'
-  | 'nearbyPlaces';
+  | 'nearbyPlaces'
+  | 'refillPromo';
 
 interface MaterialSearchResultSectionsProps {
   readonly la: UseDataState<LocalAuthority>;
@@ -27,12 +31,15 @@ interface MaterialSearchResultSectionsProps {
   readonly hazardous: boolean;
   readonly nonRecyclable: boolean;
   readonly bulky?: boolean;
+  readonly refillLocations: UseDataState<LocationsResponse>;
+  readonly category: UseDataState<MaterialCategory>;
 }
 
 function getSortedSectionKeys(
   doorstepCollection: DoorstepCollectionType | undefined,
   propertiesCollectingThisMaterial: LocalAuthority['properties'],
   hazardous: boolean,
+  showRefillPromo: boolean,
 ) {
   const sortedSectionKeys: SectionKey[] = [];
 
@@ -52,6 +59,10 @@ function getSortedSectionKeys(
 
   sortedSectionKeys.push('nearbyPlaces');
 
+  if (showRefillPromo) {
+    sortedSectionKeys.push('refillPromo');
+  }
+
   return sortedSectionKeys;
 }
 
@@ -65,15 +76,20 @@ export default function MaterialSearchSections({
   hazardous,
   nonRecyclable,
   bulky,
+  refillLocations,
+  category,
 }: MaterialSearchResultSectionsProps) {
   const sections = new Map<SectionKey, preact.JSX.Element>();
+  const categoryId = material.data?.category?.id ?? category.data?.id;
+  const showRefillPromo = isRefillPromoCategory(categoryId);
   const sortedSectionKeys = getSortedSectionKeys(
     doorstepCollection,
     propertiesCollectingThisMaterial,
     hazardous,
+    showRefillPromo,
   );
 
-  if (doorstepCollection) {
+  if (doorstepCollection && material.data) {
     sections.set(
       'doorstepCollection',
       <MaterialSearchSection
@@ -82,7 +98,7 @@ export default function MaterialSearchSections({
       >
         <DoorstepCollection
           collection={doorstepCollection}
-          material={material?.data}
+          material={material.data}
         />
       </MaterialSearchSection>,
     );
@@ -116,6 +132,17 @@ export default function MaterialSearchSections({
       <NearbyPlaces locations={locations?.data} nonRecyclable={nonRecyclable} />
     </MaterialSearchSection>,
   );
+
+  if (showRefillPromo) {
+    const refillCount = refillLocations?.data?.items?.length ?? 0;
+
+    sections.set(
+      'refillPromo',
+      <MaterialSearchSection result={refillLocations} showLoadingCard={false}>
+        {refillCount > 0 && <RefillPromo count={refillCount} />}
+      </MaterialSearchSection>,
+    );
+  }
 
   return (
     <>

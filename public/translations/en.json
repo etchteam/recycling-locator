@@ -273,6 +273,12 @@
         "contentThirtyPlus": "This item can be disposed of at 30+ places in the area."
       }
     },
+    "refillPromo": {
+      "title": "Give Refill a go",
+      "description": "Same brands, same favourites, less packaging waste.",
+      "cta": "Discover {{count}} refill options near you",
+      "cta_one": "Discover 1 refill option near you"
+    },
     "hazardousWarning": {
       "title": "This material must be disposed of safely.",
       "content": "Contact your local authority for advice or find your nearest hazardous waste disposal service below."

@@ -490,6 +490,11 @@
     },
     "explore": {
       "title": "Archwiliwch ail-lenwi yn yr ardal hon",
+      "banner": {
+        "title": "Darganfod Ail-lenwi",
+        "description": "Dod o hyd i leoedd i ail-lenwi bwyd, cynhyrchion glanhau a chynhyrchion gofal personol yn agos atoch.",
+        "backLink": "Dychwelyd i Ailgylchu"
+      },
       "nearestLocations": {
         "title": "Eich lleoliadau ail-lenwi agosaf",
         "description": "{{count}} lle o fewn 25 milltir"

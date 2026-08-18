@@ -611,6 +611,11 @@
     },
     "explore": {
       "title": "Explore refill in this area",
+      "banner": {
+        "title": "Discover Refill",
+        "description": "Find places to refill food, cleaning and personal care products near you.",
+        "backLink": "Return to Recycling"
+      },
       "nearestLocations": {
         "title": "Your nearest refill locations",
         "description": "{{count}} places within 25 miles"

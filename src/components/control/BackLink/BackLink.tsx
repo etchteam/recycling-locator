@@ -1,3 +1,4 @@
+import { ComponentChildren } from 'preact';
 import { useTranslation } from 'react-i18next';
 
 import { useNavigation } from '@/hooks/NavigationProvider';
@@ -12,16 +13,20 @@ export interface BackLinkProps {
    * Defaults to translated "Back" text.
    */
   readonly label?: string;
+  /**
+   * Optional visible content to render after the arrow icon, e.g. a text label.
+   */
+  readonly children?: ComponentChildren;
 }
 
 /**
  * A contextual back link that navigates to the previous page in history,
  * or falls back to a specified path if no history exists.
  */
-export default function BackLink({ fallback, label }: BackLinkProps) {
+export default function BackLink({ fallback, label, children }: BackLinkProps) {
   const { t } = useTranslation();
   const { navigateBack } = useNavigation();
-  const ariaLabel = label ?? t('actions.back');
+  const ariaLabel = label ?? (children ? undefined : t('actions.back'));
 
   function handleClick(event: Event) {
     event.preventDefault();
@@ -30,7 +35,14 @@ export default function BackLink({ fallback, label }: BackLinkProps) {
 
   return (
     <a href={fallback} onClick={handleClick}>
-      <locator-icon icon="arrow-left" label={ariaLabel} />
+      {children ? (
+        <locator-icon-text>
+          <locator-icon icon="arrow-left" label={ariaLabel} />
+          <span>{children}</span>
+        </locator-icon-text>
+      ) : (
+        <locator-icon icon="arrow-left" label={ariaLabel} />
+      )}
     </a>
   );
 }

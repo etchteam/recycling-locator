@@ -21,6 +21,7 @@ export interface Material {
   valpakMaterials?: ValpakMaterial[];
   aliases?: { id: string; alias: string }[];
   meta?: RecyclingMeta[];
+  category?: MaterialCategory;
 }
 
 export interface ValpakMaterial {

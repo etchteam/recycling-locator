@@ -12,8 +12,6 @@ import formatPostcode from '@/lib/formatPostcode';
 import getRefillCategoryAvailability from '@/lib/getRefillCategoryAvailability';
 import { REFILL_CATEGORIES } from '@/lib/refillCategories';
 
-const REFILL_PATH = /refill/i;
-
 function DiscoverRefillBanner({ postcode }: { readonly postcode: string }) {
   const { t } = useTranslation();
 
@@ -246,7 +244,8 @@ export default function RefillPage() {
   const { from } = useNavigation();
   const postcode = postcodeData?.postcode || '';
   const city = postcodeData?.city || '';
-  const cameFromRecyclingJourney = !!from && !REFILL_PATH.test(from);
+  const cameFromRecyclingJourney =
+    !!from && !/^\/(?:[^/]+\/)?refill(\/|$)/.test(from);
 
   return (
     <>

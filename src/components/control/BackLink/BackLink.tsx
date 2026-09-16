@@ -26,7 +26,6 @@ export interface BackLinkProps {
 export default function BackLink({ fallback, label, children }: BackLinkProps) {
   const { t } = useTranslation();
   const { navigateBack } = useNavigation();
-  const ariaLabel = label ?? (children ? undefined : t('actions.back'));
 
   function handleClick(event: Event) {
     event.preventDefault();
@@ -37,11 +36,11 @@ export default function BackLink({ fallback, label, children }: BackLinkProps) {
     <a href={fallback} onClick={handleClick}>
       {children ? (
         <locator-icon-text>
-          <locator-icon icon="arrow-left" label={ariaLabel} />
+          <locator-icon icon="arrow-left" label={label} />
           <span>{children}</span>
         </locator-icon-text>
       ) : (
-        <locator-icon icon="arrow-left" label={ariaLabel} />
+        <locator-icon icon="arrow-left" label={label ?? t('actions.back')} />
       )}
     </a>
   );

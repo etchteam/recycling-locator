@@ -50,7 +50,7 @@ export function NavigationProvider({ children }: NavigationProviderProps) {
     };
 
     return { from, navigateBack };
-  }, [historyStack, setLocation]);
+  }, [historyStack, historyStack.value, setLocation]);
 
   return (
     <NavigationContext.Provider value={value}>

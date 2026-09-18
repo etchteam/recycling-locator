@@ -3,12 +3,34 @@ import { Link } from 'wouter-preact';
 
 import { IconAttributes } from '@/components/content/Icon/Icon';
 import OrSeparator from '@/components/content/OrSeparator/OrSeparator';
+import BackLink from '@/components/control/BackLink/BackLink';
 import { useAppState } from '@/hooks/AppStateProvider';
+import { useNavigation } from '@/hooks/NavigationProvider';
 import { usePostcode } from '@/hooks/PostcodeProvider';
 import { useRefillLocations } from '@/hooks/useRefillLocations';
 import formatPostcode from '@/lib/formatPostcode';
 import getRefillCategoryAvailability from '@/lib/getRefillCategoryAvailability';
 import { REFILL_CATEGORIES } from '@/lib/refillCategories';
+
+function DiscoverRefillBanner({ postcode }: { readonly postcode: string }) {
+  const { t } = useTranslation();
+
+  return (
+    <evg-section padding="md" className="theme-primary-muted">
+      <locator-wrap max-width="none" gutter="fluid">
+        <h2 className="evg-spacing-bottom-sm">
+          {t('refill.explore.banner.title')}
+        </h2>
+        <p className="evg-text-weight-bold">
+          {t('refill.explore.banner.description')}
+        </p>
+        <BackLink fallback={`/${postcode}`}>
+          {t('refill.explore.banner.backLink')}
+        </BackLink>
+      </locator-wrap>
+    </evg-section>
+  );
+}
 
 interface NavLinkProps {
   readonly href: string;
@@ -219,8 +241,11 @@ function RefillOptions({ postcode }: { readonly postcode: string }) {
 export default function RefillPage() {
   const { t } = useTranslation();
   const { data: postcodeData } = usePostcode();
+  const { from } = useNavigation();
   const postcode = postcodeData?.postcode || '';
   const city = postcodeData?.city || '';
+  const cameFromRecyclingJourney =
+    !!from && !/^\/(?:[^/]+\/)?refill(\/|$)/.test(from);
 
   return (
     <>
@@ -235,6 +260,7 @@ export default function RefillPage() {
           <Link href="/refill">{t('actions.change')}</Link>
         </evg-button>
       </locator-context-header>
+      {cameFromRecyclingJourney && <DiscoverRefillBanner postcode={postcode} />}
       <locator-wrap>
         <evg-section padding="lg">
           <evg-enter type="fade" className="layer-one">

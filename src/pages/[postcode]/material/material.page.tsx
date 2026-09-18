@@ -11,6 +11,7 @@ import { useDoorstepCollections } from '@/hooks/useDoorstepCollections';
 import { useLocalAuthority } from '@/hooks/useLocalAuthority';
 import { useLocations } from '@/hooks/useLocations';
 import { useMaterialSearchTerm } from '@/hooks/useMaterialSearchTerm';
+import { useRefillLocations } from '@/hooks/useRefillLocations';
 import { useTip } from '@/hooks/useTip';
 import getPropertiesByMaterial from '@/lib/getPropertiesByMaterial';
 
@@ -21,6 +22,7 @@ export default function MaterialPage() {
   const materialId = searchParams.get('materials');
   const la = useLocalAuthority();
   const locations = useLocations();
+  const refillLocations = useRefillLocations({ unfiltered: true });
   const { searchTerm, material, category } = useMaterialSearchTerm();
   const doorstepCollections = useDoorstepCollections(materialId);
   const tip = useTip({ materialId });
@@ -96,6 +98,8 @@ export default function MaterialPage() {
                 hazardous={hazardous}
                 nonRecyclable={nonRecyclable}
                 bulky={bulky}
+                refillLocations={refillLocations}
+                category={category}
               />
 
               <evg-enter type="fade-in-up" delay={1}>

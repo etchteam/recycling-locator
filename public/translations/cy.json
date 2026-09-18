@@ -257,6 +257,12 @@
         "contentThirtyPlus": "Gellir cael gwared ar yr eitem hon mewn 30+ o leoedd yn yr ardal."
       }
     },
+    "refillPromo": {
+      "title": "Rhowch gynnig ar Ail-lenwi",
+      "description": "Yr un brandiau, yr un ffefrynnau, llai o wastraff pecynnu.",
+      "cta": "Darganfod {{count}} opsiwn ail-lenwi gerllaw",
+      "cta_one": "Darganfod 1 opsiwn ail-lenwi gerllaw"
+    },
     "hazardousWarning": {
       "title": "Ni allwch ailgylchu’r eitem hon ar gyfer unrhyw amgylchiad.",
       "content": "Cysylltwch â’ch awdurdod lleol am gyngor neu dewch o hyd i’ch gwasanaeth gwaredu gwastraff peryglus agosaf isod."
@@ -490,6 +496,11 @@
     },
     "explore": {
       "title": "Archwiliwch ail-lenwi yn yr ardal hon",
+      "banner": {
+        "title": "Darganfod Ail-lenwi",
+        "description": "Dewch o hyd i leoedd gerllaw i ail-lenwi cynhyrchion bwyd, glanhau a gofal personol.",
+        "backLink": "Dychwelyd i Ailgylchu"
+      },
       "nearestLocations": {
         "title": "Eich lleoliadau ail-lenwi agosaf",
         "description": "{{count}} lle o fewn 25 milltir"

@@ -8,6 +8,11 @@ import {
 } from '../mocks/localAuthority';
 import { LOCATIONS_ENDPOINT, LocationsResponse } from '../mocks/locations';
 import { MATERIAL_ENDPOINT, ValidMaterialResponse } from '../mocks/materials';
+import {
+  REFILL_LOCATIONS_ENDPOINT,
+  RefillLocationsEmptyResponse,
+  RefillLocationsResponse,
+} from '../mocks/refillLocations';
 import { PROPERTY_TYPE_EN } from '@/types/locatorApi';
 
 import { test, expect } from './fixtures';
@@ -605,5 +610,168 @@ test.describe('Material page', () => {
         hasText: i18n.t('material.recycleAtHome.noProperties.title'),
       });
     await expect(homeCardBelowDoorstep).toBeVisible();
+  });
+
+  test('Refill promo shown for refill-eligible category with refill locations', async ({
+    page,
+    widget,
+    i18n,
+  }) => {
+    await page.route(LOCAL_AUTHORITY_ENDPOINT, (route) => {
+      route.fulfill({ json: LocalAuthorityResponse });
+    });
+
+    await page.route(LOCATIONS_ENDPOINT, (route) => {
+      route.fulfill({ json: LocationsResponse });
+    });
+
+    await page.route(MATERIAL_ENDPOINT, (route) => {
+      route.fulfill({
+        json: {
+          ...ValidMaterialResponse,
+          category: { id: 7, name: 'Plastic bottles', popular: false },
+        },
+      });
+    });
+
+    await page.route(REFILL_LOCATIONS_ENDPOINT, (route) => {
+      route.fulfill({ json: RefillLocationsResponse });
+    });
+
+    const refillPromoTitle = widget
+      .getByText(i18n.t('material.refillPromo.title'))
+      .first();
+    const refillPromoCta = widget
+      .getByText(
+        i18n.t('material.refillPromo.cta', {
+          count: RefillLocationsResponse.items.length,
+        }),
+      )
+      .first();
+
+    await expect(refillPromoTitle).not.toBeVisible();
+    await Promise.all([
+      page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT),
+      page.waitForRequest(LOCATIONS_ENDPOINT),
+      page.waitForRequest(MATERIAL_ENDPOINT),
+      page.waitForRequest(REFILL_LOCATIONS_ENDPOINT),
+      widget.evaluate((node) =>
+        node.setAttribute(
+          'path',
+          '/EX32 7RB/material?materials=43&search=Plastic milk bottles',
+        ),
+      ),
+    ]);
+
+    await expect(refillPromoTitle).toBeVisible();
+    await expect(refillPromoCta).toBeVisible();
+
+    // Verify refill promo appears after nearby places
+    const refillPromoBelowLocations = widget
+      .locator(
+        `evg-card:below(evg-card:has-text("${i18n.t('material.nearbyPlaces.places.title')}"))`,
+      )
+      .filter({ hasText: i18n.t('material.refillPromo.title') })
+      .first();
+    await expect(refillPromoBelowLocations).toBeVisible();
+  });
+
+  test('Refill promo hidden for non-refill category', async ({
+    page,
+    widget,
+    i18n,
+  }) => {
+    await page.route(LOCAL_AUTHORITY_ENDPOINT, (route) => {
+      route.fulfill({ json: LocalAuthorityResponse });
+    });
+
+    await page.route(LOCATIONS_ENDPOINT, (route) => {
+      route.fulfill({ json: LocationsResponse });
+    });
+
+    await page.route(MATERIAL_ENDPOINT, (route) => {
+      route.fulfill({
+        json: {
+          ...ValidMaterialResponse,
+          category: { id: 1, name: 'Paper', popular: false },
+        },
+      });
+    });
+
+    await page.route(REFILL_LOCATIONS_ENDPOINT, (route) => {
+      route.fulfill({ json: RefillLocationsResponse });
+    });
+
+    const recyclableText = widget
+      .getByText(i18n.t('material.hero.yes'))
+      .first();
+    const refillPromoTitle = widget
+      .getByText(i18n.t('material.refillPromo.title'))
+      .first();
+
+    await Promise.all([
+      page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT),
+      page.waitForRequest(LOCATIONS_ENDPOINT),
+      page.waitForRequest(MATERIAL_ENDPOINT),
+      widget.evaluate((node) =>
+        node.setAttribute(
+          'path',
+          '/EX32 7RB/material?materials=43&search=Plastic milk bottles',
+        ),
+      ),
+    ]);
+
+    await expect(recyclableText).toBeVisible();
+    await expect(refillPromoTitle).not.toBeVisible();
+  });
+
+  test('Refill promo hidden when no refill locations nearby', async ({
+    page,
+    widget,
+    i18n,
+  }) => {
+    await page.route(LOCAL_AUTHORITY_ENDPOINT, (route) => {
+      route.fulfill({ json: LocalAuthorityResponse });
+    });
+
+    await page.route(LOCATIONS_ENDPOINT, (route) => {
+      route.fulfill({ json: LocationsResponse });
+    });
+
+    await page.route(MATERIAL_ENDPOINT, (route) => {
+      route.fulfill({
+        json: {
+          ...ValidMaterialResponse,
+          category: { id: 7, name: 'Plastic bottles', popular: false },
+        },
+      });
+    });
+
+    await page.route(REFILL_LOCATIONS_ENDPOINT, (route) => {
+      route.fulfill({ json: RefillLocationsEmptyResponse });
+    });
+
+    const recyclableText = widget
+      .getByText(i18n.t('material.hero.yes'))
+      .first();
+    const refillPromoTitle = widget
+      .getByText(i18n.t('material.refillPromo.title'))
+      .first();
+
+    await Promise.all([
+      page.waitForRequest(LOCAL_AUTHORITY_ENDPOINT),
+      page.waitForRequest(LOCATIONS_ENDPOINT),
+      page.waitForRequest(MATERIAL_ENDPOINT),
+      page.waitForRequest(REFILL_LOCATIONS_ENDPOINT),
+      widget.evaluate((node) =>
+        node.setAttribute(
+          'path',
+          '/EX32 7RB/material?materials=43&search=Plastic milk bottles',
+        ),
+      ),
+    ]);
+
+    await expect(recyclableText).toBeVisible();
+    await expect(refillPromoTitle).not.toBeVisible();
   });
 });

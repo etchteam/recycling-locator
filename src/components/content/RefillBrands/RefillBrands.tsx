@@ -1,3 +1,4 @@
+import getLogoScale from '@/lib/getLogoScale';
 import { CustomElement } from '@/types/customElement';
 import { RefillBrand } from '@/types/locatorApi';
 
@@ -8,18 +9,13 @@ interface RefillBrandsProps {
   readonly title?: string;
 }
 
-// Equal area rather than equal height, so wide logos don't dominate
 function sizeLogoByArea(event: Event) {
   const img = event.currentTarget as HTMLImageElement;
+  const scale = getLogoScale(img.naturalWidth, img.naturalHeight);
 
-  if (!img.naturalWidth || !img.naturalHeight) {
-    return;
+  if (scale) {
+    img.style.setProperty('--logo-scale', String(scale));
   }
-
-  img.style.setProperty(
-    '--logo-scale',
-    String(Math.sqrt(img.naturalWidth / img.naturalHeight)),
-  );
 }
 
 export default function RefillBrands({ brands, title }: RefillBrandsProps) {

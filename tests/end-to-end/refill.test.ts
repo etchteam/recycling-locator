@@ -3,6 +3,7 @@ import {
   REFILL_LOCATIONS_ENDPOINT,
   RefillLocationsResponse,
   RefillLocationsEmptyResponse,
+  RefillLocationsWithBrandsResponse,
 } from '../mocks/refillLocations';
 
 import { test, expect } from './fixtures';
@@ -254,5 +255,33 @@ test.describe('Refill back navigation', () => {
       .first();
     await expect(backLink).toBeVisible();
     await expect(backLink).toHaveAttribute('href', /\/EX32 7RB\/refill/);
+  });
+});
+
+test.describe('Refill discover page', () => {
+  test('Shows brand logos from the nearby refill places', async ({
+    page,
+    widget,
+    i18n,
+  }) => {
+    await page.route(GEOCODE_ENDPOINT, (route) => {
+      route.fulfill({ json: PostcodeGeocodeResponse });
+    });
+
+    await page.route(REFILL_LOCATIONS_ENDPOINT, (route) => {
+      route.fulfill({ json: RefillLocationsWithBrandsResponse });
+    });
+
+    await widget.evaluate((node) =>
+      node.setAttribute('path', '/EX32 7RB/refill/discover'),
+    );
+
+    const brandsCard = widget.locator('locator-refill-brands');
+    await expect(brandsCard).toBeVisible();
+    await expect(
+      brandsCard.getByText(i18n.t('refill.discover.brands.title')),
+    ).toBeVisible();
+    await expect(brandsCard.getByAltText('Ecover')).toBeVisible();
+    await expect(brandsCard.getByAltText('Faith in Nature')).toBeVisible();
   });
 });

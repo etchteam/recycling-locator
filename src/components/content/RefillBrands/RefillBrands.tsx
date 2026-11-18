@@ -8,6 +8,20 @@ interface RefillBrandsProps {
   readonly title?: string;
 }
 
+// Equal area rather than equal height, so wide logos don't dominate
+function sizeLogoByArea(event: Event) {
+  const img = event.currentTarget as HTMLImageElement;
+
+  if (!img.naturalWidth || !img.naturalHeight) {
+    return;
+  }
+
+  img.style.setProperty(
+    '--logo-scale',
+    String(Math.sqrt(img.naturalWidth / img.naturalHeight)),
+  );
+}
+
 export default function RefillBrands({ brands, title }: RefillBrandsProps) {
   const brandsWithLogos = brands.filter((brand) => brand.logo);
 
@@ -24,7 +38,12 @@ export default function RefillBrands({ brands, title }: RefillBrandsProps) {
             <ul className="list-style-none refill-brands-list">
               {brandsWithLogos.map((brand) => (
                 <li key={brand.id}>
-                  <img src={brand.logo} alt={brand.name} loading="lazy" />
+                  <img
+                    src={brand.logo}
+                    alt={brand.name}
+                    loading="lazy"
+                    onLoad={sizeLogoByArea}
+                  />
                 </li>
               ))}
             </ul>

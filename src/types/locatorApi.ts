@@ -120,6 +120,14 @@ export interface RefillCategory {
   name: string;
 }
 
+export interface RefillBrand {
+  id: string;
+  name: string;
+  description: string | null;
+  logo: string | null;
+  url?: string | null;
+}
+
 export interface Location {
   id: string;
   address: string;
@@ -141,6 +149,7 @@ export interface Location {
       refillCategories: RefillCategory[];
     };
   }[];
+  brands?: RefillBrand[];
   error?: string;
 }
 
@@ -155,6 +164,7 @@ export interface LocationsResponse {
     page: number;
     total: number;
   };
+  brands?: RefillBrand[];
   error?: string;
 }
 

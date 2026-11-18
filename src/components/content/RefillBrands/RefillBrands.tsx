@@ -1,31 +1,17 @@
-import camelCase from 'lodash/camelCase';
-import { useTranslation } from 'react-i18next';
-
-import { useAppState } from '@/hooks/AppStateProvider';
 import { CustomElement } from '@/types/customElement';
+import { RefillBrand } from '@/types/locatorApi';
 
 import './RefillBrands.css';
 
 interface RefillBrandsProps {
-  readonly companyNames: string[];
+  readonly brands: RefillBrand[];
   readonly title?: string;
 }
 
-export default function RefillBrands({
-  companyNames,
-  title,
-}: RefillBrandsProps) {
-  const { i18n } = useTranslation();
-  const { publicPath } = useAppState();
-  if (companyNames.length === 0) {
-    return null;
-  }
+export default function RefillBrands({ brands, title }: RefillBrandsProps) {
+  const brandsWithLogos = brands.filter((brand) => brand.logo);
 
-  const filteredBrands = companyNames.filter((name) => {
-    return i18n.exists(`refill.place.suppliers.${camelCase(name)}.name`);
-  });
-
-  if (!filteredBrands.length) {
+  if (!brandsWithLogos.length) {
     return null;
   }
 
@@ -36,13 +22,9 @@ export default function RefillBrands({
           <div className="refill-brands-content">
             <h3>{title}</h3>
             <ul className="list-style-none refill-brands-list">
-              {filteredBrands.map((name) => (
-                <li key={name}>
-                  <img
-                    src={`${publicPath}images/refill/logos/${camelCase(name)}.webp`}
-                    alt={name}
-                    loading="lazy"
-                  />
+              {brandsWithLogos.map((brand) => (
+                <li key={brand.id}>
+                  <img src={brand.logo} alt={brand.name} loading="lazy" />
                 </li>
               ))}
             </ul>

@@ -682,57 +682,7 @@
       "supplied": "Cyflenwir {{place}} gan:",
       "websiteLinkText": "Dysgu mwy am {{place}}",
       "products": "Nwyddau",
-      "disclaimer": "Efallai y bydd mathau eraill o gynhyrchion ar gael hefyd. Mae stoc yn amrywio yn ôl y siop, felly mae’n werth gwirio argaeledd cyn i chi gychwyn eich taith yno.",
-      "suppliers": {
-        "marksAndSpencer": {
-          "name": "Marks and Spencer",
-          "url": "https://corporate.marksandspencer.com/newsroom/press-releases/ms-expands-popular-refilled-scheme-25-stores-across-uk/",
-          "urlText": "Dysgu mwy am gynllun ail-lenwi Marks and Spencer",
-          "description": "Mae M&S Milton Keynes yn cynnig cynllun ail-lenwi gyda 10 cynnyrch cartref a gofal personol o’u brand eu hunain. Rydych chi’n talu blaendal o £2 am botel y gellir ei dychwelyd, a phan fyddwch chi’n ei dychwelyd ar ôl ei defnyddio, rydych chi’n derbyn taleb o £2 tuag at eich pryniant Ail-lenwi nesaf – gan ei gwneud hi’n hawdd lleihau gwastraff plastig gyda nwyddau dibynadwy."
-        },
-        "ecover": {
-          "name": "Ecover",
-          "url": "https://www.ecover.com/uk/en/",
-          "urlText": "uk.ecover.com",
-          "description": "Mae Ecover yn frand blaenllaw o gynhyrchion glanhau ecogyfeillgar, sy’n cynnig amrywiaeth o nwyddau glanhau’r cartref y gellir eu hail-lenwi sydd wedi’u cynllunio i fod yn effeithiol, gan leihau effaith amgylcheddol ar yr un pryd."
-        },
-        "bioD": {
-          "name": "Bio-D",
-          "url": "https://www.biod.co.uk/",
-          "urlText": "biod.co.uk",
-          "description": "Mae Bio-D yn creu amrywiaeth gynhwysfawr o gynhyrchion glanhau effeithiol, sy’n seiliedig ar blanhigion, ar gyfer y cartref a golchi dillad, pob un yn hypoalergenig, heb greulondeb ac wedi’u gwneud o gynhwysion bioddiraddadwy o ffynonellau moesegol sy’n fwy caredig i groen sensitif ac i’r blaned."
-        },
-        "suma": {
-          "name": "Suma",
-          "url": "https://www.suma.coop/",
-          "urlText": "suma.coop",
-          "description": "Mae Suma yn darparu detholiad eang o fwyd a diod naturiol, organig a llysieuol, cyfres o nwyddau glanhau’r cartref o ffynonellau cyfrifol a chasgliad gofal corff hyfryd heb greulondeb."
-        },
-        "sesi": {
-          "name": "Sesi",
-          "url": "https://www.sesi.org.uk/",
-          "urlText": "sesi.org.uk",
-          "description": "Mae SESI yn cynnig ystod eang o nwyddau glanhau a nwyddau’r cartref figan, heb greulondeb y gellir eu hail-lenwi, pob un wedi’i wneud o gynhwysion bioddiraddadwy."
-        },
-        "faithInNature": {
-          "name": "Faith in Nature",
-          "url": "https://www.faithinnature.co.uk/",
-          "urlText": "faithinnature.co.uk",
-          "description": "Mae Faith in Nature yn frand gofal personol sy’n creu cynhyrchion sy’n seiliedig ar blanhigion, heb greulondeb. Fe’i sefydlwyd yn 1974, ac mae’r cwmni’n canolbwyntio ar arferion cynaliadwy a chaffael moesegol wrth osgoi cemegau llym yn eu fformwleiddiadau."
-        },
-        "yoyoGrocery": {
-          "name": "Yoyo Grocery",
-          "url": "https://www.yoyogrocery.co.uk/",
-          "urlText": "yoyogrocery.co.uk",
-          "description": "Mae Yoyo Grocery yn cynnig bwyd naturiol ac organig yn y siop gyda system ddychwelyd pecynnu ddolen gaeedig."
-        },
-        "theSourceBulkFoods": {
-          "name": "The Source Bulk Foods",
-          "url": "https://www.thesourcebulkfoods.co.uk/",
-          "urlText": "thesourcebulkfoods.co.uk",
-          "description": "Mae The Source Bulk Foods yn cynnig amrywiaeth eang o fwydydd swmp, nwyddau glanhau a gofal personol heb y deunydd pacio. Dewch â'ch cynwysyddion eich hun a llenwch nhw â chynnyrch o safon, gan helpu i leihau gwastraff o'r fferm i'r fforc."
-        }
-      }
+      "disclaimer": "Efallai y bydd mathau eraill o gynhyrchion ar gael hefyd. Mae stoc yn amrywio yn ôl y siop, felly mae’n werth gwirio argaeledd cyn i chi gychwyn eich taith yno."
     }
   }
 }

@@ -121,14 +121,7 @@ export default function DiscoverRefillPage() {
 
             <RefillBrands
               title={t('refill.discover.brands.title')}
-              companyNames={[
-                'sesi',
-                'milkAndMore',
-                'abelAndCole',
-                'ocado',
-                'faithInNature',
-                'bioD',
-              ]}
+              brands={refillLocations?.brands ?? []}
             />
 
             <h3 className="evg-spacing-top-lg">

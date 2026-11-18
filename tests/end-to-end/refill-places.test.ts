@@ -242,7 +242,7 @@ test.describe('Refill places', () => {
     await expect(alert).not.toBeVisible();
   });
 
-  test('Brand logos appear when known brands are present', async ({
+  test('Brand logos appear when the API returns brands', async ({
     page,
     widget,
     i18n,
@@ -269,10 +269,7 @@ test.describe('Refill places', () => {
     await expect(faithInNature).toBeVisible();
   });
 
-  test('Only known brand logos render, unknown brands are filtered out', async ({
-    page,
-    widget,
-  }) => {
+  test('Only brands with a logo render', async ({ page, widget }) => {
     await page.route(REFILL_LOCATIONS_ENDPOINT, (route) => {
       route.fulfill({ json: RefillLocationsWithUnknownBrandResponse });
     });
@@ -286,10 +283,9 @@ test.describe('Refill places', () => {
     const brandsCard = widget.locator('locator-refill-brands').first();
     await expect(brandsCard).toBeVisible();
 
-    // Known supplier renders
     await expect(brandsCard.getByAltText('Ecover')).toBeVisible();
 
-    // Company without a suppliers translation is filtered out of the DOM
+    // Brand without a logo is left out of the DOM
     // (toHaveCount, not visibility: a broken <img> would also be "not visible")
     await expect(brandsCard.getByAltText('Independent Refill Co')).toHaveCount(
       0,
@@ -297,7 +293,7 @@ test.describe('Refill places', () => {
     await expect(brandsCard.locator('li')).toHaveCount(1);
   });
 
-  test('Brands card is hidden when no companies are known brands', async ({
+  test('Brands card is hidden when the API returns no brands', async ({
     page,
     widget,
   }) => {
@@ -319,8 +315,6 @@ test.describe('Refill places', () => {
       widget.locator('locator-places-grid li').first(),
     ).toBeVisible();
 
-    // All companies lack a suppliers translation, so the component returns null
-    // and the element is absent from the DOM.
     await expect(widget.locator('locator-refill-brands')).toHaveCount(0);
   });
 

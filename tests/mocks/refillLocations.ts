@@ -1,6 +1,9 @@
 import config from '@/config';
 import { LocationsResponse as LocationsResponseType } from '@/types/locatorApi';
 
+const LOGO =
+  'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22/%3E';
+
 export const REFILL_LOCATIONS_ENDPOINT = `${config.locatorApiPath}refill-locations/**`;
 
 export const RefillLocationsResponse: LocationsResponseType = {
@@ -135,6 +138,10 @@ export const RefillLocationsWithBrandsResponse: LocationsResponseType = {
       ],
     },
   ],
+  brands: [
+    { id: '272', name: 'Ecover', description: null, logo: LOGO },
+    { id: '270', name: 'Faith in Nature', description: null, logo: LOGO },
+  ],
   meta: RefillLocationsResponse.meta,
   pagination: {
     total: 3,
@@ -143,8 +150,8 @@ export const RefillLocationsWithBrandsResponse: LocationsResponseType = {
 };
 
 /**
- * Mix of a known supplier (Ecover) and a company with no entry under
- * `refill.place.suppliers`. Only the known brand's logo should render.
+ * One brand with a logo (Ecover) and one with only a description. Only the
+ * brand with a logo should render.
  */
 export const RefillLocationsWithUnknownBrandResponse: LocationsResponseType = {
   items: [
@@ -177,6 +184,15 @@ export const RefillLocationsWithUnknownBrandResponse: LocationsResponseType = {
       ],
     },
   ],
+  brands: [
+    { id: '272', name: 'Ecover', description: null, logo: LOGO },
+    {
+      id: '900',
+      name: 'Independent Refill Co',
+      description: 'A local refill shop.',
+      logo: null,
+    },
+  ],
   meta: RefillLocationsResponse.meta,
   pagination: {
     total: 2,
@@ -185,8 +201,8 @@ export const RefillLocationsWithUnknownBrandResponse: LocationsResponseType = {
 };
 
 /**
- * Only companies that have no entry under `refill.place.suppliers`. The brands
- * card should not render at all.
+ * Companies with no brand data, so the proxy returns no brands. The brands card
+ * should not render at all.
  */
 export const RefillLocationsAllUnknownBrandsResponse: LocationsResponseType = {
   items: [
@@ -219,6 +235,7 @@ export const RefillLocationsAllUnknownBrandsResponse: LocationsResponseType = {
       ],
     },
   ],
+  brands: [],
   meta: RefillLocationsResponse.meta,
   pagination: {
     total: 2,

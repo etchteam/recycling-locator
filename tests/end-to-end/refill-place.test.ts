@@ -1,8 +1,12 @@
 import { GEOCODE_ENDPOINT, PostcodeGeocodeResponse } from '../mocks/geocode';
 import {
+  EcoverBrand,
+  MarksAndSpencerBrand,
   REFILL_LOCATION_ENDPOINT,
+  RefillLocationNoBrandUrlResponse,
   RefillLocationResponse,
   RefillLocationMultiResponse,
+  RefillLocationStoreBrandResponse,
   RefillLocationUnknownSupplierResponse,
 } from '../mocks/refillLocation';
 
@@ -147,7 +151,6 @@ test.describe('Refill place detail', () => {
 
     await page.waitForRequest(REFILL_LOCATION_ENDPOINT);
 
-    // RefillLocationResponse's company is "Ecover", a known supplier
     const suppliedHeading = widget
       .getByText(
         i18n.t('refill.place.supplied', { place: RefillLocationResponse.name }),
@@ -155,10 +158,11 @@ test.describe('Refill place detail', () => {
       .first();
     await expect(suppliedHeading).toBeVisible();
 
-    const supplierName = widget
-      .getByText(i18n.t('refill.place.suppliers.ecover.name'))
-      .first();
-    await expect(supplierName).toBeVisible();
+    await expect(widget.getByText(EcoverBrand.name).first()).toBeVisible();
+    await expect(
+      widget.getByText(EcoverBrand.description ?? '').first(),
+    ).toBeVisible();
+    await expect(widget.getByAltText(`${EcoverBrand.name} logo`)).toBeVisible();
   });
 
   test('Supplier website chip links open in new tab', async ({
@@ -174,6 +178,26 @@ test.describe('Refill place detail', () => {
     const supplierLink = widget.locator('evg-chip a[target="_blank"]').first();
     await expect(supplierLink).toBeVisible();
     await expect(supplierLink).toHaveAttribute('rel', /noopener noreferrer/);
+    await expect(supplierLink).toHaveAttribute('href', EcoverBrand.url ?? '');
+    await expect(supplierLink).toHaveText('ecover.com');
+  });
+
+  test('Omits the supplier website chip when the brand has no url', async ({
+    page,
+    widget,
+  }) => {
+    await page.route(REFILL_LOCATION_ENDPOINT, (route) => {
+      route.fulfill({ json: RefillLocationNoBrandUrlResponse });
+    });
+
+    await widget.evaluate((node) =>
+      node.setAttribute('path', '/EX32 7RB/refill/places/1001'),
+    );
+
+    await page.waitForRequest(REFILL_LOCATION_ENDPOINT);
+
+    await expect(widget.getByText(EcoverBrand.name).first()).toBeVisible();
+    await expect(widget.locator('evg-chip a[target="_blank"]')).toHaveCount(0);
   });
 
   test('Place detail has back link to places list', async ({
@@ -287,7 +311,7 @@ test.describe('Refill place detail with multiple locations (first-wins logic)', 
   });
 });
 
-test.describe('Refill place detail with an unknown supplier', () => {
+test.describe('Refill place detail with no brand data', () => {
   test.beforeEach(async ({ page }) => {
     await page.route(REFILL_LOCATION_ENDPOINT, (route) => {
       route.fulfill({ json: RefillLocationUnknownSupplierResponse });
@@ -298,7 +322,7 @@ test.describe('Refill place detail with an unknown supplier', () => {
     });
   });
 
-  test('Omits the supplier details block when the company is not a known supplier', async ({
+  test('Omits the supplier details block when there are no brands', async ({
     page,
     widget,
     i18n,
@@ -315,16 +339,75 @@ test.describe('Refill place detail with an unknown supplier', () => {
       .first();
     await expect(placeName).toBeVisible();
 
-    // The "supplied by" heading must not appear for an unknown supplier
     const suppliedHeading = widget.getByText(
       i18n.t('refill.place.supplied', {
         place: RefillLocationUnknownSupplierResponse.name,
       }),
     );
     await expect(suppliedHeading).not.toBeVisible();
+  });
+});
 
-    // No raw, untranslated supplier keys should leak into the DOM
-    const rawKey = widget.getByText(/refill\.place\.suppliers\./);
-    await expect(rawKey).not.toBeVisible();
+test.describe('Refill place detail for a store brand', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.route(REFILL_LOCATION_ENDPOINT, (route) => {
+      route.fulfill({ json: RefillLocationStoreBrandResponse });
+    });
+
+    await page.route(GEOCODE_ENDPOINT, (route) => {
+      route.fulfill({ json: PostcodeGeocodeResponse });
+    });
+  });
+
+  test('Shows the store brand logo, description and store picture', async ({
+    page,
+    widget,
+    i18n,
+  }) => {
+    await widget.evaluate((node) =>
+      node.setAttribute('path', '/EX32 7RB/refill/places/1001'),
+    );
+
+    await page.waitForRequest(REFILL_LOCATION_ENDPOINT);
+
+    await expect(
+      widget.getByAltText(`${MarksAndSpencerBrand.name} logo`),
+    ).toBeVisible();
+    await expect(
+      widget.getByText(MarksAndSpencerBrand.description ?? ''),
+    ).toBeVisible();
+    await expect(
+      widget.getByAltText(
+        `A picture of the ${MarksAndSpencerBrand.name} store`,
+      ),
+    ).toBeVisible();
+
+    // Store brands don't get the "supplied by" block
+    await expect(
+      widget.getByText(
+        i18n.t('refill.place.supplied', {
+          place: RefillLocationStoreBrandResponse.name,
+        }),
+      ),
+    ).toHaveCount(0);
+  });
+
+  test('Shows the store brand website link', async ({ page, widget, i18n }) => {
+    await widget.evaluate((node) =>
+      node.setAttribute('path', '/EX32 7RB/refill/places/1001'),
+    );
+
+    await page.waitForRequest(REFILL_LOCATION_ENDPOINT);
+
+    const link = widget.getByRole('link', {
+      name: i18n.t('refill.place.refillSchemeLinkText', {
+        brand: MarksAndSpencerBrand.name,
+      }),
+    });
+    await expect(link).toBeVisible();
+    await expect(link).toHaveAttribute(
+      'href',
+      `${MarksAndSpencerBrand.url}?utm_source=wrap-recycling-locator`,
+    );
   });
 });

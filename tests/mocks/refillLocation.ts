@@ -1,7 +1,18 @@
 import config from '@/config';
-import { Location } from '@/types/locatorApi';
+import { Location, RefillBrand } from '@/types/locatorApi';
+
+const LOGO =
+  'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22/%3E';
 
 export const REFILL_LOCATION_ENDPOINT = `${config.locatorApiPath}refill-location/**`;
+
+export const EcoverBrand: RefillBrand = {
+  id: '272',
+  name: 'Ecover',
+  description: 'Ecover is a leading brand of eco-friendly cleaning products.',
+  logo: LOGO,
+  url: 'https://www.ecover.com/',
+};
 
 export const RefillLocationResponse: Location = {
   id: '1001',
@@ -28,12 +39,40 @@ export const RefillLocationResponse: Location = {
       },
     },
   ],
+  brands: [EcoverBrand],
+};
+
+export const RefillLocationNoBrandUrlResponse: Location = {
+  ...RefillLocationResponse,
+  brands: [{ ...EcoverBrand, url: null }],
+};
+
+export const MarksAndSpencerBrand: RefillBrand = {
+  id: '199',
+  name: 'Marks and Spencer',
+  description: 'M&S is offering a refill scheme with own-brand products.',
+  logo: LOGO,
+  url: 'https://corporate.marksandspencer.com/refill',
+};
+
+export const RefillLocationStoreBrandResponse: Location = {
+  ...RefillLocationResponse,
+  name: 'Marks and Spencer',
+  locations: [
+    {
+      ...RefillLocationResponse.locations[0],
+      company: {
+        name: 'Marks and Spencer',
+        refillCategories: [{ id: '2', name: 'Cleaning' }],
+      },
+    },
+  ],
+  brands: [MarksAndSpencerBrand],
 };
 
 /**
- * Mock whose company is NOT one of the known refill suppliers (no entry under
- * `refill.place.suppliers`). Used to verify the supplier details block is
- * omitted rather than rendering broken translation keys / images.
+ * Mock whose company has no brand data, so the proxy returns no brands. Used to
+ * verify the supplier details block is omitted.
  */
 export const RefillLocationUnknownSupplierResponse: Location = {
   id: '1001',
@@ -60,6 +99,7 @@ export const RefillLocationUnknownSupplierResponse: Location = {
       },
     },
   ],
+  brands: [],
 };
 
 /**

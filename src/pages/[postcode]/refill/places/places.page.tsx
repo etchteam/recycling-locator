@@ -11,7 +11,6 @@ import { useAppState } from '@/hooks/AppStateProvider';
 import { usePostcode } from '@/hooks/PostcodeProvider';
 import { usePaginatedLocations } from '@/hooks/usePaginatedLocations';
 import { useRefillLocations } from '@/hooks/useRefillLocations';
-import getCompanyNames from '@/lib/getCompanyNames';
 
 function RefillLocations() {
   const { postcode } = usePostcode();
@@ -139,7 +138,7 @@ function RefillLocations() {
             )}
             <RefillBrands
               title={t('refill.brands.title')}
-              companyNames={getCompanyNames(unfilteredResult.data ?? locations)}
+              brands={(unfilteredResult.data ?? locations).brands ?? []}
             />
           </>
         )}

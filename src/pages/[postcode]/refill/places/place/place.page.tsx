@@ -10,7 +10,7 @@ import { usePostcode } from '@/hooks/PostcodeProvider';
 import { useRefillPlace } from '@/hooks/useRefillPlace';
 import cleanupAddress from '@/lib/cleanupAddress';
 import getRefillPlaceDetails from '@/lib/details/getRefillPlaceDetails';
-import getCompanyNames from '@/lib/getCompanyNames';
+import getBrandLinkText from '@/lib/getBrandLinkText';
 import { REFILL_CATEGORIES } from '@/lib/refillCategories';
 import { Location, RefillCategory } from '@/types/locatorApi';
 
@@ -75,38 +75,38 @@ function RefillProductsContent({
 }
 
 function RefillCompanyContent({ location }: { readonly location: Location }) {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const { publicPath } = useAppState();
 
-  const companies = getCompanyNames(location).map((name) => camelCase(name));
+  const brands = location.brands ?? [];
 
-  if (companies.length === 0) {
+  if (brands.length === 0) {
     return null;
   }
 
   return (
     <>
-      {companies.map((company) => {
-        if (StoreBrands.has(company)) {
+      {brands.map((brand) => {
+        const key = camelCase(brand.name);
+
+        if (StoreBrands.has(key)) {
           return (
-            <div key={company} className="evg-spacing-top-md">
-              <evg-img>
-                <img
-                  src={`${publicPath}images/refill/logos/${company}.webp`}
-                  alt={t(`refill.place.suppliers.${company}.name`) + ' logo'}
-                  width="100"
-                  height="50"
-                />
-              </evg-img>
-              <p>{t(`refill.place.suppliers.${company}.description`)}</p>
+            <div key={brand.id} className="evg-spacing-top-md">
+              {brand.logo && (
+                <evg-img>
+                  <img
+                    src={brand.logo}
+                    alt={brand.name + ' logo'}
+                    width="100"
+                    height="50"
+                  />
+                </evg-img>
+              )}
+              {brand.description && <p>{brand.description}</p>}
               <evg-img radius="sm">
                 <img
-                  src={`${publicPath}images/refill/brand-images/${company}.webp`}
-                  alt={
-                    'A picture of the ' +
-                    t(`refill.place.suppliers.${company}.name`) +
-                    ' store'
-                  }
+                  src={`${publicPath}images/refill/brand-images/${key}.webp`}
+                  alt={'A picture of the ' + brand.name + ' store'}
                 />
               </evg-img>
               <hr />
@@ -114,28 +114,30 @@ function RefillCompanyContent({ location }: { readonly location: Location }) {
           );
         }
 
-        if (i18n.exists(`refill.place.suppliers.${company}.name`)) {
-          return (
-            <div key={company} className="evg-spacing-top-md">
-              <p className="evg-text-weight-bold evg-font-size-sm evg-spacing-bottom-md">
-                {t('refill.place.supplied', { place: location.name })}
-              </p>
-              <evg-row>
+        return (
+          <div key={brand.id} className="evg-spacing-top-md">
+            <p className="evg-text-weight-bold evg-font-size-sm evg-spacing-bottom-md">
+              {t('refill.place.supplied', { place: location.name })}
+            </p>
+            <evg-row>
+              {brand.logo && (
                 <evg-img radius="sm">
                   <img
-                    src={`${publicPath}images/refill/logos/${company}.webp`}
-                    alt={t(`refill.place.suppliers.${company}.name`) + ' logo'}
+                    src={brand.logo}
+                    alt={brand.name + ' logo'}
                     width="48"
                     height="48"
                   />
                 </evg-img>
-                <div>
-                  <p className="evg-text-weight-bold evg-spacing-bottom-none">
-                    {t(`refill.place.suppliers.${company}.name`)}
-                  </p>
+              )}
+              <div>
+                <p className="evg-text-weight-bold evg-spacing-bottom-none">
+                  {brand.name}
+                </p>
+                {brand.url && (
                   <evg-chip variant="light">
                     <a
-                      href={t(`refill.place.suppliers.${company}.url`)}
+                      href={brand.url}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -143,18 +145,16 @@ function RefillCompanyContent({ location }: { readonly location: Location }) {
                         icon="web-link"
                         className="evg-spacing-right-xs"
                       />
-                      {t(`refill.place.suppliers.${company}.urlText`)}
+                      {getBrandLinkText(brand.url)}
                     </a>
                   </evg-chip>
-                </div>
-              </evg-row>
-              <p>{t(`refill.place.suppliers.${company}.description`)}</p>
-              <hr />
-            </div>
-          );
-        }
-
-        return null;
+                )}
+              </div>
+            </evg-row>
+            {brand.description && <p>{brand.description}</p>}
+            <hr />
+          </div>
+        );
       })}
     </>
   );
@@ -170,6 +170,9 @@ function RefillPlaceContent({ location }: { readonly location: Location }) {
   const { phoneNumber, website, openingHours, note } =
     getRefillPlaceDetails(location);
   const address = cleanupAddress(location.address);
+  const storeBrand = location.brands?.find((brand) =>
+    StoreBrands.has(camelCase(brand.name)),
+  );
 
   return (
     <>
@@ -200,18 +203,18 @@ function RefillPlaceContent({ location }: { readonly location: Location }) {
               </dd>
             </div>
           )}
-          {StoreBrands.has(
-            camelCase(location.locations[0]?.company?.name ?? ''),
-          ) && (
+          {storeBrand?.url && (
             <div>
               <dt>{t('place.details.website')}</dt>
               <dd>
                 <a
-                  href={`${t('refill.place.suppliers.marksAndSpencer.url')}?utm_source=wrap-recycling-locator`}
+                  href={`${storeBrand.url}?utm_source=wrap-recycling-locator`}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {t('refill.place.suppliers.marksAndSpencer.urlText')}
+                  {t('refill.place.refillSchemeLinkText', {
+                    brand: storeBrand.name,
+                  })}
                 </a>
               </dd>
             </div>

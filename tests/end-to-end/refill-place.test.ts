@@ -1,10 +1,12 @@
 import { GEOCODE_ENDPOINT, PostcodeGeocodeResponse } from '../mocks/geocode';
 import {
   EcoverBrand,
+  MarksAndSpencerBrand,
   REFILL_LOCATION_ENDPOINT,
   RefillLocationNoBrandUrlResponse,
   RefillLocationResponse,
   RefillLocationMultiResponse,
+  RefillLocationStoreBrandResponse,
   RefillLocationUnknownSupplierResponse,
 } from '../mocks/refillLocation';
 
@@ -343,5 +345,69 @@ test.describe('Refill place detail with no brand data', () => {
       }),
     );
     await expect(suppliedHeading).not.toBeVisible();
+  });
+});
+
+test.describe('Refill place detail for a store brand', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.route(REFILL_LOCATION_ENDPOINT, (route) => {
+      route.fulfill({ json: RefillLocationStoreBrandResponse });
+    });
+
+    await page.route(GEOCODE_ENDPOINT, (route) => {
+      route.fulfill({ json: PostcodeGeocodeResponse });
+    });
+  });
+
+  test('Shows the store brand logo, description and store picture', async ({
+    page,
+    widget,
+    i18n,
+  }) => {
+    await widget.evaluate((node) =>
+      node.setAttribute('path', '/EX32 7RB/refill/places/1001'),
+    );
+
+    await page.waitForRequest(REFILL_LOCATION_ENDPOINT);
+
+    await expect(
+      widget.getByAltText(`${MarksAndSpencerBrand.name} logo`),
+    ).toBeVisible();
+    await expect(
+      widget.getByText(MarksAndSpencerBrand.description ?? ''),
+    ).toBeVisible();
+    await expect(
+      widget.getByAltText(
+        `A picture of the ${MarksAndSpencerBrand.name} store`,
+      ),
+    ).toBeVisible();
+
+    // Store brands don't get the "supplied by" block
+    await expect(
+      widget.getByText(
+        i18n.t('refill.place.supplied', {
+          place: RefillLocationStoreBrandResponse.name,
+        }),
+      ),
+    ).toHaveCount(0);
+  });
+
+  test('Shows the store brand website link', async ({ page, widget, i18n }) => {
+    await widget.evaluate((node) =>
+      node.setAttribute('path', '/EX32 7RB/refill/places/1001'),
+    );
+
+    await page.waitForRequest(REFILL_LOCATION_ENDPOINT);
+
+    const link = widget.getByRole('link', {
+      name: i18n.t('refill.place.refillSchemeLinkText', {
+        brand: MarksAndSpencerBrand.name,
+      }),
+    });
+    await expect(link).toBeVisible();
+    await expect(link).toHaveAttribute(
+      'href',
+      `${MarksAndSpencerBrand.url}?utm_source=wrap-recycling-locator`,
+    );
   });
 });

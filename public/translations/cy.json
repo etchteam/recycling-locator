@@ -681,6 +681,7 @@
       "title": "Gallwch ail-lenwi nwyddau <categories></categories> yn y fan hon",
       "supplied": "Cyflenwir {{place}} gan:",
       "websiteLinkText": "Dysgu mwy am {{place}}",
+      "refillSchemeLinkText": "Dysgu mwy am gynllun ail-lenwi {{brand}}",
       "products": "Nwyddau",
       "disclaimer": "Efallai y bydd mathau eraill o gynhyrchion ar gael hefyd. Mae stoc yn amrywio yn ôl y siop, felly mae’n werth gwirio argaeledd cyn i chi gychwyn eich taith yno."
     }

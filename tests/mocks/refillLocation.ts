@@ -47,6 +47,29 @@ export const RefillLocationNoBrandUrlResponse: Location = {
   brands: [{ ...EcoverBrand, url: null }],
 };
 
+export const MarksAndSpencerBrand: RefillBrand = {
+  id: '199',
+  name: 'Marks and Spencer',
+  description: 'M&S is offering a refill scheme with own-brand products.',
+  logo: LOGO,
+  url: 'https://corporate.marksandspencer.com/refill',
+};
+
+export const RefillLocationStoreBrandResponse: Location = {
+  ...RefillLocationResponse,
+  name: 'Marks and Spencer',
+  locations: [
+    {
+      ...RefillLocationResponse.locations[0],
+      company: {
+        name: 'Marks and Spencer',
+        refillCategories: [{ id: '2', name: 'Cleaning' }],
+      },
+    },
+  ],
+  brands: [MarksAndSpencerBrand],
+};
+
 /**
  * Mock whose company has no brand data, so the proxy returns no brands. Used to
  * verify the supplier details block is omitted.

@@ -10,6 +10,7 @@ import { usePostcode } from '@/hooks/PostcodeProvider';
 import { useRefillPlace } from '@/hooks/useRefillPlace';
 import cleanupAddress from '@/lib/cleanupAddress';
 import getRefillPlaceDetails from '@/lib/details/getRefillPlaceDetails';
+import getBrandLinkText from '@/lib/getBrandLinkText';
 import { REFILL_CATEGORIES } from '@/lib/refillCategories';
 import { Location, RefillCategory } from '@/types/locatorApi';
 
@@ -71,14 +72,6 @@ function RefillProductsContent({
       </p>
     </>
   );
-}
-
-function brandLinkText(url: string) {
-  try {
-    return new URL(url).hostname.replace(/^www\./, '');
-  } catch {
-    return url;
-  }
 }
 
 function RefillCompanyContent({ location }: { readonly location: Location }) {
@@ -152,7 +145,7 @@ function RefillCompanyContent({ location }: { readonly location: Location }) {
                         icon="web-link"
                         className="evg-spacing-right-xs"
                       />
-                      {brandLinkText(brand.url)}
+                      {getBrandLinkText(brand.url)}
                     </a>
                   </evg-chip>
                 )}
@@ -219,8 +212,8 @@ function RefillPlaceContent({ location }: { readonly location: Location }) {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {t('refill.place.websiteLinkText', {
-                    place: storeBrand.name,
+                  {t('refill.place.refillSchemeLinkText', {
+                    brand: storeBrand.name,
                   })}
                 </a>
               </dd>

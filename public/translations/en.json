@@ -695,6 +695,7 @@
       "title": "You can refill <categories></categories> products at this place",
       "supplied": "{{place}} is supplied by:",
       "websiteLinkText": "Learn more about {{place}}",
+      "refillSchemeLinkText": "Learn more about {{brand}}'s refill scheme",
       "products": "Products",
       "disclaimer": "Other product types may also be available. Stock varies by store, so it's worth checking availability before you make the trip."
     }
